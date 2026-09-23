@@ -16,11 +16,12 @@ CONTENT = ROOT / "content"
 OUT = ROOT / "web" / "assets" / "js" / "data.js"
 
 DOMAIN_META = {
+    "spark": {"label": "Spark", "type": "technical"},
     "warehouse": {"label": "数仓", "type": "technical"},
     "sql": {"label": "SQL", "type": "technical"},
     "project": {"label": "项目 / 行为", "type": "project"},
 }
-DOMAIN_ORDER = ["warehouse", "sql", "project"]
+DOMAIN_ORDER = ["spark", "warehouse", "sql", "project"]
 
 
 def split_frontmatter(text: str):
