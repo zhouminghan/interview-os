@@ -10,16 +10,24 @@
 
 ## 三类内容
 
-- **Technical QA**：有标准答案的技术题（正确性 + 表达 + 追问 + 项目结合）
-- **Behavioral / HR**：重表达、立场与信息组织的开放题
-- **Negotiation**：谈薪与谈判筹码
+- Technical QA：有标准答案的技术题（正确性 + 表达 + 追问 + 项目结合）
+- Behavioral / HR：重表达、立场与信息组织的开放题
+- Negotiation：谈薪与谈判筹码
 
-## 技术栈（MVP）
+## 使用
 
-- 内容源：Markdown / YAML
-- 展示：静态站点，零构建，vanilla JS + CSS
-- 训练状态：浏览器 LocalStorage
-- 部署：GitHub Pages
+完全本地化、零构建，离线可用：
+
+```bash
+# 生成前端数据
+python3 scripts/build.py
+
+# 本地预览（任选其一）
+python3 -m http.server 8000
+# 或直接用浏览器打开 web/index.html
+```
+
+页面：总览 / 问题库 / 面经 / 随机训练 / 能力画像。训练记录保存在浏览器 LocalStorage。
 
 ## 目录与规范
 
@@ -27,4 +35,4 @@
 
 ## 状态
 
-当前处于 v0：架构 + 内容 Schema + AGENTS.md 已定，页面与生成器待建。
+v1：内容 Schema + AGENTS.md + 静态站点（可视化展示 + 随机训练 + 能力画像）已可用。
