@@ -22,11 +22,12 @@ DOMAIN_META = {
     "project": {"label": "项目 / 行为", "type": "project"},
     "hdfs": {"label": "HDFS", "type": "technical"},
     "storage": {"label": "存储引擎", "type": "technical"},
+    "flink": {"label": "Flink", "type": "technical"},
     "network": {"label": "网络", "type": "technical"},
     "algorithm": {"label": "算法", "type": "technical"},
     "llm": {"label": "大模型", "type": "technical"},
 }
-DOMAIN_ORDER = ["spark", "hdfs", "storage", "network", "algorithm", "llm", "warehouse", "sql", "project"]
+DOMAIN_ORDER = ["spark", "hdfs", "storage", "flink", "network", "algorithm", "llm", "warehouse", "sql", "project"]
 
 
 def split_frontmatter(text: str):

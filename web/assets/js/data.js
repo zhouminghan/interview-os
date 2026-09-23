@@ -1,18 +1,19 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-23T16:40:30+08:00",
+  "generatedAt": "2026-09-23T19:00:34+08:00",
   "stats": {
-    "questions": 53,
-    "interviews": 4,
-    "technical": 44,
+    "questions": 69,
+    "interviews": 5,
+    "technical": 60,
     "project": 9,
     "domains": {
-      "spark": 11,
+      "spark": 17,
       "hdfs": 1,
-      "storage": 4,
+      "storage": 6,
+      "flink": 3,
       "network": 4,
       "algorithm": 1,
-      "llm": 3,
-      "warehouse": 14,
+      "llm": 5,
+      "warehouse": 17,
       "sql": 6,
       "project": 9
     }
@@ -28,6 +29,10 @@ window.OS_DATA = {
     },
     "storage": {
       "label": "存储引擎",
+      "type": "technical"
+    },
+    "flink": {
+      "label": "Flink",
       "type": "technical"
     },
     "network": {
@@ -313,6 +318,146 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>map 做局部计算，shuffle 按 key 分区传输，reduce 做聚合输出；<code>group by city_id + count(distinct user_id)</code> 就是按 city_id 分区后对 user_id 去重计数。</p>\n<h2>30 秒回答</h2>\n<p>map 端读数据、解析、过滤、投影，可做 map 端预聚合；shuffle 把相同 key 分到同一分区；reduce 端按 key 聚合。该 SQL 按 city_id shuffle，reduce 端对每个 city 的 user_id 去重计数。</p>\n<h2>1 分钟回答</h2>\n<pre><code class=\"language-sql\">SELECT city_id, COUNT(DISTINCT user_id)\nFROM t\nGROUP BY city_id;</code></pre>\n<p>执行过程：</p>\n<ol>\n<li>map：读表，解析出 (city_id, user_id)，可先对 (city_id, user_id) 做 map 端预聚合去重</li>\n<li>shuffle：按 city_id 分区，把相同 city_id 的数据发到同一 reducer</li>\n<li>reduce：对每个 city_id 的 user_id 做 distinct 去重再计数</li>\n<li>输出：每个 city_id 一条 (city_id, count)</li>\n</ol>\n<ul>\n<li>count(distinct) 的去重可能分两阶段：map 端部分去重，reduce 端最终去重</li>\n<li>输出是 key-value：map 输出 (city_id, user_id)，shuffle 后 reduce 输出 (city_id, count)</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>count(distinct) 为什么慢，怎么优化？</li>\n<li>map 端预聚合（combiner）怎么工作？</li>\n<li>shuffle 落盘在哪里？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0012",
+      "type": "technical",
+      "question": "任务变慢：数据量增 15%，少数 task 慢，平均 CPU 40%，如何排查",
+      "topic": [
+        "spark",
+        "tuning",
+        "diagnose"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>先看是数据倾斜还是资源/IO 瓶颈：平均 CPU 低 + 少数 task 慢，大概率是倾斜长尾。</p>\n<h2>30 秒回答</h2>\n<p>看 Spark UI 的 task 耗时和数据量分布：少数 task 数据量/耗时远大于其他就是倾斜；再结合 executor 日志、GC、spill、磁盘 IO 排除单节点问题。</p>\n<h2>1 分钟回答</h2>\n<ol>\n<li>看 stage/task metrics：耗时、shuffle read、records</li>\n<li>定位慢 task 对应哪些 key/分区</li>\n<li>判断数据倾斜：数据量和耗时高度集中</li>\n<li>排除硬件/IO：executor 日志、GC、磁盘 IO、节点状态</li>\n<li>平均 CPU 40% 说明资源没吃满，倾斜或 IO 等待可能性大</li>\n</ol>\n<h2>追问</h2>\n<ul>\n<li>task 慢但 CPU 不高，还可能是什么原因？</li>\n<li>怎么快速定位热点 key？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0013",
+      "type": "technical",
+      "question": "增加并行度、executor 数量翻倍，总是有效吗",
+      "topic": [
+        "spark",
+        "tuning",
+        "parallelism"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>不是。并行度要匹配数据量和资源，先定位瓶颈再调。</p>\n<h2>30 秒回答</h2>\n<p>有效前提是任务确实受并行度限制。数据倾斜、小数据量、小文件、shuffle 开销增大时，加并行度或 executor 不一定有效，甚至更慢。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>有效：分区少、资源没吃满、任务受并行度限制</li>\n<li>无效/负面：数据倾斜（热点 key 仍集中）、小数据量（调度开销大）、小文件（task 过多）、shuffle 开销增加、资源竞争和 GC</li>\n<li>executor 翻倍：可能增加调度、GC、网络开销</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么判断并行度是否合理？</li>\n<li>倾斜时加并行度为什么没用？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0014",
+      "type": "technical",
+      "question": "如何区分数据倾斜、节点硬件慢、IO 问题",
+      "topic": [
+        "spark",
+        "skew",
+        "diagnose"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>倾斜是「少数 task 数据量/耗时异常高」，硬件/IO 是「某节点上所有 task 都慢或整体 IO 高」。</p>\n<h2>30 秒回答</h2>\n<p>倾斜看 task 数据量和耗时是否集中在特定 key；硬件慢看 executor 上所有 task 都慢、磁盘/网络/GC 指标异常；可通过换节点重跑验证。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>倾斜：同一 stage 少数 task 处理数据量和耗时远超其他，换节点重跑仍同样 key 慢</li>\n<li>硬件慢：某 executor 所有 task 都慢，与数据内容无关，随机分布</li>\n<li>IO：整体 IO 高、磁盘队列长，可看 executor 日志和系统指标</li>\n<li>排查：Spark UI task metrics、shuffle 分布、executor 日志、磁盘/网络/GC</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么用重跑来区分？</li>\n<li>倾斜在 UI 上最明显的特征是什么？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0015",
+      "type": "technical",
+      "question": "确定热点 key 后，加盐打散是不是永远有效",
+      "topic": [
+        "spark",
+        "skew",
+        "salting"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>不是永远有效。加盐只对「热点 key 可打散且能还原」的场景有效，还要选对盐数和还原方式。</p>\n<h2>30 秒回答</h2>\n<p>有效场景：group by / join 因热点 key 倾斜，加盐能均衡负载。不生效：非倾斜场景反而增加 shuffle；join 加盐需二次 join 还原，成本高；盐数不合适；null/默认值热点应先过滤。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>生效：热点 key 明确、聚合后可还原、盐数合适</li>\n<li>不生效：</li>\n<ol>\n<li>倾斜根因不是热点 key</li>\n<li>join 加盐后还原成本高、可能引入新倾斜</li>\n<li>盐数太少/太多</li>\n<li>null/默认值热点，应先过滤再算</li>\n<ul>\n<li>本质：加盐是手段不是万能，先确认根因</li>\n</ul>\n</ol>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>加盐的盐数怎么选？</li>\n<li>join 加盐后的还原怎么做？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0016",
+      "type": "technical",
+      "question": "join 和 group by 倾斜，处理方式有什么差异",
+      "topic": [
+        "spark",
+        "skew",
+        "join",
+        "group-by"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>group by 倾斜可两阶段聚合，join 倾斜更复杂，需要拆热点 key 或两阶段加盐 join。</p>\n<h2>30 秒回答</h2>\n<p>group by 只聚合一侧，可 map 端预聚合 + 加盐二次聚合还原；join 要两侧关联，加盐后需二次 join 还原，shuffle 更多，常优先小表广播或拆热点 key。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>group by：两阶段聚合、combiner、加盐聚合再还原</li>\n<li>join：热点 key 拆分单独 join 再 union、两阶段加盐 join、小表 broadcast</li>\n<li>差异：join 还原成本更高，需保证两侧 join 键对应</li>\n<li>共同点：都是打散热点 key 均衡负载</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>join 加盐为什么要两阶段？</li>\n<li>group by 的 combiner 有什么用？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0017",
+      "type": "technical",
+      "question": "salt 加盐、broadcast 广播 join、hash join 区别；广播时内存是谁的内存",
+      "topic": [
+        "spark",
+        "join",
+        "broadcast",
+        "salting"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>Hash Join 按 key shuffle 后关联，Broadcast Join 把小表广播到内存避免 shuffle，加盐是处理倾斜的两阶段 join。</p>\n<h2>30 秒回答</h2>\n<ul>\n<li>Hash Join：按 join key shuffle 到同分区再关联，有 shuffle</li>\n<li>Broadcast Join：小表广播到各 executor 内存，map 端 join，无 shuffle，适合小表</li>\n<li>加盐：热点 key 加随机前缀打散再 join，二次 join 还原，处理倾斜</li>\n<li>广播内存：广播变量存在 executor 的存储内存，不是 driver 内存</li>\n</ul>\n<h2>1 分钟回答</h2>\n<ul>\n<li>broadcast 条件：小表小于 spark.sql.autoBroadcastJoinThreshold（默认 10MB）</li>\n<li>广播对象存 executor storage 内存，可跨 task 复用</li>\n<li>加盐是倾斜优化手段，会增加两阶段 shuffle</li>\n<li>三者可组合：小表可广播则不倾斜，大表倾斜才考虑加盐</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>broadcast join 对内存有什么要求？</li>\n<li>Sort Merge Join 和 Hash Join 区别？</li>\n<li>广播变量能存磁盘吗？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -426,6 +571,122 @@ window.OS_DATA = {
       ],
       "domain": "storage",
       "body_html": "<h2>一句话</h2>\n<p>存储治理围绕「生命周期 + 冷热分层 + 压缩 + 小文件 + 清理无用数据」做，目标是降成本、提性能。</p>\n<h2>30 秒回答</h2>\n<p>手段：TTL 分区清理、冷热分层、压缩格式（Parquet/ORC）、小文件合并、无用表/临时表清理、重复数据治理、分区策略优化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>生命周期：按保留策略自动清理过期分区</li>\n<li>冷热分层：热数据高性能介质，冷数据低频/归档</li>\n<li>压缩：列式存储 + 压缩编码，减少体积</li>\n<li>小文件：合并，降低 NameNode 压力</li>\n<li>清理：下线无用表、临时表、重复数据</li>\n<li>效果：存储成本下降、查询性能提升、元数据压力降低、任务更稳定（按实际项目量化）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>冷热分层怎么自动做？</li>\n<li>压缩格式怎么选？</li>\n<li>怎么评估治理收益？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0005",
+      "type": "technical",
+      "question": "Doris 频繁写入导致查询延迟高，晚上停写恢复，原因是什么",
+      "topic": [
+        "storage",
+        "doris",
+        "compaction"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>频繁小批量写入会产生大量版本/小文件，compaction 跟不上，查询要合并很多版本，延迟升高。</p>\n<h2>30 秒回答</h2>\n<p>写入过频导致 version 和文件碎片堆积，compaction 追不上，查询时合并成本高、延迟大。晚上停写后 compaction 消化完，查询恢复。改成每分钟一批会明显改善，但不一定立刻变快。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>原因：高频小批写入 -&gt; 大量 version + compaction 积压 + 写入与 compaction 争抢 CPU/IO</li>\n<li>追问：改成每分钟一批，查询会变快，但不一定「立刻」，需要等历史积压的 compaction 消化</li>\n<li>说明：瓶颈是写入频率太高，不是单次写入量</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么判断是 compaction 的问题？</li>\n<li>Doris 怎么减少写入频率、加大攒批？</li>\n<li>compaction 可以调哪些参数？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0006",
+      "type": "technical",
+      "question": "ADS 表订单/退款修订，key 如何设计；分区分桶区别",
+      "topic": [
+        "storage",
+        "doris",
+        "key",
+        "partition"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>key 要保证同一订单的更新落在同一分桶，便于聚合/覆盖；分区按维度裁剪，分桶按 hash 分布。</p>\n<h2>30 秒回答</h2>\n<p>订单/退款修订场景，用订单号做主键/分桶键，保证同订单同桶合并覆盖。分区按时间/地域等裁剪，分桶在分区内 hash 分布决定并行度。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>key 设计：订单号做主键（Unique/主键模型），退款修订按同 key 覆盖</li>\n<li>分区：按时间/地域水平切分，用于裁剪和生命周期管理，粒度粗</li>\n<li>分桶：分区内按 hash 分桶（Tablet），决定数据分布和聚合粒度</li>\n<li>区别：分区是逻辑裁剪，分桶是物理分布/并行度；先分区后分桶</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Doris 主键模型和聚合模型区别？</li>\n<li>分桶数怎么定？</li>\n<li>分区和分桶各影响什么？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0001",
+      "type": "technical",
+      "question": "Kafka-Flink 中间状态怎么设计，如何处理迟到、重复和退款最新状态",
+      "topic": [
+        "flink",
+        "state",
+        "event-time"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>按订单号 keyBy，用 ValueState 存「最新状态 + 最新事件时间/版本」，只接受更新的版本，解决迟到、重复和退款乱序。</p>\n<h2>30 秒回答</h2>\n<p>订单号做 key，状态里保存最新订单状态和事件时间。迟到事件用水位线和 allowedLateness 处理；重复发送按事件 ID/版本去重；退款场景比较事件时间，只更新比当前状态更新的事件。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>状态：KeyedState/ValueState 按订单号存最新状态 + 最新事件时间 + 版本</li>\n<li>迟到：Watermark + allowedLateness + 侧输出流，或定时器延迟处理</li>\n<li>重复：按事件 ID/订单号+版本去重，只接受新版本</li>\n<li>退款：下单 -&gt; 退款乱序，用事件时间判断新旧，更新最新状态</li>\n<li>清理：定时器清理过期状态，状态后端 RocksDB/内存</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>状态怎么选（ValueState/MapState）？</li>\n<li>迟到的退款事件怎么保证不覆盖新状态？</li>\n<li>状态过大怎么清理？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0002",
+      "type": "technical",
+      "question": "某一 subtask 长期满载产生反压，如何排查；为什么反压阻塞 checkpoint barrier",
+      "topic": [
+        "flink",
+        "backpressure",
+        "checkpoint"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>反压是下游处理不过来、向上游传导；排查要定位慢算子，解决要加大并行度、优化算子或削峰。</p>\n<h2>30 秒回答</h2>\n<p>看 UI backpressure 和 subtask 负载定位慢算子，查 CPU/GC/外部 IO；解决靠加下游并行度、优化慢算子、异步 IO、批量写、减少倾斜。反压会让某 subtask 积压、barrier 无法流过，导致 checkpoint 对齐超时。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>排查：定位慢算子，看 CPU、GC、外部 IO、热点 key</li>\n<li>解决：加并行度、优化算子、异步 IO、批量写、控制 source 速率、处理倾斜</li>\n<li>barrier 阻塞：checkpoint barrier 要所有并行 subtask 对齐，反压导致积压，barrier 流不过去，checkpoint 超时/失败</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>反压和背压是一个意思吗？</li>\n<li>怎么判断是 source 慢还是 sink 慢？</li>\n<li>checkpoint 对齐超时怎么处理？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0003",
+      "type": "technical",
+      "question": "实时作业修改口径，如何回刷近七天历史，避免覆盖，失败如何切回",
+      "topic": [
+        "flink",
+        "backfill",
+        "realtime"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>离线刷历史临时表，按分区隔离，校验后原子切换；保留备份表，失败可切回。</p>\n<h2>30 秒回答</h2>\n<p>离线把近七天按新口径刷成临时表；实时继续写最新分区，历史回刷只覆盖历史分区避免互相覆盖；切换用表别名/rename 原子完成；失败或再调整用备份表切回旧版本。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>回刷：离线任务刷近七天 -&gt; 临时表</li>\n<li>隔离：实时只写当天/最新分区，回刷只写历史分区</li>\n<li>切换：与实时表对账 -&gt; 原子 rename/视图切换</li>\n<li>失败切回：保留旧表（备份表），失败/再调整切回旧版本</li>\n<li>版本管理：记录口径版本，支持回滚</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>实时和回刷怎么按分区隔离？</li>\n<li>原子切换具体怎么做？</li>\n<li>备份表要保留多久？</li>\n</ul>"
     },
     {
       "id": "NETWORK-0001",
@@ -610,6 +871,52 @@ window.OS_DATA = {
       ],
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>大模型通过 tools 参数里的 JSON Schema（name/description/parameters）理解工具能力，在推理时生成符合格式的 tool_call，实际执行由框架完成。</p>\n<h2>30 秒回答</h2>\n<p>框架只是把工具打包成 schema 传给模型；模型在训练/对齐阶段学过 function calling 的输出格式，根据工具描述判断何时用哪个工具、填什么参数，输出结构化的 tool_calls。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>模型看到的是工具描述和参数 schema，不是工具实现</li>\n<li>description 决定模型何时选该工具、怎么填参数</li>\n<li>模型输出被约束成 tool_call 格式（函数名 + JSON 参数）</li>\n<li>模型本身不执行工具，只负责「决定调用」，执行和回填由框架负责</li>\n<li>本质：把工具能力注入提示词，让模型学会「何时、用哪个、传什么」</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>工具描述写得不好会怎样？</li>\n<li>模型幻觉调用不存在的工具怎么办？</li>\n<li>参数校验由谁负责？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0004",
+      "type": "technical",
+      "question": "知识库准确率指标怎么算，测试集是什么；两个 SQL 写法不同结果相同如何判定",
+      "topic": [
+        "llm",
+        "evaluation",
+        "sql"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>准确率看「执行结果是否一致」而不是「SQL 文本是否一致」；测试集用「问题 + 标准 SQL + 期望结果」标注。</p>\n<h2>30 秒回答</h2>\n<p>指标：结果集一致率、意图识别准确率、召回率。测试集覆盖真实业务问题 + 标准答案。两个 SQL 写法不同，要执行后比较结果集（schema + 数据）是否一致，再复核语义等价。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>准确率：执行结果一致率（主）、SQL 文本精确匹配率（辅）、召回率</li>\n<li>测试集：问题 + 标准 SQL + 期望结果，按主题/难度分层，持续补 badcase</li>\n<li>判定：执行两个 SQL，比较结果集（列 + 行）是否相同，而非比较文本</li>\n<li>原因：等价 SQL 可以有多种写法，文本一致会误判</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>结果集一致但语义不等价怎么处理？</li>\n<li>测试集怎么持续更新？</li>\n<li>怎么衡量召回率？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0005",
+      "type": "technical",
+      "question": "大模型取数权限控制完整链路",
+      "topic": [
+        "llm",
+        "security",
+        "data-access"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>权限控制要覆盖「身份认证 -&gt; 请求鉴权 -&gt; SQL 校验 -&gt; 数据行级/列级权限 -&gt; 结果过滤 -&gt; 审计」全链路。</p>\n<h2>30 秒回答</h2>\n<p>提交查询时先认证用户身份，鉴权能否访问该数据源，再校验生成的 SQL（表、字段、行级权限），执行后对结果做脱敏/过滤，全程审计留痕。</p>\n<h2>1 分钟回答</h2>\n<ol>\n<li>认证：用户身份（登录态/API key）</li>\n<li>鉴权：是否有取数权限、可访问哪些数据源</li>\n<li>SQL 校验：解析 SQL，校验表和字段权限、阻止越权查询</li>\n<li>行级/列级权限：按数据权限规则过滤</li>\n<li>结果处理：脱敏、限制返回量</li>\n<li>审计：记录查询请求、SQL、结果范围</li>\n<ul>\n<li>大模型链路要防止 prompt 注入绕过权限，必须在引擎层做权限，不能只靠模型</li>\n</ul>\n</ol>\n<h2>追问</h2>\n<ul>\n<li>怎么防止 prompt 注入越权？</li>\n<li>行级权限通常怎么实现？</li>\n<li>权限校验放哪个环节最安全？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0001",
@@ -936,6 +1243,75 @@ window.OS_DATA = {
       ],
       "domain": "warehouse",
       "body_html": "<h2>一句话</h2>\n<p>数据质量围绕「完整性/准确性/一致性/及时性」，按事前、事中、事后分层保障。</p>\n<h2>30 秒回答</h2>\n<p>事前做规范和规则设计；事中做规则执行、校验和阻断；事后做监控、对账、修复和复盘。误报调阈值/白名单，漏报补规则和校验维度。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>四性：完整性（不缺数）、准确性（数据正确）、一致性（口径/跨表一致）、及时性（SLA）</li>\n<li>事前：口径评审、模型设计、校验规则设计</li>\n<li>事中：ETL 过程校验、规则执行、异常阻断/告警</li>\n<li>事后：监控、对账、修复、复盘</li>\n<li>误报：规则过严 -&gt; 调阈值、加白名单；漏报：规则过松 -&gt; 补规则、加校验维度</li>\n<li>更有效的规则：跨表对账、主键唯一性、波动率、空值率、金额/记录数同比环比、及时性 SLA、关键业务口径校验</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么衡量规则质量（误报率/漏报率）？</li>\n<li>一致性和准确性怎么校验？</li>\n<li>及时性 SLA 怎么定？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0015",
+      "type": "technical",
+      "question": "下单取消/申请退款会影响哪些指标，退款怎么处理",
+      "topic": [
+        "warehouse",
+        "metrics",
+        "refund"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>退款会影响交易类指标的口径，核心是定义清楚「退款按申请时间还是完成时间」、以及订单与退款如何关联。</p>\n<h2>30 秒回答</h2>\n<p>影响的指标：下单量、支付金额、净交易额、退款金额、退款率、订单状态、优惠/佣金。退款处理要把退款事实与订单正确关联，按统一口径做净额计算，避免重复扣减。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>订单状态机：已下单 -&gt; 已支付 -&gt; 部分/全额退款 -&gt; 已关闭</li>\n<li>退款相关指标：退款单量、退款金额、退款率、退款时长</li>\n<li>口径要定：按申请时间还是完成时间；是否扣减优惠；部分退款怎么算</li>\n<li>建模：退款事实表与订单事实表分开，或订单表加退款标记</li>\n<li>净额：实付 - 退款，按订单号对账、流水幂等去重</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>退款率和退款时长怎么算？</li>\n<li>部分退款怎么计入净交易额？</li>\n<li>退款跨天怎么归集？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0016",
+      "type": "technical",
+      "question": "跨天退款如何计算日交易额，避免重复扣减",
+      "topic": [
+        "warehouse",
+        "metrics",
+        "refund"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>核心是统一口径（退款按申请还是完成时间）并用订单号关联、流水幂等去重，避免退款在申请日和完成日各扣一次。</p>\n<h2>30 秒回答</h2>\n<p>日交易额 = 当日支付金额 - 当日退款完成金额（按退款完成时间口径）。退款流水关联原订单，按退款单号去重，跨天退款只按完成时间扣一次。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>口径二选一：按退款申请时间 or 完成时间，全链路统一</li>\n<li>数据：支付流水 + 退款流水按订单号对账</li>\n<li>净额：支付 - 退款，部分退款按金额拆分</li>\n<li>幂等：退款单号去重，避免重复扣减</li>\n<li>跨天：事件时间归集，申请日和完成日只记一次</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>按申请时间和完成时间各有什么优劣？</li>\n<li>退款和原订单怎么关联？</li>\n<li>部分退款怎么处理？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0017",
+      "type": "technical",
+      "question": "上游字段改名、schema 变更、旧版本如何维护降级",
+      "topic": [
+        "warehouse",
+        "schema",
+        "governance"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+          "company": "九坤",
+          "position": "数据开发（一面）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>schema 变更要向后兼容，靠字段映射、双写和兼容窗口平滑迁移，旧字段延迟下线。</p>\n<h2>30 秒回答</h2>\n<p>记录字段映射和血缘；加字段用可空，删字段先软删除；新老字段双写，下游平滑迁移后再下线旧字段，支持版本降级。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>字段改名：维护字段映射表，下游用视图/别名隔离</li>\n<li>加字段：可空、向后兼容</li>\n<li>删字段：先弃用标记，双写兼容期后再删</li>\n<li>降级：保留旧字段一段时间，新老并行，失败可切回</li>\n<li>流程：变更评审 -&gt; 兼容设计 -&gt; 双写/灰度 -&gt; 通知下游 -&gt; 下线旧版本 -&gt; 监控</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>字段类型变更怎么兼容？</li>\n<li>怎么通知下游字段变更？</li>\n<li>兼容窗口一般多长？</li>\n</ul>"
     },
     {
       "id": "SQL-0001",
@@ -1289,6 +1665,15 @@ window.OS_DATA = {
     }
   ],
   "interviews": [
+    {
+      "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
+      "company": "九坤",
+      "business": "数据开发",
+      "position": "数据开发（一面）",
+      "date": "2026-09-21",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>问了三四次退款场景，整体覆盖：退款指标、场景优化与原理、实时回刷、大模型取数权限/准确率、知识库与元数据维护。</blockquote>\n<ol>\n<li>项目：下单取消 / 申请退款影响哪些指标；退款怎么处理</li>\n<li>任务运行涨到 2 小时，数据量只增 15%，少数 task 慢，平均 CPU 40%，如何排查</li>\n<li>调优增加并行度、executor 数量翻倍，总是有效吗</li>\n<li>如何区分数据倾斜，还是单纯某个节点硬件慢或 IO 问题</li>\n<li>确定热点 key，加盐打散是不是永远有效？生效 / 不生效原因</li>\n<li>join 和 group by 倾斜，处理方式的差异</li>\n<li>结合执行计划：salt 加盐、broadcast 广播 join、hash join 区别；广播时内存是谁的内存</li>\n<li>跨天退款：今天申请退款第二天完成 / 今日下单次日退款，计算日交易额，如何避免重复扣减</li>\n<li>Doris 白天每隔几秒写一批查询延迟高，晚上停止写入查询恢复，说下大概原因；改成每分钟一批，查询立刻变快吗，说明什么</li>\n<li>ADS 表支持聚合查询，订单/退款修订，表 key 如何设计；解释分区分桶区别</li>\n<li>Kafka-Flink 中间状态设计：订单流迟到事件、重复发送，维护订单最新状态；退款下单后又退款、数据迟到，如何准确判断订单最新状态，状态怎么维护</li>\n<li>CPU 整体 45%，某一 subtask 长期满载、产生上游反压，排查和解决；为什么反压会导致 checkpoint barrier 阻塞</li>\n<li>实时作业修改口径，回刷近七天历史怎么做；实时持续消费新数据如何避免互相覆盖；回刷失败/口径再调整如何切回旧版本</li>\n<li>知识库准确率指标怎么算，测试集是什么；大模型产出两个 SQL 写法不同、结果相同如何判定</li>\n<li>上游字段改名、schema 变更、数据库维护、旧版本维护降级</li>\n<li>大模型取数权限控制完整链路：提交查询到返回结果整个流程权限校验</li>\n</ol>\n<blockquote>备注：九坤数开一面，社招，北京。</blockquote>"
+    },
     {
       "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
       "company": "拼多多",
