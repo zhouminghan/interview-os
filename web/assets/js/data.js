@@ -1,19 +1,19 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-23T16:31:23+08:00",
+  "generatedAt": "2026-09-23T16:40:30+08:00",
   "stats": {
-    "questions": 42,
-    "interviews": 3,
-    "technical": 33,
+    "questions": 53,
+    "interviews": 4,
+    "technical": 44,
     "project": 9,
     "domains": {
-      "spark": 9,
+      "spark": 11,
       "hdfs": 1,
-      "storage": 2,
+      "storage": 4,
       "network": 4,
       "algorithm": 1,
       "llm": 3,
-      "warehouse": 8,
-      "sql": 5,
+      "warehouse": 14,
+      "sql": 6,
       "project": 9
     }
   },
@@ -266,6 +266,53 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>整个应用只有一个 action 时通常只有一个 Job；只有 transformation 不触发 action 时根本不会产生 Job。</p>\n<h2>30 秒回答</h2>\n<p>只做一次 action（比如只 save 一次），即使内部有多个 Stage，也只算一个 Job。纯 transformation 链是懒执行，不会产生 Job。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>单 action：一次 saveAsTextFile / collect，对应一个 Job</li>\n<li>无 action：只有 map/filter/join 等 transformation，不会执行、不产生 Job</li>\n<li>复用缓存：cache 命中可减少重复计算，但 Job 数仍由 action 数决定</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>transformation 和 action 的本质区别？</li>\n<li>cache 对 Job 数量有影响吗？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0010",
+      "type": "technical",
+      "question": "数据倾斜如何定位，两张大表 join 倾斜怎么处理",
+      "topic": [
+        "spark",
+        "skew",
+        "join"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+          "company": "拼多多",
+          "position": "数据开发（社招）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>倾斜定位看「单个 task 处理的数据量和耗时是否远大于其他 task」；两张大表 join 的核心是拆热点 key 单独处理或加盐打散。</p>\n<h2>30 秒回答</h2>\n<p>通过 Spark UI / 日志看 stage 长尾、task 数据量和耗时分布、OOM 定位热点 key。常见场景：group by 热点 key、两张大表 join 热点 key、distinct。处理：热点 key 拆开单独 join 再 union、加随机前缀打散、开启 AQE skew join、增加并行度。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：Spark UI task metrics、shuffle 数据量、日志、抽样统计 key 分布</li>\n<li>常见场景：null/默认值热点、大商户/大 V、两张大表 join、group by、distinct</li>\n<li>两张大表 join 倾斜：</li>\n<ol>\n<li>识别热点 key</li>\n<li>热点 key 单独 join + 非热点正常 join，再 union</li>\n<li>热点 key 加随机前缀打散 join，再二次 join 还原</li>\n<li>先过滤/压缩降低数据量</li>\n<li>开启 AQE skew join</li>\n<li>增加并行度、两阶段聚合</li>\n</ol>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么快速找到热点 key？</li>\n<li>加盐后怎么还原？</li>\n<li>AQE skew join 的原理？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0011",
+      "type": "technical",
+      "question": "Spark 执行过程 map/shuffle/reduce 做什么，group by + count distinct 的 SQL 执行过程",
+      "topic": [
+        "spark",
+        "execution",
+        "shuffle",
+        "sql"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+          "company": "拼多多",
+          "position": "数据开发（社招）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>map 做局部计算，shuffle 按 key 分区传输，reduce 做聚合输出；<code>group by city_id + count(distinct user_id)</code> 就是按 city_id 分区后对 user_id 去重计数。</p>\n<h2>30 秒回答</h2>\n<p>map 端读数据、解析、过滤、投影，可做 map 端预聚合；shuffle 把相同 key 分到同一分区；reduce 端按 key 聚合。该 SQL 按 city_id shuffle，reduce 端对每个 city 的 user_id 去重计数。</p>\n<h2>1 分钟回答</h2>\n<pre><code class=\"language-sql\">SELECT city_id, COUNT(DISTINCT user_id)\nFROM t\nGROUP BY city_id;</code></pre>\n<p>执行过程：</p>\n<ol>\n<li>map：读表，解析出 (city_id, user_id)，可先对 (city_id, user_id) 做 map 端预聚合去重</li>\n<li>shuffle：按 city_id 分区，把相同 city_id 的数据发到同一 reducer</li>\n<li>reduce：对每个 city_id 的 user_id 做 distinct 去重再计数</li>\n<li>输出：每个 city_id 一条 (city_id, count)</li>\n</ol>\n<ul>\n<li>count(distinct) 的去重可能分两阶段：map 端部分去重，reduce 端最终去重</li>\n<li>输出是 key-value：map 输出 (city_id, user_id)，shuffle 后 reduce 输出 (city_id, count)</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>count(distinct) 为什么慢，怎么优化？</li>\n<li>map 端预聚合（combiner）怎么工作？</li>\n<li>shuffle 落盘在哪里？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -334,6 +381,51 @@ window.OS_DATA = {
       ],
       "domain": "storage",
       "body_html": "<h2>一句话</h2>\n<p>InnoDB 以页为单位存储，数据按主键聚簇组织成 B+ 树，二级索引叶子存主键。</p>\n<h2>30 秒回答</h2>\n<p>数据以页（默认 16KB）为单位存到磁盘，主键索引是聚簇索引（B+ 树叶子存整行），二级索引叶子存主键再回表；同时用 redo log、undo log、binlog 保证一致性和恢复。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>页结构：File Header、Page Header、Infimum/Supremum、User Records、Free Space、Page Directory、File Trailer</li>\n<li>聚簇索引：按主键顺序存储，叶子节点含完整行</li>\n<li>二级索引：叶子存主键，查非索引列需回表</li>\n<li>日志：redo（崩溃恢复）、undo（回滚/MVCC）、binlog（主从复制）</li>\n<li>MVCC：多版本链 + ReadView 实现可重复读</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>什么是回表，怎么避免？</li>\n<li>聚簇索引和非聚簇索引区别？</li>\n<li>为什么建议自增主键？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0003",
+      "type": "technical",
+      "question": "小文件问题是什么，如何治理，治理前后效果",
+      "topic": [
+        "storage",
+        "small-files",
+        "governance"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+          "company": "拼多多",
+          "position": "数据开发（社招）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>小文件会让 NameNode 元数据膨胀、task 数过多、查询变慢；治理靠源头合并 + 存量合并。</p>\n<h2>30 秒回答</h2>\n<p>危害：NameNode 压力大、task 多、读取开销大、性能下降。治理：合理设置 shuffle 分区数、coalesce/repartition 合并写入、动态分区限制、存量小文件合并任务、合并参数。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>产生原因：频繁小批量写、动态分区、shuffle 分区过多、高并发写</li>\n<li>源头治理：合理 shuffle 分区数、合并写入、限制动态分区数</li>\n<li>存量治理：小文件合并任务、按分区合并、Hive concatenate</li>\n<li>参数：spark.sql.shuffle.partitions、AQE 合并分区</li>\n<li>效果：NameNode 压力下降、task 数减少、查询延迟下降、存储利用率提升</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>小文件多大算小？</li>\n<li>coalesce 和 repartition 区别？</li>\n<li>合并小文件会影响数据正确性吗？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0004",
+      "type": "technical",
+      "question": "存储治理项目怎么做，治理后有什么效果",
+      "topic": [
+        "storage",
+        "governance"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+          "company": "拼多多",
+          "position": "数据开发（社招）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>存储治理围绕「生命周期 + 冷热分层 + 压缩 + 小文件 + 清理无用数据」做，目标是降成本、提性能。</p>\n<h2>30 秒回答</h2>\n<p>手段：TTL 分区清理、冷热分层、压缩格式（Parquet/ORC）、小文件合并、无用表/临时表清理、重复数据治理、分区策略优化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>生命周期：按保留策略自动清理过期分区</li>\n<li>冷热分层：热数据高性能介质，冷数据低频/归档</li>\n<li>压缩：列式存储 + 压缩编码，减少体积</li>\n<li>小文件：合并，降低 NameNode 压力</li>\n<li>清理：下线无用表、临时表、重复数据</li>\n<li>效果：存储成本下降、查询性能提升、元数据压力降低、任务更稳定（按实际项目量化）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>冷热分层怎么自动做？</li>\n<li>压缩格式怎么选？</li>\n<li>怎么评估治理收益？</li>\n</ul>"
     },
     {
       "id": "NETWORK-0001",
@@ -708,6 +800,144 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>需求 -&gt; 指标体系 -&gt; 数仓分层/建模，核心是把业务口径翻译成「指标 + 维度 + 粒度 + 周期」。</p>\n<h2>30 秒回答</h2>\n<p>先和业务对齐口径、维度、粒度、周期和指标定义，拆成原子/派生指标，再按 ODS→DWD→DWS→ADS 分层落地，用维度建模组织事实表和维度表。</p>\n<h2>1 分钟回答</h2>\n<ol>\n<li>需求澄清：口径、维度、粒度、统计周期、指标公式</li>\n<li>指标拆解：原子指标 -&gt; 派生指标 -&gt; 复合指标</li>\n<li>分层建模：ODS 贴源 -&gt; DWD 清洗明细 -&gt; DWS 汇总 -&gt; ADS 应用</li>\n<li>维度建模：主题域、事实表/维度表、星型模型、缓慢变化维度</li>\n<li>落地规范：命名、数据质量、口径文档、元数据与血缘</li>\n</ol>\n<p>举例：需求「看各品类近 7 日 GMV」-&gt; 指标 GMV、维度 品类、粒度 品类+日、周期 7 日 -&gt; 落到 DWS。</p>\n<h2>追问</h2>\n<ul>\n<li>原子指标、派生指标、复合指标怎么区分？</li>\n<li>缓慢变化维度怎么处理？</li>\n<li>口径不一致怎么治理？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0009",
+      "type": "technical",
+      "question": "DWS 和 ADS 最主要的差异，分层判断依据是什么",
+      "topic": [
+        "warehouse",
+        "dws",
+        "ads",
+        "layering"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+          "company": "拼多多",
+          "position": "数据开发（社招）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>DWS 是「公共汇总层」，面向复用、口径统一；ADS 是「应用层」，面向具体场景、口径专用。</p>\n<h2>30 秒回答</h2>\n<p>DWS 按主题做可复用的中度汇总，跨团队共享、口径统一；ADS 面向具体报表/产品做个性化宽表，口径专用。判断依据不是粒度，而是复用性、口径是否公共、下游数量。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>放 DWS 的逻辑：跨团队/多报表复用的公共指标、主题域汇总（1d/7d/30d）、统一口径</li>\n<li>放 ADS 的逻辑：单一应用专属加工、跨主题宽表、短期一次性指标、展示字段拼接</li>\n<li>核心区别：DWS 面向复用，ADS 面向应用</li>\n<li>判断依据：复用范围 + 口径稳定性 + 被多少下游使用；粒度只是表象</li>\n<li>关键：DWS 可以给其他团队复用，ADS 通常专用</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>如果某指标只有一个团队用，放 DWS 还是 ADS？</li>\n<li>DWS 和 DWD 的边界？</li>\n<li>公共层加字段的代价？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0010",
+      "type": "technical",
+      "question": "DWS 口径是公用的，如何统一维护、保证多方口径对齐",
+      "topic": [
+        "warehouse",
+        "metrics",
+        "governance"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+          "company": "拼多多",
+          "position": "数据开发（社招）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>靠「文档 + 资产平台 + 层级对账 + 质量监控」四件事，把口径唯一化、可追踪、可校验。</p>\n<h2>30 秒回答</h2>\n<p>用指标字典统一定义和公式；录入资产平台做唯一入口和血缘；不同层级（DWS 与 ADS/DWD）做对账；用质量监控和波动告警发现口径漂移。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>文档：指标字典，统一命名、公式、维度、口径</li>\n<li>资产平台：指标注册、血缘管理，唯一入口（容易漏但很重要）</li>\n<li>层级对账：DWS 与 ADS/DWD 比对，校验一致性</li>\n<li>质量监控：指标波动、口径漂移、空值/异常告警</li>\n<li>治理机制：口径评审、变更审批、责任 owner</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>指标字典里要包含哪些字段？</li>\n<li>血缘在口径治理里有什么用？</li>\n<li>口径漂移怎么自动发现？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0011",
+      "type": "technical",
+      "question": "口径变更迭代的完整流程是什么",
+      "topic": [
+        "warehouse",
+        "metrics",
+        "governance"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+          "company": "拼多多",
+          "position": "数据开发（社招）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>口径变更要走「提出 -&gt; 评审 -&gt; 定义 -&gt; 开发 -&gt; 对账 -&gt; 上线 -&gt; 通知 -&gt; 监控」的闭环。</p>\n<h2>30 秒回答</h2>\n<p>业务提出变更 -&gt; 口径评审 -&gt; 更新指标字典 -&gt; 开发测试 -&gt; 新旧口径对账 -&gt; 灰度上线 -&gt; 通知下游 -&gt; 上线后持续监控。</p>\n<h2>1 分钟回答</h2>\n<ol>\n<li>提出：业务/数分/数开提需求</li>\n<li>评审：确认影响面、口径定义、回滚方案</li>\n<li>定义：更新指标字典、资产平台</li>\n<li>开发：改模型/任务</li>\n<li>测试对账：新旧口径比对</li>\n<li>上线：灰度、通知下游</li>\n<li>监控：上线后持续观察指标波动和下游一致性</li>\n<li>复盘：记录变更、沉淀口径</li>\n</ol>\n<h2>追问</h2>\n<ul>\n<li>口径变更怎么评估下游影响？</li>\n<li>新旧口径对账怎么做？</li>\n<li>上线后要监控哪些东西？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0012",
+      "type": "technical",
+      "question": "维度退化到底在哪一层做，什么场景需要，有什么优势和缺陷",
+      "topic": [
+        "warehouse",
+        "modeling",
+        "degenerate-dimension"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+          "company": "拼多多",
+          "position": "数据开发（社招）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>维度退化是把维度属性冗余进事实表、减少 join；一般在 DWD 事实表做，若在 DWS/ADS 之间选，放 DWS 公共层而不是 ADS。</p>\n<h2>30 秒回答</h2>\n<p>把高频、稳定的维度属性（如 city_id 对应的 city_name）直接放进事实表，查询时少 join。优先在 DWD 明细层做；DWS/ADS 之间选 DWS，因为公共层可复用，ADS 是应用专用。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>做在哪层：优先 DWD 事实表；DWS/ADS 之间选 DWS（公共层）</li>\n<li>场景：频繁 join 的维度、维度表大、查询性能敏感、维表稳定</li>\n<li>优势：减少 join、提升查询性能、简化查询</li>\n<li>缺陷：冗余存储、维度变更要同步、一致性维护成本</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么不放 ADS 做退化维度？</li>\n<li>维表经常变化还适合退化吗？</li>\n<li>退化维度和缓慢变化维度冲突吗？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0013",
+      "type": "technical",
+      "question": "重复计算如何发现，如何推动治理下线/合并",
+      "topic": [
+        "warehouse",
+        "governance",
+        "duplicate"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+          "company": "拼多多",
+          "position": "数据开发（社招）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>重复计算靠血缘、指标字典和审计发现，治理要「盘点 -&gt; 统一口径 -&gt; 合并/下线 -&gt; 通知下游 -&gt; 监控」。</p>\n<h2>30 秒回答</h2>\n<p>发现：血缘分析、指标字典对比、审计日志、同指标多任务扫描。治理：资产盘点、识别重复、统一口径、合并任务、下线冗余、灰度切换、持续监控。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>典型问题：同一指标多团队各算一套、同一表被重复加工、口径不一致</li>\n<li>发现：血缘 + 指标字典 + 任务审计 + 字段血缘比对</li>\n<li>治理流程：</li>\n<ol>\n<li>盘点资产，识别重复</li>\n<li>对齐口径，选定权威来源</li>\n<li>合并/下线冗余任务</li>\n<li>下游切换、灰度、保留兼容期</li>\n<li>下线后验证 + 持续监控</li>\n</ol>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么判定两个任务是重复计算？</li>\n<li>下游不同意下线怎么办？</li>\n<li>灰度切换怎么做才安全？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0014",
+      "type": "technical",
+      "question": "数据质量整体如何保障，误报漏报怎么处理，什么规则更能发现问题",
+      "topic": [
+        "warehouse",
+        "data-quality"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+          "company": "拼多多",
+          "position": "数据开发（社招）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>数据质量围绕「完整性/准确性/一致性/及时性」，按事前、事中、事后分层保障。</p>\n<h2>30 秒回答</h2>\n<p>事前做规范和规则设计；事中做规则执行、校验和阻断；事后做监控、对账、修复和复盘。误报调阈值/白名单，漏报补规则和校验维度。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>四性：完整性（不缺数）、准确性（数据正确）、一致性（口径/跨表一致）、及时性（SLA）</li>\n<li>事前：口径评审、模型设计、校验规则设计</li>\n<li>事中：ETL 过程校验、规则执行、异常阻断/告警</li>\n<li>事后：监控、对账、修复、复盘</li>\n<li>误报：规则过严 -&gt; 调阈值、加白名单；漏报：规则过松 -&gt; 补规则、加校验维度</li>\n<li>更有效的规则：跨表对账、主键唯一性、波动率、空值率、金额/记录数同比环比、及时性 SLA、关键业务口径校验</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么衡量规则质量（误报率/漏报率）？</li>\n<li>一致性和准确性怎么校验？</li>\n<li>及时性 SLA 怎么定？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -820,6 +1050,29 @@ window.OS_DATA = {
       ],
       "domain": "sql",
       "body_html": "<h2>题目理解</h2>\n<p>长表（多行序列）中把「当前行」与「下一行」的数值相加，可用窗口函数 LEAD 取下一行；变式是给两数加不同权重后再相加。</p>\n<h2>基础写法</h2>\n<pre><code class=\"language-sql\">SELECT id, val,\n       val + LEAD(val) OVER (ORDER BY seq) AS pair_sum\nFROM t;</code></pre>\n<h2>权重变式</h2>\n<pre><code class=\"language-sql\">SELECT id, val,\n       val * w1 + LEAD(val) OVER (ORDER BY seq) * w2 AS weighted_sum\nFROM t;</code></pre>\n<h2>注意</h2>\n<ul>\n<li>LEAD 取下一行，LAG 取上一行，末行没有下一行时 LEAD 为 NULL，需要 NVL/COALESCE 处理</li>\n<li>权重为常数时直接乘；若每行权重不同，需要先关联或再套一层窗口</li>\n<li>若「下一列」指宽表相邻两列，则直接 col1 + col2 即可，先确认表结构</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>LEAD/LAG 在分组场景怎么写（加 PARTITION BY）？</li>\n<li>末行的 NULL 怎么处理？</li>\n<li>窗口函数和自连接各有什么优劣？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0006",
+      "type": "technical",
+      "question": "复杂 SQL 如何改写和优化",
+      "topic": [
+        "sql",
+        "tuning",
+        "rewrite"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+          "company": "拼多多",
+          "position": "数据开发（社招）",
+          "date": "2026-09-21"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>复杂 SQL 优化先看执行计划定位慢点，再用「少读、少 shuffle、少重复」的思路改写。</p>\n<h2>30 秒回答</h2>\n<p>谓词下推、列裁剪、join 重排序、小表广播、CTE 拆分复杂嵌套、避免重复子查询、减少 count(distinct)、用窗口函数替代多次自连接、避免笛卡尔积。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：执行计划、慢 task、数据倾斜、重复扫描、多次 shuffle</li>\n<li>优化：谓词下推、列裁剪、小表 broadcast、join 顺序</li>\n<li>改写：复杂嵌套改 CTE 分步、union all 合并、条件聚合、窗口函数去重</li>\n<li>去重：count(distinct) 改 group by 或两阶段去重</li>\n<li>缓存：复用中间结果用临时表/物化</li>\n<li>验证：执行计划、耗时、shuffle 量对比</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么判断要不要拆子查询？</li>\n<li>CTE 和子查询有什么区别？</li>\n<li>窗口函数和自连接怎么选？</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -1036,6 +1289,15 @@ window.OS_DATA = {
     }
   ],
   "interviews": [
+    {
+      "interview_id": "INTERVIEW-2026-09-21-pdd-data-dev",
+      "company": "拼多多",
+      "business": "数据开发",
+      "position": "数据开发（社招）",
+      "date": "2026-09-21",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>分层建设，DWS 和 ADS 最主要的差异（追问：两层都在算指标，核心区别；哪些逻辑放 ADS、哪些放 DWS；仅仅只是粒度不同？分层判断依据。答：DWS 可给其他团队复用）</li>\n<li>DWS 口径是公用的，如何统一维护、保证大家口径对齐（文档、不同层级比对、质量监控，容易漏的是：录入资产平台）</li>\n<li>口径变更迭代的完整流程（需补充后续监控）</li>\n<li>DWS 和 ADS 都提到维度退化，到底在哪一层做？什么场景需要，有什么优势和缺陷</li>\n<li>数据倾斜定位、常见场景，两张大表 join 倾斜怎么处理</li>\n<li>Spark 执行过程，map/shuffle/reduce 具体做什么；统计 city 的 user_id 数，每个步骤输出什么（select city_id, count(distinct user_id) group by city）</li>\n<li>小文件，及治理前后效果</li>\n<li>复杂 SQL 改写及优化</li>\n<li>重复计算如何发现、典型问题，如何推动治理下线/合并</li>\n<li>存储治理项目及效果</li>\n<li>数据质量整体保障（完整性/准确性/一致性/及时性，事前事中事后）；误报漏报怎么处理；追问：什么样的规则实际中更能发现问题</li>\n</ol>\n<blockquote>备注：社招一面，拼多多数据开发。</blockquote>"
+    },
     {
       "interview_id": "INTERVIEW-2026-09-18-bytedance-douyin",
       "company": "字节跳动",
