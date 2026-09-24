@@ -1,21 +1,21 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-23T19:00:34+08:00",
+  "generatedAt": "2026-09-24T18:11:45+08:00",
   "stats": {
-    "questions": 69,
-    "interviews": 5,
-    "technical": 60,
-    "project": 9,
+    "questions": 81,
+    "interviews": 6,
+    "technical": 69,
+    "project": 12,
     "domains": {
-      "spark": 17,
+      "spark": 18,
       "hdfs": 1,
       "storage": 6,
-      "flink": 3,
+      "flink": 4,
       "network": 4,
-      "algorithm": 1,
+      "algorithm": 2,
       "llm": 5,
-      "warehouse": 17,
+      "warehouse": 23,
       "sql": 6,
-      "project": 9
+      "project": 12
     }
   },
   "domains": {
@@ -458,6 +458,29 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>Hash Join 按 key shuffle 后关联，Broadcast Join 把小表广播到内存避免 shuffle，加盐是处理倾斜的两阶段 join。</p>\n<h2>30 秒回答</h2>\n<ul>\n<li>Hash Join：按 join key shuffle 到同分区再关联，有 shuffle</li>\n<li>Broadcast Join：小表广播到各 executor 内存，map 端 join，无 shuffle，适合小表</li>\n<li>加盐：热点 key 加随机前缀打散再 join，二次 join 还原，处理倾斜</li>\n<li>广播内存：广播变量存在 executor 的存储内存，不是 driver 内存</li>\n</ul>\n<h2>1 分钟回答</h2>\n<ul>\n<li>broadcast 条件：小表小于 spark.sql.autoBroadcastJoinThreshold（默认 10MB）</li>\n<li>广播对象存 executor storage 内存，可跨 task 复用</li>\n<li>加盐是倾斜优化手段，会增加两阶段 shuffle</li>\n<li>三者可组合：小表可广播则不倾斜，大表倾斜才考虑加盐</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>broadcast join 对内存有什么要求？</li>\n<li>Sort Merge Join 和 Hash Join 区别？</li>\n<li>广播变量能存磁盘吗？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0018",
+      "type": "technical",
+      "question": "链路性能优化是做什么",
+      "topic": [
+        "spark",
+        "pipeline",
+        "performance"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>链路性能优化是从采集、传输、计算、存储到查询的全链路找瓶颈并逐一优化。</p>\n<h2>30 秒回答</h2>\n<p>采集/传输限流、批量、压缩；计算层 Spark/Flink 调优（并行度、倾斜、join、缓存）；存储用列式、合理分区、小文件治理；调度减少等待、并行执行。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>采集/传输：批量、压缩、异步、限流</li>\n<li>计算：并行度、数据倾斜、join 策略、缓存、资源调优、SQL 优化</li>\n<li>存储：Parquet/ORC、分区、小文件合并、冷热分层</li>\n<li>调度：任务依赖、并行调度、减少等待</li>\n<li>监控：端到端耗时、各环节占比，定位瓶颈</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么定位链路瓶颈在哪一段？</li>\n<li>端到端延迟由哪几部分组成？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -689,6 +712,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>离线刷历史临时表，按分区隔离，校验后原子切换；保留备份表，失败可切回。</p>\n<h2>30 秒回答</h2>\n<p>离线把近七天按新口径刷成临时表；实时继续写最新分区，历史回刷只覆盖历史分区避免互相覆盖；切换用表别名/rename 原子完成；失败或再调整用备份表切回旧版本。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>回刷：离线任务刷近七天 -&gt; 临时表</li>\n<li>隔离：实时只写当天/最新分区，回刷只写历史分区</li>\n<li>切换：与实时表对账 -&gt; 原子 rename/视图切换</li>\n<li>失败切回：保留旧表（备份表），失败/再调整切回旧版本</li>\n<li>版本管理：记录口径版本，支持回滚</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>实时和回刷怎么按分区隔离？</li>\n<li>原子切换具体怎么做？</li>\n<li>备份表要保留多久？</li>\n</ul>"
     },
     {
+      "id": "FLINK-0004",
+      "type": "technical",
+      "question": "Flink 如何保证数据被精准一次地消费",
+      "topic": [
+        "flink",
+        "exactly-once"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>Flink 靠 checkpoint 状态快照 + barrier 对齐 + 端到端两阶段提交实现 exactly-once。</p>\n<h2>30 秒回答</h2>\n<p>checkpoint 定期快照状态和 source offset，失败从最近 checkpoint 恢复；sink 端用两阶段提交（如 Kafka 事务）保证结果不重不丢，实现端到端精准一次。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>状态一致性：checkpoint 保存状态和 source offset</li>\n<li>barrier 对齐：保证多流 checkpoint 一致</li>\n<li>恢复：失败从最近 checkpoint 回放</li>\n<li>sink 两阶段提交：事务性写入，避免重复</li>\n<li>前提：source/sink 都支持事务或幂等，否则 at-least-once + 幂等</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>端到端 exactly-once 需要哪些条件？</li>\n<li>Kafka 怎么支持两阶段提交？</li>\n<li>不支持事务的 sink 怎么做幂等？</li>\n</ul>"
+    },
+    {
       "id": "NETWORK-0001",
       "type": "technical",
       "question": "TCP 和 UDP 的区别",
@@ -802,6 +847,28 @@ window.OS_DATA = {
       ],
       "domain": "algorithm",
       "body_html": "<h2>一句话</h2>\n<p>链表排序首选归并排序：O(n log n) 稳定，且无需额外数组空间，适合链表结构。</p>\n<h2>思路</h2>\n<ul>\n<li>用快慢指针找中点，把链表从中间断开</li>\n<li>递归排序左右两半</li>\n<li>合并两个有序链表</li>\n<li>哨兵节点简化合并</li>\n</ul>\n<h2>代码</h2>\n<pre><code class=\"language-python\">class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge(a, b):\n    dummy = ListNode()\n    cur = dummy\n    while a and b:\n        if a.val &lt;= b.val:\n            cur.next, a = a, a.next\n        else:\n            cur.next, b = b, b.next\n        cur = cur.next\n    cur.next = a or b\n    return dummy.next\n\ndef sortList(head):\n    if not head or not head.next:\n        return head\n    slow = fast = head\n    prev = None\n    while fast and fast.next:\n        prev = slow\n        slow = slow.next\n        fast = fast.next.next\n    prev.next = None\n    left = sortList(head)\n    right = sortList(slow)\n    return merge(left, right)</code></pre>\n<h2>追问</h2>\n<ul>\n<li>为什么用归并而不是快排？</li>\n<li>快慢指针找中点要注意什么？</li>\n<li>复杂度和稳定性？</li>\n</ul>"
+    },
+    {
+      "id": "ALGORITHM-0002",
+      "type": "technical",
+      "question": "直播间最多人数对应的时刻（变式）",
+      "topic": [
+        "algorithm",
+        "sweep-line"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "algorithm",
+      "body_html": "<h2>一句话</h2>\n<p>把进入记 +1、离开记 -1，按时间排序后扫描累加，维护最大在线人数和对应时刻。</p>\n<h2>思路</h2>\n<ul>\n<li>事件化：进入 -&gt; (time, +1)，离开 -&gt; (time, -1)</li>\n<li>排序：按时间排序，同时间先离开后进入（避免边界重复计数）</li>\n<li>扫描：累加当前在线数，更新最大值和对应时刻</li>\n<li>变式：可求最大人数持续时段、峰值时刻、加窗口等</li>\n</ul>\n<h2>代码</h2>\n<pre><code class=\"language-python\">def max_online(events):\n    # events: [(enter, leave), ...]\n    timeline = []\n    for enter, leave in events:\n        timeline.append((enter, 1))\n        timeline.append((leave, -1))\n    timeline.sort(key=lambda x: (x[0], x[1]))  # 同时刻先离开\n    cur = maxv = 0\n    times = []\n    for t, d in timeline:\n        cur += d\n        if cur &gt; maxv:\n            maxv = cur\n            times = [t]\n        elif cur == maxv:\n            times.append(t)\n    return maxv, times</code></pre>\n<h2>追问</h2>\n<ul>\n<li>同时间有进有出，怎么处理才不重复计数？</li>\n<li>变式：求峰值持续时段怎么改？</li>\n<li>复杂度是多少？</li>\n</ul>"
     },
     {
       "id": "LLM-0001",
@@ -1314,6 +1381,141 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>schema 变更要向后兼容，靠字段映射、双写和兼容窗口平滑迁移，旧字段延迟下线。</p>\n<h2>30 秒回答</h2>\n<p>记录字段映射和血缘；加字段用可空，删字段先软删除；新老字段双写，下游平滑迁移后再下线旧字段，支持版本降级。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>字段改名：维护字段映射表，下游用视图/别名隔离</li>\n<li>加字段：可空、向后兼容</li>\n<li>删字段：先弃用标记，双写兼容期后再删</li>\n<li>降级：保留旧字段一段时间，新老并行，失败可切回</li>\n<li>流程：变更评审 -&gt; 兼容设计 -&gt; 双写/灰度 -&gt; 通知下游 -&gt; 下线旧版本 -&gt; 监控</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>字段类型变更怎么兼容？</li>\n<li>怎么通知下游字段变更？</li>\n<li>兼容窗口一般多长？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0018",
+      "type": "technical",
+      "question": "湖仓一体和纯数仓的区别是什么",
+      "topic": [
+        "warehouse",
+        "lakehouse"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>纯数仓把数据 ETL 进仓、面向分析；湖仓一体在数据湖上叠加事务、元数据、索引和 SQL 能力，让一份数据既存又算。</p>\n<h2>30 秒回答</h2>\n<p>纯数仓：结构化、ETL 入仓、数仓分层，分析为主，原始/非结构化数据难直接查。湖仓一体：湖上增加事务（Iceberg/Hudi/Delta）、元数据和查询引擎，减少搬迁，支持多种负载和开放格式。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>纯数仓：数据先进仓再分析，链路长、成本高、灵活性差</li>\n<li>湖仓一体：一套存储 + 事务 + 元数据 + 多引擎（Presto/Spark），批流统一</li>\n<li>关键组件：Iceberg/Hudi/Delta、Parquet/ORC 开放格式</li>\n<li>优势：一份数据多引擎、降本、批流一体、支持半结构化</li>\n<li>代价：体系复杂、治理和一致性要求高</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>湖仓一体的典型架构有哪些？</li>\n<li>Iceberg/Hudi/Delta 有什么区别？</li>\n<li>什么时候还选纯数仓？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0019",
+      "type": "technical",
+      "question": "数据回滚怎么处理",
+      "topic": [
+        "warehouse",
+        "rollback",
+        "governance"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>回滚靠「保留原始数据 + 分区可覆盖 + 备份/快照 + 幂等重跑」，出问题按时间范围回刷。</p>\n<h2>30 秒回答</h2>\n<p>按时间分区覆盖重跑、备份表/快照回滚、ODS 原始数据重放、拉链表保留历史；流程是定位问题范围 -&gt; 备份 -&gt; 回刷 -&gt; 校验 -&gt; 通知下游。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分区重跑：按时间分区覆盖，回滚到正确口径</li>\n<li>备份表/快照：切换前备份，失败切回</li>\n<li>原始数据：ODS 层保留原始，可重放</li>\n<li>版本：拉链表保留历史版本</li>\n<li>关键：幂等重跑、校验、下游通知、保留恢复点</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>回滚和重跑有什么区别？</li>\n<li>跨分区回滚怎么做？</li>\n<li>怎么保证回滚不丢数据？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0020",
+      "type": "technical",
+      "question": "粒度是什么",
+      "topic": [
+        "warehouse",
+        "granularity"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>粒度是一条记录所代表的最细业务含义，即「按哪些维度、在什么周期」统计。</p>\n<h2>30 秒回答</h2>\n<p>粒度 = 维度 + 周期，例如「用户 + 商品 + 日」或「品类 + 日」。粒度决定表能回答什么问题、复用范围和数据量。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>粒度细：灵活、可上卷，但数据量大</li>\n<li>粒度粗：聚合快、体积小，但丢失明细</li>\n<li>建模顺序：先定粒度，再定维度和指标</li>\n<li>例子：DWS 表粒度是「品类+日」，ADS 可能是「店铺+品类+日」</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>粒度和指标是什么关系？</li>\n<li>粒度选太细会怎样？</li>\n<li>DWD 和 DWS 的粒度各是多少？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0021",
+      "type": "technical",
+      "question": "星型模型和雪花模型各自适合哪些场景",
+      "topic": [
+        "warehouse",
+        "star-schema",
+        "snowflake-schema"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>星型模型以冗余换查询性能，适合报表和 OLAP；雪花模型规范化、省空间，适合维度层级复杂、强调整体一致性。</p>\n<h2>30 秒回答</h2>\n<p>星型：事实表 + 一层维度表，join 少、查询快，适合报表、分析查询性能敏感场景。雪花：维度表再规范化拆分，冗余少、一致性好，但 join 多，适合维表大、维度层次多的场景。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>星型优点：查询简单、join 少、性能好、易理解</li>\n<li>星型缺点：维度冗余、一致性维护成本高</li>\n<li>雪花优点：减少冗余、节省存储、一致性更好</li>\n<li>雪花缺点：join 多、查询复杂、性能差</li>\n<li>实践：数仓普遍优先星型，雪花用于层次多或维表巨大的场景</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么数仓多用星型？</li>\n<li>雪花模型什么时候比星型更合适？</li>\n<li>维度冗余会带来什么问题？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0022",
+      "type": "technical",
+      "question": "三范式的概念是什么",
+      "topic": [
+        "warehouse",
+        "normalization"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>三范式通过规范化减少冗余、避免更新异常，保证数据一致性。</p>\n<h2>30 秒回答</h2>\n<p>1NF：字段原子性，不可再分；2NF：满足 1NF 且非主属性完全依赖主键；3NF：满足 2NF 且非主属性不传递依赖主键。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>1NF：每个字段不可再分</li>\n<li>2NF：消除部分函数依赖（非主属性不能只依赖主键的一部分）</li>\n<li>3NF：消除传递依赖（非主属性不能依赖其他非主属性）</li>\n<li>目的：减少冗余、避免插入/更新/删除异常</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>还有 BCNF、4NF 了解吗？</li>\n<li>范式化和反范式化各有什么场景？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0023",
+      "type": "technical",
+      "question": "数仓的表符合三范式吗",
+      "topic": [
+        "warehouse",
+        "normalization",
+        "modeling"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>数仓表通常不符合三范式，而是反范式化、维度建模，故意冗余换查询性能。</p>\n<h2>30 秒回答</h2>\n<p>三范式面向 OLTP（写多、一致性），数仓面向 OLAP（读多、大表 join）。数仓的 DWS/ADS 宽表和维度模型普遍反范式、冗余，以减少 join、提升查询性能。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>ODS/DWD：接近原始或规范化</li>\n<li>DWS/ADS：反范式、宽表冗余，面向查询</li>\n<li>原因：范式化会导致大量 join，分析性能差</li>\n<li>结论：范式用于 OLTP，数仓以维度建模/反范式为主，以空间换性能</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>维度建模和范式化是对立的吗？</li>\n<li>数仓里还有哪些地方会反范式？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -1662,6 +1864,75 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>反问不是走过场，选能展示你关心「业务 + 成长」的问题：</p>\n<ul>\n<li>团队目前的数据规模、技术栈和主要挑战</li>\n<li>这个岗位的日常工作、前三个月最看重什么</li>\n<li>业务方向：数据开发主要服务哪类业务场景</li>\n<li>培养：新人成长路径、技术氛围</li>\n</ul>\n<p>避免：只问薪资福利、问官网能查到的基础信息。</p>\n<h2>注意</h2>\n<p>反问要结合前面的沟通，别机械背模板。</p>"
+    },
+    {
+      "id": "PROJECT-0010",
+      "type": "project",
+      "question": "自我介绍",
+      "topic": [
+        "project",
+        "self-introduction"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>控制 1-2 分钟，按「背景 -&gt; 经历 -&gt; 技术栈 -&gt; 匹配点」组织：</p>\n<ul>\n<li>背景：学历、方向、工作/实习年限</li>\n<li>经历：1-2 个最有代表性的项目，一句话讲清业务和价值</li>\n<li>技术栈：数仓、Spark/Flink、SQL、平台等</li>\n<li>匹配点：为什么适合这个岗位</li>\n</ul>\n<p>原则：突出与岗位相关的经历，留出追问钩子，不要背简历。</p>\n<h2>待补充（真实经历）</h2>\n<blockquote>按你自己真实经历填写。</blockquote>"
+    },
+    {
+      "id": "PROJECT-0011",
+      "type": "project",
+      "question": "介绍你项目的框架",
+      "topic": [
+        "project",
+        "architecture"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>按「数据链路 -&gt; 分层 -&gt; 技术组件 -&gt; 你负责的部分」讲：</p>\n<ul>\n<li>数据源：日志、DB binlog、埋点</li>\n<li>链路：采集 -&gt; 消息 -&gt; 实时/离线计算 -&gt; 存储 -&gt; 应用</li>\n<li>分层：ODS/DWD/DWS/ADS，实时与离线怎么结合</li>\n<li>组件：Kafka、Flink、Spark、Doris/ClickHouse 等</li>\n<li>职责：你负责哪一段、做了哪些设计</li>\n</ul>\n<h2>待补充（真实经历）</h2>\n<blockquote>用你自己的项目架构替换，画清楚数据怎么流转。</blockquote>"
+    },
+    {
+      "id": "PROJECT-0012",
+      "type": "project",
+      "question": "项目每天的数据量是多少",
+      "topic": [
+        "project",
+        "data-volume"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+          "company": "阿里巴巴",
+          "position": "数据开发（一面）",
+          "date": "2026-08-27"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>从多个维度量化，别只说一个数字：</p>\n<ul>\n<li>日增量 / 总量</li>\n<li>峰值 QPS、每秒条数</li>\n<li>核心表行数、存储量</li>\n<li>任务数量、任务时长</li>\n<li>分区数、数据倾斜情况</li>\n</ul>\n<p>原则：给出量级 + 关键峰值 + 与业务挂钩，体现你对规模的感知。</p>\n<h2>待补充（真实经历）</h2>\n<blockquote>填你项目的真实数据量级。</blockquote>"
     }
   ],
   "interviews": [
@@ -1712,6 +1983,15 @@ window.OS_DATA = {
       "date": "2026-09-09",
       "round": "复活赛",
       "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>热乎的复活赛凉经，核心是四个问题 + 一个手撕链表。</blockquote>\n<h3>原文</h3>\n<ul>\n<li>Spark 怎么执行任务</li>\n<li>HDFS 读写原理</li>\n<li>TCP 和 UDP 的区别</li>\n<li>LLM 怎么调用工具</li>\n<li>手撕链表（追问细，没答上来）</li>\n</ul>\n<h3>面试题</h3>\n<h4>自我介绍 / 实习经历</h4>\n<ol>\n<li>请介绍你的实习与项目经历</li>\n<li>介绍部门，实习近况</li>\n</ol>\n<h4>Spark</h4>\n<ol>\n<li>Application、Job、Stage 的区别</li>\n<li>什么是 spark-submit？</li>\n<li>怎么提交 Spark 任务？</li>\n<li>spark-submit 提交任务，什么情况会分成多个 Job？</li>\n<li>什么情况不会拆分成多个 Job？</li>\n</ol>\n<h4>HDFS</h4>\n<ol>\n<li>介绍 HDFS 客户端读写服务的执行流程</li>\n</ol>\n<h4>存储引擎</h4>\n<ol>\n<li>对存储引擎了解哪些？（MySQL / OLAP / ClickHouse / Doris）</li>\n<li>InnoDB 怎么存储数据？</li>\n</ol>\n<h4>TCP / UDP</h4>\n<ol>\n<li>TCP 和 UDP 的区别</li>\n<li>TCP 拥塞控制了解吗？</li>\n<li>哪些协议基于 TCP？</li>\n<li>UDP 属于哪一层？</li>\n</ol>\n<h4>手撕算法</h4>\n<ol>\n<li>构建链表，并完成链表排序</li>\n</ol>\n<h4>LLM / Agent / Tool Calling</h4>\n<ol>\n<li>介绍大模型怎么调用工具（LLM Agent）</li>\n<li>云端接口 messages、tools 参数，框架如何控制工具调用？</li>\n<li>工具描述是框架封装，大模型本身如何识别、触发工具调用？</li>\n</ol>\n<h4>反问</h4>\n<ol>\n<li>你有什么想问我的吗？</li>\n</ol>\n<blockquote>备注：秋招复活赛，字节数据开发。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
+      "company": "阿里巴巴",
+      "business": "数据开发",
+      "position": "数据开发（一面）",
+      "date": "2026-08-27",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>介绍项目的框架</li>\n<li>湖仓一体和纯数仓的区别是什么</li>\n<li>数据回滚怎么处理</li>\n<li>项目每天的数据量是多少</li>\n<li>粒度是什么</li>\n<li>链路性能优化是做什么</li>\n<li>Flink 如何保证数据被精准一次地消费</li>\n<li>星型模型和雪花模型，各自适合用在哪些场景</li>\n<li>三范式的概念了解吗</li>\n<li>那你觉得数仓的表是符合三范式的吗</li>\n<li>手撕：直播间最多人数对应时刻（变式）</li>\n</ol>\n<blockquote>备注：阿里数开一面，北京。</blockquote>"
     }
   ]
 };
