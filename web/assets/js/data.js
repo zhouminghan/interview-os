@@ -1,21 +1,22 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-24T18:11:45+08:00",
+  "generatedAt": "2026-09-24T18:14:33+08:00",
   "stats": {
-    "questions": 81,
-    "interviews": 6,
-    "technical": 69,
-    "project": 12,
+    "questions": 95,
+    "interviews": 7,
+    "technical": 81,
+    "project": 14,
     "domains": {
       "spark": 18,
       "hdfs": 1,
       "storage": 6,
+      "starrocks": 9,
       "flink": 4,
       "network": 4,
       "algorithm": 2,
-      "llm": 5,
+      "llm": 8,
       "warehouse": 23,
       "sql": 6,
-      "project": 12
+      "project": 14
     }
   },
   "domains": {
@@ -29,6 +30,10 @@ window.OS_DATA = {
     },
     "storage": {
       "label": "存储引擎",
+      "type": "technical"
+    },
+    "starrocks": {
+      "label": "StarRocks",
       "type": "technical"
     },
     "flink": {
@@ -643,6 +648,205 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>key 要保证同一订单的更新落在同一分桶，便于聚合/覆盖；分区按维度裁剪，分桶按 hash 分布。</p>\n<h2>30 秒回答</h2>\n<p>订单/退款修订场景，用订单号做主键/分桶键，保证同订单同桶合并覆盖。分区按时间/地域等裁剪，分桶在分区内 hash 分布决定并行度。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>key 设计：订单号做主键（Unique/主键模型），退款修订按同 key 覆盖</li>\n<li>分区：按时间/地域水平切分，用于裁剪和生命周期管理，粒度粗</li>\n<li>分桶：分区内按 hash 分桶（Tablet），决定数据分布和聚合粒度</li>\n<li>区别：分区是逻辑裁剪，分桶是物理分布/并行度；先分区后分桶</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Doris 主键模型和聚合模型区别？</li>\n<li>分桶数怎么定？</li>\n<li>分区和分桶各影响什么？</li>\n</ul>"
     },
     {
+      "id": "STARROCKS-0001",
+      "type": "technical",
+      "question": "你怎么做数据查询优化",
+      "topic": [
+        "starrocks",
+        "query-optimization"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>查询优化分「建模优化 + SQL 优化 + 资源调优」三层。</p>\n<h2>30 秒回答</h2>\n<p>建表时合理分区分桶、设排序键、选合适数据模型、建物化视图和索引；SQL 用谓词下推、列裁剪、调 join 顺序；执行层看 Profile 定位慢算子，调并行度和资源。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>建模：分区裁剪、分桶均匀、排序键贴近查询、物化视图、Bitmap/Bloom Filter 索引</li>\n<li>SQL：谓词下推、列裁剪、避免 select *、join 重排序</li>\n<li>执行：向量化、CBO 优化器、并行度、缓存</li>\n<li>定位：Profile / 执行计划找慢算子</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>物化视图怎么加速查询？</li>\n<li>排序键对查询有什么影响？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0002",
+      "type": "technical",
+      "question": "分区分桶排序键怎么设置",
+      "topic": [
+        "starrocks",
+        "table-design"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>分区管裁剪，分桶管分布，排序键管查询和前缀索引。</p>\n<h2>30 秒回答</h2>\n<p>分区按时间/范围切分用于裁剪和生命周期；分桶按高基数列 hash 分布保证均匀和并行；排序键选高频过滤/排序/聚合的前缀列，决定前缀索引。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分区：按时间（日/月）或范围，分区键选高频过滤的时间维度</li>\n<li>分桶：按高基数列（订单号/用户 ID）hash，桶数按数据量、BE 数、副本权衡</li>\n<li>排序键：选常用 where/order by/group by 的前缀列，顺序按查询频率和基数</li>\n<li>原则：能裁剪、分布均匀、贴近查询</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>分桶数怎么定？</li>\n<li>排序键太长会怎样？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0003",
+      "type": "technical",
+      "question": "StarRocks 有哪些数据模型",
+      "topic": [
+        "starrocks",
+        "data-model"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>StarRocks 主要有明细、聚合、更新、主键四种模型，核心区别在去重/聚合/更新语义。</p>\n<h2>30 秒回答</h2>\n<p>明细模型保留全部明细；聚合模型按 key 预聚合；更新模型保证 key 唯一、后写覆盖；主键模型支持 delete/update 实时更新。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>明细模型（Duplicate Key）：保留每条明细，无去重</li>\n<li>聚合模型（Aggregate Key）：按 key 预聚合（sum/max/min/replace）</li>\n<li>更新模型（Unique Key）：key 唯一，后写覆盖先写</li>\n<li>主键模型（Primary Key）：支持实时更新和删除，基于主键索引</li>\n<li>选择：看是否去重、聚合、更新</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>主键模型和更新模型有什么区别？</li>\n<li>聚合模型适合什么场景？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0004",
+      "type": "technical",
+      "question": "主键模型和明细模型的使用场景",
+      "topic": [
+        "starrocks",
+        "data-model"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>明细模型留全量流水，主键模型按主键去重保最新状态。</p>\n<h2>30 秒回答</h2>\n<p>明细模型适合日志、行为流水等需要保留每条明细、无更新的场景；主键模型适合订单状态、用户维表、实时更新宽表等需要 upsert/删除的场景。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>明细模型：保留原始明细、无去重，适合流水类、追加写</li>\n<li>主键模型：按主键 upsert，保证唯一和最新，支持更新/删除</li>\n<li>例子：曝光点击日志用明细，订单最新状态/维表用主键</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>主键模型写入比明细慢吗？</li>\n<li>明细模型能去重吗？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0005",
+      "type": "technical",
+      "question": "主键模型的数据更新流程",
+      "topic": [
+        "starrocks",
+        "primary-key",
+        "upsert"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>主键模型写入时先查主键索引定位行，命中则 upsert 更新，未命中则插入。</p>\n<h2>30 秒回答</h2>\n<p>按主键 hash 分桶 -&gt; 查主键索引（Primary Index）-&gt; 命中更新（upsert）、未命中插入 -&gt; 写内存表 -&gt; flush 持久化；支持 delete 谓词（墓碑）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：按主键 hash 到分桶，查主键索引</li>\n<li>upsert：命中更新，未命中插入</li>\n<li>删除：delete 谓词 + 墓碑标记</li>\n<li>持久化：内存表 flush 到磁盘，批量合并</li>\n<li>保证：同主键只保留最新版本</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>主键索引存在哪里？</li>\n<li>更新是实时可见吗？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0006",
+      "type": "technical",
+      "question": "StarRocks 集群的存储架构是怎么样的",
+      "topic": [
+        "starrocks",
+        "architecture"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>存算一体下 BE 既存又算，数据按分区分桶切成 Tablet，多副本分布在各 BE。</p>\n<h2>30 秒回答</h2>\n<p>FE 管元数据和查询计划，BE 负责存储和执行；数据分区内分桶为 Tablet，多副本分布在不同 BE 保证高可用；存算分离则数据放共享存储、计算走 CN。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>FE：元数据、SQL 解析/优化/调度</li>\n<li>BE：本地存储 + 查询执行（存算一体）</li>\n<li>Tablet：分区内分桶的最小存储单元，多副本</li>\n<li>存算分离：计算节点 CN + 共享存储（对象存储/HDFS）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Tablet 和副本是什么关系？</li>\n<li>BE 挂了数据会丢吗？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0007",
+      "type": "technical",
+      "question": "存算分离和存算一体的区别",
+      "topic": [
+        "starrocks",
+        "architecture"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>一体是节点既存又算、本地磁盘；分离是计算和存储独立、共享存储。</p>\n<h2>30 秒回答</h2>\n<p>存算一体：BE 本地存储 + 计算，扩展要一起扩，弹性差、成本高。存算分离：计算节点独立、数据放共享存储，计算存储独立扩展，弹性好、成本低。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>一体：本地磁盘、数据本地计算、扩展耦合、成本高</li>\n<li>分离：CN 计算 + 对象存储，独立扩缩容、按需计费、多集群共享</li>\n<li>代价：网络延迟、缓存/一致性复杂度</li>\n<li>选择：看弹性需求和成本</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>存算分离会变慢吗？</li>\n<li>什么负载适合存算分离？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0008",
+      "type": "technical",
+      "question": "为什么做存算分离，有什么好处",
+      "topic": [
+        "starrocks",
+        "architecture"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>存算分离主要是为了弹性扩缩容和降本。</p>\n<h2>30 秒回答</h2>\n<p>计算按需伸缩应对负载波动，存储独立扩容，按量计费；多集群共享一份数据，资源隔离；成本更低、运维更灵活。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>弹性：计算按需扩缩，应对峰谷</li>\n<li>成本：计算存储独立优化、按量付费、冷热分层</li>\n<li>共享：多集群共享一份数据，避免冗余</li>\n<li>运维：存储独立扩容、备份恢复灵活</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>存算分离的成本优势体现在哪？</li>\n<li>什么场景存算分离更划算？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0009",
+      "type": "technical",
+      "question": "StarRocks 有哪些结构组成",
+      "topic": [
+        "starrocks",
+        "architecture"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>核心是 FE（元数据/查询计划）+ BE（存储/执行），存算分离再加 CN（计算节点）。</p>\n<h2>30 秒回答</h2>\n<p>FE 负责元数据管理、SQL 解析优化和调度，Leader/Follower 高可用；BE 负责数据存储和查询执行；存算分离架构增加 CN 计算节点。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>FE（Frontend）：元数据、SQL 解析/优化/调度，Leader/Follower</li>\n<li>BE（Backend）：存储 + 执行，存算一体核心</li>\n<li>CN（Compute Node）：存算分离的计算节点，只算不存</li>\n<li>其他：Catalog、CBO 优化器、向量化执行引擎、BDBJE 元数据</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>FE 挂了怎么办？</li>\n<li>BE 和 CN 有什么区别？</li>\n</ul>"
+    },
+    {
       "id": "FLINK-0001",
       "type": "technical",
       "question": "Kafka-Flink 中间状态怎么设计，如何处理迟到、重复和退款最新状态",
@@ -984,6 +1188,76 @@ window.OS_DATA = {
       ],
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>权限控制要覆盖「身份认证 -&gt; 请求鉴权 -&gt; SQL 校验 -&gt; 数据行级/列级权限 -&gt; 结果过滤 -&gt; 审计」全链路。</p>\n<h2>30 秒回答</h2>\n<p>提交查询时先认证用户身份，鉴权能否访问该数据源，再校验生成的 SQL（表、字段、行级权限），执行后对结果做脱敏/过滤，全程审计留痕。</p>\n<h2>1 分钟回答</h2>\n<ol>\n<li>认证：用户身份（登录态/API key）</li>\n<li>鉴权：是否有取数权限、可访问哪些数据源</li>\n<li>SQL 校验：解析 SQL，校验表和字段权限、阻止越权查询</li>\n<li>行级/列级权限：按数据权限规则过滤</li>\n<li>结果处理：脱敏、限制返回量</li>\n<li>审计：记录查询请求、SQL、结果范围</li>\n<ul>\n<li>大模型链路要防止 prompt 注入绕过权限，必须在引擎层做权限，不能只靠模型</li>\n</ul>\n</ol>\n<h2>追问</h2>\n<ul>\n<li>怎么防止 prompt 注入越权？</li>\n<li>行级权限通常怎么实现？</li>\n<li>权限校验放哪个环节最安全？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0006",
+      "type": "technical",
+      "question": "你们做的 skills 是什么，有什么作用，具体怎么写的",
+      "topic": [
+        "llm",
+        "agent",
+        "skills"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>skills 是给 Agent 的可复用指令包，把领域知识、工作流和资产封装起来，让 Agent 按规范执行。</p>\n<h2>30 秒回答</h2>\n<p>一个 skill 通常有 SKILL.md（name/description 触发路由 + 指令），可选 scripts、assets、references。作用是封装领域知识、规范流程、复用资产、按需触发。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>结构：SKILL.md 的 frontmatter 写 name/description，正文写步骤、约束、验收</li>\n<li>scripts：可执行脚本，避免 Agent 重写大段代码</li>\n<li>assets/references：模板、参考资料</li>\n<li>作用：按需触发、稳定输出、知识沉淀、复用</li>\n</ul>\n<h2>待补充（真实经历）</h2>\n<blockquote>补你们实际做的 skills：名称、解决的问题、怎么触发、怎么写的。</blockquote>"
+    },
+    {
+      "id": "LLM-0007",
+      "type": "technical",
+      "question": "你做数据集评测的作用是什么",
+      "topic": [
+        "llm",
+        "evaluation"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>评测数据集用来量化 Agent/模型输出质量，做回归、驱动迭代和方案对比。</p>\n<h2>30 秒回答</h2>\n<p>作用：量化准确率/通过率，改动后防退化，badcase 驱动迭代，不同模型/方案 A/B 对比。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>量化：准确率、通过率、任务成功率</li>\n<li>回归：改动后自动验证不退化</li>\n<li>迭代：定位 badcase，优化 prompt/流程</li>\n<li>对比：不同方案/模型选优</li>\n</ul>\n<h2>待补充（真实经历）</h2>\n<blockquote>说明你评测的数据集、评测方式和发现的问题。</blockquote>"
+    },
+    {
+      "id": "LLM-0008",
+      "type": "technical",
+      "question": "有什么指标能够量化 skills 和评测",
+      "topic": [
+        "llm",
+        "evaluation",
+        "metrics"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>准确率、通过率、任务成功率、指令遵循率是核心，再叠加延迟、成本和 badcase 率。</p>\n<h2>30 秒回答</h2>\n<p>量化指标：准确率/通过率、任务成功率、指令遵循率、召回率、badcase 率、失败分类；成本侧看延迟、token 成本。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>效果：准确率、通过率、任务成功率、指令遵循率</li>\n<li>质量：badcase 率、失败原因分布、回归通过率</li>\n<li>成本：延迟、token 消耗、单位任务成本</li>\n<li>分层：意图识别、工具调用、最终结果分别评测</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么定义一次任务算成功？</li>\n<li>指标怎么区分「模型问题」和「skill 写的问题」？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0001",
@@ -1933,9 +2207,64 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>从多个维度量化，别只说一个数字：</p>\n<ul>\n<li>日增量 / 总量</li>\n<li>峰值 QPS、每秒条数</li>\n<li>核心表行数、存储量</li>\n<li>任务数量、任务时长</li>\n<li>分区数、数据倾斜情况</li>\n</ul>\n<p>原则：给出量级 + 关键峰值 + 与业务挂钩，体现你对规模的感知。</p>\n<h2>待补充（真实经历）</h2>\n<blockquote>填你项目的真实数据量级。</blockquote>"
+    },
+    {
+      "id": "PROJECT-0013",
+      "type": "project",
+      "question": "自我介绍",
+      "topic": [
+        "project",
+        "self-introduction"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>1-2 分钟，按「背景 -&gt; 重点经历 -&gt; 技术栈 -&gt; 匹配点」组织，突出与数据岗/StarRocks/Agent 相关的部分，留追问钩子。</p>\n<h2>待补充（真实经历）</h2>\n<blockquote>按你自己真实经历填写。</blockquote>"
+    },
+    {
+      "id": "PROJECT-0014",
+      "type": "project",
+      "question": "讲一下你重点做的项目",
+      "topic": [
+        "project",
+        "highlight"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-23-anker-data",
+          "company": "安克创新",
+          "position": "数据岗（一面）",
+          "date": "2026-09-23"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>选 1 个最能体现能力、最熟的项目，用 STAR 结构讲透：背景 -&gt; 目标 -&gt; 方案 -&gt; 你的职责 -&gt; 结果 -&gt; 难点。</p>\n<h2>待补充（真实经历）</h2>\n<blockquote>建议挑和 StarRocks / 数仓 / Agent 相关的项目重点展开。</blockquote>"
     }
   ],
   "interviews": [
+    {
+      "interview_id": "INTERVIEW-2026-09-23-anker-data",
+      "company": "安克创新",
+      "business": "数据岗",
+      "position": "数据岗（一面）",
+      "date": "2026-09-23",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>讲一下你重点做的</li>\n<li>你怎么做的数据查询优化</li>\n<li>怎么设置分区分桶排序键</li>\n<li>StarRocks 有哪些数据模型</li>\n<li>主键模型和明细模型你们使用的场景是什么</li>\n<li>主键模型数据更新的流程</li>\n<li>你们使用的 StarRocks 集群的存储架构是怎么样的</li>\n<li>存算分离和存算一体的区别</li>\n<li>你们 StarRocks 为什么要做存算分离，有什么好处</li>\n<li>StarRocks 有哪些结构组成</li>\n<li>你们做的 skills 是什么，有什么作用，具体怎么写的</li>\n<li>你做这个数据集评测的作用是什么</li>\n<li>有没有什么指标能够量化你做的 skills 和评测</li>\n</ol>\n<blockquote>个人感受：面试官是数据开发出身，对 StarRocks 和 Agent 很熟悉。</blockquote>"
+    },
     {
       "interview_id": "INTERVIEW-2026-09-21-jiukun-data-dev",
       "company": "九坤",
