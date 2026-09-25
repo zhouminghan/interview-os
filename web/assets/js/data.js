@@ -1,10 +1,10 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-25T16:09:14+08:00",
+  "generatedAt": "2026-09-26T01:18:10+08:00",
   "stats": {
-    "questions": 127,
-    "interviews": 8,
-    "technical": 107,
-    "project": 20,
+    "questions": 146,
+    "interviews": 9,
+    "technical": 118,
+    "project": 28,
     "domains": {
       "spark": 22,
       "hdfs": 1,
@@ -14,10 +14,10 @@ window.OS_DATA = {
       "flink": 4,
       "network": 4,
       "algorithm": 2,
-      "llm": 16,
-      "warehouse": 30,
+      "llm": 20,
+      "warehouse": 37,
       "sql": 6,
-      "project": 20
+      "project": 28
     }
   },
   "domains": {
@@ -1695,6 +1695,98 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>Agent Skill 题通常考「给一个场景，设计一个可复用 skill 的结构、触发和验收」。</p>\n<h2>30 秒回答</h2>\n<p>一个 skill = SKILL.md（name/description 触发路由 + 指令）+ 可选 scripts/assets/references。设计时明确触发条件、输入输出、步骤、约束、验收标准。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>frontmatter：name、description（决定何时触发）</li>\n<li>正文：步骤、约束、验收、注意事项</li>\n<li>scripts：可执行脚本，避免重复生成代码</li>\n<li>assets/references：模板与参考资料</li>\n<li>设计要点：职责单一、触发明确、可复用、可验证</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么设计 skill 的 description 让它被正确触发？</li>\n<li>一个 skill 应该多小/多大？</li>\n</ul>"
     },
     {
+      "id": "LLM-0017",
+      "type": "technical",
+      "question": "智能问数 Agent 存在哪些问题",
+      "topic": [
+        "llm",
+        "agent",
+        "qa"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>意图理解不准、口径不统一、检索召回不足、幻觉、跨域越权是问数 Agent 的主要问题。</p>\n<h2>30 秒回答</h2>\n<p>常见问题：意图识别错误、指标口径不统一、检索召回不足、生成幻觉、复杂查询生成错误、跨域越权、结果不可解释、歧义处理差。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>意图：需求理解偏差、歧义</li>\n<li>口径：同指标多口径，答错口径</li>\n<li>检索：召回不足/错误</li>\n<li>生成：SQL 语法错、语义错、幻觉</li>\n<li>权限：跨域越权调用</li>\n<li>体验：可解释性、置信度、纠错</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>这些问题里哪个最难解决？</li>\n<li>怎么提升结果可解释性？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0018",
+      "type": "technical",
+      "question": "从架构和实现上，智能问数 Agent 是怎么做的",
+      "topic": [
+        "llm",
+        "agent",
+        "architecture"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>问数 Agent 是「意图识别 + 语义层/指标字典 + 检索增强 + SQL 生成 + 权限校验 + 执行 + 评测」的链路。</p>\n<h2>30 秒回答</h2>\n<p>问题 -&gt; 意图识别 -&gt; 指标/口径解析 -&gt; 检索（知识库/元数据）-&gt; SQL 生成 -&gt; 校验/权限 -&gt; 执行 -&gt; 结果 -&gt; 反馈。核心是语义层把业务意图映射到指标和表。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>NLU：意图、实体、指标识别</li>\n<li>语义层：指标字典、口径、维度映射</li>\n<li>检索：RAG 召回业务定义和元数据</li>\n<li>SQL 生成：结合 schema 生成查询</li>\n<li>校验：语法、权限、口径</li>\n<li>执行 + 反馈：执行、结果、评测迭代</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>语义层和指标字典是什么关系？</li>\n<li>怎么保证生成的 SQL 正确？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0019",
+      "type": "technical",
+      "question": "检索增强时，怎么检索到和业务意图最匹配的片段",
+      "topic": [
+        "llm",
+        "rag",
+        "retrieval"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>向量检索 + 关键词/全文混合，结合指标字典和元数据，再 rerank 精排，按权限过滤。</p>\n<h2>30 秒回答</h2>\n<p>先识别业务意图和指标，再用 embedding 向量检索 + 关键词检索混合召回，结合指标字典、表/字段元数据，rerank 精排 top-k，并按业务域/权限过滤。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>意图解析：先转成指标/维度语义</li>\n<li>混合检索：向量相似度 + 全文/关键词</li>\n<li>结构化元数据优先：指标字典、表字段、历史问答</li>\n<li>rerank：精排提升相关度</li>\n<li>权限/域过滤：限制检索范围</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>向量检索和关键词检索怎么融合？</li>\n<li>rerank 模型的作用？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0020",
+      "type": "technical",
+      "question": "跨业务域查询，怎么规范跨域错误调用",
+      "topic": [
+        "llm",
+        "security",
+        "domain"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>通过意图先归域、域级/表级/行级权限、指标字典隔离和 SQL 校验来阻止跨域越权。</p>\n<h2>30 秒回答</h2>\n<p>意图识别先归类业务域，按域路由到对应指标字典和元数据；权限做域级/表级/行级校验；生成 SQL 时校验表和字段权限，审计留痕，阻止跨域错误调用。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>意图归域：先判断属于哪个业务域</li>\n<li>权限：域级/表级/行级隔离</li>\n<li>指标字典：按域隔离，不混用</li>\n<li>SQL 校验：解析后校验表和字段可见性</li>\n<li>审计：记录请求和结果范围</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>行级权限怎么实现？</li>\n<li>怎么防止 prompt 注入越权？</li>\n</ul>"
+    },
+    {
       "id": "WAREHOUSE-0001",
       "type": "technical",
       "question": "谈谈你对数据分析和数据开发的理解",
@@ -2384,6 +2476,165 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>用血缘 + 任务依赖 + 运行时长监控，交付层延迟时沿血缘向上回溯定位根因任务。</p>\n<h2>30 秒回答</h2>\n<p>基于任务血缘和依赖图，监控每个节点的完成时间和延迟，最终交付层延迟时自动向上回溯，找到最早延迟/失败的源头任务，而不是每个任务单独加 DQC。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>血缘：记录任务上下游依赖</li>\n<li>运行监控：每个任务的开始/结束时间、耗时</li>\n<li>回溯：交付层延迟 -&gt; 沿血缘向上找最早异常节点</li>\n<li>收益：一次定位根因，减少大量 DQC 配置</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>血缘图怎么构建？</li>\n<li>多上游同时延迟怎么定位？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0031",
+      "type": "technical",
+      "question": "当前数仓建模存在什么问题，有哪些可优化点",
+      "topic": [
+        "warehouse",
+        "modeling",
+        "governance"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>常见问题是分层不规范、口径不统一、重复建表、公共层复用不足；优化围绕统一口径、标准建模和资产治理。</p>\n<h2>30 秒回答</h2>\n<p>问题：分层混乱、口径不统一、重复建表、粒度混乱、ADS 宽表膨胀、命名不规范、元数据缺失。优化：统一口径、标准分层、主题域建模、公共指标沉淀、资产平台、去重治理、血缘。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>口径：指标字典统一，避免同指标多口径</li>\n<li>分层：ODS/DWD/DWS/ADS 职责清晰</li>\n<li>建模：维度建模、主题域、粒度一致</li>\n<li>复用：DWS 公共汇总层沉淀，减少重复加工</li>\n<li>治理：资产平台、血缘、命名规范、去重</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你怎么判断建模是否规范？</li>\n<li>公共层复用不足会带来什么？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0032",
+      "type": "technical",
+      "question": "你们建模的过程是怎样的",
+      "topic": [
+        "warehouse",
+        "modeling",
+        "process"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>建模从需求澄清和口径定义开始，再定主题域、粒度、分层，最后维度建模并评审上线。</p>\n<h2>30 秒回答</h2>\n<p>需求澄清 -&gt; 指标拆解 -&gt; 定主题域和粒度 -&gt; 分层设计 -&gt; 维度建模（事实/维度/星型）-&gt; 命名规范 -&gt; 评审 -&gt; 开发 -&gt; 对账 -&gt; 上线。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>需求澄清：口径、维度、粒度、周期</li>\n<li>指标拆解：原子/派生/复合指标</li>\n<li>建模：事实表、维度表、星型模型</li>\n<li>评审：口径和复用性评审，避免重复</li>\n<li>上线：对账、监控</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>建模时先定粒度还是先定指标？</li>\n<li>评审主要看什么？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0033",
+      "type": "technical",
+      "question": "分层是怎么设计的",
+      "topic": [
+        "warehouse",
+        "layering"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>典型分层是 ODS 贴源 -&gt; DWD 明细 -&gt; DWS 汇总 -&gt; ADS 应用，再加 DIM 维表。</p>\n<h2>30 秒回答</h2>\n<p>ODS 保留原始数据；DWD 清洗成统一明细；DWS 按主题做公共汇总；ADS 面向应用做宽表；DIM 存维度属性。分层解耦、复用、可回溯。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>ODS：贴源、原样落地</li>\n<li>DWD：清洗、规范化、明细</li>\n<li>DWS：主题汇总、公共指标</li>\n<li>ADS：应用宽表</li>\n<li>DIM：维表</li>\n<li>原则：职责清晰、逐层收敛、公共层复用</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么 DWD 不直接出应用结果？</li>\n<li>DWS 和 ADS 边界怎么划？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0034",
+      "type": "technical",
+      "question": "如何避免重复建表，别人不知道已有同一张表",
+      "topic": [
+        "warehouse",
+        "governance",
+        "duplicate"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>靠资产平台登记、指标字典、命名规范和新建前检索，避免重复建表。</p>\n<h2>30 秒回答</h2>\n<p>资产平台登记所有表；指标字典查已有指标；命名规范便于检索；新建前先搜血缘和资产；统一建模评审；治理扫描发现重复。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>资产平台：表/指标唯一登记</li>\n<li>指标字典：查已有口径，避免另起炉灶</li>\n<li>血缘检索：新建前看是否已有</li>\n<li>命名规范：统一前缀便于识别</li>\n<li>评审 + 治理：扫描重复、合并</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>资产平台要记录哪些信息？</li>\n<li>怎么发现存量重复表？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0035",
+      "type": "technical",
+      "question": "既要需求快速上线，又要控制存储，如何平衡",
+      "topic": [
+        "warehouse",
+        "architecture",
+        "tradeoff"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>用分层、分区、冷热分层和公共复用，在时效和存储之间找平衡。</p>\n<h2>30 秒回答</h2>\n<p>按数据冷热分层、TTL 清理过期分区、压缩格式、公共汇总层复用、物化视图预计算，热数据保留细粒度、冷数据归档压缩，兼顾时效和成本。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>时效：公共层复用、汇总预计算、减少重复加工</li>\n<li>存储：列式压缩、分区裁剪、TTL、冷热分层</li>\n<li>平衡：热数据细粒度、冷数据归档；按访问频率分级</li>\n<li>治理：下线无用表、去重、压缩格式</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>冷热分层怎么做？</li>\n<li>汇总层怎么帮到时效和存储？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0036",
+      "type": "technical",
+      "question": "口径变更时为什么新建表切换依赖，而不是直接改原表",
+      "topic": [
+        "warehouse",
+        "metrics",
+        "change"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>新建表可回滚、可灰度、不污染历史，直接改原表会破坏历史和下游。</p>\n<h2>30 秒回答</h2>\n<p>新建表 + 切依赖：保留旧版本可回滚，新旧并行灰度对比，不污染历史，下游平滑切换。直接改原表：历史被覆盖、无法回滚、下游影响面大。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>新建表：旧表保留、可回滚、可对比、灰度切换</li>\n<li>原表改造：历史丢失、回滚难、下游风险大</li>\n<li>流程：新建 -&gt; 对账 -&gt; 切换依赖 -&gt; 观察 -&gt; 下线旧表</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>切换依赖具体怎么做？</li>\n<li>旧表保留多久？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0037",
+      "type": "technical",
+      "question": "搭建一条数据链路的整体思路是什么",
+      "topic": [
+        "warehouse",
+        "data-pipeline"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>从业务需求和口径出发，倒推设计采集、建模、调度、质量和治理的完整链路。</p>\n<h2>30 秒回答</h2>\n<p>明确数据源和业务目标 -&gt; 定口径 -&gt; 采集/传输 -&gt; 分层建模 -&gt; 调度编排 -&gt; 质量监控 -&gt; 元数据/血缘 -&gt; 上线运维，过程中考虑复用和治理。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>需求：业务口径、指标、时效</li>\n<li>采集：数据源、接入方式、实时/离线</li>\n<li>建模：分层、事实/维度</li>\n<li>调度：依赖编排、SLA</li>\n<li>质量：DQC、对账、监控</li>\n<li>治理：元数据、血缘、成本</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>实时和离线链路怎么选？</li>\n<li>链路上最容易出问题的是哪一环？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -2985,6 +3236,192 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>反问围绕「团队 + 业务 + 成长」，例如：团队规模和组织架构、这个岗位 AI 相关职责与规划、当前技术栈和主要挑战。</p>\n<h2>注意</h2>\n<p>结合面试内容问，展示你关心业务和成长，别只问薪资福利。</p>"
+    },
+    {
+      "id": "PROJECT-0021",
+      "type": "project",
+      "question": "请做一下自我介绍",
+      "topic": [
+        "project",
+        "self-introduction"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>背景、重点经历、技术栈、匹配点，突出数仓和 Agent 相关能力。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0022",
+      "type": "project",
+      "question": "你最擅长哪部分",
+      "topic": [
+        "project",
+        "strength"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>选一个最能打的点（如数仓建模、口径治理、性能优化、Agent），讲清楚做得深、有结果的地方。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0023",
+      "type": "project",
+      "question": "对比其他人，你的突出优势是什么",
+      "topic": [
+        "project",
+        "strength"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>用具体案例证明优势，而不是空说：全链路思维、治理视角、AI 结合、主动性等，都要落到一个成果上。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0024",
+      "type": "project",
+      "question": "在 AI 使用上，你相比其他人的优势在哪里",
+      "topic": [
+        "project",
+        "ai",
+        "strength"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>结合具体场景说清楚：会用 Agent/Skill 提效、会评测、能把 AI 落到数据开发流程，而不只是用 ChatGPT 聊天。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0025",
+      "type": "project",
+      "question": "你是做 AI 模型，还是 Agent 这类平台",
+      "topic": [
+        "project",
+        "ai",
+        "role"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实说明定位：调模型/做 RAG/做 Agent 应用，而不是训练模型；重点讲清楚自己在 Agent 平台里的角色和产出。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0026",
+      "type": "project",
+      "question": "没看底层代码，你是怎么学习 Agent 执行流程的",
+      "topic": [
+        "project",
+        "learning"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>通过文档、API、日志、运行现象、官方教程、源码跳读逐步理解，再用实验验证理解，而不是只看代码。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0027",
+      "type": "project",
+      "question": "你怎么快速学习业务知识",
+      "topic": [
+        "project",
+        "learning"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>先看文档和指标字典，再找懂业务的人对齐口径，结合数据表、报表和实际案例，快速建立业务认知。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0028",
+      "type": "project",
+      "question": "平时还在学习哪些新知识",
+      "topic": [
+        "project",
+        "learning"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+          "company": "虾皮",
+          "position": "数据开发（二面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>结合岗位说学习方向：数据湖、实时计算、Agent/RAG、大模型应用等，体现持续学习和与业务结合。</p>\n<h2>待补充（真实经历）</h2>"
     }
   ],
   "interviews": [
@@ -2996,6 +3433,15 @@ window.OS_DATA = {
       "date": "2026-09-24",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>介绍</li>\n<li>你是做数据平台/中台开发，还是业务 ETL 开发，还是两者都做</li>\n<li>一百多张表有没有主题划分，简单介绍</li>\n<li>项目中的指标你们是怎么对比的</li>\n<li>核心指标偏差 2% 就全量发布，离线任务的发布校验怎么规定</li>\n<li>测试环境数据和生产环境数据是否一致</li>\n<li>为什么选 X% 这个偏差阈值，逻辑是什么</li>\n<li>识别到数据倾斜后，加盐处理怎么做，如何缓解</li>\n<li>怎么发现数据倾斜，定位倾斜位置</li>\n<li>Spark UI 某个 stage 运行久、数据量大，怎么定位是哪段代码</li>\n<li>除数据倾斜外还做过哪些性能优化</li>\n<li>熔断和告警策略是什么，哪些熔断、哪些只告警</li>\n<li>有没有「最终交付层就绪延迟时自动回溯上游定位任务」的机制，而不是每个任务单独加 DQC</li>\n<li>简历提到 Hudi，有实际使用吗</li>\n<li>LSM-Tree 大概是什么</li>\n<li>项目里 AI Agent 主要用在哪些方面</li>\n<li>中台角色推广 AI 产品，业务团队会不会抵触，推进落地遇到什么困难</li>\n<li>业务反馈零散输入、表象不同根因一致，怎么抽象归类</li>\n<li>怎么对 bad case 分类，有哪些类别</li>\n<li>会不会继续追溯：意图识别、检索召回、幻觉、权限问题，这些底层问题会归类吗</li>\n<li>了解大模型幻觉吗，怎么减少幻觉</li>\n<li>有没有自主开发的 Agent，介绍一下</li>\n<li>文档接入 Agent 时，是把文档处理成向量库吗</li>\n<li>准确率提升超过 20%，怎么验证</li>\n<li>测试集规模多大，怎么定义「准确/不准确」</li>\n<li>数据库索引了解吗</li>\n<li>介绍一下 Iceberg</li>\n<li>Iceberg 的组成、元数据结构了解多少</li>\n<li>Iceberg 解决了传统 Hive 的哪些问题，还有哪些没覆盖</li>\n<li>Copy-on-Write 的概念</li>\n<li>一道简单的 Agent Skill 相关题目</li>\n<li>反问：数据团队规模/架构；岗位 AI 相关职责与规划</li>\n</ol>\n<blockquote>备注：美团数据开发一面，餐饮 SaaS 面向 B 端。面试官提到：今年开始简单数据需求要求用 Agent 开发，统计 Agent 开发覆盖率。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-09-24-shopee-data-dev",
+      "company": "虾皮",
+      "business": "数据开发",
+      "position": "数据开发（二面）",
+      "date": "2026-09-24",
+      "round": "二面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>你最擅长哪部分</li>\n<li>你的项目是离线数仓，当前数仓建模存在什么问题，有哪些可优化点</li>\n<li>你们建模的过程是怎样的</li>\n<li>分层是怎么设计的</li>\n<li>如何避免重复建表（别人不知道已有同一张表，重复新建）</li>\n<li>数据架构和治理角度，业务要快上线、资源又紧张，既要时效又要控存储，如何平衡</li>\n<li>口径变更时，为什么新建表切换依赖，而不是直接在原表改造</li>\n<li>搭建这条数据链路的整体思路是什么</li>\n<li>对比其他人，你的突出优势是什么</li>\n<li>优势是全链路思维，那在 AI 使用上你的优势在哪</li>\n<li>你是做 AI 模型，还是 Agent 这类平台</li>\n<li>你学到了什么，智能问数 Agent 存在哪些问题</li>\n<li>从架构和实现上，智能问数 Agent 是怎么做的</li>\n<li>检索增强时，怎么检索到和业务意图最匹配的片段</li>\n<li>跨业务域查询，怎么规范跨域错误调用</li>\n<li>没看底层代码，你是怎么学习 Agent 执行流程的</li>\n<li>你怎么快速学习业务知识</li>\n<li>平时还在学习哪些新知识</li>\n</ol>\n<blockquote>备注：虾皮数据开发二面。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-09-23-anker-data",
