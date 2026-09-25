@@ -1,22 +1,23 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-24T18:14:33+08:00",
+  "generatedAt": "2026-09-25T16:09:14+08:00",
   "stats": {
-    "questions": 95,
-    "interviews": 7,
-    "technical": 81,
-    "project": 14,
+    "questions": 127,
+    "interviews": 8,
+    "technical": 107,
+    "project": 20,
     "domains": {
-      "spark": 18,
+      "spark": 22,
       "hdfs": 1,
-      "storage": 6,
+      "storage": 8,
+      "lakehouse": 5,
       "starrocks": 9,
       "flink": 4,
       "network": 4,
       "algorithm": 2,
-      "llm": 8,
-      "warehouse": 23,
+      "llm": 16,
+      "warehouse": 30,
       "sql": 6,
-      "project": 14
+      "project": 20
     }
   },
   "domains": {
@@ -30,6 +31,10 @@ window.OS_DATA = {
     },
     "storage": {
       "label": "存储引擎",
+      "type": "technical"
+    },
+    "lakehouse": {
+      "label": "数据湖",
       "type": "technical"
     },
     "starrocks": {
@@ -486,6 +491,97 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>链路性能优化是从采集、传输、计算、存储到查询的全链路找瓶颈并逐一优化。</p>\n<h2>30 秒回答</h2>\n<p>采集/传输限流、批量、压缩；计算层 Spark/Flink 调优（并行度、倾斜、join、缓存）；存储用列式、合理分区、小文件治理；调度减少等待、并行执行。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>采集/传输：批量、压缩、异步、限流</li>\n<li>计算：并行度、数据倾斜、join 策略、缓存、资源调优、SQL 优化</li>\n<li>存储：Parquet/ORC、分区、小文件合并、冷热分层</li>\n<li>调度：任务依赖、并行调度、减少等待</li>\n<li>监控：端到端耗时、各环节占比，定位瓶颈</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么定位链路瓶颈在哪一段？</li>\n<li>端到端延迟由哪几部分组成？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0019",
+      "type": "technical",
+      "question": "识别到数据倾斜后，加盐处理怎么做、如何缓解",
+      "topic": [
+        "spark",
+        "skew",
+        "salting"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>加盐是给热点 key 加随机前缀打散，再做两阶段聚合或 join 还原。</p>\n<h2>30 秒回答</h2>\n<p>group by：key 加随机前缀 -&gt; 局部聚合 -&gt; 去前缀二次聚合。join：热点 key 加盐打散 join -&gt; 二次 join 还原。核心是把热点 key 分到多个 task 均衡负载。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位热点 key 后加随机前缀（盐值范围）</li>\n<li>group by 两阶段聚合：加盐聚合 + 还原</li>\n<li>join 两阶段 join：加盐 join + 二次 join 还原</li>\n<li>注意盐数、还原正确性、新增 shuffle 成本</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>盐数怎么选？</li>\n<li>join 加盐还原怎么做？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0020",
+      "type": "technical",
+      "question": "怎么发现数据倾斜、定位倾斜位置",
+      "topic": [
+        "spark",
+        "skew",
+        "diagnose"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>看 Spark UI 的 task 数据量/耗时分布，长尾 task 对应的 stage 和 key 就是倾斜位置。</p>\n<h2>30 秒回答</h2>\n<p>看 stage 内各 task 的 shuffle read、records、耗时，找到少数远大于其他的长尾 task；再抽样统计 key 分布，定位热点 key。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>UI：task metrics、耗时分布、shuffle 数据量</li>\n<li>定位 stage：哪个 stage 长尾</li>\n<li>定位 key：抽样统计 key 的条数分布，找热点 key</li>\n<li>辅助：日志、OOM、数据抽样 SQL</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么快速统计热点 key？</li>\n<li>长尾和倾斜是同一回事吗？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0021",
+      "type": "technical",
+      "question": "Spark UI 某个 stage 运行久、数据量大，怎么定位是哪段代码",
+      "topic": [
+        "spark",
+        "diagnose",
+        "stage"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>用 stage 的 description、RDD 依赖和算子名反查代码位置。</p>\n<h2>30 秒回答</h2>\n<p>看 stage 的 description（通常含 action 或算子名）、DAG 依赖关系、RDD 血缘，对应到代码里的 join/group by/shuffle 等算子。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>stage description 定位 action 类型</li>\n<li>DAG 看上下游算子和 shuffle</li>\n<li>RDD 血缘追溯算子链</li>\n<li>结合 stage id 和源码对应具体代码段</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>stage description 一般长什么样？</li>\n<li>多个 stage 慢怎么定位关键 stage？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0022",
+      "type": "technical",
+      "question": "除数据倾斜外，还做过哪些性能优化",
+      "topic": [
+        "spark",
+        "performance"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>并行度、broadcast、缓存、裁剪、存储格式、小文件、调参、GC 等都是倾斜之外常用优化。</p>\n<h2>30 秒回答</h2>\n<p>调整并行度、小表 broadcast、缓存复用、分区/列裁剪、谓词下推、避免低效 UDF、用 Parquet/ORC、治理小文件、AQE 调参、GC 和资源优化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>并行度：shuffle 分区数匹配数据量</li>\n<li>join：小表 broadcast、join 顺序</li>\n<li>缓存：复用 DataFrame cache/persist</li>\n<li>裁剪：分区/列裁剪、谓词下推</li>\n<li>存储：列式、合理分区、小文件合并</li>\n<li>调参：AQE、内存、GC、spill</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你实际做过的优化里效果最明显的是哪个？</li>\n<li>AQE 帮你解决了什么？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -646,6 +742,162 @@ window.OS_DATA = {
       ],
       "domain": "storage",
       "body_html": "<h2>一句话</h2>\n<p>key 要保证同一订单的更新落在同一分桶，便于聚合/覆盖；分区按维度裁剪，分桶按 hash 分布。</p>\n<h2>30 秒回答</h2>\n<p>订单/退款修订场景，用订单号做主键/分桶键，保证同订单同桶合并覆盖。分区按时间/地域等裁剪，分桶在分区内 hash 分布决定并行度。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>key 设计：订单号做主键（Unique/主键模型），退款修订按同 key 覆盖</li>\n<li>分区：按时间/地域水平切分，用于裁剪和生命周期管理，粒度粗</li>\n<li>分桶：分区内按 hash 分桶（Tablet），决定数据分布和聚合粒度</li>\n<li>区别：分区是逻辑裁剪，分桶是物理分布/并行度；先分区后分桶</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Doris 主键模型和聚合模型区别？</li>\n<li>分桶数怎么定？</li>\n<li>分区和分桶各影响什么？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0007",
+      "type": "technical",
+      "question": "LSM-Tree 大概是什么",
+      "topic": [
+        "storage",
+        "lsm-tree"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>LSM-Tree 把写先落内存和 WAL，再批量刷成有序 SSTable，后台 compaction 合并，换写性能。</p>\n<h2>30 秒回答</h2>\n<p>写入先到内存 memtable 和 WAL，memtable 满了刷成有序的 SSTable；读要查 memtable 和多层 SSTable；后台 compaction 合并减少文件数。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>写：内存 memtable + WAL（顺序写）</li>\n<li>flush：memtable 满刷成 SSTable</li>\n<li>读：查 memtable + SSTable，可能用布隆过滤器</li>\n<li>compaction：合并 SSTable、去旧版本</li>\n<li>特点：写放大、读放大，适合写多读少</li>\n<li>代表：RocksDB、HBase、LevelDB</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>LSM-Tree 和 B+ 树区别？</li>\n<li>compaction 有哪些策略？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0008",
+      "type": "technical",
+      "question": "数据库索引了解吗",
+      "topic": [
+        "storage",
+        "index"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>索引是加速查询的数据结构，常见 B+ 树、Hash、位图、全文索引。</p>\n<h2>30 秒回答</h2>\n<p>B+ 树适合范围查询，Hash 适合等值查询，位图适合低基数列；聚簇索引叶子存整行，非聚簇索引叶子存主键需回表。索引加速查询但占空间、影响写入。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>B+ 树：范围、有序，最常用</li>\n<li>Hash：等值查询快，不支持范围</li>\n<li>位图：低基数、多条件</li>\n<li>聚簇/非聚簇：是否按索引顺序存整行</li>\n<li>代价：存储、写放大、维护成本</li>\n<li>优化：覆盖索引避免回表、最左前缀</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>什么是回表，怎么避免？</li>\n<li>联合索引的最左前缀原则？</li>\n</ul>"
+    },
+    {
+      "id": "LAKEHOUSE-0001",
+      "type": "technical",
+      "question": "Hudi 有实际使用吗，Hudi 是什么",
+      "topic": [
+        "lakehouse",
+        "hudi"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "lakehouse",
+      "body_html": "<h2>一句话</h2>\n<p>Hudi 是开放的数据湖表格式，在数据湖上提供 upsert、增量读、时间旅行和事务能力。</p>\n<h2>30 秒回答</h2>\n<p>Hudi 提供表格式 + 元数据 + 索引，支持 upsert、增量读取、时间旅行；核心概念有 Timeline、File Groups、File Slices，表类型分 COW 和 MOR。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>能力：upsert、增量读、时间旅行、schema 演进</li>\n<li>结构：Timeline（提交日志）、File Group、File Slice</li>\n<li>表类型：COW（读优化）、MOR（写优化）</li>\n<li>场景：MySQL binlog 同步、近实时 upsert、流式入湖</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>COW 和 MOR 区别？</li>\n<li>Hudi 的 Timeline 是什么？</li>\n</ul>"
+    },
+    {
+      "id": "LAKEHOUSE-0002",
+      "type": "technical",
+      "question": "介绍一下 Iceberg",
+      "topic": [
+        "lakehouse",
+        "iceberg"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "lakehouse",
+      "body_html": "<h2>一句话</h2>\n<p>Iceberg 是开放表格式，在数据湖上提供 ACID、快照、时间旅行、schema/分区演进。</p>\n<h2>30 秒回答</h2>\n<p>Iceberg 定义数据文件和元数据的组织方式，提供事务、快照隔离、时间旅行、schema 演进、分区演进，元数据分层管理（metadata -&gt; manifest list -&gt; manifest -&gt; data files）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>能力：ACID、快照、时间旅行、schema/分区演进、隐藏分区</li>\n<li>元数据：metadata.json、manifest list、manifest、data files</li>\n<li>优势：避免目录扫描、分区变更不重刷数据</li>\n<li>多引擎：Spark、Flink、Trino 等共享</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Iceberg 和 Hive 表本质区别？</li>\n<li>分区演进为什么重要？</li>\n</ul>"
+    },
+    {
+      "id": "LAKEHOUSE-0003",
+      "type": "technical",
+      "question": "Iceberg 的组成、元数据结构了解多少",
+      "topic": [
+        "lakehouse",
+        "iceberg",
+        "metadata"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "lakehouse",
+      "body_html": "<h2>一句话</h2>\n<p>Iceberg 元数据分层：metadata.json -&gt; manifest list -&gt; manifest file -&gt; data files，外加 snapshot 和 catalog。</p>\n<h2>30 秒回答</h2>\n<p>数据文件之上是 manifest（记录文件级元数据），manifest 之上是 manifest list，最上层 metadata.json 记录表 schema、分区、快照；catalog 指向当前 metadata.json。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>data files：实际数据文件</li>\n<li>manifest file：文件级元数据、统计信息</li>\n<li>manifest list：一组 manifest 的索引</li>\n<li>metadata.json：schema、分区、快照列表、当前快照</li>\n<li>snapshot：某一时刻的表状态</li>\n<li>catalog：定位当前 metadata.json</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么要分层元数据？</li>\n<li>snapshot 怎么支持时间旅行？</li>\n</ul>"
+    },
+    {
+      "id": "LAKEHOUSE-0004",
+      "type": "technical",
+      "question": "Iceberg 解决了传统 Hive 的哪些问题，还有哪些没覆盖",
+      "topic": [
+        "lakehouse",
+        "iceberg",
+        "hive"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "lakehouse",
+      "body_html": "<h2>一句话</h2>\n<p>Iceberg 解决 Hive 的分区演进、schema 演进、ACID/快照、文件级元数据；但不覆盖计算引擎、compaction 治理、并发锁等。</p>\n<h2>30 秒回答</h2>\n<p>解决：分区演进不重刷、schema 演进、ACID/快照/时间旅行、隐藏分区、文件级元数据避免目录扫描。没覆盖：本身不是计算引擎，compaction 治理、写并发锁、行级更新仍要额外机制。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>解决：分区演进、schema 演进、快照隔离、时间旅行、文件级元数据</li>\n<li>没覆盖：计算引擎（需 Spark/Flink）、小文件/compaction 治理、多写并发锁、性能调优</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Hive 分区演进为什么痛苦？</li>\n<li>Iceberg 的 compaction 谁来做？</li>\n</ul>"
+    },
+    {
+      "id": "LAKEHOUSE-0005",
+      "type": "technical",
+      "question": "Copy-on-Write 的概念",
+      "topic": [
+        "lakehouse",
+        "cow"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "lakehouse",
+      "body_html": "<h2>一句话</h2>\n<p>COW 更新时复制旧文件、写入新文件、原子切换，读快写慢，适合读多写少。</p>\n<h2>30 秒回答</h2>\n<p>更新时把受影响的数据文件复制成新文件，写入新数据后原子切换元数据指向新文件。读放大低、写放大高，适合读多写少场景。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>COW：写时复制，每次更新重写整个文件</li>\n<li>优点：读性能好、文件整洁</li>\n<li>缺点：写放大、延迟高</li>\n<li>对比 MOR：增量日志写快、读慢，需 compaction</li>\n<li>Hudi 中 COW 是读优化表</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>COW 和 MOR 各适合什么负载？</li>\n<li>写放大会带来什么问题？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0001",
@@ -1260,6 +1512,189 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>准确率、通过率、任务成功率、指令遵循率是核心，再叠加延迟、成本和 badcase 率。</p>\n<h2>30 秒回答</h2>\n<p>量化指标：准确率/通过率、任务成功率、指令遵循率、召回率、badcase 率、失败分类；成本侧看延迟、token 成本。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>效果：准确率、通过率、任务成功率、指令遵循率</li>\n<li>质量：badcase 率、失败原因分布、回归通过率</li>\n<li>成本：延迟、token 消耗、单位任务成本</li>\n<li>分层：意图识别、工具调用、最终结果分别评测</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么定义一次任务算成功？</li>\n<li>指标怎么区分「模型问题」和「skill 写的问题」？</li>\n</ul>"
     },
     {
+      "id": "LLM-0009",
+      "type": "technical",
+      "question": "项目里 AI Agent 主要用在哪些方面",
+      "topic": [
+        "llm",
+        "agent",
+        "application"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>AI Agent 常用于需求解析、任务开发、取数问答、文档知识库、评测与质量等环节。</p>\n<h2>30 秒回答</h2>\n<p>常见场景：需求文档解析自动开发任务、NL2SQL 取数、知识库问答、代码辅助、数据质量、评测。结合项目说明用在哪、解决什么。</p>\n<h2>待补充（真实经历）</h2>\n<blockquote>说明你项目里 Agent 的具体应用场景和效果。</blockquote>"
+    },
+    {
+      "id": "LLM-0010",
+      "type": "technical",
+      "question": "怎么对 bad case 分类，有哪些类别",
+      "topic": [
+        "llm",
+        "evaluation",
+        "badcase"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>bad case 按根因分类：意图识别、检索召回、幻觉、格式、权限、工具调用、上下文不足等。</p>\n<h2>30 秒回答</h2>\n<p>分类：意图识别错误、检索召回不足/错误、生成幻觉、格式/结构错误、权限越权、工具调用错误、知识覆盖不足。分类目的是定位根因、针对性优化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>意图识别：问错方向、需求理解偏差</li>\n<li>检索召回：没召回/召回错文档</li>\n<li>生成：幻觉、答非所问、格式错</li>\n<li>其他：权限、工具调用、上下文不足</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>分类后怎么驱动优化？</li>\n<li>怎么统计各类别占比？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0011",
+      "type": "technical",
+      "question": "会不会继续追溯到意图识别、检索召回、幻觉、权限等底层问题",
+      "topic": [
+        "llm",
+        "evaluation",
+        "root-cause"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>会，建立「表象 -&gt; 中间层 -&gt; 根因」的分类树，下钻到底层问题。</p>\n<h2>30 秒回答</h2>\n<p>把 bad case 继续下钻到意图识别、检索召回、模型幻觉、权限控制、知识覆盖等底层根因，形成分类树，定位问题出在哪一环。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>表象：答错、答非所问、越权</li>\n<li>中间层：意图、召回、生成、工具调用</li>\n<li>根因：模型、知识库、prompt、权限、数据</li>\n<li>收益：针对性修复，而不是笼统说「效果不好」</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>分类树怎么设计？</li>\n<li>根因占比怎么辅助排优先级？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0012",
+      "type": "technical",
+      "question": "大模型幻觉是什么，怎么减少幻觉",
+      "topic": [
+        "llm",
+        "hallucination"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>幻觉是模型生成看似合理但错误或编造的内容；减少靠 RAG、约束提示、工具调用和后校验。</p>\n<h2>30 秒回答</h2>\n<p>减少幻觉：RAG 检索真实文档再回答、提示词约束「只依据上下文、不知道就说不知道」、事实性任务走工具/结构化数据、控制采样、输出引用来源、后置校验。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定义：生成与事实不符但看似合理的内容</li>\n<li>减少：RAG、约束 prompt、工具调用、知识库质量、微调、引用来源、后校验</li>\n<li>事实性任务优先工具/数据库，不让模型空想</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>RAG 为什么能减少幻觉？</li>\n<li>幻觉能完全消除吗？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0013",
+      "type": "technical",
+      "question": "文档接入 Agent 时，是把文档处理成向量库吗",
+      "topic": [
+        "llm",
+        "rag",
+        "vector"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>是的，典型 RAG 把文档切块、向量化、入向量库，检索 top-k 再拼进 prompt。</p>\n<h2>30 秒回答</h2>\n<p>文档切分 -&gt; embedding 向量化 -&gt; 存向量库 -&gt; 查询时向量检索 top-k -&gt; 拼进 prompt。也可混合全文检索、知识图谱、表格结构化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>切分：按语义/长度切块</li>\n<li>向量化：embedding 模型</li>\n<li>存储：向量库（FAISS、Milvus 等）</li>\n<li>检索：相似度 top-k</li>\n<li>增强：全文检索 + 向量混合，结构化数据走表格/图谱</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>文档切块怎么定大小？</li>\n<li>向量检索和全文检索怎么结合？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0014",
+      "type": "technical",
+      "question": "准确率提升超过 20%，怎么验证",
+      "topic": [
+        "llm",
+        "evaluation"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>用同一测试集做前后对比，控制变量，分维度评测，注意统计显著性和测试集不泄漏。</p>\n<h2>30 秒回答</h2>\n<p>固定测试集，优化前后各跑一遍，对比准确率/通过率；分层看意图、召回、回答质量；用人工评审 + 自动指标交叉验证，避免测试集泄漏。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>控制变量：同一测试集、同一评测标准</li>\n<li>分维度：意图识别、召回、回答质量</li>\n<li>交叉验证：自动指标 + 人工抽检</li>\n<li>显著性：样本足够、不是偶然波动</li>\n<li>防泄漏：测试集不参与优化</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么防止测试集泄漏？</li>\n<li>提升 20% 会不会是评测标准松了？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0015",
+      "type": "technical",
+      "question": "测试集规模多大，怎么定义「准确/不准确」",
+      "topic": [
+        "llm",
+        "evaluation",
+        "testset"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>测试集规模要覆盖足够、统计可靠，分主题/难度分层；准确与否按可执行结果/关键字段/语义等价定义。</p>\n<h2>30 秒回答</h2>\n<p>规模从几百到几千不等，按主题、难度分层覆盖；准确判定：结果集一致、关键字段正确、语义等价，或人工按标注标准打分。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>规模：覆盖度 + 统计显著性，分主题/难度分层</li>\n<li>判定：结果集一致、关键字段正确、语义等价</li>\n<li>标注：明确判定标准，必要时双人标注</li>\n<li>持续：不断补充 badcase</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>测试集和训练集怎么隔离？</li>\n<li>语义等价怎么机器判定？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0016",
+      "type": "technical",
+      "question": "一道简单的 Agent Skill 相关题目",
+      "topic": [
+        "llm",
+        "agent",
+        "skills"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>Agent Skill 题通常考「给一个场景，设计一个可复用 skill 的结构、触发和验收」。</p>\n<h2>30 秒回答</h2>\n<p>一个 skill = SKILL.md（name/description 触发路由 + 指令）+ 可选 scripts/assets/references。设计时明确触发条件、输入输出、步骤、约束、验收标准。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>frontmatter：name、description（决定何时触发）</li>\n<li>正文：步骤、约束、验收、注意事项</li>\n<li>scripts：可执行脚本，避免重复生成代码</li>\n<li>assets/references：模板与参考资料</li>\n<li>设计要点：职责单一、触发明确、可复用、可验证</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么设计 skill 的 description 让它被正确触发？</li>\n<li>一个 skill 应该多小/多大？</li>\n</ul>"
+    },
+    {
       "id": "WAREHOUSE-0001",
       "type": "technical",
       "question": "谈谈你对数据分析和数据开发的理解",
@@ -1790,6 +2225,165 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>数仓表通常不符合三范式，而是反范式化、维度建模，故意冗余换查询性能。</p>\n<h2>30 秒回答</h2>\n<p>三范式面向 OLTP（写多、一致性），数仓面向 OLAP（读多、大表 join）。数仓的 DWS/ADS 宽表和维度模型普遍反范式、冗余，以减少 join、提升查询性能。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>ODS/DWD：接近原始或规范化</li>\n<li>DWS/ADS：反范式、宽表冗余，面向查询</li>\n<li>原因：范式化会导致大量 join，分析性能差</li>\n<li>结论：范式用于 OLTP，数仓以维度建模/反范式为主，以空间换性能</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>维度建模和范式化是对立的吗？</li>\n<li>数仓里还有哪些地方会反范式？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0024",
+      "type": "technical",
+      "question": "一百多张表有没有主题划分，怎么划分",
+      "topic": [
+        "warehouse",
+        "subject-domain"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>表按「主题域」划分，主题域内再按数仓分层组织。</p>\n<h2>30 秒回答</h2>\n<p>先按业务主题域划分（交易、用户、商品、营销、流量、财务等），每个主题域内再按 ODS/DWD/DWS/ADS 分层，配合统一命名规范。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>主题域：交易、用户、商品、营销、流量、财务、供应链等</li>\n<li>分层：主题域内再分 ODS/DWD/DWS/ADS</li>\n<li>命名：前缀带主题域和分层，如 dwd_trade_xxx</li>\n<li>好处：职责清晰、便于检索、权限和治理按域管理</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>主题域怎么确定边界？</li>\n<li>跨主题域的表怎么归属？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0025",
+      "type": "technical",
+      "question": "项目中的指标你们是怎么对比的",
+      "topic": [
+        "warehouse",
+        "metrics",
+        "reconciliation"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>指标对比就是新旧口径/跨层/跨链路对账，验证结果一致性。</p>\n<h2>30 秒回答</h2>\n<p>新旧口径双跑对比、跨层对账（DWD/DWS/ADS）、总量 + 分维度对账、抽样比对，用自动化对账工具发现偏差。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>新旧口径：同一指标新老逻辑双跑，比对结果</li>\n<li>跨层对账：DWD -&gt; DWS -&gt; ADS 层层对账</li>\n<li>维度对账：总量 + 按维度拆分比对</li>\n<li>抽样：抽关键明细人工复核</li>\n<li>工具：自动化对账、偏差告警</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>对账不一致怎么定位？</li>\n<li>对比的粒度和频率怎么定？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0026",
+      "type": "technical",
+      "question": "离线任务发布校验怎么规定（核心指标偏差 2% 全量发布）",
+      "topic": [
+        "warehouse",
+        "release",
+        "validation"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>发布用「新旧链路双跑 + 核心指标偏差校验」，偏差在阈值内才全量发布。</p>\n<h2>30 秒回答</h2>\n<p>灰度/双跑跑新旧逻辑，对比核心指标的偏差，阈值内（如 2%）全量发布，超过则阻断、排查。校验覆盖总量、分维度、数据量、及时性。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>双跑：新旧链路并行，对比核心指标</li>\n<li>阈值：偏差超阈值阻断，阈值内全量</li>\n<li>校验：核心指标、总量、分维度、数据量、SLA</li>\n<li>流程：双跑 -&gt; 对账 -&gt; 审批 -&gt; 全量 -&gt; 监控</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>偏差超阈值后怎么处理？</li>\n<li>全量发布后还要监控多久？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0027",
+      "type": "technical",
+      "question": "测试环境数据和生产环境数据是否一致",
+      "topic": [
+        "warehouse",
+        "environment"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>通常不一致：测试用脱敏/子集数据，但要保证 schema、口径和链路逻辑一致。</p>\n<h2>30 秒回答</h2>\n<p>测试环境一般用生产脱敏子集或造数，数据本身不等同生产；关键保证 schema、口径、代码链路一致，发布前再用生产子集或影子数据校验。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>数据：脱敏、子集、造数，不等于生产</li>\n<li>一致的部分：schema、口径、任务逻辑、配置</li>\n<li>发布前：用生产子集/影子流量验证</li>\n<li>原因：合规、成本、数据安全</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么保证测试能代表生产？</li>\n<li>影子数据怎么做？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0028",
+      "type": "technical",
+      "question": "为什么选 X% 这个偏差阈值，逻辑是什么",
+      "topic": [
+        "warehouse",
+        "metrics",
+        "threshold"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>阈值是「业务可接受误差 + 数据自然波动 + 风险容忍」的平衡。</p>\n<h2>30 秒回答</h2>\n<p>阈值太严误报多、太松漏报多。按指标重要性分级设阈值：核心指标更严（如 1%-2%），一般指标放宽；结合业务可接受误差和历史波动定。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>业务可接受误差：多少偏差影响决策</li>\n<li>数据自然波动：口径差异、延迟、抽样误差</li>\n<li>风险容忍：核心指标严格，边缘指标放宽</li>\n<li>分级：核心 vs 一般指标不同阈值</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>阈值怎么动态调整？</li>\n<li>不同指标阈值怎么分级？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0029",
+      "type": "technical",
+      "question": "熔断和告警的策略是什么，哪些熔断、哪些只告警",
+      "topic": [
+        "warehouse",
+        "data-quality",
+        "alert"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>熔断阻断严重问题，告警提示一般异常，按影响面分级。</p>\n<h2>30 秒回答</h2>\n<p>熔断：核心链路、数据严重错误、SLA 风险、影响面大时直接阻断任务；告警：波动超阈值、非致命异常、及时性延迟时通知但不阻断。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>熔断场景：数据严重错误、核心指标异常、会污染下游、SLA 必违</li>\n<li>告警场景：波动超阈值、及时性延迟、非核心异常</li>\n<li>分级：核心指标熔断，一般指标告警</li>\n<li>原则：阻断要谨慎，避免误伤链路</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>熔断后怎么恢复？</li>\n<li>怎么避免误熔断？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0030",
+      "type": "technical",
+      "question": "交付层延迟时如何自动回溯定位上游任务，而不是每个任务单独加 DQC",
+      "topic": [
+        "warehouse",
+        "lineage",
+        "root-cause"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>用血缘 + 任务依赖 + 运行时长监控，交付层延迟时沿血缘向上回溯定位根因任务。</p>\n<h2>30 秒回答</h2>\n<p>基于任务血缘和依赖图，监控每个节点的完成时间和延迟，最终交付层延迟时自动向上回溯，找到最早延迟/失败的源头任务，而不是每个任务单独加 DQC。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>血缘：记录任务上下游依赖</li>\n<li>运行监控：每个任务的开始/结束时间、耗时</li>\n<li>回溯：交付层延迟 -&gt; 沿血缘向上找最早异常节点</li>\n<li>收益：一次定位根因，减少大量 DQC 配置</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>血缘图怎么构建？</li>\n<li>多上游同时延迟怎么定位？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -2253,9 +2847,156 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>选 1 个最能体现能力、最熟的项目，用 STAR 结构讲透：背景 -&gt; 目标 -&gt; 方案 -&gt; 你的职责 -&gt; 结果 -&gt; 难点。</p>\n<h2>待补充（真实经历）</h2>\n<blockquote>建议挑和 StarRocks / 数仓 / Agent 相关的项目重点展开。</blockquote>"
+    },
+    {
+      "id": "PROJECT-0015",
+      "type": "project",
+      "question": "介绍",
+      "topic": [
+        "project",
+        "self-introduction"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>按背景、重点经历、技术栈、匹配点组织，突出数据平台/数仓/Agent 相关经历。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0016",
+      "type": "project",
+      "question": "你是做数据平台/中台开发，还是业务 ETL 开发，还是两者都做",
+      "topic": [
+        "project",
+        "role"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实说明你的定位：平台/中台（通用能力、工具、治理）还是业务 ETL（具体业务需求交付），或两者兼做；举例说明工作内容占比和产出。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0017",
+      "type": "project",
+      "question": "中台推广 AI 产品，业务团队抵触吗，推进落地遇到什么困难",
+      "topic": [
+        "project",
+        "ai-product",
+        "adoption"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>抵触来源：改变习惯、信任不足、效果不确定、增加工作量</li>\n<li>应对：找种子用户、用效果说话、降低使用门槛、及时响应反馈</li>\n<li>困难：推广难、需求分散、作为实习生的影响力有限</li>\n</ul>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0018",
+      "type": "project",
+      "question": "业务反馈零散、表象不同根因一致，怎么抽象归类",
+      "topic": [
+        "project",
+        "abstraction"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>先收集归纳，再找共同根因：把表象问题归到「意图识别 / 检索召回 / 幻觉 / 权限 / 数据口径」等底层类别，形成分类树，避免逐个打补丁。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0019",
+      "type": "project",
+      "question": "有没有你自主开发的 Agent，介绍一下",
+      "topic": [
+        "project",
+        "agent"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>按「背景 -&gt; 目标 -&gt; 方案（工具调用/RAG/流程）-&gt; 你的职责 -&gt; 效果」讲一个自己主导的 Agent 项目，突出自主设计而非单纯调用。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0020",
+      "type": "project",
+      "question": "你对我们团队有什么想了解的（反问）",
+      "topic": [
+        "project",
+        "reverse-question"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+          "company": "美团",
+          "position": "数据开发（一面）",
+          "date": "2026-09-24"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>反问围绕「团队 + 业务 + 成长」，例如：团队规模和组织架构、这个岗位 AI 相关职责与规划、当前技术栈和主要挑战。</p>\n<h2>注意</h2>\n<p>结合面试内容问，展示你关心业务和成长，别只问薪资福利。</p>"
     }
   ],
   "interviews": [
+    {
+      "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
+      "company": "美团",
+      "business": "餐饮 SaaS（B 端）",
+      "position": "数据开发（一面）",
+      "date": "2026-09-24",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>介绍</li>\n<li>你是做数据平台/中台开发，还是业务 ETL 开发，还是两者都做</li>\n<li>一百多张表有没有主题划分，简单介绍</li>\n<li>项目中的指标你们是怎么对比的</li>\n<li>核心指标偏差 2% 就全量发布，离线任务的发布校验怎么规定</li>\n<li>测试环境数据和生产环境数据是否一致</li>\n<li>为什么选 X% 这个偏差阈值，逻辑是什么</li>\n<li>识别到数据倾斜后，加盐处理怎么做，如何缓解</li>\n<li>怎么发现数据倾斜，定位倾斜位置</li>\n<li>Spark UI 某个 stage 运行久、数据量大，怎么定位是哪段代码</li>\n<li>除数据倾斜外还做过哪些性能优化</li>\n<li>熔断和告警策略是什么，哪些熔断、哪些只告警</li>\n<li>有没有「最终交付层就绪延迟时自动回溯上游定位任务」的机制，而不是每个任务单独加 DQC</li>\n<li>简历提到 Hudi，有实际使用吗</li>\n<li>LSM-Tree 大概是什么</li>\n<li>项目里 AI Agent 主要用在哪些方面</li>\n<li>中台角色推广 AI 产品，业务团队会不会抵触，推进落地遇到什么困难</li>\n<li>业务反馈零散输入、表象不同根因一致，怎么抽象归类</li>\n<li>怎么对 bad case 分类，有哪些类别</li>\n<li>会不会继续追溯：意图识别、检索召回、幻觉、权限问题，这些底层问题会归类吗</li>\n<li>了解大模型幻觉吗，怎么减少幻觉</li>\n<li>有没有自主开发的 Agent，介绍一下</li>\n<li>文档接入 Agent 时，是把文档处理成向量库吗</li>\n<li>准确率提升超过 20%，怎么验证</li>\n<li>测试集规模多大，怎么定义「准确/不准确」</li>\n<li>数据库索引了解吗</li>\n<li>介绍一下 Iceberg</li>\n<li>Iceberg 的组成、元数据结构了解多少</li>\n<li>Iceberg 解决了传统 Hive 的哪些问题，还有哪些没覆盖</li>\n<li>Copy-on-Write 的概念</li>\n<li>一道简单的 Agent Skill 相关题目</li>\n<li>反问：数据团队规模/架构；岗位 AI 相关职责与规划</li>\n</ol>\n<blockquote>备注：美团数据开发一面，餐饮 SaaS 面向 B 端。面试官提到：今年开始简单数据需求要求用 Agent 开发，统计 Agent 开发覆盖率。</blockquote>"
+    },
     {
       "interview_id": "INTERVIEW-2026-09-23-anker-data",
       "company": "安克创新",
