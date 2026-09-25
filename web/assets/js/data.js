@@ -1,12 +1,12 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-26T01:24:34+08:00",
+  "generatedAt": "2026-09-26T01:26:34+08:00",
   "stats": {
-    "questions": 190,
-    "interviews": 11,
-    "technical": 140,
-    "project": 50,
+    "questions": 201,
+    "interviews": 12,
+    "technical": 145,
+    "project": 56,
     "domains": {
-      "spark": 27,
+      "spark": 28,
       "hdfs": 1,
       "storage": 10,
       "lakehouse": 7,
@@ -14,10 +14,10 @@ window.OS_DATA = {
       "flink": 4,
       "network": 4,
       "algorithm": 2,
-      "llm": 24,
+      "llm": 27,
       "warehouse": 45,
-      "sql": 7,
-      "project": 50
+      "sql": 8,
+      "project": 56
     }
   },
   "domains": {
@@ -694,6 +694,28 @@ window.OS_DATA = {
       ],
       "domain": "spark",
       "body_html": "<h2>一句话</h2>\n<p>多热点用加盐打散或热点拆分，也可用 AQE skew join 自动处理。</p>\n<h2>30 秒回答</h2>\n<p>对多个热点 key 分别加盐打散后聚合，或把热点 key 拆分单独处理再 union，开启 AQE skew join 自动识别多热点；热点过多时考虑过滤或降级。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>加盐：多个热点 key 统一加随机前缀打散</li>\n<li>拆分：热点单独处理 + 非热点正常处理，再 union</li>\n<li>AQE：自动识别 skew join</li>\n<li>极端：热点过多可能是脏数据，先过滤</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>多热点加盐和单热点加盐区别？</li>\n<li>AQE 怎么自动处理多热点？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0028",
+      "type": "technical",
+      "question": "Hive 和 Spark 最大的区别是什么",
+      "topic": [
+        "spark",
+        "hive"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+          "company": "字节跳动",
+          "position": "大数据开发（一面）",
+          "date": "2026-08-31"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>Hive 是数仓 SQL 抽象，Spark 是通用内存计算引擎；Hive 可以用 Spark 作为执行引擎。</p>\n<h2>30 秒回答</h2>\n<p>Hive 把 SQL 翻译成 MapReduce/Tez/Spark 作业，偏数仓批处理；Spark 是基于内存的 DAG 计算引擎，RDD/DataFrame，比 MR 快，支持批流、机器学习等。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Hive：数仓工具，SQL -&gt; MR/Tez/Spark，适合离线批处理</li>\n<li>Spark：通用计算引擎，内存计算、DAG 复用、批流一体</li>\n<li>关系：Hive on Spark 是常见组合</li>\n<li>性能：Spark 比 Hive on MR 快很多</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Hive on Spark 和 Spark SQL 区别？</li>\n<li>Spark 为什么比 MR 快？</li>\n</ul>"
     },
     {
       "id": "HDFS-0001",
@@ -2081,6 +2103,75 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>通常复用平台模型和工具调用能力，自研业务流程、prompt、RAG 和评测。</p>\n<h2>30 秒回答</h2>\n<p>复用平台通用模型和工具调用能力，自研业务 prompt、知识库检索、流程编排和评测；设计思路是意图识别 -&gt; 检索 -&gt; 生成 -&gt; 校验 -&gt; 反馈闭环。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>复用：通用模型、工具调用、基础设施</li>\n<li>自研：业务 prompt、RAG、流程、评测</li>\n<li>设计：意图 -&gt; 检索 -&gt; 生成 -&gt; 校验 -&gt; 反馈</li>\n<li>取舍：自研灵活性 vs 复用成本</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>什么时候值得完全自研？</li>\n<li>平台能力满足不了怎么办？</li>\n</ul>"
     },
     {
+      "id": "LLM-0025",
+      "type": "technical",
+      "question": "为什么 Agent 要自己搭建，不用成熟框架（如 Codex），有什么优势",
+      "topic": [
+        "llm",
+        "agent",
+        "self-build"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+          "company": "字节跳动",
+          "position": "大数据开发（一面）",
+          "date": "2026-08-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>自研更贴合业务、更可控、更轻，但成本高；成熟框架通用但重、不够贴合、依赖外部。</p>\n<h2>30 秒回答</h2>\n<p>成熟框架通用但重、不够贴合业务、可控性差；自研能针对业务定制流程、prompt、评测和权限，更轻更可控。选择看业务复杂度、可控性、维护成本和团队能力。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>自研优势：贴合业务、可控、可定制流程和评测、无外部依赖</li>\n<li>框架优势：开发快、生态全、省成本</li>\n<li>权衡：业务复杂度、可控性、维护成本、团队能力</li>\n<li>常见：框架复用通用能力 + 自研业务层</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>什么时候该自研，什么时候用框架？</li>\n<li>自研最大的成本是什么？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0026",
+      "type": "technical",
+      "question": "Agent 用了什么框架，哪些基于 LangChain，哪些自行设计开发",
+      "topic": [
+        "llm",
+        "agent",
+        "architecture"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+          "company": "字节跳动",
+          "position": "大数据开发（一面）",
+          "date": "2026-08-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>通常复用框架的工具调用、检索和编排，自研业务 prompt、知识库、流程控制和评测。</p>\n<h2>30 秒回答</h2>\n<p>框架负责通用能力：工具调用、检索、消息编排；自研负责业务层：prompt、知识库、任务拆解、权限、评测。分层让通用能力复用、业务能力可控。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>复用：LangChain 的 tools、retrieval、chain</li>\n<li>自研：业务 prompt、知识库、任务拆解、权限、评测</li>\n<li>架构：通用框架层 + 自研业务层</li>\n<li>原因：业务定制 + 可控 + 可维护</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>哪些地方框架满足不了必须自研？</li>\n<li>分层怎么划分最合理？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0027",
+      "type": "technical",
+      "question": "做完 Agent 改善了什么，如何用量化指标证明价值",
+      "topic": [
+        "llm",
+        "agent",
+        "metrics"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+          "company": "字节跳动",
+          "position": "大数据开发（一面）",
+          "date": "2026-08-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>用准确率、成功率、任务完成率、使用量、耗时和成本等指标量化 Agent 价值。</p>\n<h2>30 秒回答</h2>\n<p>量化指标：准确率、成功率、任务完成率、日活/用户数、调用量、处理量、耗时下降、成本降低、badcase 率。对比优化前后，证明改善。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>效果：准确率、成功率、任务完成率</li>\n<li>使用：日活、用户数、调用量、处理量</li>\n<li>效率：耗时下降、成本降低</li>\n<li>质量：badcase 率、人工复核通过率</li>\n<li>方法：前后对比、控制变量、评测集</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么定义一次任务成功？</li>\n<li>使用量上去了但效果没提升，怎么判断？</li>\n</ul>"
+    },
+    {
       "id": "WAREHOUSE-0001",
       "type": "technical",
       "question": "谈谈你对数据分析和数据开发的理解",
@@ -3267,6 +3358,29 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>常用窗口函数做排序、去重取最新、前后行、累计和滑动统计。</p>\n<h2>30 秒回答</h2>\n<p>row_number/rank/dense_rank 排序去重，lag/lead 取前后行，sum/count/avg over 做累计和滑动窗口，first_value/last_value 取首尾值。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>排序：row_number/rank/dense_rank</li>\n<li>前后行：lag/lead</li>\n<li>聚合：sum/count/avg over（累计、移动平均）</li>\n<li>首尾：first_value/last_value</li>\n<li>场景：去重取最新、环比、累计、移动平均</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>row_number 和 rank 区别？</li>\n<li>窗口函数怎么加 PARTITION BY？</li>\n</ul>"
     },
     {
+      "id": "SQL-0008",
+      "type": "technical",
+      "question": "查询每个用户各天访问次数最多的前 10 个网站",
+      "topic": [
+        "sql",
+        "window-function",
+        "top-n"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+          "company": "字节跳动",
+          "position": "大数据开发（一面）",
+          "date": "2026-08-31"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>思路</h2>\n<p>先按「用户 + 日期 + 网站」聚合访问次数，再用 ROW_NUMBER 在每个「用户 + 日期」内按次数排序，取前 10。</p>\n<h2>代码</h2>\n<pre><code class=\"language-sql\">SELECT user_id, dt, website, cnt\nFROM (\n  SELECT user_id, dt, website, cnt,\n         ROW_NUMBER() OVER (PARTITION BY user_id, dt ORDER BY cnt DESC) AS rn\n  FROM (\n    SELECT user_id,\n           to_date(visit_time) AS dt,\n           website,\n           COUNT(*) AS cnt\n    FROM visit_log\n    GROUP BY user_id, to_date(visit_time), website\n  ) t\n) s\nWHERE rn &lt;= 10;</code></pre>\n<h2>注意</h2>\n<ul>\n<li>并列名次用 RANK/DENSE_RANK 按业务需要</li>\n<li>日期要用日期粒度（to_date），不能用原始时间戳</li>\n<li>大数据量可加分区裁剪和预聚合</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>要并列都保留，改用哪个函数？</li>\n<li>怎么优化这个 SQL 的性能？</li>\n</ul>"
+    },
+    {
       "id": "PROJECT-0001",
       "type": "project",
       "question": "你实习搭建的看板有哪些指标",
@@ -4422,6 +4536,144 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>问团队 AI 落地规划、资源投入、这个岗位与 AI 的结合点，展示关注方向。</p>\n<h2>注意</h2>\n<p>结合面试内容问，别只问薪资福利。</p>"
+    },
+    {
+      "id": "PROJECT-0051",
+      "type": "project",
+      "question": "实习数据来自哪里（数仓、MySQL、自研平台）",
+      "topic": [
+        "project",
+        "data-source"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+          "company": "字节跳动",
+          "position": "大数据开发（一面）",
+          "date": "2026-08-31"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>说清数据来源：数仓、业务库（MySQL）、日志、自研数据平台，以及你怎么取数。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0052",
+      "type": "project",
+      "question": "业务数据分析更多，还是 SQL 开发、数据建模更多",
+      "topic": [
+        "project",
+        "role"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+          "company": "字节跳动",
+          "position": "大数据开发（一面）",
+          "date": "2026-08-31"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实说明工作重心：偏业务分析还是偏 SQL/建模，并举例。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0053",
+      "type": "project",
+      "question": "你对实习项目的数据来源、链路、基础设施是否真正了解",
+      "topic": [
+        "project",
+        "data-pipeline"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+          "company": "字节跳动",
+          "position": "大数据开发（一面）",
+          "date": "2026-08-31"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>把实习项目的数据链路讲清楚：数据从哪来、怎么流转、存哪、怎么用，体现你真正理解基础设施。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0054",
+      "type": "project",
+      "question": "Agent 项目是否一人完成，分工和个人贡献是什么",
+      "topic": [
+        "project",
+        "contribution"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+          "company": "字节跳动",
+          "position": "大数据开发（一面）",
+          "date": "2026-08-31"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实说明分工：建表、飞书消息、任务拆解、Agent 开发、维护、评测各是谁做的，你主导了哪部分。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0055",
+      "type": "project",
+      "question": "Agent 是否真正落地，日活、用户数、覆盖业务范围",
+      "topic": [
+        "project",
+        "adoption"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+          "company": "字节跳动",
+          "position": "大数据开发（一面）",
+          "date": "2026-08-31"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>用具体数字说明：是否上线、日活、用户数、调用量、覆盖范围；没有就诚实说明当前阶段。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0056",
+      "type": "project",
+      "question": "最近看的技术书籍/内容，关注哪些技术方向",
+      "topic": [
+        "project",
+        "learning"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+          "company": "字节跳动",
+          "position": "大数据开发（一面）",
+          "date": "2026-08-31"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>结合岗位说最近读的内容和关注方向：ReAct、Agent Evaluation、Langfuse、LLM Agent 工程等，体现持续学习。</p>\n<h2>待补充（真实经历）</h2>"
     }
   ],
   "interviews": [
@@ -4517,6 +4769,15 @@ window.OS_DATA = {
       "date": "2026-09-09",
       "round": "复活赛",
       "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>热乎的复活赛凉经，核心是四个问题 + 一个手撕链表。</blockquote>\n<h3>原文</h3>\n<ul>\n<li>Spark 怎么执行任务</li>\n<li>HDFS 读写原理</li>\n<li>TCP 和 UDP 的区别</li>\n<li>LLM 怎么调用工具</li>\n<li>手撕链表（追问细，没答上来）</li>\n</ul>\n<h3>面试题</h3>\n<h4>自我介绍 / 实习经历</h4>\n<ol>\n<li>请介绍你的实习与项目经历</li>\n<li>介绍部门，实习近况</li>\n</ol>\n<h4>Spark</h4>\n<ol>\n<li>Application、Job、Stage 的区别</li>\n<li>什么是 spark-submit？</li>\n<li>怎么提交 Spark 任务？</li>\n<li>spark-submit 提交任务，什么情况会分成多个 Job？</li>\n<li>什么情况不会拆分成多个 Job？</li>\n</ol>\n<h4>HDFS</h4>\n<ol>\n<li>介绍 HDFS 客户端读写服务的执行流程</li>\n</ol>\n<h4>存储引擎</h4>\n<ol>\n<li>对存储引擎了解哪些？（MySQL / OLAP / ClickHouse / Doris）</li>\n<li>InnoDB 怎么存储数据？</li>\n</ol>\n<h4>TCP / UDP</h4>\n<ol>\n<li>TCP 和 UDP 的区别</li>\n<li>TCP 拥塞控制了解吗？</li>\n<li>哪些协议基于 TCP？</li>\n<li>UDP 属于哪一层？</li>\n</ol>\n<h4>手撕算法</h4>\n<ol>\n<li>构建链表，并完成链表排序</li>\n</ol>\n<h4>LLM / Agent / Tool Calling</h4>\n<ol>\n<li>介绍大模型怎么调用工具（LLM Agent）</li>\n<li>云端接口 messages、tools 参数，框架如何控制工具调用？</li>\n<li>工具描述是框架封装，大模型本身如何识别、触发工具调用？</li>\n</ol>\n<h4>反问</h4>\n<ol>\n<li>你有什么想问我的吗？</li>\n</ol>\n<blockquote>备注：秋招复活赛，字节数据开发。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
+      "company": "字节跳动",
+      "business": "大数据开发",
+      "position": "大数据开发（一面）",
+      "date": "2026-08-31",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>8.31 一面，9.1 挂。复盘：八股和实习细节记忆不清、量化成果缺失是主因。面试愉快，不会的直说。</blockquote>\n<h3>一、数据开发与数仓基础</h3>\n<ol>\n<li>Hive 和 Spark 最大的区别是什么</li>\n<li>实习数据来自哪里：数仓、MySQL 还是自研数据平台</li>\n<li>实际工作中业务数据分析更多，还是 SQL 开发、数据建模更多</li>\n</ol>\n<h3>二、实习经历（数据分析实习）</h3>\n<ol>\n<li>平时如何获取和使用数据，底层用什么存储/平台，工作偏业务分析还是数据开发、SQL 和建模</li>\n</ol>\n<h3>三、Agent 项目与技术架构</h3>\n<ol>\n<li>为什么 Agent 要自己搭建，不用成熟的 Agent 框架（如 Codex），有什么优势</li>\n<li>项目用了什么 Agent 框架，哪些基于 LangChain，哪些自行设计开发，架构原因</li>\n<li>项目是否一人完成，分工和个人贡献（建表、飞书消息、任务拆解、Agent 开发、维护、评测）</li>\n</ol>\n<h3>四、Agent 项目效果与实际落地</h3>\n<ol>\n<li>Agent 是否真正投入使用，日活、用户数、覆盖业务范围</li>\n<li>做完 Agent 改善了什么，效果提升多少，如何用准确率/成功率/使用量证明价值</li>\n</ol>\n<h3>五、个人技术学习</h3>\n<ol>\n<li>最近看的技术书籍/内容，关注哪些技术方向（提到 ReAct）</li>\n</ol>\n<h3>六、SQL 手撕</h3>\n<ol>\n<li>查询每个用户各天访问次数最多的前 10 个网站</li>\n</ol>\n<blockquote>备注：字节大数据开发秋招一面。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
