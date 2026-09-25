@@ -1,23 +1,23 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-26T01:18:10+08:00",
+  "generatedAt": "2026-09-26T01:20:49+08:00",
   "stats": {
-    "questions": 146,
-    "interviews": 9,
-    "technical": 118,
-    "project": 28,
+    "questions": 169,
+    "interviews": 10,
+    "technical": 126,
+    "project": 43,
     "domains": {
       "spark": 22,
       "hdfs": 1,
       "storage": 8,
-      "lakehouse": 5,
+      "lakehouse": 7,
       "starrocks": 9,
       "flink": 4,
       "network": 4,
       "algorithm": 2,
-      "llm": 20,
-      "warehouse": 37,
-      "sql": 6,
-      "project": 28
+      "llm": 21,
+      "warehouse": 41,
+      "sql": 7,
+      "project": 43
     }
   },
   "domains": {
@@ -898,6 +898,50 @@ window.OS_DATA = {
       ],
       "domain": "lakehouse",
       "body_html": "<h2>一句话</h2>\n<p>COW 更新时复制旧文件、写入新文件、原子切换，读快写慢，适合读多写少。</p>\n<h2>30 秒回答</h2>\n<p>更新时把受影响的数据文件复制成新文件，写入新数据后原子切换元数据指向新文件。读放大低、写放大高，适合读多写少场景。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>COW：写时复制，每次更新重写整个文件</li>\n<li>优点：读性能好、文件整洁</li>\n<li>缺点：写放大、延迟高</li>\n<li>对比 MOR：增量日志写快、读慢，需 compaction</li>\n<li>Hudi 中 COW 是读优化表</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>COW 和 MOR 各适合什么负载？</li>\n<li>写放大会带来什么问题？</li>\n</ul>"
+    },
+    {
+      "id": "LAKEHOUSE-0006",
+      "type": "technical",
+      "question": "数据采集入湖方式是什么",
+      "topic": [
+        "lakehouse",
+        "ingestion"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "lakehouse",
+      "body_html": "<h2>一句话</h2>\n<p>入湖方式分批量、流式和文件直传，落开放表格式（Hudi/Iceberg/Delta）。</p>\n<h2>30 秒回答</h2>\n<p>批量用 Spark/DataX 定期落湖，流式用 Flink CDC/Kafka 写入 Hudi/Iceberg，或文件直接传对象存储；表格式选 Hudi/Iceberg/Delta。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>批量：Spark/DataX 定时写湖</li>\n<li>流式：Flink CDC/Kafka -&gt; Hudi/Iceberg</li>\n<li>直传：文件落 S3/OSS 对象存储</li>\n<li>表格式：Hudi（upsert）、Iceberg（快照）、Delta</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>入湖和入仓有什么区别？</li>\n<li>Hudi 和 Iceberg 怎么选？</li>\n</ul>"
+    },
+    {
+      "id": "LAKEHOUSE-0007",
+      "type": "technical",
+      "question": "湖仓一体平台是什么，做了哪些事",
+      "topic": [
+        "lakehouse",
+        "platform"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "lakehouse",
+      "body_html": "<h2>一句话</h2>\n<p>湖仓一体平台把数据湖存储和数仓计算/治理能力合到一套平台。</p>\n<h2>30 秒回答</h2>\n<p>底层对象存储 + 开放表格式（Iceberg/Hudi），上层提供 SQL 引擎、元数据、事务、调度和治理，一份数据多引擎使用，兼顾灵活性和数仓能力。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>存储：对象存储 + 开放表格式</li>\n<li>计算：Spark/Flink/Presto/StarRocks 等</li>\n<li>平台：开发、调度、元数据、血缘、权限一体化</li>\n<li>收益：降低搬迁、批流一体、降本</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>湖仓一体和纯数据湖区别？</li>\n<li>平台里开发怎么和调度打通？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0001",
@@ -1787,6 +1831,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>通过意图先归域、域级/表级/行级权限、指标字典隔离和 SQL 校验来阻止跨域越权。</p>\n<h2>30 秒回答</h2>\n<p>意图识别先归类业务域，按域路由到对应指标字典和元数据；权限做域级/表级/行级校验；生成 SQL 时校验表和字段权限，审计留痕，阻止跨域错误调用。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>意图归域：先判断属于哪个业务域</li>\n<li>权限：域级/表级/行级隔离</li>\n<li>指标字典：按域隔离，不混用</li>\n<li>SQL 校验：解析后校验表和字段可见性</li>\n<li>审计：记录请求和结果范围</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>行级权限怎么实现？</li>\n<li>怎么防止 prompt 注入越权？</li>\n</ul>"
     },
     {
+      "id": "LLM-0021",
+      "type": "technical",
+      "question": "给 AI 指令，它能理解表结构吗",
+      "topic": [
+        "llm",
+        "nlsql"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>能，前提是把表结构、字段含义、指标口径作为上下文提供给 AI。</p>\n<h2>30 秒回答</h2>\n<p>把表的 schema、字段注释、指标口径、血缘通过 RAG 或 prompt 提供给 AI，它就能理解字段含义并生成 SQL；没有这些上下文则理解不准。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>关键：提供 schema + 字段注释 + 指标字典 + 血缘</li>\n<li>方式：RAG 检索元数据、prompt 注入</li>\n<li>应用：NL2SQL / 问数 Agent</li>\n<li>局限：复杂口径、跨表、歧义仍需校验</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么提高 AI 理解表结构的准确率？</li>\n<li>生成的 SQL 怎么校验？</li>\n</ul>"
+    },
+    {
       "id": "WAREHOUSE-0001",
       "type": "technical",
       "question": "谈谈你对数据分析和数据开发的理解",
@@ -2635,6 +2701,95 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>从业务需求和口径出发，倒推设计采集、建模、调度、质量和治理的完整链路。</p>\n<h2>30 秒回答</h2>\n<p>明确数据源和业务目标 -&gt; 定口径 -&gt; 采集/传输 -&gt; 分层建模 -&gt; 调度编排 -&gt; 质量监控 -&gt; 元数据/血缘 -&gt; 上线运维，过程中考虑复用和治理。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>需求：业务口径、指标、时效</li>\n<li>采集：数据源、接入方式、实时/离线</li>\n<li>建模：分层、事实/维度</li>\n<li>调度：依赖编排、SLA</li>\n<li>质量：DQC、对账、监控</li>\n<li>治理：元数据、血缘、成本</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>实时和离线链路怎么选？</li>\n<li>链路上最容易出问题的是哪一环？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0038",
+      "type": "technical",
+      "question": "业务系统内部的数据怎么同步到数仓",
+      "topic": [
+        "warehouse",
+        "data-sync"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>常见方式有批量抽取、CDC 增量、消息队列实时同步，核心是「全量初始化 + 增量」。</p>\n<h2>30 秒回答</h2>\n<p>用 DataX/Sqoop 全量+增量抽取，或 Canal/Flink CDC 解析 binlog 实时同步，或 Kafka 消费写入。增量按时间戳/主键/binlog 水位，考虑幂等和断点续传。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>批量：DataX/Sqoop 全量 + 增量（时间戳/主键）</li>\n<li>CDC：Canal/Flink CDC 监听 binlog 实时同步</li>\n<li>消息：Kafka 中转，实时写入数仓/数据湖</li>\n<li>要点：全量初始化、增量水位、幂等、一致性</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>全量和增量怎么衔接？</li>\n<li>CDC 和批量抽取怎么选？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0039",
+      "type": "technical",
+      "question": "从底层数据到应用层数据，就是你的开发工作模式吗",
+      "topic": [
+        "warehouse",
+        "layering"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>是，典型数仓开发就是分层加工：ODS -&gt; DWD -&gt; DWS -&gt; ADS。</p>\n<h2>30 秒回答</h2>\n<p>从贴源层 ODS 到明细 DWD、汇总 DWS，再到应用 ADS，逐层加工，应用直接消费 ADS 层结果，这就是分层开发模式。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>ODS：原始数据落地</li>\n<li>DWD：清洗明细</li>\n<li>DWS：汇总指标</li>\n<li>ADS：应用宽表</li>\n<li>好处：解耦、复用、可回溯</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>有没有跨层直接取数的场景？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0040",
+      "type": "technical",
+      "question": "数据平台如何集成数据开发和调度能力",
+      "topic": [
+        "warehouse",
+        "platform",
+        "scheduling"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>平台把开发、调度、监控、元数据、权限整合成一站式 DataOps。</p>\n<h2>30 秒回答</h2>\n<p>提供 SQL/ETL 开发编辑器，配置 DAG 依赖和定时调度，支持重跑、补数、监控告警，结合元数据/血缘和权限。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>开发：在线 SQL/ETL 编辑器</li>\n<li>调度：DAG 依赖、定时、重跑、补数</li>\n<li>监控：任务状态、耗时、告警</li>\n<li>治理：元数据、血缘、权限、质量</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>调度依赖怎么配置？</li>\n<li>补数和重跑有什么区别？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0041",
+      "type": "technical",
+      "question": "除这套技术栈，还了解哪些数仓相关技术",
+      "topic": [
+        "warehouse",
+        "ecosystem"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>数仓技术栈包括计算引擎、数据湖、OLAP、调度、元数据、湖仓平台。</p>\n<h2>30 秒回答</h2>\n<p>计算：Spark/Flink/Hive；数据湖：Hudi/Iceberg/Delta；OLAP：StarRocks/Doris/ClickHouse；调度：Airflow/DolphinScheduler；元数据：DataHub/Atlas；平台：DataWorks/EMR 等。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>离线计算：Spark、Hive</li>\n<li>实时计算：Flink</li>\n<li>数据湖：Hudi/Iceberg/Delta</li>\n<li>OLAP：StarRocks/Doris/ClickHouse</li>\n<li>调度与元数据：Airflow/DolphinScheduler、DataHub/Atlas</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>这些技术里你最熟哪个？</li>\n<li>选型时怎么权衡？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -2770,6 +2925,28 @@ window.OS_DATA = {
       ],
       "domain": "sql",
       "body_html": "<h2>一句话</h2>\n<p>复杂 SQL 优化先看执行计划定位慢点，再用「少读、少 shuffle、少重复」的思路改写。</p>\n<h2>30 秒回答</h2>\n<p>谓词下推、列裁剪、join 重排序、小表广播、CTE 拆分复杂嵌套、避免重复子查询、减少 count(distinct)、用窗口函数替代多次自连接、避免笛卡尔积。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：执行计划、慢 task、数据倾斜、重复扫描、多次 shuffle</li>\n<li>优化：谓词下推、列裁剪、小表 broadcast、join 顺序</li>\n<li>改写：复杂嵌套改 CTE 分步、union all 合并、条件聚合、窗口函数去重</li>\n<li>去重：count(distinct) 改 group by 或两阶段去重</li>\n<li>缓存：复用中间结果用临时表/物化</li>\n<li>验证：执行计划、耗时、shuffle 量对比</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么判断要不要拆子查询？</li>\n<li>CTE 和子查询有什么区别？</li>\n<li>窗口函数和自连接怎么选？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0007",
+      "type": "technical",
+      "question": "开发里常用窗口函数吗，有哪些",
+      "topic": [
+        "sql",
+        "window-function"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>常用窗口函数做排序、去重取最新、前后行、累计和滑动统计。</p>\n<h2>30 秒回答</h2>\n<p>row_number/rank/dense_rank 排序去重，lag/lead 取前后行，sum/count/avg over 做累计和滑动窗口，first_value/last_value 取首尾值。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>排序：row_number/rank/dense_rank</li>\n<li>前后行：lag/lead</li>\n<li>聚合：sum/count/avg over（累计、移动平均）</li>\n<li>首尾：first_value/last_value</li>\n<li>场景：去重取最新、环比、累计、移动平均</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>row_number 和 rank 区别？</li>\n<li>窗口函数怎么加 PARTITION BY？</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -3422,9 +3599,362 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>结合岗位说学习方向：数据湖、实时计算、Agent/RAG、大模型应用等，体现持续学习和与业务结合。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0029",
+      "type": "project",
+      "question": "请做一下自我介绍",
+      "topic": [
+        "project",
+        "self-introduction"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>背景、项目经历、技术栈、匹配点，简洁有重点。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0030",
+      "type": "project",
+      "question": "展开讲讲数据采集的一个具体场景",
+      "topic": [
+        "project",
+        "data-collection"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>讲一个具体采集场景：数据源 -&gt; 采集方式 -&gt; 同步/入湖 -&gt; 处理 -&gt; 落地，突出技术细节。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0031",
+      "type": "project",
+      "question": "你大部分工作是在已有原始数据基础上做数据开发吗",
+      "topic": [
+        "project",
+        "role"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实说明你的工作位置：是偏采集/入湖，还是偏在已有数据上做分层开发。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0032",
+      "type": "project",
+      "question": "简单讲其中一项工作",
+      "topic": [
+        "project",
+        "highlight"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>用 STAR 讲一项最熟的工作：背景、目标、方案、结果。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0033",
+      "type": "project",
+      "question": "你的业务场景用到了哪些技术手段",
+      "topic": [
+        "project",
+        "tech-stack"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>按链路讲技术：采集、传输、计算、存储、应用，说明每段用什么。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0034",
+      "type": "project",
+      "question": "数据开发过程中你觉得哪部分比较复杂",
+      "topic": [
+        "project",
+        "reflection"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>说一个真实难点（口径、性能、数据质量、跨团队），并讲你怎么解决的。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0035",
+      "type": "project",
+      "question": "写 SQL 是手动写还是用平台工具",
+      "topic": [
+        "project",
+        "workflow"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>说明你实际工作方式：手动写 SQL / 平台编辑器 / AI 辅助，并谈体会。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0036",
+      "type": "project",
+      "question": "你的意向工作城市是哪些",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>结合岗位城市表达真实意向，有明确目标就直接说，没有就说明可接受范围。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0037",
+      "type": "project",
+      "question": "在校成绩怎么样",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实说明成绩/排名，突出与岗位相关的课程和项目能力。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0038",
+      "type": "project",
+      "question": "你擅长哪些部分，短板是什么",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>优势讲与岗位匹配、有案例支撑的点；短板讲真实但不致命的，并说明在改进。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0039",
+      "type": "project",
+      "question": "你的职业发展方向是什么",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>短期深耕数据开发，长期往数仓架构、数据治理或 AI+数据方向发展，结合岗位规划。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0040",
+      "type": "project",
+      "question": "有没有投递其他公司、拿到 OC，其他岗位是什么行业",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实但不过度展开，可说明在面试/评估中，聚焦当前岗位意愿。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0041",
+      "type": "project",
+      "question": "期望薪资大概是什么范围",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>给一个合理区间，结合市场行情、城市和岗位，可反问对方预算范围。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0042",
+      "type": "project",
+      "question": "家庭情况、父母是否接受异地工作",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>简要说明家庭支持、可接受异地，不过度展开隐私。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0043",
+      "type": "project",
+      "question": "你有什么问题想了解岗位和业务（反问）",
+      "topic": [
+        "project",
+        "reverse-question"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+          "company": "半亩花田",
+          "position": "数据开发（校招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>问岗位具体职责、团队规模、技术栈、培养路径，展示你对岗位的认真。</p>\n<h2>注意</h2>\n<p>结合面试内容问，别只问薪资福利。</p>"
     }
   ],
   "interviews": [
+    {
+      "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
+      "company": "半亩花田",
+      "business": "数据开发",
+      "position": "数据开发（校招）",
+      "date": "2026-09-25",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>三位面试官，面半小时，没有八股，纯问项目。</blockquote>\n<ol>\n<li>自我介绍</li>\n<li>展开讲讲数据采集相关的一个具体场景</li>\n<li>业务系统内部的数据怎么同步到数仓</li>\n<li>现在数据采集入湖方式是什么</li>\n<li>大部分工作是在已有原始数据基础上做数据开发吗</li>\n<li>简单讲其中一项工作</li>\n<li>你的业务场景用到的技术手段</li>\n<li>从底层数据到应用层数据，就是你的开发工作模式吗</li>\n<li>是在湖仓一体平台上做的吗</li>\n<li>平台集成数据开发和调度能力吗</li>\n<li>数据开发过程中你觉得哪部分比较复杂</li>\n<li>写 SQL 手动写还是用平台工具</li>\n<li>给 AI 指令，它能理解表结构吗</li>\n<li>开发里常用窗口函数吗</li>\n<li>除这套技术栈，还了解其他数仓相关技术吗</li>\n<li>意向工作城市是哪些</li>\n<li>在校成绩怎么样</li>\n<li>擅长哪些部分，短板是什么</li>\n<li>职业发展方向是什么</li>\n<li>有没有投递其他公司、拿到 OC，其他岗位是什么行业</li>\n<li>城市方面没有特殊要求对吧</li>\n<li>期望薪资大概什么范围</li>\n<li>方便了解家庭情况吗（父母、兄弟姐妹），父母是否接受异地</li>\n<li>反问：岗位职责、团队规模</li>\n</ol>\n<blockquote>备注：校招一面，偏项目与 HR 沟通。面试官提到团队三五人，包含数据产品和数据开发，岗位含报表开发、数仓维护。</blockquote>"
+    },
     {
       "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
       "company": "美团",
