@@ -1,23 +1,23 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-26T01:20:49+08:00",
+  "generatedAt": "2026-09-26T01:24:34+08:00",
   "stats": {
-    "questions": 169,
-    "interviews": 10,
-    "technical": 126,
-    "project": 43,
+    "questions": 190,
+    "interviews": 11,
+    "technical": 140,
+    "project": 50,
     "domains": {
-      "spark": 22,
+      "spark": 27,
       "hdfs": 1,
-      "storage": 8,
+      "storage": 10,
       "lakehouse": 7,
       "starrocks": 9,
       "flink": 4,
       "network": 4,
       "algorithm": 2,
-      "llm": 21,
-      "warehouse": 41,
+      "llm": 24,
+      "warehouse": 45,
       "sql": 7,
-      "project": 43
+      "project": 50
     }
   },
   "domains": {
@@ -582,6 +582,120 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>并行度、broadcast、缓存、裁剪、存储格式、小文件、调参、GC 等都是倾斜之外常用优化。</p>\n<h2>30 秒回答</h2>\n<p>调整并行度、小表 broadcast、缓存复用、分区/列裁剪、谓词下推、避免低效 UDF、用 Parquet/ORC、治理小文件、AQE 调参、GC 和资源优化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>并行度：shuffle 分区数匹配数据量</li>\n<li>join：小表 broadcast、join 顺序</li>\n<li>缓存：复用 DataFrame cache/persist</li>\n<li>裁剪：分区/列裁剪、谓词下推</li>\n<li>存储：列式、合理分区、小文件合并</li>\n<li>调参：AQE、内存、GC、spill</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你实际做过的优化里效果最明显的是哪个？</li>\n<li>AQE 帮你解决了什么？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0023",
+      "type": "technical",
+      "question": "Spark OOM/慢任务怎么排查，热点 key 数据倾斜怎么解决",
+      "topic": [
+        "spark",
+        "oom",
+        "skew"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>OOM/慢任务先看日志和 UI 定位 driver/executor、倾斜、shuffle、缓存，倾斜用加盐/热点拆分/AQE 解决。</p>\n<h2>30 秒回答</h2>\n<p>排查：看日志区分 driver/executor OOM，看 UI 定位慢 task 和 shuffle 数据量、缓存和广播过大。倾斜：热点 key 加盐两阶段聚合、热点拆分、AQE skew join。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>OOM：driver（collect/广播过大）、executor（倾斜/缓存/内存不足）</li>\n<li>慢任务：UI 定位慢 stage/task、shuffle 数据量、GC、spill</li>\n<li>倾斜：加盐、热点拆分、增加并行度、AQE skew join</li>\n<li>定位：抽样统计热点 key 分布</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>driver OOM 常见原因？</li>\n<li>AQE skew join 原理？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0024",
+      "type": "technical",
+      "question": "有没有调整过任务并行度、输出文件数量",
+      "topic": [
+        "spark",
+        "parallelism",
+        "files"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>并行度调 shuffle 分区数，输出文件数调 coalesce/repartition，目标是均衡负载和减少小文件。</p>\n<h2>30 秒回答</h2>\n<p>并行度用 spark.sql.shuffle.partitions 调整；输出文件数用 coalesce/repartition 控制，减少小文件；结合 AQE 动态合并分区。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>并行度：shuffle 分区数匹配数据量和资源</li>\n<li>文件数：coalesce（不 shuffle）合并、repartition（可增可减）</li>\n<li>小文件：控制输出分区数、合并写入</li>\n<li>AQE：动态合并小分区</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>coalesce 和 repartition 区别？</li>\n<li>并行度怎么定才合理？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0025",
+      "type": "technical",
+      "question": "任务提速 50% 的核心改动是什么，链路整体还是单个任务",
+      "topic": [
+        "spark",
+        "performance"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>提速常靠减少 shuffle、广播小表、治理倾斜、优化格式和并行度，要区分是单任务还是链路整体优化。</p>\n<h2>30 秒回答</h2>\n<p>核心改动：小表 broadcast、治理数据倾斜、列裁剪、谓词下推、合理并行度、列式+压缩、缓存复用、小文件治理。判断是单任务还是链路整体看瓶颈在哪个环节。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>减少 shuffle：broadcast、join 顺序</li>\n<li>倾斜治理：加盐、热点拆分</li>\n<li>存储：Parquet/ORC + 压缩、小文件治理</li>\n<li>调参：并行度、AQE、内存</li>\n<li>链路：端到端各环节耗时占比定位</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么判断该优化单个任务还是整条链路？</li>\n<li>提速 50% 的改动你怎么验证？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0026",
+      "type": "technical",
+      "question": "热点 userID 是怎么形成的，自然流量还是脏数据/黑产",
+      "topic": [
+        "spark",
+        "skew",
+        "hotspot"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>热点 userID 可能来自自然流量（爆款/大 V）、脏数据（null/默认值）或黑产刷量，需要结合特征识别。</p>\n<h2>30 秒回答</h2>\n<p>自然流量：爆款内容、大 V 账号带来真实热点；脏数据：null、默认 userID 聚集；黑产：机器人账号刷量。通过数据分布、行为特征、黑产库识别。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>自然流量：真实热门，需正常处理</li>\n<li>脏数据：null/默认值，应过滤或单独处理</li>\n<li>黑产：机器刷量，需风控识别、剔除</li>\n<li>识别：数据分布、行为模式、设备/IP 聚集、黑产库</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么区分黑产和真实热点？</li>\n<li>脏数据热点怎么处理？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0027",
+      "type": "technical",
+      "question": "多个国家都出现流量热点，该怎么处理",
+      "topic": [
+        "spark",
+        "skew",
+        "multi-hotspot"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>多热点用加盐打散或热点拆分，也可用 AQE skew join 自动处理。</p>\n<h2>30 秒回答</h2>\n<p>对多个热点 key 分别加盐打散后聚合，或把热点 key 拆分单独处理再 union，开启 AQE skew join 自动识别多热点；热点过多时考虑过滤或降级。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>加盐：多个热点 key 统一加随机前缀打散</li>\n<li>拆分：热点单独处理 + 非热点正常处理，再 union</li>\n<li>AQE：自动识别 skew join</li>\n<li>极端：热点过多可能是脏数据，先过滤</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>多热点加盐和单热点加盐区别？</li>\n<li>AQE 怎么自动处理多热点？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -786,6 +900,52 @@ window.OS_DATA = {
       ],
       "domain": "storage",
       "body_html": "<h2>一句话</h2>\n<p>索引是加速查询的数据结构，常见 B+ 树、Hash、位图、全文索引。</p>\n<h2>30 秒回答</h2>\n<p>B+ 树适合范围查询，Hash 适合等值查询，位图适合低基数列；聚簇索引叶子存整行，非聚簇索引叶子存主键需回表。索引加速查询但占空间、影响写入。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>B+ 树：范围、有序，最常用</li>\n<li>Hash：等值查询快，不支持范围</li>\n<li>位图：低基数、多条件</li>\n<li>聚簇/非聚簇：是否按索引顺序存整行</li>\n<li>代价：存储、写放大、维护成本</li>\n<li>优化：覆盖索引避免回表、最左前缀</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>什么是回表，怎么避免？</li>\n<li>联合索引的最左前缀原则？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0009",
+      "type": "technical",
+      "question": "Hive 表存储和压缩格式用什么，Parquet 有什么优缺点",
+      "topic": [
+        "storage",
+        "hive",
+        "format"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>Hive 常用 ORC/Parquet 列式 + Snappy/ZSTD 压缩，分析场景首选列式。</p>\n<h2>30 秒回答</h2>\n<p>存储格式：TextFile、SequenceFile、Avro、ORC、Parquet；压缩：Snappy、ZSTD、GZIP。Parquet 列式、压缩率高、支持谓词下推，适合分析；缺点是更新难、小文件敏感、写入开销大。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>列式：ORC/Parquet，分析查询快、压缩好</li>\n<li>行式：TextFile/Avro，交换和通用</li>\n<li>Parquet 优点：列式、压缩、谓词下推、跨引擎</li>\n<li>Parquet 缺点：更新难、小文件问题、写入开销</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>ORC 和 Parquet 怎么选？</li>\n<li>压缩格式怎么选？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0010",
+      "type": "technical",
+      "question": "Hive 可以用 text 存储吗，CSV 能不能直接加载成 Hive 表",
+      "topic": [
+        "storage",
+        "hive",
+        "csv"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>可以，Hive 支持 TEXTFILE，CSV 能直接建外部表或 LOAD 加载，注意分隔符、表头和转义。</p>\n<h2>30 秒回答</h2>\n<p>TEXTFILE 可存储；CSV 用 ROW FORMAT 指定分隔符建外部表指向 HDFS，或 LOAD DATA 加载；注意表头跳过、转义、编码。TEXT 适合交换，查询性能和压缩都不如列式。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>TEXTFILE：可存，通用文本</li>\n<li>CSV 加载：外部表 LOCATION 或 LOAD DATA</li>\n<li>注意：分隔符、表头、转义、编码、类型</li>\n<li>缺点：无列式优化、查询慢、占空间</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>CSV 有表头怎么处理？</li>\n<li>什么时候用 TEXT 什么时候用 ORC？</li>\n</ul>"
     },
     {
       "id": "LAKEHOUSE-0001",
@@ -1853,6 +2013,74 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>能，前提是把表结构、字段含义、指标口径作为上下文提供给 AI。</p>\n<h2>30 秒回答</h2>\n<p>把表的 schema、字段注释、指标口径、血缘通过 RAG 或 prompt 提供给 AI，它就能理解字段含义并生成 SQL；没有这些上下文则理解不准。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>关键：提供 schema + 字段注释 + 指标字典 + 血缘</li>\n<li>方式：RAG 检索元数据、prompt 注入</li>\n<li>应用：NL2SQL / 问数 Agent</li>\n<li>局限：复杂口径、跨表、歧义仍需校验</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么提高 AI 理解表结构的准确率？</li>\n<li>生成的 SQL 怎么校验？</li>\n</ul>"
     },
     {
+      "id": "LLM-0022",
+      "type": "technical",
+      "question": "怎么判断 AI 回答是否被采纳、是否有效",
+      "topic": [
+        "llm",
+        "evaluation",
+        "feedback"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>通过用户行为信号、结果对比、人工评测和自动指标判断 AI 回答是否被采纳、有效。</p>\n<h2>30 秒回答</h2>\n<p>用户行为：复制、点击、追问、点赞/差评、是否结束会话；结果：回答后任务是否完成；人工评测 + 自动指标（准确率/有用率）；badcase 分类驱动优化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>行为信号：复制、点击、追问、反馈</li>\n<li>结果信号：任务完成、指标变化</li>\n<li>人工评测：标注有效性</li>\n<li>自动指标：准确率、有用率、采纳率</li>\n<li>监控：埋点 + 评测集 + badcase</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>采纳率怎么埋点统计？</li>\n<li>自动指标和人工评测怎么结合？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0023",
+      "type": "technical",
+      "question": "如何区分业务侧 AI 产品和内部提效 AI 工具",
+      "topic": [
+        "llm",
+        "product"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>业务侧 AI 产品面向用户解决业务问题，内部 AI 工具面向研发提效，区分看目标用户、价值度量和交付形态。</p>\n<h2>30 秒回答</h2>\n<p>业务侧 AI 产品：智能客服、推荐、内容生成，面向最终用户，量化业务价值；内部 AI 工具：代码生成、SQL 助手、问数 Agent，面向研发提效，度量效率提升。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>业务侧：目标用户是客户，度量是业务指标</li>\n<li>内部工具：目标用户是研发，度量是效率/成本</li>\n<li>区分：目标用户、价值度量、交付形态、评价标准</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>两者能复用同一套 Agent 能力吗？</li>\n<li>内部工具怎么衡量 ROI？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0024",
+      "type": "technical",
+      "question": "Agent 是自研还是复用平台能力，设计思路是什么",
+      "topic": [
+        "llm",
+        "agent",
+        "design"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>通常复用平台模型和工具调用能力，自研业务流程、prompt、RAG 和评测。</p>\n<h2>30 秒回答</h2>\n<p>复用平台通用模型和工具调用能力，自研业务 prompt、知识库检索、流程编排和评测；设计思路是意图识别 -&gt; 检索 -&gt; 生成 -&gt; 校验 -&gt; 反馈闭环。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>复用：通用模型、工具调用、基础设施</li>\n<li>自研：业务 prompt、RAG、流程、评测</li>\n<li>设计：意图 -&gt; 检索 -&gt; 生成 -&gt; 校验 -&gt; 反馈</li>\n<li>取舍：自研灵活性 vs 复用成本</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>什么时候值得完全自研？</li>\n<li>平台能力满足不了怎么办？</li>\n</ul>"
+    },
+    {
       "id": "WAREHOUSE-0001",
       "type": "technical",
       "question": "谈谈你对数据分析和数据开发的理解",
@@ -2788,6 +3016,96 @@ window.OS_DATA = {
       ],
       "domain": "warehouse",
       "body_html": "<h2>一句话</h2>\n<p>数仓技术栈包括计算引擎、数据湖、OLAP、调度、元数据、湖仓平台。</p>\n<h2>30 秒回答</h2>\n<p>计算：Spark/Flink/Hive；数据湖：Hudi/Iceberg/Delta；OLAP：StarRocks/Doris/ClickHouse；调度：Airflow/DolphinScheduler；元数据：DataHub/Atlas；平台：DataWorks/EMR 等。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>离线计算：Spark、Hive</li>\n<li>实时计算：Flink</li>\n<li>数据湖：Hudi/Iceberg/Delta</li>\n<li>OLAP：StarRocks/Doris/ClickHouse</li>\n<li>调度与元数据：Airflow/DolphinScheduler、DataHub/Atlas</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>这些技术里你最熟哪个？</li>\n<li>选型时怎么权衡？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0042",
+      "type": "technical",
+      "question": "出海内容业务的核心指标有哪些，分析维度是什么",
+      "topic": [
+        "warehouse",
+        "metrics",
+        "overseas"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>完播率、留存率、播放量、观看时长、DAU 是出海内容业务核心指标，维度主要看国家、设备、用户、内容、渠道。</p>\n<h2>30 秒回答</h2>\n<p>核心指标：完播率、留存（次留/7 留）、播放量、观看时长、DAU/MAU、新增。分析维度：国家/地区、设备、用户、内容类型、渠道、版本、时间。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>完播率：内容质量和匹配度</li>\n<li>留存：用户黏性，核心决策指标</li>\n<li>增长：新增、DAU、渠道 ROI</li>\n<li>维度：国家、设备、用户画像、内容、渠道、版本</li>\n<li>出海特点：多市场本地化，指标要分国家拆</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>完播率和留存哪个更重要？</li>\n<li>出海指标为什么要分国家看？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0043",
+      "type": "technical",
+      "question": "国家、设备、用户维度分别怎么理解，用户维度有圈层标签吗",
+      "topic": [
+        "warehouse",
+        "dimension",
+        "user-tag"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>国家是地域维度，设备是硬件/OS 维度，用户是画像维度，常带圈层标签。</p>\n<h2>30 秒回答</h2>\n<p>国家：出海多市场，本地化差异；设备：机型、OS、性能，用于适配和性能分析；用户：年龄、性别、兴趣、圈层标签（学生、白领、二次元等），用于精准推荐和分层运营。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>国家：地域/市场，驱动本地化内容和运营</li>\n<li>设备：机型、OS、性能，影响体验和兼容</li>\n<li>用户：画像 + 圈层标签，驱动推荐和分层</li>\n<li>圈层标签：学生、白领、兴趣圈层等，做精细运营</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>圈层标签怎么打？</li>\n<li>三个维度怎么组合分析？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0044",
+      "type": "technical",
+      "question": "数据如何帮助业务提升完播、留存、拉新",
+      "topic": [
+        "warehouse",
+        "data-driven"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>数据发现流失/低效环节，驱动内容推荐、召回、渠道投放等策略，形成「数据 -&gt; 策略 -&gt; 验证」闭环。</p>\n<h2>30 秒回答</h2>\n<p>完播：定位完播率低的内容和环节，优化推荐和供给；留存：找流失节点，做 push 召回、活动；拉新：评估渠道 ROI、优化投放。运营拿到报表做策略调整，数据再验证效果。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>完播：内容质量、推荐匹配分析</li>\n<li>留存：流失漏斗、召回、活动</li>\n<li>拉新：渠道效果、投放优化、裂变</li>\n<li>闭环：数据发现 -&gt; 策略 -&gt; 再验证</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>拉新渠道效果怎么归因？</li>\n<li>留存分析常用什么模型？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0045",
+      "type": "technical",
+      "question": "数据 BP 是什么角色，是研发还是项目协调",
+      "topic": [
+        "warehouse",
+        "role"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>数据 BP 是派驻业务的数据伙伴，既懂业务又懂数据，负责需求、口径、数据支持和驱动决策。</p>\n<h2>30 秒回答</h2>\n<p>数据 BP 是数据和业务之间的桥梁，负责需求对接、指标口径、数据支持、推动数据驱动决策；既不是纯研发，也不是纯项目协调，偏业务侧数据分析与协调。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：数据团队派驻业务的数据伙伴</li>\n<li>职责：需求、口径、报表、数据支持、推动决策</li>\n<li>能力：懂业务 + 懂数据</li>\n<li>边界：偏业务协调与数据分析，不写核心引擎</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>数据 BP 和数据分析师有什么区别？</li>\n<li>数据 BP 需要会写代码吗？</li>\n</ul>"
     },
     {
       "id": "SQL-0001",
@@ -3943,9 +4261,179 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>问岗位具体职责、团队规模、技术栈、培养路径，展示你对岗位的认真。</p>\n<h2>注意</h2>\n<p>结合面试内容问，别只问薪资福利。</p>"
+    },
+    {
+      "id": "PROJECT-0044",
+      "type": "project",
+      "question": "介绍在校学习经历和三段实习经历",
+      "topic": [
+        "project",
+        "self-introduction"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>按时间线讲在校 + 三段实习，突出每段的业务、职责和成长，串联成一个清晰的能力故事。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0045",
+      "type": "project",
+      "question": "学业背景：优秀毕业生、论文进度、科研与实习平衡",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实说明学业背景、论文进度和导师态度，说明实习与科研如何平衡、时间怎么安排。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0046",
+      "type": "project",
+      "question": "讲 ETL、数据资产建设：数仓分层和整体工作",
+      "topic": [
+        "project",
+        "etl",
+        "asset"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>讲清业务分层（ODS/DWD/DWS/ADS）、核心指标、资产建设内容（指标字典、血缘、治理）和你的职责。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0047",
+      "type": "project",
+      "question": "快手广告业务主要做什么，最难的问题是什么",
+      "topic": [
+        "project",
+        "highlight"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>讲业务职责 + 一个最难的卡点（如性能、倾斜、口径），说明怎么定位和解决。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0048",
+      "type": "project",
+      "question": "优化前后任务时长多少，数据量级多大",
+      "topic": [
+        "project",
+        "metrics"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>用具体数字：优化前耗时、优化后耗时、数据量级（行数/存储/分区），体现量化能力。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0049",
+      "type": "project",
+      "question": "数据资产建设和 AI 相关两块分别介绍",
+      "topic": [
+        "project",
+        "overview"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>两块分别讲：数据资产（指标、治理、分层）和 AI（Agent、评测、提效），各讲目标、工作、结果。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0050",
+      "type": "project",
+      "question": "反问：团队 AI 落地规划、是否有资源开发 Agent",
+      "topic": [
+        "project",
+        "reverse-question"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+          "company": "小鹏",
+          "position": "数据开发（27 届秋招一面）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>问团队 AI 落地规划、资源投入、这个岗位与 AI 的结合点，展示关注方向。</p>\n<h2>注意</h2>\n<p>结合面试内容问，别只问薪资福利。</p>"
     }
   ],
   "interviews": [
+    {
+      "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
+      "company": "小鹏",
+      "business": "数据开发",
+      "position": "数据开发（27 届秋招一面）",
+      "date": "2026-09-26",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>面试约一小时，挖得很细，分四部分：开场、实习项目深挖、AI、反问。</blockquote>\n<h3>一、开场</h3>\n<ol>\n<li>介绍在校学习经历和三段实习经历</li>\n<li>省优秀毕业生是本科阶段的吗</li>\n<li>研究生 24.9-27.6，毕业论文进度怎么样</li>\n<li>三段实习都是全职，科研和实习怎么平衡，导师是否支持</li>\n</ol>\n<h3>二、实习项目深挖</h3>\n<ol>\n<li>讲 ETL、数据资产建设：业务分了哪些数仓分层，整体做了哪些工作</li>\n<li>简历写搭建 10 个核心指标，列举几个</li>\n<li>完播率、留存对出海业务是核心决策指标吗，分析维度有哪些</li>\n<li>国家、设备、用户维度分别怎么理解，用户维度有没有圈层标签</li>\n<li>产出的数据如何帮业务提升完播、留存，运营会做哪些策略调整</li>\n<li>报表对拉新提供哪些支撑，业务侧有哪些拉新思路</li>\n<li>数据 BP 是什么角色，研发还是项目协调</li>\n<li>快手广告业务主要做什么，最难的问题是什么</li>\n<li>Spark OOM/慢任务怎么排查，热点 key 数据倾斜怎么解决</li>\n<li>有没有调整过任务并行度、输出文件数量</li>\n<li>Hive 表存储和压缩格式用什么，Parquet 有什么优缺点</li>\n<li>Hive 可以用 text 存储吗，CSV 能不能直接加载成 Hive 表</li>\n<li>任务提速 50% 的核心改动，是链路整体还是单个任务</li>\n<li>热点 userID 怎么形成，自然流量还是脏数据/黑产</li>\n<li>多个国家都出现流量热点怎么处理</li>\n<li>优化前后任务时长多少，数据量级多大</li>\n<li>数据资产建设、AI 相关两块分别介绍</li>\n</ol>\n<h3>三、AI 部分</h3>\n<ol>\n<li>数据建设是监控 AI 回答质量吗，怎么判断 AI 回答被采纳、是否有效</li>\n<li>如何区分业务侧 AI 产品和内部提效 AI 工具</li>\n<li>Agent 是基于通用模型自研，还是复用平台能力，设计思路是什么</li>\n</ol>\n<h3>四、反问</h3>\n<ol>\n<li>团队在 AI 方面的落地规划</li>\n<li>组内有没有资源专门开发这类 Agent</li>\n</ol>\n<blockquote>备注：小鹏 27 届秋招数开一面。</blockquote>"
+    },
     {
       "interview_id": "INTERVIEW-2026-09-25-banmu-huadao",
       "company": "半亩花田",
