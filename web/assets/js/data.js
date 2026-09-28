@@ -1,23 +1,23 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-28T17:50:03+08:00",
+  "generatedAt": "2026-09-28T17:53:23+08:00",
   "stats": {
-    "questions": 218,
-    "interviews": 13,
-    "technical": 157,
-    "project": 61,
+    "questions": 236,
+    "interviews": 14,
+    "technical": 167,
+    "project": 69,
     "domains": {
-      "spark": 29,
+      "spark": 30,
       "hdfs": 1,
       "storage": 10,
       "lakehouse": 7,
       "starrocks": 9,
-      "flink": 4,
+      "flink": 6,
       "network": 4,
       "algorithm": 3,
-      "llm": 36,
-      "warehouse": 45,
+      "llm": 38,
+      "warehouse": 50,
       "sql": 9,
-      "project": 61
+      "project": 69
     }
   },
   "domains": {
@@ -741,6 +741,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>窄依赖一个父分区只被一个子分区依赖，宽依赖一个父分区被多个子分区依赖、需要 shuffle。</p>\n<h2>30 秒回答</h2>\n<p>窄依赖：map、filter、union、coalesce，可流水线执行。宽依赖（shuffle）：groupByKey、reduceByKey、join、distinct、sortByKey、repartition，触发 shuffle、切分 stage。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>窄依赖：一对一/多对一，无 shuffle，同 stage 内 pipeline</li>\n<li>宽依赖：一对多，需 shuffle，划分 stage</li>\n<li>宽依赖算子：groupByKey、reduceByKey、join、distinct、sortByKey、repartition</li>\n<li>意义：决定 stage 边界和容错粒度</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>宽依赖为什么要切 stage？</li>\n<li>groupByKey 和 reduceByKey 都宽依赖，谁更优？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0030",
+      "type": "technical",
+      "question": "你有没有处理过数据倾斜，怎么处理",
+      "topic": [
+        "spark",
+        "skew"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>倾斜处理先定位热点 key，再用加盐、热点拆分、AQE 等手段均衡负载。</p>\n<h2>30 秒回答</h2>\n<p>定位热点 key 后：加盐两阶段聚合、热点拆分单独处理、AQE skew join、过滤脏数据、增加并行度。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：UI/抽样找热点 key</li>\n<li>group by：加盐两阶段聚合</li>\n<li>join：热点拆分 / 两阶段加盐 join</li>\n<li>通用：AQE skew join、过滤脏数据、调并行度</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你实际遇到过的倾斜案例？</li>\n<li>加盐后怎么还原？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -1437,6 +1459,51 @@ window.OS_DATA = {
       ],
       "domain": "flink",
       "body_html": "<h2>一句话</h2>\n<p>Flink 靠 checkpoint 状态快照 + barrier 对齐 + 端到端两阶段提交实现 exactly-once。</p>\n<h2>30 秒回答</h2>\n<p>checkpoint 定期快照状态和 source offset，失败从最近 checkpoint 恢复；sink 端用两阶段提交（如 Kafka 事务）保证结果不重不丢，实现端到端精准一次。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>状态一致性：checkpoint 保存状态和 source offset</li>\n<li>barrier 对齐：保证多流 checkpoint 一致</li>\n<li>恢复：失败从最近 checkpoint 回放</li>\n<li>sink 两阶段提交：事务性写入，避免重复</li>\n<li>前提：source/sink 都支持事务或幂等，否则 at-least-once + 幂等</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>端到端 exactly-once 需要哪些条件？</li>\n<li>Kafka 怎么支持两阶段提交？</li>\n<li>不支持事务的 sink 怎么做幂等？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0005",
+      "type": "technical",
+      "question": "要搭建一套实时数仓，怎么设计架构",
+      "topic": [
+        "flink",
+        "realtime-warehouse"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>实时数仓用「数据源 -&gt; Kafka -&gt; Flink 计算 -&gt; 实时存储 -&gt; 应用」链路，分 ODS/DWD/DWS/ADS 层。</p>\n<h2>30 秒回答</h2>\n<p>数据源经 Kafka 接入，Flink 实时计算，落 Doris/ClickHouse/HBase/Kafka；分层 ODS（消息）-&gt; DWD（明细）-&gt; DWS（汇总）-&gt; ADS；离线层兜底融合。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>采集：Canal/Kafka 实时接入</li>\n<li>计算：Flink 实时处理、状态、迟到处理</li>\n<li>存储：Doris/ClickHouse/Kafka</li>\n<li>分层：ODS/DWD/DWS/ADS</li>\n<li>架构：Lambda 或 Kappa，实时 + 离线兜底</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Lambda 和 Kappa 怎么选？</li>\n<li>实时数仓的状态怎么管？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0006",
+      "type": "technical",
+      "question": "实时数仓数据缺失，怎么排查和补数",
+      "topic": [
+        "flink",
+        "realtime",
+        "backfill"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>先定位缺失范围和根因，再按 offset 重放或离线回刷补数，保证幂等。</p>\n<h2>30 秒回答</h2>\n<p>定位缺失范围 -&gt; 排查上游（Kafka offset、消费延迟、任务失败、迟到/乱序、水位线）-&gt; 补数：按 offset 重放或离线回刷 -&gt; 幂等去重 -&gt; 校验。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：缺失时间/分区范围</li>\n<li>根因：offset 回退、消费延迟、任务失败、迟到</li>\n<li>补数：Kafka 重放、离线回刷、兜底任务</li>\n<li>保证：幂等、去重、校验</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>补数怎么保证不重复？</li>\n<li>迟到数据怎么处理？</li>\n</ul>"
     },
     {
       "id": "NETWORK-0001",
@@ -2420,6 +2487,52 @@ window.OS_DATA = {
       ],
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>评测体系看执行准确率、结果准确率、语法通过率，再加可观测性：每次 Agent 行为可测量、可追溯。</p>\n<h2>30 秒回答</h2>\n<p>指标：执行准确率、结果准确率、SQL 语法通过率、意图识别准确率、召回率；分层评测（意图、生成、执行、结果），每个环节可观测、可追溯，用 badcase 驱动迭代。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>效果：执行准确率、结果准确率、语法通过率</li>\n<li>分层：意图识别、SQL 生成、执行、结果</li>\n<li>可观测：每次行为可测量、可追溯</li>\n<li>持续：测试集 + badcase 分类 + 人工抽检</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>结果准确率和执行准确率区别？</li>\n<li>可观测性怎么落地？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0037",
+      "type": "technical",
+      "question": "日常工作里 AI 主要用在哪些地方",
+      "topic": [
+        "llm",
+        "application"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>AI 常用于代码生成、SQL 辅助、文档、需求解析、调试和提效。</p>\n<h2>30 秒回答</h2>\n<p>代码生成、SQL 编写与优化、报错调试、文档总结、需求解析等，结合实际项目说明用在哪些环节、提效多少。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "LLM-0038",
+      "type": "technical",
+      "question": "AI 生成的代码和系统规范冲突，怎么规避",
+      "topic": [
+        "llm",
+        "code",
+        "convention"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>把规范写进 prompt/skill/规则库，AI 输出后做 lint、审查和校验。</p>\n<h2>30 秒回答</h2>\n<p>把团队规范写进 prompt、skill 或规则库约束生成；生成后跑 lint/格式工具、code review、单测校验，不符合就改或重新生成。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>前置：规范注入 prompt、skill、规则库</li>\n<li>后置：lint、格式工具、code review、单测</li>\n<li>兜底：人工审查关键代码</li>\n<li>沉淀：badcase 反哺规范</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>规范怎么高效喂给 AI？</li>\n<li>哪些代码必须人工 review？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0001",
@@ -3447,6 +3560,117 @@ window.OS_DATA = {
       ],
       "domain": "warehouse",
       "body_html": "<h2>一句话</h2>\n<p>数据 BP 是派驻业务的数据伙伴，既懂业务又懂数据，负责需求、口径、数据支持和驱动决策。</p>\n<h2>30 秒回答</h2>\n<p>数据 BP 是数据和业务之间的桥梁，负责需求对接、指标口径、数据支持、推动数据驱动决策；既不是纯研发，也不是纯项目协调，偏业务侧数据分析与协调。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：数据团队派驻业务的数据伙伴</li>\n<li>职责：需求、口径、报表、数据支持、推动决策</li>\n<li>能力：懂业务 + 懂数据</li>\n<li>边界：偏业务协调与数据分析，不写核心引擎</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>数据 BP 和数据分析师有什么区别？</li>\n<li>数据 BP 需要会写代码吗？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0046",
+      "type": "technical",
+      "question": "说说数仓分层架构",
+      "topic": [
+        "warehouse",
+        "layering"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>数仓通常分 ODS 贴源、DWD 明细、DWS 汇总、ADS 应用，再加 DIM 维表。</p>\n<h2>30 秒回答</h2>\n<p>ODS 原样落地，DWD 清洗成明细，DWS 按主题汇总公共指标，ADS 面向应用做宽表，DIM 存维度。分层解耦、复用、可回溯。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>ODS：贴源、原样落地</li>\n<li>DWD：清洗、规范化、明细</li>\n<li>DWS：主题汇总、公共指标</li>\n<li>ADS：应用宽表</li>\n<li>DIM：维表</li>\n<li>原则：职责清晰、逐层收敛、公共层复用</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>每层做什么、不做什么？</li>\n<li>为什么要分层？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0047",
+      "type": "technical",
+      "question": "设计一套系统的数据治理方案，从哪些方面考虑",
+      "topic": [
+        "warehouse",
+        "governance"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>数据治理覆盖元数据、口径、质量、生命周期、成本、权限、血缘和规范。</p>\n<h2>30 秒回答</h2>\n<p>从元数据管理、指标口径统一、数据质量、生命周期与存储、权限安全、血缘、命名/建模规范、组织流程几个维度系统设计。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>元数据：资产登记、字段/表元数据</li>\n<li>口径：指标字典统一</li>\n<li>质量：完整性/准确性/一致性/及时性校验</li>\n<li>生命周期：TTL、冷热分层、成本</li>\n<li>权限与血缘：访问控制、影响分析</li>\n<li>规范与流程：命名、建模、评审</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>数据治理最核心的是什么？</li>\n<li>治理怎么落地到流程？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0048",
+      "type": "technical",
+      "question": "数仓出现脏数据，一般排查思路是什么",
+      "topic": [
+        "warehouse",
+        "data-quality",
+        "diagnose"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>先定位脏数据范围和特征，再沿血缘回溯找源头，修复后重跑补数并校验。</p>\n<h2>30 秒回答</h2>\n<p>定位脏数据范围（分区/时间/维度/特征）-&gt; 沿血缘回溯上游任务或源系统 -&gt; 定位根因（代码 bug、口径变更、源数据问题）-&gt; 修复 -&gt; 重跑/补数 -&gt; 校验 -&gt; 通知下游。</p>\n<h2>1 分钟回答</h2>\n<ol>\n<li>定位：脏数据出现在哪、什么特征</li>\n<li>回溯：沿血缘找上游</li>\n<li>根因：代码 bug、口径、源数据、数据倾斜</li>\n<li>修复 + 重跑/补数</li>\n<li>校验 + 通知下游 + 复盘</li>\n</ol>\n<h2>追问</h2>\n<ul>\n<li>怎么快速定位脏数据来源？</li>\n<li>补数怎么做才不覆盖正确数据？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0049",
+      "type": "technical",
+      "question": "怎么理解数据血缘关系",
+      "topic": [
+        "warehouse",
+        "lineage"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>血缘是数据从源头到下游的加工流转关系，用于影响分析、根因定位和口径追踪。</p>\n<h2>30 秒回答</h2>\n<p>血缘记录数据「从哪来、经过哪些任务、流向哪里」，分表级、字段级、任务级；用于影响分析、问题回溯、口径追踪和治理。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>表级/字段级/任务级血缘</li>\n<li>用途：影响分析、根因定位、口径追踪、资产盘点</li>\n<li>构建：解析 SQL、任务依赖、调度元数据</li>\n<li>价值：改表/下线前评估影响，出问题快速定位</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>字段级血缘怎么构建？</li>\n<li>血缘在数据治理里怎么用？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0050",
+      "type": "technical",
+      "question": "数仓开发的团队规范有哪些，你怎么看",
+      "topic": [
+        "warehouse",
+        "convention"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>团队规范覆盖分层、命名、口径、建模、代码、发布和质量，保证一致性和可维护。</p>\n<h2>30 秒回答</h2>\n<p>规范：分层、命名、指标口径、维度建模、SQL 代码、任务发布、数据质量。统一规范能保证一致、可维护、可治理，减少重复和口径混乱。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分层/命名规范</li>\n<li>指标口径规范</li>\n<li>建模规范（事实/维度/星型）</li>\n<li>代码规范（SQL 风格、注释）</li>\n<li>发布与质量规范</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>规范怎么落地执行？</li>\n<li>规范太死板怎么办？</li>\n</ul>"
     },
     {
       "id": "SQL-0001",
@@ -5063,9 +5287,201 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>诚实定位：从用户往建设者爬，用「能自己搭、有评测、能改链路」证明在向建设者靠拢。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0062",
+      "type": "project",
+      "question": "请先做个自我介绍",
+      "topic": [
+        "project",
+        "self-introduction"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>背景、项目经历、技术栈、匹配点，简洁有重点。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0063",
+      "type": "project",
+      "question": "介绍你负责的项目和承担的角色",
+      "topic": [
+        "project",
+        "role"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>讲清项目业务、你的角色和具体职责、产出，突出个人贡献。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0064",
+      "type": "project",
+      "question": "数据规模是什么样子",
+      "topic": [
+        "project",
+        "data-volume"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>从日增量、总量、峰值、表规模、任务数等维度量化。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0065",
+      "type": "project",
+      "question": "你们的数据是实时的还是离线的",
+      "topic": [
+        "project",
+        "data-type"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>说明你项目的实时/离线占比、各自链路和场景。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0066",
+      "type": "project",
+      "question": "这部分你实际操作过吗",
+      "topic": [
+        "project",
+        "experience"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实说明是否实操，实操就讲细节，没有就讲理解和模拟。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0067",
+      "type": "project",
+      "question": "中间件选型和技术专家意见冲突，你怎么处理",
+      "topic": [
+        "project",
+        "conflict"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>先理解分歧本质（技术取舍 vs 偏好），用事实和场景论证，尊重专家意见，必要时上升到决策机制，最终以项目利益为先。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0068",
+      "type": "project",
+      "question": "遇到沟通不畅的情况，你怎么解决",
+      "topic": [
+        "project",
+        "communication"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>先澄清需求和目标，找共同语言（口径/目标），换沟通方式，及时同步，必要时拉多方对齐。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0069",
+      "type": "project",
+      "question": "你有什么想问的（反问）",
+      "topic": [
+        "project",
+        "reverse-question"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+          "company": "欣旺达",
+          "position": "数据开发（秋招）",
+          "date": "2026-09-26"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>问面试轮次、团队规模、岗位职责、技术栈，展示认真态度。</p>\n<h2>注意</h2>\n<p>结合面试内容问，别只问薪资福利。</p>"
     }
   ],
   "interviews": [
+    {
+      "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
+      "company": "欣旺达",
+      "business": "数据开发",
+      "position": "数据开发（秋招）",
+      "date": "2026-09-26",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>介绍你在部门具体负责的项目和承担的角色</li>\n<li>数据的规模是什么样子</li>\n<li>数据是实时的还是离线的</li>\n<li>说说数仓分层架构</li>\n<li>有没有处理过数据倾斜</li>\n<li>如果让你设计一套系统的数据治理方案，会从哪些方面考虑</li>\n<li>数仓出现脏数据之后，一般排查思路是什么</li>\n<li>怎么理解数据血缘关系</li>\n<li>假设现在要搭建一套实时数仓，你会怎么设计架构</li>\n<li>这部分你实际操作过吗</li>\n<li>实时数仓如果出现数据缺失，怎么排查和补数</li>\n<li>数仓开发涉及团队规范，你怎么看</li>\n<li>中间件选型和团队技术专家的意见冲突，你怎么处理</li>\n<li>日常工作里 AI 主要用在哪些地方</li>\n<li>AI 生成的代码和系统规范冲突，怎么规避</li>\n<li>遇到沟通不畅的情况，你怎么解决</li>\n<li>反问（面试几轮、团队规模）</li>\n</ol>\n<blockquote>备注：欣旺达数据开发秋招一面，难度一般。</blockquote>"
+    },
     {
       "interview_id": "INTERVIEW-2026-09-26-xpeng-data-dev",
       "company": "小鹏",
