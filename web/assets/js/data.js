@@ -1,23 +1,23 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-26T01:26:34+08:00",
+  "generatedAt": "2026-09-28T17:50:03+08:00",
   "stats": {
-    "questions": 201,
-    "interviews": 12,
-    "technical": 145,
-    "project": 56,
+    "questions": 218,
+    "interviews": 13,
+    "technical": 157,
+    "project": 61,
     "domains": {
-      "spark": 28,
+      "spark": 29,
       "hdfs": 1,
       "storage": 10,
       "lakehouse": 7,
       "starrocks": 9,
       "flink": 4,
       "network": 4,
-      "algorithm": 2,
-      "llm": 27,
+      "algorithm": 3,
+      "llm": 36,
       "warehouse": 45,
-      "sql": 8,
-      "project": 56
+      "sql": 9,
+      "project": 61
     }
   },
   "domains": {
@@ -716,6 +716,29 @@ window.OS_DATA = {
       ],
       "domain": "spark",
       "body_html": "<h2>一句话</h2>\n<p>Hive 是数仓 SQL 抽象，Spark 是通用内存计算引擎；Hive 可以用 Spark 作为执行引擎。</p>\n<h2>30 秒回答</h2>\n<p>Hive 把 SQL 翻译成 MapReduce/Tez/Spark 作业，偏数仓批处理；Spark 是基于内存的 DAG 计算引擎，RDD/DataFrame，比 MR 快，支持批流、机器学习等。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Hive：数仓工具，SQL -&gt; MR/Tez/Spark，适合离线批处理</li>\n<li>Spark：通用计算引擎，内存计算、DAG 复用、批流一体</li>\n<li>关系：Hive on Spark 是常见组合</li>\n<li>性能：Spark 比 Hive on MR 快很多</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Hive on Spark 和 Spark SQL 区别？</li>\n<li>Spark 为什么比 MR 快？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0029",
+      "type": "technical",
+      "question": "数仓的宽窄依赖怎么划，哪些算子产生宽依赖",
+      "topic": [
+        "spark",
+        "dependency",
+        "shuffle"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>窄依赖一个父分区只被一个子分区依赖，宽依赖一个父分区被多个子分区依赖、需要 shuffle。</p>\n<h2>30 秒回答</h2>\n<p>窄依赖：map、filter、union、coalesce，可流水线执行。宽依赖（shuffle）：groupByKey、reduceByKey、join、distinct、sortByKey、repartition，触发 shuffle、切分 stage。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>窄依赖：一对一/多对一，无 shuffle，同 stage 内 pipeline</li>\n<li>宽依赖：一对多，需 shuffle，划分 stage</li>\n<li>宽依赖算子：groupByKey、reduceByKey、join、distinct、sortByKey、repartition</li>\n<li>意义：决定 stage 边界和容错粒度</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>宽依赖为什么要切 stage？</li>\n<li>groupByKey 和 reduceByKey 都宽依赖，谁更优？</li>\n</ul>"
     },
     {
       "id": "HDFS-0001",
@@ -1553,6 +1576,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>把进入记 +1、离开记 -1，按时间排序后扫描累加，维护最大在线人数和对应时刻。</p>\n<h2>思路</h2>\n<ul>\n<li>事件化：进入 -&gt; (time, +1)，离开 -&gt; (time, -1)</li>\n<li>排序：按时间排序，同时间先离开后进入（避免边界重复计数）</li>\n<li>扫描：累加当前在线数，更新最大值和对应时刻</li>\n<li>变式：可求最大人数持续时段、峰值时刻、加窗口等</li>\n</ul>\n<h2>代码</h2>\n<pre><code class=\"language-python\">def max_online(events):\n    # events: [(enter, leave), ...]\n    timeline = []\n    for enter, leave in events:\n        timeline.append((enter, 1))\n        timeline.append((leave, -1))\n    timeline.sort(key=lambda x: (x[0], x[1]))  # 同时刻先离开\n    cur = maxv = 0\n    times = []\n    for t, d in timeline:\n        cur += d\n        if cur &gt; maxv:\n            maxv = cur\n            times = [t]\n        elif cur == maxv:\n            times.append(t)\n    return maxv, times</code></pre>\n<h2>追问</h2>\n<ul>\n<li>同时间有进有出，怎么处理才不重复计数？</li>\n<li>变式：求峰值持续时段怎么改？</li>\n<li>复杂度是多少？</li>\n</ul>"
     },
     {
+      "id": "ALGORITHM-0003",
+      "type": "technical",
+      "question": "搜索旋转排序数组（二分查找）",
+      "topic": [
+        "algorithm",
+        "binary-search"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "algorithm",
+      "body_html": "<h2>思路</h2>\n<p>旋转数组一分为二，至少一半有序；判断 target 在哪个有序段，缩小范围。</p>\n<h2>代码</h2>\n<pre><code class=\"language-python\">def search(nums, target):\n    l, r = 0, len(nums) - 1\n    while l &lt;= r:\n        m = (l + r) // 2\n        if nums[m] == target:\n            return m\n        if nums[l] &lt;= nums[m]:      # 左半有序\n            if nums[l] &lt;= target &lt; nums[m]:\n                r = m - 1\n            else:\n                l = m + 1\n        else:                        # 右半有序\n            if nums[m] &lt; target &lt;= nums[r]:\n                l = m + 1\n            else:\n                r = m - 1\n    return -1</code></pre>\n<h2>追问</h2>\n<ul>\n<li>有重复元素时怎么做？</li>\n<li>复杂度是多少？</li>\n</ul>"
+    },
+    {
       "id": "LLM-0001",
       "type": "technical",
       "question": "大模型怎么调用工具（LLM Agent）",
@@ -2170,6 +2215,211 @@ window.OS_DATA = {
       ],
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>用准确率、成功率、任务完成率、使用量、耗时和成本等指标量化 Agent 价值。</p>\n<h2>30 秒回答</h2>\n<p>量化指标：准确率、成功率、任务完成率、日活/用户数、调用量、处理量、耗时下降、成本降低、badcase 率。对比优化前后，证明改善。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>效果：准确率、成功率、任务完成率</li>\n<li>使用：日活、用户数、调用量、处理量</li>\n<li>效率：耗时下降、成本降低</li>\n<li>质量：badcase 率、人工复核通过率</li>\n<li>方法：前后对比、控制变量、评测集</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么定义一次任务成功？</li>\n<li>使用量上去了但效果没提升，怎么判断？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0028",
+      "type": "technical",
+      "question": "IDE Agent（Vibe Coding）和自己写 Agent 的区别，skill 文档能否替代全工作流",
+      "topic": [
+        "llm",
+        "agent",
+        "ide"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>IDE Agent 嵌入开发流程做代码生成/编辑，自研 Agent 是独立产品面向特定任务；skill 是知识/指令层，不能完全替代引擎的编排执行质检。</p>\n<h2>30 秒回答</h2>\n<p>IDE Agent（Cursor/Codex）嵌在开发流程里；自研 Agent 是独立产品，有自己业务流程和评测。skill 文档封装知识和指令，但编排、执行、质检需要运行时引擎，skill 不能完全替代全工作流。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>IDE Agent：代码补全、编辑，紧贴开发</li>\n<li>自研 Agent：独立产品，面向业务任务、有评测</li>\n<li>skill：可复用的指令/资产，触发后按需加载</li>\n<li>边界：skill 是知识层，引擎负责执行和状态管理</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>skill 能替代哪些环节，替代不了哪些？</li>\n<li>IDE Agent 和自研 Agent 能复用吗？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0029",
+      "type": "technical",
+      "question": "用 AI 改造报表校验流程，从哪里入手",
+      "topic": [
+        "llm",
+        "data-quality"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>从口径统一和异常识别入手，把传统校验规则 + LLM 语义理解结合。</p>\n<h2>30 秒回答</h2>\n<p>先用 LLM 做口径文档语义对齐（最大痛点），再做异常模式识别、校验规则生成、对账异常摘要、自动补规则，叠加传统四性校验。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>口径统一：LLM 对齐指标口径</li>\n<li>异常识别：LLM 识别数据波动和异常模式</li>\n<li>规则生成：从文档/需求自动生成校验规则</li>\n<li>对账摘要：异常结果自动归纳</li>\n<li>基础：完整性/一致性/准确性/及时性</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>哪些校验必须靠规则，哪些可以用 LLM？</li>\n<li>怎么防止 LLM 自己误判？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0030",
+      "type": "technical",
+      "question": "LLM 和 Agent 的联系和区别是什么",
+      "topic": [
+        "llm",
+        "agent"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>LLM 是「大脑」，Agent 是「大脑 + 工具 + 记忆 + 规划 + 执行循环」。</p>\n<h2>30 秒回答</h2>\n<p>LLM 负责理解和生成；Agent 在 LLM 之上加工具调用、记忆、规划和执行循环，能自主完成多步任务。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>LLM：推理、生成、理解</li>\n<li>Agent：模型 + 工具 + 记忆 + 规划 + 循环</li>\n<li>区别：Agent 能感知环境、行动、迭代</li>\n<li>联系：LLM 是 Agent 的核心推理部件</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>没有 LLM 的 Agent 算什么？</li>\n<li>Agent 的规划能力从哪来？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0031",
+      "type": "technical",
+      "question": "ReAct Agent 执行流程是什么，Agent 框架分哪些模块",
+      "topic": [
+        "llm",
+        "agent",
+        "react"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>ReAct 是 Thought-Action-Observation 循环；框架分规划、工具、记忆、执行、上下文管理、评测等模块。</p>\n<h2>30 秒回答</h2>\n<p>ReAct 循环：思考（Thought）-&gt; 行动（Action 调工具）-&gt; 观察（Observation）-&gt; 再思考，直到产出答案。框架模块：规划器、工具、记忆、执行循环、上下文管理、评测。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>模块：Planner、Tools、Memory、Executor、Context、Eval</li>\n<li>交互：输入 -&gt; 规划 -&gt; 调工具 -&gt; 观察 -&gt; 更新记忆 -&gt; 循环 -&gt; 输出</li>\n<li>关键：状态管理、上下文压缩、工具编排、输出稳定性</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>模块之间怎么交互，状态怎么传？</li>\n<li>缓存机制怎么设计，怎么让输出更稳定？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0032",
+      "type": "technical",
+      "question": "MCP 和 tool use 之间有什么区别",
+      "topic": [
+        "llm",
+        "mcp",
+        "tool-use"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>MCP 是协议层（标准化连接工具/资源），tool use / function calling 是模型调用工具的具体机制。</p>\n<h2>30 秒回答</h2>\n<p>MCP 定义客户端-服务器协议，让 Agent 统一接入各种工具和数据源；tool use 是模型输出函数调用的机制。MCP 是连接标准，tool use 是调用方式。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>MCP：协议，标准化工具/资源/提示接入</li>\n<li>tool use：模型按 schema 输出 tool_call</li>\n<li>关系：MCP 提供工具，tool use 触发调用</li>\n<li>价值：MCP 解耦工具集成，避免每个工具单独适配</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>MCP 解决了什么问题？</li>\n<li>tool use 需要哪些字段？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0033",
+      "type": "technical",
+      "question": "智能问答知识库短期记忆和长期记忆怎么做，三层记忆每层存什么",
+      "topic": [
+        "llm",
+        "agent",
+        "memory"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>短期记忆是当前会话上下文，长期记忆是跨会话持久化；三层记忆按时效和粒度分层存储。</p>\n<h2>30 秒回答</h2>\n<p>短期：当前对话历史、working memory；长期：向量库 + 结构化存储跨会话复用。三层：会话内短期、项目级长期（文件/知识库）、全局长期，每层存不同粒度和时效。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>短期记忆：当前轮上下文、最近 N 轮</li>\n<li>长期记忆：向量检索历史 + 结构化知识</li>\n<li>三层：会话层（临时）、项目层（领域知识）、全局层（通用偏好）</li>\n<li>管理：压缩、摘要、检索、过期清理</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>上下文过长怎么压缩？</li>\n<li>长期记忆怎么更新？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0034",
+      "type": "technical",
+      "question": "skill 的「渐进式加载」机制是什么",
+      "topic": [
+        "llm",
+        "agent",
+        "skill"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>渐进式加载是 skill 按需加载：先加载 name/description 做触发，命中后再加载完整指令/脚本/资产。</p>\n<h2>30 秒回答</h2>\n<p>先给模型所有 skill 的 name/description（轻量目录）用于判断是否触发，命中后再加载该 skill 的完整 SKILL.md、脚本和资产，避免一次塞入全部内容、节省上下文。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>目录层：name/description，决定是否触发</li>\n<li>正文层：完整指令，触发后加载</li>\n<li>资源层：scripts/assets，按需再加载</li>\n<li>收益：省 token、按需、可扩展</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>渐进式加载和普通加载区别？</li>\n<li>description 写不好会怎样？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0035",
+      "type": "technical",
+      "question": "多模态数据生产，怎么用 AI 做数据质量校验",
+      "topic": [
+        "llm",
+        "data-quality",
+        "multimodal"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>把传统四性校验 + LLM 的内容理解、跨模态检索、异常识别和质量筛选结合，做 Data Centric pipeline。</p>\n<h2>30 秒回答</h2>\n<p>传统校验（完整性/一致性/准确性/及时性/唯一性）打底，再用 LLM 做内容理解、跨模态检索、异常模式识别、质量筛选；校验规则作为 prompt，结合人工规则兜底。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Data Centric：处理算子 + 跨模态检索 + 内容理解 + 质量筛选 + 组织合成</li>\n<li>规则：完整性、唯一性、一致性</li>\n<li>LLM：异常识别、内容理解、质量打分</li>\n<li>兜底：规则 + 模型 + 人工抽检</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>多模态和文本校验差异？</li>\n<li>质量筛选怎么定阈值？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0036",
+      "type": "technical",
+      "question": "如何设计 Text2SQL 评测体系，怎么衡量好坏",
+      "topic": [
+        "llm",
+        "evaluation",
+        "text2sql"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>评测体系看执行准确率、结果准确率、语法通过率，再加可观测性：每次 Agent 行为可测量、可追溯。</p>\n<h2>30 秒回答</h2>\n<p>指标：执行准确率、结果准确率、SQL 语法通过率、意图识别准确率、召回率；分层评测（意图、生成、执行、结果），每个环节可观测、可追溯，用 badcase 驱动迭代。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>效果：执行准确率、结果准确率、语法通过率</li>\n<li>分层：意图识别、SQL 生成、执行、结果</li>\n<li>可观测：每次行为可测量、可追溯</li>\n<li>持续：测试集 + badcase 分类 + 人工抽检</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>结果准确率和执行准确率区别？</li>\n<li>可观测性怎么落地？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0001",
@@ -3379,6 +3629,30 @@ window.OS_DATA = {
       ],
       "domain": "sql",
       "body_html": "<h2>思路</h2>\n<p>先按「用户 + 日期 + 网站」聚合访问次数，再用 ROW_NUMBER 在每个「用户 + 日期」内按次数排序，取前 10。</p>\n<h2>代码</h2>\n<pre><code class=\"language-sql\">SELECT user_id, dt, website, cnt\nFROM (\n  SELECT user_id, dt, website, cnt,\n         ROW_NUMBER() OVER (PARTITION BY user_id, dt ORDER BY cnt DESC) AS rn\n  FROM (\n    SELECT user_id,\n           to_date(visit_time) AS dt,\n           website,\n           COUNT(*) AS cnt\n    FROM visit_log\n    GROUP BY user_id, to_date(visit_time), website\n  ) t\n) s\nWHERE rn &lt;= 10;</code></pre>\n<h2>注意</h2>\n<ul>\n<li>并列名次用 RANK/DENSE_RANK 按业务需要</li>\n<li>日期要用日期粒度（to_date），不能用原始时间戳</li>\n<li>大数据量可加分区裁剪和预聚合</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>要并列都保留，改用哪个函数？</li>\n<li>怎么优化这个 SQL 的性能？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0009",
+      "type": "technical",
+      "question": "每个被举报视频品类中举报数量最高的 5 个视频",
+      "topic": [
+        "sql",
+        "window-function",
+        "top-n",
+        "skew"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>思路</h2>\n<p>按「品类 + 视频」聚合举报数，再用 ROW_NUMBER 在每个品类内按举报数排序取前 5。</p>\n<h2>代码</h2>\n<pre><code class=\"language-sql\">SELECT category_id, video_id, report_cnt\nFROM (\n  SELECT category_id, video_id, report_cnt,\n         ROW_NUMBER() OVER (PARTITION BY category_id ORDER BY report_cnt DESC) AS rn\n  FROM (\n    SELECT category_id, video_id, COUNT(*) AS report_cnt\n    FROM report_log\n    GROUP BY category_id, video_id\n  ) t\n) s\nWHERE rn &lt;= 5;</code></pre>\n<h2>百亿级数据量的问题</h2>\n<ul>\n<li>group by 的 key 分布不均，热点品类/视频会数据倾斜</li>\n<li>count + 窗口排序都涉及 shuffle，数据量大时长尾</li>\n<li>优化：热点 key 加盐两阶段聚合、分区裁剪、预聚合、必要时拆热点单独处理</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>百亿级下怎么处理数据倾斜？</li>\n<li>并列第 5 名要不要保留？</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -4674,6 +4948,121 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>结合岗位说最近读的内容和关注方向：ReAct、Agent Evaluation、Langfuse、LLM Agent 工程等，体现持续学习。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0057",
+      "type": "project",
+      "question": "从传统数开转 AI 数据，最大的 gap 是什么",
+      "topic": [
+        "project",
+        "transition"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>核心是对「模型行为不确定性」的理解：传统数开是确定性系统，AI 是概率系统，要学评测、兜底、可观测，而不是只求结果正确。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0058",
+      "type": "project",
+      "question": "为什么想转 AI 方向",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>结合「用 AI 改造数据链路」的价值和个人积累，说明不是跟风，而是有实践和思考。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0059",
+      "type": "project",
+      "question": "期望薪资大概什么范围",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>给合理区间，结合市场行情、城市、年限和岗位，可反问对方预算。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0060",
+      "type": "project",
+      "question": "目前有没有其他 offer",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实但不过度展开，说明当前进度和意向。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0061",
+      "type": "project",
+      "question": "你是 AI 数据开发的「早期用户」还是「真正的建设者」",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+          "company": "快手",
+          "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实定位：从用户往建设者爬，用「能自己搭、有评测、能改链路」证明在向建设者靠拢。</p>\n<h2>待补充（真实经历）</h2>"
     }
   ],
   "interviews": [
@@ -4694,6 +5083,15 @@ window.OS_DATA = {
       "date": "2026-09-25",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>三位面试官，面半小时，没有八股，纯问项目。</blockquote>\n<ol>\n<li>自我介绍</li>\n<li>展开讲讲数据采集相关的一个具体场景</li>\n<li>业务系统内部的数据怎么同步到数仓</li>\n<li>现在数据采集入湖方式是什么</li>\n<li>大部分工作是在已有原始数据基础上做数据开发吗</li>\n<li>简单讲其中一项工作</li>\n<li>你的业务场景用到的技术手段</li>\n<li>从底层数据到应用层数据，就是你的开发工作模式吗</li>\n<li>是在湖仓一体平台上做的吗</li>\n<li>平台集成数据开发和调度能力吗</li>\n<li>数据开发过程中你觉得哪部分比较复杂</li>\n<li>写 SQL 手动写还是用平台工具</li>\n<li>给 AI 指令，它能理解表结构吗</li>\n<li>开发里常用窗口函数吗</li>\n<li>除这套技术栈，还了解其他数仓相关技术吗</li>\n<li>意向工作城市是哪些</li>\n<li>在校成绩怎么样</li>\n<li>擅长哪些部分，短板是什么</li>\n<li>职业发展方向是什么</li>\n<li>有没有投递其他公司、拿到 OC，其他岗位是什么行业</li>\n<li>城市方面没有特殊要求对吧</li>\n<li>期望薪资大概什么范围</li>\n<li>方便了解家庭情况吗（父母、兄弟姐妹），父母是否接受异地</li>\n<li>反问：岗位职责、团队规模</li>\n</ol>\n<blockquote>备注：校招一面，偏项目与 HR 沟通。面试官提到团队三五人，包含数据产品和数据开发，岗位含报表开发、数仓维护。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-09-25-kuaishou-ai-data",
+      "company": "快手",
+      "business": "AI 数据开发",
+      "position": "Data Agent 研发 / AI 数据系统研发（社招）",
+      "date": "2026-09-25",
+      "round": "三轮技术 + HR",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>3 年传统数开转 AI 数据。三轮技术面 + HR，传统数仓八股占比不到 30%，其余是 LLM/Agent/RAG。</blockquote>\n<h3>一面（传统数仓 + AI 工具）</h3>\n<ol>\n<li>日常用哪些 AI 编程工具；IDE Agent（Vibe Coding）和自己写 Agent 的区别（追问：单一 skill 文档能否替代引擎的编排、分析、执行、质检全工作流）</li>\n<li>数仓的宽窄依赖怎么划，哪些算子产生宽依赖</li>\n<li>如果用 AI 改造报表校验流程，从哪里入手（面试官提到快手 CodeFlicker 代码生成率超 50%）</li>\n<li>手撕 SQL：每个被举报视频品类中举报数量最高的 5 个视频（追问：百亿级数据量写法有什么问题）</li>\n</ol>\n<h3>二面（Agent 框架深挖）</h3>\n<ol>\n<li>LLM 和 Agent 的联系和区别</li>\n<li>了解 ReAct Agent 吗，执行流程是怎样的（追问：设计一个 Agent 框架分哪些模块、怎么交互）</li>\n<li>MCP 和 tool use 有什么区别</li>\n<li>智能问答知识库短期记忆和长期记忆怎么做，三层记忆系统每层存什么</li>\n<li>了解 skill 的「渐进式加载」机制吗</li>\n<li>算法题：搜索旋转排序数组（二分查找）</li>\n</ol>\n<h3>三面（业务方案 + AI 数据）</h3>\n<ol>\n<li>可灵 AI 多模态数据生产，怎么用 AI 做数据质量校验</li>\n<li>如何设计一个 Text2SQL 评测体系，怎么衡量好坏</li>\n<li>从传统数开转 AI 数据，最大的 gap 是什么</li>\n</ol>\n<h3>HR 面</h3>\n<ol>\n<li>为什么想转 AI 方向</li>\n<li>期望薪资</li>\n<li>目前有没有其他 offer</li>\n<li>你是 AI 数据开发的「早期用户」还是「真正的建设者」</li>\n</ol>\n<blockquote>复盘关键词：Agent 是工程体系不是调 API；考上下文管理、RAG 召回、模型缓存、输出稳定性；传统数开要换「概率思维」+评测兜底可观测。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
