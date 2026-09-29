@@ -1,9 +1,9 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T10:15:05+08:00",
+  "generatedAt": "2026-09-29T10:46:32+08:00",
   "stats": {
-    "questions": 251,
+    "questions": 260,
     "interviews": 15,
-    "technical": 179,
+    "technical": 188,
     "project": 72,
     "domains": {
       "spark": 32,
@@ -17,7 +17,7 @@ window.OS_DATA = {
       "llm": 39,
       "platform": 2,
       "system": 1,
-      "warehouse": 52,
+      "warehouse": 61,
       "sql": 11,
       "project": 72
     }
@@ -3907,6 +3907,135 @@ window.OS_DATA = {
       ],
       "domain": "warehouse",
       "body_html": "<h2>一句话</h2>\n<p>需求评审 -&gt; 口径定义 -&gt; 设计 -&gt; 开发 -&gt; 对账 -&gt; 评审 -&gt; 上线 -&gt; 监控。</p>\n<h2>30 秒回答</h2>\n<p>先做需求评审和口径澄清，再定指标、粒度、分层和建模方案，开发后自测/对账，评审通过后上线并监控。</p>\n<h2>1 分钟回答</h2>\n<ol>\n<li>需求评审：口径、维度、粒度、周期</li>\n<li>设计：分层、建模、复用评估</li>\n<li>开发：SQL/ETL、调度</li>\n<li>对账：新旧口径、跨层校验</li>\n<li>评审 + 上线 + 监控</li>\n</ol>\n<h2>追问</h2>\n<ul>\n<li>需求不清晰怎么推进？</li>\n<li>怎么评估是否复用已有表？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0053",
+      "type": "technical",
+      "question": "数据仓库、数据库、数据湖的区别是什么",
+      "topic": [
+        "warehouse",
+        "database",
+        "data-lake"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>数据库面向事务（OLTP），数仓面向分析（OLAP），数据湖低成本存全量原始多格式数据。</p>\n<h2>30 秒回答</h2>\n<p>数据库：事务、实时、行存、数据量小；数仓：主题化、分层、列存、历史聚合；数据湖：原始数据、多格式、低成本、Schema-on-read。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>数据库（OLTP）：高并发点查、事务 ACID、行式存储</li>\n<li>数仓（OLAP）：面向分析、按主题分层、列式存储、聚合历史</li>\n<li>数据湖：全量原始数据、多格式、对象存储、按需读时建模</li>\n<li>联系：数据库经 ETL 入数仓；数据湖可作数仓底层存储（湖仓一体）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>什么时候用数据湖而不是数仓？</li>\n<li>湖仓一体解决什么？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0054",
+      "type": "technical",
+      "question": "Kimball 和 Inmon 两种数仓方法论的对比",
+      "topic": [
+        "warehouse",
+        "modeling",
+        "methodology"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>Kimball 自下而上、维度建模（星型、面向业务过程）；Inmon 自上而下、3NF 规范化（企业级数据仓库）。</p>\n<h2>30 秒回答</h2>\n<p>Kimball 从业务过程和维度建模出发，交付快、易理解；Inmon 先建规范化的企业数据仓库（3NF），再建数据集市，一致性强但周期长。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Kimball：自下而上，维度建模，星型模型，面向业务过程</li>\n<li>Inmon：自上而下，先 3NF 企业仓，再派生数据集市</li>\n<li>Kimball 优点：快、易用、查询简单；缺点：一致性和扩展性弱</li>\n<li>Inmon 优点：规范、一致、可扩展；缺点：建设周期长、成本高</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你项目用的是哪种，为什么？</li>\n<li>为什么多数互联网数仓倾向维度建模？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0055",
+      "type": "technical",
+      "question": "ETL 和 ELT 的区别是什么",
+      "topic": [
+        "warehouse",
+        "etl",
+        "elt"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>ETL 先转换再加载（在数仓外处理），ELT 先加载再转换（用数仓算力就地加工）。</p>\n<h2>30 秒回答</h2>\n<p>ETL 在数据进入数仓前完成清洗转换，适合数据量小、隐私要求高；ELT 先把原始数据入湖仓，再在数仓内做转换，利用数仓算力，适合大数据量。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>ETL：抽取 -&gt; 转换 -&gt; 加载，转换在数仓外</li>\n<li>ELT：抽取 -&gt; 加载 -&gt; 转换，转换在湖仓内</li>\n<li>ELT 优势：利用分布式算力、保留原始数据、灵活重算</li>\n<li>ETL 优势：数仓干净、适合小数据和强清洗</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么现在更流行 ELT？</li>\n<li>两种方式的数据质量怎么保障？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0056",
+      "type": "technical",
+      "question": "事实表有哪三种类型，各适用什么场景",
+      "topic": [
+        "warehouse",
+        "fact-table"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>事务事实表记录每笔业务，周期快照按固定周期聚合，累积快照记录业务全生命周期进展。</p>\n<h2>30 秒回答</h2>\n<p>事务事实表：一条业务一行（如每笔订单）；周期快照：按日/周聚合状态（如日库存）；累积快照：跟踪订单全流程多个里程碑（下单、支付、发货、完成）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>事务事实表：粒度最细，量大，适合明细分析</li>\n<li>周期快照：定期聚合，量小，适合状态和趋势</li>\n<li>累积快照：多时间点状态，适合流程耗时分析</li>\n<li>选择：看业务过程是「事件」还是「状态」还是「流程」</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>累积快照表和事务事实表怎么关联？</li>\n<li>周期快照的周期怎么定？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0057",
+      "type": "technical",
+      "question": "缓慢变化维度 SCD 有哪几种处理方式",
+      "topic": [
+        "warehouse",
+        "scd"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>SCD 三种常见方式：Type1 覆盖、Type2 拉链/新增行、Type3 历史列。</p>\n<h2>30 秒回答</h2>\n<p>Type1 直接覆盖旧值、丢历史；Type2 新增一行记录变化、保留完整历史（拉链表）；Type3 加历史字段只保留上一个值。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Type1：覆盖，简单但无历史</li>\n<li>Type2：新增行 + 生效/失效时间，保留全历史，最常用</li>\n<li>Type3：加「当前值 + 上一个值」列，只留一次变化</li>\n<li>选择：看是否需要历史、需要多少历史、更新频率</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>拉链表和 Type2 的关系？</li>\n<li>哪种方式代价最大，为什么？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0058",
+      "type": "technical",
+      "question": "MOLAP、ROLAP、HOLAP 的区别，多维分析有哪些操作",
+      "topic": [
+        "warehouse",
+        "olap"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>MOLAP 预计算 Cube（快、占空间），ROLAP 关系库实时查（灵活、慢），HOLAP 混合两者。</p>\n<h2>30 秒回答</h2>\n<p>MOLAP 把结果预计算成 Cube，查询快但空间大、更新慢；ROLAP 直接查关系库，灵活但慢；HOLAP 明细放关系库、聚合放 Cube。多维操作：钻取、上卷、切片、切块、旋转。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>MOLAP：预计算，快、空间大、刷新成本高</li>\n<li>ROLAP：实时查关系库，灵活、可扩展、查询慢</li>\n<li>HOLAP：混合，明细 ROLAP + 聚合 MOLAP</li>\n<li>操作：钻取（下钻）、上卷、切片、切块、旋转</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>预计算和实时查询怎么权衡？</li>\n<li>钻取和上卷是一对互逆操作吗？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0059",
+      "type": "technical",
+      "question": "Lambda 架构和 Kappa 架构的区别",
+      "topic": [
+        "warehouse",
+        "architecture"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>Lambda 是批流双链路（批处理层 + 速度层 + 服务层），Kappa 是全量走流、通过重放回刷。</p>\n<h2>30 秒回答</h2>\n<p>Lambda 用批处理保证准确、用流处理保证低延迟，两套逻辑需维护；Kappa 只保留流链路，历史通过消息重放回算，架构简单但依赖可重放的存储。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Lambda：批处理层（准确）+ 速度层（实时）+ 服务层（合并），双链路成本高</li>\n<li>Kappa：单一流链路，用 Kafka 等可重放存储回刷历史</li>\n<li>选择：Kappa 简单、适合流为主；Lambda 成熟、批流兼顾</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Kappa 怎么做历史回刷？</li>\n<li>为什么 Kappa 更流行？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0060",
+      "type": "technical",
+      "question": "指标体系如何建设，原子/派生/复合指标是什么",
+      "topic": [
+        "warehouse",
+        "metrics"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>指标体系 = 指标字典 + 分层指标（原子/派生/复合），统一口径和维度。</p>\n<h2>30 秒回答</h2>\n<p>原子指标是最小不可拆度量（如支付金额）；派生指标 = 原子指标 + 修饰词/维度（如近 7 日某品类支付金额）；复合指标由多个指标运算得到（如客单价 = 金额/单量）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>原子指标：最小粒度、不可拆</li>\n<li>派生指标：原子 + 维度 + 统计周期</li>\n<li>复合指标：多指标运算</li>\n<li>指标字典：名称、口径、维度、粒度、公式、负责人</li>\n<li>目的：统一口径、避免重复、可复用</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>指标字典要包含哪些字段？</li>\n<li>派生指标和复合指标怎么区分？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0061",
+      "type": "technical",
+      "question": "数仓的数据安全与权限如何设计",
+      "topic": [
+        "warehouse",
+        "security"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>数仓安全靠数据分级 + 库/表/行/列权限 + 脱敏 + 审计。</p>\n<h2>30 秒回答</h2>\n<p>数据分级分类（L1-L4），权限做到库级/表级/行级/列级，敏感字段脱敏，操作留审计日志，满足合规和最小权限原则。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分级分类：按敏感程度定级</li>\n<li>权限：库/表/行/列粒度，最小权限</li>\n<li>脱敏：手机号、身份证、金额等</li>\n<li>审计：查询、下载、导出留痕</li>\n<li>合规：数据安全法、跨境等要求</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>行级权限怎么实现？</li>\n<li>脱敏和权限的区别？</li>\n</ul>"
     },
     {
       "id": "SQL-0001",

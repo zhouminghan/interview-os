@@ -56,6 +56,7 @@
       '<span class="tag">' + esc(domainLabel(q.domain)) + "</span>" +
       (q.difficulty ? '<span class="tag">难度 ' + diffStars(q.difficulty) + "</span>" : "") +
       (q.frequency ? '<span class="tag ' + (q.frequency === "high" ? "high" : "mid") + '">' + (q.frequency === "high" ? "高频" : "中频") + "</span>" : "") +
+      (q.source_type === "knowledge" ? '<span class="tag kw">八股</span>' : "") +
       (q.needs_personal_input ? '<span class="tag warn">待补个人</span>' : "");
   }
 

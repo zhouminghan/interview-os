@@ -184,3 +184,6 @@ select { padding: 8px 12px; border-radius: var(--radius); border: 1px solid var(
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+.tag.kw { color: #9333EA; background: #F3E8FF; border-color: #E9D5FF; }
+[data-theme="dark"] .tag.kw { color: #D8B4FE; background: #3B0764; border-color: #6B21A8; }
