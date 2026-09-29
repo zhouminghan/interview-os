@@ -1,23 +1,25 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-28T17:53:23+08:00",
+  "generatedAt": "2026-09-29T10:15:05+08:00",
   "stats": {
-    "questions": 236,
-    "interviews": 14,
-    "technical": 167,
-    "project": 69,
+    "questions": 251,
+    "interviews": 15,
+    "technical": 179,
+    "project": 72,
     "domains": {
-      "spark": 30,
+      "spark": 32,
       "hdfs": 1,
       "storage": 10,
       "lakehouse": 7,
-      "starrocks": 9,
+      "starrocks": 11,
       "flink": 6,
       "network": 4,
       "algorithm": 3,
-      "llm": 38,
-      "warehouse": 50,
-      "sql": 9,
-      "project": 69
+      "llm": 39,
+      "platform": 2,
+      "system": 1,
+      "warehouse": 52,
+      "sql": 11,
+      "project": 72
     }
   },
   "domains": {
@@ -55,6 +57,14 @@ window.OS_DATA = {
     },
     "llm": {
       "label": "大模型",
+      "type": "technical"
+    },
+    "platform": {
+      "label": "平台 / 低代码",
+      "type": "technical"
+    },
+    "system": {
+      "label": "系统 / 性能",
       "type": "technical"
     },
     "warehouse": {
@@ -763,6 +773,51 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>倾斜处理先定位热点 key，再用加盐、热点拆分、AQE 等手段均衡负载。</p>\n<h2>30 秒回答</h2>\n<p>定位热点 key 后：加盐两阶段聚合、热点拆分单独处理、AQE skew join、过滤脏数据、增加并行度。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：UI/抽样找热点 key</li>\n<li>group by：加盐两阶段聚合</li>\n<li>join：热点拆分 / 两阶段加盐 join</li>\n<li>通用：AQE skew join、过滤脏数据、调并行度</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你实际遇到过的倾斜案例？</li>\n<li>加盐后怎么还原？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0031",
+      "type": "technical",
+      "question": "有没有碰到过 Spark 数据倾斜，怎么处理",
+      "topic": [
+        "spark",
+        "skew"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>定位热点 key 后用加盐、热点拆分或 AQE 处理，先过滤脏数据。</p>\n<h2>30 秒回答</h2>\n<p>先抽样定位热点 key，然后加盐两阶段聚合、热点拆分单独处理、AQE skew join、过滤脏数据、调整并行度。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：UI/抽样找热点 key</li>\n<li>group by：加盐两阶段聚合</li>\n<li>join：热点拆分 / 两阶段加盐 join</li>\n<li>通用：AQE skew join、过滤 null/脏数据</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你实际案例里热点 key 是什么？</li>\n<li>加盐还原怎么做？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0032",
+      "type": "technical",
+      "question": "Spark UI 有一个节点处理性能慢很多，怎么排查",
+      "topic": [
+        "spark",
+        "diagnose",
+        "node"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>先区分数据倾斜还是单节点硬件/IO 问题，再针对性处理。</p>\n<h2>30 秒回答</h2>\n<p>看该节点上 task 的数据量是否异常大（倾斜），还是所有 task 都慢（硬件/IO）。看 executor 的 CPU、GC、磁盘 IO、网络；换节点重跑验证；倾斜处理热点 key，硬件问题换节点/查磁盘。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>倾斜：该节点 task 数据量远大于其他</li>\n<li>硬件/IO：该节点所有 task 都慢，与数据无关</li>\n<li>指标：CPU、GC、磁盘 IO、网络</li>\n<li>验证：换节点重跑同 stage</li>\n<li>处理：倾斜加盐/拆分，硬件换节点/修盘</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么快速判断是倾斜还是硬件？</li>\n<li>节点磁盘慢怎么看？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -1368,6 +1423,51 @@ window.OS_DATA = {
       ],
       "domain": "starrocks",
       "body_html": "<h2>一句话</h2>\n<p>核心是 FE（元数据/查询计划）+ BE（存储/执行），存算分离再加 CN（计算节点）。</p>\n<h2>30 秒回答</h2>\n<p>FE 负责元数据管理、SQL 解析优化和调度，Leader/Follower 高可用；BE 负责数据存储和查询执行；存算分离架构增加 CN 计算节点。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>FE（Frontend）：元数据、SQL 解析/优化/调度，Leader/Follower</li>\n<li>BE（Backend）：存储 + 执行，存算一体核心</li>\n<li>CN（Compute Node）：存算分离的计算节点，只算不存</li>\n<li>其他：Catalog、CBO 优化器、向量化执行引擎、BDBJE 元数据</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>FE 挂了怎么办？</li>\n<li>BE 和 CN 有什么区别？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0010",
+      "type": "technical",
+      "question": "StarRocks 是怎么做分区分桶排序键的",
+      "topic": [
+        "starrocks",
+        "table-design"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>分区按时间/范围裁剪，分桶按高基数 hash 分布，排序键决定前缀索引和查询性能。</p>\n<h2>30 秒回答</h2>\n<p>分区选时间/范围做裁剪和生命周期；分桶选高基数列 hash 保证分布均匀和并行；排序键选高频过滤/排序/聚合的前缀列，决定前缀索引。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分区：按时间（日/月）或范围，裁剪 + TTL</li>\n<li>分桶：按订单号/用户 ID hash，桶数按数据量和 BE 数</li>\n<li>排序键：常用 where/order by/group by 的前缀列</li>\n<li>原则：能裁剪、分布均匀、贴近查询</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>分桶数怎么定？</li>\n<li>排序键太长会怎样？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0011",
+      "type": "technical",
+      "question": "查询的维度字段不在分区分桶里、查不出，你会怎么做",
+      "topic": [
+        "starrocks",
+        "index",
+        "optimization"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>靠加物化视图、索引（Bitmap/Bloom Filter）或调整排序键来加速，不必重建表。</p>\n<h2>30 秒回答</h2>\n<p>排序键/前缀索引覆盖不了该字段时，加物化视图预聚合、建 Bitmap/Bloom Filter 索引、调整排序键顺序、改写查询；实在不行再重建表调整分桶/排序键。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>物化视图：预计算常用维度聚合</li>\n<li>索引：Bitmap（低基数）、Bloom Filter（等值过滤）</li>\n<li>排序键：调整列顺序覆盖高频查询</li>\n<li>改写：换写法、减少扫描</li>\n<li>兜底：重建表调整分桶/排序键</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>物化视图和索引怎么选？</li>\n<li>什么情况必须重建表？</li>\n</ul>"
     },
     {
       "id": "FLINK-0001",
@@ -2535,6 +2635,98 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>把规范写进 prompt/skill/规则库，AI 输出后做 lint、审查和校验。</p>\n<h2>30 秒回答</h2>\n<p>把团队规范写进 prompt、skill 或规则库约束生成；生成后跑 lint/格式工具、code review、单测校验，不符合就改或重新生成。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>前置：规范注入 prompt、skill、规则库</li>\n<li>后置：lint、格式工具、code review、单测</li>\n<li>兜底：人工审查关键代码</li>\n<li>沉淀：badcase 反哺规范</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>规范怎么高效喂给 AI？</li>\n<li>哪些代码必须人工 review？</li>\n</ul>"
     },
     {
+      "id": "LLM-0039",
+      "type": "technical",
+      "question": "你做过哪些 ChatBI Agent 相关的工作",
+      "topic": [
+        "llm",
+        "agent",
+        "chatbi"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>ChatBI 链路：意图识别 -&gt; 指标口径解析 -&gt; RAG -&gt; SQL 生成 -&gt; 校验 -&gt; 执行 -&gt; 结果 -&gt; 评测。</p>\n<h2>30 秒回答</h2>\n<p>做问数 Agent 通常涉及：意图识别、指标字典/语义层、检索增强、SQL 生成与校验、权限、执行、评测。结合实际项目讲你负责的部分和效果。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PLATFORM-0001",
+      "type": "technical",
+      "question": "低代码平台是什么，你了不了解",
+      "topic": [
+        "platform",
+        "low-code"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "platform",
+      "body_html": "<h2>一句话</h2>\n<p>低代码平台通过可视化配置、拖拽和模板减少手写代码，快速搭建应用或任务。</p>\n<h2>30 秒回答</h2>\n<p>用可视化配置、组件拖拽、模板快速开发，降低门槛、提效；在数据领域用于数据集成、报表、任务编排。优点是快、门槛低；缺点是灵活性受限、复杂场景仍需代码。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>能力：可视化配置、拖拽、模板、编排</li>\n<li>数据场景：数据集成、报表、任务编排</li>\n<li>优点：提效、降低门槛、标准化</li>\n<li>缺点：灵活性、复杂逻辑、扩展性受限</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>低代码平台适合什么场景？</li>\n<li>复杂需求低代码搞不定怎么办？</li>\n</ul>"
+    },
+    {
+      "id": "PLATFORM-0002",
+      "type": "technical",
+      "question": "如果让你设计一个低代码平台，你会怎么设计",
+      "topic": [
+        "platform",
+        "low-code",
+        "design"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "platform",
+      "body_html": "<h2>一句话</h2>\n<p>低代码平台核心是「元数据驱动 + 组件化 + 可视化配置 + 编排执行 + 可观测」。</p>\n<h2>30 秒回答</h2>\n<p>分层设计：配置层（可视化界面）、元数据层（组件/任务定义）、执行层（解析配置、调度执行）、监控层（状态、日志、告警）；组件化和模板复用。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>元数据驱动：一切配置存元数据，前端渲染</li>\n<li>组件化：算子/节点可复用、可组合</li>\n<li>可视化：拖拽编排、表单配置</li>\n<li>执行：解析元数据生成任务、调度执行</li>\n<li>可观测：日志、状态、告警、血缘</li>\n<li>权限与版本管理</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>元数据怎么设计才灵活？</li>\n<li>低代码平台和普通调度系统区别？</li>\n</ul>"
+    },
+    {
+      "id": "SYSTEM-0001",
+      "type": "technical",
+      "question": "应用突然 CPU 利用率飙升，怎么定位和处理",
+      "topic": [
+        "system",
+        "cpu",
+        "diagnose"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "system",
+      "body_html": "<h2>一句话</h2>\n<p>先定位进程和线程，再判断是流量、热点代码、GC、死循环还是锁竞争。</p>\n<h2>30 秒回答</h2>\n<p>用 top/监控定位高 CPU 进程和线程，看用户态/系统态/IO wait 占比，结合 jstack/火焰图定位热点代码；按流量突增、死循环、GC、锁竞争分类，再限流/扩容/优化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：top、监控、进程/线程</li>\n<li>分类：用户态（热点代码）、系统态（IO/系统调用）、GC</li>\n<li>工具：jstack、火焰图、GC 日志</li>\n<li>处理：限流、扩容、优化热点、修死循环/锁</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>用户态和系统态高分别说明什么？</li>\n<li>火焰图怎么看？</li>\n</ul>"
+    },
+    {
       "id": "WAREHOUSE-0001",
       "type": "technical",
       "question": "谈谈你对数据分析和数据开发的理解",
@@ -3673,6 +3865,50 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>团队规范覆盖分层、命名、口径、建模、代码、发布和质量，保证一致性和可维护。</p>\n<h2>30 秒回答</h2>\n<p>规范：分层、命名、指标口径、维度建模、SQL 代码、任务发布、数据质量。统一规范能保证一致、可维护、可治理，减少重复和口径混乱。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分层/命名规范</li>\n<li>指标口径规范</li>\n<li>建模规范（事实/维度/星型）</li>\n<li>代码规范（SQL 风格、注释）</li>\n<li>发布与质量规范</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>规范怎么落地执行？</li>\n<li>规范太死板怎么办？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0051",
+      "type": "technical",
+      "question": "讲一下你处理数据的流程",
+      "topic": [
+        "warehouse",
+        "data-process"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>数据流程是从采集、分层加工到交付应用、质量监控的完整链路。</p>\n<h2>30 秒回答</h2>\n<p>数据源接入 -&gt; ODS 贴源 -&gt; DWD 清洗 -&gt; DWS 汇总 -&gt; ADS 应用，配合调度、质量校验和血缘，最终交付报表/应用。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>采集：数据源接入、同步/入湖</li>\n<li>加工：ODS/DWD/DWS/ADS 分层</li>\n<li>调度：任务编排、定时</li>\n<li>质量：校验、对账、监控</li>\n<li>交付：报表、应用、接口</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你流程里哪一步最容易出问题？</li>\n<li>实时和离线流程怎么衔接？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0052",
+      "type": "technical",
+      "question": "新需求过来，你的开发流程是怎么样的",
+      "topic": [
+        "warehouse",
+        "development-process"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>需求评审 -&gt; 口径定义 -&gt; 设计 -&gt; 开发 -&gt; 对账 -&gt; 评审 -&gt; 上线 -&gt; 监控。</p>\n<h2>30 秒回答</h2>\n<p>先做需求评审和口径澄清，再定指标、粒度、分层和建模方案，开发后自测/对账，评审通过后上线并监控。</p>\n<h2>1 分钟回答</h2>\n<ol>\n<li>需求评审：口径、维度、粒度、周期</li>\n<li>设计：分层、建模、复用评估</li>\n<li>开发：SQL/ETL、调度</li>\n<li>对账：新旧口径、跨层校验</li>\n<li>评审 + 上线 + 监控</li>\n</ol>\n<h2>追问</h2>\n<ul>\n<li>需求不清晰怎么推进？</li>\n<li>怎么评估是否复用已有表？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -3877,6 +4113,50 @@ window.OS_DATA = {
       ],
       "domain": "sql",
       "body_html": "<h2>思路</h2>\n<p>按「品类 + 视频」聚合举报数，再用 ROW_NUMBER 在每个品类内按举报数排序取前 5。</p>\n<h2>代码</h2>\n<pre><code class=\"language-sql\">SELECT category_id, video_id, report_cnt\nFROM (\n  SELECT category_id, video_id, report_cnt,\n         ROW_NUMBER() OVER (PARTITION BY category_id ORDER BY report_cnt DESC) AS rn\n  FROM (\n    SELECT category_id, video_id, COUNT(*) AS report_cnt\n    FROM report_log\n    GROUP BY category_id, video_id\n  ) t\n) s\nWHERE rn &lt;= 5;</code></pre>\n<h2>百亿级数据量的问题</h2>\n<ul>\n<li>group by 的 key 分布不均，热点品类/视频会数据倾斜</li>\n<li>count + 窗口排序都涉及 shuffle，数据量大时长尾</li>\n<li>优化：热点 key 加盐两阶段聚合、分区裁剪、预聚合、必要时拆热点单独处理</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>百亿级下怎么处理数据倾斜？</li>\n<li>并列第 5 名要不要保留？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0010",
+      "type": "technical",
+      "question": "你的数据查询优化是怎么做的",
+      "topic": [
+        "sql",
+        "query-optimization"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>查询优化分建模、SQL、执行三层：建表优化 + 语句改写 + 执行定位。</p>\n<h2>30 秒回答</h2>\n<p>建模层用分区/分桶/排序键/物化视图/索引；SQL 层做谓词下推、列裁剪、join 优化、避免 select *；执行层用 Profile/执行计划定位慢算子，调并行度和资源。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>建模：分区裁剪、分桶均匀、排序键、物化视图、Bitmap/Bloom Filter</li>\n<li>SQL：谓词下推、列裁剪、join 重排序、减少 count(distinct)</li>\n<li>执行：Profile 找慢算子、并行度、缓存</li>\n<li>验证：耗时、扫描行数、shuffle 对比</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你实际优化过最明显的案例？</li>\n<li>物化视图怎么加速？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0011",
+      "type": "technical",
+      "question": "你是怎么定位慢 SQL 的",
+      "topic": [
+        "sql",
+        "slow-query"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>用执行计划/Profile 看耗时、扫描行数、shuffle 和慢算子，定位瓶颈再优化。</p>\n<h2>30 秒回答</h2>\n<p>看执行计划（EXPLAIN）和 Profile，找耗时、扫描数据量大的算子，判断是全表扫描、shuffle、join 还是倾斜，再针对性优化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>执行计划：看是否走索引/分区裁剪、join 策略</li>\n<li>Profile：看每个算子耗时、扫描行数、shuffle 量</li>\n<li>定位：全表扫描、慢 join、数据倾斜、低效子查询</li>\n<li>优化：加索引/物化视图、改写、调参</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>执行计划里最关注哪几个指标？</li>\n<li>全表扫描怎么优化？</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -5470,6 +5750,74 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>问面试轮次、团队规模、岗位职责、技术栈，展示认真态度。</p>\n<h2>注意</h2>\n<p>结合面试内容问，别只问薪资福利。</p>"
+    },
+    {
+      "id": "PROJECT-0070",
+      "type": "project",
+      "question": "请做个自我介绍",
+      "topic": [
+        "project",
+        "self-introduction"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>背景、重点经历、技术栈、匹配点，突出数仓/StarRocks/平台能力。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0071",
+      "type": "project",
+      "question": "你的项目的架构是什么",
+      "topic": [
+        "project",
+        "architecture"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>按数据链路讲：数据源、采集、计算、存储、应用，标出技术组件和你负责的部分。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0072",
+      "type": "project",
+      "question": "你有什么想问的（反问）",
+      "topic": [
+        "project",
+        "reverse-question"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>问岗位职责、团队规模、技术栈、业务方向，展示认真态度。</p>\n<h2>注意</h2>\n<p>结合面试内容问，别只问薪资福利。</p>"
     }
   ],
   "interviews": [
@@ -5508,6 +5856,15 @@ window.OS_DATA = {
       "date": "2026-09-25",
       "round": "三轮技术 + HR",
       "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>3 年传统数开转 AI 数据。三轮技术面 + HR，传统数仓八股占比不到 30%，其余是 LLM/Agent/RAG。</blockquote>\n<h3>一面（传统数仓 + AI 工具）</h3>\n<ol>\n<li>日常用哪些 AI 编程工具；IDE Agent（Vibe Coding）和自己写 Agent 的区别（追问：单一 skill 文档能否替代引擎的编排、分析、执行、质检全工作流）</li>\n<li>数仓的宽窄依赖怎么划，哪些算子产生宽依赖</li>\n<li>如果用 AI 改造报表校验流程，从哪里入手（面试官提到快手 CodeFlicker 代码生成率超 50%）</li>\n<li>手撕 SQL：每个被举报视频品类中举报数量最高的 5 个视频（追问：百亿级数据量写法有什么问题）</li>\n</ol>\n<h3>二面（Agent 框架深挖）</h3>\n<ol>\n<li>LLM 和 Agent 的联系和区别</li>\n<li>了解 ReAct Agent 吗，执行流程是怎样的（追问：设计一个 Agent 框架分哪些模块、怎么交互）</li>\n<li>MCP 和 tool use 有什么区别</li>\n<li>智能问答知识库短期记忆和长期记忆怎么做，三层记忆系统每层存什么</li>\n<li>了解 skill 的「渐进式加载」机制吗</li>\n<li>算法题：搜索旋转排序数组（二分查找）</li>\n</ol>\n<h3>三面（业务方案 + AI 数据）</h3>\n<ol>\n<li>可灵 AI 多模态数据生产，怎么用 AI 做数据质量校验</li>\n<li>如何设计一个 Text2SQL 评测体系，怎么衡量好坏</li>\n<li>从传统数开转 AI 数据，最大的 gap 是什么</li>\n</ol>\n<h3>HR 面</h3>\n<ol>\n<li>为什么想转 AI 方向</li>\n<li>期望薪资</li>\n<li>目前有没有其他 offer</li>\n<li>你是 AI 数据开发的「早期用户」还是「真正的建设者」</li>\n</ol>\n<blockquote>复盘关键词：Agent 是工程体系不是调 API；考上下文管理、RAG 召回、模型缓存、输出稳定性；传统数开要换「概率思维」+评测兜底可观测。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+      "company": "迅雷",
+      "business": "数据开发",
+      "position": "资深数据开发（一面）",
+      "date": "2026-09-25",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>两个面试官一起面，近 50 分钟，一个偏数据、一个偏系统，循序渐进。</blockquote>\n<ol>\n<li>自我介绍</li>\n<li>介绍你的数据查询优化是怎么做的</li>\n<li>讲一下你处理数据的流程</li>\n<li>你的项目的架构</li>\n<li>如果一个新的需求过来，你的开发流程是怎么样的</li>\n<li>你是怎么定位慢 SQL 的</li>\n<li>StarRocks 是怎么做分区分桶排序键的</li>\n<li>条件查询的维度字段没有在分区分桶里、也查不出，你会怎么做</li>\n<li>了不了解低代码平台</li>\n<li>如果让你设计一个低代码平台，你会怎么设计</li>\n<li>有没有碰到过 Spark 数据倾斜，讲一下怎么处理</li>\n<li>Spark UI 有一个节点处理数据性能慢很多，怎么排查</li>\n<li>应用突然 CPU 利用率飙升，怎么定位和处理</li>\n<li>讲一下你做过哪些 ChatBI Agent 相关的工作</li>\n<li>反问</li>\n</ol>\n<blockquote>备注：迅雷资深数据开发社招一面。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-09-24-meituan-data-dev",
