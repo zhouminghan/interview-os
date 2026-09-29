@@ -1,17 +1,17 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T12:11:25+08:00",
+  "generatedAt": "2026-09-29T12:13:28+08:00",
   "stats": {
-    "questions": 471,
+    "questions": 474,
     "interviews": 65,
-    "technical": 368,
-    "project": 103,
+    "technical": 370,
+    "project": 104,
     "domains": {
       "spark": 45,
       "hdfs": 4,
       "storage": 24,
       "lakehouse": 7,
       "starrocks": 15,
-      "flink": 21,
+      "flink": 22,
       "network": 4,
       "algorithm": 9,
       "statistics": 1,
@@ -20,8 +20,8 @@ window.OS_DATA = {
       "platform": 2,
       "system": 7,
       "warehouse": 107,
-      "sql": 28,
-      "project": 103
+      "sql": 29,
+      "project": 104
     }
   },
   "domains": {
@@ -2491,6 +2491,20 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "flink",
       "body_html": "<h2>一句话</h2>\n<p>Kafka 200 题大纲，四块：基础概念、基础设计、性能优化、集群运维。</p>\n<h2>30 秒回答</h2>\n<p>基础（1-40）：Topic/Partition/Consumer Group、ISR、顺序性、Rebalance、幂等/Exactly-Once、压缩、日志清理、偏移提交；设计（1-30）：分区/副本、Leader 选举、MirrorMaker、SSL/SASL/ACL；优化（1-30）：批量异步压缩、零拷贝、GC、序列化；运维（1-99，实际约 15 话题）：监控/备份/扩缩容/安全/故障。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：Topic/Partition/Consumer Group、ISR、顺序保证与破坏、Rebalance、幂等生产者、Exactly Once、压缩算法、日志清理、offset 提交、拦截器</li>\n<li>设计：分区数/副本因子、Leader 选举、跨机房 MirrorMaker、SSL/TLS+SASL+ACL、JMX/Prometheus、持久化、备份恢复、扩缩容</li>\n<li>优化：批量+异步+压缩、顺序写/零拷贝/页缓存、堆外内存、GC、序列化（Avro/Protobuf）、线程池并发</li>\n<li>运维：监控告警、备份恢复、扩缩容重分配、安全管理、故障诊断、版本升级、灾备</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>ISR 机制是什么？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0023",
+      "type": "technical",
+      "question": "Flink 的 join 类型（regular / interval / window / lookup）",
+      "topic": [
+        "flink",
+        "join"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>四种：Regular Join（双流状态连接）、Interval Join（时间区间）、Window Join（窗口内）、Lookup Join（维表实时查询）。</p>\n<h2>30 秒回答</h2>\n<p>Regular Join 双流都建状态、可无限增长；Interval Join 按时间区间关联；Window Join 在滚动/滑动窗口内关联；Lookup Join 事实流去查外部维表（HBase/Redis/MySQL），解决维表变更和维度补全。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Regular Join：双流 join，都需状态，要设 TTL 防状态膨胀</li>\n<li>Interval Join：<code>A.t between B.t - x and B.t + y</code>，限时间区间</li>\n<li>Window Join：在窗口范围内 join，窗口结束才出结果</li>\n<li>Lookup Join：事实流 join 外部维表，按 key 实时查询，适合维表变更频繁场景</li>\n<li>盲区提示：只答 window/interval 漏了 lookup join，是常见扣分点</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Lookup Join 和 Regular Join 的适用场景怎么分？</li>\n</ul>"
     },
     {
       "id": "NETWORK-0001",
@@ -7595,6 +7609,21 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>数据量极大且可接受少量误差时，用 <code>approx_count_distinct</code>（基于 HyperLogLog）做近似去重，内存和时间远低于精确 count(distinct)。</p>\n<h2>30 秒回答</h2>\n<p>精确 count(distinct) 要维护完整去重集合，大基数时内存大、单 reduce 慢；<code>approx_count_distinct(col, rsd)</code> 用 HyperLogLog 以 O(1) 近似空间估基数，误差可控（如 rsd=0.01 约 1% 误差）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>精确：维护集合，内存随基数线性增长，易倾斜</li>\n<li>近似：HyperLogLog 概率结构，空间小、可并行</li>\n<li>参数 rsd：控制相对标准差，越小越准但越慢</li>\n<li>适用：UV 大盘、基数估算等可容忍误差的场景</li>\n<li>不适用：对账、金融等要求精确的场景</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>rsd 参数怎么选？</li>\n<li>什么场景不能用近似去重？</li>\n</ul>"
     },
     {
+      "id": "SQL-0029",
+      "type": "technical",
+      "question": "JSON 数组字段怎么解析（from_json / explode / transform）",
+      "topic": [
+        "sql",
+        "json",
+        "spark"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>用 <code>from_json</code> 把 JSON 字符串按 schema 转结构体，<code>explode</code> 展开数组，<code>transform</code> 处理数组内元素，单引号 JSON 先 replace 成双引号。</p>\n<h2>30 秒回答</h2>\n<p>字段里塞整个 JSON 时：先定义 schema，<code>from_json(col, schema)</code> 转 struct，再 <code>explode</code> 展开 array，最后 <code>select</code> 提取字段。Hive 不支持 from_json 的场景用 get_json_object + LATERAL VIEW explode；单引号 JSON 先 <code>regexp_replace</code> 成双引号。</p>\n<h2>1 分钟回答</h2>\n<pre><code class=\"language-sql\">SELECT id, name, type\nFROM (\n  SELECT explode(transform(\n    from_json(v5, &#x27;array&lt;struct&lt;id:bigint,name:string,type:array&lt;string&gt;&gt;&gt;&#x27;),\n    x -&gt; x\n  )) AS e\n) t;</code></pre>\n<ul>\n<li>from_json：字符串按 schema 解析成 struct/array</li>\n<li>explode：把数组一行拆多行</li>\n<li>transform：数组内元素做变换</li>\n<li>单引号 JSON：先 replace 成双引号再解析</li>\n<li>平台不支持 from_json：用 get_json_object 逐字段取</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>from_json 和 get_json_object 区别？</li>\n</ul>"
+    },
+    {
       "id": "PROJECT-0001",
       "type": "project",
       "question": "你实习搭建的看板有哪些指标",
@@ -9807,6 +9836,20 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "project",
       "body_html": "<h2>一句话</h2>\n<p>AI 时代面试变化：AI 写简历堆术语已失效、前端转全栈、LangGraph/RAG/向量成标配、要能聊业务+开发+维护+运维的多面手。</p>\n<h2>要点</h2>\n<ul>\n<li>AI 写简历已失效：面试官也会用 AI，一眼识破</li>\n<li>前端大量转全栈，纯前端岗位收缩</li>\n<li>LangGraph/RAG/向量已成标配，Loop Engineering 和多 Agent 协作成标准需求</li>\n<li>未来要能聊业务+开发+维护+运维的多面手</li>\n<li>尖锐观点：RAG 在多数场景无用，结构化文件组织 + grep 更有效，简历写 RAG 可能暴露基础不牢</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0105",
+      "type": "project",
+      "question": "面试复盘的通用教训（货拉拉/企知道/Shein 复盘）",
+      "topic": [
+        "project",
+        "review"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>复盘通用教训：技术细节要严谨（Spark/Flink 机制别讲错）、表达要简洁量化（别绕、给数字）、经历要有可验证闭环（基线/动作/结果/边界）。</p>\n<h2>要点</h2>\n<ul>\n<li>技术正确性：方向对但机制表述不严谨（Barrier/两阶段提交/加盐）会放大「高级岗」风险</li>\n<li>表达：被要求「一句话」还展开、先讲通用套路再讲案例、薪资被追问不给数，都难让面试官快速识别上限</li>\n<li>证据闭环：项目要有基线、个人动作、结果指标、故障边界，别用「应该/好像/反正」</li>\n<li>JD 匹配：必备项（实时/OLAP 引擎/语言）缺证据要主动补</li>\n<li>外部因素：竞争/HC/职级/外包偏好无法验证，复盘别过度归因</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么「方向对但细节不稳」比「不会」更危险？</li>\n</ul>"
     }
   ],
   "interviews": [
