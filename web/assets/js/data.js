@@ -1,14 +1,14 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:29:17+08:00",
+  "generatedAt": "2026-09-29T11:32:46+08:00",
   "stats": {
-    "questions": 397,
-    "interviews": 46,
-    "technical": 312,
+    "questions": 415,
+    "interviews": 50,
+    "technical": 330,
     "project": 85,
     "domains": {
-      "spark": 41,
-      "hdfs": 3,
-      "storage": 17,
+      "spark": 42,
+      "hdfs": 4,
+      "storage": 18,
       "lakehouse": 7,
       "starrocks": 11,
       "flink": 16,
@@ -16,11 +16,11 @@ window.OS_DATA = {
       "algorithm": 8,
       "statistics": 1,
       "ml": 5,
-      "llm": 74,
+      "llm": 83,
       "platform": 2,
       "system": 6,
-      "warehouse": 94,
-      "sql": 23,
+      "warehouse": 96,
+      "sql": 27,
       "project": 85
     }
   },
@@ -980,6 +980,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>以宽依赖（Shuffle Dependency）为界：DAGScheduler 从最终 RDD 往前回溯，每遇到一个宽依赖切一刀。</p>\n<h2>30 秒回答</h2>\n<p>Driver 把 SQL/RDD 解析成逻辑计划，DAGScheduler 从最终 RDD 往前回溯，遇到宽依赖（shuffle）就分成前后两个 Stage。最后一个 Stage 是 ResultStage，前面是 ShuffleMapStage。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>切分依据：宽依赖是全局 barrier，必须等所有上游 map task 跑完才能拉取，无法 pipeline</li>\n<li>窄依赖（map/filter）一对一，可 pipeline 在同一 Stage 连续执行</li>\n<li>最后一个 Stage 是 ResultStage，前面都是 ShuffleMapStage</li>\n<li>例：<code>t1 JOIN t2 GROUP BY</code> 至少 3 个 Stage（t1 map、t2 map、join+group result），小表广播则只 2 个</li>\n<li>实操：Spark UI 里几个 GROUP BY/JOIN 大概对应几个 Stage</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么窄依赖可以在一个 Stage 内 pipeline？</li>\n<li>小表广播为什么能减少 Stage 数？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0042",
+      "type": "technical",
+      "question": "Spark 分区器有哪些",
+      "topic": [
+        "spark",
+        "partitioner"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-03-10-bytedance-data-intern-1",
+          "company": "字节跳动",
+          "position": "数据开发（实习，一面）",
+          "date": "2026-03-10"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>主要有 HashPartitioner（按 key 哈希）和 RangePartitioner（按 key 范围），也可自定义。</p>\n<h2>30 秒回答</h2>\n<p>HashPartitioner 用 key.hashCode 取模分到各分区；RangePartitioner 先采样确定边界，再按 key 范围分区，保证全局有序。sortByKey 用 Range，reduceByKey/groupByKey 用 Hash。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>HashPartitioner：默认，hash 取模，key 相同同分区，但易热点倾斜</li>\n<li>RangePartitioner：采样定边界，数据按范围分布，配合排序</li>\n<li>自定义 Partitioner：按业务 key 控制分区，常用于减少倾斜、数据局部性</li>\n<li>触发场景：宽依赖算子（reduceByKey/groupByKey/join）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>HashPartitioner 为什么会倾斜？</li>\n<li>什么时候需要自定义分区器？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -1046,6 +1068,28 @@ window.OS_DATA = {
       ],
       "domain": "hdfs",
       "body_html": "<h2>一句话</h2>\n<p>MapReduce 是「Map + Reduce」两阶段计算模型；因为中间结果全落盘、多作业靠 HDFS 串数据（带副本），慢且 IO 重，逐步被 Spark 的内存计算 + DAG 取代。</p>\n<h2>30 秒回答</h2>\n<p>Map 做映射、Shuffle 分区、Reduce 做聚合。慢的原因：map 输出落盘、shuffle 落盘、reduce 输出写 HDFS，多个 MR 之间通过 HDFS 传递且带副本。Spark 用内存计算 + DAG pipeline 少落盘，所以快一个量级。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>编程模型：Map（映射/过滤）+ Reduce（聚合），中间靠 Shuffle 按 key 分组</li>\n<li>为什么慢：中间结果全落磁盘，复杂作业拆多个 MR，数据通过 HDFS 传递还带 3 副本</li>\n<li>Spark 替代点：内存计算、DAG 同 Stage 内 pipeline、算子丰富（不止 Map+Reduce）</li>\n<li>价值：MR 的「分而治之 + Shuffle」思想是 Spark/Flink 的基础</li>\n<li>现在：Hive on Spark，Hive 做解析元数据，Spark 做实际执行</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>MR 的 Shuffle 和 Spark 的 Shuffle 核心区别？</li>\n<li>MR 还有哪些场景在用？</li>\n</ul>"
+    },
+    {
+      "id": "HDFS-0004",
+      "type": "technical",
+      "question": "ZooKeeper 的高可用原理",
+      "topic": [
+        "hdfs",
+        "zookeeper"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-03-10-bytedance-data-intern-1",
+          "company": "字节跳动",
+          "position": "数据开发（实习，一面）",
+          "date": "2026-03-10"
+        }
+      ],
+      "domain": "hdfs",
+      "body_html": "<h2>一句话</h2>\n<p>ZooKeeper 靠「过半存活 + Zab 协议 + Leader 选举」保证高可用，集群半数以上节点存活即可对外服务。</p>\n<h2>30 秒回答</h2>\n<p>Leader 负责写、Follower 读并参与选举，写请求半数以上节点确认才算提交；Leader 挂了自动重新选举。HDFS NameNode HA 用 ZK 做主备切换 + 故障转移。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>过半机制：集群 2n+1 台，容忍 n 台故障</li>\n<li>Zab 协议：原子广播保证写顺序一致</li>\n<li>选举：Leader 挂掉触发新一轮选举，新 Leader 选出后继续服务</li>\n<li>应用：NameNode HA、Kafka 元数据、分布式锁</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>ZooKeeper 怎么避免脑裂？</li>\n<li>为什么 ZK 节点数要是奇数？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0001",
@@ -1397,6 +1441,29 @@ window.OS_DATA = {
       ],
       "domain": "storage",
       "body_html": "<h2>一句话</h2>\n<p>Hive 本质是把 SQL 翻译成执行计划丢给引擎（MR/Spark/Tez）跑；优化分 SQL 写法、表设计、倾斜处理、小文件四层。</p>\n<h2>30 秒回答</h2>\n<p>优化四层：SQL 写法（谓词下推、先过滤再 join、避免 select *）；表设计（分区分桶、ORC 列存）；数据倾斜（热点 key 加盐、小表 MapJoin）；小文件合并（调整 reduce 数避免碎片化）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>架构：Hive 是 SQL-on-Hadoop 引擎，SQL → 逻辑计划 → 物理计划 → 执行引擎</li>\n<li>SQL 写法：谓词下推、提前过滤、列裁剪</li>\n<li>表设计：分区裁剪省 IO、ORC 列存 + 压缩</li>\n<li>倾斜：热点 key 加盐打散、小表走 MapJoin</li>\n<li>小文件：控制 reduce 数、定期 INSERT OVERWRITE 重组</li>\n<li>落地到具体场景：按 dt + 一级品类双分区裁剪高频过滤，爆款笔记 join 行为表提前识别热点 key 打散</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>谓词下推是什么意思？</li>\n<li>小文件为什么会拖慢任务？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0019",
+      "type": "technical",
+      "question": "MySQL 表连接的底层实现方式",
+      "topic": [
+        "storage",
+        "mysql",
+        "join"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-20-meituan-data-dev1",
+          "company": "美团",
+          "position": "数据开发（社招，一面）",
+          "date": "2026-05-20"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>三种：Nested Loop Join（嵌套循环）、Hash Join（哈希）、Index Join（走索引定位），取决于是否有索引和等值条件。</p>\n<h2>30 秒回答</h2>\n<p>Nested Loop 外层逐行扫驱动表、内层找匹配，适合小表驱动大表；Hash Join 用等值连接 key 建哈希表，适合无索引等值连接；Index Join 用被驱动表索引快速定位，适合驱动表小 + 被驱动表有索引。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Nested Loop Join：双层循环，驱动表越小越好，配合索引快</li>\n<li>Hash Join：等值连接建哈希表，适合大表、无合适索引</li>\n<li>Index Join：被驱动表用索引回表，避免全表扫描</li>\n<li>驱动表选择：结果集小、过滤后行数少的表做驱动表</li>\n<li>等值 vs 非等值：非等值只能用 Nested Loop 类</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么小表驱动大表快？</li>\n<li>等值连接优化器怎么选 Join 算法？</li>\n</ul>"
     },
     {
       "id": "LAKEHOUSE-0001",
@@ -3947,6 +4014,207 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>提高通用性靠 Skill 模块化、意图识别清晰、上下文按需加载、工具抽象统一、以及评测反馈闭环迭代。</p>\n<h2>30 秒回答</h2>\n<p>把能力拆成可组合的 Skill，意图识别准了才匹配对；上下文按需加载别全塞；工具抽象成统一 MCP 接口；用评测集持续测，bad case 回流改进，让 Agent 从「单场景定制」走向「多场景复用」。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Skill 模块化：一个 Skill 一个场景，组合复用</li>\n<li>意图识别：关键词 + 语义，决定匹配哪个 Skill</li>\n<li>上下文按需加载：减少无关上下文，降低幻觉</li>\n<li>工具抽象：统一 MCP 接口，工具可插拔</li>\n<li>评测闭环：准确率/成功率指标 + bad case 分类回流</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>通用性和专用性怎么权衡？</li>\n<li>意图识别错了怎么办？</li>\n</ul>"
     },
     {
+      "id": "LLM-0084",
+      "type": "technical",
+      "question": "Prompt engineering 的核心目标，为什么换个说法效果差很多",
+      "topic": [
+        "llm",
+        "prompt"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-31-jianying-agent",
+          "company": "字节跳动",
+          "position": "Agent 开发（4 轮）",
+          "date": "2026-05-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>核心目标是让模型稳定、准确地按预期输出；模型对措辞、顺序、示例高度敏感，所以换说法会显著改变输出质量。</p>\n<h2>30 秒回答</h2>\n<p>模型是「根据上下文概率生成」，不同措辞会激活不同的上下文路径。Prompt 工程就是把能稳定产出好结果的措辞、角色设定、示例、约束固化成可复用的模板，降低随机性。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>目标：稳定、准确、可控地引导模型输出</li>\n<li>为什么敏感：生成是概率过程，措辞/顺序/示例都会改变条件概率</li>\n<li>手段：明确角色、给约束、给示例、拆步骤、指定输出格式</li>\n<li>工程化：把好 Prompt 沉淀成 Skill/模板，减少逐次波动</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么让 Prompt 输出更稳定？</li>\n<li>Prompt 敏感和模型随机性是一回事吗？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0085",
+      "type": "technical",
+      "question": "System prompt 和 few-shot 分别解决什么问题",
+      "topic": [
+        "llm",
+        "prompt"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-31-jianying-agent",
+          "company": "字节跳动",
+          "position": "Agent 开发（4 轮）",
+          "date": "2026-05-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>System prompt 定角色、规则和边界（是谁、做什么、不做什么）；few-shot 给示例让模型学会格式和风格。</p>\n<h2>30 秒回答</h2>\n<p>System prompt 用最高优先级设定身份、约束、输出要求，全程生效；few-shot 给几个输入→输出示例，让模型模仿格式和风格，解决「零样本不知道怎么写」的问题。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>System prompt：角色设定、安全边界、输出规范，优先级最高</li>\n<li>few-shot：示例驱动，明确期望格式和风格，适合结构化/分类任务</li>\n<li>搭配：System 定框架，few-shot 定样式，两者互补</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>System prompt 和 user prompt 优先级谁高？</li>\n<li>few-shot 太多会有什么问题？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0086",
+      "type": "technical",
+      "question": "Token 上下文窗口和上下文腐化",
+      "topic": [
+        "llm",
+        "context"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-31-jianying-agent",
+          "company": "字节跳动",
+          "position": "Agent 开发（4 轮）",
+          "date": "2026-05-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>上下文窗口是模型一次能处理的 token 上限；上下文腐化是长上下文中无关/噪声信息累积，导致模型忽略关键内容、输出退化。</p>\n<h2>30 秒回答</h2>\n<p>窗口限制能塞多少内容；腐化是塞得越长，模型越容易「迷失」在中间，抓不住重点。解决靠按需检索、摘要压缩、分层记忆，只把关键信息放进窗口。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>上下文窗口：token 上限，超了要截断/压缩</li>\n<li>上下文腐化：长上下文中模型对中间信息注意力衰减、噪声干扰</li>\n<li>影响：丢关键事实、前后矛盾、幻觉</li>\n<li>缓解：只放相关内容、摘要压缩历史、分层记忆、关键信息靠前</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么长上下文中间信息容易被忽略？</li>\n<li>怎么在有限窗口放关键内容？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0087",
+      "type": "technical",
+      "question": "structured output 是什么，怎么控制模型输出",
+      "topic": [
+        "llm",
+        "output"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-31-jianying-agent",
+          "company": "字节跳动",
+          "position": "Agent 开发（4 轮）",
+          "date": "2026-05-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>structured output 是让模型按固定 schema（如 JSON）输出，便于程序解析；靠 JSON mode、function calling、约束解码控制。</p>\n<h2>30 秒回答</h2>\n<p>在 prompt 里给 JSON 模板 + 字段说明，或用 JSON mode / function calling 强制模型按 schema 输出，再加约束解码从 token 层面保证格式合法，最后做校验兜底。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定义：固定 schema 的结构化输出（JSON/XML）</li>\n<li>控制手段：prompt 给模板、JSON mode、function calling 传参、约束解码</li>\n<li>好处：程序可解析、下游稳定、减少二次解析错误</li>\n<li>兜底：输出后 schema 校验，失败重试</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>约束解码和 prompt 约束的区别？</li>\n<li>structured output 失败怎么兜底？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0088",
+      "type": "technical",
+      "question": "Function calling 和 RAG 的区别",
+      "topic": [
+        "llm",
+        "tool",
+        "rag"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-31-jianying-agent",
+          "company": "字节跳动",
+          "position": "Agent 开发（4 轮）",
+          "date": "2026-05-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>function calling 是让模型决定「调哪个工具 + 传什么参数」去执行动作；RAG 是检索外部知识补进上下文再回答。</p>\n<h2>30 秒回答</h2>\n<p>function calling 解决「要做事」：模型输出结构化调用意图，程序执行工具并回传结果。RAG 解决「要知道」：先检索相关文档，把知识塞进上下文再生成。两者可组合：先 RAG 找信息，再 function calling 执行。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>function calling：模型识别意图 → 输出工具名 + 参数 → 程序执行 → 结果回传</li>\n<li>RAG：query 向量化 → 检索 → 拼上下文 → 生成</li>\n<li>选型：需要查知识/事实用 RAG，需要调系统/查库/执行动作用 function calling</li>\n<li>组合：Agent 常用 RAG 补知识 + function calling 调工具</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>什么时候用 function calling 不用 RAG？</li>\n<li>两者在 Agent 里怎么配合？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0089",
+      "type": "technical",
+      "question": "多 Agent 架构的通信协作和异常处理",
+      "topic": [
+        "llm",
+        "multi-agent"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-31-jianying-agent",
+          "company": "字节跳动",
+          "position": "Agent 开发（4 轮）",
+          "date": "2026-05-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>主 Agent 拆解任务、编排子 Agent、汇总结果；子 Agent 负责专项；通信靠结构化消息，异常靠超时、重试、降级和人工兜底。</p>\n<h2>30 秒回答</h2>\n<p>主 Agent 做规划/分发/汇总，子 Agent 做执行，之间用结构化消息传递上下文和结果。异常处理：超时重试、失败降级到备用方案、结果校验、关键步骤人工确认。混合路由按任务难度分派不同模型，限流器控并发防过载。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>主从分工：主 Agent 规划编排，子 Agent 专项执行</li>\n<li>通信：结构化消息，明确输入输出 schema</li>\n<li>异常：超时、重试、降级、校验、人工兜底</li>\n<li>混合路由：简单任务用小模型，复杂任务用大模型，省成本</li>\n<li>限流：控制并发，防多 Agent 把外部 API/资源打爆</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>主 Agent 和子 Agent 上下文怎么传递？</li>\n<li>混合路由怎么判断任务难度？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0090",
+      "type": "technical",
+      "question": "Agent 上下文膨胀怎么解决，工具调用幻觉怎么办",
+      "topic": [
+        "llm",
+        "context",
+        "hallucination"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-31-jianying-agent",
+          "company": "字节跳动",
+          "position": "Agent 开发（4 轮）",
+          "date": "2026-05-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>上下文膨胀靠摘要压缩、分层记忆、按需检索裁剪；工具调用幻觉靠清晰工具描述、限制可调工具、结果校验和失败重试。</p>\n<h2>30 秒回答</h2>\n<p>上下文：历史对话做摘要压缩、短期/长期记忆分层、只把和当前任务相关的检索结果放进窗口。工具幻觉：工具描述写清楚参数和适用场景、只暴露必要工具、调用后校验结果是否合理，失败给错误反馈让模型纠正。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>上下文膨胀：摘要压缩、记忆分层、按需检索、裁剪无关 token</li>\n<li>工具幻觉：工具描述不清晰、可用工具过多、参数瞎编</li>\n<li>缓解：严格 schema、限制工具集、结果校验、错误回传重试</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>上下文压缩会丢关键信息吗？</li>\n<li>工具调用结果错误怎么让模型自我纠正？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0091",
+      "type": "technical",
+      "question": "微调和 RAG 的场景区别，SFT 和 RLHF",
+      "topic": [
+        "llm",
+        "finetune",
+        "rag"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-31-jianying-agent",
+          "company": "字节跳动",
+          "position": "Agent 开发（4 轮）",
+          "date": "2026-05-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>RAG 解决「知识注入 + 时效」，不改模型权重；微调改变模型行为/风格/领域能力。SFT 学格式和任务快，RLHF 对偏好、安全、对齐更稳。</p>\n<h2>30 秒回答</h2>\n<p>RAG 适合外部知识频繁更新、要可追溯；微调适合固定领域知识、特定输出风格。SFT 用标注数据监督学格式快、易迭代；RLHF 用人类偏好训练奖励模型对齐，更稳但成本高。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>RAG：知识外置、时效强、可溯源，不改权重</li>\n<li>微调：领域能力、风格固化，要训练数据和算力</li>\n<li>SFT：快速学格式/任务，标注成本可控</li>\n<li>RLHF：对齐偏好/安全，效果好但成本高、不稳定</li>\n<li>破局点：基模越来越强，SFT 重点在差异化格式，RLHF 在安全对齐和长尾偏好</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>RAG 和微调能一起用吗？</li>\n<li>SFT 和 RLHF 哪个更适合快速迭代？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0092",
+      "type": "technical",
+      "question": "工具调用的安全问题（Prompt 泄露、敏感信息）",
+      "topic": [
+        "llm",
+        "security"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-31-jianying-agent",
+          "company": "字节跳动",
+          "position": "Agent 开发（4 轮）",
+          "date": "2026-05-31"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>防 Prompt 泄露（不暴露 system prompt）、工具最小权限、输入输出过滤、敏感信息脱敏、全程审计。</p>\n<h2>30 秒回答</h2>\n<p>不把 system prompt 当秘密但也要防注入；工具只给最小权限；对工具输入输出做过滤和脱敏；敏感操作要人确认；记录审计日志。防「用工具提示词诱导模型泄露内部规则或执行越权操作」。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Prompt 泄露：不硬编码密钥，system prompt 做注入防护</li>\n<li>最小权限：每个工具只授必要权限，按用户隔离</li>\n<li>输入输出过滤：脱敏、拦截危险指令</li>\n<li>敏感操作：人工确认 + 审计</li>\n<li>数据安全：权限校验贯穿「查询到返回结果」全链路</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Prompt 注入和 Prompt 泄露有什么区别？</li>\n<li>权限校验在 Agent 链路里怎么贯穿？</li>\n</ul>"
+    },
+    {
       "id": "PLATFORM-0001",
       "type": "technical",
       "question": "低代码平台是什么，你了不了解",
@@ -5981,6 +6249,50 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>调度按 DAG 依赖触发，核心链路优先 + 凌晨错峰；按时产出靠关键路径倒排、熔断卡点、延迟告警和兜底重跑。</p>\n<h2>30 秒回答</h2>\n<p>调度：DAG 上游就绪才触发下游，核心链路优先级最高、凌晨先跑，非核心错峰。保证八点可用：关键路径倒排预留时间、核心表熔断（校验不过卡下游）、基线告警超时提醒、失败自动重试。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定时调度：DAG 依赖 + 优先级，核心凌晨 0 点开跑，非核心白天错峰</li>\n<li>SLA 保障：关键路径倒排、核心表熔断卡下游、基线告警、失败重试</li>\n<li>多上游（5 张表）协同：上游设统一产出窗口 + 依赖检查，超时告警定位是哪张表拖后腿</li>\n<li>目标：让「上游延迟」可定位，而不是等最终交付才发现</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>核心链路怎么倒排时间？</li>\n<li>上游延迟怎么快速定位是哪张表？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0098",
+      "type": "technical",
+      "question": "外卖场景如何设计离线数仓",
+      "topic": [
+        "warehouse",
+        "design"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-20-meituan-data-dev1",
+          "company": "美团",
+          "position": "数据开发（社招，一面）",
+          "date": "2026-05-20"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>按 ODS/DWD/DIM/DWS/ADS 分层，订单为主体，围绕订单、商户、用户、配送划分主题域。</p>\n<h2>30 秒回答</h2>\n<p>主体是订单：下单、支付、退款、配送各状态。DWD 做订单/商户/用户明细清洗，DIM 存商户/用户/地理维度，DWS 按订单、流量、配送做汇总，ADS 出报表（GMV、客单价、配送时效）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>主体：订单（累积快照事实表记录下单/接单/送达各节点时间）</li>\n<li>主题域：订单、商户、用户、配送、营销</li>\n<li>维度：商户、用户、城市/商圈、时间、品类</li>\n<li>DWS 汇总：订单量/GMV/客单价、配送时效、商圈热度</li>\n<li>典型需求：配送时效、商圈分析、用户复购，围绕这些设计宽表</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>外卖订单的累积快照表怎么设计？</li>\n<li>配送时效指标怎么算？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0099",
+      "type": "technical",
+      "question": "用户画像怎么构建",
+      "topic": [
+        "warehouse",
+        "user-profile"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-20-meituan-data-dev1",
+          "company": "美团",
+          "position": "数据开发（社招，一面）",
+          "date": "2026-05-20"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>从基础属性、行为、偏好三层构建标签，分事实标签（可统计）和规则/模型标签（需计算），增量合并更新。</p>\n<h2>30 秒回答</h2>\n<p>基础属性（人口统计）→ 行为标签（近 N 天行为聚合，如消费频次/客单价）→ 偏好标签（品类/价格偏好）。事实标签直接统计，规则标签按阈值，模型标签靠预测。画像表按天增量合并。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>三层：基础属性 + 行为标签 + 偏好标签</li>\n<li>标签类型：事实标签（统计可得）、规则标签（阈值/条件）、模型标签（预测）</li>\n<li>维度：人口、消费、活跃、偏好、生命周期</li>\n<li>更新：画像表按天增量合并（新标签覆盖旧值，保留历史）</li>\n<li>用途：运营分层、精准营销、个性化推荐</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>事实标签和规则标签的区别？</li>\n<li>画像增量合并怎么做？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -6472,6 +6784,94 @@ window.OS_DATA = {
       ],
       "domain": "sql",
       "body_html": "<h2>一句话</h2>\n<p>留存率 = 某天新增用户在 N 天后仍活跃的人数 / 当天新增人数；用首登日期自关联，按 <code>datediff</code> 分组统计。</p>\n<h2>30 秒回答</h2>\n<p>先取每个用户首次登录日期，再 join 活跃日志，按「首登日期 + datediff(活跃日期, 首登日期)」分组 count distinct user_id，除以首登当天新增数即得次日/7 日留存。</p>\n<h2>1 分钟回答</h2>\n<pre><code class=\"language-sql\">WITH first_login AS (\n  SELECT user_id, MIN(login_date) AS first_date\n  FROM login GROUP BY user_id\n)\nSELECT fl.first_date,\n       COUNT(DISTINCT CASE WHEN DATEDIFF(l.login_date, fl.first_date) = 1 THEN l.user_id END) / COUNT(DISTINCT fl.user_id) AS day1_retention\nFROM first_login fl\nLEFT JOIN login l ON l.user_id = fl.user_id\n  AND DATEDIFF(l.login_date, fl.first_date) BETWEEN 1 AND 7\nGROUP BY fl.first_date;</code></pre>\n<ul>\n<li>次日留存 = datediff 1，7 日留存 = 1~7 内还活跃</li>\n<li>分母是首登当天的新增用户数</li>\n<li>常按渠道/版本/地区分组对比</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>7 日留存和次日留存的 SQL 区别？</li>\n<li>数据量大时怎么优化？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0024",
+      "type": "technical",
+      "question": "为什么 count(distinct) 要换成 group by，多个 count(distinct) 会怎样",
+      "topic": [
+        "sql",
+        "optimization"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-03-10-bytedance-data-intern-1",
+          "company": "字节跳动",
+          "position": "数据开发（实习，一面）",
+          "date": "2026-03-10"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>count(distinct) 单字段去重只能落到一个 reduce，易倾斜；换 group by 可两阶段并行去重。多个 count(distinct) 会各自独立去重，内存和耗时成倍涨。</p>\n<h2>30 秒回答</h2>\n<p>count(distinct) 用一个 reduce 做全量去重，数据量大时倾斜。换 <code>SELECT COUNT(*) FROM (SELECT ... GROUP BY key)</code> 让去重在分组阶段并行。多个 count(distinct) 会各自起一个去重结构，内存翻倍、性能差。</p>\n<h2>1 分钟回答</h2>\n<pre><code class=\"language-sql\">-- 原写法\nSELECT COUNT(DISTINCT user_id) FROM t;\n-- 优化写法\nSELECT COUNT(*) FROM (SELECT user_id FROM t GROUP BY user_id) x;</code></pre>\n<ul>\n<li>多个 count(distinct)：<code>count(distinct a), count(distinct b)</code> 会维护多个去重集合，内存压力大</li>\n<li>优化：拆成多个 group by 子查询再 join，或用 bitmap/去重表</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>多个 count(distinct) 怎么优化？</li>\n<li>什么时候 count(distinct) 其实够用？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0025",
+      "type": "technical",
+      "question": "row_number、rank、dense_rank 的区别",
+      "topic": [
+        "sql",
+        "window"
+      ],
+      "difficulty": 1,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-03-10-bytedance-data-intern-1",
+          "company": "字节跳动",
+          "position": "数据开发（实习，一面）",
+          "date": "2026-03-10"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>row_number 连续不重复；rank 有并列就跳号；dense_rank 有并列不跳号。</p>\n<h2>30 秒回答</h2>\n<p>分数 100/90/90/80：row_number 是 1/2/3/4；rank 是 1/2/2/4（并列后跳号）；dense_rank 是 1/2/2/3（并列不跳号）。取「前 N 条」用 row_number，取「前 N 名」用 dense_rank。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>row_number：每个分区分组内唯一连续编号，并列也随机给不同号</li>\n<li>rank：并列同名次，下一名跳号</li>\n<li>dense_rank：并列同名次，下一名连续不跳号</li>\n<li>场景：取每组 TopN 条用 row_number；按名次取人用 dense_rank；排名展示用 rank</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>并列时 row_number 怎么决定谁在前？</li>\n<li>取「销售额前 3 名（含并列）」用哪个？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0026",
+      "type": "technical",
+      "question": "Hive / SQL 语句的执行顺序",
+      "topic": [
+        "sql",
+        "execution"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-03-10-bytedance-data-intern-1",
+          "company": "字节跳动",
+          "position": "数据开发（实习，一面）",
+          "date": "2026-03-10"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>FROM → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT。</p>\n<h2>30 秒回答</h2>\n<p>先 from 拿表做 join，where 过滤行，group by 分组，having 过滤分组，select 选列/算聚合，order by 排序，limit 截断。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>顺序：FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT</li>\n<li>where 在分组前过滤行，having 在分组后过滤组</li>\n<li>select 别名在 order by 可用，where 不可用（执行顺序靠后）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>where 和 having 有什么区别？</li>\n<li>select 的别名能在 where 里用吗？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0027",
+      "type": "technical",
+      "question": "几种 join 的区别（inner / left / right / full / semi / anti）",
+      "topic": [
+        "sql",
+        "join"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-14-bytedance-bigdata-intern",
+          "company": "字节跳动",
+          "position": "大数据开发（实习）",
+          "date": "2026-05-14"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>inner 取交集，left/right 保留一侧全量，full 两侧都保留，semi 只返回左表存在匹配的行，anti 返回左表不匹配的行。</p>\n<h2>30 秒回答</h2>\n<p>inner join 两边都匹配才返回；left join 保留左表全量、右表匹配不上的填 null；full join 两边都保留；left semi join 只返回左表在右表有匹配的行且不返回右表列；left anti join 返回左表在右表不存在的行。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>inner：交集</li>\n<li>left/right：保留驱动侧全量</li>\n<li>full：全外连接，两侧都保留</li>\n<li>left semi：等价 <code>WHERE EXISTS</code>，只出左表列，去重语义</li>\n<li>left anti：等价 <code>WHERE NOT EXISTS</code>，找「没有」的记录</li>\n<li>用途：semi 做过滤去重，anti 做差集/漏斗</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>left semi join 和 inner join 有什么区别？</li>\n<li>left anti join 的典型场景？</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -8720,6 +9120,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>举一个指标的例子，如何维护指标</li>\n<li>指标涉及不同的表如何维护</li>\n<li>一个标签涉及两张表，另一个标签涉及另外两张表，字段被删掉，会不会考虑关联成一张</li>\n<li>标签值域是 -1 到 1，但算出来是 2，怎么办</li>\n<li>标签开发做了哪些优化</li>\n<li>提示词怎么写，提示词中关于标签部分的模板，什么叫拆解任务</li>\n<li>事实标签和规则标签，举例</li>\n<li>任务难点：依赖上游任务，如何优化</li>\n<li>指标口径不统一怎么办</li>\n<li>如何做指标复用</li>\n<li>甘特图具体看哪些指标</li>\n<li>指标存在冗余如何处理</li>\n<li>如何定义核心标签</li>\n<li>如何保证任务的及时产出</li>\n<li>做了哪些告警，任务告警如何处理</li>\n<li>如果是因为触发某些规则没有产出，怎么处理，任务有没有做熔断</li>\n</ol>"
     },
     {
+      "interview_id": "INTERVIEW-2026-05-31-jianying-agent",
+      "company": "字节跳动",
+      "business": "剪映 Agent 开发",
+      "position": "Agent 开发（4 轮 21 题）",
+      "date": "2026-05-31",
+      "round": "4 轮",
+      "body_html": "<h2>面经记录（原始）</h2>\n<h3>Prompt 相关</h3>\n<ol>\n<li>Prompt engineering 的核心目标是什么？为什么模型会对同一件事换个说法效果差十倍？</li>\n<li>System prompt、few shot 在 prompt 设计中分别解决什么问题？</li>\n<li>Token 上下文窗口和上下文腐化是什么？它们如何影响模型的理解和生成？</li>\n</ol>\n<h3>模型输出控制</h3>\n<ol>\n<li>幻觉是怎么产生的？有哪些方法可以减轻？</li>\n<li>什么是 structured output？如何通过它控制模型输出？</li>\n<li>Function calling 和 RAG 的区别和联系是什么？什么时候用 function calling，什么时候用 RAG？</li>\n<li>Embedding 和向量数据库在 RAG 中的作用是什么？检索策略怎么设计？</li>\n</ol>\n<h3>Agent 系统设计</h3>\n<ol>\n<li>Agent 是怎么结合工具、知识和规划自主运行的？</li>\n<li>多 Agent 架构下，主 Agent、子 Agent 的通信协作怎么设计？异常怎么处理？</li>\n<li>Agent 的上下文膨胀问题怎么解决？工具调用出现幻觉怎么办？</li>\n<li>MCP 和 skill 在 Agent 系统中分别起什么作用？</li>\n</ol>\n<h3>模型优化与训练</h3>\n<ol>\n<li>微调和 RAG 的使用场景有什么区别？</li>\n<li>SFT 和 RLHF 哪个更适合快速迭代？在基模能力越来越强的情况下，这两者的破局点是什么？</li>\n<li>怎么降低推理成本？在多任务多 Agent 系统中怎么权衡效率和准确性？</li>\n</ol>\n<h3>上下文与记忆管理</h3>\n<ol>\n<li>如何在有限的上下文窗口内放入关键内容？短期和长期记忆怎么压缩？</li>\n<li>混合路由和限流器在多 Agent 系统中为什么重要？</li>\n</ol>\n<h3>工程落地与系统能力</h3>\n<ol>\n<li>项目中 Agent 的执行链路怎么设计？怎么保证连续任务的正确性？</li>\n<li>长任务或复杂任务中，怎么保证模型不偏离原始目标？</li>\n<li>如何评估生成模型的多样性和准确性？</li>\n<li>工具调用的安全问题怎么处理？比如 Prompt 泄露、敏感信息暴露。</li>\n<li>Agent 系统怎么设计能力复用和 skill 管理，保证可扩展性？</li>\n</ol>\n<blockquote>备注：字节剪映 Agent 开发岗 4 轮 21 题，全部保留原文。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-05-30-xiaohongshu-ai-data",
       "company": "小红书",
       "business": "AI 数据（大模型/样本/特征/向量）",
@@ -8736,6 +9145,24 @@ window.OS_DATA = {
       "date": "2026-05-21",
       "round": "两面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>Agent 问数和传统的大报表问数有什么区别</li>\n<li>同一张表需要维护哪些信息，才能让人、机器都好理解</li>\n<li>通用 AI Agent 核心能力/核心组件有哪些</li>\n<li>MCP 和 Skill 有什么区别</li>\n<li>同样的问题，Agent 有时返回不同结果，可能是什么原因</li>\n<li>多域、多表、无明确维度的统一 Agent 问数，难点在哪</li>\n<li>要提升多表场景下问答准确率，需要维护哪些信息</li>\n<li>知识库应该维护哪些内容</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-05-20-meituan-data-dev1",
+      "company": "美团",
+      "business": "数据开发",
+      "position": "数据开发（社招，一面）",
+      "date": "2026-05-20",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>实习经历和项目经历深挖</li>\n<li>数仓分为哪几层？有什么作用？</li>\n<li>雪花模型和星型模型的区别？优缺点？</li>\n<li>上一段实习中数据基建中遇到到困难？</li>\n<li>是否了解大数据的计算引擎？</li>\n<li>spark 调优方法</li>\n<li>mysql 表连接的底层实现方式？</li>\n<li>外卖情景下，如何设计一个离线数仓？</li>\n<li>如果对用户做画像识别，你会怎么做？</li>\n<li>手撕 SQL：七日用户留存率</li>\n</ol>\n<blockquote>备注：约 1 小时，9 道技术问答 + 1 道 SQL 手撕。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-05-14-bytedance-bigdata-intern",
+      "company": "字节跳动",
+      "business": "大数据开发",
+      "position": "大数据开发（实习）",
+      "date": "2026-05-14",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>数分和数开的区别</li>\n<li>数据倾斜</li>\n<li>hive 的运行流程</li>\n<li>hive 是干什么的</li>\n<li>数仓分层</li>\n<li>数据倾斜如何处理</li>\n<li>实习经历深挖</li>\n<li>介绍某个项目经历（背景 / 难点 / 收获）</li>\n<li>几种 join 的区别</li>\n<li>证明你学习能力的经历</li>\n<li>手撕 SQL（表字段：user_id, time, video_id）</li>\n<ul>\n<li>12.1 求视频播放量 top10</li>\n<li>12.2 求用户视频播放 top10</li>\n<li>12.3 求用户连续播放视频最大次数</li>\n</ul>\n</ol>\n<blockquote>备注：用户提供面经，偏基础 + 一道三连 SQL。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-05-14-iflytek-bigdata-intern",
@@ -8835,6 +9262,15 @@ window.OS_DATA = {
       "date": "2026-03-30",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>堆、栈和队列的区别</li>\n<li>快速排序的实现思路，时空复杂度</li>\n<li>线程和进程的区别</li>\n<li>Hive 内部表和外部表的区别</li>\n<li>数据分区和分桶</li>\n<li>Spark 执行任务流程，如何划分 Stage，宽窄依赖算子，Shuffle 的本质</li>\n<li>画像表数据存在哪里，数据从哪里采集</li>\n<li>画像表的增量合并如何实现</li>\n<li>SCD 缓慢变化维的处理方式</li>\n<li>Flink 如何保持一致性，Flink/Kafka 如何做高可用容错</li>\n<li>手撕 SQL：开窗排序、开窗聚合、最大连续交易</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-03-10-bytedance-data-intern-1",
+      "company": "字节跳动",
+      "business": "数据开发",
+      "position": "数据开发（实习，一面）",
+      "date": "2026-03-10",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>讲项目，做了什么？</li>\n<li>数据治理做了什么？</li>\n<li>小文件是如何治理？</li>\n<li>为什么要治理小文件？</li>\n<li>NameNode 的工作原理？</li>\n<li>计算治理是怎么做的？</li>\n<li>SQL 有哪些调优？</li>\n<li>为什么 count(distinct) 要换成 group by？</li>\n<li>代码里面有多个 count(distinct) 会发生什么？</li>\n<li>数据倾斜有哪些，如何解决？</li>\n<li>两阶段聚合的原理是什么？</li>\n<li>解释一下 SQL 的窗口函数，应用的场景？</li>\n<li>row_number()，rank()，dense_rank()</li>\n<li>实习中有主导过什么？怎么发现，如何解决？怎么做优化的？</li>\n<li>什么时候发生 shuffle？Spark shuffle 的原理，过程？</li>\n<li>Spark 分区器有哪些？</li>\n<li>宽窄依赖的区别？</li>\n<li>什么情况发生宽依赖、窄依赖、stage 的划分？</li>\n<li>Zookeeper 高可用？</li>\n<li>Hive 函数的执行顺序？</li>\n</ol>\n<blockquote>备注：小红书 @小书包_R 分享（360 赞），20 道题，覆盖治理、SQL、Spark、Hadoop 高可用。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2025-03-24-jd-data-dev",
