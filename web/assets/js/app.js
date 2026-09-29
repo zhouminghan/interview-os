@@ -28,6 +28,10 @@
     $("#topbar").innerHTML =
       '<div class="topbar-inner">' +
         '<a class="brand" href="index.html"><span class="brand-dot"></span>Interview OS</a>' +
+        '<div class="global-search" id="gs">' +
+          '<input class="search gs-input" id="gs-input" type="search" placeholder="搜索分类 / 面经 / 八股 / 问题" aria-label="全局搜索" autocomplete="off">' +
+          '<div class="gs-dropdown" id="gs-dropdown" hidden></div>' +
+        '</div>' +
         '<nav class="nav-links" aria-label="主导航">' +
           links.map(([key, label, href]) =>
             '<a class="nav-link' + (key === page ? " active" : "") + '" href="' + href + '" data-nav="' + key + '">' + label + "</a>"
@@ -44,6 +48,54 @@
       localStorage.setItem("os-theme", next);
       syncIcon();
     });
+    initGlobalSearch();
+  }
+
+  function initGlobalSearch() {
+    const input = $("#gs-input");
+    const dd = $("#gs-dropdown");
+    if (!input || !dd) return;
+    const domainKeys = Object.keys(D.stats.domains || {});
+
+    function results(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) return null;
+      const domains = domainKeys
+        .filter((k) => domainLabel(k).toLowerCase().includes(q) || k.toLowerCase().includes(q))
+        .slice(0, 5);
+      const interviews = D.interviews
+        .filter((iv) => ((iv.company || "") + " " + (iv.business || "") + " " + (iv.position || "") + " " + (iv.date || "")).toLowerCase().includes(q))
+        .slice(0, 5);
+      const questions = D.questions
+        .filter((x) => (x.question + " " + x.id + " " + (x.topic || []).join(" ")).toLowerCase().includes(q))
+        .slice(0, 6);
+      return { domains: domains, interviews: interviews, questions: questions, total: domains.length + interviews.length + questions.length };
+    }
+
+    function render() {
+      const g = results(input.value);
+      if (!g || !g.total) { dd.hidden = true; dd.innerHTML = ""; return; }
+      let html = "";
+      if (g.domains.length) {
+        html += '<div class="gs-group">分类</div>' + g.domains.map((k) =>
+          '<a class="gs-item" href="questions.html?domain=' + encodeURIComponent(k) + '"><span class="gs-title">' + esc(domainLabel(k)) + '</span><span class="gs-meta">' + (D.stats.domains[k] || 0) + " 题</span></a>").join("");
+      }
+      if (g.interviews.length) {
+        html += '<div class="gs-group">面经</div>' + g.interviews.map((iv) =>
+          '<a class="gs-item" href="interviews.html?iv=' + encodeURIComponent(iv.interview_id) + '"><span class="gs-title">' + esc(iv.company || "") + " · " + esc(iv.business || "") + '</span><span class="gs-meta">' + esc(iv.date || "") + "</span></a>").join("");
+      }
+      if (g.questions.length) {
+        html += '<div class="gs-group">问题 / 八股</div>' + g.questions.map((x) =>
+          '<a class="gs-item" href="questions.html#' + encodeURIComponent(x.id) + '"><span class="gs-title">' + esc(x.question) + '</span><span class="gs-meta">' + (x.source_type === "knowledge" ? "八股 · " : "") + esc(domainLabel(x.domain)) + "</span></a>").join("");
+      }
+      dd.innerHTML = html;
+      dd.hidden = false;
+    }
+
+    input.addEventListener("input", render);
+    input.addEventListener("focus", render);
+    input.addEventListener("keydown", (e) => { if (e.key === "Escape") { dd.hidden = true; input.blur(); } });
+    document.addEventListener("click", (e) => { if (!e.target.closest("#gs")) dd.hidden = true; });
   }
 
   const typeLabel = (t) => (t === "technical" ? "技术" : "项目");
@@ -61,10 +113,12 @@
   }
 
   function interviewCard(iv) {
-    return '<button class="interview-card" data-id="' + esc(iv.interview_id) + '">' +
-      '<div class="interview-card-head"><b>' + esc(iv.company || "") + " · " + esc(iv.business || "") + "</b><span class=\"muted\">" + esc(iv.date || "") + "</span></div>" +
-      '<div class="muted">' + esc(iv.position || "") + "</div>" +
-      "</button>";
+    return '<a class="interview-card interview-link" href="interviews.html?iv=' + encodeURIComponent(iv.interview_id) + '">' +
+      '<span class="interview-main">' +
+        '<span class="interview-head"><b>' + esc(iv.company || "") + " · " + esc(iv.business || "") + '</b><span class="muted">' + esc(iv.date || "") + '</span></span>' +
+        '<span class="interview-sub">' + esc(iv.position || "") + '</span>' +
+      '</span>' +
+      '</a>';
   }
 
   function renderIndex() {
@@ -86,9 +140,6 @@
       "</div>" +
       "<h2>最近面经</h2>" +
       (recent.length ? '<div class="interview-list">' + recent.map(interviewCard).join("") + "</div>" : '<p class="muted">还没有面经。</p>');
-    $$(".interview-card", $("#page")).forEach((card) => {
-      card.addEventListener("click", () => { location.href = "interviews.html"; });
-    });
   }
 
   function renderQuestions() {
@@ -166,30 +217,92 @@
   }
 
   function renderInterviews() {
-    $("#page").innerHTML = '<h1>面经</h1><div class="interview-list" id="iv-list"></div><div id="iv-detail"></div>';
+    const params = new URLSearchParams(location.search);
+    const state = { query: "", expanded: new Set() };
     const list = D.interviews;
-    const el = $("#iv-list");
-    if (!list.length) { el.innerHTML = '<p class="muted">还没有面经。</p>'; return; }
-    el.innerHTML = list.map(interviewCard).join("");
-    function open(id) {
-      const iv = D.interviews.find((x) => x.interview_id === id);
-      if (!iv) { $("#iv-detail").innerHTML = ""; return; }
-      $("#iv-detail").innerHTML =
-        '<div class="panel" style="margin-top:16px">' +
-          "<h2>" + esc(iv.company || "") + " · " + esc(iv.business || "") + "</h2>" +
-          '<div class="tags"><span class="tag">' + esc(iv.position || "") + "</span><span class=\"tag\">" + esc(iv.date || "") + "</span>" + (iv.round ? '<span class="tag">' + esc(iv.round) + "</span>" : "") + "</div>" +
-          '<div class="q-body">' + (iv.body_html || "") + "</div>" +
-        "</div>";
+
+    $("#page").innerHTML =
+      "<h1>面经</h1>" +
+      '<div class="toolbar">' +
+        '<input class="search" id="iv-search" type="search" placeholder="搜索公司 / 业务 / 岗位 / 日期，或 分类 / 八股" aria-label="搜索面经、分类、八股" autocomplete="off">' +
+        '<div class="toolbar-actions">' +
+          '<button class="btn btn-secondary btn-sm" id="iv-expand">展开全部</button>' +
+          '<button class="btn btn-secondary btn-sm" id="iv-collapse">折叠全部</button>' +
+          '<span class="muted" id="iv-count"></span>' +
+        "</div>" +
+      "</div>" +
+      '<div id="iv-extra"></div>' +
+      '<div class="interview-list" id="iv-list"></div>';
+
+    function q() { return state.query.trim().toLowerCase(); }
+    function matchingInterviews() {
+      if (!q()) return list;
+      return list.filter((iv) => ((iv.company || "") + " " + (iv.business || "") + " " + (iv.position || "") + " " + (iv.date || "") + " " + (iv.round || "")).toLowerCase().includes(q()));
     }
-    el.addEventListener("click", (e) => {
-      const b = e.target.closest(".interview-card");
+    function matchingDomains() {
+      if (!q()) return [];
+      return Object.keys(D.stats.domains || {}).filter((k) => (domainLabel(k) + " " + k).toLowerCase().includes(q())).slice(0, 8);
+    }
+    function matchingKnowledge() {
+      if (!q()) return [];
+      return D.questions.filter((x) => x.source_type === "knowledge" && (x.question + " " + x.id + " " + (x.topic || []).join(" ")).toLowerCase().includes(q())).slice(0, 8);
+    }
+
+    function renderExtra() {
+      const el = $("#iv-extra");
+      const doms = matchingDomains();
+      const kws = matchingKnowledge();
+      if (!q() || (!doms.length && !kws.length)) { el.innerHTML = ""; return; }
+      let html = "";
+      if (doms.length) {
+        html += '<div class="panel" style="margin-bottom:12px"><h3>分类</h3><div class="chips">' +
+          doms.map((k) => '<a class="chip" href="questions.html?domain=' + encodeURIComponent(k) + '">' + esc(domainLabel(k)) + " · " + (D.stats.domains[k] || 0) + "</a>").join("") +
+          "</div></div>";
+      }
+      if (kws.length) {
+        html += '<div class="panel" style="margin-bottom:12px"><h3>八股</h3><div class="q-list">' +
+          kws.map((x) => '<a class="q-row" style="grid-template-columns:1fr" href="questions.html#' + encodeURIComponent(x.id) + '"><span class="q-title">' + esc(x.question) + '</span><span class="q-meta">' + esc(domainLabel(x.domain)) + '</span></a>').join("") +
+          "</div></div>";
+      }
+      el.innerHTML = html;
+    }
+
+    function renderList() {
+      const items = matchingInterviews();
+      $("#iv-count").textContent = items.length + " 份面经";
+      const el = $("#iv-list");
+      if (!items.length) { el.innerHTML = '<p class="muted">没有匹配的面经。</p>'; return; }
+      el.innerHTML = items.map((iv) => {
+        const open = state.expanded.has(iv.interview_id);
+        return '<div class="interview-card' + (open ? " open" : "") + '" data-id="' + esc(iv.interview_id) + '">' +
+          '<button class="interview-toggle" type="button" aria-expanded="' + open + '" aria-label="展开或折叠 ' + esc(iv.company || "") + '">' +
+            '<span class="interview-main">' +
+              '<span class="interview-head"><b>' + esc(iv.company || "") + " · " + esc(iv.business || "") + '</b><span class="muted">' + esc(iv.date || "") + '</span></span>' +
+              '<span class="interview-sub">' + esc(iv.position || "") + (iv.round ? " · " + esc(iv.round) : "") + '</span>' +
+            '</span>' +
+            '<span class="interview-caret" aria-hidden="true"></span>' +
+          "</button>" +
+          (open ? '<div class="interview-body q-body">' + (iv.body_html || "") + "</div>" : "") +
+        "</div>";
+      }).join("");
+    }
+
+    function toggle(id) { state.expanded.has(id) ? state.expanded.delete(id) : state.expanded.add(id); renderList(); }
+
+    $("#iv-search").addEventListener("input", (e) => { state.query = e.target.value; renderExtra(); renderList(); });
+    $("#iv-expand").addEventListener("click", () => { matchingInterviews().forEach((iv) => state.expanded.add(iv.interview_id)); renderList(); });
+    $("#iv-collapse").addEventListener("click", () => { state.expanded.clear(); renderList(); });
+    $("#iv-list").addEventListener("click", (e) => {
+      const b = e.target.closest(".interview-toggle");
       if (!b) return;
-      $$(".interview-card", el).forEach((c) => c.classList.remove("active"));
-      b.classList.add("active");
-      open(b.dataset.id);
+      toggle(b.closest(".interview-card").dataset.id);
     });
-    open(list[0].interview_id);
-    if (el.firstElementChild) el.firstElementChild.classList.add("active");
+
+    const initial = params.get("iv");
+    if (initial && list.some((x) => x.interview_id === initial)) state.expanded.add(initial);
+    else if (list.length) state.expanded.add(list[0].interview_id);
+    renderExtra();
+    renderList();
   }
 
   function shuffle(a) { const arr = a.slice(); for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
