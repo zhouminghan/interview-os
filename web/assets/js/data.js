@@ -1,10 +1,10 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T12:40:19+08:00",
+  "generatedAt": "2026-09-29T12:43:40+08:00",
   "stats": {
-    "questions": 1992,
+    "questions": 1993,
     "interviews": 65,
     "technical": 1887,
-    "project": 105,
+    "project": 106,
     "domains": {
       "spark": 244,
       "hdfs": 4,
@@ -21,7 +21,7 @@ window.OS_DATA = {
       "system": 7,
       "warehouse": 155,
       "sql": 30,
-      "project": 105
+      "project": 106
     }
   },
   "domains": {
@@ -29575,6 +29575,20 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "project",
       "body_html": "<h2>一句话</h2>\n<p>每天录 3 分钟短视频回看，检查表情、眼神、流畅度，记下口头禅和卡顿逐个改，用「视频这面最诚实的镜子」纠正表达坏习惯。</p>\n<h2>要点</h2>\n<ul>\n<li>操作：每天录 3 分钟短视频，讲思考或见闻</li>\n<li>回看维度：表情是否自然、眼神是否坚定、说话是否流畅</li>\n<li>纠错：记下口头禅、卡顿、啰嗦，下次刻意改</li>\n<li>价值：视频回放暴露的自我形象与主观感受的差距，是快速改掉表达毛病的抓手</li>\n<li>侧重非语言表达（表情/眼神/流畅），区别于写作/口述复盘侧重内容逻辑</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>视频复盘和口述复盘有什么不同？</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0107",
+      "type": "project",
+      "question": "表达力怎么练（第一句就是结论 / 朗读复盘）",
+      "topic": [
+        "project",
+        "expression"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>回答「第一句就是结论」，15 秒内给结论再展开；配合朗读复盘（读问题 → 读原答 → 重说）纠正绕弯和缺结论。</p>\n<h2>要点</h2>\n<ul>\n<li>为什么练：讲不清不是不懂，是用复杂语言回应对方的焦虑，频道没对齐</li>\n<li>方法一：朗读热身 3 分钟，把嘴打开</li>\n<li>方法二：盘一道复盘题：读面试官问题 → 读自己原答 → 用标准重说</li>\n<li>标准：第一句就是结论（≤15 秒），再给理由和例子</li>\n<li>核心：先结论后展开，避免「绕了一大圈还没到点」</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么「第一句就是结论」能改善表达？</li>\n</ul>"
     }
   ],
   "interviews": [
