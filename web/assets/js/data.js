@@ -1,24 +1,24 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:01:52+08:00",
+  "generatedAt": "2026-09-29T11:04:22+08:00",
   "stats": {
-    "questions": 299,
-    "interviews": 18,
-    "technical": 214,
+    "questions": 315,
+    "interviews": 22,
+    "technical": 230,
     "project": 85,
     "domains": {
-      "spark": 34,
+      "spark": 35,
       "hdfs": 1,
       "storage": 12,
       "lakehouse": 7,
       "starrocks": 11,
       "flink": 7,
       "network": 4,
-      "algorithm": 5,
-      "llm": 47,
+      "algorithm": 7,
+      "llm": 54,
       "platform": 2,
-      "system": 3,
-      "warehouse": 67,
-      "sql": 14,
+      "system": 5,
+      "warehouse": 69,
+      "sql": 16,
       "project": 85
     }
   },
@@ -844,6 +844,20 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "spark",
       "body_html": "<h2>一句话</h2>\n<p>先定位热点 key，再用加盐、热点拆分或 AQE 处理。</p>\n<h2>30 秒回答</h2>\n<p>看 task 数据量/耗时找长尾，定位热点 key；group by 用两阶段加盐聚合，join 用热点拆分或加盐 join，开启 AQE skew join，过滤脏数据。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：UI task 分布、抽样统计 key</li>\n<li>group by：加盐两阶段聚合</li>\n<li>join：热点拆分、两阶段加盐 join</li>\n<li>通用：AQE skew join、过滤 null/脏数据</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你实际遇到的倾斜场景？</li>\n<li>加盐后怎么还原？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0035",
+      "type": "technical",
+      "question": "Spark 的 Shuffle 和 MapReduce 的 Shuffle 有什么区别",
+      "topic": [
+        "spark",
+        "shuffle"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>Spark Shuffle 有 HashShuffle 和 SortShuffle，落盘次数少、可复用；MR Shuffle 固定排序落盘多。</p>\n<h2>30 秒回答</h2>\n<p>Spark SortShuffle 用分区排序 + 索引文件，减少文件数；MR 每个 reducer 一个分区文件，小文件多、排序开销大；Spark 还有动态分区、AQE 优化。</p>\n<h2>追问</h2>\n<ul>\n<li>HashShuffle 和 SortShuffle 区别？</li>\n<li>宽依赖为什么触发 shuffle？</li>\n</ul>"
     },
     {
       "id": "HDFS-0001",
@@ -1906,6 +1920,34 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>按值域分桶计数，先定位中位数落在哪个桶，再在桶内精算。</p>\n<h2>30 秒回答</h2>\n<p>整数值域有限（如 32 位），按值域分桶，先统计各桶计数找到第 5 亿个数落在哪个桶，再对桶内数据用位图或部分排序求中位数，内存可控。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分桶：按值域区间分桶，流式计数，只需 O(桶数) 内存</li>\n<li>定位：累计计数找到中位数所在桶</li>\n<li>精算：桶内数据量可入内存，排序或位图求中位</li>\n<li>扩展：外部排序也可，但分桶更快</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>分桶数怎么选？</li>\n<li>有负数怎么处理？</li>\n</ul>"
     },
     {
+      "id": "ALGORITHM-0006",
+      "type": "technical",
+      "question": "千万级整数小内存排序（外部排序/位图）",
+      "topic": [
+        "algorithm",
+        "external-sort"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "algorithm",
+      "body_html": "<h2>一句话</h2>\n<p>数据量超内存用外部排序（分块排序 + 多路归并），整数可进一步用位图或桶排序。</p>\n<h2>30 秒回答</h2>\n<p>分块读入排序写临时文件，再多路归并；若不能外部排序，用位图（值域有限）或压缩存储。</p>\n<h2>追问</h2>\n<ul>\n<li>有负数怎么办？</li>\n<li>多路归并用什么结构？</li>\n</ul>"
+    },
+    {
+      "id": "ALGORITHM-0007",
+      "type": "technical",
+      "question": "手写 LRU 缓存（O(1) get/put）",
+      "topic": [
+        "algorithm",
+        "lru"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "algorithm",
+      "body_html": "<h2>一句话</h2>\n<p>哈希表定位 + 双向链表维护访问顺序，O(1) 实现 get/put。</p>\n<h2>代码</h2>\n<pre><code class=\"language-python\">class Node:\n    def __init__(self, k=0, v=0):\n        self.k, self.v, self.prev, self.next = k, v, None, None\n\nclass LRUCache:\n    def __init__(self, capacity):\n        self.cap = capacity\n        self.m = {}\n        self.head, self.tail = Node(), Node()\n        self.head.next, self.tail.prev = self.tail, self.head\n\n    def _remove(self, n):\n        n.prev.next, n.next.prev = n.next, n.prev\n\n    def _add(self, n):\n        n.next = self.head.next\n        n.next.prev = n\n        self.head.next = n\n        n.prev = self.head\n\n    def get(self, key):\n        if key not in self.m: return -1\n        n = self.m[key]\n        self._remove(n); self._add(n)\n        return n.v\n\n    def put(self, key, value):\n        if key in self.m:\n            self._remove(self.m[key])\n        n = Node(key, value)\n        self.m[key] = n\n        self._add(n)\n        if len(self.m) &gt; self.cap:\n            t = self.tail.prev\n            self._remove(t)\n            del self.m[t.k]</code></pre>\n<h2>追问</h2>\n<ul>\n<li>为什么用双向链表？</li>\n<li>达到容量时淘汰哪个？</li>\n</ul>"
+    },
+    {
       "id": "LLM-0001",
       "type": "technical",
       "question": "大模型怎么调用工具（LLM Agent）",
@@ -2924,6 +2966,105 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>理解 LLM 不确定性、量化成果、评估成本、保留人工审核、渐进式落地。</p>\n<h2>30 秒回答</h2>\n<p>底层原理：LLM 是概率模型，关键步骤必须加校验；成果要量化（提效多少）；评估成本（开发/知识库维护）；AI 做的事必须有人工审核；先 MVP 再扩展。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>原理：理解不确定性，加校验兜底</li>\n<li>成果：量化提效（如 2h -&gt; 5min）</li>\n<li>成本：Skill 开发、知识库维护、token</li>\n<li>审核：关键环节人工确认</li>\n<li>落地：选高频重复流程，渐进扩展</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>哪些场景不适合用 AI？</li>\n<li>怎么量化 AI 提效？</li>\n</ul>"
     },
     {
+      "id": "LLM-0048",
+      "type": "technical",
+      "question": "参数模型和非参数模型、生成模型和判别模型的区别",
+      "topic": [
+        "llm",
+        "ml-basics"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>参数模型对数据分布做有限参数假设，非参数模型不假设；生成模型建模联合分布 P(x,y)，判别模型建模条件分布 P(y|x)。</p>\n<h2>30 秒回答</h2>\n<p>参数模型（如线性回归）参数固定；非参数（KNN）随数据增长。生成模型（朴素贝叶斯）可生成样本；判别模型（逻辑回归）直接分类。</p>\n<h2>追问</h2>\n<ul>\n<li>举例生成模型和判别模型？</li>\n<li>非参数模型缺点？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0049",
+      "type": "technical",
+      "question": "企业搜索数据流怎么设计，多租户怎么隔离",
+      "topic": [
+        "llm",
+        "enterprise-search"
+      ],
+      "difficulty": 4,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>ES/向量索引 + 权限过滤 + 时间范围，多租户用租户字段隔离，大客户独立索引。</p>\n<h2>30 秒回答</h2>\n<p>数据接入 ES 建倒排 + 向量索引，查询时权限过滤和时间裁剪；多租户按租户 ID 隔离，大客户单独部署避免互相影响。</p>\n<h2>追问</h2>\n<ul>\n<li>模糊记忆搜索（无语义标题）怎么办？</li>\n<li>大客户为什么要单独部署？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0053",
+      "type": "technical",
+      "question": "训练数据清洗怎么做，标注不一致怎么处理",
+      "topic": [
+        "llm",
+        "data-cleaning"
+      ],
+      "difficulty": 4,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>规则 + 小模型预过滤 + 主动学习挑难例人工复核，处理标注不一致。</p>\n<h2>30 秒回答</h2>\n<p>规则清洗明显脏数据，小模型预过滤，主动学习选出不确定样本人工复核；标注不一致用多标注一致性校验（Kappa）。</p>\n<h2>追问</h2>\n<ul>\n<li>主动学习为什么有效？</li>\n<li>标注不一致怎么量化？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0055",
+      "type": "technical",
+      "question": "LoRA 微调原理和 Self-Attention 的 QKV 公式",
+      "topic": [
+        "llm",
+        "lora",
+        "attention"
+      ],
+      "difficulty": 4,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>LoRA 冻结原权重，用低秩旁路矩阵微调；Self-Attention 是 softmax(QK^T/√d)V。</p>\n<h2>30 秒回答</h2>\n<p>LoRA 加 A·B 低秩矩阵，只训练少量参数；Attention(Q,K,V)=softmax(QK^T/√d_k)V，QKV 由输入经不同权重投影得到。</p>\n<h2>追问</h2>\n<ul>\n<li>LoRA 为什么省参数？</li>\n<li>为什么要除以 √d？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0056",
+      "type": "technical",
+      "question": "大模型训练数据处理和传统数仓 ETL 的本质区别",
+      "topic": [
+        "llm",
+        "training-data"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>训练数据面向模型效果（分布、去重、质量、标注），ETL 面向报表口径；本质是概率 vs 确定性。</p>\n<h2>30 秒回答</h2>\n<p>训练数据更关注分布一致性、去重、质量过滤、标注，直接决定模型上限；ETL 关注口径、分层、一致性，面向分析和决策。</p>\n<h2>追问</h2>\n<ul>\n<li>训练数据为什么看重去重？</li>\n<li>数据质量怎么决定模型效果？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0057",
+      "type": "technical",
+      "question": "1000 万张图片去重怎么做",
+      "topic": [
+        "llm",
+        "multimodal-dedup"
+      ],
+      "difficulty": 4,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>精确哈希 + 感知哈希（图像）+ embedding 语义去重，分层组合。</p>\n<h2>30 秒回答</h2>\n<p>精确哈希去完全重复，感知哈希（pHash/dHash）去近似重复，embedding 向量做语义去重，兼顾准确和规模。</p>\n<h2>追问</h2>\n<ul>\n<li>感知哈希和 embedding 区别？</li>\n<li>大规模向量去重怎么做？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0063",
+      "type": "technical",
+      "question": "Data-Centric AI 怎么理解，如何提升训练数据效率",
+      "topic": [
+        "llm",
+        "data-centric"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>从「改模型」转向「改数据」，用更高质量、更少的数据提升模型效果。</p>\n<h2>30 秒回答</h2>\n<p>通过数据清洗、难例挖掘、主动学习、质量标注，用少量高质量数据达到更好训练效果；数据工程决定模型上限。</p>\n<h2>追问</h2>\n<ul>\n<li>Data-Centric 和 Model-Centric 区别？</li>\n<li>难例挖掘怎么做？</li>\n</ul>"
+    },
+    {
       "id": "PLATFORM-0001",
       "type": "technical",
       "question": "低代码平台是什么，你了不了解",
@@ -3027,6 +3168,34 @@ window.OS_DATA = {
       ],
       "domain": "system",
       "body_html": "<h2>一句话</h2>\n<p>JDK1.8 HashMap 链表过长转红黑树，把最坏 O(n) 降到 O(log n)；ConcurrentHashMap 用 CAS + 节点锁替代整段锁。</p>\n<h2>30 秒回答</h2>\n<p>HashMap 链表长度超过阈值（8）转红黑树，避免哈希冲突严重时查询退化为 O(n)。ConcurrentHashMap 1.7 分段锁（锁一段），1.8 改为 CAS 写 + synchronized 锁单个桶头节点，并发粒度更细。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>HashMap：链表 -&gt; 红黑树（长度 &gt;8），查询 O(n) -&gt; O(log n)</li>\n<li>ConcurrentHashMap 1.7：Segment 分段锁</li>\n<li>1.8：CAS 写桶头（无锁）、冲突时锁单节点，粒度更细、性能更好</li>\n<li>CAS：乐观、无锁、自旋；synchronized：重量级、阻塞</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么阈值是 8？</li>\n<li>CAS 的 ABA 问题？</li>\n</ul>"
+    },
+    {
+      "id": "SYSTEM-0004",
+      "type": "technical",
+      "question": "JVM 内存模型和 Full GC 排查",
+      "topic": [
+        "system",
+        "jvm"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "system",
+      "body_html": "<h2>一句话</h2>\n<p>JVM 分堆、栈、方法区、程序计数器、本地方法栈；Full GC 触发于老年代/元空间满或显式调用。</p>\n<h2>30 秒回答</h2>\n<p>线上频繁 Full GC：看 GC 日志频率和耗时，jstat 看各代占用，MAT/jmap 找大对象定位内存泄漏；锁信息（对象头）在堆里。</p>\n<h2>追问</h2>\n<ul>\n<li>Full GC 和 Minor GC 区别？</li>\n<li>对象头里存了什么？</li>\n</ul>"
+    },
+    {
+      "id": "SYSTEM-0005",
+      "type": "technical",
+      "question": "synchronized 和 ReentrantLock 的区别，AQS 原理，锁升级",
+      "topic": [
+        "system",
+        "java-lock"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "system",
+      "body_html": "<h2>一句话</h2>\n<p>synchronized 内置锁、自动释放；ReentrantLock 显式锁，支持可中断、超时、公平；AQS 用 state + CAS + 队列实现。</p>\n<h2>30 秒回答</h2>\n<p>锁升级：无锁 → 偏向锁 → 轻量级锁 → 重量级锁；非公平锁大体维持 FIFO 但新线程可插队。</p>\n<h2>追问</h2>\n<ul>\n<li>AQS 的 state 是什么？</li>\n<li>什么时候升级到重量级锁？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0001",
@@ -4450,6 +4619,34 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>业务域按组织/业务流程划分，主题域按分析主题组织度量；实际落地常混用。</p>\n<h2>30 秒回答</h2>\n<p>业务域偏组织视角（交易域、物流域、支付域）；主题域偏数据分析视角（流量、内容、用户、搜推）。实际很多团队按主题域组织数仓，公共维度独立维护，减少跨域依赖。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>业务域：按企业业务线/流程</li>\n<li>主题域：按分析主题/度量维度</li>\n<li>实践：常混用，按主题域组织 DWD/DWS</li>\n<li>原则：域内聚合、跨域依赖少</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你项目怎么划分域？</li>\n<li>公共维度放哪？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0068",
+      "type": "technical",
+      "question": "多个业务系统同一字段编码不一致，数仓怎么统一",
+      "topic": [
+        "warehouse",
+        "standardization"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>用映射表 / 字典编码在 DWD 清洗时统一枚举值。</p>\n<h2>30 秒回答</h2>\n<p>例如性别 F/M 和男/女，在 DWD 层用映射表转成统一字典编码，保证下游口径一致。</p>\n<h2>追问</h2>\n<ul>\n<li>映射表放哪一层维护？</li>\n<li>新增编码值怎么处理？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0070",
+      "type": "technical",
+      "question": "好的数据埋点规范是怎样的",
+      "topic": [
+        "warehouse",
+        "tracking"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>埋点要统一 ID、参数定义、版本管理和数据校验。</p>\n<h2>30 秒回答</h2>\n<p>规范：埋点 ID 唯一、参数名称/类型/枚举统一、埋点文档和版本管理、上线前校验、数据质量监控。</p>\n<h2>追问</h2>\n<ul>\n<li>埋点参数怎么定义？</li>\n<li>埋点变更怎么兼容？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -4766,6 +4963,34 @@ window.OS_DATA = {
       ],
       "domain": "sql",
       "body_html": "<h2>思路</h2>\n<p>经典「日期减序号」法：连续日期减去连续序号得到相同值，按此值分组取 MIN/MAX 即为起止日期。</p>\n<h2>代码</h2>\n<pre><code class=\"language-sql\">WITH login_dedup AS (\n    SELECT DISTINCT user_id, login_date FROM user_login\n),\nlogin_grp AS (\n    SELECT user_id, login_date,\n           DATE_SUB(login_date, ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY login_date)) AS grp\n    FROM login_dedup\n)\nSELECT user_id,\n       MIN(login_date) AS start_date,\n       MAX(login_date) AS end_date,\n       DATEDIFF(MAX(login_date), MIN(login_date)) + 1 AS consecutive_days\nFROM login_grp\nGROUP BY user_id, grp\nORDER BY user_id, start_date;</code></pre>\n<h2>核心</h2>\n<p>连续日期 1/2/3 号，ROW_NUMBER 1/2/3，日期减序号得到同一个值，说明连续。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么先去重？</li>\n<li>有重复登录日期会怎样？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0015",
+      "type": "technical",
+      "question": "UDF、UDAF、UDTF 的区别，reduce 个数由什么决定",
+      "topic": [
+        "sql",
+        "udf"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>UDF 一行进一行出，UDAF 多行进一行出（聚合），UDTF 一行进多行出（炸裂）。</p>\n<h2>30 秒回答</h2>\n<p>reduce 个数由分区数/并行度决定（Spark SQL 默认 200），与 group by key 数和数据量相关。</p>\n<h2>追问</h2>\n<ul>\n<li>举例常见的 UDAF？</li>\n<li>reduce 个数怎么调？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0016",
+      "type": "technical",
+      "question": "统计每个模态下质量分前 30% 的样本数量和平均分",
+      "topic": [
+        "sql",
+        "window-function"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "sql",
+      "body_html": "<h2>代码</h2>\n<pre><code class=\"language-sql\">SELECT modal, COUNT(*) AS cnt, AVG(quality_score) AS avg_score\nFROM (\n  SELECT id, modal, quality_score,\n         PERCENT_RANK() OVER (PARTITION BY modal ORDER BY quality_score DESC) AS pct\n  FROM sample\n) t\nWHERE pct &lt;= 0.3\nGROUP BY modal;</code></pre>\n<h2>注意</h2>\n<ul>\n<li>PERCENT_RANK 按质量分降序排，取前 30%</li>\n<li>也可用 ROW_NUMBER 配合总数计算比例</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -6877,6 +7102,42 @@ window.OS_DATA = {
       "date": "2026-08-27",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>介绍项目的框架</li>\n<li>湖仓一体和纯数仓的区别是什么</li>\n<li>数据回滚怎么处理</li>\n<li>项目每天的数据量是多少</li>\n<li>粒度是什么</li>\n<li>链路性能优化是做什么</li>\n<li>Flink 如何保证数据被精准一次地消费</li>\n<li>星型模型和雪花模型，各自适合用在哪些场景</li>\n<li>三范式的概念了解吗</li>\n<li>那你觉得数仓的表是符合三范式的吗</li>\n<li>手撕：直播间最多人数对应时刻（变式）</li>\n</ol>\n<blockquote>备注：阿里数开一面，北京。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-07-22-kuaishou-kling",
+      "company": "快手",
+      "business": "可灵大模型数据",
+      "position": "大模型数据开发（三轮技术 + HR）",
+      "date": "2026-07-22",
+      "round": "多轮",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>数据倾斜优化具体场景、定位、方案选择</li>\n<li>Spark 宽窄依赖，Shuffle 流程，优化 Shuffle 很重的任务</li>\n<li>大模型训练数据处理流程，和传统数仓 ETL 本质区别</li>\n<li>1000 万张图片去重，几种方法，优缺点和适用场景</li>\n<li>SQL：训练样本表 sample(id, content, modal, quality_score)，统计每个模态下质量分前 30% 的样本数量和平均质量分</li>\n<li>Python 处理大文件（超过内存），Pandas 和 PySpark 性能和适用场景差异</li>\n<li>从零搭建多模态训练数据 Pipeline（视频/图片/音频，接入、清洗、质检、交付）</li>\n<li>视频训练数据质量维度，自动化质检规则过滤低质量视频</li>\n<li>难例挖掘：从海量无标注数据找对模型提升最大的样本</li>\n<li>大模型数据倾斜特殊场景（按标签分组某标签数据量特别大），除加盐扩容外的解法</li>\n<li>Ray 和 Spark 相比在大模型数据处理场景的优势劣势</li>\n<li>算法团队反馈数据集训练效果不好，怎么排查数据侧问题</li>\n<li>Data-Centric AI 怎么理解，从数据工程角度怎么提升训练数据效率</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-06-26-bytedance-ai-data",
+      "company": "字节跳动",
+      "business": "AI 数据开发",
+      "position": "AI 数据工程师（三轮技术 + HR）",
+      "date": "2026-06-26",
+      "round": "多轮",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍 + 最匹配的项目</li>\n<li>项目深挖：重构数据管道提升 50% 效率，瓶颈在哪，CPU 密集还是 IO 密集；构建训练数据集怎么做数据清洗，标注不一致怎么处理</li>\n<li>手撕：写一个 LRU 缓存，O(1)，实现 get 和 put</li>\n<li>PB 级推荐模型训练数据预处理服务（高吞吐、复杂负采样、分布一致性）</li>\n<li>RAG 解决大模型什么问题，向量召回和 BM25 适合什么场景，为什么混合</li>\n<li>字节做 AI 应用最大瓶颈是模型能力还是数据质量</li>\n<li>线上事故：第三方数据源 Schema 变更导致解析任务全挂，怎么处理</li>\n<li>手撕：二叉树最短路径</li>\n<li>LoRA 微调原理、Self-Attention 的 QKV 公式推导</li>\n<li>ReAct、Function Calling、MCP 协议的区别</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-06-21-fliggy-bigdata",
+      "company": "飞猪",
+      "business": "大数据开发",
+      "position": "大数据开发（三轮技术 + HR）",
+      "date": "2026-06-21",
+      "round": "多轮",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍，重点讲最近两年主导的最复杂的数据项目</li>\n<li>JVM 内存模型，Full GC 什么时候触发，线上频繁 Full GC 怎么排查，锁的信息存在运行时数据区哪个部分</li>\n<li>synchronized 和 ReentrantLock 的区别，AQS 原理，非公平锁还维持 FIFO 队列吗，synchronized 锁升级过程</li>\n<li>Spark 的 Shuffle 和 MapReduce 的 Shuffle 有什么区别，宽依赖是什么，哪些算子触发，groupBy 是 action 算子吗</li>\n<li>两个大表 join 产生数据倾斜怎么优化，至少三种方案</li>\n<li>Flink 怎么保证端到端一致性，反压怎么产生怎么优化，Flink 写入 StarRocks 慢怎么排查</li>\n<li>星型模型和雪花模型区别，dwd 层一般做什么操作，事实表有几种，库存指标该用哪种事实表</li>\n<li>会员等级、地址要记录所有历史变化，表怎么设计</li>\n<li>手撕 SQL：连续登录 4 天的用户；直播间最大同时在线人数</li>\n<li>算法：一千万个整数，5MB 内存，怎么排序</li>\n<li>追问：reduce 个数由什么决定，不指定分区默认几个分区，udf/udaf/udtf 有什么区别</li>\n<li>数仓架构是 Lambda 还是 Kappa，为什么，重新设计飞猪实时酒店库存数仓怎么做</li>\n<li>数仓分数据域了吗，数据域和业务域有什么区别，数据治理怎么做，异常数据怎么设置监控</li>\n<li>RTA 广告外投系统日均千亿级请求、百万级 QPS，人群包/标签的下发机制怎么保证毫秒级响应</li>\n<li>实时画像标签接触过吗，实时性怎么定义，如何确保实时数据绝对准确</li>\n<li>多个业务系统性别有的 F/M 有的男/女，数仓里怎么统一</li>\n<li>数据采集底层怎么实现，Flink 采集 MySQL 数据（CDC）</li>\n<li>StarRocks 和 Doris 有什么区别，StarRocks 数据怎么分片分布式存储，建表考虑分区分桶策略吗</li>\n<li>海豚调度怎么组织任务依赖，ods → dwd → dws 三张表建几个工作流，依赖怎么配</li>\n<li>了解客户端埋点吗，怎么算好的数据埋点规范</li>\n<li>怎么评价一个数仓干得好，从 0 到 1 设计数仓全栈怎么设计</li>\n<li>参数模型和非参数模型区别，生成模型和判别模型呢</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-06-12-feishu-ai-data",
+      "company": "字节飞书",
+      "business": "AI 数据开发",
+      "position": "AI 数据开发（三轮技术 + HR）",
+      "date": "2026-06-12",
+      "round": "多轮",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>企业 IM 用户搜索会议纪要，怎么设计搜索的数据流（追问：模糊记忆搜索没具体标题；多租户隔离；大客户索引单独部署）</li>\n<li>Flink 状态后端调优，RocksDB 写放大怎么解决，跨 10 分钟窗口状态关联怎么保证 Exactly-Once</li>\n<li>ByteHouse 和 ClickHouse 核心差异（存算分离、自描述格式、CrossCache、三种执行模式、RANK_FUSION 混合检索）</li>\n<li>最复杂数据管道链路层级多少层，上游从 MySQL 换 Binlog 怎么无损迁移，数据血缘准确性，字段经过 5 层转换怎么追溯</li>\n<li>企业问答系统跨数据源统一查询（文档、表格、聊天记录、CRM），怎么设计索引架构（主索引+向量索引+融合+缓存+权限剪枝+实时性）</li>\n<li>DeerFlow 数据工程与 AI Agent 结合点，沙箱环境对数据开发意味着什么</li>\n<li>智能会议纪要数据处理链路（ASR→大模型总结→结构化存储→关联日历/文档），多语言会议怎么办，AI 产生幻觉怎么设计质量监控（溯源）</li>\n<li>智能表格 100 万行数据用户拖拽分组汇总怎么秒级响应</li>\n<li>5 年后数据开发工程师还需要写 SQL 吗</li>\n</ol>"
     },
     {
       "interview_id": "INTERVIEW-2026-06-12-netease-bigdata",
