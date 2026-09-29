@@ -1,9 +1,9 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:34:26+08:00",
+  "generatedAt": "2026-09-29T11:36:23+08:00",
   "stats": {
-    "questions": 420,
-    "interviews": 51,
-    "technical": 335,
+    "questions": 422,
+    "interviews": 55,
+    "technical": 337,
     "project": 85,
     "domains": {
       "spark": 42,
@@ -13,10 +13,10 @@ window.OS_DATA = {
       "starrocks": 13,
       "flink": 16,
       "network": 4,
-      "algorithm": 8,
+      "algorithm": 9,
       "statistics": 1,
       "ml": 5,
-      "llm": 84,
+      "llm": 85,
       "platform": 2,
       "system": 7,
       "warehouse": 97,
@@ -2452,6 +2452,29 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>选 pivot 分区，递归排序左右，平均 O(nlogn)、最坏 O(n²)、空间 O(logn)。</p>\n<h2>30 秒回答</h2>\n<p>选基准值，比它小的放左、大的放右，再递归排序两边；随机选 pivot 避免最坏情况。</p>\n<h2>追问</h2>\n<ul>\n<li>最坏情况什么时候出现？</li>\n<li>怎么避免最坏情况？</li>\n</ul>"
     },
     {
+      "id": "ALGORITHM-0009",
+      "type": "technical",
+      "question": "和为 k 的连续子数组个数",
+      "topic": [
+        "algorithm",
+        "prefix-sum",
+        "hash"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-11-xiaohongshu-ai-data-dev",
+          "company": "小红书",
+          "position": "AI 数据开发（4 轮）",
+          "date": "2026-07-11"
+        }
+      ],
+      "domain": "algorithm",
+      "body_html": "<h2>一句话</h2>\n<p>前缀和 + 哈希表：<code>sum[i] - sum[j] = k</code> 等价于找前缀和 <code>sum[i]-k</code> 出现的次数。</p>\n<h2>30 秒回答</h2>\n<p>遍历数组累计前缀和 cur，每到一个位置查哈希表里 <code>cur - k</code> 出现过几次，累加进答案，再把当前前缀和记入哈希表。O(n) 时间、O(n) 空间。</p>\n<h2>1 分钟回答</h2>\n<pre><code class=\"language-python\">def subarraySum(nums, k):\n    cnt = {0: 1}\n    cur = ans = 0\n    for x in nums:\n        cur += x\n        ans += cnt.get(cur - k, 0)\n        cnt[cur] = cnt.get(cur, 0) + 1\n    return ans</code></pre>\n<ul>\n<li>核心：连续子数组和 = 两个前缀和之差</li>\n<li>初始化 <code>{0: 1}</code> 处理从下标 0 开始的子数组</li>\n<li>复杂度：O(n) 时间，O(n) 空间</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么初始化 cnt[0]=1？</li>\n<li>如果要求返回所有子数组而不是个数，怎么改？</li>\n</ul>"
+    },
+    {
       "id": "STATISTICS-0001",
       "type": "technical",
       "question": "t 检验和 z 检验是什么",
@@ -4280,6 +4303,28 @@ window.OS_DATA = {
       ],
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>AI Agent 依赖四类数据基础设施：数据接入/治理、向量检索、元数据/知识库、评估监控与权限。</p>\n<h2>30 秒回答</h2>\n<p>底层要高质量数据（采集/清洗/治理）、向量库做语义检索、元数据+知识库做上下文、评估监控做效果度量，外加权限和血缘。数据工程师不会被淘汰，而是从「写报表」转向「建设 AI 可用的数据底座」。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>数据接入治理：清洗、去重、标注、质量控制</li>\n<li>向量检索：Embedding + 向量库做 RAG</li>\n<li>元数据/知识库：表结构、口径、血缘作为 Agent 上下文</li>\n<li>评估监控：准确率、召回、可观测性</li>\n<li>权限安全：全链路校验</li>\n<li>数据工程师角色：从报表建设转向 AI 数据底座建设，是升级不是淘汰</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>数据工程师会被 AI 淘汰吗？</li>\n<li>Agent 的数据底座和传统数仓有什么关系？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0094",
+      "type": "technical",
+      "question": "知识库应该维护哪些内容",
+      "topic": [
+        "llm",
+        "knowledge-base"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-02-xhs-ai-data-1",
+          "company": "阿里系",
+          "position": "AI 数据工程师（两面）",
+          "date": "2026-05-02"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>知识库维护：表/指标元数据、业务口径、血缘关系、FAQ 与示例、以及更新版本，保证 Agent 能拿到准确上下文。</p>\n<h2>30 秒回答</h2>\n<p>核心四类：表元数据（字段含义/类型/枚举值）、指标口径（定义/计算逻辑/负责人）、业务知识（术语/规则/常见问题）、示例（优质 SQL/问答对）。配版本管理和更新机制，过期内容要及时刷新。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>表元数据：字段、类型、枚举、上下游关系</li>\n<li>指标口径：定义、计算逻辑、负责人、使用场景</li>\n<li>业务知识：术语、规则、FAQ</li>\n<li>示例：优质 SQL、问答对、标注样例</li>\n<li>配套：版本管理、更新流程、权限、质量校验</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>知识库过期了怎么处理？</li>\n<li>知识库和向量库是什么关系？</li>\n</ul>"
     },
     {
       "id": "PLATFORM-0001",
@@ -9150,6 +9195,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>数仓模型设计，离线和实时分别怎么设计，为什么</li>\n<li>高内聚低耦合在模型设计怎么体现</li>\n<li>维度退化怎么设计，哪些维度适合退化</li>\n<li>DWD 层设计原则是什么</li>\n<li>MapReduce 的 Shuffle 过程</li>\n<li>Map/Reduce task 个数怎么定，默认多少，分区怎么决定</li>\n<li>Hive 的 UDF、UDAF、UDTF 区别，开发分别继承什么</li>\n<li>两个大表 Join 数据倾斜怎么优化</li>\n<li>Flink 的 Exactly Once 怎么实现，反压怎么优化</li>\n<li>ClickHouse 解决什么问题，有什么缺点</li>\n<li>手撕 SQL：直播间峰值在线人数；连续活跃超四天用户</li>\n</ol>"
     },
     {
+      "interview_id": "INTERVIEW-2026-07-11-xiaohongshu-ai-data-dev",
+      "company": "小红书",
+      "business": "AI 工程 / DataEngineer Agent",
+      "position": "AI 数据开发（4 轮）",
+      "date": "2026-07-11",
+      "round": "4 轮",
+      "body_html": "<h2>面经记录（原始）</h2>\n<h3>第一轮（直属 Leader 面，60min）</h3>\n<ol>\n<li>深挖简历项目</li>\n<li>大数据基础（Spark / Flink / 数仓）</li>\n<li>SQL 与数据建模</li>\n<li>AI 数据基础（训练数据 / 特征 / 向量）</li>\n<li>手撕算法：给定一个数组和目标值 k，找出和为 k 的连续子数组的个数</li>\n<li>反问环节</li>\n</ol>\n<h3>第二轮（交叉面 / Leader+1 面，60min）</h3>\n<ol>\n<li>项目深度追问</li>\n<li>进阶技术题</li>\n<li>场景设计题</li>\n<li>技术视野</li>\n<li>反问环节</li>\n</ol>\n<h3>第三轮（部门负责人面，30-40min）</h3>\n<ol>\n<li>经历复盘与软素质</li>\n<li>业务与技术理解</li>\n<li>岗位匹配</li>\n<li>反问环节</li>\n</ol>\n<h3>第四轮（HRBP 面，30min）</h3>\n<ol>\n<li>基础信息确认</li>\n<li>行为与动机题</li>\n<li>入职相关</li>\n</ol>\n<blockquote>备注：小红书 AI 数据开发（Agent 方向）考点复盘，官方架构为 ODS→DWD→DWS→DM→APP→DIM 六层 + StarRocks/ClickHouse。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-07-03-bytedance-data-dev-liangjing",
       "company": "字节跳动",
       "business": "数据开发",
@@ -9222,6 +9276,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>来源小红书 @数据工程师勇哥。Flink + Doris 是主线。</blockquote>\n<h3>一面（技术细节）</h3>\n<ol>\n<li>自我介绍（打断）：你做的那个实时数仓，数据延迟是多少？数据量多大？</li>\n<li>场景题：要实时统计亿级用户点击流的 UV，要求去重且精准，不能有误差，你怎么做？（追问：Redis 扛不住亿级 QPS 怎么办？Flink 状态后端怎么调优？）</li>\n<li>手撕 SQL：给一张用户登录表，求连续登录 3 天的用户</li>\n<li>手撕算法：手写单例模式（Double Check Lock），为什么加 Volatile？</li>\n<li>实时：Flink 的 Exactly-Once 怎么实现，Checkpoint 机制详细讲</li>\n</ol>\n<h3>二面（Leader）</h3>\n<ol>\n<li>项目深挖：你做过最得意的项目是什么？如果现在重做，你会改进哪里？</li>\n<li>架构：把原来 ClickHouse 和 Hive 的任务迁移到 Doris，怎么设计？怎么保证数据一致性？Join 性能慢怎么办？（Bucket/Partition/Colocation Join/物化视图）</li>\n<li>智力题：10 亿个整数，内存只有 2G，怎么找出中位数？</li>\n<li>Java 基础：HashMap 在 JDK1.8 为什么引入红黑树？ConcurrentHashMap 分段锁和 CAS 的区别？</li>\n</ol>\n<h3>三面（HRBP）</h3>\n<ol>\n<li>抗压测试：网易加班多，项目上线压力大，你怎么看？</li>\n<li>稳定性：你有 5 年经验了，为什么离开上家公司？</li>\n<li>薪资：期望 30k+，公积金全额 12%，最低能接受多少？</li>\n</ol>\n<blockquote>备注：网易云音乐已把 Doris 作为统一引擎，必考分桶倾斜/写放大。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-06-12-qianyang-summary",
+      "company": "阿里 / B站 / 百度 / 蔚来",
+      "business": "数据开发",
+      "position": "数据开发（面试总结）",
+      "date": "2026-06-12",
+      "round": "总结",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>比较少问技术八股，问到相关的是 spark、hadoop、数据仓库建模、ETL 怎么搭建</li>\n<li>SQL 代码</li>\n<li>AI 相关的问了很多：</li>\n<ul>\n<li>AI 在数据开发中的应用及发展趋势</li>\n<li>如何解决大模型幻觉问题</li>\n<li>AI 取数</li>\n<li>把 AI 应用于过去的实习中有哪些可提升的点</li>\n<ol>\n<li>职业发展（结合业务应用场景，AI + 技术回答，分为短期和长期）</li>\n</ol>\n</ul>\n</ol>\n<blockquote>备注：阿里/B站/百度/蔚来数开面试总结，40% AI + 30% SQL + 10% 八股 + 20% 其他。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-06-09-meituan-jijing",
       "company": "美团",
       "business": "大数据",
@@ -9247,6 +9310,15 @@ window.OS_DATA = {
       "date": "2026-05-31",
       "round": "4 轮",
       "body_html": "<h2>面经记录（原始）</h2>\n<h3>Prompt 相关</h3>\n<ol>\n<li>Prompt engineering 的核心目标是什么？为什么模型会对同一件事换个说法效果差十倍？</li>\n<li>System prompt、few shot 在 prompt 设计中分别解决什么问题？</li>\n<li>Token 上下文窗口和上下文腐化是什么？它们如何影响模型的理解和生成？</li>\n</ol>\n<h3>模型输出控制</h3>\n<ol>\n<li>幻觉是怎么产生的？有哪些方法可以减轻？</li>\n<li>什么是 structured output？如何通过它控制模型输出？</li>\n<li>Function calling 和 RAG 的区别和联系是什么？什么时候用 function calling，什么时候用 RAG？</li>\n<li>Embedding 和向量数据库在 RAG 中的作用是什么？检索策略怎么设计？</li>\n</ol>\n<h3>Agent 系统设计</h3>\n<ol>\n<li>Agent 是怎么结合工具、知识和规划自主运行的？</li>\n<li>多 Agent 架构下，主 Agent、子 Agent 的通信协作怎么设计？异常怎么处理？</li>\n<li>Agent 的上下文膨胀问题怎么解决？工具调用出现幻觉怎么办？</li>\n<li>MCP 和 skill 在 Agent 系统中分别起什么作用？</li>\n</ol>\n<h3>模型优化与训练</h3>\n<ol>\n<li>微调和 RAG 的使用场景有什么区别？</li>\n<li>SFT 和 RLHF 哪个更适合快速迭代？在基模能力越来越强的情况下，这两者的破局点是什么？</li>\n<li>怎么降低推理成本？在多任务多 Agent 系统中怎么权衡效率和准确性？</li>\n</ol>\n<h3>上下文与记忆管理</h3>\n<ol>\n<li>如何在有限的上下文窗口内放入关键内容？短期和长期记忆怎么压缩？</li>\n<li>混合路由和限流器在多 Agent 系统中为什么重要？</li>\n</ol>\n<h3>工程落地与系统能力</h3>\n<ol>\n<li>项目中 Agent 的执行链路怎么设计？怎么保证连续任务的正确性？</li>\n<li>长任务或复杂任务中，怎么保证模型不偏离原始目标？</li>\n<li>如何评估生成模型的多样性和准确性？</li>\n<li>工具调用的安全问题怎么处理？比如 Prompt 泄露、敏感信息暴露。</li>\n<li>Agent 系统怎么设计能力复用和 skill 管理，保证可扩展性？</li>\n</ol>\n<blockquote>备注：字节剪映 Agent 开发岗 4 轮 21 题，全部保留原文。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-05-30-bytedance-base-data-3round",
+      "company": "字节跳动",
+      "business": "基础数据部",
+      "position": "资深数据开发（5 年，三面）",
+      "date": "2026-05-30",
+      "round": "三面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<h3>一面（基础 + 离线数仓核心）</h3>\n<ol>\n<li>自我介绍</li>\n<li>项目细节技术点（数仓分层 / 离线任务优化 / 数据质量监控）</li>\n<li>Hive 内部表与外部表区别，使用场景？</li>\n<li>数仓分层为什么要分 ODS/DWD/DWS/ADS？</li>\n<li>Hive 数据倾斜常见场景与解决方案</li>\n<li>Spark 核心概念：RDD、宽依赖、Shuffle、Executor 内存模型</li>\n<li>Spark 任务跑不动怎么排查？</li>\n<li>Hive 小文件危害与合并方案</li>\n<li>数据仓库建模：维度建模、星型模型、雪花模型</li>\n<li>离线任务调度依赖怎么设计？</li>\n<li>场景题：大表订单表倾斜严重，user_id 分布不均导致 Spark 任务卡住，给出完整排查与优化方案</li>\n</ol>\n<h3>二面（实时 + 工程 + 架构深度）</h3>\n<ol>\n<li>自我介绍（侧重实时方向）</li>\n<li>项目细节技术点（实时数仓 / 幂等性 / 实时优化）</li>\n<li>Flink 精确一次（EXACTLY_ONCE）原理</li>\n<li>Flink 状态后端选择：Memory、FS、RocksDB 区别</li>\n<li>实时数据倾斜怎么处理？</li>\n<li>Kafka 分区与消费者组机制</li>\n<li>实时数仓与离线数仓如何保证口径一致？</li>\n<li>DWD 层设计规范、主键、分区、索引策略</li>\n<li>大促期间实时任务稳定性保障方案</li>\n<li>数据回溯、补数据流程怎么设计？</li>\n<li>场景题：设计一个用户实时行为宽表（曝光/点击/加购/下单），保证实时性、幂等、口径统一</li>\n</ol>\n<h3>三面（治理 + 架构 + 业务理解）</h3>\n<ol>\n<li>自我介绍（侧重治理方向）</li>\n<li>项目细节技术点（数据治理 / 指标平台化 / 架构优化）</li>\n<li>数据治理从哪几个方面入手？</li>\n<li>如何降低离线计算成本与存储成本？</li>\n<li>数据血缘实现原理与落地价值</li>\n<li>数仓公共层建设原则与规范</li>\n<li>如何统一全公司指标口径，避免指标二义性？</li>\n<li>大促 SLA 保障：降级、限流、监控、应急预案</li>\n<li>基础数据部的价值与定位理解</li>\n<li>如何推动业务方遵守数据规范？</li>\n<li>场景题：核心数据链路每天凌晨大面积任务失败、延迟、影响线上报表，给出完整排查、定位、解决、复盘流程</li>\n</ol>\n<blockquote>备注：外部参考，5 年级别，三面各 11 题，覆盖离线、实时、治理三大主线。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-05-30-xiaohongshu-ai-data",
@@ -9337,6 +9409,15 @@ window.OS_DATA = {
       "date": "2026-05-06",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>数仓重构用了多久，实时建设用了多久</li>\n<li>离线数仓最大挑战，技术上的挑战</li>\n<li>离线解决的最大的问题</li>\n<li>如何量化数仓的好坏</li>\n<li>数仓存在哪些问题，是如何解决的</li>\n<li>如何保障指标一致性、复用性、粒度一致性（模型/数据质量/平台工具三层）</li>\n<li>数仓规范，每一个都展开</li>\n<li>数仓任务 code review 的点，权责问题</li>\n<li>数仓分层、分主题如何设计</li>\n<li>范式建模和维度建模，其他建模方式</li>\n<li>HSQL 优化方式</li>\n<li>简单说一下执行计划、map、reduce 数</li>\n<li>实时用的什么技术，遇到哪些问题，如何保障数据质量</li>\n<li>OLAP 数据库，了解 Kylin 吗，简单对比特性与优缺点、场景</li>\n<li>流量域怎么建设（用户行为 + 业务线），用户域怎么和流量域 merge（跨主题合并）</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-05-02-xhs-ai-data-1",
+      "company": "阿里系",
+      "business": "AI 数据研发",
+      "position": "AI 数据工程师（两面）",
+      "date": "2026-05-02",
+      "round": "两面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<h3>阿里系集团 1 一面</h3>\n<ol>\n<li>先做个自我介绍，重点讲一下为什么学数学专业，以及为什么从数学专业转向 AI 工程方向。</li>\n<li>在校期间有没有系统学习过计算机相关课程？</li>\n<li>计算机组成原理、网络、数据库这些有涉及吗？</li>\n<li>你觉得数学专业对你现在做数据开发或 AI 工程有哪些帮助或局限？</li>\n<li>下面开始拷打两段实习：</li>\n</ol>\n<p>1）底层用什么平台查数？存储引擎有了解吗？ 2）语义识别和 SQL 生成是不是调用了底层大模型的能力？用的是什么模型？ 3）你觉得 Agent 问数和传统的大报表问数有什么区别？ 4）有没有考虑过其他技术路线实现问数？不一定是通过 SQL 的方式。 5）不同人对同一个字段的命名可能不一样，这种情况你怎么处理？</p>\n<ol>\n<li>对 Java 项目了解多吗？比如 Spring 框架之类的。</li>\n<li>RPC 框架之类的通用工程概念有了解吗？</li>\n<li>有关注 AI Agent 的发展吗？</li>\n<li>对提示词工程、上下文工程、Harness 工程有了解吗？</li>\n<li>除了项目中用到的 Agent，你还用过其他 AI 工具吗？比如 OpenAI 的相关平台。</li>\n<li>没有数仓建模的经验吧？实习过程中 SQL 写得多吗？</li>\n</ol>\n<h3>阿里系集团 2 一面</h3>\n<ol>\n<li>你之前处理的都是离线数据吗？有没有实时数据处理相关经验？</li>\n<li>你求职目标更偏向数据研发、BI/商分、算法还是数据产品？</li>\n<li>你对 AI 数据工程师这个岗位怎么理解？</li>\n<li>有没有离线数据建模经验？</li>\n<li>数仓大概怎么分层？为什么这样设计？</li>\n<li>数据模型除了分层，一般还按什么模式设计？</li>\n<li>拷打简历实习：</li>\n</ol>\n<p>1）一张表需要维护哪些信息，才能让人、机器都好理解？ 2）通用 AI Agent 核心能力/核心组件有哪些？ 3）MCP 和 Skill 有什么差异？ 4）有没有编写过 Skill？用什么工具、做过什么？ 5）同样的问题，Agent 有时返回不同结果，可能是什么原因？</p>\n<ol>\n<li>多域、多表、无明确维度的统一 Agent 问数，难点在哪？</li>\n<li>要提升多表场景下问答准确率，需要维护哪些信息？</li>\n<li>知识库应该维护哪些内容？</li>\n<li>两道手撕 SQL</li>\n</ol>\n<blockquote>备注：偏 AI + 数据研发，深挖实习经历并对底层问题追问，具体实习内容已隐去。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-04-22-didi-finance",
