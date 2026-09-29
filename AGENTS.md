@@ -66,6 +66,7 @@ Schema 见 docs/content-schema.md。不要把 HR 开放题按「Q + 标准答案
 
 - interviews/ 只放历史事实：Q、当时给的 A（可为空）、公司 / 岗位 / 日期 / 轮次
 - questions/、knowledge/ 放二次加工内容
+- 原始面经的提问要保留原文，不要缩写或改写（二次加工才另存到 questions/）
 - 绝不用 AI 生成的内容覆盖或删除原始记录
 
 ## 7. Source Type（每条都要标）

@@ -1,7 +1,7 @@
 ---
 id: PROJECT-0085
 type: project
-question: 现在的薪资结构和预期薪资
+question: 现在的薪资结构是怎样的，预期薪资是多少
 topic: [project, hr]
 difficulty: 1
 frequency: medium
