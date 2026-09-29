@@ -1,27 +1,27 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:42:54+08:00",
+  "generatedAt": "2026-09-29T12:11:25+08:00",
   "stats": {
-    "questions": 438,
+    "questions": 471,
     "interviews": 65,
-    "technical": 353,
-    "project": 85,
+    "technical": 368,
+    "project": 103,
     "domains": {
-      "spark": 44,
+      "spark": 45,
       "hdfs": 4,
-      "storage": 21,
+      "storage": 24,
       "lakehouse": 7,
-      "starrocks": 14,
-      "flink": 18,
+      "starrocks": 15,
+      "flink": 21,
       "network": 4,
       "algorithm": 9,
       "statistics": 1,
       "ml": 5,
-      "llm": 87,
+      "llm": 89,
       "platform": 2,
       "system": 7,
-      "warehouse": 102,
+      "warehouse": 107,
       "sql": 28,
-      "project": 85
+      "project": 103
     }
   },
   "domains": {
@@ -1046,6 +1046,20 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>AQE 是 Spark 3.x 的运行时优化：根据 shuffle 中间结果的真实统计，动态合并分区、切换 Join 策略、优化倾斜 Join。</p>\n<h2>30 秒回答</h2>\n<p>AQE 在 shuffle 结束后拿到真实数据量，运行时做三件事：合并过小分区、把小表广播切换成 Broadcast Join、检测倾斜分区并拆分。比静态优化器更贴近真实数据分布。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>动态合并分区：shuffle 后分区太小就合并，减少 task 数</li>\n<li>动态切换 Join：发现某侧很小，运行时转 Broadcast Join</li>\n<li>优化倾斜 Join：检测倾斜分区自动拆分</li>\n<li>前提：<code>spark.sql.adaptive.enabled=true</code>（3.x 默认开）</li>\n<li>价值：不用人工猜数据量，运行时自适应</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>AQE 和静态优化器的区别？</li>\n<li>AQE 能完全替代人工加盐吗？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0045",
+      "type": "technical",
+      "question": "Spark 面试题大纲（200 题覆盖范围）",
+      "topic": [
+        "spark",
+        "outline"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>甜获师兄 Spark 200 题纯题库大纲，覆盖 RDD/DAG 核心、SparkSQL/Catalyst、Streaming、性能调优四块。</p>\n<h2>30 秒回答</h2>\n<p>四大必问：RDD 依赖类型、Catalyst 执行流程、Shuffle 优化、Streaming 容错。四块大纲：基础概念与架构、SparkSQL 与数据操作、Streaming 实时处理、性能优化与生态。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：RDD/DAG 懒执行、宽窄依赖、Shuffle、Lineage 容错、广播变量/累加器、Checkpoint、统一内存管理、提交流程、YARN/K8s/Standalone</li>\n<li>SparkSQL：Catalyst 四阶段、谓词下推/列剪裁、Broadcast Join、DataFrame/Dataset/RDD、窗口函数、UDF/UDAF、AQE</li>\n<li>Streaming：DStream vs Structured Streaming、Exactly-Once、Watermark/迟到、背压、Checkpoint 恢复、窗口、Kafka 集成</li>\n<li>优化：数据倾斜（加盐/两阶段/广播）、Kryo、GC 调优、动态资源、Shuffle 文件管理、MLlib、Delta Lake</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>大纲里哪些点已经在题库中有带答案的版本？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -1578,6 +1592,51 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>两者都是 MPP 分析型数据库；ClickHouse 单表极速、适合海量日志明细分析，Doris/StarRocks 更偏多维分析、更新和标准 SQL 生态。</p>\n<h2>30 秒回答</h2>\n<p>ClickHouse 列存 + 极致单表查询性能，适合日志/明细大宽表；Doris 支持多维分析、更新模型、高并发点查和标准 SQL，更适合报表、实时数仓。选型看是纯分析还是需要更新/并发/生态。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>ClickHouse：极致单表吞吐、MergeTree 引擎、适合明细大表</li>\n<li>Doris：分区分桶、多种数据模型（明细/聚合/主键）、更新能力强、MySQL 协议易用</li>\n<li>写入：ClickHouse 高频写入易 too many parts，Doris 导入更平滑</li>\n<li>选型：日志明细分析选 CH，报表/实时数仓/需要更新选 Doris</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>ClickHouse 的 too many parts 是什么？</li>\n<li>Doris 和 StarRocks 又是什么关系？</li>\n</ul>"
     },
     {
+      "id": "STORAGE-0023",
+      "type": "technical",
+      "question": "Hive 面试题大纲（200 题覆盖范围）",
+      "topic": [
+        "storage",
+        "hive",
+        "outline"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>Hive 200 题大纲，四篇：基础架构、SQL 数据操作、性能调优、运维故障恢复。</p>\n<h2>30 秒回答</h2>\n<p>基础（~15 题）：架构/Metastore/表类型/SerDe/UDF/执行流程；SQL（~40 题）：JOIN 优化/窗口/LATERAL VIEW/去重/分桶抽样；调优（~10 题）：倾斜/谓词下推/压缩/小文件/CBO；运维（~5 题）：HA/元数据备份/权限/审计。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：Hive 与 RDBMS 区别、Metastore/Driver/Compiler、内部/外部表、SerDe、UDF/UDAF/UDTF、SQL→AST→QueryBlock→MR 流程、动态分区、压缩、ACID</li>\n<li>SQL：MapJoin/Bucket MapJoin/Skew Join、窗口函数、LATERAL VIEW EXPLODE、DISTINCT vs GROUP BY、CTE、分桶抽样、多表插入</li>\n<li>调优：数据倾斜、MapJoin Hint、谓词下推、ORC/Parquet、Snappy/GZip、小文件合并、CBO、列剪裁/分区剪裁</li>\n<li>运维：HA、元数据备份、权限（Storage-Based/SQL-Standard）、审计、版本升级</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>大纲里哪些点已经在题库中有带答案的版本？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0024",
+      "type": "technical",
+      "question": "HBase 面试题大纲（200 题覆盖范围）",
+      "topic": [
+        "storage",
+        "hbase",
+        "outline"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>HBase 200 题大纲，四块：基础概念、基础设计、性能优化、集群运维。</p>\n<h2>30 秒回答</h2>\n<p>基础：数据模型/Region/WAL/MemStore/HFile/LSM/行列存对比；设计：RowKey 设计/预分区/列族/TTL/Compaction/Split/Bloom Filter/读写路径；优化：RowKey 热点/BlockCache/MemStore Flush/GC/过滤器；运维：监控/备份/Replication/故障/权限/Phoenix 集成。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：表/行键/列族/时间戳/值、Region/RegionServer、HMaster、ZK 角色、WAL、MemStore/HFile、LSM 树、行存 vs 列存、CAP</li>\n<li>设计：RowKey（散列/反转/加盐）、预分区、列族、TTL/版本、Compaction、Split、Bloom Filter、HFile、读写路径</li>\n<li>优化：RowKey 防热点、批量读写、BlockCache、Flush、Compaction、Region 均衡、GC、扫描缓存、过滤器下推</li>\n<li>运维：监控、Snapshot/Export/Replication、故障处理、滚动重启、ACL/Kerberos、Shell、Phoenix/Hive</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>HBase 的 LSM 树原理？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0025",
+      "type": "technical",
+      "question": "ClickHouse 面试题大纲（200 题覆盖范围）",
+      "topic": [
+        "storage",
+        "clickhouse",
+        "outline"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>ClickHouse 200 题大纲，四块：基础架构、SQL 语法、性能调优、高级特性。</p>\n<h2>30 秒回答</h2>\n<p>基础：列存/向量化/MergeTree 引擎族/副本分片/表引擎/Kafka 引擎/物化视图/PREWHERE；SQL：JOIN 算法/字典/TTL/ASOF JOIN/Bitmap 近似去重/ARRAY JOIN；优化：分区与排序键/LowCardinality/EXPLAIN/批量写入/内存并发；高级：副本一致性/实时数仓架构/系统表/常见故障/行业案例。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：列式存储、向量化、MergeTree（PARTITION/ORDER BY/PRIMARY KEY/TTL）、Replicated/Distributed、Replacing/Summing/Collapsing/Aggregating 表引擎、Kafka 引擎、物化视图、PREWHERE、Keeper</li>\n<li>SQL：Hash/Merge/GraceHash JOIN、Dictionary、TTL 冷热分层、ASOF JOIN、groupBitmap/HyperLogLog、ARRAY JOIN</li>\n<li>优化：分区粒度、排序键、LowCardinality、EXPLAIN、BULK INSERT、内存参数、并发控制、有序预聚合</li>\n<li>高级：副本同步、Kafka→CH 实时架构、system.* 系统表、OOM/TOO_MANY_PARTS 故障、电商/金融/广告案例、Iceberg/Hudi 集成</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>ClickHouse 的 too many parts 是什么？</li>\n</ul>"
+    },
+    {
       "id": "LAKEHOUSE-0001",
       "type": "technical",
       "question": "Hudi 有实际使用吗，Hudi 是什么",
@@ -2045,6 +2104,20 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>rollup 是按不同维度组合预计算的物化结构，预聚合是把明细提前按维度汇总；rollup 是预聚合的一种实现方式。</p>\n<h2>30 秒回答</h2>\n<p>rollup 针对基表的不同维度组合建物化表，查询命中 rollup 直接读汇总结果，免去实时聚合。预聚合是更泛的概念（提前算好汇总），rollup、物化视图、聚合模型都属于预聚合手段。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>rollup：StarRocks/Doris 的物化 rollup 索引，按维度组合预汇总</li>\n<li>预聚合：泛指提前聚合，包括聚合模型、物化视图、rollup</li>\n<li>关系：rollup 是预聚合的具体实现，物化视图是更通用的预聚合</li>\n<li>除了新建 rollup，还可调分桶、建物化视图、用聚合模型、优化查询</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>rollup 和物化视图有什么区别？</li>\n<li>新建 rollup 的代价是什么？</li>\n</ul>"
     },
     {
+      "id": "STARROCKS-0015",
+      "type": "technical",
+      "question": "StarRocks 面试题大纲（200 题覆盖范围）",
+      "topic": [
+        "starrocks",
+        "outline"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>StarRocks 200 题大纲，四块：基础知识、进阶调优、高级特性、实战应用。</p>\n<h2>30 秒回答</h2>\n<p>基础（1-50）：MPP/FE/BE/三种数据模型/导入/分区分桶/物化视图/SQL/权限；进阶（51-100）：CBO/向量化/Join 策略/调优/HA/故障排查/表设计；高级（101-150）：架构设计理念/核心机制/云原生/基准测试；实战（151-200）：生态集成/数据迁移/查询优化/行业案例/趋势。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：MPP 架构、FE/BE、明细/聚合/更新模型、列存、Broker/Stream Load、Range/List 分区、Bucket、物化视图、JOIN 策略、权限</li>\n<li>进阶：CBO、向量化、谓词下推、EXPLAIN、统计信息、内存/IO 调优、HA、备份、扩缩容、故障排查、表设计</li>\n<li>高级：为什么 MPP、存储引擎设计、与 Doris 关系、事务、压缩、Colocate Join、Pipeline、云原生、K8s/Helm、基准测试</li>\n<li>实战：Hadoop/Kafka/Flink 集成、MySQL/CH/Hive 迁移、大表 JOIN、TopN、电商/金融/广告案例、与 ClickHouse/Doris 对比</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>三种数据模型分别适用什么场景？</li>\n</ul>"
+    },
+    {
       "id": "FLINK-0001",
       "type": "technical",
       "question": "Kafka-Flink 中间状态怎么设计，如何处理迟到、重复和退款最新状态",
@@ -2374,6 +2447,50 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "flink",
       "body_html": "<h2>一句话</h2>\n<p>Flink CDC 基于 Debezium 读数据库底层日志（binlog/WAL）捕获变更，实现无锁读取、Checkpoint 端到端 Exactly-Once、全量增量无缝衔接。</p>\n<h2>30 秒回答</h2>\n<p>无锁：读 binlog/WAL 而非查表，不加锁、几乎零侵入。Exactly-Once：Checkpoint 保存 binlog 位点 + 下游幂等/事务提交。全量增量衔接：Incremental Snapshot 记 high watermark，全量 chunk 并行读，之后从位点续增量，不丢数据。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>数据源：MySQL binlog（ROW 格式）、PostgreSQL WAL、Oracle/SQLServer 日志</li>\n<li>无锁：不访问数据页，CPU/IO 开销极低</li>\n<li>Exactly-Once：Checkpoint 存位点，下游配合幂等/事务</li>\n<li>全量增量：2.0+ Incremental Snapshot，启动记位点，全量 chunk 并行，增量无缝衔接</li>\n<li>注意：要监控 binlog/WAL 保留策略，避免堆积</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么只开 auto-commit 达不到 Exactly-Once？</li>\n<li>全量阶段怎么和增量衔接不丢数据？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0020",
+      "type": "technical",
+      "question": "Flink 面试题大纲（200 题覆盖范围）",
+      "topic": [
+        "flink",
+        "outline"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>甜获师兄 Flink 200 题纯题库大纲，覆盖基础架构、高级机制、生产实战三块。</p>\n<h2>30 秒回答</h2>\n<p>三块：基础概念与架构（流批统一/JobManager/TaskSlot/Watermark/Checkpoint/窗口）、高级篇（SQL/CEP/AsyncIO/2PC/State TTL/背压/HA）、实战篇（实时数仓/双流 Join/维表 Join/倾斜/大状态/CDC）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：流批统一、JobManager/TaskManager、并行度、ProcessFunction、Watermark、Checkpoint/Savepoint、状态后端、窗口/Trigger/Side Output</li>\n<li>高级：Flink SQL、CEP、Async I/O、两阶段提交、State TTL、Broadcast State、Operator Chain、背压、Flink on YARN/K8s、HA</li>\n<li>实战：实时数仓、双流 Join、维表 Join（Async/Lookup）、数据倾斜、大状态优化、Checkpoint 调优、Flink CDC、数据湖集成</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>大纲里哪些点已经在题库中有带答案的版本？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0021",
+      "type": "technical",
+      "question": "FlinkSQL 面试题大纲（200 题覆盖范围）",
+      "topic": [
+        "flink",
+        "sql",
+        "outline"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>FlinkSQL 200 题大纲，六大模块：基础、进度、高级、实战、优化、源码。</p>\n<h2>30 秒回答</h2>\n<p>高频考点：动态表、Event Time vs Processing Time、Watermark、窗口（滚动/滑动/会话）、双流 JOIN、Checkpoint 精准一次、反压排查。六大模块从基础语法到源码调优。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：DDL/DML/窗口/Join</li>\n<li>进度：状态/Checkpoint/Savepoint</li>\n<li>高级：CEP/时间处理/CDC</li>\n<li>实战：场景设计/常见问题</li>\n<li>优化：反压/数据倾斜/内存调优</li>\n<li>源码：JobGraph/算子链/State Backend</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>动态表是什么？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0022",
+      "type": "technical",
+      "question": "Kafka 面试题大纲（200 题覆盖范围）",
+      "topic": [
+        "flink",
+        "kafka",
+        "outline"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>Kafka 200 题大纲，四块：基础概念、基础设计、性能优化、集群运维。</p>\n<h2>30 秒回答</h2>\n<p>基础（1-40）：Topic/Partition/Consumer Group、ISR、顺序性、Rebalance、幂等/Exactly-Once、压缩、日志清理、偏移提交；设计（1-30）：分区/副本、Leader 选举、MirrorMaker、SSL/SASL/ACL；优化（1-30）：批量异步压缩、零拷贝、GC、序列化；运维（1-99，实际约 15 话题）：监控/备份/扩缩容/安全/故障。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：Topic/Partition/Consumer Group、ISR、顺序保证与破坏、Rebalance、幂等生产者、Exactly Once、压缩算法、日志清理、offset 提交、拦截器</li>\n<li>设计：分区数/副本因子、Leader 选举、跨机房 MirrorMaker、SSL/TLS+SASL+ACL、JMX/Prometheus、持久化、备份恢复、扩缩容</li>\n<li>优化：批量+异步+压缩、顺序写/零拷贝/页缓存、堆外内存、GC、序列化（Avro/Protobuf）、线程池并发</li>\n<li>运维：监控告警、备份恢复、扩缩容重分配、安全管理、故障诊断、版本升级、灾备</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>ISR 机制是什么？</li>\n</ul>"
     },
     {
       "id": "NETWORK-0001",
@@ -4539,6 +4656,36 @@ window.OS_DATA = {
       ],
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>数据开发从「全流程开发者」变成「审核者 + 基建者」：AI 生成方案和代码，人做 review、纠偏、把关，并把精力转向数据治理。</p>\n<h2>30 秒回答</h2>\n<p>需求先丢给 Agent 生成设计文档，人 review 纠偏，确认后 AI 建表、写加工、走评审、自动上线。人不再逐字写 SQL，而是审方案、管口径、建好数据底座，让 AI 有高质量输入。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>流程转变：AI 理解需求 → 生成设计文档 → 人 review 纠偏 → AI 执行 + 评审 + 上线</li>\n<li>角色转变：从写 SQL 的开发者 → 审方案、管口径的审核者</li>\n<li>精力转移：从取数开发转向数据治理、基建（好的数据喂 AI）</li>\n<li>关键：不能让 AI 完全接管，评审和确认环节必须保留</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>哪些环节必须人把关？</li>\n<li>数据治理为什么对 AI 提效更重要？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0097",
+      "type": "technical",
+      "question": "Claude Code Harness 工程在数仓侧怎么落地",
+      "topic": [
+        "llm",
+        "harness",
+        "warehouse"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>得物数仓侧 Harness 落地：五层防御体系解决 compact 失忆、规范不稳定、context 膨胀，八步标准流程把一次交付通过率从 50% 提到 90%。</p>\n<h2>30 秒回答</h2>\n<p>三大痛点：compact 失忆（压缩丢约束）、规范不稳定（靠 LLM 记忆仅 70~80%）、context 膨胀。五层防御：CLAUDE.md 持久化、Auto Memory 自动积累、Hooks 自动验证、Subagents 上下文隔离、SKILL 文件改造。Hooks 是核心，确定性执行 95%+。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>五层：CLAUDE.md 持久化（compact 后约束不丢）、Auto Memory（跨会话口径沉淀）、Hooks（PostToolUse 检查 SQL 规范）、Subagents 隔离（血缘/自测/比对独立 context）、SKILL 改造（path-scoped 按需加载）</li>\n<li>Hooks：PostToolUse 查 SELECT * / PARTITION / DECIMAL / WHERE，PreToolUse 拦 DROP/TRUNCATE，SessionStart 重注入规范，Stop 查完整性</li>\n<li>关键：阻断用 exit 2（exit 1 不阻止）</li>\n<li>八步：需求分析→技术设计→ETL→自测→数据比对→SR 导入→性能优化→SLA</li>\n<li>收益：效率 +30~50%，通过率 50%→90%，规范遵守 60~70%→95%+</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Hooks 为什么是核心？</li>\n<li>compact 失忆怎么解决？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0098",
+      "type": "technical",
+      "question": "数仓哪一层最适合做 RAG 检索",
+      "topic": [
+        "llm",
+        "rag",
+        "warehouse"
+      ],
+      "difficulty": 2,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>核心不是选某一层，而是理解「数据终点从 BI 给人看变成数据给 AI 用」，在旧数仓栈上叠加 Embedding/向量检索/数据契约/Agent 反馈闭环。</p>\n<h2>30 秒回答</h2>\n<p>新能力栈 = 旧栈（SQL/建模/分层）+ Embedding/向量检索/混合召回/数据契约/SQL 沙箱/Agent 反馈/权限/幻觉防控。三项核心能力：打通数据→Embedding→向量库全链路、理解 SQL/图谱/全文/向量四种检索边界、跑稳反馈闭环。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>岗位变迁：从「BI 给人看」到「数据给 AI 用」</li>\n<li>不重学 AI，而是用 AI 视角重读旧能力：Chunk 策略/ANN 索引/批量写入本就是数开优势区</li>\n<li>四项能力：数据→Embedding→向量库、四种检索边界（SQL 精确过滤、向量语义、全文关键词、图谱关系）、反馈闭环、数据契约/权限/幻觉防控</li>\n<li>实战路线：金融数仓+治理→实时 Pipeline+图谱→搜索引擎+语义检索→Data Agent+反馈闭环</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>四种检索方式各自的边界？</li>\n</ul>"
     },
     {
       "id": "PLATFORM-0001",
@@ -6772,6 +6919,77 @@ window.OS_DATA = {
       ],
       "domain": "warehouse",
       "body_html": "<h2>一句话</h2>\n<p>大宽表要等所有主题域上游跑完才产出，时效差；权衡是核心指标走细粒度主题域保时效，但代价是口径要维护多处。</p>\n<h2>30 秒回答</h2>\n<p>大宽表依赖多个主题域，任一上游延迟都会拖慢整张表，若下游接核心指标会放大延迟。折中：核心指标从细粒度主题域出，不都依赖大宽表；但这样同一指标口径要在大宽表和主题域两处维护，需权衡时效和口径一致性。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>风险：宽表要等所有上游依赖跑完，链路越长延迟越严重</li>\n<li>影响：下游接核心指标时，一处延迟全线拖延</li>\n<li>折中 1：核心指标走细粒度主题域，牺牲一点复用换时效</li>\n<li>折中 2：宽表依赖公共 DWS 维度层而非 DWD，数据量小、口径统一</li>\n<li>本质：时效 vs 口径一致性，按业务取舍</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么宽表会放大上游延迟？</li>\n<li>两处维护口径怎么保持一致？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0106",
+      "type": "technical",
+      "question": "数仓面试题大纲（50 题覆盖范围）",
+      "topic": [
+        "warehouse",
+        "outline"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>随川数仓 50 题大纲，五大模块：基础架构、建模方法论、ETL/ELT、OLAP 与数据服务、性能优化。</p>\n<h2>30 秒回答</h2>\n<p>基础：数仓/数据库/数据湖、Kimball vs Inmon、星型 vs 雪花、事实表类型、SCD、分层；建模：维度建模四步、粒度、退化维度、桥接表、快照类型、一致性维度/总线矩阵；ETL：全量增量/CDC/清洗/拉链表/调度/回刷/SLA；OLAP：MOLAP/ROLAP/HOLAP、多维分析、Lambda vs Kappa、治理；优化：存储格式/分区分桶/物化视图/小文件/指标体系。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：数仓 vs 数据库 vs 数据湖、Kimball（自下而上）vs Inmon（自上而下 3NF）、星型/雪花、事务/周期/累积快照事实表、SCD Type1/2/3、ODS→DWD→DWS→ADS</li>\n<li>建模：四步法（业务过程→粒度→维度→事实）、粒度、退化维度、桥接表、累积 vs 周期快照、一致性维度、总线矩阵</li>\n<li>ETL：全量/增量、CDC（时间戳/日志/触发器）、清洗、拉链表、Airflow/DolphinScheduler、回刷、SLA</li>\n<li>OLAP：MOLAP/ROLAP/HOLAP、钻取/上卷/切片/切块、Lambda/Kappa、元数据/血缘/质量/成本/安全</li>\n<li>优化：ORC/Parquet/Avro、分区分桶、物化视图、小文件合并、指标体系建设</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>大纲里哪些点已经在题库中有带答案的版本？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0107",
+      "type": "technical",
+      "question": "数仓建模 10 道高频题",
+      "topic": [
+        "warehouse",
+        "modeling",
+        "outline"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>数仓建模 10 道高频题：分层、维度建模、SCD、事实表类型、拉链表、建模流程、规范、去重、宽表、踩坑。</p>\n<h2>30 秒回答</h2>\n<p>十题分别是：分层为什么这么分、维度建模与星型/雪花/星座、SCD 处理、事实表三类、拉链表设计、完整建模流程、数仓规范、数据去重、宽表设计原则、建模踩坑与解决。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分层：ODS→DWD→DWS→ADS + DIM，减少重复、解耦、便于维护</li>\n<li>维度建模：事实 + 维度，星型/雪花/星座</li>\n<li>SCD：Type1 覆盖 / Type2 拉链 / Type3 历史列</li>\n<li>事实表：事务 / 周期快照 / 累积快照</li>\n<li>拉链表：start_date + end_date + is_current</li>\n<li>流程：需求 → 主题域 → 事实维度 → 分层 → 规范 → 开发上线</li>\n<li>规范：命名/分层/分区/存储/质量/运维</li>\n<li>去重：ODS 唯一键、DWD row_number、幂等、分区覆盖</li>\n<li>宽表：按主题聚合、减少 Join，放 DWS/ADS</li>\n<li>踩坑：维度不合理/未规划分区/SCD 混乱/过度设计/缺公共层</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>十题里哪些在题库中已有独立带答案的版本？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0108",
+      "type": "technical",
+      "question": "指标体系怎么搭建（OMTM / AARRR / 业务流 / 功能监控）",
+      "topic": [
+        "warehouse",
+        "metric-system"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>四步搭建：选 OMTM 关键指标 → AARRR 模型拆解 → 业务流方法拆维度 → 功能模块监控体系。</p>\n<h2>30 秒回答</h2>\n<p>第一步 OMTM（One Metric That Matters）：社交看 DAU、电商看 GMV、视频看时长；第二步 AARRR（获取/活跃/留存/营收/自传播）拉指标树；第三步按维度（时间/人口/产品）+ 指标（新增/活跃/留存）拆解；第四步建功能矩阵 + 使用路径 + 分功能指标体系。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>OMTM：每个业务只选一个最重要的北极星指标</li>\n<li>AARRR：获取→活跃→留存→营收→自传播，逐层拆指标</li>\n<li>业务流：整体/内容/渠道/产品多维拆解</li>\n<li>功能模块监控：大众/核心/小众功能矩阵 + 使用路径 + 分功能指标</li>\n<li>举例：抖音关键指标 = 新增/DAU/日均时长/留存/收入</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>OMTM 为什么只选一个？</li>\n<li>原子指标、派生指标、复合指标怎么定义？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0109",
+      "type": "technical",
+      "question": "大数据概念兴衰史（麻烦型名词 vs 东西型名词）",
+      "topic": [
+        "warehouse",
+        "history"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>「大数据」是麻烦型名词（描述「数据太多处理不了」的痛点），当云、Spark、AI 从各方向吸收掉这个麻烦后，大词本身退潮。</p>\n<h2>30 秒回答</h2>\n<p>描述东西的词（数据库、编译器）寿命长；描述麻烦的词（大数据、Web 2.0）麻烦解决后即退潮。Hadoop 生态被 Redshift/Snowflake（云数仓）、Spark（替代 MR）、S3（存储成本）一组更便宜好用的服务分拆。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>起源：1997 NASA 论文 \"the problem of big data\"，跟在 problem 后面</li>\n<li>3V 是后来倒装的（Doug Laney 2001 本是 3D Data Management）</li>\n<li>Hadoop 三件套：HDFS + MapReduce + YARN，data locality（把代码搬到数据旁）</li>\n<li>Cloudera 案例：2014 估值 41 亿美元 → 2021 年 53 亿私有化，每股只涨 $1</li>\n<li>对比 Databricks 2026 估值 1880 亿美元（云+湖仓+AI 逻辑）</li>\n<li>判断框架：技术热词分「描述东西」和「描述麻烦」两类</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么说大数据「兑现了反而退潮」？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0110",
+      "type": "technical",
+      "question": "数据岗三个送命题的回答框架",
+      "topic": [
+        "warehouse",
+        "interview"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>三个送命题：数据量多大怎么优化、最有挑战的项目、数据不一致怎么办；共同考点是「你是能独立解决问题的工程师，不只是执行者」。</p>\n<h2>30 秒回答</h2>\n<p>第一问考数据规模感知：具体数字 + 优化动作 + 收益量化；第二问考拆解难题：痛点真实 + 你的行动 + 产生结果；第三问考治理体系：事前预防 + 事中监控 + 事后修复。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>数据量：日增 50GB/累计 200TB + 二级分区/小文件合并/加盐打散 + 范围缩小 24 倍/任务 4h→40min</li>\n<li>最有挑战项目：痛点真实（需求模糊/质量差）+ 行动（工作坊拆口径/埋点规范/Watermark）+ 结果（效率 +60%/沉淀 SOP）</li>\n<li>数据不一致：事前多源校验 + 事中波动告警 @负责人 + 事后分级响应/血缘定位上游</li>\n<li>核心：让面试官确认你能独立解决问题</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么「加强监控」答数据不一致等于没答？</li>\n</ul>"
     },
     {
       "id": "SQL-0001",
@@ -9337,6 +9555,258 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>说明当前薪资结构，给合理预期区间，结合市场行情和岗位。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0087",
+      "type": "project",
+      "question": "HR 问你当前薪资怎么答，怎么防压价",
+      "topic": [
+        "project",
+        "negotiation"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>HR 问你薪资不是为压价，是为在预算和内部公平前提下把你招进来；回答给区间 + 看 total package，别只报一个裸月薪。</p>\n<h2>要点</h2>\n<ul>\n<li>HR 三个目标：offer 有竞争力、符合岗位预算、平衡内部公平（新老倒挂）</li>\n<li>隐藏因素：业务负责人多想要你，决定 HR 承受多大压力</li>\n<li>给区间而非单点，报总包（base + 奖金 + 股票 + 补贴）</li>\n<li>反问：薪资结构、涨薪机制、试用期怎么发</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0088",
+      "type": "project",
+      "question": "大厂谈薪流程和涨幅（字节为例）",
+      "topic": [
+        "project",
+        "negotiation"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>大厂卡涨幅基本 30%~40%，超过 40% 需硬实力；薪酬包优先级大于职级，谈薪谨慎不要乱说想法。</p>\n<h2>要点</h2>\n<ul>\n<li>卡涨幅每家差不多 30~40%，超 40% 要硬实力</li>\n<li>研发/算法开价高，2-2 职级 range 可覆盖 90% 的人</li>\n<li>非研发岗 50w 以下总包 2-1 职级随意给</li>\n<li>关键节点：业务面后的初步薪酬沟通，每句话都被记录</li>\n<li>薪酬 80% 由字节薪酬公式决定，BP 主要试探底线</li>\n<li>挂横向大概率是竞争，不是你要价高</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0089",
+      "type": "project",
+      "question": "被问「给不到预期薪资你还来吗」怎么答",
+      "topic": [
+        "project",
+        "negotiation"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>先反问差距和原因，再表态「差距不大愿综合看」，别秒答「可以」也别硬刚「不来」。</p>\n<h2>要点</h2>\n<ul>\n<li>反问：「和我预期差多少？是预算有限还是能力评估差异？」</li>\n<li>表态：「差距不大愿意综合考虑，我看重团队/成长/项目，希望一起商量可行方案」</li>\n<li>顺势问三句：薪资结构、涨薪机制、试用期与转正标准</li>\n<li>别只看月薪，看成长空间、团队氛围、发展匹配</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0090",
+      "type": "project",
+      "question": "面试反问的分寸（问业务领导 vs 问 HR）",
+      "topic": [
+        "project",
+        "follow-up-question"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>反问要分对象：问业务领导问痛点/期待，问 HR 问发展/福利/流程，别问能搜到的和 HR 该答的。</p>\n<h2>要点</h2>\n<ul>\n<li>问业务领导：前三个月重点解决什么、做得好和一般的区别、团队最大挑战</li>\n<li>问 HR：晋升机制、团队氛围、后续流程几轮</li>\n<li>别问：部门多少人（可自查）、上来就问管饭几点下班（放最后委婉问）</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0091",
+      "type": "project",
+      "question": "面试不该说的话（高频问题禁忌）",
+      "topic": [
+        "project",
+        "interview"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>面试别太老实也别背套话，回答要具体、可量化、往岗位靠；八个高频问题都要有备。</p>\n<h2>要点</h2>\n<ul>\n<li>为什么想来：说行业 + 产品 + 匹配，别空泛表忠心</li>\n<li>有什么想问：准备 2-3 个，别说没有</li>\n<li>缺点：真实但非致命 + 强调改进，别说「太完美」</li>\n<li>核心竞争力/胜任力：往岗位能力靠，用数据/成果佐证</li>\n<li>专业不对口：讲可迁移能力 + 主动补课</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0092",
+      "type": "project",
+      "question": "面试被挂的 HR 视角原因",
+      "topic": [
+        "project",
+        "interview"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>被刷多半不是能力不行，是细节和态度：没提前做功课、说无关废话、没气场。</p>\n<h2>要点</h2>\n<ul>\n<li>提前做功课：花十分钟了解公司/行业，面试提一两句很加分</li>\n<li>说岗位相关优势，别扯无关琐事</li>\n<li>放大声音、眼神对视，拿出底气气场</li>\n<li>HR 考核入职率+留存率，不是刷 KPI，别一被挂就阴谋论</li>\n<li>遇「入职先掏钱/垫钱」的垃圾公司，扭头就走</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0093",
+      "type": "project",
+      "question": "背调查什么，流程 timeline",
+      "topic": [
+        "project",
+        "background-check"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>背调查学历、入离职时间、工作表现、岗位名称、绩效、是否愿共事；字节背调全程约一个月。</p>\n<h2>要点</h2>\n<ul>\n<li>背调方：第三方（如猎查查），要 3 段经历 + 9 个联系人</li>\n<li>查：认识领导吗、入离职时间、日常表现、团队沟通、工作内容/岗位/绩效、愿否共事</li>\n<li>海外学历要中留服认证</li>\n<li>入离职时间有差异会拉扯，务必如实</li>\n<li>timeline：一面→二面→三面→HR→薪酬材料→OC→书面 offer→背调（约 10 个工作日）</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0094",
+      "type": "project",
+      "question": "被说「性格内向」怎么回答",
+      "topic": [
+        "project",
+        "interview"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>把内向转成优势：专注力、深度思考、逻辑表达、执行力，别伪装外向。</p>\n<h2>要点</h2>\n<ul>\n<li>优势转化：专注力 + 深度思考，先理清逻辑再表达</li>\n<li>务实稳健：以成果为导向，沟通/协作/跨部门都能推进</li>\n<li>成长进取：在持续提升表达，能按岗位调整状态</li>\n<li>核心：真诚展现能力和责任心，比刻意迎合更能获得认可</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0095",
+      "type": "project",
+      "question": "高频面试题满分话术（自我介绍/为什么选我们等）",
+      "topic": [
+        "project",
+        "interview"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>高频题就那几道：自我介绍、离职原因、职业规划、优缺点、薪资期望；用「数据说话 + 贴岗位」的结构化话术。</p>\n<h2>要点</h2>\n<ul>\n<li>自我介绍：1-3 分钟，背景 + 经历 + 技能 + 匹配点，别背简历</li>\n<li>为什么选我们：行业 + 业务特色 + 能力匹配</li>\n<li>缺点：真实非致命 + 改进动作</li>\n<li>职业规划：短期深耕 + 中长期扩展，别空谈当负责人</li>\n<li>无相关经验：可迁移能力 + 用做项目的方式补课</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0096",
+      "type": "project",
+      "question": "互联网大厂黑话（厂名与职位术语）",
+      "topic": [
+        "project",
+        "jargon"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>大厂黑话要先懂才能进对话：厂名昵称、JD/HC/Base/Package/PM、+1/+2、owner、OKR、one-one 等。</p>\n<h2>要点</h2>\n<ul>\n<li>厂名：宇宙厂（字节）、鹅厂（腾讯）、开水团（美团）、福报厂（阿里）、铁厂（快手）</li>\n<li>职位：JD（岗位说明）、HC（名额）、Base（地点）、Package（总包）、PM（产品）</li>\n<li>职场：+1/+2（上级/上上级）、mt（带教）、ld（leader）、hrbp、owner（背锅人）、OKR、one-one（一对一）、DDL</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0097",
+      "type": "project",
+      "question": "面试后怎么跟进、争取机会",
+      "topic": [
+        "project",
+        "follow-up"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>别傻等结果，面试后 3-5 天内主动跟进一次，表明意向度，往往能抢到「货比三家」里的机会。</p>\n<h2>要点</h2>\n<ul>\n<li>时机：面试后 3-5 天内主动联系</li>\n<li>话术：「我收到其他 offer 但最想去你们，上次聊得很匹配，请问什么时候有反馈？」</li>\n<li>第一次问结果：问表现是否符合期望；第二次：说明有其他家催到岗，最想去你们</li>\n<li>核心：高意向度表达能影响面试官在水平接近候选人里的选择</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0098",
+      "type": "project",
+      "question": "确认 offer 前要问清哪些事",
+      "topic": [
+        "project",
+        "offer"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>先接住拿书面 offer（口头无法律效力），再问清薪资构成、绩效、试用期、晋升等 7 件事。</p>\n<h2>要点</h2>\n<ul>\n<li>先回「感谢认可，书面 offer 什么时候发」，拿到书面保底</li>\n<li>问：薪资构成（base/绩效/提成/补贴、税前税后、几薪）</li>\n<li>问：绩效标准、扣钱吗、拿满比例</li>\n<li>问：试用期薪资、转正标准、晋升机制、到岗时间</li>\n<li>口头 offer 没有法律效力，拿到书面才有主动权</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0099",
+      "type": "project",
+      "question": "没有项目经验怎么自救",
+      "topic": [
+        "project",
+        "self-project"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>没项目就自己造：用公开数据集搭小数仓 + 本地搭 ETL Pipeline，面试讲清分层逻辑和建模思路。</p>\n<h2>要点</h2>\n<ul>\n<li>方法一：Kaggle 电商数据集（如 Brazilian E-Commerce），清洗 + ODS→DWD→DWS 建模 + 核心指标</li>\n<li>方法二：Docker 本地 MySQL→Python ETL→Hive→Airflow 调度，每天自动跑</li>\n<li>面试话术：「用 Python 清洗，导入 Hive 按三层建模，产出复购率/销售趋势等 5 个指标」</li>\n<li>面试官要的是你讲清思路，证明真理解，不是只会背概念</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0100",
+      "type": "project",
+      "question": "跳槽全流程怎么走",
+      "topic": [
+        "project",
+        "job-change"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>跳槽是有计划的自我升级：先理清离职原因和目标，再准备简历面试，全程保密别让现公司知道。</p>\n<h2>要点</h2>\n<ul>\n<li>前期：先想清楚离职根本原因和目标，别冲动</li>\n<li>保密：在职找别被现公司发现</li>\n<li>简历：STAR 法则写项目（背景/角色/动作/结果）</li>\n<li>面试：社招基本聊项目，少八股，准备深度展开的点</li>\n<li>收尾：礼貌交接，别踩老东家</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0101",
+      "type": "project",
+      "question": "字节技术面试流程与避雷（400 人经验）",
+      "topic": [
+        "project",
+        "interview-process"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>字节面试一面 Peer 基本功 → 二面直属 Leader 项目 → 三面部门 Leader 上限 → 交叉面拉齐 → HR 动机稳定性；避雷：真实&gt;完美、不作弊不撒谎、结构化表达。</p>\n<h2>要点</h2>\n<ul>\n<li>流程：实习生 2-3 轮、社招 3-4 轮技术 + HR；一面 Peer、二面直属 Leader、三面部门 Leader、交叉面、HR 面</li>\n<li>各轮重点：一基本功、二项目与思考、三能力上限与匹配、交叉拉齐标准、HR 动机稳定性</li>\n<li>避雷：真实&gt;完美、不作弊、不撒谎、结构化表达、控情绪、适度示弱</li>\n<li>心态：面试天然不公平，多轮是为降主观偏差；通过≠你强，不通过≠你不优秀</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0102",
+      "type": "project",
+      "question": "字节投递的简历锁定机制与田忌赛马策略",
+      "topic": [
+        "project",
+        "application"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>字节简历锁定：同一时间只能走一个岗位流程，别盲投；用「田忌赛马」分冲刺岗/稳妥岗/保底岗。</p>\n<h2>要点</h2>\n<ul>\n<li>锁定机制：一个岗位被查看/进面试，同期其他投递暂停</li>\n<li>别盲投：第三方平台 + 官网双投效果差</li>\n<li>田忌赛马：上等马（冲刺岗，踮脚够）、中等马（稳妥岗，匹配）、下等马（保底岗，快速入职）</li>\n<li>冲刺失利，面试经验也能复用</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0103",
+      "type": "project",
+      "question": "字节 mentor 的职场经验（及时汇报/复盘/向上管理）",
+      "topic": [
+        "project",
+        "workplace"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>三条：及时汇报（做一点就反馈方向）、养成复盘习惯（沉淀个人 SOP）、向上管理（定期对齐目标防跑偏）。</p>\n<h2>要点</h2>\n<ul>\n<li>及时汇报：别等催，做一点就反馈，确认方向是否对</li>\n<li>复盘：项目后 15-30 分钟复盘，沉淀经验/优化流程成 SOP</li>\n<li>向上管理：每两周/每月对齐目标，问「最近重点对吗，有没有要调整的」</li>\n<li>长期价值：转正/面试时这些沉淀能发挥大作用</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0104",
+      "type": "project",
+      "question": "AI 时代开发者面试的新变化（面试官观察）",
+      "topic": [
+        "project",
+        "interview-trend"
+      ],
+      "difficulty": 2,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>AI 时代面试变化：AI 写简历堆术语已失效、前端转全栈、LangGraph/RAG/向量成标配、要能聊业务+开发+维护+运维的多面手。</p>\n<h2>要点</h2>\n<ul>\n<li>AI 写简历已失效：面试官也会用 AI，一眼识破</li>\n<li>前端大量转全栈，纯前端岗位收缩</li>\n<li>LangGraph/RAG/向量已成标配，Loop Engineering 和多 Agent 协作成标准需求</li>\n<li>未来要能聊业务+开发+维护+运维的多面手</li>\n<li>尖锐观点：RAG 在多数场景无用，结构化文件组织 + grep 更有效，简历写 RAG 可能暴露基础不牢</li>\n</ul>"
     }
   ],
   "interviews": [
