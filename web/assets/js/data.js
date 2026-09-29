@@ -1,8 +1,8 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T13:49:45+08:00",
+  "generatedAt": "2026-09-29T14:59:21+08:00",
   "stats": {
     "questions": 1994,
-    "interviews": 68,
+    "interviews": 69,
     "technical": 1888,
     "project": 106,
     "domains": {
@@ -30076,6 +30076,15 @@ window.OS_DATA = {
       "date": "2026-05-02",
       "round": "两面",
       "body_html": "<h2>面经记录（原始）</h2>\n<h3>阿里系集团 1 一面</h3>\n<ol>\n<li>先做个自我介绍，重点讲一下为什么学数学专业，以及为什么从数学专业转向 AI 工程方向。</li>\n<li>在校期间有没有系统学习过计算机相关课程？</li>\n<li>计算机组成原理、网络、数据库这些有涉及吗？</li>\n<li>你觉得数学专业对你现在做数据开发或 AI 工程有哪些帮助或局限？</li>\n<li>下面开始拷打两段实习：</li>\n</ol>\n<p>1）底层用什么平台查数？存储引擎有了解吗？ 2）语义识别和 SQL 生成是不是调用了底层大模型的能力？用的是什么模型？ 3）你觉得 Agent 问数和传统的大报表问数有什么区别？ 4）有没有考虑过其他技术路线实现问数？不一定是通过 SQL 的方式。 5）不同人对同一个字段的命名可能不一样，这种情况你怎么处理？</p>\n<ol>\n<li>对 Java 项目了解多吗？比如 Spring 框架之类的。</li>\n<li>RPC 框架之类的通用工程概念有了解吗？</li>\n<li>有关注 AI Agent 的发展吗？</li>\n<li>对提示词工程、上下文工程、Harness 工程有了解吗？</li>\n<li>除了项目中用到的 Agent，你还用过其他 AI 工具吗？比如 OpenAI 的相关平台。</li>\n<li>没有数仓建模的经验吧？实习过程中 SQL 写得多吗？</li>\n</ol>\n<h3>阿里系集团 2 一面</h3>\n<ol>\n<li>你之前处理的都是离线数据吗？有没有实时数据处理相关经验？</li>\n<li>你求职目标更偏向数据研发、BI/商分、算法还是数据产品？</li>\n<li>你对 AI 数据工程师这个岗位怎么理解？</li>\n<li>有没有离线数据建模经验？</li>\n<li>数仓大概怎么分层？为什么这样设计？</li>\n<li>数据模型除了分层，一般还按什么模式设计？</li>\n<li>拷打简历实习：</li>\n</ol>\n<p>1）一张表需要维护哪些信息，才能让人、机器都好理解？ 2）通用 AI Agent 核心能力/核心组件有哪些？ 3）MCP 和 Skill 有什么差异？ 4）有没有编写过 Skill？用什么工具、做过什么？ 5）同样的问题，Agent 有时返回不同结果，可能是什么原因？</p>\n<ol>\n<li>多域、多表、无明确维度的统一 Agent 问数，难点在哪？</li>\n<li>要提升多表场景下问答准确率，需要维护哪些信息？</li>\n<li>知识库应该维护哪些内容？</li>\n<li>两道手撕 SQL</li>\n</ol>\n<blockquote>备注：偏 AI + 数据研发，深挖实习经历并对底层问题追问，具体实习内容已隐去。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-04-30-meituan-data-intern",
+      "company": "美团",
+      "business": "数据开发",
+      "position": "数据开发（实习一面）",
+      "date": "2026-04-30",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>美团数据开发实习一面，10 题：Flink 6 题 + MapReduce 1 题 + AI 赋能数仓 1 题 + Flink vs Spark Streaming 1 题 + SQL 1 题，几乎纯 Flink 考察。</blockquote>\n<ol>\n<li>checkpoint 慢怎么办</li>\n<li>Flink 任务下游应该做什么保证精确一次</li>\n<li>AI 怎么给数仓赋能</li>\n<li>Flink 的精确一次</li>\n<li>Flink 的流批数据区别</li>\n<li>Flink 反压</li>\n<li>Flink 状态后端</li>\n<li>MapReduce</li>\n<li>Flink 和 Spark Streaming 区别</li>\n<li>一道 SQL 题（题目待补充）</li>\n</ol>\n<blockquote>备注：美团数据开发实习一面（2026-04-30），实时数仓方向，Flink 问得偏深（checkpoint/反压/状态后端）。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-04-22-bytedance-data-dev-0422",
