@@ -1,17 +1,17 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T12:13:28+08:00",
+  "generatedAt": "2026-09-29T12:33:20+08:00",
   "stats": {
-    "questions": 474,
+    "questions": 1988,
     "interviews": 65,
-    "technical": 370,
+    "technical": 1884,
     "project": 104,
     "domains": {
-      "spark": 45,
+      "spark": 244,
       "hdfs": 4,
-      "storage": 24,
+      "storage": 620,
       "lakehouse": 7,
-      "starrocks": 15,
-      "flink": 22,
+      "starrocks": 214,
+      "flink": 494,
       "network": 4,
       "algorithm": 9,
       "statistics": 1,
@@ -19,7 +19,7 @@ window.OS_DATA = {
       "llm": 89,
       "platform": 2,
       "system": 7,
-      "warehouse": 107,
+      "warehouse": 155,
       "sql": 29,
       "project": 104
     }
@@ -1046,18 +1046,2604 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>AQE 是 Spark 3.x 的运行时优化：根据 shuffle 中间结果的真实统计，动态合并分区、切换 Join 策略、优化倾斜 Join。</p>\n<h2>30 秒回答</h2>\n<p>AQE 在 shuffle 结束后拿到真实数据量，运行时做三件事：合并过小分区、把小表广播切换成 Broadcast Join、检测倾斜分区并拆分。比静态优化器更贴近真实数据分布。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>动态合并分区：shuffle 后分区太小就合并，减少 task 数</li>\n<li>动态切换 Join：发现某侧很小，运行时转 Broadcast Join</li>\n<li>优化倾斜 Join：检测倾斜分区自动拆分</li>\n<li>前提：<code>spark.sql.adaptive.enabled=true</code>（3.x 默认开）</li>\n<li>价值：不用人工猜数据量，运行时自适应</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>AQE 和静态优化器的区别？</li>\n<li>AQE 能完全替代人工加盐吗？</li>\n</ul>"
     },
     {
-      "id": "SPARK-0045",
+      "id": "SPARK-0046",
       "type": "technical",
-      "question": "Spark 面试题大纲（200 题覆盖范围）",
+      "question": "什么是Apache Spark？它的主要特点是什么？",
       "topic": [
-        "spark",
-        "outline"
+        "spark"
       ],
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>一句话</h2>\n<p>甜获师兄 Spark 200 题纯题库大纲，覆盖 RDD/DAG 核心、SparkSQL/Catalyst、Streaming、性能调优四块。</p>\n<h2>30 秒回答</h2>\n<p>四大必问：RDD 依赖类型、Catalyst 执行流程、Shuffle 优化、Streaming 容错。四块大纲：基础概念与架构、SparkSQL 与数据操作、Streaming 实时处理、性能优化与生态。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：RDD/DAG 懒执行、宽窄依赖、Shuffle、Lineage 容错、广播变量/累加器、Checkpoint、统一内存管理、提交流程、YARN/K8s/Standalone</li>\n<li>SparkSQL：Catalyst 四阶段、谓词下推/列剪裁、Broadcast Join、DataFrame/Dataset/RDD、窗口函数、UDF/UDAF、AQE</li>\n<li>Streaming：DStream vs Structured Streaming、Exactly-Once、Watermark/迟到、背压、Checkpoint 恢复、窗口、Kafka 集成</li>\n<li>优化：数据倾斜（加盐/两阶段/广播）、Kryo、GC 调优、动态资源、Shuffle 文件管理、MLlib、Delta Lake</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>大纲里哪些点已经在题库中有带答案的版本？</li>\n</ul>"
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0047",
+      "type": "technical",
+      "question": "Spark与Hadoop MapReduce相比有哪些优势？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0048",
+      "type": "technical",
+      "question": "Spark的核心组件有哪些？它们各自的作用是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0049",
+      "type": "technical",
+      "question": "解释Spark的架构，包括Driver和Executor的作用。",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0050",
+      "type": "technical",
+      "question": "Spark支持哪些部署模式？各有什么特点？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0051",
+      "type": "technical",
+      "question": "什么是SparkContext？它的作用是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0052",
+      "type": "technical",
+      "question": "Spark应用程序的执行流程是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0053",
+      "type": "technical",
+      "question": "什么是SparkSession？它与SparkContext的关系是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0054",
+      "type": "technical",
+      "question": "Spark的内存管理机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0055",
+      "type": "technical",
+      "question": "解释Spark中的宽依赖和窄依赖。",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0056",
+      "type": "technical",
+      "question": "Spark的容错机制是如何实现的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0057",
+      "type": "technical",
+      "question": "什么是DAG？它在Spark中的作用是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0058",
+      "type": "technical",
+      "question": "Spark的调度系统是如何工作的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0059",
+      "type": "technical",
+      "question": "解释Spark中的Stage划分过程。",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0060",
+      "type": "technical",
+      "question": "Spark的shuffle过程是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0061",
+      "type": "technical",
+      "question": "什么是Spark的广播变量？如何使用？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0062",
+      "type": "technical",
+      "question": "什么是Spark的累加器？它的作用是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0063",
+      "type": "technical",
+      "question": "Spark的序列化机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0064",
+      "type": "technical",
+      "question": "如何优化Spark应用程序的性能？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0065",
+      "type": "technical",
+      "question": "Spark的内存管理策略有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0066",
+      "type": "technical",
+      "question": "什么是Spark的checkpoint？它的作用是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0067",
+      "type": "technical",
+      "question": "Spark的持久化机制有哪些？各有什么特点？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0068",
+      "type": "technical",
+      "question": "如何监控Spark应用程序的运行状态？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0069",
+      "type": "technical",
+      "question": "Spark的日志系统是如何工作的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0070",
+      "type": "technical",
+      "question": "什么是Spark的推测执行？它的作用是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0071",
+      "type": "technical",
+      "question": "Spark的动态资源分配机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0072",
+      "type": "technical",
+      "question": "如何配置Spark的并行度？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0073",
+      "type": "technical",
+      "question": "Spark的垃圾回收机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0074",
+      "type": "technical",
+      "question": "什么是Spark的RPC系统？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0075",
+      "type": "technical",
+      "question": "Spark的安全机制包括哪些方面？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0076",
+      "type": "technical",
+      "question": "什么是RDD？它的主要特点是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0077",
+      "type": "technical",
+      "question": "RDD的五大特性是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0078",
+      "type": "technical",
+      "question": "RDD的创建方式有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0079",
+      "type": "technical",
+      "question": "RDD的转换操作和行动操作有什么区别？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0080",
+      "type": "technical",
+      "question": "解释RDD的惰性求值机制。",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0081",
+      "type": "technical",
+      "question": "RDD的持久化级别有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0082",
+      "type": "technical",
+      "question": "如何选择合适的RDD持久化级别？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0083",
+      "type": "technical",
+      "question": "RDD的依赖关系有哪些类型？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0084",
+      "type": "technical",
+      "question": "什么是RDD的血统（Lineage）？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0085",
+      "type": "technical",
+      "question": "RDD的分区策略有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0086",
+      "type": "technical",
+      "question": "如何自定义RDD的分区器？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0087",
+      "type": "technical",
+      "question": "RDD的缓存机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0088",
+      "type": "technical",
+      "question": "什么是RDD的checkpoint？它与cache的区别是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0089",
+      "type": "technical",
+      "question": "RDD的shuffle过程是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0090",
+      "type": "technical",
+      "question": "如何优化RDD的操作性能？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0091",
+      "type": "technical",
+      "question": "RDD的并行度如何设置？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0092",
+      "type": "technical",
+      "question": "RDD的容错机制是如何实现的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0093",
+      "type": "technical",
+      "question": "什么是RDD的宽依赖和窄依赖？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0094",
+      "type": "technical",
+      "question": "RDD的转换操作有哪些常见类型？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0095",
+      "type": "technical",
+      "question": "RDD的行动操作有哪些常见类型？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0096",
+      "type": "technical",
+      "question": "什么是DataFrame？它与RDD的区别是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0097",
+      "type": "technical",
+      "question": "什么是Dataset？它的特点是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0098",
+      "type": "technical",
+      "question": "DataFrame和Dataset的关系是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0099",
+      "type": "technical",
+      "question": "如何创建DataFrame？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0100",
+      "type": "technical",
+      "question": "DataFrame的常用操作有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0101",
+      "type": "technical",
+      "question": "什么是DataFrame的schema？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0102",
+      "type": "technical",
+      "question": "如何定义DataFrame的schema？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0103",
+      "type": "technical",
+      "question": "DataFrame的列操作有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0104",
+      "type": "technical",
+      "question": "如何对DataFrame进行过滤？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0105",
+      "type": "technical",
+      "question": "如何对DataFrame进行分组聚合？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0106",
+      "type": "technical",
+      "question": "DataFrame的join操作有哪些类型？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0107",
+      "type": "technical",
+      "question": "如何对DataFrame进行排序？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0108",
+      "type": "technical",
+      "question": "如何对DataFrame进行窗口操作？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0109",
+      "type": "technical",
+      "question": "DataFrame的UDF是什么？如何使用？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0110",
+      "type": "technical",
+      "question": "如何将DataFrame转换为RDD？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0111",
+      "type": "technical",
+      "question": "如何将RDD转换为DataFrame？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0112",
+      "type": "technical",
+      "question": "DataFrame的缓存机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0113",
+      "type": "technical",
+      "question": "如何优化DataFrame的性能？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0114",
+      "type": "technical",
+      "question": "DataFrame的shuffle过程是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0115",
+      "type": "technical",
+      "question": "如何对DataFrame进行分区？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0116",
+      "type": "technical",
+      "question": "什么是Spark SQL？它的主要特点是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0117",
+      "type": "technical",
+      "question": "Spark SQL的架构是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0118",
+      "type": "technical",
+      "question": "如何创建SparkSession？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0119",
+      "type": "technical",
+      "question": "Spark SQL支持哪些数据源？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0120",
+      "type": "technical",
+      "question": "如何读取不同格式的数据？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0121",
+      "type": "technical",
+      "question": "Spark SQL的SQL语法支持哪些特性？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0122",
+      "type": "technical",
+      "question": "如何注册临时视图？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0123",
+      "type": "technical",
+      "question": "Spark SQL的UDF是什么？如何使用？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0124",
+      "type": "technical",
+      "question": "如何优化Spark SQL查询性能？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0125",
+      "type": "technical",
+      "question": "Spark SQL的Catalyst优化器是如何工作的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0126",
+      "type": "technical",
+      "question": "什么是Spark SQL的谓词下推？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0127",
+      "type": "technical",
+      "question": "什么是Spark SQL的列剪裁？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0128",
+      "type": "technical",
+      "question": "什么是Spark SQL的分区剪裁？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0129",
+      "type": "technical",
+      "question": "Spark SQL的join优化策略有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0130",
+      "type": "technical",
+      "question": "如何配置Spark SQL的内存管理？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0131",
+      "type": "technical",
+      "question": "Spark SQL的缓存机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0132",
+      "type": "technical",
+      "question": "如何对Spark SQL进行性能调优？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0133",
+      "type": "technical",
+      "question": "Spark SQL的窗口函数有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0134",
+      "type": "technical",
+      "question": "如何实现Spark SQL的自定义函数？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0135",
+      "type": "technical",
+      "question": "Spark SQL的数据类型系统是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0136",
+      "type": "technical",
+      "question": "如何实现Spark SQL的自定义数据源？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0137",
+      "type": "technical",
+      "question": "Spark SQL的元数据管理是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0138",
+      "type": "technical",
+      "question": "如何实现Spark SQL的自定义优化规则？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0139",
+      "type": "technical",
+      "question": "Spark SQL的权限管理机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0140",
+      "type": "technical",
+      "question": "如何实现Spark SQL的自定义SerDe？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0141",
+      "type": "technical",
+      "question": "Spark SQL的查询计划是如何生成的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0142",
+      "type": "technical",
+      "question": "如何分析Spark SQL的查询计划？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0143",
+      "type": "technical",
+      "question": "Spark SQL的统计信息收集机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0144",
+      "type": "technical",
+      "question": "如何实现Spark SQL的自定义聚合函数？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0145",
+      "type": "technical",
+      "question": "Spark SQL的物化视图是什么？如何使用？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0146",
+      "type": "technical",
+      "question": "什么是Spark Streaming？它的主要特点是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0147",
+      "type": "technical",
+      "question": "Spark Streaming的架构是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0148",
+      "type": "technical",
+      "question": "什么是DStream？它的特点是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0149",
+      "type": "technical",
+      "question": "Spark Streaming支持哪些数据源？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0150",
+      "type": "technical",
+      "question": "如何实现Spark Streaming的容错机制？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0151",
+      "type": "technical",
+      "question": "Spark Streaming的检查点机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0152",
+      "type": "technical",
+      "question": "如何优化Spark Streaming的性能？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0153",
+      "type": "technical",
+      "question": "Spark Streaming的窗口操作有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0154",
+      "type": "technical",
+      "question": "如何实现Spark Streaming的自定义接收器？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0155",
+      "type": "technical",
+      "question": "Spark Streaming的背压机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0156",
+      "type": "technical",
+      "question": "如何监控Spark Streaming应用程序？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0157",
+      "type": "technical",
+      "question": "Spark Streaming的并行度如何设置？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0158",
+      "type": "technical",
+      "question": "如何实现Spark Streaming的数据清理？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0159",
+      "type": "technical",
+      "question": "Spark Streaming的容错恢复机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0160",
+      "type": "technical",
+      "question": "如何实现Spark Streaming的自定义输出操作？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0161",
+      "type": "technical",
+      "question": "Spark Streaming的批处理间隔如何设置？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0162",
+      "type": "technical",
+      "question": "如何实现Spark Streaming的自定义转换操作？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0163",
+      "type": "technical",
+      "question": "Spark Streaming的检查点目录如何配置？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0164",
+      "type": "technical",
+      "question": "如何实现Spark Streaming的自定义数据源？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0165",
+      "type": "technical",
+      "question": "Spark Streaming的监控指标有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0166",
+      "type": "technical",
+      "question": "什么是Spark Structured Streaming？它的特点是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0167",
+      "type": "technical",
+      "question": "Structured Streaming与Spark Streaming的区别是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0168",
+      "type": "technical",
+      "question": "Structured Streaming的容错机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0169",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的端到端一致性？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0170",
+      "type": "technical",
+      "question": "Structured Streaming的窗口操作有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0171",
+      "type": "technical",
+      "question": "如何优化Structured Streaming的性能？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0172",
+      "type": "technical",
+      "question": "Structured Streaming的检查点机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0173",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的自定义输出？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0174",
+      "type": "technical",
+      "question": "Structured Streaming的背压机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0175",
+      "type": "technical",
+      "question": "如何监控Structured Streaming应用程序？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0176",
+      "type": "technical",
+      "question": "Structured Streaming的并行度如何设置？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0177",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的数据清理？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0178",
+      "type": "technical",
+      "question": "Structured Streaming的容错恢复机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0179",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的自定义转换？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0180",
+      "type": "technical",
+      "question": "Structured Streaming的检查点目录如何配置？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0181",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的自定义数据？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0182",
+      "type": "technical",
+      "question": "Structured Streaming的监控指标有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0183",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的自定义聚合？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0184",
+      "type": "technical",
+      "question": "Structured Streaming的窗口大小如何设置？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0185",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的自定义检查点？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0186",
+      "type": "technical",
+      "question": "Structured Streaming的容错策略有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0187",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的自定义序列化？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0188",
+      "type": "technical",
+      "question": "Structured Streaming的背压阈值如何设置？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0189",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的自定义接收器？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0190",
+      "type": "technical",
+      "question": "Structured Streaming的批处理优化策略有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0191",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的自定义输出格式？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0192",
+      "type": "technical",
+      "question": "Structured Streaming的监控告警机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0193",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的自定义触发器？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0194",
+      "type": "technical",
+      "question": "Structured Streaming的水印机制是怎样的？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0195",
+      "type": "technical",
+      "question": "如何实现Structured Streaming的自定义状态管理？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0196",
+      "type": "technical",
+      "question": "Spark性能优化的主要方面有哪些？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0197",
+      "type": "technical",
+      "question": "如何优化Spark的内存使用？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0198",
+      "type": "technical",
+      "question": "如何优化Spark的并行度？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0199",
+      "type": "technical",
+      "question": "如何优化Spark的shuffle过程？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0200",
+      "type": "technical",
+      "question": "如何优化Spark的序列化？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0201",
+      "type": "technical",
+      "question": "如何优化Spark的缓存策略？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0202",
+      "type": "technical",
+      "question": "如何优化Spark的I/O操作？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0203",
+      "type": "technical",
+      "question": "如何优化Spark的join操作？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0204",
+      "type": "technical",
+      "question": "如何优化Spark的groupBy操作？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0205",
+      "type": "technical",
+      "question": "如何优化Spark的sort操作？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0206",
+      "type": "technical",
+      "question": "如何优化Spark的filter操作？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0207",
+      "type": "technical",
+      "question": "如何优化Spark的map操作？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0208",
+      "type": "technical",
+      "question": "如何优化Spark的reduce操作？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0209",
+      "type": "technical",
+      "question": "如何优化Spark的广播变量使用？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0210",
+      "type": "technical",
+      "question": "如何优化Spark的累加器使用？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0211",
+      "type": "technical",
+      "question": "如何优化Spark的checkpoint策略？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0212",
+      "type": "technical",
+      "question": "如何优化Spark的分区策略？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0213",
+      "type": "technical",
+      "question": "如何优化Spark的数据倾斜问题？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0214",
+      "type": "technical",
+      "question": "如何优化Spark的内存溢出问题？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0215",
+      "type": "technical",
+      "question": "如何优化Spark的GC问题？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0216",
+      "type": "technical",
+      "question": "如何优化Spark的网络传输？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0217",
+      "type": "technical",
+      "question": "如何优化Spark的磁盘I/O？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0218",
+      "type": "technical",
+      "question": "如何优化Spark的CPU使用？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0219",
+      "type": "technical",
+      "question": "如何优化Spark的调度策略？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0220",
+      "type": "technical",
+      "question": "如何优化Spark的资源分配？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0221",
+      "type": "technical",
+      "question": "如何优化Spark的容错机制？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0222",
+      "type": "technical",
+      "question": "如何优化Spark的监控系统？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0223",
+      "type": "technical",
+      "question": "如何优化Spark的日志系统？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0224",
+      "type": "technical",
+      "question": "如何优化Spark的安全机制？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0225",
+      "type": "technical",
+      "question": "如何优化Spark的部署模式？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0226",
+      "type": "technical",
+      "question": "Spark生态系统包含哪些组件？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0227",
+      "type": "technical",
+      "question": "什么是Spark MLlib？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0228",
+      "type": "technical",
+      "question": "什么是Spark GraphX？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0229",
+      "type": "technical",
+      "question": "什么是Spark Delta Lake？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0230",
+      "type": "technical",
+      "question": "什么是Spark Koalas？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0231",
+      "type": "technical",
+      "question": "什么是Spark Connect？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0232",
+      "type": "technical",
+      "question": "什么是Spark SQL Server？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0233",
+      "type": "technical",
+      "question": "什么是Spark Thrift Server？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0234",
+      "type": "technical",
+      "question": "什么是Spark History Server？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0235",
+      "type": "technical",
+      "question": "什么是Spark Job Server？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0236",
+      "type": "technical",
+      "question": "什么是Spark Livy？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0237",
+      "type": "technical",
+      "question": "什么是Spark Zeppelin？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0238",
+      "type": "technical",
+      "question": "什么是Spark Jupyter？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0239",
+      "type": "technical",
+      "question": "什么是Spark Mesos？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0240",
+      "type": "technical",
+      "question": "什么是Spark Kubernetes？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0241",
+      "type": "technical",
+      "question": "什么是Spark YARN？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0242",
+      "type": "technical",
+      "question": "什么是Spark Standalone？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0243",
+      "type": "technical",
+      "question": "什么是Spark Alluxio？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0244",
+      "type": "technical",
+      "question": "什么是Spark Hive？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "SPARK-0245",
+      "type": "technical",
+      "question": "什么是Spark MLflow？它的主要功能是什么？",
+      "topic": [
+        "spark"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
     },
     {
       "id": "HDFS-0001",
@@ -1592,49 +4178,7791 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>两者都是 MPP 分析型数据库；ClickHouse 单表极速、适合海量日志明细分析，Doris/StarRocks 更偏多维分析、更新和标准 SQL 生态。</p>\n<h2>30 秒回答</h2>\n<p>ClickHouse 列存 + 极致单表查询性能，适合日志/明细大宽表；Doris 支持多维分析、更新模型、高并发点查和标准 SQL，更适合报表、实时数仓。选型看是纯分析还是需要更新/并发/生态。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>ClickHouse：极致单表吞吐、MergeTree 引擎、适合明细大表</li>\n<li>Doris：分区分桶、多种数据模型（明细/聚合/主键）、更新能力强、MySQL 协议易用</li>\n<li>写入：ClickHouse 高频写入易 too many parts，Doris 导入更平滑</li>\n<li>选型：日志明细分析选 CH，报表/实时数仓/需要更新选 Doris</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>ClickHouse 的 too many parts 是什么？</li>\n<li>Doris 和 StarRocks 又是什么关系？</li>\n</ul>"
     },
     {
-      "id": "STORAGE-0023",
+      "id": "STORAGE-0026",
       "type": "technical",
-      "question": "Hive 面试题大纲（200 题覆盖范围）",
+      "question": "什么是Hive？它和传统数据库有什么区别？请详细说明Hive的特点、优势、适用场景以及与RDBMS的主要区别。",
       "topic": [
-        "storage",
-        "hive",
-        "outline"
+        "storage"
       ],
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>一句话</h2>\n<p>Hive 200 题大纲，四篇：基础架构、SQL 数据操作、性能调优、运维故障恢复。</p>\n<h2>30 秒回答</h2>\n<p>基础（~15 题）：架构/Metastore/表类型/SerDe/UDF/执行流程；SQL（~40 题）：JOIN 优化/窗口/LATERAL VIEW/去重/分桶抽样；调优（~10 题）：倾斜/谓词下推/压缩/小文件/CBO；运维（~5 题）：HA/元数据备份/权限/审计。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：Hive 与 RDBMS 区别、Metastore/Driver/Compiler、内部/外部表、SerDe、UDF/UDAF/UDTF、SQL→AST→QueryBlock→MR 流程、动态分区、压缩、ACID</li>\n<li>SQL：MapJoin/Bucket MapJoin/Skew Join、窗口函数、LATERAL VIEW EXPLODE、DISTINCT vs GROUP BY、CTE、分桶抽样、多表插入</li>\n<li>调优：数据倾斜、MapJoin Hint、谓词下推、ORC/Parquet、Snappy/GZip、小文件合并、CBO、列剪裁/分区剪裁</li>\n<li>运维：HA、元数据备份、权限（Storage-Based/SQL-Standard）、审计、版本升级</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>大纲里哪些点已经在题库中有带答案的版本？</li>\n</ul>"
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
     },
     {
-      "id": "STORAGE-0024",
+      "id": "STORAGE-0027",
       "type": "technical",
-      "question": "HBase 面试题大纲（200 题覆盖范围）",
+      "question": "Hive的架构包含哪些主要组件？请详细描述每个组件的作用、工作原理以及它们之间的交互关系。",
       "topic": [
-        "storage",
-        "hbase",
-        "outline"
+        "storage"
       ],
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>一句话</h2>\n<p>HBase 200 题大纲，四块：基础概念、基础设计、性能优化、集群运维。</p>\n<h2>30 秒回答</h2>\n<p>基础：数据模型/Region/WAL/MemStore/HFile/LSM/行列存对比；设计：RowKey 设计/预分区/列族/TTL/Compaction/Split/Bloom Filter/读写路径；优化：RowKey 热点/BlockCache/MemStore Flush/GC/过滤器；运维：监控/备份/Replication/故障/权限/Phoenix 集成。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：表/行键/列族/时间戳/值、Region/RegionServer、HMaster、ZK 角色、WAL、MemStore/HFile、LSM 树、行存 vs 列存、CAP</li>\n<li>设计：RowKey（散列/反转/加盐）、预分区、列族、TTL/版本、Compaction、Split、Bloom Filter、HFile、读写路径</li>\n<li>优化：RowKey 防热点、批量读写、BlockCache、Flush、Compaction、Region 均衡、GC、扫描缓存、过滤器下推</li>\n<li>运维：监控、Snapshot/Export/Replication、故障处理、滚动重启、ACL/Kerberos、Shell、Phoenix/Hive</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>HBase 的 LSM 树原理？</li>\n</ul>"
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
     },
     {
-      "id": "STORAGE-0025",
+      "id": "STORAGE-0028",
       "type": "technical",
-      "question": "ClickHouse 面试题大纲（200 题覆盖范围）",
+      "question": "为什么说Hive是一个数据仓库工具？请详细说明Hive在数据仓库中的定位、特点和优势。",
       "topic": [
-        "storage",
-        "clickhouse",
-        "outline"
+        "storage"
       ],
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>一句话</h2>\n<p>ClickHouse 200 题大纲，四块：基础架构、SQL 语法、性能调优、高级特性。</p>\n<h2>30 秒回答</h2>\n<p>基础：列存/向量化/MergeTree 引擎族/副本分片/表引擎/Kafka 引擎/物化视图/PREWHERE；SQL：JOIN 算法/字典/TTL/ASOF JOIN/Bitmap 近似去重/ARRAY JOIN；优化：分区与排序键/LowCardinality/EXPLAIN/批量写入/内存并发；高级：副本一致性/实时数仓架构/系统表/常见故障/行业案例。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：列式存储、向量化、MergeTree（PARTITION/ORDER BY/PRIMARY KEY/TTL）、Replicated/Distributed、Replacing/Summing/Collapsing/Aggregating 表引擎、Kafka 引擎、物化视图、PREWHERE、Keeper</li>\n<li>SQL：Hash/Merge/GraceHash JOIN、Dictionary、TTL 冷热分层、ASOF JOIN、groupBitmap/HyperLogLog、ARRAY JOIN</li>\n<li>优化：分区粒度、排序键、LowCardinality、EXPLAIN、BULK INSERT、内存参数、并发控制、有序预聚合</li>\n<li>高级：副本同步、Kafka→CH 实时架构、system.* 系统表、OOM/TOO_MANY_PARTS 故障、电商/金融/广告案例、Iceberg/Hudi 集成</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>ClickHouse 的 too many parts 是什么？</li>\n</ul>"
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0029",
+      "type": "technical",
+      "question": "Hive中的元数据存储在哪里？如何管理？请详细说明元数据的存储方式、管理方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0030",
+      "type": "technical",
+      "question": "解释一下Hive的三种运行模式。请详细说明每种模式的特点、适用场景、配置方法和性能差异。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0031",
+      "type": "technical",
+      "question": "Hive中的表分为哪几种类型？它们有什么区别？请详细说明各种表类型的特点、使用场景和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0032",
+      "type": "technical",
+      "question": "什么是Hive的分区？为什么要使用分区？请详细说明分区的概念、设计原则、使用方法和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0033",
+      "type": "technical",
+      "question": "Hive中的桶（Bucket）是什么？它和分区有什么区别？请详细说明桶的概念、设计原则、使用场景和性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0034",
+      "type": "technical",
+      "question": "如何理解Hive的存储格式？常见的存储格式有哪些？请详细说明各种存储格式的特点、选择标准和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0035",
+      "type": "technical",
+      "question": "Hive中的SerDe是什么？它的作用是什么？请详细说明SerDe的工作原理、使用方法和自定义开发。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0036",
+      "type": "technical",
+      "question": "什么是Hive的UDF？如何自定义UDF？请详细说明UDF的类型、开发方法、部署步骤和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0037",
+      "type": "technical",
+      "question": "Hive中的视图和物化视图有什么区别？请详细说明它们的特点、使用场景、创建方法和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0038",
+      "type": "technical",
+      "question": "解释一下Hive的查询执行过程。请详细说明从SQL到MapReduce任务的转换过程、执行流程和优化机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0039",
+      "type": "technical",
+      "question": "Hive中的索引有哪些类型？如何使用？请详细说明索引的类型、创建方法、使用场景和性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0040",
+      "type": "technical",
+      "question": "什么是Hive的动态分区？如何配置？请详细说明动态分区的工作原理、配置方法、使用场景和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0041",
+      "type": "technical",
+      "question": "Hive中的压缩格式有哪些？如何选择？请详细说明各种压缩格式的特点、选择标准和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0042",
+      "type": "technical",
+      "question": "解释一下Hive的权限管理机制。请详细说明权限模型、配置方法、管理策略和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0043",
+      "type": "technical",
+      "question": "什么是Hive的元数据？它包含哪些信息？请详细说明元数据的类型、存储方式、管理方法和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0044",
+      "type": "technical",
+      "question": "Hive中的数据类型有哪些？请详细说明各种数据类型的特点、使用场景和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0045",
+      "type": "technical",
+      "question": "如何理解Hive的存储过程？请详细说明存储过程的概念、特点、使用场景和实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0046",
+      "type": "technical",
+      "question": "Hive中的事务支持情况如何？请详细说明事务支持的范围、限制条件、使用方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0047",
+      "type": "technical",
+      "question": "什么是Hive的ACID特性？请详细说明ACID特性的实现原理、配置方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0048",
+      "type": "technical",
+      "question": "解释一下Hive的查询优化器。请详细说明优化器的工作原理、优化策略、配置方法和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0049",
+      "type": "technical",
+      "question": "Hive中的统计信息是什么？如何收集？请详细说明统计信息的类型、收集方法、使用场景和性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0050",
+      "type": "technical",
+      "question": "什么是Hive的向量化执行？请详细说明向量化执行的原理、配置方法、使用场景和性能提升。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0051",
+      "type": "technical",
+      "question": "Hive中的并行执行是如何实现的？请详细说明并行执行的原理、配置方法、使用场景和性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0052",
+      "type": "technical",
+      "question": "解释一下Hive的MapJoin优化。请详细说明MapJoin的工作原理、配置方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0053",
+      "type": "technical",
+      "question": "什么是Hive的倾斜优化？请详细说明数据倾斜的原因、检测方法、优化策略和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0054",
+      "type": "technical",
+      "question": "Hive中的动态分区裁剪是什么？请详细说明分区裁剪的原理、配置方法、使用场景和性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0055",
+      "type": "technical",
+      "question": "如何理解Hive的谓词下推？请详细说明谓词下推的原理、配置方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0056",
+      "type": "technical",
+      "question": "什么是Hive的列式存储？请详细说明列式存储的特点、优势、使用场景和性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0057",
+      "type": "technical",
+      "question": "Hive中的文件格式有哪些？各有什么特点？请详细说明各种文件格式的特点、选择标准和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0058",
+      "type": "technical",
+      "question": "解释一下Hive的存储格式转换。请详细说明格式转换的方法、工具、使用场景和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0059",
+      "type": "technical",
+      "question": "什么是Hive的压缩算法？请详细说明各种压缩算法的特点、选择标准、配置方法和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0060",
+      "type": "technical",
+      "question": "Hive中的表属性有哪些？请详细说明各种表属性的作用、配置方法、使用场景和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0061",
+      "type": "technical",
+      "question": "如何理解Hive的存储位置？请详细说明存储位置的设计原则、配置方法、管理策略和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0062",
+      "type": "technical",
+      "question": "什么是Hive的临时表？请详细说明临时表的特点、创建方法、使用场景和生命周期管理。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0063",
+      "type": "technical",
+      "question": "Hive中的外部表和内部表有什么区别？请详细说明它们的特点、使用场景、创建方法和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0064",
+      "type": "technical",
+      "question": "解释一下Hive的视图更新机制。请详细说明视图更新的原理、配置方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0065",
+      "type": "technical",
+      "question": "什么是Hive的物化视图？请详细说明物化视图的特点、创建方法、使用场景和性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0066",
+      "type": "technical",
+      "question": "Hive中的索引类型有哪些？请详细说明各种索引类型的特点、创建方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0067",
+      "type": "technical",
+      "question": "如何理解Hive的统计信息收集？请详细说明统计信息收集的方法、工具、使用场景和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0068",
+      "type": "technical",
+      "question": "什么是Hive的查询计划？请详细说明查询计划的生成过程、优化策略、查看方法和解读技巧。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0069",
+      "type": "technical",
+      "question": "Hive中的执行引擎有哪些？请详细说明各种执行引擎的特点、配置方法、使用场景和性能差异。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0070",
+      "type": "technical",
+      "question": "解释一下Hive的查询优化策略。请详细说明各种优化策略的原理、配置方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0071",
+      "type": "technical",
+      "question": "什么是Hive的并行执行？请详细说明并行执行的原理、配置方法、使用场景和性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0072",
+      "type": "technical",
+      "question": "Hive中的资源管理是如何实现的？请详细说明资源管理的策略、配置方法、使用场景和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0073",
+      "type": "technical",
+      "question": "如何理解Hive的查询性能优化？请详细说明性能优化的各个层面、具体方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0074",
+      "type": "technical",
+      "question": "什么是Hive的查询缓存？请详细说明查询缓存的原理、配置方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0075",
+      "type": "technical",
+      "question": "Hive中的查询结果缓存是如何实现的？请详细说明结果缓存的原理、配置方法、使用场景和性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0076",
+      "type": "technical",
+      "question": "在Hive中创建表时，需要考虑哪些因素？请详细说明CREATE TABLE语句的各个参数及其作用。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0077",
+      "type": "technical",
+      "question": "Hive中的INSERT语句有哪些不同的用法？请举例说明INSERT INTO、INSERT OVERWRITE等语句的区别和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0078",
+      "type": "technical",
+      "question": "如何理解Hive的LOAD DATA语句？它和INSERT语句有什么区别？在什么场景下应该使用LOAD DATA？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0079",
+      "type": "technical",
+      "question": "什么是Hive的EXPORT和IMPORT？它们的主要用途是什么？请详细说明其使用方法和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0080",
+      "type": "technical",
+      "question": "在Hive中实现数据更新有哪些方法？请详细说明各种更新方式的优缺点和适用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0081",
+      "type": "technical",
+      "question": "Hive中的DELETE语句如何使用？它和传统数据库的DELETE语句有什么区别？有哪些限制条件？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0082",
+      "type": "technical",
+      "question": "解释一下Hive的MERGE语句的工作原理。在什么场景下应该使用MERGE语句？它和INSERT、UPDATE有什么区别？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0083",
+      "type": "technical",
+      "question": "什么是Hive的TRUNCATE语句？它和DELETE语句有什么区别？使用TRUNCATE时需要注意哪些问题？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0084",
+      "type": "technical",
+      "question": "在Hive中实现数据复制有哪些方法？请详细说明各种复制方式的优缺点和适用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0085",
+      "type": "technical",
+      "question": "Hive中的ALTER TABLE语句有哪些用法？请详细说明如何修改表结构、添加/删除分区、修改表属性等操作。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0086",
+      "type": "technical",
+      "question": "如何理解Hive的DROP语句？它和传统数据库的DROP语句有什么区别？删除表时需要注意哪些问题？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0087",
+      "type": "technical",
+      "question": "什么是Hive的RENAME语句？它和ALTER TABLE RENAME有什么区别？在什么场景下应该使用RENAME？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0088",
+      "type": "technical",
+      "question": "在Hive中实现表结构修改有哪些方法？请详细说明如何添加/删除/修改列、修改列类型等操作。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0089",
+      "type": "technical",
+      "question": "Hive中的分区操作有哪些？请详细说明如何创建、删除、修改分区，以及分区相关的查询操作。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0090",
+      "type": "technical",
+      "question": "如何理解Hive的桶操作？请详细说明如何创建、管理桶表，以及桶表的使用场景和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0091",
+      "type": "technical",
+      "question": "什么是Hive的JOIN操作？请详细说明各种JOIN类型（INNER JOIN、LEFT JOIN、RIGHT JOIN、FULL JOIN）的区别和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0092",
+      "type": "technical",
+      "question": "Hive中的JOIN类型有哪些？请详细说明各种JOIN类型的特点、性能差异和适用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0093",
+      "type": "technical",
+      "question": "如何优化Hive的JOIN操作？请详细说明JOIN优化的各种策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0094",
+      "type": "technical",
+      "question": "什么是Hive的GROUP BY操作？请详细说明GROUP BY的工作原理、使用场景和性能优化方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0095",
+      "type": "technical",
+      "question": "如何理解Hive的HAVING子句？它和WHERE子句有什么区别？在什么场景下应该使用HAVING？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0096",
+      "type": "technical",
+      "question": "Hive中的ORDER BY和SORT BY有什么区别？请详细说明它们的工作原理、使用场景和性能差异。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0097",
+      "type": "technical",
+      "question": "什么是Hive的DISTRIBUTE BY？它和GROUP BY有什么区别？在什么场景下应该使用DISTRIBUTE BY？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0098",
+      "type": "technical",
+      "question": "如何理解Hive的CLUSTER BY？它和DISTRIBUTE BY、SORT BY有什么关系？请详细说明其使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0099",
+      "type": "technical",
+      "question": "Hive中的窗口函数有哪些？请详细说明各种窗口函数（如ROW\\_NUMBER、RANK、DENSE\\_RANK等）的使用方法和场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0100",
+      "type": "technical",
+      "question": "什么是Hive的LATERAL VIEW？请详细说明它的工作原理、使用场景和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0101",
+      "type": "technical",
+      "question": "如何理解Hive的EXPLODE函数？请详细说明它的工作原理、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0102",
+      "type": "technical",
+      "question": "Hive中的字符串函数有哪些？请详细说明常用字符串函数（如CONCAT、SUBSTR、TRIM等）的使用方法和场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0103",
+      "type": "technical",
+      "question": "什么是Hive的日期函数？请详细说明常用日期函数（如TO\\_DATE、DATE\\_ADD、DATEDIFF等）的使用方法和场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0104",
+      "type": "technical",
+      "question": "如何理解Hive的数学函数？请详细说明常用数学函数（如ROUND、CEIL、FLOOR等）的使用方法和场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0105",
+      "type": "technical",
+      "question": "Hive中的聚合函数有哪些？请详细说明常用聚合函数（如SUM、AVG、COUNT等）的使用方法和场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0106",
+      "type": "technical",
+      "question": "什么是Hive的条件函数？请详细说明常用条件函数（如CASE、IF、COALESCE等）的使用方法和场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0107",
+      "type": "technical",
+      "question": "如何理解Hive的类型转换函数？请详细说明常用类型转换函数（如CAST、CONVERT等）的使用方法和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0108",
+      "type": "technical",
+      "question": "Hive中的集合函数有哪些？请详细说明常用集合函数（如ARRAY、MAP、STRUCT等）的使用方法和场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0109",
+      "type": "technical",
+      "question": "什么是Hive的JSON函数？请详细说明常用JSON函数（如GET\\_JSON\\_OBJECT、JSON\\_TUPLE等）的使用方法和场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0110",
+      "type": "technical",
+      "question": "如何理解Hive的正则表达式函数？请详细说明常用正则表达式函数（如REGEXP、REGEXP\\_REPLACE等）的使用方法和场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0111",
+      "type": "technical",
+      "question": "Hive中的自定义函数如何实现？请详细说明UDF、UDAF、UDTF的开发流程和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0112",
+      "type": "technical",
+      "question": "什么是Hive的UDAF？请详细说明UDAF的工作原理、开发方法和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0113",
+      "type": "technical",
+      "question": "如何理解Hive的UDTF？请详细说明UDTF的工作原理、开发方法和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0114",
+      "type": "technical",
+      "question": "Hive中的视图如何创建和使用？请详细说明视图的类型、创建方法、使用场景和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0115",
+      "type": "technical",
+      "question": "什么是Hive的物化视图？请详细说明物化视图的工作原理、创建方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0116",
+      "type": "technical",
+      "question": "如何理解Hive的临时表？请详细说明临时表的特点、创建方法、使用场景和生命周期。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0117",
+      "type": "technical",
+      "question": "Hive中的外部表如何创建？请详细说明外部表的特点、创建方法、使用场景和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0118",
+      "type": "technical",
+      "question": "什么是Hive的分区表？请详细说明分区表的设计原则、创建方法、使用场景和性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0119",
+      "type": "technical",
+      "question": "如何理解Hive的桶表？请详细说明桶表的设计原则、创建方法、使用场景和性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0120",
+      "type": "technical",
+      "question": "Hive中的索引如何创建和使用？请详细说明索引的类型、创建方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0121",
+      "type": "technical",
+      "question": "什么是Hive的统计信息？请详细说明统计信息的类型、收集方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0122",
+      "type": "technical",
+      "question": "如何理解Hive的查询优化？请详细说明查询优化的各种策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0123",
+      "type": "technical",
+      "question": "Hive中的执行计划如何查看？请详细说明EXPLAIN命令的使用方法和执行计划的解读方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0124",
+      "type": "technical",
+      "question": "什么是Hive的查询性能优化？请详细说明查询性能优化的各种策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0125",
+      "type": "technical",
+      "question": "如何理解Hive的数据倾斜问题？请详细说明数据倾斜的原因、检测方法和解决方案。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0126",
+      "type": "technical",
+      "question": "如何优化Hive的查询性能？请详细说明查询优化的各个层面（SQL优化、配置优化、资源优化等）和具体方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0127",
+      "type": "technical",
+      "question": "什么是Hive的数据倾斜？请详细说明数据倾斜的原因、表现特征、检测方法和各种解决方案。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0128",
+      "type": "technical",
+      "question": "如何优化Hive的JOIN操作？请详细说明JOIN优化的各种策略（如MapJoin、Bucket MapJoin、SMB Join等）和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0129",
+      "type": "technical",
+      "question": "什么是Hive的MapJoin？请详细说明MapJoin的工作原理、配置方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0130",
+      "type": "technical",
+      "question": "如何优化Hive的GROUP BY操作？请详细说明GROUP BY优化的各种策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0131",
+      "type": "technical",
+      "question": "什么是Hive的并行执行？请详细说明并行执行的配置方法、使用场景和性能优化策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0132",
+      "type": "technical",
+      "question": "如何优化Hive的存储格式？请详细说明各种存储格式（如ORC、Parquet等）的特点、选择标准和优化方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0133",
+      "type": "technical",
+      "question": "什么是Hive的压缩？请详细说明各种压缩算法（如Snappy、Gzip等）的特点、选择标准和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0134",
+      "type": "technical",
+      "question": "如何优化Hive的分区设计？请详细说明分区设计的原则、策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0135",
+      "type": "technical",
+      "question": "什么是Hive的桶设计？请详细说明桶设计的原则、策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0136",
+      "type": "technical",
+      "question": "如何优化Hive的索引使用？请详细说明索引的类型、创建方法、使用场景和性能优化策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0137",
+      "type": "technical",
+      "question": "如何优化Hive的查询计划？请详细说明查询计划的优化策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0138",
+      "type": "technical",
+      "question": "什么是Hive的谓词下推？请详细说明谓词下推的工作原理、配置方法和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0139",
+      "type": "technical",
+      "question": "如何优化Hive的资源使用？请详细说明资源优化的各种策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0140",
+      "type": "technical",
+      "question": "什么是Hive的并行度设置？请详细说明并行度的配置方法、影响因素和优化策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0141",
+      "type": "technical",
+      "question": "如何优化Hive的内存使用？请详细说明内存优化的各种策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0142",
+      "type": "technical",
+      "question": "什么是Hive的JVM调优？请详细说明JVM参数的配置方法、优化策略和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0143",
+      "type": "technical",
+      "question": "如何优化Hive的磁盘IO？请详细说明磁盘IO优化的各种策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0144",
+      "type": "technical",
+      "question": "什么是Hive的缓存机制？请详细说明缓存的类型、配置方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0145",
+      "type": "technical",
+      "question": "如何优化Hive的元数据管理？请详细说明元数据管理的优化策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0146",
+      "type": "technical",
+      "question": "什么是Hive的查询缓存？请详细说明查询缓存的配置方法、使用场景和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0147",
+      "type": "technical",
+      "question": "如何优化Hive的并发查询？请详细说明并发查询的优化策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0148",
+      "type": "technical",
+      "question": "什么是Hive的锁机制？请详细说明锁的类型、工作原理和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0149",
+      "type": "technical",
+      "question": "如何优化Hive的事务处理？请详细说明事务处理的优化策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0150",
+      "type": "technical",
+      "question": "什么是Hive的ACID特性？请详细说明ACID特性的实现原理、配置方法和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0151",
+      "type": "technical",
+      "question": "如何优化Hive的数据导入导出？请详细说明数据导入导出的优化策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0152",
+      "type": "technical",
+      "question": "什么是Hive的动态分区？请详细说明动态分区的工作原理、配置方法和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0153",
+      "type": "technical",
+      "question": "如何优化Hive的分区裁剪？请详细说明分区裁剪的工作原理、配置方法和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0154",
+      "type": "technical",
+      "question": "什么是Hive的列式存储？请详细说明列式存储的特点、优势和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0155",
+      "type": "technical",
+      "question": "如何优化Hive的存储格式？请详细说明各种存储格式的特点、选择标准和优化方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0156",
+      "type": "technical",
+      "question": "什么是Hive的压缩算法？请详细说明各种压缩算法的特点、选择标准和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0157",
+      "type": "technical",
+      "question": "如何优化Hive的文件格式？请详细说明各种文件格式的特点、选择标准和优化方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0158",
+      "type": "technical",
+      "question": "什么是Hive的ORC格式？请详细说明ORC格式的特点、优势和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0159",
+      "type": "technical",
+      "question": "如何优化Hive的Parquet格式？请详细说明Parquet格式的特点、优势和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0160",
+      "type": "technical",
+      "question": "什么是Hive的Avro格式？请详细说明Avro格式的特点、优势和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0161",
+      "type": "technical",
+      "question": "如何优化Hive的SequenceFile格式？请详细说明SequenceFile格式的特点、优势和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0162",
+      "type": "technical",
+      "question": "什么是Hive的RCFile格式？请详细说明RCFile格式的特点、优势和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0163",
+      "type": "technical",
+      "question": "如何优化Hive的TextFile格式？请详细说明TextFile格式的特点、优势和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0164",
+      "type": "technical",
+      "question": "什么是Hive的JSON格式？请详细说明JSON格式的特点、优势和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0165",
+      "type": "technical",
+      "question": "如何优化Hive的CSV格式？请详细说明CSV格式的特点、优势和使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0166",
+      "type": "technical",
+      "question": "什么是Hive的压缩比？请详细说明压缩比的计算方法、影响因素和优化策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0167",
+      "type": "technical",
+      "question": "如何优化Hive的存储空间？请详细说明存储空间优化的各种策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0168",
+      "type": "technical",
+      "question": "什么是Hive的查询优化器？请详细说明查询优化器的工作原理、配置方法和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0169",
+      "type": "technical",
+      "question": "如何优化Hive的执行计划？请详细说明执行计划的优化策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0170",
+      "type": "technical",
+      "question": "什么是Hive的统计信息收集？请详细说明统计信息收集的方法、配置和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0171",
+      "type": "technical",
+      "question": "如何优化Hive的查询性能？请详细说明查询性能优化的各种策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0172",
+      "type": "technical",
+      "question": "什么是Hive的资源管理？请详细说明资源管理的策略、配置方法和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0173",
+      "type": "technical",
+      "question": "如何优化Hive的并发处理？请详细说明并发处理的优化策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0174",
+      "type": "technical",
+      "question": "什么是Hive的查询调度？请详细说明查询调度的工作原理、配置方法和性能影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0175",
+      "type": "technical",
+      "question": "如何监控Hive的运行状态？请详细说明监控指标、监控工具和告警策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0176",
+      "type": "technical",
+      "question": "什么是Hive的日志管理？请详细说明日志的类型、收集方法、分析工具和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0177",
+      "type": "technical",
+      "question": "如何排查Hive的查询问题？请详细说明问题排查的方法、工具和常见问题的解决方案。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0178",
+      "type": "technical",
+      "question": "什么是Hive的元数据备份？请详细说明备份策略、备份方法和恢复流程。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0179",
+      "type": "technical",
+      "question": "如何恢复Hive的元数据？请详细说明恢复的方法、步骤和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0180",
+      "type": "technical",
+      "question": "什么是Hive的权限管理？请详细说明权限模型、配置方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0181",
+      "type": "technical",
+      "question": "如何管理Hive的用户权限？请详细说明用户权限的配置方法、管理策略和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0182",
+      "type": "technical",
+      "question": "什么是Hive的安全机制？请详细说明安全机制的类型、配置方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0183",
+      "type": "technical",
+      "question": "如何配置Hive的安全策略？请详细说明安全策略的制定方法、配置步骤和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0184",
+      "type": "technical",
+      "question": "什么是Hive的审计日志？请详细说明审计日志的类型、配置方法和分析方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0185",
+      "type": "technical",
+      "question": "如何分析Hive的审计日志？请详细说明日志分析的方法、工具和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0186",
+      "type": "technical",
+      "question": "什么是Hive的故障转移？请详细说明故障转移的原理、配置方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0187",
+      "type": "technical",
+      "question": "如何实现Hive的高可用？请详细说明高可用的架构设计、配置方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0188",
+      "type": "technical",
+      "question": "什么是Hive的负载均衡？请详细说明负载均衡的策略、配置方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0189",
+      "type": "technical",
+      "question": "如何优化Hive的集群性能？请详细说明集群性能优化的策略和具体实现方法。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0190",
+      "type": "technical",
+      "question": "什么是Hive的版本管理？请详细说明版本管理的方法、工具和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0191",
+      "type": "technical",
+      "question": "如何升级Hive版本？请详细说明版本升级的步骤、注意事项和回滚方案。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0192",
+      "type": "technical",
+      "question": "什么是Hive的配置管理？请详细说明配置管理的方法、工具和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0193",
+      "type": "technical",
+      "question": "如何管理Hive的配置文件？请详细说明配置文件的组织方法、管理策略和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0194",
+      "type": "technical",
+      "question": "什么是Hive的依赖管理？请详细说明依赖管理的方法、工具和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0195",
+      "type": "technical",
+      "question": "如何管理Hive的依赖包？请详细说明依赖包的管理方法、更新策略和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0196",
+      "type": "technical",
+      "question": "什么是Hive的部署模式？请详细说明各种部署模式的特点、选择标准和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0197",
+      "type": "technical",
+      "question": "如何部署Hive集群？请详细说明集群部署的步骤、配置方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0198",
+      "type": "technical",
+      "question": "什么是Hive的监控指标？请详细说明监控指标的类型、收集方法和告警阈值。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0199",
+      "type": "technical",
+      "question": "如何监控Hive的性能？请详细说明性能监控的方法、工具和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0200",
+      "type": "technical",
+      "question": "什么是Hive的告警机制？请详细说明告警机制的类型、配置方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0201",
+      "type": "technical",
+      "question": "如何配置Hive的告警规则？请详细说明告警规则的制定方法、配置步骤和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0202",
+      "type": "technical",
+      "question": "什么是Hive的备份策略？请详细说明备份策略的制定方法、实施步骤和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0203",
+      "type": "technical",
+      "question": "如何备份Hive的数据？请详细说明数据备份的方法、工具和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0204",
+      "type": "technical",
+      "question": "什么是Hive的恢复策略？请详细说明恢复策略的制定方法、实施步骤和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0205",
+      "type": "technical",
+      "question": "如何恢复Hive的数据？请详细说明数据恢复的方法、步骤和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0206",
+      "type": "technical",
+      "question": "什么是Hive的容灾方案？请详细说明容灾方案的设计方法、实施步骤和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0207",
+      "type": "technical",
+      "question": "如何实现Hive的容灾？请详细说明容灾实现的步骤、配置方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0208",
+      "type": "technical",
+      "question": "什么是Hive的扩容方案？请详细说明扩容方案的设计方法、实施步骤和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0209",
+      "type": "technical",
+      "question": "如何扩容Hive集群？请详细说明集群扩容的步骤、配置方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0210",
+      "type": "technical",
+      "question": "什么是Hive的缩容方案？请详细说明缩容方案的设计方法、实施步骤和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0211",
+      "type": "technical",
+      "question": "如何缩容Hive集群？请详细说明集群缩容的步骤、配置方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0212",
+      "type": "technical",
+      "question": "什么是Hive的维护窗口？请详细说明维护窗口的规划方法、实施步骤和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0213",
+      "type": "technical",
+      "question": "如何规划Hive的维护时间？请详细说明维护时间规划的方法、考虑因素和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0214",
+      "type": "technical",
+      "question": "什么是Hive的版本兼容性？请详细说明版本兼容性的测试方法、评估标准和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0215",
+      "type": "technical",
+      "question": "如何保证Hive的版本兼容？请详细说明版本兼容性保证的方法、测试步骤和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0216",
+      "type": "technical",
+      "question": "什么是Hive的配置验证？请详细说明配置验证的方法、工具和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0217",
+      "type": "technical",
+      "question": "如何验证Hive的配置？请详细说明配置验证的步骤、方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0218",
+      "type": "technical",
+      "question": "什么是Hive的健康检查？请详细说明健康检查的方法、指标和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0219",
+      "type": "technical",
+      "question": "如何检查Hive的健康状态？请详细说明健康状态检查的步骤、方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0220",
+      "type": "technical",
+      "question": "什么是Hive的性能测试？请详细说明性能测试的方法、工具和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0221",
+      "type": "technical",
+      "question": "如何测试Hive的性能？请详细说明性能测试的步骤、方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0222",
+      "type": "technical",
+      "question": "什么是Hive的容量规划？请详细说明容量规划的方法、考虑因素和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0223",
+      "type": "technical",
+      "question": "如何规划Hive的容量？请详细说明容量规划的步骤、方法和最佳实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0224",
+      "type": "technical",
+      "question": "什么是Hive的运维最佳实践？请详细说明运维最佳实践的内容、实施方法和注意事项。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0225",
+      "type": "technical",
+      "question": "什么是HBase？请详细解释其主要特点和应用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0226",
+      "type": "technical",
+      "question": "HBase和传统关系型数据库(如MySQL)有什么区别？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0227",
+      "type": "technical",
+      "question": "请解释HBase中的Table、RowKey、Column Family、Column Qualifier、Cell和Version的概念。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0228",
+      "type": "technical",
+      "question": "HBase的数据模型是怎样的？为什么说它是列族存储？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0229",
+      "type": "technical",
+      "question": "什么是HBase的Region？Region的分裂(Split)机制是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0230",
+      "type": "technical",
+      "question": "解释HBase中的NameSpace概念及其作用。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0231",
+      "type": "technical",
+      "question": "HBase中时间戳的作用是什么？如何利用时间戳实现数据版本控制？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0232",
+      "type": "technical",
+      "question": "什么是HBase的预分区？为什么要进行预分区？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0233",
+      "type": "technical",
+      "question": "HBase中scan和get操作的区别是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0234",
+      "type": "technical",
+      "question": "解释HBase中的flush、compact和split的概念。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0235",
+      "type": "technical",
+      "question": "HBase中的WAL(Write Ahead Log)是什么？它的作用是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0236",
+      "type": "technical",
+      "question": "什么是HBase的BlockCache？它的作用是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0237",
+      "type": "technical",
+      "question": "HBase中的MemStore是什么？它在写入流程中起什么作用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0238",
+      "type": "technical",
+      "question": "解释HBase中的StoreFile和HFile的概念及关系。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0239",
+      "type": "technical",
+      "question": "HBase中的列族(Column Family)最佳实践是什么？为什么不建议设置太多列族？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0240",
+      "type": "technical",
+      "question": "什么是HBase的过滤器(Filter)？常用的过滤器有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0241",
+      "type": "technical",
+      "question": "解释HBase中的Compaction策略有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0242",
+      "type": "technical",
+      "question": "HBase中的协处理器(Coprocessor)是什么？有哪些类型？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0243",
+      "type": "technical",
+      "question": "什么是HBase的原子性操作？如何实现？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0244",
+      "type": "technical",
+      "question": "HBase中的快照(Snapshot)功能是什么？使用场景是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0245",
+      "type": "technical",
+      "question": "解释HBase中的TTL(Time To Live)概念。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0246",
+      "type": "technical",
+      "question": "HBase中的计数器(Counter)功能如何使用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0247",
+      "type": "technical",
+      "question": "什么是HBase的多版本并发控制(MVCC)？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0248",
+      "type": "technical",
+      "question": "HBase中的Region如何分配？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0249",
+      "type": "technical",
+      "question": "解释HBase中的Bloom Filter的作用。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0250",
+      "type": "technical",
+      "question": "HBase的RowKey设计原则有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0251",
+      "type": "technical",
+      "question": "什么是HBase的二级索引？如何实现？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0252",
+      "type": "technical",
+      "question": "HBase中的Delete标记是什么？它是如何工作的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0253",
+      "type": "technical",
+      "question": "解释HBase中的Put和Delete操作的原理。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0254",
+      "type": "technical",
+      "question": "HBase的Master和RegionServer的启动流程是怎样的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0255",
+      "type": "technical",
+      "question": "什么是HBase的Region合并？什么情况下需要合并？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0256",
+      "type": "technical",
+      "question": "HBase中的ZooKeeper的作用是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0257",
+      "type": "technical",
+      "question": "解释HBase中的Table和Region的关系。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0258",
+      "type": "technical",
+      "question": "HBase中的数据本地性(Data Locality)是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0259",
+      "type": "technical",
+      "question": "什么是HBase的Region状态转换？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0260",
+      "type": "technical",
+      "question": "HBase中的KeyValue结构是什么样的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0261",
+      "type": "technical",
+      "question": "解释HBase中的列族压缩机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0262",
+      "type": "technical",
+      "question": "HBase的客户端API主要有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0263",
+      "type": "technical",
+      "question": "什么是HBase的批量操作？如何使用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0264",
+      "type": "technical",
+      "question": "HBase中的Region负载均衡是如何实现的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0265",
+      "type": "technical",
+      "question": "解释HBase中的数据版本清理机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0266",
+      "type": "technical",
+      "question": "HBase中的同步复制和异步复制有什么区别？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0267",
+      "type": "technical",
+      "question": "什么是HBase的Region观察者模式？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0268",
+      "type": "technical",
+      "question": "HBase中的数据导入导出工具有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0269",
+      "type": "technical",
+      "question": "解释HBase中的数据压缩算法选择策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0270",
+      "type": "technical",
+      "question": "HBase的安全认证机制有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0271",
+      "type": "technical",
+      "question": "什么是HBase的读写路径？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0272",
+      "type": "technical",
+      "question": "HBase中的Region分配策略有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0273",
+      "type": "technical",
+      "question": "解释HBase中的数据备份恢复机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0274",
+      "type": "technical",
+      "question": "HBase的客户端连接池如何配置和使用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0275",
+      "type": "technical",
+      "question": "详细描述HBase的整体架构，包括各个组件及其作用。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0276",
+      "type": "technical",
+      "question": "HBase的写入流程是怎样的？请详细解释。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0277",
+      "type": "technical",
+      "question": "HBase的读取流程是怎样的？请详细解释。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0278",
+      "type": "technical",
+      "question": "解释HBase中ZooKeeper的作用和存储的重要信息。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0279",
+      "type": "technical",
+      "question": "HBase的Master在整个架构中起到什么作用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0280",
+      "type": "technical",
+      "question": "RegionServer的工作机制是什么？包含哪些重要组件？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0281",
+      "type": "technical",
+      "question": "详细解释HBase的Region分裂过程。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0282",
+      "type": "technical",
+      "question": "HBase的Meta表结构是怎样的？存储了哪些信息？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0283",
+      "type": "technical",
+      "question": "解释HBase的HLog（WAL）工作机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0284",
+      "type": "technical",
+      "question": "HBase的MemStore刷新机制是怎样的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0285",
+      "type": "technical",
+      "question": "详细描述HBase的Compaction过程和策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0286",
+      "type": "technical",
+      "question": "HBase的Region寻址过程是怎样的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0287",
+      "type": "technical",
+      "question": "解释HBase的故障恢复机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0288",
+      "type": "technical",
+      "question": "HBase的负载均衡器是如何工作的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0289",
+      "type": "technical",
+      "question": "详细描述HBase的Region迁移过程。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0290",
+      "type": "technical",
+      "question": "HBase的分布式锁实现机制是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0291",
+      "type": "technical",
+      "question": "解释HBase的数据复制实现原理。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0292",
+      "type": "technical",
+      "question": "HBase的Master选举过程是怎样的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0293",
+      "type": "technical",
+      "question": "详细描述HBase的启动流程。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0294",
+      "type": "technical",
+      "question": "HBase的Region状态机是如何工作的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0295",
+      "type": "technical",
+      "question": "解释HBase的客户端缓存机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0296",
+      "type": "technical",
+      "question": "HBase的协处理器加载过程是怎样的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0297",
+      "type": "technical",
+      "question": "详细描述HBase的表创建过程。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0298",
+      "type": "technical",
+      "question": "HBase的Region合并过程是怎样的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0299",
+      "type": "technical",
+      "question": "解释HBase的数据删除原理。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0300",
+      "type": "technical",
+      "question": "HBase的版本控制实现机制是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0301",
+      "type": "technical",
+      "question": "详细描述HBase的扫描器工作原理。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0302",
+      "type": "technical",
+      "question": "HBase的原子性操作是如何保证的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0303",
+      "type": "technical",
+      "question": "解释HBase的Region定位机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0304",
+      "type": "technical",
+      "question": "HBase的数据一致性是如何保证的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0305",
+      "type": "technical",
+      "question": "详细描述HBase的批量加载过程。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0306",
+      "type": "technical",
+      "question": "HBase的列族存储实现原理是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0307",
+      "type": "technical",
+      "question": "解释HBase的过滤器实现机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0308",
+      "type": "technical",
+      "question": "HBase的二级索引实现原理是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0309",
+      "type": "technical",
+      "question": "详细描述HBase的快照实现机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0310",
+      "type": "technical",
+      "question": "HBase的安全认证实现原理是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0311",
+      "type": "technical",
+      "question": "解释HBase的压缩算法实现机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0312",
+      "type": "technical",
+      "question": "HBase的Region观察者实现原理是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0313",
+      "type": "technical",
+      "question": "详细描述HBase的数据备份实现机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0314",
+      "type": "technical",
+      "question": "HBase的客户端API实现原理是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0315",
+      "type": "technical",
+      "question": "解释HBase的数据本地性实现机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0316",
+      "type": "technical",
+      "question": "HBase的Region分配算法实现原理是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0317",
+      "type": "technical",
+      "question": "详细描述HBase的计数器实现机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0318",
+      "type": "technical",
+      "question": "HBase的TTL实现原理是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0319",
+      "type": "technical",
+      "question": "解释HBase的Bloom Filter实现机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0320",
+      "type": "technical",
+      "question": "HBase的多租户实现原理是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0321",
+      "type": "technical",
+      "question": "详细描述HBase的权限控制实现机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0322",
+      "type": "technical",
+      "question": "HBase的监控系统实现原理是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0323",
+      "type": "technical",
+      "question": "解释HBase的数据加密实现机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0324",
+      "type": "technical",
+      "question": "HBase的异步操作实现原理是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0325",
+      "type": "technical",
+      "question": "如何优化HBase的RowKey设计？请给出具体的设计原则和案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0326",
+      "type": "technical",
+      "question": "HBase的预分区策略有哪些？如何选择合适的预分区方案？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0327",
+      "type": "technical",
+      "question": "如何优化HBase的列族设计？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0328",
+      "type": "technical",
+      "question": "详细解释HBase的内存优化策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0329",
+      "type": "technical",
+      "question": "HBase的BlockCache调优有哪些方法？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0330",
+      "type": "technical",
+      "question": "如何优化HBase的写入性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0331",
+      "type": "technical",
+      "question": "详细讲解HBase的读取性能优化方案。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0332",
+      "type": "technical",
+      "question": "HBase的Compaction调优策略有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0333",
+      "type": "technical",
+      "question": "如何处理HBase的数据倾斜问题？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0334",
+      "type": "technical",
+      "question": "详细解释HBase的JVM调优方案。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0335",
+      "type": "technical",
+      "question": "HBase的网络配置如何优化？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0336",
+      "type": "technical",
+      "question": "如何优化HBase的Region大小？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0337",
+      "type": "technical",
+      "question": "详细讲解HBase的批量操作性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0338",
+      "type": "technical",
+      "question": "HBase的扫描性能如何优化？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0339",
+      "type": "technical",
+      "question": "如何优化HBase的过滤器性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0340",
+      "type": "technical",
+      "question": "详细解释HBase的协处理器性能优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0341",
+      "type": "technical",
+      "question": "HBase的RegionServer调优策略有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0342",
+      "type": "technical",
+      "question": "如何优化HBase的WAL性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0343",
+      "type": "technical",
+      "question": "详细讲解HBase的ZooKeeper调优。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0344",
+      "type": "technical",
+      "question": "HBase的HDFS优化策略有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0345",
+      "type": "technical",
+      "question": "如何处理HBase的热点问题？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0346",
+      "type": "technical",
+      "question": "详细解释HBase的缓存优化策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0347",
+      "type": "technical",
+      "question": "HBase的多版本优化方案有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0348",
+      "type": "technical",
+      "question": "如何优化HBase的表结构？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0349",
+      "type": "technical",
+      "question": "详细讲解HBase的客户端优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0350",
+      "type": "technical",
+      "question": "HBase的Region分裂优化策略有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0351",
+      "type": "technical",
+      "question": "如何优化HBase的数据压缩？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0352",
+      "type": "technical",
+      "question": "详细解释HBase的内存管理优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0353",
+      "type": "technical",
+      "question": "HBase的IO性能如何优化？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0354",
+      "type": "technical",
+      "question": "如何优化HBase的元数据性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0355",
+      "type": "technical",
+      "question": "详细讲解HBase的查询优化策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0356",
+      "type": "technical",
+      "question": "HBase的负载均衡优化方案有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0357",
+      "type": "technical",
+      "question": "如何优化HBase的数据导入性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0358",
+      "type": "technical",
+      "question": "详细解释HBase的数据导出优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0359",
+      "type": "technical",
+      "question": "HBase的备份恢复性能如何优化？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0360",
+      "type": "technical",
+      "question": "如何优化HBase的安全配置？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0361",
+      "type": "technical",
+      "question": "详细讲解HBase的监控优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0362",
+      "type": "technical",
+      "question": "HBase的日志优化策略有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0363",
+      "type": "technical",
+      "question": "如何优化HBase的数据压缩比？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0364",
+      "type": "technical",
+      "question": "详细解释HBase的多租户优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0365",
+      "type": "technical",
+      "question": "HBase的资源隔离如何优化？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0366",
+      "type": "technical",
+      "question": "如何优化HBase的读写并发？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0367",
+      "type": "technical",
+      "question": "详细讲解HBase的Region迁移优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0368",
+      "type": "technical",
+      "question": "HBase的数据清理优化策略有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0369",
+      "type": "technical",
+      "question": "如何优化HBase的数据同步性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0370",
+      "type": "technical",
+      "question": "详细解释HBase的索引优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0371",
+      "type": "technical",
+      "question": "HBase的实时查询优化方案有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0372",
+      "type": "technical",
+      "question": "如何优化HBase的范围查询？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0373",
+      "type": "technical",
+      "question": "详细讲解HBase的模糊查询优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0374",
+      "type": "technical",
+      "question": "HBase的聚合查询性能如何优化？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0375",
+      "type": "technical",
+      "question": "在实际项目中，如何设计HBase的表结构？请分享具体案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0376",
+      "type": "technical",
+      "question": "如何处理HBase在生产环境中的数据迁移？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0377",
+      "type": "technical",
+      "question": "分享一个HBase的性能调优实战案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0378",
+      "type": "technical",
+      "question": "如何处理HBase集群的容量规划？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0379",
+      "type": "technical",
+      "question": "在生产环境中如何进行HBase的版本升级？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0380",
+      "type": "technical",
+      "question": "分享一个HBase的故障排查案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0381",
+      "type": "technical",
+      "question": "如何设计HBase的备份恢复方案？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0382",
+      "type": "technical",
+      "question": "在实际项目中如何实现HBase的数据同步？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0383",
+      "type": "technical",
+      "question": "分享一个HBase的安全实践案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0384",
+      "type": "technical",
+      "question": "如何处理HBase的数据质量问题？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0385",
+      "type": "technical",
+      "question": "在生产环境中如何监控HBase集群？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0386",
+      "type": "technical",
+      "question": "分享一个HBase的数据清理方案。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0387",
+      "type": "technical",
+      "question": "如何处理HBase的数据一致性问题？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0388",
+      "type": "technical",
+      "question": "在实际项目中如何实现HBase的二级索引？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0389",
+      "type": "technical",
+      "question": "分享一个HBase的数据导入导出案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0390",
+      "type": "technical",
+      "question": "如何处理HBase的数据倾斜问题？实战案例分享。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0391",
+      "type": "technical",
+      "question": "在生产环境中如何实现HBase的高可用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0392",
+      "type": "technical",
+      "question": "分享一个HBase的性能问题排查案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0393",
+      "type": "technical",
+      "question": "如何设计HBase的监控告警体系？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0394",
+      "type": "technical",
+      "question": "在实际项目中如何实现HBase的数据加密？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0395",
+      "type": "technical",
+      "question": "分享一个HBase的数据迁移案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0396",
+      "type": "technical",
+      "question": "如何处理HBase的Region热点问题？实战分享。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0397",
+      "type": "technical",
+      "question": "在生产环境中如何进行HBase的容灾备份？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0398",
+      "type": "technical",
+      "question": "分享一个HBase的数据恢复案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0399",
+      "type": "technical",
+      "question": "如何设计HBase的运维自动化方案？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0400",
+      "type": "technical",
+      "question": "在实际项目中如何优化HBase的读写性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0401",
+      "type": "technical",
+      "question": "分享一个HBase的资源隔离实践。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0402",
+      "type": "technical",
+      "question": "如何处理HBase的大批量数据导入？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0403",
+      "type": "technical",
+      "question": "在生产环境中如何实现HBase的多租户？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0404",
+      "type": "technical",
+      "question": "分享一个HBase的实时查询优化案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0405",
+      "type": "technical",
+      "question": "如何设计HBase的数据归档方案？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0406",
+      "type": "technical",
+      "question": "在实际项目中如何实现HBase的数据版本控制？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0407",
+      "type": "technical",
+      "question": "分享一个HBase的数据一致性处理案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0408",
+      "type": "technical",
+      "question": "如何处理HBase的网络问题？实战案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0409",
+      "type": "technical",
+      "question": "在生产环境中如何进行HBase的压力测试？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0410",
+      "type": "technical",
+      "question": "分享一个HBase的性能基准测试案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0411",
+      "type": "technical",
+      "question": "如何设计HBase的数据分析方案？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0412",
+      "type": "technical",
+      "question": "在实际项目中如何实现HBase的实时计算？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0413",
+      "type": "technical",
+      "question": "分享一个HBase的数据治理案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0414",
+      "type": "technical",
+      "question": "如何处理HBase的数据安全问题？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0415",
+      "type": "technical",
+      "question": "在生产环境中如何实现HBase的权限控制？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0416",
+      "type": "technical",
+      "question": "分享一个HBase的运维自动化案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0417",
+      "type": "technical",
+      "question": "如何设计HBase的灾难恢复方案？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0418",
+      "type": "technical",
+      "question": "在实际项目中如何实现HBase的数据备份？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0419",
+      "type": "technical",
+      "question": "分享一个HBase的集群扩容案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0420",
+      "type": "technical",
+      "question": "如何处理HBase的数据合规问题？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0421",
+      "type": "technical",
+      "question": "在生产环境中如何进行HBase的性能诊断？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0422",
+      "type": "technical",
+      "question": "分享一个HBase的数据迁移工具开发案例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0423",
+      "type": "technical",
+      "question": "如何设计HBase的数据生命周期管理？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0424",
+      "type": "technical",
+      "question": "在实际项目中如何实现HBase的监控平台？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0425",
+      "type": "technical",
+      "question": "Clickhouse的设计目标是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0426",
+      "type": "technical",
+      "question": "列式存储相比行式存储有哪些优势？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0427",
+      "type": "technical",
+      "question": "Clickhouse支持哪些主要的数据引擎？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0428",
+      "type": "technical",
+      "question": "MergeTree引擎的核心特性是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0429",
+      "type": "technical",
+      "question": "解释Clickhouse的表引擎和数据库引擎的区别。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0430",
+      "type": "technical",
+      "question": "Clickhouse的数据分片机制是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0431",
+      "type": "technical",
+      "question": "副本在Clickhouse中的作用是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0432",
+      "type": "technical",
+      "question": "Clickhouse的元数据存储在哪里？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0433",
+      "type": "technical",
+      "question": "什么是ZooKeeper在Clickhouse集群中的作用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0434",
+      "type": "technical",
+      "question": "Clickhouse支持事务吗？为什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0435",
+      "type": "technical",
+      "question": "解释Clickhouse的MVCC机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0436",
+      "type": "technical",
+      "question": "Clickhouse的进程模型是怎样的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0437",
+      "type": "technical",
+      "question": "什么是Clickhouse的分布式DDL？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0438",
+      "type": "technical",
+      "question": "Clickhouse与Hadoop生态的区别是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0439",
+      "type": "technical",
+      "question": "Clickhouse适合处理什么样的数据场景？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0440",
+      "type": "technical",
+      "question": "不适合使用Clickhouse的场景有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0441",
+      "type": "technical",
+      "question": "Clickhouse的数据压缩算法有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0442",
+      "type": "technical",
+      "question": "解释Clickhouse的主键和排序键的区别。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0443",
+      "type": "technical",
+      "question": "什么是Clickhouse的物化列？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0444",
+      "type": "technical",
+      "question": "Clickhouse的时间序列数据处理有哪些优化？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0445",
+      "type": "technical",
+      "question": "解释Clickhouse的Block结构。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0446",
+      "type": "technical",
+      "question": "Clickhouse的内存管理机制是怎样的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0447",
+      "type": "technical",
+      "question": "什么是Clickhouse的稀疏索引？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0448",
+      "type": "technical",
+      "question": "Clickhouse支持的数据类型有哪些特殊之处？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0449",
+      "type": "technical",
+      "question": "解释Clickhouse的表函数概念。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0450",
+      "type": "technical",
+      "question": "Clickhouse的集群部署模式有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0451",
+      "type": "technical",
+      "question": "什么是Clickhouse的分布式表引擎？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0452",
+      "type": "technical",
+      "question": "Clickhouse如何处理高并发写入？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0453",
+      "type": "technical",
+      "question": "解释Clickhouse的写入流程。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0454",
+      "type": "technical",
+      "question": "Clickhouse的分区和分桶有什么区别？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0455",
+      "type": "technical",
+      "question": "什么是Clickhouse的TTL（生存时间）？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0456",
+      "type": "technical",
+      "question": "Clickhouse支持哪些索引类型？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0457",
+      "type": "technical",
+      "question": "解释Clickhouse的跳数索引（Skip Index）。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0458",
+      "type": "technical",
+      "question": "Clickhouse的查询执行流程是怎样的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0459",
+      "type": "technical",
+      "question": "什么是Clickhouse的谓词下推？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0460",
+      "type": "technical",
+      "question": "Clickhouse如何处理NULL值？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0461",
+      "type": "technical",
+      "question": "解释Clickhouse的聚合函数优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0462",
+      "type": "technical",
+      "question": "Clickhouse的字符串处理有哪些优化？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0463",
+      "type": "technical",
+      "question": "什么是Clickhouse的字典（Dictionary）？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0464",
+      "type": "technical",
+      "question": "Clickhouse的数组数据类型如何使用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0465",
+      "type": "technical",
+      "question": "解释Clickhouse的嵌套数据结构。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0466",
+      "type": "technical",
+      "question": "Clickhouse的窗口函数支持情况如何？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0467",
+      "type": "technical",
+      "question": "什么是Clickhouse的物化视图？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0468",
+      "type": "technical",
+      "question": "Clickhouse的日志引擎有哪些应用场景？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0469",
+      "type": "technical",
+      "question": "解释Clickhouse的MergeTree家族引擎的区别。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0470",
+      "type": "technical",
+      "question": "Clickhouse如何实现数据的冷热分离？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0471",
+      "type": "technical",
+      "question": "什么是Clickhouse的分布式查询执行计划？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0472",
+      "type": "technical",
+      "question": "Clickhouse的权限管理机制是怎样的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0473",
+      "type": "technical",
+      "question": "Clickhouse支持哪些客户端连接方式？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0474",
+      "type": "technical",
+      "question": "解释Clickhouse的查询缓存机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0475",
+      "type": "technical",
+      "question": "如何创建一个MergeTree表并指定分区键和排序键？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0476",
+      "type": "technical",
+      "question": "写出创建带有TTL的Clickhouse表的SQL语句。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0477",
+      "type": "technical",
+      "question": "如何在Clickhouse中添加新列？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0478",
+      "type": "technical",
+      "question": "解释ALTER TABLE语句在Clickhouse中的限制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0479",
+      "type": "technical",
+      "question": "Clickhouse的INSERT语句有哪些特殊语法？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0480",
+      "type": "technical",
+      "question": "如何批量导入数据到Clickhouse？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0481",
+      "type": "technical",
+      "question": "Clickhouse支持UPDATE和DELETE操作吗？如何实现？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0482",
+      "type": "technical",
+      "question": "写出使用ReplacingMergeTree处理重复数据的建表语句。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0483",
+      "type": "technical",
+      "question": "如何在Clickhouse中创建分布式表？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0484",
+      "type": "technical",
+      "question": "解释Clickhouse的SELECT语句中的LIMIT BY子句。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0485",
+      "type": "technical",
+      "question": "Clickhouse的数组函数arrayJoin的作用是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0486",
+      "type": "technical",
+      "question": "如何使用Clickhouse的窗口函数进行排名？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0487",
+      "type": "technical",
+      "question": "写出计算用户留存率的SQL查询。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0488",
+      "type": "technical",
+      "question": "Clickhouse的日期函数有哪些常用的？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0489",
+      "type": "technical",
+      "question": "如何使用Clickhouse的JSON函数解析JSON数据？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0490",
+      "type": "technical",
+      "question": "解释Clickhouse的聚合函数uniq和count的区别。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0491",
+      "type": "technical",
+      "question": "如何实现Clickhouse中的行转列操作？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0492",
+      "type": "technical",
+      "question": "Clickhouse的JOIN操作有哪些限制？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0493",
+      "type": "technical",
+      "question": "写出使用字典（Dictionary）的SQL示例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0494",
+      "type": "technical",
+      "question": "如何在Clickhouse中创建物化视图？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0495",
+      "type": "technical",
+      "question": "Clickhouse的子查询支持情况如何？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0496",
+      "type": "technical",
+      "question": "如何使用Clickhouse的URL表函数读取外部数据？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0497",
+      "type": "technical",
+      "question": "解释Clickhouse的GROUP BY CUBE操作。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0498",
+      "type": "technical",
+      "question": "如何计算Clickhouse表的大小？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0499",
+      "type": "technical",
+      "question": "Clickhouse的字符串函数like和match的区别是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0500",
+      "type": "technical",
+      "question": "如何使用Clickhouse的正则表达式函数？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0501",
+      "type": "technical",
+      "question": "写出使用条件聚合的SQL查询示例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0502",
+      "type": "technical",
+      "question": "Clickhouse的时间序列数据如何按小时/天聚合？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0503",
+      "type": "technical",
+      "question": "如何在Clickhouse中实现数据抽样查询？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0504",
+      "type": "technical",
+      "question": "解释Clickhouse的IN子句优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0505",
+      "type": "technical",
+      "question": "如何使用Clickhouse的数组类型存储多值字段？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0506",
+      "type": "technical",
+      "question": "Clickhouse的嵌套表如何查询？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0507",
+      "type": "technical",
+      "question": "写出使用ARRAY JOIN展开数组的SQL示例。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0508",
+      "type": "technical",
+      "question": "Clickhouse的DISTINCT操作有哪些优化？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0509",
+      "type": "technical",
+      "question": "如何计算两个日期之间的天数差？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0510",
+      "type": "technical",
+      "question": "Clickhouse的BITMAP函数有哪些应用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0511",
+      "type": "technical",
+      "question": "如何使用Clickhouse的地理位置函数？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0512",
+      "type": "technical",
+      "question": "解释Clickhouse的物化视图刷新机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0513",
+      "type": "technical",
+      "question": "如何在Clickhouse中创建视图？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0514",
+      "type": "technical",
+      "question": "Clickhouse的INSERT SELECT语句如何使用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0515",
+      "type": "technical",
+      "question": "如何处理Clickhouse中的重复数据？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0516",
+      "type": "technical",
+      "question": "写出使用TTL自动删除过期数据的建表语句。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0517",
+      "type": "technical",
+      "question": "Clickhouse的ALTER TABLE MODIFY COLUMN支持哪些修改？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0518",
+      "type": "technical",
+      "question": "如何重命名Clickhouse表？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0519",
+      "type": "technical",
+      "question": "Clickhouse的TRUNCATE TABLE语句有什么作用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0520",
+      "type": "technical",
+      "question": "如何查询Clickhouse表的元数据信息？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0521",
+      "type": "technical",
+      "question": "Clickhouse的系统表system.tables存储哪些信息？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0522",
+      "type": "technical",
+      "question": "如何使用Clickhouse的文件表函数读取本地文件？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0523",
+      "type": "technical",
+      "question": "解释Clickhouse的查询参数绑定。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0524",
+      "type": "technical",
+      "question": "Clickhouse的SQL语法与标准SQL有哪些差异？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0525",
+      "type": "technical",
+      "question": "如何选择Clickhouse表的分区键？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0526",
+      "type": "technical",
+      "question": "排序键的选择对查询性能有什么影响？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0527",
+      "type": "technical",
+      "question": "解释Clickhouse的查询优化器工作原理。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0528",
+      "type": "technical",
+      "question": "如何使用Clickhouse的Profile工具分析查询性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0529",
+      "type": "technical",
+      "question": "什么是Clickhouse的查询缓存？如何配置？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0530",
+      "type": "technical",
+      "question": "如何优化Clickhouse的写入性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0531",
+      "type": "technical",
+      "question": "解释Clickhouse的内存限制参数。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0532",
+      "type": "technical",
+      "question": "如何配置Clickhouse的并行查询数？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0533",
+      "type": "technical",
+      "question": "什么是Clickhouse的向量化执行？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0534",
+      "type": "technical",
+      "question": "如何处理Clickhouse的慢查询？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0535",
+      "type": "technical",
+      "question": "解释Clickhouse的磁盘I/O优化策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0536",
+      "type": "technical",
+      "question": "如何选择合适的Clickhouse表引擎？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0537",
+      "type": "technical",
+      "question": "物化视图如何提升查询性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0538",
+      "type": "technical",
+      "question": "Clickhouse的索引选择策略是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0539",
+      "type": "technical",
+      "question": "如何优化Clickhouse的JOIN操作？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0540",
+      "type": "technical",
+      "question": "解释Clickhouse的查询计划。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0541",
+      "type": "technical",
+      "question": "如何监控Clickhouse的性能指标？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0542",
+      "type": "technical",
+      "question": "Clickhouse的CPU使用率过高如何排查？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0543",
+      "type": "technical",
+      "question": "什么是Clickhouse的预聚合？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0544",
+      "type": "technical",
+      "question": "如何配置Clickhouse的缓存大小？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0545",
+      "type": "technical",
+      "question": "解释Clickhouse的数据压缩对性能的影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0546",
+      "type": "technical",
+      "question": "如何优化Clickhouse的分布式查询？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0547",
+      "type": "technical",
+      "question": "Clickhouse的内存溢出问题如何解决？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0548",
+      "type": "technical",
+      "question": "如何选择Clickhouse的硬件配置？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0549",
+      "type": "technical",
+      "question": "解释Clickhouse的查询优先级设置。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0550",
+      "type": "technical",
+      "question": "如何减少Clickhouse的磁盘空间占用？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0551",
+      "type": "technical",
+      "question": "Clickhouse的网络带宽优化策略有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0552",
+      "type": "technical",
+      "question": "如何使用Clickhouse的临时表提升性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0553",
+      "type": "technical",
+      "question": "解释Clickhouse的Merge过程优化。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0554",
+      "type": "technical",
+      "question": "如何优化Clickhouse的字符串处理性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0555",
+      "type": "technical",
+      "question": "Clickhouse的并发控制机制是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0556",
+      "type": "technical",
+      "question": "如何配置Clickhouse的日志级别？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0557",
+      "type": "technical",
+      "question": "解释Clickhouse的查询超时设置。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0558",
+      "type": "technical",
+      "question": "如何处理Clickhouse的重复聚合计算？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0559",
+      "type": "technical",
+      "question": "Clickhouse的分区合并策略如何配置？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0560",
+      "type": "technical",
+      "question": "如何优化Clickhouse的数组操作性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0561",
+      "type": "technical",
+      "question": "解释Clickhouse的查询结果集大小限制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0562",
+      "type": "technical",
+      "question": "如何使用Clickhouse的分布式DDL优化？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0563",
+      "type": "technical",
+      "question": "Clickhouse的ZooKeeper性能优化有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0564",
+      "type": "technical",
+      "question": "如何监控Clickhouse的副本同步状态？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0565",
+      "type": "technical",
+      "question": "解释Clickhouse的物化列对查询性能的影响。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0566",
+      "type": "technical",
+      "question": "如何优化Clickhouse的字典加载性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0567",
+      "type": "technical",
+      "question": "Clickhouse的查询并行度如何调整？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0568",
+      "type": "technical",
+      "question": "如何处理Clickhouse的磁盘I/O瓶颈？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0569",
+      "type": "technical",
+      "question": "解释Clickhouse的查询预编译。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0570",
+      "type": "technical",
+      "question": "如何优化Clickhouse的聚合函数性能？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0571",
+      "type": "technical",
+      "question": "Clickhouse的内存分配策略是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0572",
+      "type": "technical",
+      "question": "如何配置Clickhouse的连接池？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0573",
+      "type": "technical",
+      "question": "解释Clickhouse的查询重试机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0574",
+      "type": "technical",
+      "question": "如何进行Clickhouse的性能基准测试？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0575",
+      "type": "technical",
+      "question": "Clickhouse的分布式架构如何设计？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0576",
+      "type": "technical",
+      "question": "如何实现Clickhouse的高可用部署？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0577",
+      "type": "technical",
+      "question": "解释Clickhouse的副本同步机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0578",
+      "type": "technical",
+      "question": "Clickhouse的集群扩容策略是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0579",
+      "type": "technical",
+      "question": "如何处理Clickhouse的节点故障？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0580",
+      "type": "technical",
+      "question": "解释Clickhouse的数据一致性保证。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0581",
+      "type": "technical",
+      "question": "Clickhouse的备份与恢复策略有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0582",
+      "type": "technical",
+      "question": "如何监控Clickhouse集群的健康状态？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0583",
+      "type": "technical",
+      "question": "什么是Clickhouse的熔断机制？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0584",
+      "type": "technical",
+      "question": "如何实现Clickhouse与Kafka的数据集成？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0585",
+      "type": "technical",
+      "question": "Clickhouse的实时数据同步方案有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0586",
+      "type": "technical",
+      "question": "解释Clickhouse的物化视图自动更新机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0587",
+      "type": "technical",
+      "question": "如何使用Clickhouse处理JSON格式数据？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0588",
+      "type": "technical",
+      "question": "Clickhouse的安全加固措施有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0589",
+      "type": "technical",
+      "question": "如何实现Clickhouse的多租户隔离？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0590",
+      "type": "technical",
+      "question": "解释Clickhouse的分布式事务支持。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0591",
+      "type": "technical",
+      "question": "Clickhouse的监控指标有哪些关键项？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0592",
+      "type": "technical",
+      "question": "如何使用Grafana监控Clickhouse？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0593",
+      "type": "technical",
+      "question": "Clickhouse的日志分析最佳实践是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0594",
+      "type": "technical",
+      "question": "解释Clickhouse的时间序列数据建模。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0595",
+      "type": "technical",
+      "question": "如何优化Clickhouse的分布式JOIN？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0596",
+      "type": "technical",
+      "question": "Clickhouse的跨地域部署方案是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0597",
+      "type": "technical",
+      "question": "如何处理Clickhouse的历史数据归档？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0598",
+      "type": "technical",
+      "question": "解释Clickhouse的字典更新策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0599",
+      "type": "technical",
+      "question": "Clickhouse的查询结果缓存如何配置？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0600",
+      "type": "technical",
+      "question": "如何实现Clickhouse的数据加密？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0601",
+      "type": "technical",
+      "question": "解释Clickhouse的元数据备份策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0602",
+      "type": "technical",
+      "question": "Clickhouse的集群负载均衡如何实现？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0603",
+      "type": "technical",
+      "question": "如何排查Clickhouse的副本不同步问题？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0604",
+      "type": "technical",
+      "question": "解释Clickhouse的ZooKeeper异常处理。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0605",
+      "type": "technical",
+      "question": "Clickhouse的大数据量导入最佳实践是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0606",
+      "type": "technical",
+      "question": "如何使用Clickhouse进行用户行为分析？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0607",
+      "type": "technical",
+      "question": "解释Clickhouse的物化视图与实时数据的权衡。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0608",
+      "type": "technical",
+      "question": "Clickhouse的跨表查询优化技巧有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0609",
+      "type": "technical",
+      "question": "如何实现Clickhouse的读写分离？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0610",
+      "type": "technical",
+      "question": "解释Clickhouse的内存表使用场景。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0611",
+      "type": "technical",
+      "question": "Clickhouse的性能调优案例分享。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0612",
+      "type": "technical",
+      "question": "如何处理Clickhouse的表结构变更？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0613",
+      "type": "technical",
+      "question": "解释Clickhouse的分布式ID生成策略。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0614",
+      "type": "technical",
+      "question": "Clickhouse的监控告警配置方法是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0615",
+      "type": "technical",
+      "question": "如何使用Clickhouse的系统表进行问题排查？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0616",
+      "type": "technical",
+      "question": "解释Clickhouse的查询队列管理。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0617",
+      "type": "technical",
+      "question": "Clickhouse的云原生部署方案有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0618",
+      "type": "technical",
+      "question": "如何实现Clickhouse的数据脱敏？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0619",
+      "type": "technical",
+      "question": "解释Clickhouse的查询重写机制。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0620",
+      "type": "technical",
+      "question": "Clickhouse的国产化适配经验有哪些？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0621",
+      "type": "technical",
+      "question": "如何使用Clickhouse处理流数据？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0622",
+      "type": "technical",
+      "question": "解释Clickhouse的存储策略配置。",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0623",
+      "type": "technical",
+      "question": "Clickhouse的集群迁移方案是什么？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STORAGE-0624",
+      "type": "technical",
+      "question": "如何规划Clickhouse的长期演进？",
+      "topic": [
+        "storage"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
     },
     {
       "id": "LAKEHOUSE-0001",
@@ -2104,18 +12432,2604 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>rollup 是按不同维度组合预计算的物化结构，预聚合是把明细提前按维度汇总；rollup 是预聚合的一种实现方式。</p>\n<h2>30 秒回答</h2>\n<p>rollup 针对基表的不同维度组合建物化表，查询命中 rollup 直接读汇总结果，免去实时聚合。预聚合是更泛的概念（提前算好汇总），rollup、物化视图、聚合模型都属于预聚合手段。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>rollup：StarRocks/Doris 的物化 rollup 索引，按维度组合预汇总</li>\n<li>预聚合：泛指提前聚合，包括聚合模型、物化视图、rollup</li>\n<li>关系：rollup 是预聚合的具体实现，物化视图是更通用的预聚合</li>\n<li>除了新建 rollup，还可调分桶、建物化视图、用聚合模型、优化查询</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>rollup 和物化视图有什么区别？</li>\n<li>新建 rollup 的代价是什么？</li>\n</ul>"
     },
     {
-      "id": "STARROCKS-0015",
+      "id": "STARROCKS-0016",
       "type": "technical",
-      "question": "StarRocks 面试题大纲（200 题覆盖范围）",
+      "question": "什么是 StarRocks？",
       "topic": [
-        "starrocks",
-        "outline"
+        "starrocks"
       ],
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>一句话</h2>\n<p>StarRocks 200 题大纲，四块：基础知识、进阶调优、高级特性、实战应用。</p>\n<h2>30 秒回答</h2>\n<p>基础（1-50）：MPP/FE/BE/三种数据模型/导入/分区分桶/物化视图/SQL/权限；进阶（51-100）：CBO/向量化/Join 策略/调优/HA/故障排查/表设计；高级（101-150）：架构设计理念/核心机制/云原生/基准测试；实战（151-200）：生态集成/数据迁移/查询优化/行业案例/趋势。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：MPP 架构、FE/BE、明细/聚合/更新模型、列存、Broker/Stream Load、Range/List 分区、Bucket、物化视图、JOIN 策略、权限</li>\n<li>进阶：CBO、向量化、谓词下推、EXPLAIN、统计信息、内存/IO 调优、HA、备份、扩缩容、故障排查、表设计</li>\n<li>高级：为什么 MPP、存储引擎设计、与 Doris 关系、事务、压缩、Colocate Join、Pipeline、云原生、K8s/Helm、基准测试</li>\n<li>实战：Hadoop/Kafka/Flink 集成、MySQL/CH/Hive 迁移、大表 JOIN、TopN、电商/金融/广告案例、与 ClickHouse/Doris 对比</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>三种数据模型分别适用什么场景？</li>\n</ul>"
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0017",
+      "type": "technical",
+      "question": "StarRocks 的主要特点是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0018",
+      "type": "technical",
+      "question": "StarRocks 与传统数据库的区别是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0019",
+      "type": "technical",
+      "question": "StarRocks 的系统架构是怎样的？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0020",
+      "type": "technical",
+      "question": "什么是 MPP 架构？StarRocks 如何实现 MPP？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0021",
+      "type": "technical",
+      "question": "StarRocks 中的 FE（Frontend）和 BE（Backend）分别是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0022",
+      "type": "technical",
+      "question": "StarRocks 支持哪些数据模型？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0023",
+      "type": "technical",
+      "question": "什么是列式存储？StarRocks 为什么选择列式存储？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0024",
+      "type": "technical",
+      "question": "StarRocks 的查询引擎有什么特点？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0025",
+      "type": "technical",
+      "question": "StarRocks 的数据更新机制是怎样的？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0026",
+      "type": "technical",
+      "question": "StarRocks 支持哪些数据导入方式？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0027",
+      "type": "technical",
+      "question": "如何在 StarRocks 中创建表？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0028",
+      "type": "technical",
+      "question": "StarRocks 的分区策略有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0029",
+      "type": "technical",
+      "question": "什么是 Bucket？在 StarRocks 中的作用是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0030",
+      "type": "technical",
+      "question": "StarRocks 的存储格式是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0031",
+      "type": "technical",
+      "question": "StarRocks 中的物化视图是什么？其作用是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0032",
+      "type": "technical",
+      "question": "如何优化 StarRocks 的数据导入性能？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0033",
+      "type": "technical",
+      "question": "StarRocks 中的数据一致性是如何保证的？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0034",
+      "type": "technical",
+      "question": "什么是流式导入？StarRocks 如何支持实时数据导入？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0035",
+      "type": "technical",
+      "question": "StarRocks 中的 Broker Load 是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0036",
+      "type": "technical",
+      "question": "StarRocks 支持哪些 SQL 语法？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0037",
+      "type": "technical",
+      "question": "StarRocks 的窗口函数如何使用？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0038",
+      "type": "technical",
+      "question": "StarRocks 如何处理子查询？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0039",
+      "type": "technical",
+      "question": "StarRocks 支持哪些聚合函数？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0040",
+      "type": "technical",
+      "question": "StarRocks 中如何实现分页查询？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0041",
+      "type": "technical",
+      "question": "StarRocks 的 JOIN 策略有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0042",
+      "type": "technical",
+      "question": "StarRocks 中的 ARRAY 和 MAP 类型如何使用？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0043",
+      "type": "technical",
+      "question": "StarRocks 如何支持 JSON 数据类型？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0044",
+      "type": "technical",
+      "question": "StarRocks 的排序和 ORDER BY 有什么特点？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0045",
+      "type": "technical",
+      "question": "StarRocks 中如何使用 CTE（公用表表达式）？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0046",
+      "type": "technical",
+      "question": "StarRocks 的用户权限管理是怎样的？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0047",
+      "type": "technical",
+      "question": "如何在 StarRocks 中创建和管理用户？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0048",
+      "type": "technical",
+      "question": "StarRocks 的 ROLE 权限系统是怎样的？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0049",
+      "type": "technical",
+      "question": "StarRocks 如何支持行级别的权限控制？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0050",
+      "type": "technical",
+      "question": "如何配置 StarRocks 的 SSL/TLS？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0051",
+      "type": "technical",
+      "question": "StarRocks 如何实现数据加密？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0052",
+      "type": "technical",
+      "question": "StarRocks 的审计日志如何配置和使用？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0053",
+      "type": "technical",
+      "question": "如何保护 StarRocks 集群安全？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0054",
+      "type": "technical",
+      "question": "StarRocks 的密码策略如何配置？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0055",
+      "type": "technical",
+      "question": "StarRocks 的白名单功能如何使用？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0056",
+      "type": "technical",
+      "question": "StarRocks 2.0 相比 1.0 有哪些新特性？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0057",
+      "type": "technical",
+      "question": "StarRocks 3.0 的主要特性是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0058",
+      "type": "technical",
+      "question": "StarRocks 的开源版和企业版有什么区别？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0059",
+      "type": "technical",
+      "question": "StarRocks 社区的发展状况如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0060",
+      "type": "technical",
+      "question": "如何参与 StarRocks 开源社区贡献？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0061",
+      "type": "technical",
+      "question": "StarRocks 的商业支持选项有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0062",
+      "type": "technical",
+      "question": "StarRocks 的主要贡献公司有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0063",
+      "type": "technical",
+      "question": "如何获取 StarRocks 的技术支持？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0064",
+      "type": "technical",
+      "question": "StarRocks 的培训和认证渠道有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0065",
+      "type": "technical",
+      "question": "StarRocks 社区的技术交流方式有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0066",
+      "type": "technical",
+      "question": "StarRocks 的 CBO（基于成本的优化器）是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0067",
+      "type": "technical",
+      "question": "什么是 StarRocks 的向量化执行引擎？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0068",
+      "type": "technical",
+      "question": "StarRocks 如何处理 JOIN 查询？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0069",
+      "type": "technical",
+      "question": "什么是谓词下推？StarRocks 如何实现？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0070",
+      "type": "technical",
+      "question": "StarRocks 的查询计划是如何生成的？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0071",
+      "type": "technical",
+      "question": "如何查看 StarRocks 的查询执行计划？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0072",
+      "type": "technical",
+      "question": "StarRocks 中的统计信息是什么？如何收集和使用？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0073",
+      "type": "technical",
+      "question": "如何优化 StarRocks 中的慢查询？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0074",
+      "type": "technical",
+      "question": "StarRocks 中的索引有哪些类型？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0075",
+      "type": "technical",
+      "question": "如何利用物化视图加速查询？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0076",
+      "type": "technical",
+      "question": "如何对 StarRocks 集群进行容量规划？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0077",
+      "type": "technical",
+      "question": "StarRocks 的内存参数如何调优？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0078",
+      "type": "technical",
+      "question": "StarRocks 的 IO 性能如何优化？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0079",
+      "type": "technical",
+      "question": "如何合理设计 StarRocks 的分区策略？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0080",
+      "type": "technical",
+      "question": "StarRocks 中常见的性能瓶颈是什么？如何解决？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0081",
+      "type": "technical",
+      "question": "如何提高 StarRocks 并发查询能力？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0082",
+      "type": "technical",
+      "question": "StarRocks 的数据倾斜问题如何处理？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0083",
+      "type": "technical",
+      "question": "如何优化 StarRocks 的资源使用？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0084",
+      "type": "technical",
+      "question": "StarRocks 中的 Compaction 是什么？如何调优？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0085",
+      "type": "technical",
+      "question": "如何诊断 StarRocks 集群性能问题？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0086",
+      "type": "technical",
+      "question": "StarRocks 的高可用如何实现？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0087",
+      "type": "technical",
+      "question": "StarRocks 的备份与恢复策略有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0088",
+      "type": "technical",
+      "question": "如何监控 StarRocks 集群状态？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0089",
+      "type": "technical",
+      "question": "StarRocks 日志系统是怎样的？如何查看和分析日志？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0090",
+      "type": "technical",
+      "question": "如何扩展 StarRocks 集群？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0091",
+      "type": "technical",
+      "question": "StarRocks 升级过程需要注意什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0092",
+      "type": "technical",
+      "question": "如何处理 StarRocks 的数据不一致问题？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0093",
+      "type": "technical",
+      "question": "StarRocks 的节点失效如何处理？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0094",
+      "type": "technical",
+      "question": "如何优化 StarRocks 的数据导入并发度？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0095",
+      "type": "technical",
+      "question": "StarRocks 的常见运维命令有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0096",
+      "type": "technical",
+      "question": "StarRocks 集群无法启动如何处理？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0097",
+      "type": "technical",
+      "question": "StarRocks 查询超时如何排查？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0098",
+      "type": "technical",
+      "question": "StarRocks 数据导入失败如何处理？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0099",
+      "type": "technical",
+      "question": "StarRocks FE 节点宕机如何恢复？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0100",
+      "type": "technical",
+      "question": "StarRocks BE 节点宕机如何恢复？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0101",
+      "type": "technical",
+      "question": "StarRocks 元数据不一致如何修复？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0102",
+      "type": "technical",
+      "question": "StarRocks 内存溢出如何处理？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0103",
+      "type": "technical",
+      "question": "StarRocks 磁盘空间不足如何处理？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0104",
+      "type": "technical",
+      "question": "StarRocks 查询失败常见原因及解决方法？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0105",
+      "type": "technical",
+      "question": "StarRocks 集群网络问题如何排查？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0106",
+      "type": "technical",
+      "question": "StarRocks 中的表设计最佳实践是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0107",
+      "type": "technical",
+      "question": "如何设计 StarRocks 中的分区键？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0108",
+      "type": "technical",
+      "question": "StarRocks 中的聚合表如何设计？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0109",
+      "type": "technical",
+      "question": "StarRocks 中的复合键如何设计？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0110",
+      "type": "technical",
+      "question": "如何在 StarRocks 中设计明细模型和聚合模型？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0111",
+      "type": "technical",
+      "question": "星型模型在 StarRocks 中如何实现？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0112",
+      "type": "technical",
+      "question": "雪花模型在 StarRocks 中如何实现？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0113",
+      "type": "technical",
+      "question": "如何在 StarRocks 中设计预聚合表？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0114",
+      "type": "technical",
+      "question": "时序数据在 StarRocks 中如何建模？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0115",
+      "type": "technical",
+      "question": "StarRocks 中的物化视图设计最佳实践是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0116",
+      "type": "technical",
+      "question": "StarRocks 如何支持机器学习功能？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0117",
+      "type": "technical",
+      "question": "StarRocks 中的 OLAP 和 OLTP 能力如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0118",
+      "type": "technical",
+      "question": "StarRocks 如何处理稀疏数据？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0119",
+      "type": "technical",
+      "question": "StarRocks 的向量化计算有什么优势？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0120",
+      "type": "technical",
+      "question": "如何在 StarRocks 中进行预测分析？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0121",
+      "type": "technical",
+      "question": "StarRocks 如何支持地理空间数据分析？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0122",
+      "type": "technical",
+      "question": "StarRocks 中的 UDF（用户自定义函数）如何使用？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0123",
+      "type": "technical",
+      "question": "StarRocks 如何支持复杂的统计分析？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0124",
+      "type": "technical",
+      "question": "StarRocks 中的数据挖掘能力如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0125",
+      "type": "technical",
+      "question": "StarRocks 如何支持实时数据分析？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0126",
+      "type": "technical",
+      "question": "StarRocks 为什么采用 MPP 架构？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0127",
+      "type": "technical",
+      "question": "StarRocks 的存储引擎设计理念是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0128",
+      "type": "technical",
+      "question": "StarRocks 为什么选择自研查询引擎而不使用 Presto 等？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0129",
+      "type": "technical",
+      "question": "StarRocks 与 Apache Doris 的区别和联系是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0130",
+      "type": "technical",
+      "question": "StarRocks 的元数据管理设计是怎样的？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0131",
+      "type": "technical",
+      "question": "StarRocks 如何平衡实时性和吞吐量？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0132",
+      "type": "technical",
+      "question": "StarRocks 为什么选择单进程多线程模型？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0133",
+      "type": "technical",
+      "question": "StarRocks 的内存管理为什么采用当前设计？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0134",
+      "type": "technical",
+      "question": "StarRocks 的分布式事务实现原理是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0135",
+      "type": "technical",
+      "question": "StarRocks 的向量化执行引擎设计思想是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0136",
+      "type": "technical",
+      "question": "StarRocks 的事务模型是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0137",
+      "type": "technical",
+      "question": "StarRocks 如何实现数据一致性？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0138",
+      "type": "technical",
+      "question": "StarRocks 中的数据压缩机制是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0139",
+      "type": "technical",
+      "question": "StarRocks 的资源隔离是如何实现的？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0140",
+      "type": "technical",
+      "question": "什么是 Pipeline 执行模型？StarRocks 是如何实现的？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0141",
+      "type": "technical",
+      "question": "StarRocks 的内存管理是怎样的？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0142",
+      "type": "technical",
+      "question": "StarRocks 中的 Colocate Join 是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0143",
+      "type": "technical",
+      "question": "StarRocks 如何支持实时分析？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0144",
+      "type": "technical",
+      "question": "StarRocks 中的异步物化视图是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0145",
+      "type": "technical",
+      "question": "StarRocks 如何处理复杂的 ETL 任务？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0146",
+      "type": "technical",
+      "question": "StarRocks 在 Kubernetes 上如何部署？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0147",
+      "type": "technical",
+      "question": "StarRocks 的容器化方案有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0148",
+      "type": "technical",
+      "question": "如何使用 Helm 部署 StarRocks？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0149",
+      "type": "technical",
+      "question": "StarRocks 的云原生特性有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0150",
+      "type": "technical",
+      "question": "StarRocks 在公有云上的最佳实践是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0151",
+      "type": "technical",
+      "question": "StarRocks 的 Operator 如何使用？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0152",
+      "type": "technical",
+      "question": "StarRocks 如何实现自动扩缩容？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0153",
+      "type": "technical",
+      "question": "如何监控容器化 StarRocks 集群？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0154",
+      "type": "technical",
+      "question": "StarRocks 在混合云环境中如何部署？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0155",
+      "type": "technical",
+      "question": "StarRocks 的多租户部署方案是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0156",
+      "type": "technical",
+      "question": "如何进行 StarRocks 的性能测试？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0157",
+      "type": "technical",
+      "question": "StarRocks 与其他分析数据库的性能对比如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0158",
+      "type": "technical",
+      "question": "常用的 StarRocks 基准测试工具有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0159",
+      "type": "technical",
+      "question": "StarRocks 在 TPC-H 测试中的表现如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0160",
+      "type": "technical",
+      "question": "StarRocks 在 TPC-DS 测试中的表现如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0161",
+      "type": "technical",
+      "question": "如何测试 StarRocks 的并发查询性能？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0162",
+      "type": "technical",
+      "question": "StarRocks 在大数据量场景下的性能如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0163",
+      "type": "technical",
+      "question": "如何评估 StarRocks 的导入性能？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0164",
+      "type": "technical",
+      "question": "StarRocks 在不同硬件配置下的性能差异如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0165",
+      "type": "technical",
+      "question": "如何进行 StarRocks 的极限性能测试？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0166",
+      "type": "technical",
+      "question": "StarRocks 如何与 Hadoop 生态集成？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0167",
+      "type": "technical",
+      "question": "StarRocks 如何与 Kafka 集成实现实时数据分析？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0168",
+      "type": "technical",
+      "question": "StarRocks 如何与 Spark 集成？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0169",
+      "type": "technical",
+      "question": "如何使用 Flink 将数据导入 StarRocks？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0170",
+      "type": "technical",
+      "question": "StarRocks 支持哪些客户端驱动？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0171",
+      "type": "technical",
+      "question": "如何在 BI 工具中连接 StarRocks？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0172",
+      "type": "technical",
+      "question": "StarRocks 如何与数据湖进行集成？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0173",
+      "type": "technical",
+      "question": "StarRocks 的 Hive 外表如何使用？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0174",
+      "type": "technical",
+      "question": "StarRocks 如何支持 Elasticsearch 数据源？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0175",
+      "type": "technical",
+      "question": "StarRocks 与传统数据仓库的集成方案有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0176",
+      "type": "technical",
+      "question": "如何从 MySQL 迁移数据到 StarRocks？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0177",
+      "type": "technical",
+      "question": "如何从 ClickHouse 迁移到 StarRocks？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0178",
+      "type": "technical",
+      "question": "如何从 Hive 迁移数据到 StarRocks？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0179",
+      "type": "technical",
+      "question": "StarRocks 与其他数据源的实时同步方案有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0180",
+      "type": "technical",
+      "question": "如何使用 CDC 工具同步数据到 StarRocks？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0181",
+      "type": "technical",
+      "question": "大数据量迁移到 StarRocks 的最佳实践是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0182",
+      "type": "technical",
+      "question": "如何验证数据迁移到 StarRocks 的正确性？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0183",
+      "type": "technical",
+      "question": "StarRocks 的增量同步策略有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0184",
+      "type": "technical",
+      "question": "如何处理 StarRocks 数据迁移中的数据类型转换？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0185",
+      "type": "technical",
+      "question": "如何从 StarRocks 导出数据？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0186",
+      "type": "technical",
+      "question": "StarRocks 中如何优化大表 JOIN？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0187",
+      "type": "technical",
+      "question": "如何优化 StarRocks 中的复杂聚合查询？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0188",
+      "type": "technical",
+      "question": "StarRocks 中的窗口函数性能如何优化？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0189",
+      "type": "technical",
+      "question": "如何优化 StarRocks 中的子查询？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0190",
+      "type": "technical",
+      "question": "StarRocks 中大数据量排序查询如何优化？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0191",
+      "type": "technical",
+      "question": "如何解决 StarRocks 中的数据热点问题？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0192",
+      "type": "technical",
+      "question": "StarRocks 中按时间序列查询的优化技巧？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0193",
+      "type": "technical",
+      "question": "如何优化 StarRocks 中的条件过滤？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0194",
+      "type": "technical",
+      "question": "StarRocks 中的 GROUP BY 性能优化技巧？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0195",
+      "type": "technical",
+      "question": "如何优化 StarRocks 中的 TopN 查询？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0196",
+      "type": "technical",
+      "question": "StarRocks 在电商行业的应用案例有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0197",
+      "type": "technical",
+      "question": "StarRocks 在金融领域的最佳实践是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0198",
+      "type": "technical",
+      "question": "StarRocks 如何应用于物联网数据分析？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0199",
+      "type": "technical",
+      "question": "大型互联网公司如何使用 StarRocks？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0200",
+      "type": "technical",
+      "question": "StarRocks 在广告分析领域的应用如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0201",
+      "type": "technical",
+      "question": "StarRocks 在日志分析领域的最佳实践是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0202",
+      "type": "technical",
+      "question": "如何使用 StarRocks 构建用户画像系统？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0203",
+      "type": "technical",
+      "question": "StarRocks 在实时大屏展示中的应用案例？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0204",
+      "type": "technical",
+      "question": "如何使用 StarRocks 构建 AI 数据平台？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0205",
+      "type": "technical",
+      "question": "StarRocks 在多维分析中的典型应用？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0206",
+      "type": "technical",
+      "question": "StarRocks 未来的发展路线图是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0207",
+      "type": "technical",
+      "question": "StarRocks 最近的重大架构改进有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0208",
+      "type": "technical",
+      "question": "StarRocks 在 HTAP 领域的发展如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0209",
+      "type": "technical",
+      "question": "StarRocks 在云原生方面的进展如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0210",
+      "type": "technical",
+      "question": "StarRocks 如何改进其查询优化器？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0211",
+      "type": "technical",
+      "question": "StarRocks 在实时分析方面的创新点有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0212",
+      "type": "technical",
+      "question": "StarRocks 最新版本的性能提升点有哪些？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0213",
+      "type": "technical",
+      "question": "StarRocks 与 ClickHouse、Doris 等产品的对比如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0214",
+      "type": "technical",
+      "question": "StarRocks 在国内外的应用情况如何？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "STARROCKS-0215",
+      "type": "technical",
+      "question": "StarRocks 未来的发展趋势是什么？",
+      "topic": [
+        "starrocks"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "starrocks",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
     },
     {
       "id": "FLINK-0001",
@@ -2449,50 +15363,6 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>Flink CDC 基于 Debezium 读数据库底层日志（binlog/WAL）捕获变更，实现无锁读取、Checkpoint 端到端 Exactly-Once、全量增量无缝衔接。</p>\n<h2>30 秒回答</h2>\n<p>无锁：读 binlog/WAL 而非查表，不加锁、几乎零侵入。Exactly-Once：Checkpoint 保存 binlog 位点 + 下游幂等/事务提交。全量增量衔接：Incremental Snapshot 记 high watermark，全量 chunk 并行读，之后从位点续增量，不丢数据。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>数据源：MySQL binlog（ROW 格式）、PostgreSQL WAL、Oracle/SQLServer 日志</li>\n<li>无锁：不访问数据页，CPU/IO 开销极低</li>\n<li>Exactly-Once：Checkpoint 存位点，下游配合幂等/事务</li>\n<li>全量增量：2.0+ Incremental Snapshot，启动记位点，全量 chunk 并行，增量无缝衔接</li>\n<li>注意：要监控 binlog/WAL 保留策略，避免堆积</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么只开 auto-commit 达不到 Exactly-Once？</li>\n<li>全量阶段怎么和增量衔接不丢数据？</li>\n</ul>"
     },
     {
-      "id": "FLINK-0020",
-      "type": "technical",
-      "question": "Flink 面试题大纲（200 题覆盖范围）",
-      "topic": [
-        "flink",
-        "outline"
-      ],
-      "difficulty": 1,
-      "frequency": "low",
-      "source_type": "knowledge",
-      "domain": "flink",
-      "body_html": "<h2>一句话</h2>\n<p>甜获师兄 Flink 200 题纯题库大纲，覆盖基础架构、高级机制、生产实战三块。</p>\n<h2>30 秒回答</h2>\n<p>三块：基础概念与架构（流批统一/JobManager/TaskSlot/Watermark/Checkpoint/窗口）、高级篇（SQL/CEP/AsyncIO/2PC/State TTL/背压/HA）、实战篇（实时数仓/双流 Join/维表 Join/倾斜/大状态/CDC）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：流批统一、JobManager/TaskManager、并行度、ProcessFunction、Watermark、Checkpoint/Savepoint、状态后端、窗口/Trigger/Side Output</li>\n<li>高级：Flink SQL、CEP、Async I/O、两阶段提交、State TTL、Broadcast State、Operator Chain、背压、Flink on YARN/K8s、HA</li>\n<li>实战：实时数仓、双流 Join、维表 Join（Async/Lookup）、数据倾斜、大状态优化、Checkpoint 调优、Flink CDC、数据湖集成</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>大纲里哪些点已经在题库中有带答案的版本？</li>\n</ul>"
-    },
-    {
-      "id": "FLINK-0021",
-      "type": "technical",
-      "question": "FlinkSQL 面试题大纲（200 题覆盖范围）",
-      "topic": [
-        "flink",
-        "sql",
-        "outline"
-      ],
-      "difficulty": 1,
-      "frequency": "low",
-      "source_type": "knowledge",
-      "domain": "flink",
-      "body_html": "<h2>一句话</h2>\n<p>FlinkSQL 200 题大纲，六大模块：基础、进度、高级、实战、优化、源码。</p>\n<h2>30 秒回答</h2>\n<p>高频考点：动态表、Event Time vs Processing Time、Watermark、窗口（滚动/滑动/会话）、双流 JOIN、Checkpoint 精准一次、反压排查。六大模块从基础语法到源码调优。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：DDL/DML/窗口/Join</li>\n<li>进度：状态/Checkpoint/Savepoint</li>\n<li>高级：CEP/时间处理/CDC</li>\n<li>实战：场景设计/常见问题</li>\n<li>优化：反压/数据倾斜/内存调优</li>\n<li>源码：JobGraph/算子链/State Backend</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>动态表是什么？</li>\n</ul>"
-    },
-    {
-      "id": "FLINK-0022",
-      "type": "technical",
-      "question": "Kafka 面试题大纲（200 题覆盖范围）",
-      "topic": [
-        "flink",
-        "kafka",
-        "outline"
-      ],
-      "difficulty": 1,
-      "frequency": "low",
-      "source_type": "knowledge",
-      "domain": "flink",
-      "body_html": "<h2>一句话</h2>\n<p>Kafka 200 题大纲，四块：基础概念、基础设计、性能优化、集群运维。</p>\n<h2>30 秒回答</h2>\n<p>基础（1-40）：Topic/Partition/Consumer Group、ISR、顺序性、Rebalance、幂等/Exactly-Once、压缩、日志清理、偏移提交；设计（1-30）：分区/副本、Leader 选举、MirrorMaker、SSL/SASL/ACL；优化（1-30）：批量异步压缩、零拷贝、GC、序列化；运维（1-99，实际约 15 话题）：监控/备份/扩缩容/安全/故障。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：Topic/Partition/Consumer Group、ISR、顺序保证与破坏、Rebalance、幂等生产者、Exactly Once、压缩算法、日志清理、offset 提交、拦截器</li>\n<li>设计：分区数/副本因子、Leader 选举、跨机房 MirrorMaker、SSL/TLS+SASL+ACL、JMX/Prometheus、持久化、备份恢复、扩缩容</li>\n<li>优化：批量+异步+压缩、顺序写/零拷贝/页缓存、堆外内存、GC、序列化（Avro/Protobuf）、线程池并发</li>\n<li>运维：监控告警、备份恢复、扩缩容重分配、安全管理、故障诊断、版本升级、灾备</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>ISR 机制是什么？</li>\n</ul>"
-    },
-    {
       "id": "FLINK-0023",
       "type": "technical",
       "question": "Flink 的 join 类型（regular / interval / window / lookup）",
@@ -2505,6 +15375,6181 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "flink",
       "body_html": "<h2>一句话</h2>\n<p>四种：Regular Join（双流状态连接）、Interval Join（时间区间）、Window Join（窗口内）、Lookup Join（维表实时查询）。</p>\n<h2>30 秒回答</h2>\n<p>Regular Join 双流都建状态、可无限增长；Interval Join 按时间区间关联；Window Join 在滚动/滑动窗口内关联；Lookup Join 事实流去查外部维表（HBase/Redis/MySQL），解决维表变更和维度补全。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Regular Join：双流 join，都需状态，要设 TTL 防状态膨胀</li>\n<li>Interval Join：<code>A.t between B.t - x and B.t + y</code>，限时间区间</li>\n<li>Window Join：在窗口范围内 join，窗口结束才出结果</li>\n<li>Lookup Join：事实流 join 外部维表，按 key 实时查询，适合维表变更频繁场景</li>\n<li>盲区提示：只答 window/interval 漏了 lookup join，是常见扣分点</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Lookup Join 和 Regular Join 的适用场景怎么分？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0024",
+      "type": "technical",
+      "question": "什么是Apache Flink？它的主要特点是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0025",
+      "type": "technical",
+      "question": "Flink相比其他流处理框架（如Spark Streaming、Storm）有哪些优势？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0026",
+      "type": "technical",
+      "question": "解释Flink的架构组件及其作用。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0027",
+      "type": "technical",
+      "question": "Flink中JobManager和TaskManager的职责是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0028",
+      "type": "technical",
+      "question": "什么是TaskSlot？它在Flink中扮演什么角色？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0029",
+      "type": "technical",
+      "question": "Flink如何处理状态？什么是状态后端（State Backend）？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0030",
+      "type": "technical",
+      "question": "Flink中的CheckpointCoordinator有什么作用？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0031",
+      "type": "technical",
+      "question": "什么是Flink的资源管理器（ResourceManager）？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0032",
+      "type": "technical",
+      "question": "解释Flink的分布式执行模型。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0033",
+      "type": "technical",
+      "question": "Flink的部署模式有哪些？各有什么特点？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0034",
+      "type": "technical",
+      "question": "Flink的编程模型是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0035",
+      "type": "technical",
+      "question": "解释DataStream和DataSet API的区别及使用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0036",
+      "type": "technical",
+      "question": "Flink中的环境（Environment）有哪些类型？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0037",
+      "type": "technical",
+      "question": "什么是ExecutionEnvironment和StreamExecutionEnvironment？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0038",
+      "type": "technical",
+      "question": "Flink中常见的Source类型有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0039",
+      "type": "technical",
+      "question": "Flink中的Transformation算子有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0040",
+      "type": "technical",
+      "question": "Flink中的Sink类型有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0041",
+      "type": "technical",
+      "question": "如何使用Flink实现窗口操作？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0042",
+      "type": "technical",
+      "question": "解释Flink中的时间语义（事件时间、处理时间、摄入时间）。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0043",
+      "type": "technical",
+      "question": "什么是水位线（Watermark）？它如何工作？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0044",
+      "type": "technical",
+      "question": "Flink Table API和SQL的主要用途是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0045",
+      "type": "technical",
+      "question": "Flink SQL与其他SQL引擎（如Hive）的区别是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0046",
+      "type": "technical",
+      "question": "如何在Flink中注册表（Table）？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0047",
+      "type": "technical",
+      "question": "解释Flink中的Dynamic Tables概念。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0048",
+      "type": "technical",
+      "question": "Flink SQL支持哪些窗口函数？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0049",
+      "type": "technical",
+      "question": "如何在Flink SQL中处理时间属性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0050",
+      "type": "technical",
+      "question": "Flink Table API如何转换为DataStream或DataSet？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0051",
+      "type": "technical",
+      "question": "Flink Catalog是什么？有什么作用？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0052",
+      "type": "technical",
+      "question": "Flink SQL的执行过程是怎样的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0053",
+      "type": "technical",
+      "question": "如何优化Flink Table API和SQL的性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0054",
+      "type": "technical",
+      "question": "Flink中有哪些类型的状态？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0055",
+      "type": "technical",
+      "question": "什么是Keyed State和Operator State？它们有什么区别？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0056",
+      "type": "technical",
+      "question": "Flink中的ValueState、ListState、MapState分别是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0057",
+      "type": "technical",
+      "question": "Flink如何保证状态的一致性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0058",
+      "type": "technical",
+      "question": "状态后端的类型有哪些？各有什么特点？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0059",
+      "type": "technical",
+      "question": "什么是增量式检查点（Incremental Checkpoint）？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0060",
+      "type": "technical",
+      "question": "状态TTL（生存时间）是什么？如何配置？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0061",
+      "type": "technical",
+      "question": "Flink如何处理大规模状态？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0062",
+      "type": "technical",
+      "question": "Flink状态恢复的过程是怎样的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0063",
+      "type": "technical",
+      "question": "Flink中的可查询状态（Queryable State）是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0064",
+      "type": "technical",
+      "question": "Flink的容错机制是如何工作的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0065",
+      "type": "technical",
+      "question": "检查点（Checkpoint）与保存点（Savepoint）的区别是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0066",
+      "type": "technical",
+      "question": "解释Flink的检查点对齐（Checkpoint Alignment）机制。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0067",
+      "type": "technical",
+      "question": "Flink如何保证精确一次（Exactly-Once）语义？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0068",
+      "type": "technical",
+      "question": "什么是轻量级检查点（Unaligned Checkpoint）？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0069",
+      "type": "technical",
+      "question": "如何配置检查点的时间间隔和超时？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0070",
+      "type": "technical",
+      "question": "Flink任务从检查点恢复的步骤是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0071",
+      "type": "technical",
+      "question": "Flink中的重启策略（Restart Strategies）有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0072",
+      "type": "technical",
+      "question": "检查点清理策略是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0073",
+      "type": "technical",
+      "question": "如何监控和调试检查点操作？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0074",
+      "type": "technical",
+      "question": "Flink中的窗口类型有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0075",
+      "type": "technical",
+      "question": "解释滚动窗口、滑动窗口和会话窗口的区别。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0076",
+      "type": "technical",
+      "question": "如何自定义窗口分配器（WindowAssigner）？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0077",
+      "type": "technical",
+      "question": "窗口函数有哪些类型？如何选择？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0078",
+      "type": "technical",
+      "question": "解释Flink中的触发器（Trigger）概念。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0079",
+      "type": "technical",
+      "question": "窗口的移除器（Evictor）是什么？何时使用？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0080",
+      "type": "technical",
+      "question": "如何处理晚到的数据（Late Data）？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0081",
+      "type": "technical",
+      "question": "水位线（Watermark）的生成策略有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0082",
+      "type": "technical",
+      "question": "如何处理多流间的时间对齐问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0083",
+      "type": "technical",
+      "question": "如何实现自定义水位线生成器？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0084",
+      "type": "technical",
+      "question": "什么是反压（Backpressure）？Flink如何处理？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0085",
+      "type": "technical",
+      "question": "Flink的反压检测机制是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0086",
+      "type": "technical",
+      "question": "如何监控Flink作业的反压情况？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0087",
+      "type": "technical",
+      "question": "Flink中的任务链接（Operator Chaining）是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0088",
+      "type": "technical",
+      "question": "什么是槽共享组（Slot Sharing Group）？如何配置？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0089",
+      "type": "technical",
+      "question": "Flink如何实现流量控制？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0090",
+      "type": "technical",
+      "question": "影响Flink性能的因素有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0091",
+      "type": "technical",
+      "question": "如何处理数据倾斜（Data Skew）问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0092",
+      "type": "technical",
+      "question": "Flink的资源调度算法是怎样的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0093",
+      "type": "technical",
+      "question": "如何优化Flink任务的并行度设置？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0094",
+      "type": "technical",
+      "question": "什么是复杂事件处理（CEP）？Flink CEP的主要特点是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0095",
+      "type": "technical",
+      "question": "如何使用Flink CEP检测模式？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0096",
+      "type": "technical",
+      "question": "Flink CEP支持哪些模式操作（连续、可选、重复等）？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0097",
+      "type": "technical",
+      "question": "如何在Flink CEP中处理时间约束？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0098",
+      "type": "technical",
+      "question": "Flink CEP如何处理乱序事件？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0099",
+      "type": "technical",
+      "question": "如何在CEP中实现模式的动态更新？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0100",
+      "type": "technical",
+      "question": "Flink ProcessFunction的作用是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0101",
+      "type": "technical",
+      "question": "如何使用侧输出（Side Output）处理特定事件？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0102",
+      "type": "technical",
+      "question": "Flink的异步IO操作如何实现？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0103",
+      "type": "technical",
+      "question": "如何实现自定义的状态更新逻辑？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0104",
+      "type": "technical",
+      "question": "Flink在Kubernetes上的部署步骤是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0105",
+      "type": "technical",
+      "question": "如何配置高可用（HA）的Flink集群？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0106",
+      "type": "technical",
+      "question": "Flink作业提交的流程是怎样的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0107",
+      "type": "technical",
+      "question": "Flink的监控指标有哪些？如何收集？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0108",
+      "type": "technical",
+      "question": "如何处理Flink作业的异常和故障？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0109",
+      "type": "technical",
+      "question": "Flink的日志系统如何配置？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0110",
+      "type": "technical",
+      "question": "如何进行Flink作业的版本管理和升级？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0111",
+      "type": "technical",
+      "question": "Flink作业的扩缩容机制是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0112",
+      "type": "technical",
+      "question": "如何优化Flink的内存配置？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0113",
+      "type": "technical",
+      "question": "Flink的网络配置参数有哪些？如何调优？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0114",
+      "type": "technical",
+      "question": "Flink作业性能瓶颈的常见原因有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0115",
+      "type": "technical",
+      "question": "如何优化Flink的序列化性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0116",
+      "type": "technical",
+      "question": "状态访问和更新的性能优化方法有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0117",
+      "type": "technical",
+      "question": "如何优化Flink的检查点性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0118",
+      "type": "technical",
+      "question": "Flink作业中如何避免垃圾回收暂停？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0119",
+      "type": "technical",
+      "question": "如何提高Flink的吞吐量？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0120",
+      "type": "technical",
+      "question": "如何降低Flink作业的延迟？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0121",
+      "type": "technical",
+      "question": "如何处理热点分区（Hot Partition）问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0122",
+      "type": "technical",
+      "question": "如何优化Flink的数据交换策略？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0123",
+      "type": "technical",
+      "question": "大规模Flink作业的性能调优策略是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0124",
+      "type": "technical",
+      "question": "Flink与Kafka的集成方式有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0125",
+      "type": "technical",
+      "question": "如何实现Flink与Hadoop的集成？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0126",
+      "type": "technical",
+      "question": "Flink与Hive的集成特点是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0127",
+      "type": "technical",
+      "question": "如何使用Flink进行实时机器学习？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0128",
+      "type": "technical",
+      "question": "Flink与ElasticSearch的集成方法是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0129",
+      "type": "technical",
+      "question": "如何使用Flink处理JSON、Avro等格式的数据？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0130",
+      "type": "technical",
+      "question": "Flink如何与消息队列（如RabbitMQ）集成？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0131",
+      "type": "technical",
+      "question": "Flink与图计算框架的集成方案有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0132",
+      "type": "technical",
+      "question": "如何实现Flink与第三方监控系统的集成？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0133",
+      "type": "technical",
+      "question": "Flink的生态系统包括哪些组件？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0134",
+      "type": "technical",
+      "question": "如何使用Flink实现实时ETL？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0135",
+      "type": "technical",
+      "question": "Flink在实时推荐系统中的应用方案是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0136",
+      "type": "technical",
+      "question": "如何用Flink构建用户行为分析系统？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0137",
+      "type": "technical",
+      "question": "Flink在金融风控中的应用场景有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0138",
+      "type": "technical",
+      "question": "如何使用Flink实现实时数据同步？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0139",
+      "type": "technical",
+      "question": "Flink在物联网数据处理中的应用方式是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0140",
+      "type": "technical",
+      "question": "如何用Flink实现实时仪表盘（Dashboard）？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0141",
+      "type": "technical",
+      "question": "Flink在异常检测中的应用方案是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0142",
+      "type": "technical",
+      "question": "如何使用Flink进行A/B测试分析？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0143",
+      "type": "technical",
+      "question": "Flink如何应用在实时搜索系统中？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0144",
+      "type": "technical",
+      "question": "Flink作业开发的最佳实践有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0145",
+      "type": "technical",
+      "question": "如何进行Flink作业的单元测试？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0146",
+      "type": "technical",
+      "question": "Flink作业的调试技巧有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0147",
+      "type": "technical",
+      "question": "如何解决Flink作业中的序列化问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0148",
+      "type": "technical",
+      "question": "Flink中的依赖冲突如何解决？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0149",
+      "type": "technical",
+      "question": "如何处理Flink中的数据类型转换问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0150",
+      "type": "technical",
+      "question": "Flink作业中的并发安全问题如何处理？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0151",
+      "type": "technical",
+      "question": "如何优化Flink UDF（用户自定义函数）？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0152",
+      "type": "technical",
+      "question": "Flink作业中的资源泄漏如何排查？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0153",
+      "type": "technical",
+      "question": "如何分析和优化Flink作业的执行计划？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0154",
+      "type": "technical",
+      "question": "Flink作业OutOfMemoryError的常见原因和解决方法？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0155",
+      "type": "technical",
+      "question": "如何解决Flink作业中的数据丢失问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0156",
+      "type": "technical",
+      "question": "Flink任务长时间不推进（卡住）的原因分析与处理？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0157",
+      "type": "technical",
+      "question": "如何诊断和解决Flink作业的数据一致性问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0158",
+      "type": "technical",
+      "question": "Flink中的CheckpointingFailed异常如何处理？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0159",
+      "type": "technical",
+      "question": "如何解决Flink作业的冷启动慢的问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0160",
+      "type": "technical",
+      "question": "Flink作业扩缩容后状态不一致如何处理？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0161",
+      "type": "technical",
+      "question": "如何解决Flink与外部系统的连接问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0162",
+      "type": "technical",
+      "question": "Flink作业重启后处理位置不正确的解决方法？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0163",
+      "type": "technical",
+      "question": "如何处理Flink作业中的数据倾斜导致的性能问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0164",
+      "type": "technical",
+      "question": "如何设计高可用的Flink应用架构？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0165",
+      "type": "technical",
+      "question": "大规模Flink集群的资源规划方法是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0166",
+      "type": "technical",
+      "question": "如何设计Flink作业的监控告警系统？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0167",
+      "type": "technical",
+      "question": "Flink在微服务架构中的应用模式是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0168",
+      "type": "technical",
+      "question": "如何设计支持实时和批处理混合的Flink架构？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0169",
+      "type": "technical",
+      "question": "Flink多集群管理的最佳实践是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0170",
+      "type": "technical",
+      "question": "如何设计可扩展的Flink数据处理管道？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0171",
+      "type": "technical",
+      "question": "Flink作业的灾备和容灾方案有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0172",
+      "type": "technical",
+      "question": "如何设计Flink与数据湖的集成架构？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0173",
+      "type": "technical",
+      "question": "企业级Flink平台的设计考虑因素有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0174",
+      "type": "technical",
+      "question": "Flink的网络传输机制是如何实现的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0175",
+      "type": "technical",
+      "question": "Flink的任务调度算法详解。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0176",
+      "type": "technical",
+      "question": "Flink的内存管理模型是怎样的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0177",
+      "type": "technical",
+      "question": "Flink的检查点存储格式是什么？如何优化？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0178",
+      "type": "technical",
+      "question": "Flink SQL查询的优化过程是怎样的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0179",
+      "type": "technical",
+      "question": "Flink的Join算法实现原理是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0180",
+      "type": "technical",
+      "question": "Flink如何实现有状态计算的水平扩展？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0181",
+      "type": "technical",
+      "question": "Flink的故障恢复机制的实现细节。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0182",
+      "type": "technical",
+      "question": "Flink的分布式快照算法（Chandy-Lamport算法）如何工作？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0183",
+      "type": "technical",
+      "question": "Flink的事件时间处理机制的实现原理。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0184",
+      "type": "technical",
+      "question": "某电商平台如何使用Flink构建实时数据分析系统？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0185",
+      "type": "technical",
+      "question": "某银行如何应用Flink进行实时风控？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0186",
+      "type": "technical",
+      "question": "某社交媒体平台如何用Flink处理实时推荐？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0187",
+      "type": "technical",
+      "question": "某物流公司如何利用Flink优化配送路径？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0188",
+      "type": "technical",
+      "question": "某广告平台如何使用Flink实现实时竞价？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0189",
+      "type": "technical",
+      "question": "某网络安全公司如何用Flink检测异常流量？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0190",
+      "type": "technical",
+      "question": "某游戏公司如何应用Flink分析玩家行为？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0191",
+      "type": "technical",
+      "question": "某能源公司如何使用Flink监控设备状态？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0192",
+      "type": "technical",
+      "question": "某医疗机构如何利用Flink处理患者监测数据？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0193",
+      "type": "technical",
+      "question": "某制造企业如何用Flink实现生产线实时优化？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0194",
+      "type": "technical",
+      "question": "如何评估候选人的Flink技术能力？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0195",
+      "type": "technical",
+      "question": "面试中常见的Flink编程题有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0196",
+      "type": "technical",
+      "question": "如何设计一个考察Flink原理的面试问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0197",
+      "type": "technical",
+      "question": "评估Flink架构师能力的关键问题有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0198",
+      "type": "technical",
+      "question": "如何检验候选人的Flink调优经验？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0199",
+      "type": "technical",
+      "question": "面试中如何展示自己的Flink项目经验？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0200",
+      "type": "technical",
+      "question": "回答Flink面试题的技巧有哪些？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0201",
+      "type": "technical",
+      "question": "如何在面试中展示Flink与其他技术的集成能力？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0202",
+      "type": "technical",
+      "question": "面试官提问Flink故障处理经验时，如何回答？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0203",
+      "type": "technical",
+      "question": "如何准备Flink技术面试？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0204",
+      "type": "technical",
+      "question": "Flink开发工程师的职业发展路径是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0205",
+      "type": "technical",
+      "question": "成为Flink专家需要掌握哪些技能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0206",
+      "type": "technical",
+      "question": "Flink与大数据工程师技能模型的关系是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0207",
+      "type": "technical",
+      "question": "如何参与Flink开源社区贡献？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0208",
+      "type": "technical",
+      "question": "Flink认证的价值和获取方式是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0209",
+      "type": "technical",
+      "question": "数据流处理领域的未来发展趋势是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0210",
+      "type": "technical",
+      "question": "如何保持Flink技术的持续学习？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0211",
+      "type": "technical",
+      "question": "Flink专家与数据架构师的能力差异是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0212",
+      "type": "technical",
+      "question": "企业对Flink人才的需求趋势是怎样的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0213",
+      "type": "technical",
+      "question": "如何从Flink工程师转型为数据架构师？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0214",
+      "type": "technical",
+      "question": "什么是FlinkSQL？它与传统SQL的主要区别是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0215",
+      "type": "technical",
+      "question": "解释Flink中的动态表(Dynamic Table)概念及其工作原理。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0216",
+      "type": "technical",
+      "question": "FlinkSQL与SparkSQL相比有哪些优势和特点？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0217",
+      "type": "technical",
+      "question": "FlinkSQL支持哪些数据类型？请详细说明。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0218",
+      "type": "technical",
+      "question": "解释FlinkSQL中的流处理和批处理模式及其统一API的概念。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0219",
+      "type": "technical",
+      "question": "什么是FlinkSQL中的时间属性(Time Attribute)？有哪几种类型？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0220",
+      "type": "technical",
+      "question": "解释FlinkSQL中的处理时间(Processing Time)和事件时间(Event Time)的区别。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0221",
+      "type": "technical",
+      "question": "什么是水印(Watermark)？在FlinkSQL中如何定义和使用水印？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0222",
+      "type": "technical",
+      "question": "FlinkSQL中的DDL包括哪些功能？如何使用它们？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0223",
+      "type": "technical",
+      "question": "解释FlinkSQL中的Catalog概念及其作用。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0224",
+      "type": "technical",
+      "question": "如何在FlinkSQL中创建和管理临时表与永久表？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0225",
+      "type": "technical",
+      "question": "FlinkSQL中如何定义和使用视图(VIEW)？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0226",
+      "type": "technical",
+      "question": "解释FlinkSQL中的GROUP BY子句用法及其在流处理中的特点。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0227",
+      "type": "technical",
+      "question": "FlinkSQL中的OVER窗口与传统SQL的区别是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0228",
+      "type": "technical",
+      "question": "如何在FlinkSQL中使用MATCH\\_RECOGNIZE进行模式匹配？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0229",
+      "type": "technical",
+      "question": "FlinkSQL中的JOIN操作有哪几种类型？每种类型适用于什么场景？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0230",
+      "type": "technical",
+      "question": "FlinkSQL中的JDBC Connector如何配置和使用？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0231",
+      "type": "technical",
+      "question": "解释FlinkSQL中的UDF、UDAF和UDTF的概念及如何实现。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0232",
+      "type": "technical",
+      "question": "FlinkSQL中有哪些类型的窗口？请详细解释各自的特点和使用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0233",
+      "type": "technical",
+      "question": "如何在FlinkSQL中定义滚动窗口(Tumbling Window)和配置其属性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0234",
+      "type": "technical",
+      "question": "如何在FlinkSQL中定义滑动窗口(Sliding Window)和配置其属性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0235",
+      "type": "technical",
+      "question": "如何在FlinkSQL中定义会话窗口(Session Window)和配置其属性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0236",
+      "type": "technical",
+      "question": "解释FlinkSQL中的窗口TVF(Table-Valued Functions)及其优势。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0237",
+      "type": "technical",
+      "question": "如何处理FlinkSQL窗口中的迟到数据(Late Data)？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0238",
+      "type": "technical",
+      "question": "对比分析FlinkSQL中的Group Window和Window TVF的差异。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0239",
+      "type": "technical",
+      "question": "FlinkSQL支持哪些内置Connector？分别适用于什么场景？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0240",
+      "type": "technical",
+      "question": "如何在FlinkSQL中配置和使用Kafka连接器？详细说明其参数。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0241",
+      "type": "technical",
+      "question": "如何在FlinkSQL中实现对HBase表的读写操作？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0242",
+      "type": "technical",
+      "question": "解释如何在FlinkSQL中使用JDBC连接器与关系型数据库交互。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0243",
+      "type": "technical",
+      "question": "如何在FlinkSQL中使用Elasticsearch连接器？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0244",
+      "type": "technical",
+      "question": "如何在FlinkSQL中配置和使用文件系统连接器(File System Connector)？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0245",
+      "type": "technical",
+      "question": "解释FlinkSQL中DataGen连接器的用途及配置方式。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0246",
+      "type": "technical",
+      "question": "FlinkSQL中有哪些内置函数？请举例说明其使用方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0247",
+      "type": "technical",
+      "question": "如何在FlinkSQL中创建和使用自定义UDF？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0248",
+      "type": "technical",
+      "question": "如何在FlinkSQL中创建和使用自定义UDAF？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0249",
+      "type": "technical",
+      "question": "如何在FlinkSQL中创建和使用自定义UDTF？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0250",
+      "type": "technical",
+      "question": "解释FlinkSQL中的TableFunction概念及如何实现。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0251",
+      "type": "technical",
+      "question": "如何在FlinkSQL中注册和使用Python UDF？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0252",
+      "type": "technical",
+      "question": "什么是Flink SQL Client？如何安装和配置？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0253",
+      "type": "technical",
+      "question": "解释如何使用SQL Client执行交互式查询。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0254",
+      "type": "technical",
+      "question": "如何在SQL Client中管理和使用Catalog？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0255",
+      "type": "technical",
+      "question": "解释SQL Client中的环境配置文件(Environment Files)。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0256",
+      "type": "technical",
+      "question": "如何在SQL Client中设置和使用参数化查询？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0257",
+      "type": "technical",
+      "question": "解释如何在SQL Client中执行文件中的SQL语句。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0258",
+      "type": "technical",
+      "question": "如何在SQL Client中查看和分析执行计划？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0259",
+      "type": "technical",
+      "question": "解释FlinkSQL中的Temporal Table Join及其应用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0260",
+      "type": "technical",
+      "question": "如何在FlinkSQL中实现流与维度表的关联？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0261",
+      "type": "technical",
+      "question": "在FlinkSQL中如何实现自定义窗口聚合函数？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0262",
+      "type": "technical",
+      "question": "解释FlinkSQL中窗口聚合的内部实现机制。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0263",
+      "type": "technical",
+      "question": "如何在FlinkSQL中实现多维分析(OLAP)场景的窗口操作？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0264",
+      "type": "technical",
+      "question": "如何在FlinkSQL中定义事件时间(Event Time)属性和水印(Watermark)生成？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0265",
+      "type": "technical",
+      "question": "解释FlinkSQL中水印策略的不同类型及其适用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0266",
+      "type": "technical",
+      "question": "如何处理FlinkSQL中的乱序数据？有哪些机制可供选择？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0267",
+      "type": "technical",
+      "question": "FlinkSQL中如何实现多流合并时的水印传播？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0268",
+      "type": "technical",
+      "question": "如何在FlinkSQL中实现时间间隔(Interval)的计算？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0269",
+      "type": "technical",
+      "question": "解释FlinkSQL中的时区处理机制及如何配置时区。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0270",
+      "type": "technical",
+      "question": "如何在FlinkSQL中使用TIMESTAMPADD和TIMESTAMPDIFF函数？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0271",
+      "type": "technical",
+      "question": "解释FlinkSQL中的时态表(Temporal Table)概念及其应用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0272",
+      "type": "technical",
+      "question": "如何在FlinkSQL中实现事件时间和处理时间的转换？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0273",
+      "type": "technical",
+      "question": "FlinkSQL中如何处理时间字段的格式转换？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0274",
+      "type": "technical",
+      "question": "什么是FlinkSQL中的状态(State)？它如何在查询中使用？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0275",
+      "type": "technical",
+      "question": "解释FlinkSQL中的一致性语义(Exactly-once, At-least-once)及如何配置。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0276",
+      "type": "technical",
+      "question": "FlinkSQL中的Savepoint和Checkpoint有什么区别？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0277",
+      "type": "technical",
+      "question": "如何为FlinkSQL作业配置状态后端(State Backend)？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0278",
+      "type": "technical",
+      "question": "解释FlinkSQL中的状态TTL(Time-to-Live)机制及其配置方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0279",
+      "type": "technical",
+      "question": "FlinkSQL如何保证在故障恢复时的状态一致性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0280",
+      "type": "technical",
+      "question": "什么是FlinkSQL中的Queryable State？如何使用它？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0281",
+      "type": "technical",
+      "question": "解释FlinkSQL中状态大小增长过快的原因及解决方案。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0282",
+      "type": "technical",
+      "question": "如何在FlinkSQL中实现与Redis的集成？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0283",
+      "type": "technical",
+      "question": "解释FlinkSQL中的CDC(Change Data Capture)连接器及其工作原理。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0284",
+      "type": "technical",
+      "question": "如何创建和使用FlinkSQL自定义连接器？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0285",
+      "type": "technical",
+      "question": "如何在FlinkSQL中实现滑动窗口Top-K分析？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0286",
+      "type": "technical",
+      "question": "如何对FlinkSQL作业进行单元测试和集成测试？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0287",
+      "type": "technical",
+      "question": "解释FlinkSQL的调试方法和常用工具。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0288",
+      "type": "technical",
+      "question": "如何分析和解决FlinkSQL作业中的数据丢失问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0289",
+      "type": "technical",
+      "question": "解释如何使用FlinkSQL的测试工具MiniCluster进行测试。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0290",
+      "type": "technical",
+      "question": "如何在FlinkSQL中正确处理和分析错误数据？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0291",
+      "type": "technical",
+      "question": "如何进行FlinkSQL作业的容错性测试？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0292",
+      "type": "technical",
+      "question": "FlinkSQL中有哪些错误处理策略？如何配置？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0293",
+      "type": "technical",
+      "question": "如何处理和分析FlinkSQL中的异常和错误信息？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0294",
+      "type": "technical",
+      "question": "解释FlinkSQL中的重启策略(Restart Strategy)及配置方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0295",
+      "type": "technical",
+      "question": "如何在FlinkSQL中实现优雅的作业取消和停止？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0296",
+      "type": "technical",
+      "question": "解释如何从外部存储系统的故障中恢复FlinkSQL作业。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0297",
+      "type": "technical",
+      "question": "如何处理FlinkSQL中由于数据格式错误导致的失败？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0298",
+      "type": "technical",
+      "question": "FlinkSQL与DataStream API如何互操作？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0299",
+      "type": "technical",
+      "question": "如何将Table API与SQL结合使用？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0300",
+      "type": "technical",
+      "question": "如何在同一个应用中混合使用SQL和其他Flink API？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0301",
+      "type": "technical",
+      "question": "详细解释FlinkSQL中的INNER JOIN语法及其在流处理中的实现原理。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0302",
+      "type": "technical",
+      "question": "解释FlinkSQL中的LEFT JOIN、RIGHT JOIN和FULL OUTER JOIN的区别及使用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0303",
+      "type": "technical",
+      "question": "FlinkSQL中的CROSS JOIN如何使用？有哪些性能注意事项？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0304",
+      "type": "technical",
+      "question": "详细讲解FlinkSQL中的Interval Join概念、语法及适用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0305",
+      "type": "technical",
+      "question": "解释FlinkSQL中的Regular Join和Interval Join的区别及各自优缺点。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0306",
+      "type": "technical",
+      "question": "如何在FlinkSQL中使用Temporal Table Join关联变化的维度表？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0307",
+      "type": "technical",
+      "question": "解释FlinkSQL中的Lookup Join（查询维表Join）的实现原理及使用方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0308",
+      "type": "technical",
+      "question": "如何在FlinkSQL中实现有状态的自定义函数？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0309",
+      "type": "technical",
+      "question": "FlinkSQL中如何处理状态迁移和版本升级问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0310",
+      "type": "technical",
+      "question": "解释FlinkSQL的查询优化过程及优化器的工作原理。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0311",
+      "type": "technical",
+      "question": "FlinkSQL中有哪些常见的性能调优参数？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0312",
+      "type": "technical",
+      "question": "如何优化FlinkSQL中的JOIN操作以提高性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0313",
+      "type": "technical",
+      "question": "什么是FlinkSQL中的MiniBatch处理模式？如何配置和使用？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0314",
+      "type": "technical",
+      "question": "如何处理FlinkSQL中的数据倾斜问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0315",
+      "type": "technical",
+      "question": "解释FlinkSQL中的LocalGlobal优化及其工作原理。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0316",
+      "type": "technical",
+      "question": "什么是FlinkSQL中的动态分区裁剪(Dynamic Partition Pruning)？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0317",
+      "type": "technical",
+      "question": "如何设置和优化FlinkSQL作业的并行度？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0318",
+      "type": "technical",
+      "question": "解释FlinkSQL中的内存管理机制及如何调优。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0319",
+      "type": "technical",
+      "question": "如何使用FlinkSQL的EXPLAIN命令分析查询计划？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0320",
+      "type": "technical",
+      "question": "如何在FlinkSQL中创建和使用自定义水印生成器？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0321",
+      "type": "technical",
+      "question": "FlinkSQL中如何创建和使用自定义Format格式？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0322",
+      "type": "technical",
+      "question": "解释如何在FlinkSQL中实现和使用自定义Catalog。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0323",
+      "type": "technical",
+      "question": "解释FlinkSQL中异步函数(Async Function)的概念及实现方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0324",
+      "type": "technical",
+      "question": "什么是FlinkSQL中的动态表(Dynamic Table)？如何使用它？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0325",
+      "type": "technical",
+      "question": "解释FlinkSQL中的流式聚合(Streaming Aggregation)原理及优化方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0326",
+      "type": "technical",
+      "question": "如何在FlinkSQL中处理无界流数据的去重问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0327",
+      "type": "technical",
+      "question": "解释FlinkSQL中的连续查询(Continuous Query)概念及实现机制。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0328",
+      "type": "technical",
+      "question": "如何使用FlinkSQL实现增量计算(Incremental Computation)？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0329",
+      "type": "technical",
+      "question": "解释FlinkSQL中的维表关联(Dimension Table Join)实现原理及优化策略。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0330",
+      "type": "technical",
+      "question": "FlinkSQL中的TopN查询如何实现？有哪些优化技巧？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0331",
+      "type": "technical",
+      "question": "解释FlinkSQL中的SQL优化器如何进行规则优化和成本优化。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0332",
+      "type": "technical",
+      "question": "如何在FlinkSQL中实现高性能流式去重(Deduplication)？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0333",
+      "type": "technical",
+      "question": "如何监控和排查FlinkSQL作业的性能瓶颈？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0334",
+      "type": "technical",
+      "question": "如何分析和解决FlinkSQL中的反压(Back Pressure)问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0335",
+      "type": "technical",
+      "question": "如何解决FlinkSQL作业中\"数据堆积\"问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0336",
+      "type": "technical",
+      "question": "解释FlinkSQL作业中常见的内存溢出原因及解决方案。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0337",
+      "type": "technical",
+      "question": "FlinkSQL作业有哪些部署模式？各自的特点是什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0338",
+      "type": "technical",
+      "question": "如何在Kubernetes上部署和扩展FlinkSQL作业？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0339",
+      "type": "technical",
+      "question": "解释FlinkSQL的任务提交过程及其生命周期。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0340",
+      "type": "technical",
+      "question": "如何设置FlinkSQL作业的资源需求(CPU, Memory)？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0341",
+      "type": "technical",
+      "question": "解释FlinkSQL的监控指标及如何进行监控配置。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0342",
+      "type": "technical",
+      "question": "如何实现FlinkSQL作业的灰度发布和版本管理？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0343",
+      "type": "technical",
+      "question": "解释如何进行FlinkSQL作业的离线调试和上线部署。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0344",
+      "type": "technical",
+      "question": "如何优化FlinkSQL作业的启动时间？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0345",
+      "type": "technical",
+      "question": "解释FlinkSQL在高可用(High Availability)方面的配置和实现。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0346",
+      "type": "technical",
+      "question": "如何处理FlinkSQL作业升级和状态迁移问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0347",
+      "type": "technical",
+      "question": "解释如何将SQL Client与Flink Web UI集成使用。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0348",
+      "type": "technical",
+      "question": "如何在SQL Client中管理用户自定义函数(UDF)？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0349",
+      "type": "technical",
+      "question": "解释SQL Client的会话管理功能及使用方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0350",
+      "type": "technical",
+      "question": "什么情况下会触发FlinkSQL作业的自动重启？如何控制？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0351",
+      "type": "technical",
+      "question": "解释FlinkSQL中的端到端一致性错误及处理方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0352",
+      "type": "technical",
+      "question": "如何实现FlinkSQL作业的自动恢复和自我修复？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0353",
+      "type": "technical",
+      "question": "解释FlinkSQL中的异常链路跟踪及问题定位方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0354",
+      "type": "technical",
+      "question": "Flink SQL与Blink SQL有什么区别和联系？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0355",
+      "type": "technical",
+      "question": "解释Flink版本升级中可能遇到的兼容性问题及解决方案。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0356",
+      "type": "technical",
+      "question": "不同Flink版本的SQL语法差异及迁移注意事项。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0357",
+      "type": "technical",
+      "question": "解释如何在SQL作业中嵌入DataStream自定义操作。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0358",
+      "type": "technical",
+      "question": "如何在FlinkSQL中使用ProcessFunction实现复杂逻辑？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0359",
+      "type": "technical",
+      "question": "解释FlinkSQL与Flink CEP的集成使用方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0360",
+      "type": "technical",
+      "question": "如何在FlinkSQL中结合使用State Processor API？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0361",
+      "type": "technical",
+      "question": "解释FlinkSQL与PyFlink的集成方式及使用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0362",
+      "type": "technical",
+      "question": "解释FlinkSQL与Gelly图计算框架的集成方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0363",
+      "type": "technical",
+      "question": "如何在FlinkSQL作业中嵌入自定义Transformation？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0364",
+      "type": "technical",
+      "question": "在FlinkSQL中如何优化大表JOIN小表的性能？详细说明Broadcast Join的原理。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0365",
+      "type": "technical",
+      "question": "解释FlinkSQL中的Window Join概念及其与Interval Join的关系。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0366",
+      "type": "technical",
+      "question": "如何处理FlinkSQL中JOIN操作产生的状态过大问题？有哪些状态清理策略？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0367",
+      "type": "technical",
+      "question": "详细解释FlinkSQL中JOIN语句的状态维护机制及其在故障恢复时的行为。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0368",
+      "type": "technical",
+      "question": "如何在FlinkSQL中实现多流JOIN？说明其实现原理及注意事项。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0369",
+      "type": "technical",
+      "question": "解释FlinkSQL中JOIN后的Watermark传播机制及如何处理多流JOIN的延迟问题。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0370",
+      "type": "technical",
+      "question": "如何在FlinkSQL中使用JOIN实现流式去重和数据修正？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0371",
+      "type": "technical",
+      "question": "FlinkSQL中的JOIN语句与传统数据库JOIN的区别是什么？有哪些特有的流处理语义？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0372",
+      "type": "technical",
+      "question": "如何使用FlinkSQL实现实时指标计算系统？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0373",
+      "type": "technical",
+      "question": "如何使用FlinkSQL进行欺诈检测(Fraud Detection)？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0374",
+      "type": "technical",
+      "question": "如何使用FlinkSQL实现实时ETL流程？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0375",
+      "type": "technical",
+      "question": "解释如何使用FlinkSQL实现复杂事件处理(CEP)。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0376",
+      "type": "technical",
+      "question": "如何使用FlinkSQL构建实时数据仓库？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0377",
+      "type": "technical",
+      "question": "如何使用FlinkSQL实现用户行为分析系统？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0378",
+      "type": "technical",
+      "question": "如何使用FlinkSQL进行异常检测与告警系统开发？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0379",
+      "type": "technical",
+      "question": "解释如何使用FlinkSQL实现电商实时大屏系统。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0380",
+      "type": "technical",
+      "question": "如何使用FlinkSQL进行时序数据分析？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0381",
+      "type": "technical",
+      "question": "如何使用FlinkSQL实现多维实时OLAP查询系统？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0382",
+      "type": "technical",
+      "question": "如何优化FlinkSQL中的大状态作业性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0383",
+      "type": "technical",
+      "question": "解释一个实际案例：如何优化FlinkSQL高并发写入性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0384",
+      "type": "technical",
+      "question": "解释一个实际案例：如何优化FlinkSQL复杂JOIN查询性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0385",
+      "type": "technical",
+      "question": "解释一个实际案例：如何解决FlinkSQL作业数据倾斜问题？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0386",
+      "type": "technical",
+      "question": "解释一个实际案例：如何优化FlinkSQL窗口聚合性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0387",
+      "type": "technical",
+      "question": "解释一个实际案例：如何优化FlinkSQL中的异步IO性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0388",
+      "type": "technical",
+      "question": "解释一个实际案例：如何优化FlinkSQL与Kafka交互性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0389",
+      "type": "technical",
+      "question": "解释一个实际案例：如何优化FlinkSQL大状态后端性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0390",
+      "type": "technical",
+      "question": "解释一个实际案例：如何优化FlinkSQL Checkpoint性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0391",
+      "type": "technical",
+      "question": "解释一个实际案例：如何优化FlinkSQL长时间运行作业的性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0392",
+      "type": "technical",
+      "question": "如何设计基于FlinkSQL的实时数据仓库架构？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0393",
+      "type": "technical",
+      "question": "解释基于FlinkSQL的Lambda架构实现方案。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0394",
+      "type": "technical",
+      "question": "解释基于FlinkSQL的Kappa架构实现方案。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0395",
+      "type": "technical",
+      "question": "如何使用FlinkSQL实现数据湖和数据仓库的融合架构？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0396",
+      "type": "technical",
+      "question": "如何设计高可用、高性能的FlinkSQL作业集群架构？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0397",
+      "type": "technical",
+      "question": "解释基于FlinkSQL的CDC架构设计及实现方案。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0398",
+      "type": "technical",
+      "question": "如何在FlinkSQL架构中实现元数据管理？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0399",
+      "type": "technical",
+      "question": "解释基于FlinkSQL的OLAP查询加速架构设计。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0400",
+      "type": "technical",
+      "question": "如何设计FlinkSQL与实时机器学习集成的架构？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0401",
+      "type": "technical",
+      "question": "解释企业级FlinkSQL平台的架构设计及核心组件。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0402",
+      "type": "technical",
+      "question": "如何将FlinkSQL与Apache Hive集成？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0403",
+      "type": "technical",
+      "question": "解释FlinkSQL与Apache Iceberg的集成方式及优势。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0404",
+      "type": "technical",
+      "question": "如何将FlinkSQL与Apache Kafka生态系统集成？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0405",
+      "type": "technical",
+      "question": "解释FlinkSQL与Apache Pulsar的集成方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0406",
+      "type": "technical",
+      "question": "如何将FlinkSQL与Apache HBase集成使用？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0407",
+      "type": "technical",
+      "question": "解释FlinkSQL与Elasticsearch的集成方式及最佳实践。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0408",
+      "type": "technical",
+      "question": "如何将FlinkSQL与Apache Hadoop生态系统集成？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0409",
+      "type": "technical",
+      "question": "解释FlinkSQL与Apache Paimon的集成方式及应用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0410",
+      "type": "technical",
+      "question": "如何将FlinkSQL与ClickHouse集成实现OLAP查询？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0411",
+      "type": "technical",
+      "question": "解释FlinkSQL与Prometheus和Grafana的集成监控方案。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0412",
+      "type": "technical",
+      "question": "解释金融行业中FlinkSQL的典型应用场景及实践案例。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0413",
+      "type": "technical",
+      "question": "解释电商行业中FlinkSQL的典型应用场景及实践案例。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0414",
+      "type": "technical",
+      "question": "解释物联网领域中FlinkSQL的典型应用场景及实践案例。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0415",
+      "type": "technical",
+      "question": "解释广告行业中FlinkSQL的典型应用场景及实践案例。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0416",
+      "type": "technical",
+      "question": "解释游戏行业中FlinkSQL的典型应用场景及实践案例。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0417",
+      "type": "technical",
+      "question": "解释通信行业中FlinkSQL的典型应用场景及实践案例。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0418",
+      "type": "technical",
+      "question": "解释物流行业中FlinkSQL的典型应用场景及实践案例。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0419",
+      "type": "technical",
+      "question": "解释能源行业中FlinkSQL的典型应用场景及实践案例。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0420",
+      "type": "technical",
+      "question": "解释医疗健康行业中FlinkSQL的典型应用场景及实践案例。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0421",
+      "type": "technical",
+      "question": "解释政府和公共服务中FlinkSQL的典型应用场景及实践案例。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0422",
+      "type": "technical",
+      "question": "请详细解释Kafka中的Topic、Partition和Consumer Group的概念，以及它们之间的关系是什么？在实际应用中如何合理设置这些参数？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0423",
+      "type": "technical",
+      "question": "Kafka的消息存储机制是怎样的？请详细说明消息在磁盘上的存储格式，以及为什么Kafka选择这种存储方式？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0424",
+      "type": "technical",
+      "question": "什么是Kafka的ISR机制？请解释ISR列表的作用，以及当副本同步出现问题时，ISR机制是如何工作的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0425",
+      "type": "technical",
+      "question": "请详细说明Kafka中的消息顺序性保证机制，在什么情况下消息顺序会被破坏，以及如何避免这种情况？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0426",
+      "type": "technical",
+      "question": "Kafka的消费者组机制是如何工作的？请解释消费者组内的负载均衡过程，以及当消费者加入或离开时会发生什么？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0427",
+      "type": "technical",
+      "question": "什么是Kafka的幂等性生产者？它是如何保证消息不会重复发送的？在什么场景下需要使用幂等性生产者？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0428",
+      "type": "technical",
+      "question": "请详细解释Kafka中的消息压缩机制，支持哪些压缩算法，以及如何选择合适的压缩算法？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0429",
+      "type": "technical",
+      "question": "Kafka的日志清理策略有哪些？请详细说明日志删除和日志压缩两种策略的区别和适用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0430",
+      "type": "technical",
+      "question": "什么是Kafka的ACL机制？请说明如何配置和使用ACL来保护Kafka集群的安全？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0431",
+      "type": "technical",
+      "question": "请详细解释Kafka中的消息格式演进过程，以及不同版本之间的兼容性是如何保证的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0432",
+      "type": "technical",
+      "question": "Kafka的消费者提交偏移量的方式有哪些？请详细说明自动提交和手动提交的区别，以及各自的优缺点。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0433",
+      "type": "technical",
+      "question": "什么是Kafka的Exactly Once语义？请详细说明Kafka是如何实现Exactly Once的，以及使用时的注意事项。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0434",
+      "type": "technical",
+      "question": "请详细解释Kafka中的消息时间戳机制，以及如何利用时间戳进行消息查询和过滤？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0435",
+      "type": "technical",
+      "question": "Kafka的消费者如何实现消息的批量处理？请说明批量处理的好处和注意事项。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0436",
+      "type": "technical",
+      "question": "什么是Kafka的拦截器机制？请详细说明如何实现和使用生产者拦截器和消费者拦截器。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0437",
+      "type": "technical",
+      "question": "请详细解释Kafka中的消息压缩和解压缩过程，以及压缩对性能的影响。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0438",
+      "type": "technical",
+      "question": "Kafka的消费者如何实现消息的过滤？请说明过滤的几种方式和各自的优缺点。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0439",
+      "type": "technical",
+      "question": "什么是Kafka的配额机制？请详细说明如何配置和使用配额来限制生产者和消费者的吞吐量。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0440",
+      "type": "technical",
+      "question": "请详细解释Kafka中的消息格式转换过程，以及如何实现不同版本之间的消息格式转换。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0441",
+      "type": "technical",
+      "question": "Kafka的消费者如何实现消息的重试机制？请说明重试的几种方式和各自的优缺点。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0442",
+      "type": "technical",
+      "question": "什么是Kafka的日志段机制？请详细说明日志段的作用和管理方式。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0443",
+      "type": "technical",
+      "question": "请详细解释Kafka中的消息索引机制，以及索引是如何提高消息查询效率的。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0444",
+      "type": "technical",
+      "question": "Kafka的消费者如何实现消息的批量提交？请说明批量提交的好处和注意事项。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0445",
+      "type": "technical",
+      "question": "什么是Kafka的日志清理策略？请详细说明日志删除和日志压缩两种策略的区别和适用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0446",
+      "type": "technical",
+      "question": "请详细说明Kafka集群的架构设计，包括Broker、ZooKeeper、Producer和Consumer的角色和职责，以及它们之间是如何协同工作的？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0447",
+      "type": "technical",
+      "question": "在Kafka集群中，如何设计合理的分区策略？请详细说明分区数量、副本因子等参数的选择依据，以及不同场景下的最佳实践。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0448",
+      "type": "technical",
+      "question": "请详细解释Kafka的副本机制，包括Leader选举、副本同步、故障转移等过程，以及如何保证数据的一致性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0449",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现跨数据中心的数据同步？请详细说明Mirror Maker的工作原理和配置方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0450",
+      "type": "technical",
+      "question": "请详细说明Kafka的安全机制，包括SSL/TLS加密、SASL认证、ACL授权等，以及如何配置和使用这些安全特性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0451",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现消息的持久化存储？请详细说明存储层的设计，以及如何优化存储性能。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0452",
+      "type": "technical",
+      "question": "请详细解释Kafka的监控体系，包括JMX指标、Kafka Manager、Prometheus等监控工具的使用，以及如何设置告警规则。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0453",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现消息的备份和恢复？请详细说明备份策略和恢复流程。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0454",
+      "type": "technical",
+      "question": "请详细说明Kafka的扩展性设计，包括水平扩展和垂直扩展的方式，以及如何评估集群的容量。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0455",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现消息的审计和追踪？请详细说明审计日志的收集和分析方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0456",
+      "type": "technical",
+      "question": "请详细解释Kafka的负载均衡机制，包括分区重分配、副本重分配等过程，以及如何优化集群的负载分布。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0457",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现消息的优先级处理？请详细说明优先级队列的设计和实现方式。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0458",
+      "type": "technical",
+      "question": "请详细说明Kafka的故障恢复机制，包括Broker故障、网络故障等场景下的恢复流程，以及如何保证服务的可用性。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0459",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现消息的延迟处理？请详细说明延迟队列的设计和实现方式。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0460",
+      "type": "technical",
+      "question": "请详细解释Kafka的监控指标，包括吞吐量、延迟、错误率等指标的含义和计算方法，以及如何设置合理的告警阈值。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0461",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现消息的批量处理？请详细说明批量处理的设计和实现方式。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0462",
+      "type": "technical",
+      "question": "请详细说明Kafka的日志管理机制，包括日志清理、日志压缩等策略，以及如何优化日志存储空间。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0463",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现消息的过滤和转换？请详细说明过滤和转换的设计和实现方式。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0464",
+      "type": "technical",
+      "question": "请详细解释Kafka的权限控制机制，包括用户认证、资源授权等过程，以及如何实现细粒度的权限控制。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0465",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现消息的追踪和调试？请详细说明追踪和调试工具的使用方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0466",
+      "type": "technical",
+      "question": "请详细说明Kafka的集群管理工具，包括Kafka Manager、Confluent Control Center等工具的功能和使用方法。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0467",
+      "type": "technical",
+      "question": "6请详细解释Kafka的监控体系，包括JMX指标、Kafka Manager、Prometheus等监控工具的使用，以及如何设置告警规则。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0468",
+      "type": "technical",
+      "question": "请详细说明Kafka性能优化的关键点，包括硬件配置、JVM调优、操作系统参数等，以及如何评估优化效果？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0469",
+      "type": "technical",
+      "question": "在Kafka集群中，如何优化消息的写入性能？请详细说明批量发送、压缩、异步发送等优化方法，以及各自的适用场景。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0470",
+      "type": "technical",
+      "question": "请详细解释Kafka的磁盘I/O优化策略，包括顺序写入、零拷贝、页缓存等机制，以及如何配置这些参数？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0471",
+      "type": "technical",
+      "question": "在Kafka集群中，如何优化消息的读取性能？请详细说明批量消费、多线程消费等优化方法，以及各自的优缺点。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0472",
+      "type": "technical",
+      "question": "请详细说明Kafka的内存管理机制，包括堆内存、直接内存的使用，以及如何避免内存溢出？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0473",
+      "type": "technical",
+      "question": "在Kafka集群中，如何优化网络传输性能？请详细说明网络参数调优、压缩算法选择等方法，以及如何评估网络性能。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0474",
+      "type": "technical",
+      "question": "请详细解释Kafka的GC优化策略，包括GC算法选择、GC参数调优等，以及如何减少GC对性能的影响。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0475",
+      "type": "technical",
+      "question": "在Kafka集群中，如何优化消息的存储性能？请详细说明存储格式、索引设计等优化方法，以及如何评估存储性能。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0476",
+      "type": "technical",
+      "question": "请详细说明Kafka的监控指标，包括吞吐量、延迟、错误率等指标的含义和计算方法，以及如何设置合理的告警阈值。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0477",
+      "type": "technical",
+      "question": "在Kafka集群中，如何优化消息的批量处理性能？请详细说明批量大小、批处理间隔等参数的选择，以及如何评估批处理性能。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0478",
+      "type": "technical",
+      "question": "请详细解释Kafka的压缩优化策略，包括压缩算法选择、压缩级别设置等，以及如何评估压缩效果。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0479",
+      "type": "technical",
+      "question": "在Kafka集群中，如何优化消息的过滤性能？请详细说明过滤策略、索引设计等优化方法，以及如何评估过滤性能。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0480",
+      "type": "technical",
+      "question": "请详细说明Kafka的缓存优化策略，包括页缓存、文件系统缓存等机制，以及如何配置这些参数。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0481",
+      "type": "technical",
+      "question": "在Kafka集群中，如何优化消息的序列化性能？请详细说明序列化格式、序列化库选择等优化方法，以及如何评估序列化性能。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0482",
+      "type": "technical",
+      "question": "请详细解释Kafka的并发优化策略，包括线程池配置、并发度设置等，以及如何评估并发性能。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0483",
+      "type": "technical",
+      "question": "在Kafka集群中，如何优化消息的持久化性能？请详细说明持久化策略、存储格式等优化方法，以及如何评估持久化性能。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0484",
+      "type": "technical",
+      "question": "请详细说明Kafka的监控体系，包括JMX指标、Kafka Manager、Prometheus等监控工具的使用，以及如何设置告警规则。",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0485",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现集群的监控和告警？请详细说明监控指标、告警规则、告警通知等配置，以及如何保证监控的可靠性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0486",
+      "type": "technical",
+      "question": "请详细解释Kafka集群的备份和恢复策略，包括数据备份、配置备份、恢复流程等，以及如何验证备份的有效性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0487",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现集群的扩容和缩容？请详细说明扩容流程、数据迁移、负载均衡等过程，以及如何保证服务的可用性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0488",
+      "type": "technical",
+      "question": "请详细说明Kafka集群的安全管理，包括访问控制、加密传输、审计日志等，以及如何实现细粒度的安全控制？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0489",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现集群的故障诊断和问题排查？请详细说明日志分析、性能分析、问题定位等方法，以及如何快速恢复服务？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0490",
+      "type": "technical",
+      "question": "请详细解释Kafka集群的版本升级策略，包括升级流程、回滚方案、兼容性测试等，以及如何保证升级的可靠性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0491",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现集群的配置管理？请详细说明配置项、配置更新、配置验证等过程，以及如何保证配置的一致性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0492",
+      "type": "technical",
+      "question": "请详细说明Kafka集群的日志管理，包括日志收集、日志分析、日志清理等，以及如何利用日志进行问题诊断？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0493",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现集群的性能优化？请详细说明性能指标、优化方法、效果评估等，以及如何持续改进性能？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0494",
+      "type": "technical",
+      "question": "请详细解释Kafka集群的容量规划，包括存储容量、网络带宽、CPU资源等，以及如何评估集群的扩展性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0495",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现集群的灾备方案？请详细说明灾备架构、数据同步、故障转移等，以及如何保证业务的连续性？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0496",
+      "type": "technical",
+      "question": "请详细说明Kafka集群的监控体系，包括系统监控、应用监控、业务监控等，以及如何实现全方位的监控？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0497",
+      "type": "technical",
+      "question": "在Kafka集群中，如何实现集群的自动化运维？请详细说明自动化部署、自动化测试、自动化运维等，以及如何提高运维效率？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "FLINK-0498",
+      "type": "technical",
+      "question": "请详细解释Kafka集群的故障处理流程，包括故障发现、故障定位、故障恢复等，以及如何建立故障处理机制？",
+      "topic": [
+        "flink"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
     },
     {
       "id": "NETWORK-0001",
@@ -6935,35 +25980,6 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>大宽表要等所有主题域上游跑完才产出，时效差；权衡是核心指标走细粒度主题域保时效，但代价是口径要维护多处。</p>\n<h2>30 秒回答</h2>\n<p>大宽表依赖多个主题域，任一上游延迟都会拖慢整张表，若下游接核心指标会放大延迟。折中：核心指标从细粒度主题域出，不都依赖大宽表；但这样同一指标口径要在大宽表和主题域两处维护，需权衡时效和口径一致性。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>风险：宽表要等所有上游依赖跑完，链路越长延迟越严重</li>\n<li>影响：下游接核心指标时，一处延迟全线拖延</li>\n<li>折中 1：核心指标走细粒度主题域，牺牲一点复用换时效</li>\n<li>折中 2：宽表依赖公共 DWS 维度层而非 DWD，数据量小、口径统一</li>\n<li>本质：时效 vs 口径一致性，按业务取舍</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么宽表会放大上游延迟？</li>\n<li>两处维护口径怎么保持一致？</li>\n</ul>"
     },
     {
-      "id": "WAREHOUSE-0106",
-      "type": "technical",
-      "question": "数仓面试题大纲（50 题覆盖范围）",
-      "topic": [
-        "warehouse",
-        "outline"
-      ],
-      "difficulty": 1,
-      "frequency": "low",
-      "source_type": "knowledge",
-      "domain": "warehouse",
-      "body_html": "<h2>一句话</h2>\n<p>随川数仓 50 题大纲，五大模块：基础架构、建模方法论、ETL/ELT、OLAP 与数据服务、性能优化。</p>\n<h2>30 秒回答</h2>\n<p>基础：数仓/数据库/数据湖、Kimball vs Inmon、星型 vs 雪花、事实表类型、SCD、分层；建模：维度建模四步、粒度、退化维度、桥接表、快照类型、一致性维度/总线矩阵；ETL：全量增量/CDC/清洗/拉链表/调度/回刷/SLA；OLAP：MOLAP/ROLAP/HOLAP、多维分析、Lambda vs Kappa、治理；优化：存储格式/分区分桶/物化视图/小文件/指标体系。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基础：数仓 vs 数据库 vs 数据湖、Kimball（自下而上）vs Inmon（自上而下 3NF）、星型/雪花、事务/周期/累积快照事实表、SCD Type1/2/3、ODS→DWD→DWS→ADS</li>\n<li>建模：四步法（业务过程→粒度→维度→事实）、粒度、退化维度、桥接表、累积 vs 周期快照、一致性维度、总线矩阵</li>\n<li>ETL：全量/增量、CDC（时间戳/日志/触发器）、清洗、拉链表、Airflow/DolphinScheduler、回刷、SLA</li>\n<li>OLAP：MOLAP/ROLAP/HOLAP、钻取/上卷/切片/切块、Lambda/Kappa、元数据/血缘/质量/成本/安全</li>\n<li>优化：ORC/Parquet/Avro、分区分桶、物化视图、小文件合并、指标体系建设</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>大纲里哪些点已经在题库中有带答案的版本？</li>\n</ul>"
-    },
-    {
-      "id": "WAREHOUSE-0107",
-      "type": "technical",
-      "question": "数仓建模 10 道高频题",
-      "topic": [
-        "warehouse",
-        "modeling",
-        "outline"
-      ],
-      "difficulty": 1,
-      "frequency": "low",
-      "source_type": "knowledge",
-      "domain": "warehouse",
-      "body_html": "<h2>一句话</h2>\n<p>数仓建模 10 道高频题：分层、维度建模、SCD、事实表类型、拉链表、建模流程、规范、去重、宽表、踩坑。</p>\n<h2>30 秒回答</h2>\n<p>十题分别是：分层为什么这么分、维度建模与星型/雪花/星座、SCD 处理、事实表三类、拉链表设计、完整建模流程、数仓规范、数据去重、宽表设计原则、建模踩坑与解决。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分层：ODS→DWD→DWS→ADS + DIM，减少重复、解耦、便于维护</li>\n<li>维度建模：事实 + 维度，星型/雪花/星座</li>\n<li>SCD：Type1 覆盖 / Type2 拉链 / Type3 历史列</li>\n<li>事实表：事务 / 周期快照 / 累积快照</li>\n<li>拉链表：start_date + end_date + is_current</li>\n<li>流程：需求 → 主题域 → 事实维度 → 分层 → 规范 → 开发上线</li>\n<li>规范：命名/分层/分区/存储/质量/运维</li>\n<li>去重：ODS 唯一键、DWD row_number、幂等、分区覆盖</li>\n<li>宽表：按主题聚合、减少 Join，放 DWS/ADS</li>\n<li>踩坑：维度不合理/未规划分区/SCD 混乱/过度设计/缺公共层</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>十题里哪些在题库中已有独立带答案的版本？</li>\n</ul>"
-    },
-    {
       "id": "WAREHOUSE-0108",
       "type": "technical",
       "question": "指标体系怎么搭建（OMTM / AARRR / 业务流 / 功能监控）",
@@ -7004,6 +26020,656 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "warehouse",
       "body_html": "<h2>一句话</h2>\n<p>三个送命题：数据量多大怎么优化、最有挑战的项目、数据不一致怎么办；共同考点是「你是能独立解决问题的工程师，不只是执行者」。</p>\n<h2>30 秒回答</h2>\n<p>第一问考数据规模感知：具体数字 + 优化动作 + 收益量化；第二问考拆解难题：痛点真实 + 你的行动 + 产生结果；第三问考治理体系：事前预防 + 事中监控 + 事后修复。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>数据量：日增 50GB/累计 200TB + 二级分区/小文件合并/加盐打散 + 范围缩小 24 倍/任务 4h→40min</li>\n<li>最有挑战项目：痛点真实（需求模糊/质量差）+ 行动（工作坊拆口径/埋点规范/Watermark）+ 结果（效率 +60%/沉淀 SOP）</li>\n<li>数据不一致：事前多源校验 + 事中波动告警 @负责人 + 事后分级响应/血缘定位上游</li>\n<li>核心：让面试官确认你能独立解决问题</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么「加强监控」答数据不一致等于没答？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0111",
+      "type": "technical",
+      "question": "什么是数据仓库？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0112",
+      "type": "technical",
+      "question": "数据仓库和数据库的区别是什么？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0113",
+      "type": "technical",
+      "question": "简述星型模型和雪花模型的特点及区别",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0114",
+      "type": "technical",
+      "question": "请描述数据仓库的开发流程",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0115",
+      "type": "technical",
+      "question": "在数据仓库中，ETL 是什么意思？请描述其主要过程",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0116",
+      "type": "technical",
+      "question": "在数据仓库建设中，常用的ETL工具都有哪些？它们的特点是什么？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0117",
+      "type": "technical",
+      "question": "Hive在数据仓库中的作用是什么？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0118",
+      "type": "technical",
+      "question": "什么是OLAP？它有哪些主要操作？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0119",
+      "type": "technical",
+      "question": "请简述您对数据仓库的理解，并说明它在现代企业中的作用。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0120",
+      "type": "technical",
+      "question": "能否详细介绍一下您在数据建模方面的经验？请举例说明。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0121",
+      "type": "technical",
+      "question": "描述一次你在数据仓库项目中遇到的难题，以及你是如何解决的。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0122",
+      "type": "technical",
+      "question": "请解释什么是OLAP，并给出一个实际的应用案例。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0123",
+      "type": "technical",
+      "question": "你如何确保数据仓库中的数据质量和一致性？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0124",
+      "type": "technical",
+      "question": "谈谈你对ETL过程的理解，并说明其在数据仓库中的重要性。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0125",
+      "type": "technical",
+      "question": "请介绍一种你熟悉的数据库技术，包括其特点和应用场景。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0126",
+      "type": "technical",
+      "question": "如何处理数据仓库中的大数据量和高并发问题？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0127",
+      "type": "technical",
+      "question": "描述一次你参与的数据仓库优化经历，具体做了哪些改进措施？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0128",
+      "type": "technical",
+      "question": "请解释一下数据仓库中的星型模式和雪花模式的区别。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0129",
+      "type": "technical",
+      "question": "在设计数据仓库时，你会如何考虑数据的粒度和聚合层次？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0130",
+      "type": "technical",
+      "question": "谈谈你对数据湖的理解，它与数据仓库有何不同？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0131",
+      "type": "technical",
+      "question": "如何进行数据仓库的需求分析和设计？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0132",
+      "type": "technical",
+      "question": "请介绍一下你使用过的数据仓库工具或平台，并说明其优势。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0133",
+      "type": "technical",
+      "question": "描述一次你处理数据仓库安全问题的经历。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0134",
+      "type": "technical",
+      "question": "如何评估和选择适合项目需求的数据仓库解决方案？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0135",
+      "type": "technical",
+      "question": "谈谈你对数据治理的理解，以及在数据仓库中的应用。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0136",
+      "type": "technical",
+      "question": "请解释缓慢变化维度的概念，并给出一个处理的例子。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0137",
+      "type": "technical",
+      "question": "描述一次你参与的数据仓库升级或迁移项目，遇到了哪些挑战？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0138",
+      "type": "technical",
+      "question": "如何利用数据仓库支持企业的决策制定过程？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0139",
+      "type": "technical",
+      "question": "请介绍一下你在数据仓库项目中的团队协作经验。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0140",
+      "type": "technical",
+      "question": "描述一次你如何通过数据仓库分析改善业务流程的经历。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0141",
+      "type": "technical",
+      "question": "如何确保数据仓库项目按时交付并满足质量标准？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0142",
+      "type": "technical",
+      "question": "谈谈你对数据仓库未来发展的看法，有哪些新技术或趋势？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0143",
+      "type": "technical",
+      "question": "请介绍一下你在数据仓库性能调优方面的经验。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0144",
+      "type": "technical",
+      "question": "描述一次你如何应对数据仓库扩展性问题的经历。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0145",
+      "type": "technical",
+      "question": "如何向非技术团队成员解释数据仓库的价值和作用？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0146",
+      "type": "technical",
+      "question": "谈谈你对实时数据仓库的理解，以及它与传统数据仓库的区别。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0147",
+      "type": "technical",
+      "question": "请介绍一下你在数据仓库项目中遇到的最具挑战性的技术问题。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0148",
+      "type": "technical",
+      "question": "描述一次你如何通过数据仓库实现数据可视化展示的经历。",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0149",
+      "type": "technical",
+      "question": "数仓为什么要分层，常见的分层方式有哪些？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0150",
+      "type": "technical",
+      "question": "请描述概念并举例说明维度表和事实表？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0151",
+      "type": "technical",
+      "question": "如何理解维度退化？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0152",
+      "type": "technical",
+      "question": "数据仓库中，ETL工具的主要功能是？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0153",
+      "type": "technical",
+      "question": "下列哪项不是数据仓库的设计原则？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0154",
+      "type": "technical",
+      "question": "在数据仓库中，以下哪种数据模型是最常见的？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0155",
+      "type": "technical",
+      "question": "数据仓库中，以下哪种数据源通常用于提供元数据？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0156",
+      "type": "technical",
+      "question": "下列哪个工具用于数据仓库的数据质量管理？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0157",
+      "type": "technical",
+      "question": "以下哪种方法不属于数据仓库的数据集成方式？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0158",
+      "type": "technical",
+      "question": "数据仓库的数据建模过程中，通常使用哪种技术来识别数据冗余？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0159",
+      "type": "technical",
+      "question": "以下哪个不是数据仓库的常见架构组件？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+    },
+    {
+      "id": "WAREHOUSE-0160",
+      "type": "technical",
+      "question": "在数据仓库中，以下哪个指标通常用于评估数据质量？",
+      "topic": [
+        "warehouse"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
     },
     {
       "id": "SQL-0001",

@@ -1,0 +1,14 @@
+---
+id: FLINK-0264
+type: technical
+question: 如何在FlinkSQL中定义事件时间(Event Time)属性和水印(Watermark)生成？
+topic:
+- flink
+difficulty: 1
+frequency: low
+source_type: knowledge
+---
+
+# 待补充
+
+> 纯题面（八股题库），暂无标准答案。
