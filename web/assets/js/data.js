@@ -1,9 +1,9 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T10:52:39+08:00",
+  "generatedAt": "2026-09-29T10:53:36+08:00",
   "stats": {
-    "questions": 286,
+    "questions": 287,
     "interviews": 16,
-    "technical": 201,
+    "technical": 202,
     "project": 85,
     "domains": {
       "spark": 34,
@@ -18,7 +18,7 @@ window.OS_DATA = {
       "platform": 2,
       "system": 2,
       "warehouse": 64,
-      "sql": 11,
+      "sql": 12,
       "project": 85
     }
   },
@@ -4456,6 +4456,28 @@ window.OS_DATA = {
     },
     {
       "id": "SQL-0011",
+      "type": "technical",
+      "question": "你是怎么定位慢 SQL 的",
+      "topic": [
+        "sql",
+        "slow-query"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
+          "company": "迅雷",
+          "position": "资深数据开发（一面）",
+          "date": "2026-09-25"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>用执行计划/Profile 看耗时、扫描行数、shuffle 和慢算子，定位瓶颈再优化。</p>\n<h2>30 秒回答</h2>\n<p>看执行计划（EXPLAIN）和 Profile，找耗时、扫描数据量大的算子，判断是全表扫描、shuffle、join 还是倾斜，再针对性优化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>执行计划：看是否走索引/分区裁剪、join 策略</li>\n<li>Profile：看每个算子耗时、扫描行数、shuffle 量</li>\n<li>定位：全表扫描、慢 join、数据倾斜、低效子查询</li>\n<li>优化：加索引/物化视图、改写、调参</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>执行计划里最关注哪几个指标？</li>\n<li>全表扫描怎么优化？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0012",
       "type": "technical",
       "question": "用户充值表三道题：累计充值、最高金额日期、连续 7 天无充值",
       "topic": [
