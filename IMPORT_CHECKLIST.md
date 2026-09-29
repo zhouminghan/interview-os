@@ -106,7 +106,8 @@
 
 | 状态 | 来源文件 | 处理方式 |
 |------|----------|----------|
-| ✅ | FlinkSQL / StarRocks / 大数据 / 数开AI能力栈 / 数据治理 | 为 wiki/sources 的提炼，内容已由对应题目覆盖 |
+| ✅ | FlinkSQL / StarRocks / 大数据 / 数开AI能力栈 / 数据治理 / Hadoop生态 / 数据湖 / Bigtable / Cloudera / MapReduce | 为 wiki/sources 或技术史的提炼，内容已由对应题目覆盖 |
 | ✅ | 视频复盘法 | → PROJECT-0106 |
+| ✅ | 大模型时代数据观 | → LLM-0101 |
 
-> 说明：wiki/concepts 下另有约 100+ 个 AI 工程概念笔记（Loop/Harness/Graph/RAG/Agent 等），属于「AI 工程」而非「数据开发面试」，暂未批量导入，避免题库过杂。
+> 说明：wiki/concepts 下另有约 100+ 个 AI 工程概念笔记（Loop/Harness/Graph/RAG/Agent 等）及 OpenAI 面试流程等，属于「AI 工程 / 他司面试」而非「数据开发面试」，暂未批量导入，避免题库过杂。`found-tools-vault`（工具收录）、`日常工作/日常记录`（日报周报）等为个人记录，与面试无关。

@@ -1,9 +1,9 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T12:43:40+08:00",
+  "generatedAt": "2026-09-29T12:47:51+08:00",
   "stats": {
-    "questions": 1993,
+    "questions": 1994,
     "interviews": 65,
-    "technical": 1887,
+    "technical": 1888,
     "project": 106,
     "domains": {
       "spark": 244,
@@ -16,7 +16,7 @@ window.OS_DATA = {
       "algorithm": 9,
       "statistics": 1,
       "ml": 5,
-      "llm": 91,
+      "llm": 92,
       "platform": 2,
       "system": 7,
       "warehouse": 155,
@@ -23775,6 +23775,20 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>数仓从人工维护升级为 Agent 自维护，四阶段：Harness（地基规则）→ Loop（循环自纠）→ Graph（多 Agent 协作）→ 数字人，每阶段可独立验收。</p>\n<h2>30 秒回答</h2>\n<p>阶段 0 先建代码知识库；阶段 1 Harness：CLAUDE.md 写分层/技术栈/命名规范/建表模板/禁止清单；阶段 2 Loop：让 Agent 循环执行 + 自纠；阶段 3 Graph：多 Agent 分工协作；阶段 4 数字人。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>阶段 0：代码知识库（表口径/血缘/SQL 生成）</li>\n<li>阶段 1 Harness：CLAUDE.md 项目宪法（分层职责、技术栈、命名规范 <code>{层级}_{业务域}_{粒度}_{描述}</code>、建表模板、禁止清单）</li>\n<li>阶段 2 Loop：Agent 循环执行 + 自纠闭环</li>\n<li>阶段 3 Graph：多 Agent 编排协作</li>\n<li>阶段 4：数字人（自主维护）</li>\n<li>分区规范：统一 <code>dt</code>（日）/<code>hh</code>（小时）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Harness 和 Loop 的区别是什么？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0101",
+      "type": "technical",
+      "question": "大模型时代的数据观（数据价值如何重新定价）",
+      "topic": [
+        "llm",
+        "data-value"
+      ],
+      "difficulty": 2,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>数据价值从「企业内部金矿（存数据→内部分析→经营改善）」转向「高质量语料训练价值（公开文本/代码/问答 → 训练与授权 → 直接变现）」。</p>\n<h2>30 秒回答</h2>\n<p>大数据时代（2012）逻辑：企业自有数据 = 沉睡金矿，汇总分析 = 业务洞察；大模型时代（2020+）逻辑：高质量公开文本/代码/论坛讨论/问答帖是稀缺资产，按授权合同直接定价。数据从「内部消耗品」变成「可训练、可授权的生产资料」。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>老逻辑：存数据 → 内部分析 → 经营改善</li>\n<li>新逻辑：高质量公开内容 → 训练和授权 → 直接变现</li>\n<li>对数据工程的意义：清洗/去重/合规/授权成为核心能力，数据治理从「成本」变「资产增值」</li>\n<li>呼应：数据是新石油（但必须「炼」，即清洗加工才有价值）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么说「数据是新石油」只传了前半句？</li>\n</ul>"
     },
     {
       "id": "PLATFORM-0001",
