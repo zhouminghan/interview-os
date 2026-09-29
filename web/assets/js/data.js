@@ -1,8 +1,8 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T17:02:41+08:00",
+  "generatedAt": "2026-09-29T17:04:36+08:00",
   "stats": {
     "questions": 1994,
-    "interviews": 82,
+    "interviews": 84,
     "technical": 1888,
     "project": 106,
     "domains": {
@@ -29670,6 +29670,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始，图片 OCR）</h2>\n<blockquote>数据工程师勇哥整理，硕 3 年数据开发面 Google AI 方向数据工程师（ML Data Engineer）。核心：训练/RAG 样本管线、特征存储、非结构化数据处理、数据质量与漂移监控。技术栈 GCP：BigQuery、Dataflow、Pub/Sub、Vertex AI。</blockquote>\n<h3>C 轮：AI/ML 数据系统设计（权重最高）</h3>\n<p>题目：Design end-to-end data pipeline for RAG system（海量网页文档 → 清洗分块 → embedding → 向量库 + 评估数据集），持续追加约束：</p>\n<ol>\n<li>先问哪些澄清问题：数据规模、SLA 新鲜度、吞吐、容错、消费方、成本约束</li>\n<li>原始网页脏数据、重复、低质量垃圾页怎么清洗去重</li>\n<li>文档分块策略，不同分块方式怎么影响 RAG 召回</li>\n<li>Embedding 生成离线批量还是实时，怎么扩容</li>\n<li>向量库选型理由、读写权衡、向量数据更新方案</li>\n<li>文档/embedding 分布漂移怎么监控</li>\n<li>管线失败怎么处理：重试、幂等、断点续跑</li>\n<li>GCP 上哪些环节资源开销最大，如何降本</li>\n<li>文档含隐私信息怎么做脱敏</li>\n</ol>\n<h3>D 轮：ML 基础 + 概率统计 + 数据偏差</h3>\n<ol>\n<li>什么是 selection bias 采样偏差，举训练集采样偏差例子和修复方式</li>\n<li>Data Drift 和 Concept Drift 区别，分别如何监控</li>\n<li>概率题：二项分布、置信区间、样本量估算</li>\n<li>训练集大量重复样本会带来什么影响，怎么检测</li>\n<li>线上模型效果下滑，怎么区分是模型问题还是输入数据问题</li>\n</ol>\n<h3>E 轮：Googleyness 行为面</h3>\n<ol>\n<li>和算法/研究团队发生重大分歧的项目，怎么处理，最终结果</li>\n<li>线上管线故障完整经过、你的操作、复盘</li>\n<li>有没有坚持的技术方案事后证明错了，如何调整</li>\n<li>需求模糊、文档缺失，怎么拆解推进</li>\n<li>怎么帮助团队其他同事成长</li>\n<li>为什么选谷歌、为什么 AI 数据方向、长期规划</li>\n</ol>\n<blockquote>备注：来源小红书 @数据工程师勇哥。核心考点：RAG 数据管线设计、Data/Concept Drift、特征对齐、Apache Beam/Feast。翻车点：跳过需求澄清直接堆组件。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-09-27-taobao-shangou-ai-data",
+      "company": "淘宝闪购（阿里）",
+      "business": "AI 数据",
+      "position": "AI 数据工程师（硕 3 年数据开发转 AI 数据）",
+      "date": "2026-09-27",
+      "round": "一面 + 二面 + 三面 + HR",
+      "body_html": "<h2>面经记录（原始，图片 OCR）</h2>\n<blockquote>数据工程师勇哥整理，硕 3 年数据开发投淘宝闪购（原饿了么，即时零售）AI 数据工程师。底层 Flink/Paimon/Spark/StarRocks 湖流一体，支撑 RAG 知识库、SFT 训练数据、Agent 工具数据层、配送 ETA。</blockquote>\n<h3>一面（Mentor 面，约 60 分钟）</h3>\n<ol>\n<li>介绍最核心的数据开发项目：业务背景、数据链路、技术选型、最大难点与解决</li>\n<li>Flink Exactly-Once 实现、Checkpoint 原理，什么场景 Checkpoint 膨胀，闪购订单流高并发下怎么解决状态膨胀</li>\n<li>Spark 和 Flink 适用场景，流批一体怎么理解，Paimon 在流批一体里起什么作用</li>\n<li>数据倾斜遇到过哪几种，分别怎么处理，举线上真实案例</li>\n<li>维度建模星型 vs 雪花，即时零售（用户、订单、商户、骑手）怎么设计数仓分层 ODS/DWD/DWS/ADS</li>\n<li>为什么投 AI 数据工程师而不是传统数据开发，两者差异是什么</li>\n<li>RAG 完整链路，数据侧最大痛点，文档切片怎么做，固定长度切片缺陷、更好策略</li>\n<li>Embedding 向量库，向量召回评估指标，怎么判断召回质量</li>\n<li>大模型 SFT 训练数据做哪些清洗、过滤、去重，脏数据带来什么后果</li>\n<li>手撕 SQL：即时零售场景统计每个商家连续 3 天有订单的用户数，追问优化、倾斜、分区</li>\n<li>算法题：超大无序数组求中位数（不能全读入内存）</li>\n<li>反问</li>\n</ol>\n<h3>二面（+2 业务 Leader，业务架构）</h3>\n<blockquote>偏业务架构，结合闪购即时零售场景（订单、商户、骑手、配送 ETA、访购率、转化漏斗），考察湖仓一体、实时数仓、AI 数据基建落地。</blockquote>\n<h3>三面 / HR（HRBP 终面）</h3>\n<blockquote>三面跨部门交叉/总监，HRBP 一票否决，重点考察稳定性、求职动机、是否海投、对闪购即时零售业务的认知。</blockquote>\n<blockquote>备注：来源小红书 @数据工程师勇哥。岗位核心是大数据工程 + 大模型数据基建（RAG/SFT/Agent 数据层/特征生产）。避坑：别当算法岗、别只背概念不结合闪购业务、项目讲难点权衡收益、懂 Paimon 流批一体。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
       "company": "欣旺达",
       "business": "数据开发",
@@ -29788,6 +29797,15 @@ window.OS_DATA = {
       "words": 346,
       "round": "校招",
       "body_html": "<h2>面经记录（原始）</h2>\n<p>自我介绍</p>\n<ol>\n<li>说一说你在工作里做的 SparkSQL 优化</li>\n<li>根据 mapjoin 的原理，如果大表 left join 小表和大表 right join 小表，都可以用 mapjoin 吗</li>\n<li>你觉得 mapjoin 和 broadcast join 的区别是什么</li>\n<li>你说 broadcast 是广播变量，那么广播后的变量是存储在内存吗，那么与 mapjoin 有什么区别</li>\n<li>说一说你的数据模型设计，你是如何将需求转化为数仓语言的</li>\n<li>你懂存储长表，后续会用 Python 做数据处理（由此引出 SQL 题目）SQL：长表下一列中的两数相加（变式：添加权重后两数相加）</li>\n<li>谈一谈你做过的大模型项目吧</li>\n<li>你考虑过用户角色这一块吗，比如男生、女生或者小孩，你有在设计上区分吗</li>\n<li>你的知识库是爬取的 wiki 百科，那么如果 wiki 更新了你是怎么做的</li>\n</ol>\n<p>（想不起来了，问了好多）</p>\n<p>反问：AI 应用如何落地，在企业是如何运用的</p>\n<blockquote>备注：校招面，来源小红书。原始记录只保留问题，不含当时答案。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-09-10-hsdz-ai-data",
+      "company": "恒生电子",
+      "business": "AI 数据",
+      "position": "AI 数据方向（5 年数据开发社招）",
+      "date": "2026-09-10",
+      "round": "笔试 + 一面 + 二面 + 三面 + HR",
+      "body_html": "<h2>面经记录（原始，图片 OCR）</h2>\n<blockquote>数据工程师勇哥整理，一本学历 5 年传统数据开发转恒生电子 AI 数据方向。岗位是「懂 AI 的数据工程师」，不是纯算法岗，重点是把 RAG、向量库落地到金融数据场景。</blockquote>\n<h3>线上笔试（约 90 分钟）</h3>\n<ol>\n<li>SQL、大数据和 AI 基础选择题</li>\n<li>SQL 大题：窗口函数、多表关联</li>\n<li>Spark 相关简答</li>\n<li>开放题：设计金融文档 RAG 数据链路（结合金融场景，提溯源、权限、文档版本管理）</li>\n</ol>\n<h3>一面（基础技术面，约 40 分钟）</h3>\n<ol>\n<li>自我介绍，讲 5 年数据开发的主要项目</li>\n<li>你认为最复杂的项目是哪个，复杂在哪</li>\n<li>Spark 执行流程和 Stage 划分</li>\n<li>什么情况会产生 Shuffle，怎么优化</li>\n<li>Spark SQL 调优常用手段</li>\n<li>广播 Join 和谓词下推分别适合什么场景</li>\n<li>数仓 ODS、DWD、DWS、ADS 分别是什么</li>\n<li>数据倾斜怎么定位和解决</li>\n<li>你理解的 AI 数据工程师和传统数据开发有什么区别</li>\n<li>RAG 完整链路包含哪些步骤</li>\n<li>金融长文档分块策略，块大小和重叠怎么选</li>\n<li>常用 Embedding 模型有哪些</li>\n<li>向量数据库了解哪些，Milvus 和 Qdrant 有什么区别</li>\n<li>有没有使用过 LangChain，遇到过什么问题</li>\n</ol>\n<h3>二面 / 三面 / HR（约 30 分钟 HR）</h3>\n<blockquote>核心考察主线：传统大数据工程是否扎实；能否把 RAG、向量库落地到金融数据场景；数据治理、质量控制和合规意识；能否处理研报、公告、文档等非结构化数据。HR 面确认离职原因、定居、薪资、背调。</blockquote>\n<blockquote>备注：来源小红书 @数据工程师勇哥。避坑：别当算法岗准备，别丢传统大数据基础，别只背概念不结合金融场景（证券研报/公司公告/金融文档/权限/溯源/版本管理），别忽视数据质量与合规。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-09-09-anker-ai-data-engineer",
