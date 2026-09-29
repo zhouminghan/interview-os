@@ -1,25 +1,25 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:36:23+08:00",
+  "generatedAt": "2026-09-29T11:38:35+08:00",
   "stats": {
-    "questions": 422,
-    "interviews": 55,
-    "technical": 337,
+    "questions": 430,
+    "interviews": 61,
+    "technical": 345,
     "project": 85,
     "domains": {
-      "spark": 42,
+      "spark": 43,
       "hdfs": 4,
-      "storage": 18,
+      "storage": 21,
       "lakehouse": 7,
-      "starrocks": 13,
+      "starrocks": 14,
       "flink": 16,
       "network": 4,
       "algorithm": 9,
       "statistics": 1,
       "ml": 5,
-      "llm": 85,
+      "llm": 86,
       "platform": 2,
       "system": 7,
-      "warehouse": 97,
+      "warehouse": 99,
       "sql": 27,
       "project": 85
     }
@@ -1002,6 +1002,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>主要有 HashPartitioner（按 key 哈希）和 RangePartitioner（按 key 范围），也可自定义。</p>\n<h2>30 秒回答</h2>\n<p>HashPartitioner 用 key.hashCode 取模分到各分区；RangePartitioner 先采样确定边界，再按 key 范围分区，保证全局有序。sortByKey 用 Range，reduceByKey/groupByKey 用 Hash。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>HashPartitioner：默认，hash 取模，key 相同同分区，但易热点倾斜</li>\n<li>RangePartitioner：采样定边界，数据按范围分布，配合排序</li>\n<li>自定义 Partitioner：按业务 key 控制分区，常用于减少倾斜、数据局部性</li>\n<li>触发场景：宽依赖算子（reduceByKey/groupByKey/join）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>HashPartitioner 为什么会倾斜？</li>\n<li>什么时候需要自定义分区器？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0043",
+      "type": "technical",
+      "question": "数据均匀仍然出现倾斜的原因",
+      "topic": [
+        "spark",
+        "skew"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-04-22-bytedance-data-dev-0422",
+          "company": "字节跳动",
+          "position": "数据开发工程师（一面）",
+          "date": "2026-04-22"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>数据量均匀但倾斜，通常是某个 key 的 value 巨大、task 数量/资源不均、shuffle 分区算法问题或个别 executor 异常慢。</p>\n<h2>30 秒回答</h2>\n<p>可能原因：key 数量均匀但某个 key 的单条 value 特别大；分区数过少或 executor 资源不均；shuffle 分区函数导致部分分区热点；GC、磁盘、网络等单点性能问题。逐一用 Spark UI 看 task 数据量、shuffle read、GC time 排除。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>key 分布均匀但 value 大小不均</li>\n<li>分区数少，少量 task 扛大部分数据</li>\n<li>executor 资源不均或个别节点慢（硬件/网络/GC）</li>\n<li>shuffle 分区算法局部热点</li>\n<li>排查：Spark UI 看 task 耗时/数据量/GC，区分倾斜 vs 节点慢</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么区分是数据倾斜还是节点慢？</li>\n<li>value 大小不均怎么处理？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -1466,6 +1488,74 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>三种：Nested Loop Join（嵌套循环）、Hash Join（哈希）、Index Join（走索引定位），取决于是否有索引和等值条件。</p>\n<h2>30 秒回答</h2>\n<p>Nested Loop 外层逐行扫驱动表、内层找匹配，适合小表驱动大表；Hash Join 用等值连接 key 建哈希表，适合无索引等值连接；Index Join 用被驱动表索引快速定位，适合驱动表小 + 被驱动表有索引。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Nested Loop Join：双层循环，驱动表越小越好，配合索引快</li>\n<li>Hash Join：等值连接建哈希表，适合大表、无合适索引</li>\n<li>Index Join：被驱动表用索引回表，避免全表扫描</li>\n<li>驱动表选择：结果集小、过滤后行数少的表做驱动表</li>\n<li>等值 vs 非等值：非等值只能用 Nested Loop 类</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么小表驱动大表快？</li>\n<li>等值连接优化器怎么选 Join 算法？</li>\n</ul>"
     },
     {
+      "id": "STORAGE-0020",
+      "type": "technical",
+      "question": "Binlog 机制是什么",
+      "topic": [
+        "storage",
+        "mysql",
+        "binlog"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2025-03-03-bytedance-global-data",
+          "company": "字节跳动",
+          "position": "数据开发（一面）",
+          "date": "2025-03-03"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>Binlog 是 MySQL 的二进制变更日志，记录所有写操作，用于主从复制、数据恢复和数据同步（如 CDC 入数仓）。</p>\n<h2>30 秒回答</h2>\n<p>Binlog 按事件记录 insert/update/delete 的变更，三种格式：Statement（记 SQL）、Row（记行变更）、Mixed。用途：主从复制、故障恢复、把变更同步到下游（Canal/CDC 接 Binlog 入 Kafka/数仓）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>作用：记录写操作，是 MySQL 逻辑层日志（区别于 redo/undo 的物理/事务日志）</li>\n<li>格式：Statement / Row / Mixed，Row 更精确、适合 CDC</li>\n<li>用途：主从复制、数据恢复、CDC 实时同步（Canal/Flink CDC）</li>\n<li>数据开发场景：消费 Binlog 做实时数据接入</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Binlog 和 redo log 的区别？</li>\n<li>CDC 怎么用 Binlog 做实时同步？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0021",
+      "type": "technical",
+      "question": "B+ 树和 B 树的区别，为什么 MySQL 用 B+ 树",
+      "topic": [
+        "storage",
+        "mysql",
+        "index"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2025-03-03-bytedance-global-data",
+          "company": "字节跳动",
+          "position": "数据开发（一面）",
+          "date": "2025-03-03"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>B+ 树数据只存在叶子节点、叶子用链表串联，范围查询和磁盘 IO 更优，所以 MySQL 用 B+ 树做索引。</p>\n<h2>30 秒回答</h2>\n<p>B 树节点既存 key 又存数据，B+ 树非叶子只存 key、数据全在叶子，且叶子间有链表。B+ 树更矮、每次 IO 读出更多 key、范围查询顺着叶子链表走，更适合磁盘数据库。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>B 树：每个节点都存数据，范围查询要回退遍历</li>\n<li>B+ 树：非叶子只存索引 key，数据在叶子，叶子双向链表</li>\n<li>优势：树更矮（IO 少）、单节点存更多 key、范围查询快、查询稳定</li>\n<li>MySQL：InnoDB 主键索引是聚簇 B+ 树，二级索引存主键回表</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>聚簇索引和二级索引的区别？</li>\n<li>为什么不直接用哈希索引？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0022",
+      "type": "technical",
+      "question": "Doris 和 ClickHouse 的区别",
+      "topic": [
+        "storage",
+        "olap"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2025-03-03-bytedance-global-data",
+          "company": "字节跳动",
+          "position": "数据开发（一面）",
+          "date": "2025-03-03"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>两者都是 MPP 分析型数据库；ClickHouse 单表极速、适合海量日志明细分析，Doris/StarRocks 更偏多维分析、更新和标准 SQL 生态。</p>\n<h2>30 秒回答</h2>\n<p>ClickHouse 列存 + 极致单表查询性能，适合日志/明细大宽表；Doris 支持多维分析、更新模型、高并发点查和标准 SQL，更适合报表、实时数仓。选型看是纯分析还是需要更新/并发/生态。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>ClickHouse：极致单表吞吐、MergeTree 引擎、适合明细大表</li>\n<li>Doris：分区分桶、多种数据模型（明细/聚合/主键）、更新能力强、MySQL 协议易用</li>\n<li>写入：ClickHouse 高频写入易 too many parts，Doris 导入更平滑</li>\n<li>选型：日志明细分析选 CH，报表/实时数仓/需要更新选 Doris</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>ClickHouse 的 too many parts 是什么？</li>\n<li>Doris 和 StarRocks 又是什么关系？</li>\n</ul>"
+    },
+    {
       "id": "LAKEHOUSE-0001",
       "type": "technical",
       "question": "Hudi 有实际使用吗，Hudi 是什么",
@@ -1909,6 +1999,28 @@ window.OS_DATA = {
       ],
       "domain": "starrocks",
       "body_html": "<h2>一句话</h2>\n<p>两者同源于 Doris/百度 Palo 技术路线，都是 MPP 分析型数据库；StarRocks 侧重极致查询性能和向量化，Doris 侧重生态完善和易用。</p>\n<h2>30 秒回答</h2>\n<p>StarRocks 由 Doris 早期团队分叉而来，架构相似（FE/BE、向量化、MPP），StarRocks 在向量化执行、物化视图、湖仓分析上更激进；Doris 社区生态更成熟、云原生和多源融合更完善。选型看性能需求和团队生态。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>同源：都继承 Doris 的 MPP + 向量化 + FE/BE 架构</li>\n<li>StarRocks：查询性能、物化视图、存算分离推进快</li>\n<li>Doris：生态完善、易用、多源融合好</li>\n<li>分区分桶：都支持 Range/List 分区 + Hash 分桶，选高频过滤列分区、高基数列分桶</li>\n<li>选型：性能敏感选 StarRocks，生态/易用选 Doris</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>分区列和分桶列怎么选？</li>\n<li>两者在大宽表场景表现如何？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0014",
+      "type": "technical",
+      "question": "Doris / StarRocks 的 rollup 和预聚合有什么区别",
+      "topic": [
+        "starrocks",
+        "rollup"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-04-12-bytedance-agent-data-1",
+          "company": "字节跳动",
+          "position": "AI Agent 方向数据开发（一面）",
+          "date": "2026-04-12"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>rollup 是按不同维度组合预计算的物化结构，预聚合是把明细提前按维度汇总；rollup 是预聚合的一种实现方式。</p>\n<h2>30 秒回答</h2>\n<p>rollup 针对基表的不同维度组合建物化表，查询命中 rollup 直接读汇总结果，免去实时聚合。预聚合是更泛的概念（提前算好汇总），rollup、物化视图、聚合模型都属于预聚合手段。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>rollup：StarRocks/Doris 的物化 rollup 索引，按维度组合预汇总</li>\n<li>预聚合：泛指提前聚合，包括聚合模型、物化视图、rollup</li>\n<li>关系：rollup 是预聚合的具体实现，物化视图是更通用的预聚合</li>\n<li>除了新建 rollup，还可调分桶、建物化视图、用聚合模型、优化查询</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>rollup 和物化视图有什么区别？</li>\n<li>新建 rollup 的代价是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0001",
@@ -4327,6 +4439,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>知识库维护：表/指标元数据、业务口径、血缘关系、FAQ 与示例、以及更新版本，保证 Agent 能拿到准确上下文。</p>\n<h2>30 秒回答</h2>\n<p>核心四类：表元数据（字段含义/类型/枚举值）、指标口径（定义/计算逻辑/负责人）、业务知识（术语/规则/常见问题）、示例（优质 SQL/问答对）。配版本管理和更新机制，过期内容要及时刷新。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>表元数据：字段、类型、枚举、上下游关系</li>\n<li>指标口径：定义、计算逻辑、负责人、使用场景</li>\n<li>业务知识：术语、规则、FAQ</li>\n<li>示例：优质 SQL、问答对、标注样例</li>\n<li>配套：版本管理、更新流程、权限、质量校验</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>知识库过期了怎么处理？</li>\n<li>知识库和向量库是什么关系？</li>\n</ul>"
     },
     {
+      "id": "LLM-0095",
+      "type": "technical",
+      "question": "大模型相关数据（对话、行为、反馈、埋点）如何接入与清洗",
+      "topic": [
+        "llm",
+        "data-pipeline"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-04-20-bytedance-agent-data-3round",
+          "company": "字节跳动",
+          "position": "AI Agent 方向数据开发（三轮）",
+          "date": "2026-04-20"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>对话/行为/反馈/埋点四类数据分别走埋点上报和日志流水接入 ODS，再统一清洗、去重、脱敏、结构化，沉淀到样本/特征层。</p>\n<h2>30 秒回答</h2>\n<p>对话数据解析成结构化（轮次/角色/内容），行为埋点做事件标准化，反馈做正负样本标注，埋点做口径统一。清洗：去重、低质过滤、脱敏、格式统一、按用户/会话关联。离线走 Spark 批处理，实时走 Flink。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>接入：对话走流水，行为/埋点走 SDK 上报</li>\n<li>清洗：去重、低质过滤、敏感脱敏、格式统一、多源关联</li>\n<li>结构化：多轮对话按 session 建模，prompt/上下文/工具调用拆字段</li>\n<li>分流：离线 Spark 批处理，实时 Flink + Kafka</li>\n<li>用途：沉淀为样本层、特征层、评测数据</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>多轮对话怎么结构化？</li>\n<li>反馈数据怎么用于正负样本？</li>\n</ul>"
+    },
+    {
       "id": "PLATFORM-0001",
       "type": "technical",
       "question": "低代码平台是什么，你了不了解",
@@ -6447,6 +6581,50 @@ window.OS_DATA = {
       ],
       "domain": "warehouse",
       "body_html": "<h2>一句话</h2>\n<p>看四件事：口径是否统一可信、模型是否可复用、链路是否稳定可回溯、成本是否可控。</p>\n<h2>30 秒回答</h2>\n<p>好数仓：指标口径统一、无烟囱重复建设、分层清晰复用度高、质量有熔断保障、血缘可回溯、存储计算成本合理。坏数仓：口径打架、大宽表堆砌、依赖混乱、任务经常挂、成本失控。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>口径统一：同一指标只有一处定义，多方对齐</li>\n<li>复用：公共层共享，避免重复建表</li>\n<li>稳定性：核心表有熔断、按时产出</li>\n<li>可回溯：血缘完整，问题能定位到上游</li>\n<li>成本：存储/计算不过度冗余</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>从 0 到 1 设计数仓第一步做什么？</li>\n<li>怎么量化数仓的建设收益？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0101",
+      "type": "technical",
+      "question": "怎么在数仓层面做埋点漏报、埋点错误的校验",
+      "topic": [
+        "warehouse",
+        "quality"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-04-22-bytedance-warehouse-she-zhao",
+          "company": "字节跳动",
+          "position": "数仓（社招，一面）",
+          "date": "2026-04-22"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>靠多源对账、量级基线、漏斗校验和字段合法性检查，发现埋点漏报和埋点错误。</p>\n<h2>30 秒回答</h2>\n<p>漏报：和上游/服务端日志对账、看量级环比是否骤降、漏斗各步是否单调递减。错误：字段枚举值校验、空值率、格式校验，关键字段加熔断。配合埋点规范和上线前 review。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>漏报：多渠道对账、日环比基线、漏斗完整性（曝光→点击→转化）</li>\n<li>错误：字段类型/枚举/空值率校验、格式正则</li>\n<li>机制：核心埋点配 S 级熔断，校验不过卡下游</li>\n<li>前置：埋点规范 + 上线前 review，从源头减少问题</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>埋点漏报和埋点错误哪个更难发现？</li>\n<li>漏斗校验怎么发现漏报？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0102",
+      "type": "technical",
+      "question": "uid 和 did 一对多的关系怎么统一身份",
+      "topic": [
+        "warehouse",
+        "identity"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-04-22-bytedance-warehouse-she-zhao",
+          "company": "字节跳动",
+          "position": "数仓（社招，一面）",
+          "date": "2026-04-22"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>一个 uid 对应多设备、一个 did 可能多人共用，靠 ID-Mapping 把 uid/did 映射成统一用户标识，再做去重和置信度。</p>\n<h2>30 秒回答</h2>\n<p>登录口径以 uid 为准，行为口径先按 did 统计再做 ID-Mapping 归一到用户。用映射表维护 uid↔did，处理一对多/多对一，刷数据用风控规则拦截（同设备多账号、异常频次）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>uid vs did：uid 是登录账号，did 是设备，未登录只有 did</li>\n<li>ID-Mapping：登录后把 did 绑定 uid，建立映射表</li>\n<li>一对多：一个 uid 多台设备，聚合时归一到 uid</li>\n<li>多对一：一个 did 多人共用，用登录行为/时间切分或降权</li>\n<li>反作弊：同设备多账号、异常频次做拦截，DAU 口径去重</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>未登录用户怎么统一身份？</li>\n<li>DAU 口径下刷数据怎么处理？</li>\n</ul>"
     },
     {
       "id": "SQL-0001",
@@ -9420,6 +9598,33 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<h3>阿里系集团 1 一面</h3>\n<ol>\n<li>先做个自我介绍，重点讲一下为什么学数学专业，以及为什么从数学专业转向 AI 工程方向。</li>\n<li>在校期间有没有系统学习过计算机相关课程？</li>\n<li>计算机组成原理、网络、数据库这些有涉及吗？</li>\n<li>你觉得数学专业对你现在做数据开发或 AI 工程有哪些帮助或局限？</li>\n<li>下面开始拷打两段实习：</li>\n</ol>\n<p>1）底层用什么平台查数？存储引擎有了解吗？ 2）语义识别和 SQL 生成是不是调用了底层大模型的能力？用的是什么模型？ 3）你觉得 Agent 问数和传统的大报表问数有什么区别？ 4）有没有考虑过其他技术路线实现问数？不一定是通过 SQL 的方式。 5）不同人对同一个字段的命名可能不一样，这种情况你怎么处理？</p>\n<ol>\n<li>对 Java 项目了解多吗？比如 Spring 框架之类的。</li>\n<li>RPC 框架之类的通用工程概念有了解吗？</li>\n<li>有关注 AI Agent 的发展吗？</li>\n<li>对提示词工程、上下文工程、Harness 工程有了解吗？</li>\n<li>除了项目中用到的 Agent，你还用过其他 AI 工具吗？比如 OpenAI 的相关平台。</li>\n<li>没有数仓建模的经验吧？实习过程中 SQL 写得多吗？</li>\n</ol>\n<h3>阿里系集团 2 一面</h3>\n<ol>\n<li>你之前处理的都是离线数据吗？有没有实时数据处理相关经验？</li>\n<li>你求职目标更偏向数据研发、BI/商分、算法还是数据产品？</li>\n<li>你对 AI 数据工程师这个岗位怎么理解？</li>\n<li>有没有离线数据建模经验？</li>\n<li>数仓大概怎么分层？为什么这样设计？</li>\n<li>数据模型除了分层，一般还按什么模式设计？</li>\n<li>拷打简历实习：</li>\n</ol>\n<p>1）一张表需要维护哪些信息，才能让人、机器都好理解？ 2）通用 AI Agent 核心能力/核心组件有哪些？ 3）MCP 和 Skill 有什么差异？ 4）有没有编写过 Skill？用什么工具、做过什么？ 5）同样的问题，Agent 有时返回不同结果，可能是什么原因？</p>\n<ol>\n<li>多域、多表、无明确维度的统一 Agent 问数，难点在哪？</li>\n<li>要提升多表场景下问答准确率，需要维护哪些信息？</li>\n<li>知识库应该维护哪些内容？</li>\n<li>两道手撕 SQL</li>\n</ol>\n<blockquote>备注：偏 AI + 数据研发，深挖实习经历并对底层问题追问，具体实习内容已隐去。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-04-22-bytedance-data-dev-0422",
+      "company": "字节跳动",
+      "business": "数据开发",
+      "position": "数据开发工程师（一面）",
+      "date": "2026-04-22",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>实习和项目经历深挖</li>\n<li>SQL：行转列</li>\n<li>SQL：不用子查询筛选消费额大于 10 的用户</li>\n<li>Python：数组计算出现频次</li>\n<li>Python：二分查找下标</li>\n<li>HDFS 的组成</li>\n<li>ORC + Snappy 格式</li>\n<li>数据倾斜</li>\n<li>数据均匀依然出现倾斜的原因</li>\n<li>Shuffle 原理</li>\n</ol>\n<blockquote>备注：约 45 分钟，用户自述「问的不难但面的一坨」，SQL/Python 代码题附完整代码。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-04-22-bytedance-data-dev-1-0422",
+      "company": "字节跳动",
+      "business": "数据开发",
+      "position": "数据开发工程师（一面）",
+      "date": "2026-04-22",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>为什么想做数开</li>\n<li>实习 1 深挖：</li>\n<ul>\n<li>单机还是分布式</li>\n<li>如果数据量增长，单机形式会出现什么瓶颈，怎么改造来适配</li>\n<li>数据爬取后，接入什么计算引擎来处理数据</li>\n<li>对数仓分层的了解</li>\n<li>文本清洗怎么做的</li>\n<li>特征工程怎么做的</li>\n<li>如果模型误报比较多，从数据层面怎么定位，怎么优化这部分的问题</li>\n<li>从误报类型角度，判断和分析</li>\n<li>自动化流程怎么部署和处理的</li>\n<li>如果数据接口变更，导致报错，怎么排查和修复问题</li>\n<li>如果用 java 改写自动化流程，怎么实现</li>\n<ol>\n<li>实习 2 深挖：</li>\n<ul>\n<li>需求沟通，业务方表达不明确，怎么沟通引导梳理</li>\n<li>数据埋点常见异常</li>\n<li>怎么保障漏斗分析数据的可信度</li>\n<li>特征工程分箱方式怎么选的</li>\n<li>标签体系怎么设计的</li>\n<li>是否涉及数仓分层，都有哪些层</li>\n<li>实时看板，实时性如何保障，数据来源是什么</li>\n<li>场景和图表选择，思考方式</li>\n<ol>\n<li>实习 3 深挖：</li>\n<ul>\n<li>怎么通过分布式去处理大规模数据</li>\n<li>怎么保障 prompt 的多样性</li>\n<li>如果训练后的模型没有提升，怎么排查问题</li>\n<li>如果用 java 编写这部分脚本，怎么实现依赖管理和异常处理</li>\n<ol>\n<li>SQL 题：用户表和订单表，计算每个城市 top5 的用户累计消费金额</li>\n<li>用 python 文本清理：去重，去噪，分词停用词，可能会用到的库</li>\n<li>怎么去处理大数据导致的内存溢出</li>\n<li>用 python 编写自动化脚本，用指定接口读取数据，清洗后放入 mysql，添加日志输出和捕获异常，怎么通过多线程/多进程提升效率</li>\n<li>多线程和多进程的区别</li>\n<li>spark 的宽依赖窄依赖</li>\n<li>gateway 常用命令</li>\n</ol>\n</ul>\n</ol>\n</ul>\n</ol>\n</ul>\n</ol>\n<blockquote>备注：三段实习深挖 + SQL/Python 实战，偏工程落地与代码能力。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-04-22-bytedance-warehouse-she-zhao",
+      "company": "字节跳动",
+      "business": "数仓",
+      "position": "数仓（社招，一面）",
+      "date": "2026-04-22",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>XX 公司的业务你主要负责哪一块</li>\n<li>负责的 XX 数仓，基建是怎么做的</li>\n<li>都有哪些宽表</li>\n<li>XX 数仓都有哪些业务流程</li>\n<li>上述流程中业务的核心指标是什么</li>\n<li>日活多少</li>\n<li>日/周付费次数、金额量级</li>\n<li>怎么在数仓层面做埋点漏报、埋点错误的校验</li>\n<li>日活用户的定义</li>\n<li>用户登录是以 uid 还是 did 为准</li>\n<li>uid 和 did 会有一对多的关系，怎么解决的这种问题</li>\n<li>一个人可能会使用多台账号刷数据，会做拦截/处理吗</li>\n<li>用户登录时怎么判别用户身份，是 B 端/C 端用户</li>\n<li>怎么保障 SLA</li>\n<li>SLA 任务能占多少</li>\n<li>怎么判断一个任务是不是核心任务</li>\n<li>任务队列怎么治理</li>\n<li>怎么判断任务使用的资源是合理的</li>\n<li>怎么判断队列治理是有效的</li>\n</ol>\n<blockquote>备注：数仓社招一面（凉经），围绕埋点校验、用户身份、SLA 与任务队列治理深挖。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-04-22-didi-finance",
       "company": "滴滴金融",
       "business": "数仓社招",
@@ -9447,6 +9652,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>数据质量怎么做</li>\n<li>准确性和完整性怎么做</li>\n<li>怎么把之前的工作固化成规则（什么样的数据做枚举值监控，什么样的数据做空值监控）</li>\n<li>什么样的同环比设置不会误报，并且是有价值的</li>\n<li>建模怎么做，前期设计、开发、完成后如何推广</li>\n<li>总线矩阵是啥样的，业务过程体现在哪</li>\n<li>削峰填谷怎么做的</li>\n<li>哪些任务优先优化，哪些任务不着急优化怎么判断</li>\n<li>有没有对 CPU 使用、资源情况的监控</li>\n<li>数仓表怎么推广，新表怎么替换老表</li>\n<li>日常做过什么优化，调度任务的优化呢</li>\n<li>倾斜优化做过几种</li>\n</ol>"
     },
     {
+      "interview_id": "INTERVIEW-2026-04-20-bytedance-agent-data-3round",
+      "company": "字节跳动",
+      "business": "AI Agent 数据开发",
+      "position": "AI Agent 方向数据开发（三轮）",
+      "date": "2026-04-20",
+      "round": "三轮",
+      "body_html": "<h2>面经记录（原始）</h2>\n<h3>一面（基础 + 数据 + 项目）</h3>\n<ol>\n<li>自我介绍</li>\n<li>数仓分层设计思路，ODS、DWD、DWS、ADS 怎么划分？</li>\n<li>大模型相关数据（对话、行为、反馈、埋点）如何接入与清洗？</li>\n<li>数据倾斜常见场景及解决方案？</li>\n<li>实时数据与离线数据一致性怎么保证？</li>\n<li>AI Agent 特征数据生产流程、延迟要求、优化手段？</li>\n<li>数据质量监控体系怎么做？异常怎么发现、告警、处理？</li>\n<li>数据血缘、元数据管理、成本优化实践？</li>\n<li>Spark 核心原理、宽窄依赖、Shuffle 机制、内存模型？</li>\n<li>Flink 实时处理原理、水位线、窗口、状态存储？</li>\n<li>SQL 优化思路：索引、分区、裁剪、聚合、子查询优化？</li>\n<li>Hive 架构、存储格式、分区分桶、调优？</li>\n<li>数据建模：星型模型、雪花模型、维度建模？</li>\n<li>埋点设计、数据规范、数据口径统一？</li>\n<li>离线任务延迟、资源争抢、任务排队问题怎么解决？</li>\n<li>场景题：设计一个 AI 对话数据实时统计链路</li>\n</ol>\n<h3>二面（深度 + 架构 + AI 数据链路）</h3>\n<ol>\n<li>自我介绍（侧重架构能力、AI 业务理解）</li>\n<li>AI Agent 工具调用数据如何采集、解析、存储、分析？</li>\n<li>大模型 prompt 数据、上下文数据怎么结构化处理？</li>\n<li>多轮对话数据如何建模？怎么存储更高效？</li>\n<li>特征数据低延迟生产方案，如何做到秒级可用？</li>\n<li>数据成本优化：存储、计算、任务调度如何降本？</li>\n<li>数据回溯、重跑机制、幂等性设计如何保证？</li>\n<li>模型评测数据、标注数据、实验数据链路怎么设计？</li>\n<li>实时数仓架构设计，Lambda/Kappa 架构对比？</li>\n<li>海量小文件问题成因与根治方案？</li>\n<li>数据倾斜终极解决方案（key 打散、加盐、局部聚合）？</li>\n<li>Flink 状态后端选择、状态膨胀、checkpoint 调优？</li>\n<li>数据服务 API 设计、高并发、缓存策略？</li>\n<li>数据安全、权限、脱敏、合规处理？</li>\n<li>字节数据中台特点、调度系统、任务依赖机制？</li>\n<li>场景题：亿级对话日志的离线 + 实时数据架构</li>\n</ol>\n<h3>三面（综合 + 业务 + 技术视野）</h3>\n<ol>\n<li>自我介绍（简洁突出技术深度、业务理解）</li>\n<li>你做的数据体系如何支撑 AI 产品迭代？</li>\n<li>最复杂的数据问题是什么？怎么定位、解决、复盘？</li>\n<li>数据口径不一致如何推动统一？</li>\n<li>需求频繁变化时，数据架构如何保持扩展性？</li>\n<li>数据产出延迟如何优化？有哪些量化成果？</li>\n<li>对 AI Agent 数据未来发展的理解？</li>\n<li>技术选型依据是什么？如何做架构决策？</li>\n<li>线上数据故障如何处理？</li>\n</ol>\n<blockquote>备注：字节 AI Agent 方向数据开发，3 年数开 + 硕士背景，三轮 41 题。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-04-15-meituan-bigdata",
       "company": "美团",
       "business": "大数据开发",
@@ -9454,6 +9668,15 @@ window.OS_DATA = {
       "date": "2026-04-15",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>广播 Join 和 Shuffle Join 的区别，Shuffle 为什么慢</li>\n<li>小文件问题是在 Spark 读的环节慢，还是运行时慢</li>\n<li>Hive 二级分区，Spark 写二级分区遇到过什么坑</li>\n<li>滑动窗口：每 5 分钟统计过去一小时的行为，100 万条/分钟，输出量和计算量怎么估算</li>\n<li>Flink 基于 Checkpoint 重启时，Kafka 的 offset 能精确回溯吗</li>\n<li>两段 SQL 有没有性能问题，在 Spark 里怎么执行</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-04-12-bytedance-agent-data-1",
+      "company": "字节跳动",
+      "business": "AI Agent 数据开发",
+      "position": "AI Agent 方向数据开发（一面）",
+      "date": "2026-04-12",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>agent 项目后续如何优化，目前结果差的原因是啥</li>\n<li>Doris 除了新建 rollup 优化，还有什么方法？</li>\n<li>rollup 和预聚合区别</li>\n<li>agent 项目口径频繁变更怎么办？</li>\n<li>语义解析逻辑和平台的交互怎么设计？</li>\n<li>怎么看 doris 执行计划？</li>\n<li>在 doris 是否有做过拉链表？</li>\n<li>给了四道手撕题（二叉树、三道 SQL）</li>\n</ol>\n<blockquote>备注：字节一面，重点考 AI Agent 项目落地深度 + Doris 引擎理解，最后 4 道手撕。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-03-30-tencent-data-eng",
@@ -9490,6 +9713,15 @@ window.OS_DATA = {
       "date": "2025-03-24",
       "round": "二面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>开发的指标和开发的过程，包括哪些维度</li>\n<li>如何衡量指标覆盖率和准确度</li>\n<li>数仓分层</li>\n<li>雪花模型和星型模型，使用场景，建模中用哪个比较多</li>\n<li>数据倾斜遇到没有，实际开发如何优化任务</li>\n<li>Spark 的 shuffle 过程，和 MapReduce 的 shuffle 区别</li>\n<li>手撕 SQL：开窗排序、LAG 差值</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2025-03-03-bytedance-global-data",
+      "company": "字节跳动",
+      "business": "国际化数据开发",
+      "position": "数据开发（一面）",
+      "date": "2025-03-03",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>实习经历 / 实习时间</li>\n<li>课题组主要研究</li>\n<li>Spark 与 MR 的区别</li>\n<li>Shuffle 过程</li>\n<li>RDD 机制</li>\n<li>数仓分层</li>\n<li>星型模型与雪花模型</li>\n<li>HashMap 的 put 过程</li>\n<li>Binlog 机制</li>\n<li>MySQL 的索引结构，B+ 树与 B 树的区别</li>\n<li>数仓为什么分五层（自己的理解）</li>\n<li>Doris 与 ClickHouse 的区别</li>\n<li>Flink 相关</li>\n<li>UDF 实际使用</li>\n<li>宽窄依赖</li>\n<li>RANK 与 DENSE_RANK 哪个连续</li>\n<li>说一下你的个人优势</li>\n<li>层次遍历（二叉树层序遍历）</li>\n<li>查询 id 对应的 name，列转行</li>\n<li>任务逾期列转行</li>\n<li>Kafka 中 producer、consumer、partition 三者的关系</li>\n</ol>\n<blockquote>备注：小红书 @小红薯67F01230，算法为 ACM 模式。</blockquote>"
     }
   ]
 };
