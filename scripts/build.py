@@ -20,7 +20,7 @@ DOMAIN_META = {
     "warehouse": {"label": "数仓", "type": "technical"},
     "sql": {"label": "SQL", "type": "technical"},
     "project": {"label": "项目 / 行为", "type": "project"},
-    "hdfs": {"label": "HDFS", "type": "technical"},
+    "hdfs": {"label": "Hadoop / HDFS", "type": "technical"},
     "storage": {"label": "存储引擎", "type": "technical"},
     "lakehouse": {"label": "数据湖", "type": "technical"},
     "starrocks": {"label": "StarRocks", "type": "technical"},
@@ -30,9 +30,10 @@ DOMAIN_META = {
     "network": {"label": "网络", "type": "technical"},
     "algorithm": {"label": "算法", "type": "technical"},
     "statistics": {"label": "统计", "type": "technical"},
+    "ml": {"label": "机器学习", "type": "technical"},
     "llm": {"label": "大模型", "type": "technical"},
 }
-DOMAIN_ORDER = ["spark", "hdfs", "storage", "lakehouse", "starrocks", "flink", "network", "algorithm", "statistics", "llm", "platform", "system", "warehouse", "sql", "project"]
+DOMAIN_ORDER = ["spark", "hdfs", "storage", "lakehouse", "starrocks", "flink", "network", "algorithm", "statistics", "ml", "llm", "platform", "system", "warehouse", "sql", "project"]
 
 
 def split_frontmatter(text: str):

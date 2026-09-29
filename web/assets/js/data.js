@@ -1,13 +1,13 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:23:21+08:00",
+  "generatedAt": "2026-09-29T11:29:17+08:00",
   "stats": {
-    "questions": 383,
-    "interviews": 40,
-    "technical": 298,
+    "questions": 397,
+    "interviews": 46,
+    "technical": 312,
     "project": 85,
     "domains": {
-      "spark": 40,
-      "hdfs": 1,
+      "spark": 41,
+      "hdfs": 3,
       "storage": 17,
       "lakehouse": 7,
       "starrocks": 11,
@@ -15,11 +15,12 @@ window.OS_DATA = {
       "network": 4,
       "algorithm": 8,
       "statistics": 1,
-      "llm": 73,
+      "ml": 5,
+      "llm": 74,
       "platform": 2,
       "system": 6,
-      "warehouse": 90,
-      "sql": 22,
+      "warehouse": 94,
+      "sql": 23,
       "project": 85
     }
   },
@@ -29,7 +30,7 @@ window.OS_DATA = {
       "type": "technical"
     },
     "hdfs": {
-      "label": "HDFS",
+      "label": "Hadoop / HDFS",
       "type": "technical"
     },
     "storage": {
@@ -58,6 +59,10 @@ window.OS_DATA = {
     },
     "statistics": {
       "label": "统计",
+      "type": "technical"
+    },
+    "ml": {
+      "label": "机器学习",
       "type": "technical"
     },
     "llm": {
@@ -953,6 +958,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>Spark shuffle 从 Hash（文件爆炸）演进到 Consolidate Hash（减少文件）、再演进到 Sort（文件数稳定）和 Tungsten Sort（堆外 + 二进制加速）。</p>\n<h2>30 秒回答</h2>\n<p>四代：Hash Shuffle（M×R 文件爆炸）→ Consolidate Hash（同 executor 共享文件，E×R）→ Sort Shuffle（每 task 1 数据文件 + 1 索引，2×M）→ Tungsten Sort（堆外内存 + 二进制，性能再提升）。2.x 后默认 Sort + Tungsten。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Hash Shuffle：每个 map 给每个 reduce 建文件，文件数 M×R，小任务快但大任务文件爆炸</li>\n<li>Consolidate Hash：同 executor 多 map 共享一组文件，文件数 E×R，缓解但仍有上限</li>\n<li>Sort Shuffle：每 task 只写 1 数据 + 1 索引文件，按 partition 排序，文件数稳定为 2×M，代价是强制排序</li>\n<li>Tungsten Sort：堆外内存、二进制数据、缓存友好布局，性能最优，但有限制条件，不满足会 fallback 到 Sort</li>\n<li>核心思路：从「文件数爆炸」到「文件数可控」，从「JVM 堆内」到「堆外 + 二进制」</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Sort Shuffle 为什么必须排序？</li>\n<li>Tungsten 在什么情况下会 fallback？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0041",
+      "type": "technical",
+      "question": "Spark 的 Stage 是怎么划分的",
+      "topic": [
+        "spark",
+        "stage"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-14-kuaishou-liuyong-er-mian",
+          "company": "快手",
+          "position": "数据研发（留用实习）",
+          "date": "2026-05-14"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>以宽依赖（Shuffle Dependency）为界：DAGScheduler 从最终 RDD 往前回溯，每遇到一个宽依赖切一刀。</p>\n<h2>30 秒回答</h2>\n<p>Driver 把 SQL/RDD 解析成逻辑计划，DAGScheduler 从最终 RDD 往前回溯，遇到宽依赖（shuffle）就分成前后两个 Stage。最后一个 Stage 是 ResultStage，前面是 ShuffleMapStage。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>切分依据：宽依赖是全局 barrier，必须等所有上游 map task 跑完才能拉取，无法 pipeline</li>\n<li>窄依赖（map/filter）一对一，可 pipeline 在同一 Stage 连续执行</li>\n<li>最后一个 Stage 是 ResultStage，前面都是 ShuffleMapStage</li>\n<li>例：<code>t1 JOIN t2 GROUP BY</code> 至少 3 个 Stage（t1 map、t2 map、join+group result），小表广播则只 2 个</li>\n<li>实操：Spark UI 里几个 GROUP BY/JOIN 大概对应几个 Stage</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么窄依赖可以在一个 Stage 内 pipeline？</li>\n<li>小表广播为什么能减少 Stage 数？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -975,6 +1002,50 @@ window.OS_DATA = {
       ],
       "domain": "hdfs",
       "body_html": "<h2>一句话</h2>\n<p>NameNode 管元数据和文件到 block 的映射，DataNode 存实际数据；客户端读写都先问 NameNode 要 DataNode 位置，再和 DataNode 传数据。</p>\n<h2>30 秒回答</h2>\n<p>写：请求 NameNode 创建文件 -&gt; 返回 DataNode 列表 -&gt; 按 block 写入第一个 DataNode -&gt; 管道式复制到副本 -&gt; 完成确认，NameNode 更新元数据。 读：请求 NameNode 拿 block 位置 -&gt; 返回就近排序的 DataNode -&gt; 逐个 block 读取。</p>\n<h2>1 分钟回答</h2>\n<p>写流程：</p>\n<ol>\n<li>client 向 NameNode 发创建请求，检查权限/配额</li>\n<li>NameNode 返回 DataNode 列表（按副本策略）</li>\n<li>client 写第一个 DataNode，DataNode 间 pipeline 复制到其余副本</li>\n<li>每个 block 写完发确认，最后一个 block 写完关文件，NameNode 更新元数据</li>\n</ol>\n<p>读流程：</p>\n<ol>\n<li>client 向 NameNode 请求文件元数据</li>\n<li>NameNode 返回 block 位置，按网络距离排序</li>\n<li>client 就近从 DataNode 读每个 block</li>\n<li>读完所有 block 返回</li>\n</ol>\n<h2>追问</h2>\n<ul>\n<li>副本默认几个，副本放置策略？</li>\n<li>NameNode 宕机会怎样，HA 怎么解决？</li>\n<li>block 默认多大，为什么是 128MB？</li>\n</ul>"
+    },
+    {
+      "id": "HDFS-0002",
+      "type": "technical",
+      "question": "HDFS 架构是什么（NameNode / DataNode / 副本）",
+      "topic": [
+        "hdfs",
+        "architecture"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-14-kuaishou-liuyong-er-mian",
+          "company": "快手",
+          "position": "数据研发（留用实习）",
+          "date": "2026-05-14"
+        }
+      ],
+      "domain": "hdfs",
+      "body_html": "<h2>一句话</h2>\n<p>HDFS 是 Master-Slave 分布式文件系统：NameNode 管元数据、DataNode 存数据块，默认 3 副本容错。</p>\n<h2>30 秒回答</h2>\n<p>NameNode 管元数据（文件分几个 block、每个 block 在哪几个 DataNode），DataNode 存实际数据（默认 3 副本），SecondaryNameNode 帮 NameNode 合并 fsimage 和 editlog。Hive 表底层就存在 HDFS 上。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>NameNode：元数据节点，维护目录树和 block 到 DataNode 的映射，是单点</li>\n<li>DataNode：数据节点，存 block 数据，定时向 NameNode 心跳 + 上报块信息</li>\n<li>SecondaryNameNode：定期合并 fsimage 和 editlog，不是热备</li>\n<li>副本：默认 3 副本，一个 rack 内一个 + 跨 rack 一个，保证容错</li>\n<li>读写：大文件顺序读写，不适合小文件（元数据压力大）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>SecondaryNameNode 是 NameNode 的备份吗？</li>\n<li>HDFS 为什么不适合大量小文件？</li>\n</ul>"
+    },
+    {
+      "id": "HDFS-0003",
+      "type": "technical",
+      "question": "MapReduce 的编程模型，为什么被 Spark 取代",
+      "topic": [
+        "hdfs",
+        "mapreduce"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-14-kuaishou-liuyong-er-mian",
+          "company": "快手",
+          "position": "数据研发（留用实习）",
+          "date": "2026-05-14"
+        }
+      ],
+      "domain": "hdfs",
+      "body_html": "<h2>一句话</h2>\n<p>MapReduce 是「Map + Reduce」两阶段计算模型；因为中间结果全落盘、多作业靠 HDFS 串数据（带副本），慢且 IO 重，逐步被 Spark 的内存计算 + DAG 取代。</p>\n<h2>30 秒回答</h2>\n<p>Map 做映射、Shuffle 分区、Reduce 做聚合。慢的原因：map 输出落盘、shuffle 落盘、reduce 输出写 HDFS，多个 MR 之间通过 HDFS 传递且带副本。Spark 用内存计算 + DAG pipeline 少落盘，所以快一个量级。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>编程模型：Map（映射/过滤）+ Reduce（聚合），中间靠 Shuffle 按 key 分组</li>\n<li>为什么慢：中间结果全落磁盘，复杂作业拆多个 MR，数据通过 HDFS 传递还带 3 副本</li>\n<li>Spark 替代点：内存计算、DAG 同 Stage 内 pipeline、算子丰富（不止 Map+Reduce）</li>\n<li>价值：MR 的「分而治之 + Shuffle」思想是 Spark/Flink 的基础</li>\n<li>现在：Hive on Spark，Hive 做解析元数据，Spark 做实际执行</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>MR 的 Shuffle 和 Spark 的 Shuffle 核心区别？</li>\n<li>MR 还有哪些场景在用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0001",
@@ -2289,6 +2360,116 @@ window.OS_DATA = {
       ],
       "domain": "statistics",
       "body_html": "<h2>一句话</h2>\n<p>两者都是假设检验，判断样本差异是否显著；z 检验用于大样本且总体方差已知，t 检验用于小样本或方差未知。</p>\n<h2>30 秒回答</h2>\n<p>z 检验要求总体标准差已知、样本量大，用正态分布；t 检验在样本量小（通常 &lt;30）或总体方差未知时用，用 t 分布。数据开发里常出现在 AB 测试、指标显著性判断场景。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>z 检验：总体方差已知 + 大样本，统计量服从标准正态分布</li>\n<li>t 检验：小样本或方差未知，用样本方差估计，服从 t 分布，自由度越小 t 分布越「胖尾」</li>\n<li>样本量足够大时 t 分布逼近正态，两者结果趋于一致</li>\n<li>应用：AB 实验判断实验组/对照组指标差异是否统计显著，常用 p 值 / 置信区间</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>单尾检验和双尾检验什么时候用？</li>\n<li>p 值小于 0.05 就代表业务上有效吗？</li>\n</ul>"
+    },
+    {
+      "id": "ML-0001",
+      "type": "technical",
+      "question": "过拟合是什么，怎么处理",
+      "topic": [
+        "ml",
+        "overfitting"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-14-kuaishou-liuyong-er-mian",
+          "company": "快手",
+          "position": "数据研发（留用实习）",
+          "date": "2026-05-14"
+        }
+      ],
+      "domain": "ml",
+      "body_html": "<h2>一句话</h2>\n<p>过拟合是模型学到了训练数据的噪声而非泛化规律：训练集效果好、测试集明显变差。</p>\n<h2>30 秒回答</h2>\n<p>判断：训练集和验证集指标差距大就是过拟合。处理：加数据、正则化（L1/L2/Dropout）、降模型复杂度（树深度/层数）、早停、数据增强。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定义：模型记住了训练样本的噪声，泛化能力差</li>\n<li>判断：train 指标高、val/test 指标显著低</li>\n<li>处理：增加训练数据；L1/L2/Dropout 正则；降低模型复杂度；早停；数据增强</li>\n<li>对应概念：欠拟合是训练集都不好，偏差-方差权衡</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>过拟合和欠拟合怎么区分？</li>\n<li>L1 和 L2 正则有什么区别？</li>\n</ul>"
+    },
+    {
+      "id": "ML-0002",
+      "type": "technical",
+      "question": "RMSE、MAE、R² 这些回归评估指标",
+      "topic": [
+        "ml",
+        "metric"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-14-kuaishou-liuyong-er-mian",
+          "company": "快手",
+          "position": "数据研发（留用实习）",
+          "date": "2026-05-14"
+        }
+      ],
+      "domain": "ml",
+      "body_html": "<h2>一句话</h2>\n<p>RMSE 是预测误差平方的均值再开方，同量纲且对大误差敏感；MAE 是绝对值均值，对异常值不敏感；R² 是相对拟合优度。</p>\n<h2>30 秒回答</h2>\n<p><code>RMSE = sqrt(mean((y_pred - y_true)^2))</code>。RMSE 对大误差敏感（平方放大），适合「大错不能容忍」场景；MAE 对异常值不敏感；R² 在 0-1 之间表示解释了多少方差。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>RMSE：平方再开方，单位同原指标，对大误差敏感</li>\n<li>MAE：绝对误差均值，稳健但对量纲敏感</li>\n<li>R²：相对指标，越接近 1 拟合越好</li>\n<li>选择：看是否要惩罚大误差，以及业务是否好解读（RMSE 同量纲更直观）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>什么时候用 MAE 不用 RMSE？</li>\n<li>R² 会是负数吗？</li>\n</ul>"
+    },
+    {
+      "id": "ML-0003",
+      "type": "technical",
+      "question": "梯度下降 / 反向传播的基本思路",
+      "topic": [
+        "ml",
+        "optimization"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-05-14-kuaishou-liuyong-er-mian",
+          "company": "快手",
+          "position": "数据研发（留用实习）",
+          "date": "2026-05-14"
+        }
+      ],
+      "domain": "ml",
+      "body_html": "<h2>一句话</h2>\n<p>对损失函数求每个参数的偏导得到梯度方向，<code>参数 -= 学习率 × 梯度</code> 往损失最小的方向迭代更新。</p>\n<h2>30 秒回答</h2>\n<p>梯度下降：对损失函数求参数偏导得梯度，沿负梯度方向更新参数。反向传播：神经网络里用链式法则从输出层把损失一层层往前传，每层算自己的梯度更新自己的参数。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>梯度下降：<code>θ = θ - lr * ∂L/∂θ</code>，lr 是学习率</li>\n<li>反向传播：链式法则，从输出往前逐层算梯度</li>\n<li>学习率：太大震荡，太小收敛慢</li>\n<li>变体：批量/随机/小批量梯度下降</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>学习率太大会怎样？</li>\n<li>为什么要分 batch？</li>\n</ul>"
+    },
+    {
+      "id": "ML-0004",
+      "type": "technical",
+      "question": "统计方法、机器学习、深度学习的关系",
+      "topic": [
+        "ml",
+        "overview"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-25-bytedance-douyin-ml",
+          "company": "字节跳动",
+          "position": "数据开发（一个半小时）",
+          "date": "2026-07-25"
+        }
+      ],
+      "domain": "ml",
+      "body_html": "<h2>一句话</h2>\n<p>统计是方法论基础，机器学习是从数据中学习规律/映射的方法，深度学习是机器学习里基于神经网络的子集。</p>\n<h2>30 秒回答</h2>\n<p>统计提供分布、估计、检验等数学基础；机器学习从数据自动学映射关系，分监督/无监督/强化；深度学习用多层神经网络自动学特征，算力数据驱动，是机器学习的子集。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>统计：描述数据、假设检验、参数估计，提供理论基础</li>\n<li>机器学习：从数据中学规律，含传统算法（回归/树/SVM/聚类）</li>\n<li>深度学习：多层神经网络自动提取特征，需要大数据 + 算力</li>\n<li>关系：层层递进，深度学习是 ML 的子集，ML 大量借用统计方法</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>传统 ML 和深度学习在特征上有什么区别？</li>\n<li>什么场景用传统 ML 而不是 DL？</li>\n</ul>"
+    },
+    {
+      "id": "ML-0005",
+      "type": "technical",
+      "question": "常见的聚类算法有哪些",
+      "topic": [
+        "ml",
+        "clustering"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-25-bytedance-douyin-ml",
+          "company": "字节跳动",
+          "position": "数据开发（一个半小时）",
+          "date": "2026-07-25"
+        }
+      ],
+      "domain": "ml",
+      "body_html": "<h2>一句话</h2>\n<p>常见聚类：KMeans（划分）、层次聚类、DBSCAN（密度）、GMM（高斯混合/软聚类）。</p>\n<h2>30 秒回答</h2>\n<p>KMeans 按距离迭代分 K 类；层次聚类自底向上/自顶向下合并；DBSCAN 按密度找任意形状簇、抗噪；GMM 用高斯分布做软聚类，给出样本属于每类的概率。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>KMeans：需预指定 K，对初始值和球形簇敏感，适合大样本</li>\n<li>层次聚类：不用指定 K，可看树状图，但计算量大</li>\n<li>DBSCAN：基于密度，能发现任意形状簇、识别噪声，对参数 eps/minPts 敏感</li>\n<li>GMM：概率软聚类，EM 求解，适合有重叠的簇</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>KMeans 的 K 怎么选？</li>\n<li>DBSCAN 和 KMeans 什么场景选哪个？</li>\n</ul>"
     },
     {
       "id": "LLM-0001",
@@ -3742,6 +3923,28 @@ window.OS_DATA = {
       ],
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>Kafka 做削峰、解耦、重放；Redis 做高频读写缓存；两者串联成「线上服务 → Kafka → Flink → Redis/HDFS」的实时样本回流链路。</p>\n<h2>30 秒回答</h2>\n<p>Kafka 三件事：削峰（行为流高峰缓冲）、解耦（上游写一份多消费组各取所需）、重放（从任意 offset 重消费）。Redis 三件事：用户 Embedding 毫秒级查询、Flink 算完的实时特征写入给线上读、样本去重用 SET 做短窗口过滤。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Kafka：源头的削峰/解耦/重放，按主框架/模块拆 Topic</li>\n<li>Redis：Embedding 缓存给线上推理、实时特征写缓存、样本去重短窗过滤</li>\n<li>完整链路：线上服务 → Kafka → Flink 实时打标 → 双路出口（一份进 HDFS/Iceberg 给离线训练，一份进 Redis 给在线学习）</li>\n<li>关键：Redis 不是持久层，HDFS/Iceberg 才是真值来源</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Kafka 积压怎么处理？</li>\n<li>Redis 和特征中台是什么关系？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0083",
+      "type": "technical",
+      "question": "如何提高 Agent 的通用性",
+      "topic": [
+        "llm",
+        "agent"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-03-bytedance-data-dev-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（实习）",
+          "date": "2026-07-03"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>提高通用性靠 Skill 模块化、意图识别清晰、上下文按需加载、工具抽象统一、以及评测反馈闭环迭代。</p>\n<h2>30 秒回答</h2>\n<p>把能力拆成可组合的 Skill，意图识别准了才匹配对；上下文按需加载别全塞；工具抽象成统一 MCP 接口；用评测集持续测，bad case 回流改进，让 Agent 从「单场景定制」走向「多场景复用」。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Skill 模块化：一个 Skill 一个场景，组合复用</li>\n<li>意图识别：关键词 + 语义，决定匹配哪个 Skill</li>\n<li>上下文按需加载：减少无关上下文，降低幻觉</li>\n<li>工具抽象：统一 MCP 接口，工具可插拔</li>\n<li>评测闭环：准确率/成功率指标 + bad case 分类回流</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>通用性和专用性怎么权衡？</li>\n<li>意图识别错了怎么办？</li>\n</ul>"
     },
     {
       "id": "PLATFORM-0001",
@@ -5690,6 +5893,94 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>核心四步：采集（解析 SQL 抽输入输出表三元组）→ 构建（组有向图）→ 存储（表级 MySQL / 字段级图库）→ 接入（调度提交时实时解析 + 定期全量扫描）。</p>\n<h2>30 秒回答</h2>\n<p>扫调度平台所有 SQL 解析出「输入表 → 输出表」三元组，再解析执行日志补动态 SQL；三元组组成表级有向图，字段级需要 SQL AST（ANTLR/Calcite）；表级存 MySQL 够用，字段级量大上图库；调度提交时实时解析 + 定期全量扫描兜底。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>采集：SQL 静态解析 + 执行日志动态补充</li>\n<li>构建：三元组组有向图，字段级要 AST 解析</li>\n<li>存储：表级 MySQL，字段级图数据库</li>\n<li>接入：调度提交实时解析 + 定期全量扫描</li>\n<li>价值：新版数据集上线前评估影响面、模型效果差沿血缘反查上游、合规审计、成本归因、Schema 变更影响分析</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>字段级血缘的难点在哪？</li>\n<li>血缘准确率怎么保证？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0094",
+      "type": "technical",
+      "question": "数据采集怎么做，如何保证稳定性",
+      "topic": [
+        "warehouse",
+        "ingestion"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-03-bytedance-data-dev-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（实习）",
+          "date": "2026-07-03"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>采集分埋点上报和后台流水同步两条链路；稳定性靠埋点规范、同步平台断点续传/幂等、监控告警、数据对账。</p>\n<h2>30 秒回答</h2>\n<p>埋点：前端 SDK → 上报平台 → ODS 埋点表；流水：业务库 → 同步平台 → ODS 流水表。稳定性：埋点先规范文档化 + review；同步平台支持断点续传、幂等、回补；配置延迟/量级监控告警；定期和源端对账。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>埋点上报：SDK 采集 → 平台 → ODS，小时级</li>\n<li>流水接入：业务库 → 同步任务 → ODS，小时级</li>\n<li>稳定性保障：埋点规范 + 新功能上线前 review；同步断点续传 + 幂等 + 回补；量级/延迟监控 + 熔断；定期对账防丢</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>埋点规范和流水接入的稳定性难点分别是什么？</li>\n<li>数据对账怎么做？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0095",
+      "type": "technical",
+      "question": "数仓规范和指标开发规范怎么制定并保障落地",
+      "topic": [
+        "warehouse",
+        "governance"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-03-bytedance-data-dev-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（实习）",
+          "date": "2026-07-03"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>制定靠「命名 + 分层 + 指标注册 + 接入」四类规范，落地靠平台化强制 + 审核卡点 + 定期巡检。</p>\n<h2>30 秒回答</h2>\n<p>制定：命名规范、分层职责、指标注册（口径/负责人/维度）、新指标接入流程。落地：把规范做成平台校验和模板，注册审核通过才上线，加定期巡检和通报，不能只靠文档。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>命名规范：库表字段统一命名，人和机器都好懂</li>\n<li>分层规范：各层职责、依赖方向，禁止跨层</li>\n<li>指标注册：指标名/口径/负责人/维度登记到平台</li>\n<li>接入规范：新指标先注册审核再开发</li>\n<li>落地：平台化强制（模板 + 校验）、审核卡点、定期巡检、和绩效挂钩</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>规范落地最难的是哪一步？</li>\n<li>怎么防止规范变成没人看的文档？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0096",
+      "type": "technical",
+      "question": "烟囱表怎么统一，怎么判断能不能统一",
+      "topic": [
+        "warehouse",
+        "governance"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-25-ctrip-bigdata-intern",
+          "company": "携程",
+          "position": "大数据开发（实习）",
+          "date": "2026-07-25"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>先找同源/同口径的表，确认粒度和口径一致后合并成统一宽表；判断看下游复用和成本收益，避免统一后又变新的烟囱。</p>\n<h2>30 秒回答</h2>\n<p>统一：先梳理血缘找同源表，比对粒度、口径、维度，一致的合并成一个统一模型，不一致的抽象成公共层 + 差异化出口。判断能不能统一：看下游复用度、存储计算成本、业务差异是否真的需要分开。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>统一步骤：血缘盘点 → 找同源/同口径 → 对齐粒度和口径 → 合并 + 公共层</li>\n<li>避免新烟囱：统一后落规范 + 上资产平台，新需求先查已有表</li>\n<li>判断收益：下游复用多少、省多少存储/计算、维护成本</li>\n<li>不能强并的情况：业务语义差异大、口径本质不同，硬并反而更乱</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>统一之后怎么防止变成另一张烟囱表？</li>\n<li>怎么量化统一收益？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0097",
+      "type": "technical",
+      "question": "数仓定时调度怎么做，怎么保证第二天按时产出",
+      "topic": [
+        "warehouse",
+        "scheduling"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-25-kuaishou-commercial-warehouse",
+          "company": "快手",
+          "position": "数据开发（数仓）",
+          "date": "2026-07-25"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>调度按 DAG 依赖触发，核心链路优先 + 凌晨错峰；按时产出靠关键路径倒排、熔断卡点、延迟告警和兜底重跑。</p>\n<h2>30 秒回答</h2>\n<p>调度：DAG 上游就绪才触发下游，核心链路优先级最高、凌晨先跑，非核心错峰。保证八点可用：关键路径倒排预留时间、核心表熔断（校验不过卡下游）、基线告警超时提醒、失败自动重试。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定时调度：DAG 依赖 + 优先级，核心凌晨 0 点开跑，非核心白天错峰</li>\n<li>SLA 保障：关键路径倒排、核心表熔断卡下游、基线告警、失败重试</li>\n<li>多上游（5 张表）协同：上游设统一产出窗口 + 依赖检查，超时告警定位是哪张表拖后腿</li>\n<li>目标：让「上游延迟」可定位，而不是等最终交付才发现</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>核心链路怎么倒排时间？</li>\n<li>上游延迟怎么快速定位是哪张表？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -6159,6 +6450,28 @@ window.OS_DATA = {
       ],
       "domain": "sql",
       "body_html": "<h2>一句话</h2>\n<p>行转列用 <code>CASE WHEN + MAX</code> 或 MAP 聚合，列转行用 <code>LATERAL VIEW EXPLODE</code>，TopN 用 <code>ROW_NUMBER</code>，连续行为用「日期减 ROW_NUMBER」分组。</p>\n<h2>30 秒回答</h2>\n<p>四个高频场景：行转列 <code>CASE WHEN</code> 展开再聚合；列转行 <code>EXPLODE</code>；分组 TopN <code>ROW_NUMBER OVER PARTITION BY ... ORDER BY ...</code> 取 rn&lt;=N；连续行为用「排序号减连续号」得差值，差值相同即连续段。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>行转列：<code>CASE WHEN cond THEN val END</code> + <code>MAX/GROUP BY</code></li>\n<li>列转行：<code>LATERAL VIEW EXPLODE(array)</code></li>\n<li>TopN：<code>ROW_NUMBER() OVER (PARTITION BY key ORDER BY score DESC)</code> 取 rn&lt;=N</li>\n<li>连续行为：按用户分组按天排序得 <code>rn</code>，用 <code>date_sub(date, rn)</code> 做差值，相同差值聚成一段</li>\n<li>数据量大的场景：先过滤再 explode，避免爆炸；TopN 注意热点 key 倾斜</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>RANK 和 ROW_NUMBER 什么时候用哪个？</li>\n<li>explode 后数据膨胀怎么处理？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0023",
+      "type": "technical",
+      "question": "用户留存率怎么算（SQL）",
+      "topic": [
+        "sql",
+        "retention"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-03-bytedance-data-dev-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（实习）",
+          "date": "2026-07-03"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>留存率 = 某天新增用户在 N 天后仍活跃的人数 / 当天新增人数；用首登日期自关联，按 <code>datediff</code> 分组统计。</p>\n<h2>30 秒回答</h2>\n<p>先取每个用户首次登录日期，再 join 活跃日志，按「首登日期 + datediff(活跃日期, 首登日期)」分组 count distinct user_id，除以首登当天新增数即得次日/7 日留存。</p>\n<h2>1 分钟回答</h2>\n<pre><code class=\"language-sql\">WITH first_login AS (\n  SELECT user_id, MIN(login_date) AS first_date\n  FROM login GROUP BY user_id\n)\nSELECT fl.first_date,\n       COUNT(DISTINCT CASE WHEN DATEDIFF(l.login_date, fl.first_date) = 1 THEN l.user_id END) / COUNT(DISTINCT fl.user_id) AS day1_retention\nFROM first_login fl\nLEFT JOIN login l ON l.user_id = fl.user_id\n  AND DATEDIFF(l.login_date, fl.first_date) BETWEEN 1 AND 7\nGROUP BY fl.first_date;</code></pre>\n<ul>\n<li>次日留存 = datediff 1，7 日留存 = 1~7 内还活跃</li>\n<li>分母是首登当天的新增用户数</li>\n<li>常按渠道/版本/地区分组对比</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>7 日留存和次日留存的 SQL 区别？</li>\n<li>数据量大时怎么优化？</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -8272,6 +8585,33 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>介绍项目的框架</li>\n<li>湖仓一体和纯数仓的区别是什么</li>\n<li>数据回滚怎么处理</li>\n<li>项目每天的数据量是多少</li>\n<li>粒度是什么</li>\n<li>链路性能优化是做什么</li>\n<li>Flink 如何保证数据被精准一次地消费</li>\n<li>星型模型和雪花模型，各自适合用在哪些场景</li>\n<li>三范式的概念了解吗</li>\n<li>那你觉得数仓的表是符合三范式的吗</li>\n<li>手撕：直播间最多人数对应时刻（变式）</li>\n</ol>\n<blockquote>备注：阿里数开一面，北京。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-07-25-bytedance-douyin-ml",
+      "company": "字节跳动",
+      "business": "抖音",
+      "position": "数据开发（一个半小时）",
+      "date": "2026-07-25",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>差分进化算法</li>\n<li>怎么避免陷入局部最优</li>\n<li>求解种群规划模型，nphard 问题，什么算法</li>\n<li>hdfs 原理</li>\n<li>spark 原理</li>\n<li>统计方法 机器学习 深度学习的关系</li>\n<li>聚类算法 常见的 解释一下</li>\n</ol>\n<blockquote>备注：字节抖音，一个半小时汗流浃背，偏优化/机器学习跨界拷打。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-07-25-ctrip-bigdata-intern",
+      "company": "携程",
+      "business": "中台数据",
+      "position": "大数据开发（实习）",
+      "date": "2026-07-25",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>实时数仓背景、数据治理怎么做的</li>\n<li>烟囱表怎么统一，统一之后会不会变成另一张烟囱表，大宽表怎么设计的</li>\n<li>粒度，别的维度怎么支持的</li>\n<li>怎么判断表能不能统一，收益</li>\n<li>实时数仓架构、维度和指标</li>\n</ol>\n<blockquote>备注：中台业务，从项目里挑一个实时数仓项目问，一个八股都没有，全程深挖。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-07-25-kuaishou-commercial-warehouse",
+      "company": "快手",
+      "business": "商业化数仓",
+      "position": "数据开发（数仓）",
+      "date": "2026-07-25",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>项目 dwd 里有多少表，怎么划分的</li>\n<li>项目里定时调度怎么做的</li>\n<li>假设一张表有五张上游依表依赖，这五张在凌晨产出，怎么保证第二天八点是可用的</li>\n<li>为什么分为五层，每层作用</li>\n<li>来一个业务诉求怎么去区分是什么域</li>\n<li>聚合层怎么考量？</li>\n<li>sql 优化</li>\n</ol>\n<blockquote>备注：面完三天 hr 说面试官没反馈。原始记录只保留问题。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-07-22-kuaishou-kling",
       "company": "快手",
       "business": "可灵大模型数据",
@@ -8297,6 +8637,15 @@ window.OS_DATA = {
       "date": "2026-07-17",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>数仓模型设计，离线和实时分别怎么设计，为什么</li>\n<li>高内聚低耦合在模型设计怎么体现</li>\n<li>维度退化怎么设计，哪些维度适合退化</li>\n<li>DWD 层设计原则是什么</li>\n<li>MapReduce 的 Shuffle 过程</li>\n<li>Map/Reduce task 个数怎么定，默认多少，分区怎么决定</li>\n<li>Hive 的 UDF、UDAF、UDTF 区别，开发分别继承什么</li>\n<li>两个大表 Join 数据倾斜怎么优化</li>\n<li>Flink 的 Exactly Once 怎么实现，反压怎么优化</li>\n<li>ClickHouse 解决什么问题，有什么缺点</li>\n<li>手撕 SQL：直播间峰值在线人数；连续活跃超四天用户</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-07-03-bytedance-data-dev-liangjing",
+      "company": "字节跳动",
+      "business": "数据开发",
+      "position": "数据开发（实习）",
+      "date": "2026-07-03",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>AI 在实际工作中的使用</li>\n<li>介绍如何做数据采集</li>\n<li>介绍数据采集工具</li>\n<li>数据采集稳定性如何保证</li>\n<li>如何提高 agent 通用性</li>\n<li>手撕用户留存率</li>\n<li>如何落地过实际业务需求</li>\n<li>实习中的难题</li>\n<li>业内统一数据口径的常规做法</li>\n<li>数仓规范、指标开发规范如何制定</li>\n<li>规范制定后如何保障落地执行</li>\n<li>介绍自己的项目</li>\n<li>对当下 AI 编程的理解</li>\n<li>如何避免大模型幻觉</li>\n<li>你这边可以实习多久？是否可以尽快到岗？岗位工作地点是否适配？</li>\n</ol>\n<blockquote>备注：原始记录只保留问题，不含当时答案。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-06-28-guazi-usedcar",
@@ -8387,6 +8736,24 @@ window.OS_DATA = {
       "date": "2026-05-21",
       "round": "两面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>Agent 问数和传统的大报表问数有什么区别</li>\n<li>同一张表需要维护哪些信息，才能让人、机器都好理解</li>\n<li>通用 AI Agent 核心能力/核心组件有哪些</li>\n<li>MCP 和 Skill 有什么区别</li>\n<li>同样的问题，Agent 有时返回不同结果，可能是什么原因</li>\n<li>多域、多表、无明确维度的统一 Agent 问数，难点在哪</li>\n<li>要提升多表场景下问答准确率，需要维护哪些信息</li>\n<li>知识库应该维护哪些内容</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-05-14-iflytek-bigdata-intern",
+      "company": "科大讯飞",
+      "business": "大数据",
+      "position": "大数据工程师（暑期实习）",
+      "date": "2026-05-14",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>本科排名</li>\n<li>项目拷打（累积快照表、拉链表）</li>\n<li>两道 SQL 题（口述思路即可）</li>\n<li>用过哪些大模型产品</li>\n<li>能实习多久</li>\n<li>反问</li>\n</ol>\n<blockquote>备注：30min 速食型实习一面，广度为主、深度不深，考基础数仓概念 + AI 感知。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-05-14-kuaishou-liuyong-er-mian",
+      "company": "快手",
+      "business": "数据研发",
+      "position": "数据研发（留用实习，二次一面）",
+      "date": "2026-05-14",
+      "round": "二次一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>数仓建模</li>\n<li>拷打项目</li>\n<li>了解 HDFS 吗</li>\n<li>了解 MapReduce 吗</li>\n<li>了解 Spark 吗</li>\n<li>Stage 怎么划分的</li>\n<li>数据倾斜</li>\n<li>机器学习（突然开始问，完全没准备汗流浃背）</li>\n<li>过拟合、RMSE</li>\n<li>什么求导？</li>\n<li>算法（没见过，不是 hot100）</li>\n<li>反问</li>\n</ol>\n<blockquote>备注：60min 双机位，从大数据基础组件一路拷打到机器学习，属于典型全栈式技术拷打。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-05-13-tencent-wxg",
