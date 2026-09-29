@@ -1,24 +1,24 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:09:02+08:00",
+  "generatedAt": "2026-09-29T11:10:29+08:00",
   "stats": {
-    "questions": 345,
-    "interviews": 34,
-    "technical": 260,
+    "questions": 359,
+    "interviews": 36,
+    "technical": 274,
     "project": 85,
     "domains": {
-      "spark": 36,
+      "spark": 38,
       "hdfs": 1,
-      "storage": 14,
+      "storage": 16,
       "lakehouse": 7,
       "starrocks": 11,
-      "flink": 10,
+      "flink": 15,
       "network": 4,
       "algorithm": 8,
-      "llm": 61,
+      "llm": 65,
       "platform": 2,
       "system": 6,
       "warehouse": 83,
-      "sql": 17,
+      "sql": 18,
       "project": 85
     }
   },
@@ -875,6 +875,34 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>Spark 与 YARN（资源调度）和 HDFS（数据读写）交互。</p>\n<h2>30 秒回答</h2>\n<p>提交：上传 jar 到 HDFS，向 YARN RM 申请；RM 在 NM 上启动 AM（Driver），AM 申请 Container 启动 Executor；Executor 从 HDFS 读数据、经 NM 上的 Shuffle Service 交换数据，结果写回 HDFS。</p>\n<h2>追问</h2>\n<ul>\n<li>ApplicationMaster 和 Driver 关系？</li>\n<li>Shuffle Service 作用？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0037",
+      "type": "technical",
+      "question": "RDD、DataFrame、Dataset 的区别",
+      "topic": [
+        "spark",
+        "api"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>RDD 是低层、无 schema；DataFrame 是带 schema 的列式抽象；Dataset 是强类型。</p>\n<h2>30 秒回答</h2>\n<p>RDD 灵活但性能差；DataFrame 有 schema 和 Catalyst 优化；Dataset 强类型（Scala/Java）。Spark SQL 默认用 DataFrame。</p>\n<h2>追问</h2>\n<ul>\n<li>三者怎么选？</li>\n<li>DataFrame 比 RDD 快在哪？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0038",
+      "type": "technical",
+      "question": "Spark SQL 的 Catalyst 优化器做了什么",
+      "topic": [
+        "spark",
+        "catalyst"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>Catalyst 把 SQL 解析成逻辑计划，做规则优化后转成物理计划。</p>\n<h2>30 秒回答</h2>\n<p>解析 AST → 逻辑计划 → 规则优化（谓词下推、列裁剪、常量折叠）→ 物理计划（join 策略选择）→ 生成代码。</p>\n<h2>追问</h2>\n<ul>\n<li>谓词下推是什么？</li>\n<li>RBO 和 CBO 区别？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -1198,6 +1226,34 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "storage",
       "body_html": "<h2>一句话</h2>\n<p>Kylin 预计算 Cube 适合固定报表，Doris/ClickHouse 实时/即席查询更灵活，正在替代 Kylin。</p>\n<h2>30 秒回答</h2>\n<p>Kylin 按维度组合预计算 Cube，查询快但维度爆炸成本高；Doris/ClickHouse 列存 + MPP，即席分析灵活；现代场景多用 Doris/StarRocks。</p>\n<h2>追问</h2>\n<ul>\n<li>Kylin 为什么式微？</li>\n<li>固定报表和即席分析分别选什么？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0016",
+      "type": "technical",
+      "question": "ClickHouse 的 too many parts 是什么，怎么解决",
+      "topic": [
+        "storage",
+        "clickhouse"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>高频小批量写入产生大量 part，merge 跟不上就报 too many parts。</p>\n<h2>30 秒回答</h2>\n<p>每次 INSERT 生成一个 part，写入快于 merge 时 part 堆积；解法：攒批写入、Buffer 表、异步插入、调 merge 参数、加粗分区。</p>\n<h2>追问</h2>\n<ul>\n<li>单分区 part 阈值是多少？</li>\n<li>ClickHouse 为什么不适合高频小批量写？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0017",
+      "type": "technical",
+      "question": "ClickHouse 物化视图和传统数据库物化视图的区别",
+      "topic": [
+        "storage",
+        "clickhouse"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>ClickHouse 物化视图是 INSERT 触发器，写入主表时自动预聚合到目标表；传统 MV 是定时刷新。</p>\n<h2>30 秒回答</h2>\n<p>CH MV 写时触发计算并落盘，查询直接读预聚合结果；只对新增数据生效，历史需 backfill，删主表不同步 MV。</p>\n<h2>追问</h2>\n<ul>\n<li>MV 和 SummingMergeTree 怎么配合？</li>\n<li>删主表数据 MV 会怎样？</li>\n</ul>"
     },
     {
       "id": "LAKEHOUSE-0001",
@@ -1800,6 +1856,77 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "flink",
       "body_html": "<h2>一句话</h2>\n<p>先看实时任务背压/Kafka 消费延迟，再核对窗口触发逻辑和事件时间 vs 处理时间语义。</p>\n<h2>30 秒回答</h2>\n<p>排查：实时任务是否背压、Kafka 消费延迟、离线 Spark 与实时 Flink 的窗口触发逻辑是否一致、事件时间和处理时间语义是否对齐。</p>\n<h2>追问</h2>\n<ul>\n<li>事件时间和处理时间差在哪？</li>\n<li>数据迟到怎么处理？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0012",
+      "type": "technical",
+      "question": "实时数仓的粒度和指标怎么设计",
+      "topic": [
+        "flink",
+        "realtime-warehouse"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>DWD 事件粒度，DWS 维度 + 时间窗口粒度，做增量 + 全量累计双链路，维度指标尽量精简。</p>\n<h2>30 秒回答</h2>\n<p>DWD 一条事件一行；DWS 按「维度 + 窗口」聚合，做分钟增量表和当日全量累计表两套；实时只保留核心指标（登录 UV/活跃 UV/PV），复杂指标继续走离线。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么实时维度要做减法？</li>\n<li>增量表和全量累计表各服务什么？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0013",
+      "type": "technical",
+      "question": "实时链路消息延迟怎么排查和解决",
+      "topic": [
+        "flink",
+        "latency"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>分层定位 Kafka/Flink/Iceberg/下游，看 Lag、反压、Watermark、小文件。</p>\n<h2>30 秒回答</h2>\n<p>看 Kafka 消费 Lag、Flink Web UI 反压定位瓶颈算子、Watermark 是否卡住、Iceberg commit 时长和下游调度；按倾斜/并行度/小文件/资源分别解决。</p>\n<h2>追问</h2>\n<ul>\n<li>第一个标红的算子就是瓶颈吗？</li>\n<li>Watermark 卡住怎么看？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0014",
+      "type": "technical",
+      "question": "Flink Checkpoint 缓存的是什么数据，状态后端有哪些",
+      "topic": [
+        "flink",
+        "checkpoint"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>Checkpoint 存算子状态（Operator State、Keyed State、Source offset）和元数据，不存原始消息。</p>\n<h2>30 秒回答</h2>\n<p>Keyed State（Value/List/Map、窗口聚合、join 状态）+ Operator State（Kafka offset）+ 元数据；后端有 Memory/Fs/RocksDB，生产用 RocksDB 支持大状态。</p>\n<h2>追问</h2>\n<ul>\n<li>Checkpoint 和 Savepoint 区别？</li>\n<li>RocksDB 为什么适合大状态？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0015",
+      "type": "technical",
+      "question": "Flink 的事件时间和处理时间、Watermark 是什么",
+      "topic": [
+        "flink",
+        "time",
+        "watermark"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>事件时间是数据本身的时间，处理时间是算子处理时间；Watermark 是事件时间推进的进度标记。</p>\n<h2>30 秒回答</h2>\n<p>窗口按事件时间计算要 Watermark 触发，处理时间窗口由系统时钟触发；Watermark 表示「小于该时间的数据都到了」，用于处理迟到数据。</p>\n<h2>追问</h2>\n<ul>\n<li>Watermark 怎么生成？</li>\n<li>迟到数据怎么处理？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0016",
+      "type": "technical",
+      "question": "Flink State 有哪些类型，TTL 机制是什么",
+      "topic": [
+        "flink",
+        "state"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>State 分 Keyed State（Value/List/Map/Reducing/Aggregating）和 Operator State，TTL 用于过期清理。</p>\n<h2>30 秒回答</h2>\n<p>Keyed State 按 key 存，Operator State 与 key 无关；TTL 给状态设过期时间，到期自动清理，防止状态无限增长。</p>\n<h2>追问</h2>\n<ul>\n<li>什么时候用 MapState？</li>\n<li>TTL 对 RocksDB 怎么生效？</li>\n</ul>"
     },
     {
       "id": "NETWORK-0001",
@@ -3264,6 +3391,62 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>难点在意图归域、表/字段定位、口径消歧和跨域关联。</p>\n<h2>30 秒回答</h2>\n<p>多域多表下要识别问题属于哪个域、定位正确表和字段、消歧同义口径、处理跨域关联；靠语义层/知识库 + Schema Linking + 权限域过滤。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么提升多表问答准确率？</li>\n<li>跨域怎么规范调用？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0071",
+      "type": "technical",
+      "question": "RAG 是什么，和传统搜索的区别",
+      "topic": [
+        "llm",
+        "rag"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>RAG 检索外部知识注入大模型再生成，传统搜索只返回文档列表。</p>\n<h2>30 秒回答</h2>\n<p>RAG：文档切块 → Embedding → 向量库 → 检索 top-k → 拼进 prompt → 模型生成答案；传统搜索只做召回排序，不生成答案。</p>\n<h2>追问</h2>\n<ul>\n<li>RAG 解决大模型什么问题？</li>\n<li>RAG 和微调区别？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0072",
+      "type": "technical",
+      "question": "向量数据库的原理和使用场景",
+      "topic": [
+        "llm",
+        "vector-db"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>向量数据库存 embedding，用相似度检索（ANN）快速找最近邻。</p>\n<h2>30 秒回答</h2>\n<p>把文本/图片转成向量，用 HNSW/IVF 等索引做近似最近邻检索；用于语义搜索、RAG、推荐、去重。</p>\n<h2>追问</h2>\n<ul>\n<li>ANN 和精确检索区别？</li>\n<li>Milvus/Faiss 是什么？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0073",
+      "type": "technical",
+      "question": "Embedding 是什么，怎么生成",
+      "topic": [
+        "llm",
+        "embedding"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>Embedding 把文本/图片映射成向量，语义相近的向量距离近。</p>\n<h2>30 秒回答</h2>\n<p>用预训练模型（如 BGE、OpenAI embedding）把内容编码成固定维度向量，用于语义相似度计算。</p>\n<h2>追问</h2>\n<ul>\n<li>Embedding 维度影响什么？</li>\n<li>怎么评估 embedding 质量？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0074",
+      "type": "technical",
+      "question": "Prompt Engineering 有哪些常见方法",
+      "topic": [
+        "llm",
+        "prompt"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>通过角色设定、Few-shot、思维链、结构化输出等方法引导模型。</p>\n<h2>30 秒回答</h2>\n<p>常见：角色设定、Few-shot 示例、Chain-of-Thought、约束输出格式、自洽性；本质是给模型清晰上下文和任务约束。</p>\n<h2>追问</h2>\n<ul>\n<li>Few-shot 和 zero-shot 区别？</li>\n<li>怎么让输出更稳定？</li>\n</ul>"
     },
     {
       "id": "PLATFORM-0001",
@@ -5416,6 +5599,20 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "sql",
       "body_html": "<h2>一句话</h2>\n<p>CTE 是临时命名结果集，引擎可能内联展开（多次引用算多次）或物化（只算一次）。</p>\n<h2>30 秒回答</h2>\n<p>Spark SQL 默认内联展开 CTE，多次引用会重复计算；逻辑重且被多次引用的 CTE 可改用临时表物化，避免重复计算。</p>\n<h2>追问</h2>\n<ul>\n<li>内联展开和物化各有什么优劣？</li>\n<li>什么时候把 CTE 改成临时表？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0018",
+      "type": "technical",
+      "question": "窗口函数在 WHERE 之前还是之后执行",
+      "topic": [
+        "sql",
+        "window-function"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>逻辑上窗口函数在 WHERE 之后、ORDER BY 之前执行。</p>\n<h2>30 秒回答</h2>\n<p>执行顺序：FROM → WHERE → GROUP BY → HAVING → 窗口函数 → ORDER BY → LIMIT；所以窗口函数不能写在 WHERE 里，要过滤结果需外层子查询。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么窗口函数不能直接在 WHERE 用？</li>\n<li>要对窗口结果过滤怎么写？</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -7628,6 +7825,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>Agent 问数和传统的大报表问数有什么区别</li>\n<li>同一张表需要维护哪些信息，才能让人、机器都好理解</li>\n<li>通用 AI Agent 核心能力/核心组件有哪些</li>\n<li>MCP 和 Skill 有什么区别</li>\n<li>同样的问题，Agent 有时返回不同结果，可能是什么原因</li>\n<li>多域、多表、无明确维度的统一 Agent 问数，难点在哪</li>\n<li>要提升多表场景下问答准确率，需要维护哪些信息</li>\n<li>知识库应该维护哪些内容</li>\n</ol>"
     },
     {
+      "interview_id": "INTERVIEW-2026-05-13-tencent-wxg",
+      "company": "腾讯 WXG",
+      "business": "数据工程",
+      "position": "数据工程实习（一面）",
+      "date": "2026-05-13",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>手撕：算法 + SQL + 智力题</li>\n<li>实时数仓的粒度和指标是怎么设计的</li>\n<li>实时链路里消息延迟问题怎么排查和解决</li>\n<li>Flink 的 Checkpoint 里缓存的是什么数据</li>\n<li>ClickHouse 一个 batch 多大，一分钟写多少数据，有没有遇到 too many parts</li>\n<li>物化视图是怎么用的，ClickHouse 物化视图和传统数据库的区别</li>\n</ol>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-05-06-xiaohongshu-warehouse",
       "company": "小红书",
       "business": "数仓社招",
@@ -7644,6 +7850,15 @@ window.OS_DATA = {
       "date": "2026-04-22",
       "round": "一面 + 二面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>从 0 到 1 搭建数仓需要考虑哪些事情</li>\n<li>DWD 层怎么设计</li>\n<li>WITH AS 语句的实现逻辑</li>\n<li>怎么衡量数仓搭建的好与坏</li>\n<li>同一个指标分布在多个数据模型中，怎么保障数据一致性</li>\n<li>多个模型指标建设相似，怎么融合这些模型</li>\n<li>存量模型和新增模型怎么考虑</li>\n<li>Spark 执行流程，怎么解决数据倾斜</li>\n<li>Spark UI 排查问题</li>\n<li>Spark 任务从客户端提交到执行完成，和 Hadoop 哪些组件交互，怎么交互</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-04-22-disheng-7-blocks",
+      "company": "涤生大数据",
+      "business": "AI 大数据开发",
+      "position": "AI 大数据开发面试 7 大板块",
+      "date": "2026-04-22",
+      "round": "参考",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>SQL：窗口函数（ROW_NUMBER/RANK/LAG/LEAD）、连续登录 N 天、GROUP BY+HAVING、行列互转、多表 JOIN、NULL 陷阱（追问：窗口函数在 WHERE 之前还是之后执行）</li>\n<li>数仓建模分层：ODS/DWD/DWS/ADS、星型/雪花、维度建模四步法、SCD、拉链表、原子/派生/复合指标</li>\n<li>数据倾斜：本质原因、Map/Reduce 端倾斜、解决方案、大表 JOIN 热点 key、加盐、参数调优</li>\n<li>计算引擎：MapReduce 流程、Hive 执行计划、分区表 vs 分桶表、小文件、RDD/DataFrame/Dataset、Spark Shuffle、宽窄依赖、Stage 划分、Catalyst、Event Time vs Processing Time、Watermark、Checkpoint、Exactly-Once、State 类型和 TTL、Flink SQL vs DataStream</li>\n<li>任务调度与性能优化：任务依赖、数据延迟到达、失败告警重试、SLA、慢任务排查</li>\n<li>数据质量与治理：完整性/准确性/一致性/时效性、指标口径、数据血缘、元数据、监控告警</li>\n<li>AI + 大数据：RAG、向量数据库、AI 数据链路 vs 传统数仓、Embedding、Prompt Engineering、Agent 原理</li>\n</ol>"
     },
     {
       "interview_id": "INTERVIEW-2026-04-22-qunar-warehouse",
