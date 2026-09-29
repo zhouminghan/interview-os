@@ -1,24 +1,24 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:04:22+08:00",
+  "generatedAt": "2026-09-29T11:06:05+08:00",
   "stats": {
-    "questions": 315,
-    "interviews": 22,
-    "technical": 230,
+    "questions": 326,
+    "interviews": 26,
+    "technical": 241,
     "project": 85,
     "domains": {
-      "spark": 35,
+      "spark": 36,
       "hdfs": 1,
-      "storage": 12,
+      "storage": 13,
       "lakehouse": 7,
       "starrocks": 11,
-      "flink": 7,
+      "flink": 9,
       "network": 4,
-      "algorithm": 7,
+      "algorithm": 8,
       "llm": 54,
       "platform": 2,
-      "system": 5,
-      "warehouse": 69,
-      "sql": 16,
+      "system": 6,
+      "warehouse": 73,
+      "sql": 17,
       "project": 85
     }
   },
@@ -860,6 +860,21 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>Spark Shuffle 有 HashShuffle 和 SortShuffle，落盘次数少、可复用；MR Shuffle 固定排序落盘多。</p>\n<h2>30 秒回答</h2>\n<p>Spark SortShuffle 用分区排序 + 索引文件，减少文件数；MR 每个 reducer 一个分区文件，小文件多、排序开销大；Spark 还有动态分区、AQE 优化。</p>\n<h2>追问</h2>\n<ul>\n<li>HashShuffle 和 SortShuffle 区别？</li>\n<li>宽依赖为什么触发 shuffle？</li>\n</ul>"
     },
     {
+      "id": "SPARK-0036",
+      "type": "technical",
+      "question": "Spark 任务和 Hadoop 哪些组件交互，怎么交互",
+      "topic": [
+        "spark",
+        "yarn",
+        "hdfs"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>Spark 与 YARN（资源调度）和 HDFS（数据读写）交互。</p>\n<h2>30 秒回答</h2>\n<p>提交：上传 jar 到 HDFS，向 YARN RM 申请；RM 在 NM 上启动 AM（Driver），AM 申请 Container 启动 Executor；Executor 从 HDFS 读数据、经 NM 上的 Shuffle Service 交换数据，结果写回 HDFS。</p>\n<h2>追问</h2>\n<ul>\n<li>ApplicationMaster 和 Driver 关系？</li>\n<li>Shuffle Service 作用？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -1155,6 +1170,20 @@ window.OS_DATA = {
       ],
       "domain": "storage",
       "body_html": "<h2>一句话</h2>\n<p>MPP 是常驻进程 + 数据本地化并行查询，低延迟；MapReduce 每次启动容器 + 磁盘 shuffle，适合离线批处理。</p>\n<h2>30 秒回答</h2>\n<p>MPP（Doris/ClickHouse/Greenplum）把数据分散到多节点，各节点独立计算再汇总，常驻进程、低延迟，适合交互式分析；MapReduce 每次启动、磁盘 shuffle、吞吐高但延迟高，适合离线 ETL。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>MPP：常驻、本地化、低延迟、桶效应（单节点慢拖整体）</li>\n<li>MapReduce：启动容器、磁盘 shuffle、吞吐高、延迟高</li>\n<li>场景：MPP 做 Serving/交互查询，Spark 做大规模 ETL</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>MPP 的桶效应是什么？</li>\n<li>为什么 MPP 不适合大规模 ETL？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0014",
+      "type": "technical",
+      "question": "Hive 内部表和外部表的区别",
+      "topic": [
+        "storage",
+        "hive"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>内部表 Hive 管理元数据和数据，drop 连数据一起删；外部表只管理元数据，drop 不删数据文件。</p>\n<h2>30 秒回答</h2>\n<p>ODS 层用外部表（保留原始数据），DWD 以上用内部表（可随时重跑重建）。</p>\n<h2>追问</h2>\n<ul>\n<li>什么场景必须用外部表？</li>\n<li>外部表数据文件删了会怎样？</li>\n</ul>"
     },
     {
       "id": "LAKEHOUSE-0001",
@@ -1716,6 +1745,35 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>用 BloomFilter 预筛 + 精确去重（State/Redis）分层，兼顾内存和准确率。</p>\n<h2>30 秒回答</h2>\n<p>布隆过滤器快速判断「是否见过」，疑似新用户再做精确去重（State 或 Redis Set）；超大规模可用 HyperLogLog 近似，或分桶 State（RocksDB）扛住亿级。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>预筛：BloomFilter 过滤已见 user_id，降低精确层压力</li>\n<li>精确：State（RocksDB）或 Redis Set 去重</li>\n<li>近似：HLL 可容忍误差时用，空间极小</li>\n<li>分桶：按 user_id hash 分桶 State，避免单 key 倾斜</li>\n<li>Redis 扛不住时：用 Flink 状态 + 分桶 + RocksDB 落盘</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>BloomFilter 有误判，怎么保证精准？</li>\n<li>HyperLogLog 误差大概多少？</li>\n</ul>"
     },
     {
+      "id": "FLINK-0009",
+      "type": "technical",
+      "question": "Flink 和 Kafka 如何做高可用容错",
+      "topic": [
+        "flink",
+        "kafka",
+        "ha"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>Flink 靠 Checkpoint + 重启恢复，Kafka 靠副本 + ISR + Leader 选举。</p>\n<h2>30 秒回答</h2>\n<p>Flink 从最近 Checkpoint 恢复状态、按重启策略自动拉起，JobManager 用 ZK 做 HA；Kafka 多副本保证数据不丢，Leader 挂掉从 ISR 选新 Leader。</p>\n<h2>追问</h2>\n<ul>\n<li>ISR 是什么？</li>\n<li>Flink 的重启策略有哪些？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0010",
+      "type": "technical",
+      "question": "滑动窗口的输出量和计算量怎么估算",
+      "topic": [
+        "flink",
+        "window"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>窗口大小 / 滑动步长 = 数据复用次数；输出频率由滑动步长决定，计算量 ≈ 数据量 × 复用次数。</p>\n<h2>30 秒回答</h2>\n<p>60 分钟窗口、5 分钟滑动，每条数据落 12 个窗口；每 5 分钟输出一次聚合结果，理论计算量约 100万×12/分钟（可用增量聚合降低）。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么实际计算量比理论小？</li>\n<li>滑动窗口状态怎么优化？</li>\n</ul>"
+    },
+    {
       "id": "NETWORK-0001",
       "type": "technical",
       "question": "TCP 和 UDP 的区别",
@@ -1946,6 +2004,20 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "algorithm",
       "body_html": "<h2>一句话</h2>\n<p>哈希表定位 + 双向链表维护访问顺序，O(1) 实现 get/put。</p>\n<h2>代码</h2>\n<pre><code class=\"language-python\">class Node:\n    def __init__(self, k=0, v=0):\n        self.k, self.v, self.prev, self.next = k, v, None, None\n\nclass LRUCache:\n    def __init__(self, capacity):\n        self.cap = capacity\n        self.m = {}\n        self.head, self.tail = Node(), Node()\n        self.head.next, self.tail.prev = self.tail, self.head\n\n    def _remove(self, n):\n        n.prev.next, n.next.prev = n.next, n.prev\n\n    def _add(self, n):\n        n.next = self.head.next\n        n.next.prev = n\n        self.head.next = n\n        n.prev = self.head\n\n    def get(self, key):\n        if key not in self.m: return -1\n        n = self.m[key]\n        self._remove(n); self._add(n)\n        return n.v\n\n    def put(self, key, value):\n        if key in self.m:\n            self._remove(self.m[key])\n        n = Node(key, value)\n        self.m[key] = n\n        self._add(n)\n        if len(self.m) &gt; self.cap:\n            t = self.tail.prev\n            self._remove(t)\n            del self.m[t.k]</code></pre>\n<h2>追问</h2>\n<ul>\n<li>为什么用双向链表？</li>\n<li>达到容量时淘汰哪个？</li>\n</ul>"
+    },
+    {
+      "id": "ALGORITHM-0008",
+      "type": "technical",
+      "question": "快速排序的实现思路和时空复杂度",
+      "topic": [
+        "algorithm",
+        "quicksort"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "algorithm",
+      "body_html": "<h2>一句话</h2>\n<p>选 pivot 分区，递归排序左右，平均 O(nlogn)、最坏 O(n²)、空间 O(logn)。</p>\n<h2>30 秒回答</h2>\n<p>选基准值，比它小的放左、大的放右，再递归排序两边；随机选 pivot 避免最坏情况。</p>\n<h2>追问</h2>\n<ul>\n<li>最坏情况什么时候出现？</li>\n<li>怎么避免最坏情况？</li>\n</ul>"
     },
     {
       "id": "LLM-0001",
@@ -3196,6 +3268,20 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "system",
       "body_html": "<h2>一句话</h2>\n<p>synchronized 内置锁、自动释放；ReentrantLock 显式锁，支持可中断、超时、公平；AQS 用 state + CAS + 队列实现。</p>\n<h2>30 秒回答</h2>\n<p>锁升级：无锁 → 偏向锁 → 轻量级锁 → 重量级锁；非公平锁大体维持 FIFO 但新线程可插队。</p>\n<h2>追问</h2>\n<ul>\n<li>AQS 的 state 是什么？</li>\n<li>什么时候升级到重量级锁？</li>\n</ul>"
+    },
+    {
+      "id": "SYSTEM-0007",
+      "type": "technical",
+      "question": "堆、栈、队列的区别，线程和进程的区别",
+      "topic": [
+        "system",
+        "data-structure"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "system",
+      "body_html": "<h2>一句话</h2>\n<p>栈 LIFO，队列 FIFO，堆是完全二叉树（堆顶是最大/最小值）；进程是资源分配单位，线程是 CPU 调度单位。</p>\n<h2>30 秒回答</h2>\n<p>栈后进先出，队列先进先出，堆用于优先队列/TopN；进程有独立内存，线程共享进程内存、切换开销小（Spark Executor=进程，Task=线程）。</p>\n<h2>追问</h2>\n<ul>\n<li>大顶堆和小顶堆区别？</li>\n<li>为什么线程切换比进程快？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0001",
@@ -4647,6 +4733,62 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>埋点要统一 ID、参数定义、版本管理和数据校验。</p>\n<h2>30 秒回答</h2>\n<p>规范：埋点 ID 唯一、参数名称/类型/枚举统一、埋点文档和版本管理、上线前校验、数据质量监控。</p>\n<h2>追问</h2>\n<ul>\n<li>埋点参数怎么定义？</li>\n<li>埋点变更怎么兼容？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0073",
+      "type": "technical",
+      "question": "Spark 写 Hive 分区表的坑（动态分区小文件）",
+      "topic": [
+        "warehouse",
+        "spark"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>动态分区写入时每个 Task 可能写多个分区，导致小文件爆炸。</p>\n<h2>30 秒回答</h2>\n<p>二级分区（日期+小时）动态写入，分区数 × Task 数 = 大量小文件；用 DISTRIBUTE BY 分区字段集中写，控制文件数。</p>\n<h2>追问</h2>\n<ul>\n<li>DISTRIBUTE BY 和 REPARTITION 区别？</li>\n<li>Spark 写 Hive 分区表底层逻辑？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0074",
+      "type": "technical",
+      "question": "Hive 数据分区和分桶的区别",
+      "topic": [
+        "warehouse",
+        "hive"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>分区按目录组织、用于裁剪；分桶按 hash 分文件、用于优化 join 和采样。</p>\n<h2>30 秒回答</h2>\n<p>分区按字段（常用日期）分目录，查询走分区裁剪；分桶按 hash 分固定数量文件，相同桶的两表 join 可避免 shuffle（Bucket Map Join）。</p>\n<h2>追问</h2>\n<ul>\n<li>分区和分桶各有什么代价？</li>\n<li>什么字段适合分桶？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0075",
+      "type": "technical",
+      "question": "画像表的增量合并如何实现",
+      "topic": [
+        "warehouse",
+        "profile"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>用 FULL OUTER JOIN 把当日增量与昨日全量合并，COALESCE 取最新值，INSERT OVERWRITE 回写当天分区。</p>\n<h2>30 秒回答</h2>\n<p>增量与昨日快照 FULL OUTER JOIN，按主键 COALESCE 取新值，写回当天分区产出一份最新全量画像。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么用 FULL OUTER JOIN？</li>\n<li>拉链表和画像增量合并区别？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0076",
+      "type": "technical",
+      "question": "同一指标分布在多个模型，怎么保障一致性和融合",
+      "topic": [
+        "warehouse",
+        "metrics"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>统一口径 + 公共层收口计算 + 监控对账，把相似指标融合到公共 DWS。</p>\n<h2>30 秒回答</h2>\n<p>指标平台统一注册口径，公共层只算一次、下游引用，监控比对多个模型同名指标差异，逐步把烟囱式 ADS 迁移到公共 DWS。</p>\n<h2>追问</h2>\n<ul>\n<li>存量模型怎么渐进合并？</li>\n<li>口径不一致怎么发现？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -4991,6 +5133,20 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "sql",
       "body_html": "<h2>代码</h2>\n<pre><code class=\"language-sql\">SELECT modal, COUNT(*) AS cnt, AVG(quality_score) AS avg_score\nFROM (\n  SELECT id, modal, quality_score,\n         PERCENT_RANK() OVER (PARTITION BY modal ORDER BY quality_score DESC) AS pct\n  FROM sample\n) t\nWHERE pct &lt;= 0.3\nGROUP BY modal;</code></pre>\n<h2>注意</h2>\n<ul>\n<li>PERCENT_RANK 按质量分降序排，取前 30%</li>\n<li>也可用 ROW_NUMBER 配合总数计算比例</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0017",
+      "type": "technical",
+      "question": "WITH AS（CTE）的实现逻辑是什么",
+      "topic": [
+        "sql",
+        "cte"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>CTE 是临时命名结果集，引擎可能内联展开（多次引用算多次）或物化（只算一次）。</p>\n<h2>30 秒回答</h2>\n<p>Spark SQL 默认内联展开 CTE，多次引用会重复计算；逻辑重且被多次引用的 CTE 可改用临时表物化，避免重复计算。</p>\n<h2>追问</h2>\n<ul>\n<li>内联展开和物化各有什么优劣？</li>\n<li>什么时候把 CTE 改成临时表？</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -7149,6 +7305,33 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>来源小红书 @数据工程师勇哥。Flink + Doris 是主线。</blockquote>\n<h3>一面（技术细节）</h3>\n<ol>\n<li>自我介绍（打断）：你做的那个实时数仓，数据延迟是多少？数据量多大？</li>\n<li>场景题：要实时统计亿级用户点击流的 UV，要求去重且精准，不能有误差，你怎么做？（追问：Redis 扛不住亿级 QPS 怎么办？Flink 状态后端怎么调优？）</li>\n<li>手撕 SQL：给一张用户登录表，求连续登录 3 天的用户</li>\n<li>手撕算法：手写单例模式（Double Check Lock），为什么加 Volatile？</li>\n<li>实时：Flink 的 Exactly-Once 怎么实现，Checkpoint 机制详细讲</li>\n</ol>\n<h3>二面（Leader）</h3>\n<ol>\n<li>项目深挖：你做过最得意的项目是什么？如果现在重做，你会改进哪里？</li>\n<li>架构：把原来 ClickHouse 和 Hive 的任务迁移到 Doris，怎么设计？怎么保证数据一致性？Join 性能慢怎么办？（Bucket/Partition/Colocation Join/物化视图）</li>\n<li>智力题：10 亿个整数，内存只有 2G，怎么找出中位数？</li>\n<li>Java 基础：HashMap 在 JDK1.8 为什么引入红黑树？ConcurrentHashMap 分段锁和 CAS 的区别？</li>\n</ol>\n<h3>三面（HRBP）</h3>\n<ol>\n<li>抗压测试：网易加班多，项目上线压力大，你怎么看？</li>\n<li>稳定性：你有 5 年经验了，为什么离开上家公司？</li>\n<li>薪资：期望 30k+，公积金全额 12%，最低能接受多少？</li>\n</ol>\n<blockquote>备注：网易云音乐已把 Doris 作为统一引擎，必考分桶倾斜/写放大。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-04-22-didi-finance",
+      "company": "滴滴金融",
+      "business": "数仓社招",
+      "position": "数仓（一面 + 二面）",
+      "date": "2026-04-22",
+      "round": "一面 + 二面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>从 0 到 1 搭建数仓需要考虑哪些事情</li>\n<li>DWD 层怎么设计</li>\n<li>WITH AS 语句的实现逻辑</li>\n<li>怎么衡量数仓搭建的好与坏</li>\n<li>同一个指标分布在多个数据模型中，怎么保障数据一致性</li>\n<li>多个模型指标建设相似，怎么融合这些模型</li>\n<li>存量模型和新增模型怎么考虑</li>\n<li>Spark 执行流程，怎么解决数据倾斜</li>\n<li>Spark UI 排查问题</li>\n<li>Spark 任务从客户端提交到执行完成，和 Hadoop 哪些组件交互，怎么交互</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-04-15-meituan-bigdata",
+      "company": "美团",
+      "business": "大数据开发",
+      "position": "大数据开发工程师（一面）",
+      "date": "2026-04-15",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>广播 Join 和 Shuffle Join 的区别，Shuffle 为什么慢</li>\n<li>小文件问题是在 Spark 读的环节慢，还是运行时慢</li>\n<li>Hive 二级分区，Spark 写二级分区遇到过什么坑</li>\n<li>滑动窗口：每 5 分钟统计过去一小时的行为，100 万条/分钟，输出量和计算量怎么估算</li>\n<li>Flink 基于 Checkpoint 重启时，Kafka 的 offset 能精确回溯吗</li>\n<li>两段 SQL 有没有性能问题，在 Spark 里怎么执行</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-03-30-tencent-data-eng",
+      "company": "腾讯",
+      "business": "数据工程",
+      "position": "数据工程（暑期实习）",
+      "date": "2026-03-30",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>堆、栈和队列的区别</li>\n<li>快速排序的实现思路，时空复杂度</li>\n<li>线程和进程的区别</li>\n<li>Hive 内部表和外部表的区别</li>\n<li>数据分区和分桶</li>\n<li>Spark 执行任务流程，如何划分 Stage，宽窄依赖算子，Shuffle 的本质</li>\n<li>画像表数据存在哪里，数据从哪里采集</li>\n<li>画像表的增量合并如何实现</li>\n<li>SCD 缓慢变化维的处理方式</li>\n<li>Flink 如何保持一致性，Flink/Kafka 如何做高可用容错</li>\n<li>手撕 SQL：开窗排序、开窗聚合、最大连续交易</li>\n</ol>"
+    },
+    {
       "interview_id": "INTERVIEW-2025-03-24-jd-data-dev",
       "company": "京东",
       "business": "数据开发",
@@ -7156,6 +7339,15 @@ window.OS_DATA = {
       "date": "2025-03-24",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>Agent 深挖</li>\n<li>数据是从 Doris 导入的吗？性能怎么样？</li>\n<li>数据量有多少？宽表数据量是多少？</li>\n<li>产出是 AI 吗？</li>\n<li>指标覆盖率如何衡量？是原来的指标还是聚合后的指标？</li>\n<li>分成了哪些维度？</li>\n<li>宽表涉及到哪些数据？这个开发主要做了什么？数据量是多少？</li>\n<li>AI 在工作中可以有什么样的应用？</li>\n<li>AI 在应用于业务中需要注意什么？（底层原理、实现到什么成果、成本和提效）</li>\n<li>实时是否了解？</li>\n<li>MPP 框架</li>\n<li>工作流产出可以复用吗？</li>\n<li>数仓分层</li>\n<li>业务域和主题域</li>\n<li>主题域划分有哪些？</li>\n<li>手撕 SQL：用户最多的登录下一个行为</li>\n<li>手撕 SQL：输出用户连续登录的开始和结束日期</li>\n</ol>\n<blockquote>备注：来源小红书。QQ 频道离线数仓 899 张表，DAU 近 2000 万。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2025-03-24-jd-data-dev2",
+      "company": "京东",
+      "business": "数据开发",
+      "position": "数据开发（二面）",
+      "date": "2025-03-24",
+      "round": "二面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>开发的指标和开发的过程，包括哪些维度</li>\n<li>如何衡量指标覆盖率和准确度</li>\n<li>数仓分层</li>\n<li>雪花模型和星型模型，使用场景，建模中用哪个比较多</li>\n<li>数据倾斜遇到没有，实际开发如何优化任务</li>\n<li>Spark 的 shuffle 过程，和 MapReduce 的 shuffle 区别</li>\n<li>手撕 SQL：开窗排序、LAG 差值</li>\n</ol>"
     }
   ]
 };
