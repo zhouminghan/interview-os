@@ -1,9 +1,9 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:07:43+08:00",
+  "generatedAt": "2026-09-29T11:09:02+08:00",
   "stats": {
-    "questions": 336,
-    "interviews": 30,
-    "technical": 251,
+    "questions": 345,
+    "interviews": 34,
+    "technical": 260,
     "project": 85,
     "domains": {
       "spark": 36,
@@ -11,13 +11,13 @@ window.OS_DATA = {
       "storage": 14,
       "lakehouse": 7,
       "starrocks": 11,
-      "flink": 9,
+      "flink": 10,
       "network": 4,
       "algorithm": 8,
-      "llm": 55,
+      "llm": 61,
       "platform": 2,
       "system": 6,
-      "warehouse": 81,
+      "warehouse": 83,
       "sql": 17,
       "project": 85
     }
@@ -1788,6 +1788,20 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>窗口大小 / 滑动步长 = 数据复用次数；输出频率由滑动步长决定，计算量 ≈ 数据量 × 复用次数。</p>\n<h2>30 秒回答</h2>\n<p>60 分钟窗口、5 分钟滑动，每条数据落 12 个窗口；每 5 分钟输出一次聚合结果，理论计算量约 100万×12/分钟（可用增量聚合降低）。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么实际计算量比理论小？</li>\n<li>滑动窗口状态怎么优化？</li>\n</ul>"
     },
     {
+      "id": "FLINK-0011",
+      "type": "technical",
+      "question": "离线数仓和实时数仓数据对不上怎么排查",
+      "topic": [
+        "flink",
+        "consistency"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>先看实时任务背压/Kafka 消费延迟，再核对窗口触发逻辑和事件时间 vs 处理时间语义。</p>\n<h2>30 秒回答</h2>\n<p>排查：实时任务是否背压、Kafka 消费延迟、离线 Spark 与实时 Flink 的窗口触发逻辑是否一致、事件时间和处理时间语义是否对齐。</p>\n<h2>追问</h2>\n<ul>\n<li>事件时间和处理时间差在哪？</li>\n<li>数据迟到怎么处理？</li>\n</ul>"
+    },
+    {
       "id": "NETWORK-0001",
       "type": "technical",
       "question": "TCP 和 UDP 的区别",
@@ -3164,6 +3178,92 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>LLM 是大脑（只对话输出），Agent 是 LLM + 工具，Workflow 是把步骤固化的可复用流程。</p>\n<h2>30 秒回答</h2>\n<p>LLM 本身不能干活，Agent 靠 LLM + 工具（MCP/Skill）执行；Workflow 是把标准流程拆成固定步骤串起来，可复用、团队共享。</p>\n<h2>追问</h2>\n<ul>\n<li>Agent 和 Workflow 什么时候用哪个？</li>\n<li>Harness 和 Agent 关系？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0065",
+      "type": "technical",
+      "question": "大模型推理延迟怎么优化",
+      "topic": [
+        "llm",
+        "inference"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>用小模型、量化、TensorRT 加速、批处理、缓存降低推理延迟。</p>\n<h2>30 秒回答</h2>\n<p>意图识别等简单任务用小模型（BERT-tiny），量化降低计算量，TensorRT 加速，热点结果缓存。</p>\n<h2>追问</h2>\n<ul>\n<li>量化和蒸馏区别？</li>\n<li>什么任务可以不用大模型？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0066",
+      "type": "technical",
+      "question": "AI 语义层怎么构建",
+      "topic": [
+        "llm",
+        "semantic-layer"
+      ],
+      "difficulty": 4,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>语义层定义度量、维度、实体关系（YAML），结构化存储 + 向量索引，集成到 Prompt/Tool Use。</p>\n<h2>30 秒回答</h2>\n<p>把业务概念结构化：度量（聚合方式/公式/粒度）、维度（枚举/层级）、实体关系，存成 YAML，再做向量化支持自然语言相似度检索，注入 AI。</p>\n<h2>追问</h2>\n<ul>\n<li>语义层和知识库什么关系？</li>\n<li>为什么做向量索引？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0067",
+      "type": "technical",
+      "question": "如何让大模型生成正确的 SQL 而不是胡说八道",
+      "topic": [
+        "llm",
+        "text2sql"
+      ],
+      "difficulty": 4,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>给对上下文（表结构/口径/关系）+ 约束输出（Schema Linking/Few-shot）+ 校验反馈。</p>\n<h2>30 秒回答</h2>\n<p>语义层提供表结构、字段含义、口径；用 Few-shot 和 Schema Linking 先定位表和字段再生成；生成后校验字段存在性、聚合正确性、语法，错误反馈修正。</p>\n<h2>追问</h2>\n<ul>\n<li>Schema Linking 是什么？</li>\n<li>准确率从多少提到多少？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0068",
+      "type": "technical",
+      "question": "Agent 问数和传统大报表问数的区别",
+      "topic": [
+        "llm",
+        "agent",
+        "qa"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>传统报表问数是固定指标取数，Agent 问数是自然语言动态理解和生成查询。</p>\n<h2>30 秒回答</h2>\n<p>报表问数：预设指标、固定维度、口径固化；Agent 问数：自然语言、动态解析意图、跨表生成 SQL，更灵活但需语义层和校验。</p>\n<h2>追问</h2>\n<ul>\n<li>各自适合什么场景？</li>\n<li>Agent 问数为什么要校验？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0069",
+      "type": "technical",
+      "question": "同样的问题 Agent 有时返回不同结果，可能是什么原因",
+      "topic": [
+        "llm",
+        "agent"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>温度/随机采样、上下文不同、知识检索结果不同、模型非确定性导致。</p>\n<h2>30 秒回答</h2>\n<p>采样温度高输出随机，上下文/检索到的知识不同，模型本身概率生成非确定；降低温度、固定上下文、加强约束可提升稳定性。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么让输出更稳定？</li>\n<li>温度设多少合适？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0070",
+      "type": "technical",
+      "question": "多域多表无明确维度的统一 Agent 问数难点在哪",
+      "topic": [
+        "llm",
+        "agent",
+        "qa"
+      ],
+      "difficulty": 4,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>难点在意图归域、表/字段定位、口径消歧和跨域关联。</p>\n<h2>30 秒回答</h2>\n<p>多域多表下要识别问题属于哪个域、定位正确表和字段、消歧同义口径、处理跨域关联；靠语义层/知识库 + Schema Linking + 权限域过滤。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么提升多表问答准确率？</li>\n<li>跨域怎么规范调用？</li>\n</ul>"
     },
     {
       "id": "PLATFORM-0001",
@@ -4928,6 +5028,34 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "warehouse",
       "body_html": "<h2>一句话</h2>\n<p>用 DIM 层做桥梁、粒度对齐后合并，不直接 JOIN 事实表。</p>\n<h2>30 秒回答</h2>\n<p>跨主题合并（如流量域行为 + 用户域属性）：两边先在 DWS 按「用户+天」聚合对齐粒度，再用 DIM 用户属性 JOIN，避免事实表直接 JOIN。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么不用事实表直接 JOIN？</li>\n<li>粒度不一致怎么办？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0085",
+      "type": "technical",
+      "question": "高内聚低耦合在数仓模型设计怎么体现",
+      "topic": [
+        "warehouse",
+        "modeling"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>高内聚：一个主题域内相关业务集中；低耦合：跨主题依赖少、公共维度独立维护。</p>\n<h2>30 秒回答</h2>\n<p>按主题域组织 DWD/DWS，域内聚合；公共维度放 DIM 独立维护，跨域通过 DIM 桥接，减少直接依赖。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么判断一个域内聚？</li>\n<li>跨域依赖怎么最小化？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0086",
+      "type": "technical",
+      "question": "一张表需要维护哪些信息，让人和机器都好理解",
+      "topic": [
+        "warehouse",
+        "metadata"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>表名、字段、类型、口径、分区、血缘、负责人、注释等元数据。</p>\n<h2>30 秒回答</h2>\n<p>维护：表/字段命名与注释、指标口径、分区字段、更新频率、血缘、负责人；结构化后人和 AI 都能读懂。</p>\n<h2>追问</h2>\n<ul>\n<li>元数据存哪？</li>\n<li>AI 需要哪些字段元数据？</li>\n</ul>"
     },
     {
       "id": "SQL-0001",
@@ -7419,6 +7547,24 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>维度退化主要是什么，能解决什么问题</li>\n<li>如果一个维表数据量比较大，你会怎么样去设计这个维表</li>\n<li>Spark 任务比较慢，从 Web UI 里怎么排查</li>\n<li>LLM、Workflow、Agent 三者的区别</li>\n<li>你们 Claude Code 工具是怎么装的，MCP 和 skill 怎么用</li>\n</ol>"
     },
     {
+      "interview_id": "INTERVIEW-2026-07-17-kuaishou-60q",
+      "company": "快手",
+      "business": "数仓",
+      "position": "数仓/大数据开发（一面，60 题）",
+      "date": "2026-07-17",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>数仓模型设计，离线和实时分别怎么设计，为什么</li>\n<li>高内聚低耦合在模型设计怎么体现</li>\n<li>维度退化怎么设计，哪些维度适合退化</li>\n<li>DWD 层设计原则是什么</li>\n<li>MapReduce 的 Shuffle 过程</li>\n<li>Map/Reduce task 个数怎么定，默认多少，分区怎么决定</li>\n<li>Hive 的 UDF、UDAF、UDTF 区别，开发分别继承什么</li>\n<li>两个大表 Join 数据倾斜怎么优化</li>\n<li>Flink 的 Exactly Once 怎么实现，反压怎么优化</li>\n<li>ClickHouse 解决什么问题，有什么缺点</li>\n<li>手撕 SQL：直播间峰值在线人数；连续活跃超四天用户</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-06-28-guazi-usedcar",
+      "company": "瓜子二手车",
+      "business": "大模型数据工程",
+      "position": "大模型数据工程师（多轮）",
+      "date": "2026-06-28",
+      "round": "多轮",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>业务中如何保证 Kafka 到 Flink 的数据不丢失、不重复</li>\n<li>数据质量（DQC）如何配置校验</li>\n<li>瓜子车辆估价数据，离线数仓和实时数仓对不上，怎么排查</li>\n<li>大模型推理延迟优化（BERT-tiny、量化、TensorRT）</li>\n<li>如何利用大模型挖掘数据价值（智能客服 RAG、用户画像、辅助定价）</li>\n</ol>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-06-26-bytedance-ai-data",
       "company": "字节跳动",
       "business": "AI 数据开发",
@@ -7435,6 +7581,15 @@ window.OS_DATA = {
       "date": "2026-06-21",
       "round": "多轮",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍，重点讲最近两年主导的最复杂的数据项目</li>\n<li>JVM 内存模型，Full GC 什么时候触发，线上频繁 Full GC 怎么排查，锁的信息存在运行时数据区哪个部分</li>\n<li>synchronized 和 ReentrantLock 的区别，AQS 原理，非公平锁还维持 FIFO 队列吗，synchronized 锁升级过程</li>\n<li>Spark 的 Shuffle 和 MapReduce 的 Shuffle 有什么区别，宽依赖是什么，哪些算子触发，groupBy 是 action 算子吗</li>\n<li>两个大表 join 产生数据倾斜怎么优化，至少三种方案</li>\n<li>Flink 怎么保证端到端一致性，反压怎么产生怎么优化，Flink 写入 StarRocks 慢怎么排查</li>\n<li>星型模型和雪花模型区别，dwd 层一般做什么操作，事实表有几种，库存指标该用哪种事实表</li>\n<li>会员等级、地址要记录所有历史变化，表怎么设计</li>\n<li>手撕 SQL：连续登录 4 天的用户；直播间最大同时在线人数</li>\n<li>算法：一千万个整数，5MB 内存，怎么排序</li>\n<li>追问：reduce 个数由什么决定，不指定分区默认几个分区，udf/udaf/udtf 有什么区别</li>\n<li>数仓架构是 Lambda 还是 Kappa，为什么，重新设计飞猪实时酒店库存数仓怎么做</li>\n<li>数仓分数据域了吗，数据域和业务域有什么区别，数据治理怎么做，异常数据怎么设置监控</li>\n<li>RTA 广告外投系统日均千亿级请求、百万级 QPS，人群包/标签的下发机制怎么保证毫秒级响应</li>\n<li>实时画像标签接触过吗，实时性怎么定义，如何确保实时数据绝对准确</li>\n<li>多个业务系统性别有的 F/M 有的男/女，数仓里怎么统一</li>\n<li>数据采集底层怎么实现，Flink 采集 MySQL 数据（CDC）</li>\n<li>StarRocks 和 Doris 有什么区别，StarRocks 数据怎么分片分布式存储，建表考虑分区分桶策略吗</li>\n<li>海豚调度怎么组织任务依赖，ods → dwd → dws 三张表建几个工作流，依赖怎么配</li>\n<li>了解客户端埋点吗，怎么算好的数据埋点规范</li>\n<li>怎么评价一个数仓干得好，从 0 到 1 设计数仓全栈怎么设计</li>\n<li>参数模型和非参数模型区别，生成模型和判别模型呢</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-06-17-alibaba-ai-semantic",
+      "company": "阿里巴巴",
+      "business": "数开 AI 语义层",
+      "position": "数开一面 AI 语义层",
+      "date": "2026-06-17",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>你们 AI 语义层是怎么构建的</li>\n<li>如何让 AI 理解业务语言，并准确映射到底层数据模型</li>\n<li>如何让大模型生成正确的 SQL，而不是一本正经胡说八道</li>\n</ol>"
     },
     {
       "interview_id": "INTERVIEW-2026-06-12-feishu-ai-data",
@@ -7462,6 +7617,15 @@ window.OS_DATA = {
       "date": "2026-06-01",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>举一个指标的例子，如何维护指标</li>\n<li>指标涉及不同的表如何维护</li>\n<li>一个标签涉及两张表，另一个标签涉及另外两张表，字段被删掉，会不会考虑关联成一张</li>\n<li>标签值域是 -1 到 1，但算出来是 2，怎么办</li>\n<li>标签开发做了哪些优化</li>\n<li>提示词怎么写，提示词中关于标签部分的模板，什么叫拆解任务</li>\n<li>事实标签和规则标签，举例</li>\n<li>任务难点：依赖上游任务，如何优化</li>\n<li>指标口径不统一怎么办</li>\n<li>如何做指标复用</li>\n<li>甘特图具体看哪些指标</li>\n<li>指标存在冗余如何处理</li>\n<li>如何定义核心标签</li>\n<li>如何保证任务的及时产出</li>\n<li>做了哪些告警，任务告警如何处理</li>\n<li>如果是因为触发某些规则没有产出，怎么处理，任务有没有做熔断</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-05-21-alibaba-ai-data",
+      "company": "阿里巴巴",
+      "business": "AI 数据工程",
+      "position": "AI 数据工程师（两面，外部参考）",
+      "date": "2026-05-21",
+      "round": "两面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>Agent 问数和传统的大报表问数有什么区别</li>\n<li>同一张表需要维护哪些信息，才能让人、机器都好理解</li>\n<li>通用 AI Agent 核心能力/核心组件有哪些</li>\n<li>MCP 和 Skill 有什么区别</li>\n<li>同样的问题，Agent 有时返回不同结果，可能是什么原因</li>\n<li>多域、多表、无明确维度的统一 Agent 问数，难点在哪</li>\n<li>要提升多表场景下问答准确率，需要维护哪些信息</li>\n<li>知识库应该维护哪些内容</li>\n</ol>"
     },
     {
       "interview_id": "INTERVIEW-2026-05-06-xiaohongshu-warehouse",
