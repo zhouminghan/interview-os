@@ -1,24 +1,24 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T10:57:27+08:00",
+  "generatedAt": "2026-09-29T11:01:52+08:00",
   "stats": {
-    "questions": 287,
-    "interviews": 16,
-    "technical": 202,
+    "questions": 299,
+    "interviews": 18,
+    "technical": 214,
     "project": 85,
     "domains": {
       "spark": 34,
       "hdfs": 1,
-      "storage": 10,
+      "storage": 12,
       "lakehouse": 7,
       "starrocks": 11,
-      "flink": 6,
+      "flink": 7,
       "network": 4,
-      "algorithm": 3,
-      "llm": 46,
+      "algorithm": 5,
+      "llm": 47,
       "platform": 2,
-      "system": 2,
-      "warehouse": 64,
-      "sql": 12,
+      "system": 3,
+      "warehouse": 67,
+      "sql": 14,
       "project": 85
     }
   },
@@ -1098,6 +1098,51 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>可以，Hive 支持 TEXTFILE，CSV 能直接建外部表或 LOAD 加载，注意分隔符、表头和转义。</p>\n<h2>30 秒回答</h2>\n<p>TEXTFILE 可存储；CSV 用 ROW FORMAT 指定分隔符建外部表指向 HDFS，或 LOAD DATA 加载；注意表头跳过、转义、编码。TEXT 适合交换，查询性能和压缩都不如列式。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>TEXTFILE：可存，通用文本</li>\n<li>CSV 加载：外部表 LOCATION 或 LOAD DATA</li>\n<li>注意：分隔符、表头、转义、编码、类型</li>\n<li>缺点：无列式优化、查询慢、占空间</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>CSV 有表头怎么处理？</li>\n<li>什么时候用 TEXT 什么时候用 ORC？</li>\n</ul>"
     },
     {
+      "id": "STORAGE-0011",
+      "type": "technical",
+      "question": "把 ClickHouse 和 Hive 任务迁移到 Doris，怎么设计和保证一致性",
+      "topic": [
+        "storage",
+        "doris",
+        "migration"
+      ],
+      "difficulty": 4,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-12-netease-bigdata",
+          "company": "网易（杭州）",
+          "position": "大数据开发工程师",
+          "date": "2026-06-12"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>按分区/分桶/排序键设计 Doris 表，用 Colocation Join 避免搬迁，物化视图预聚合，新旧对账保证一致。</p>\n<h2>30 秒回答</h2>\n<p>设计：分区按时间、分桶按高基数列、排序键贴近查询；Join 用 Colocation Join 让同 key 落在同 BE；物化视图预聚合；迁移后新旧双跑对账保证一致性。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>建模：Partition 裁剪 + Bucket 均匀 + 排序键</li>\n<li>Join：Colocation Join 消除 shuffle，避免数据搬迁</li>\n<li>预计算：物化视图加速聚合</li>\n<li>一致性：新旧双跑、总量+分维度对账</li>\n<li>倾斜：分桶倾斜、写放大治理</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Colocation Join 的条件是什么？</li>\n<li>迁移后一致性怎么验证？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0012",
+      "type": "technical",
+      "question": "MPP 架构是什么，和 MapReduce 的区别",
+      "topic": [
+        "storage",
+        "mpp"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2025-03-24-jd-data-dev",
+          "company": "京东",
+          "position": "数据开发",
+          "date": "2025-03-24"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>MPP 是常驻进程 + 数据本地化并行查询，低延迟；MapReduce 每次启动容器 + 磁盘 shuffle，适合离线批处理。</p>\n<h2>30 秒回答</h2>\n<p>MPP（Doris/ClickHouse/Greenplum）把数据分散到多节点，各节点独立计算再汇总，常驻进程、低延迟，适合交互式分析；MapReduce 每次启动、磁盘 shuffle、吞吐高但延迟高，适合离线 ETL。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>MPP：常驻、本地化、低延迟、桶效应（单节点慢拖整体）</li>\n<li>MapReduce：启动容器、磁盘 shuffle、吞吐高、延迟高</li>\n<li>场景：MPP 做 Serving/交互查询，Spark 做大规模 ETL</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>MPP 的桶效应是什么？</li>\n<li>为什么 MPP 不适合大规模 ETL？</li>\n</ul>"
+    },
+    {
       "id": "LAKEHOUSE-0001",
       "type": "technical",
       "question": "Hudi 有实际使用吗，Hudi 是什么",
@@ -1634,6 +1679,29 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>先定位缺失范围和根因，再按 offset 重放或离线回刷补数，保证幂等。</p>\n<h2>30 秒回答</h2>\n<p>定位缺失范围 -&gt; 排查上游（Kafka offset、消费延迟、任务失败、迟到/乱序、水位线）-&gt; 补数：按 offset 重放或离线回刷 -&gt; 幂等去重 -&gt; 校验。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：缺失时间/分区范围</li>\n<li>根因：offset 回退、消费延迟、任务失败、迟到</li>\n<li>补数：Kafka 重放、离线回刷、兜底任务</li>\n<li>保证：幂等、去重、校验</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>补数怎么保证不重复？</li>\n<li>迟到数据怎么处理？</li>\n</ul>"
     },
     {
+      "id": "FLINK-0007",
+      "type": "technical",
+      "question": "实时统计亿级用户点击流的精准 UV 去重怎么做",
+      "topic": [
+        "flink",
+        "uv",
+        "bloomfilter"
+      ],
+      "difficulty": 4,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-12-netease-bigdata",
+          "company": "网易（杭州）",
+          "position": "大数据开发工程师",
+          "date": "2026-06-12"
+        }
+      ],
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>用 BloomFilter 预筛 + 精确去重（State/Redis）分层，兼顾内存和准确率。</p>\n<h2>30 秒回答</h2>\n<p>布隆过滤器快速判断「是否见过」，疑似新用户再做精确去重（State 或 Redis Set）；超大规模可用 HyperLogLog 近似，或分桶 State（RocksDB）扛住亿级。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>预筛：BloomFilter 过滤已见 user_id，降低精确层压力</li>\n<li>精确：State（RocksDB）或 Redis Set 去重</li>\n<li>近似：HLL 可容忍误差时用，空间极小</li>\n<li>分桶：按 user_id hash 分桶 State，避免单 key 倾斜</li>\n<li>Redis 扛不住时：用 Flink 状态 + 分桶 + RocksDB 落盘</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>BloomFilter 有误判，怎么保证精准？</li>\n<li>HyperLogLog 误差大概多少？</li>\n</ul>"
+    },
+    {
       "id": "NETWORK-0001",
       "type": "technical",
       "question": "TCP 和 UDP 的区别",
@@ -1791,6 +1859,51 @@ window.OS_DATA = {
       ],
       "domain": "algorithm",
       "body_html": "<h2>思路</h2>\n<p>旋转数组一分为二，至少一半有序；判断 target 在哪个有序段，缩小范围。</p>\n<h2>代码</h2>\n<pre><code class=\"language-python\">def search(nums, target):\n    l, r = 0, len(nums) - 1\n    while l &lt;= r:\n        m = (l + r) // 2\n        if nums[m] == target:\n            return m\n        if nums[l] &lt;= nums[m]:      # 左半有序\n            if nums[l] &lt;= target &lt; nums[m]:\n                r = m - 1\n            else:\n                l = m + 1\n        else:                        # 右半有序\n            if nums[m] &lt; target &lt;= nums[r]:\n                l = m + 1\n            else:\n                r = m - 1\n    return -1</code></pre>\n<h2>追问</h2>\n<ul>\n<li>有重复元素时怎么做？</li>\n<li>复杂度是多少？</li>\n</ul>"
+    },
+    {
+      "id": "ALGORITHM-0004",
+      "type": "technical",
+      "question": "手写单例模式（Double Check Lock），为什么加 Volatile",
+      "topic": [
+        "algorithm",
+        "singleton"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-12-netease-bigdata",
+          "company": "网易（杭州）",
+          "position": "大数据开发工程师",
+          "date": "2026-06-12"
+        }
+      ],
+      "domain": "algorithm",
+      "body_html": "<h2>一句话</h2>\n<p>DCL 双重检查锁，volatile 防止指令重排导致返回未初始化完成的对象。</p>\n<h2>代码</h2>\n<pre><code class=\"language-java\">public class Singleton {\n    private static volatile Singleton instance;\n    private Singleton() {}\n    public static Singleton getInstance() {\n        if (instance == null) {\n            synchronized (Singleton.class) {\n                if (instance == null) {\n                    instance = new Singleton();\n                }\n            }\n        }\n        return instance;\n    }\n}</code></pre>\n<h2>为什么加 Volatile</h2>\n<p><code>new Singleton()</code> 不是原子操作：分配内存、初始化对象、把引用赋值给 instance，可能被指令重排；volatile 禁止重排，保证 instance 指向的是已初始化完成的对象。</p>\n<h2>追问</h2>\n<ul>\n<li>不加 volatile 会出什么问题？</li>\n<li>单例还有哪些写法？</li>\n</ul>"
+    },
+    {
+      "id": "ALGORITHM-0005",
+      "type": "technical",
+      "question": "10 亿个整数、内存 2G，怎么找出中位数",
+      "topic": [
+        "algorithm",
+        "median",
+        "divide"
+      ],
+      "difficulty": 4,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-12-netease-bigdata",
+          "company": "网易（杭州）",
+          "position": "大数据开发工程师",
+          "date": "2026-06-12"
+        }
+      ],
+      "domain": "algorithm",
+      "body_html": "<h2>一句话</h2>\n<p>按值域分桶计数，先定位中位数落在哪个桶，再在桶内精算。</p>\n<h2>30 秒回答</h2>\n<p>整数值域有限（如 32 位），按值域分桶，先统计各桶计数找到第 5 亿个数落在哪个桶，再对桶内数据用位图或部分排序求中位数，内存可控。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分桶：按值域区间分桶，流式计数，只需 O(桶数) 内存</li>\n<li>定位：累计计数找到中位数所在桶</li>\n<li>精算：桶内数据量可入内存，排序或位图求中位</li>\n<li>扩展：外部排序也可，但分桶更快</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>分桶数怎么选？</li>\n<li>有负数怎么处理？</li>\n</ul>"
     },
     {
       "id": "LLM-0001",
@@ -2789,6 +2902,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>先跑通「采集接入 -&gt; 清洗去重 -&gt; 版本化数据集 -&gt; 交付」的最小闭环，再逐层加标注、多模态和评测。</p>\n<h2>30 秒回答</h2>\n<p>第一版：接入对局数据、基础清洗去重、版本管理、简单质检、交付训练集，先证明链路能跑通；再规划多模态、标注、评测。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>P0：采集接入、清洗去重、版本化、交付</li>\n<li>P1：质量质检、标注、badcase 回流</li>\n<li>P2：多模态、实时、评测平台</li>\n<li>原则：先闭环再扩展，优先交付价值</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么第一版不做标注？</li>\n<li>优先级怎么排？</li>\n</ul>"
     },
     {
+      "id": "LLM-0047",
+      "type": "technical",
+      "question": "AI 应用于业务中需要注意什么",
+      "topic": [
+        "llm",
+        "adoption"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2025-03-24-jd-data-dev",
+          "company": "京东",
+          "position": "数据开发",
+          "date": "2025-03-24"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>理解 LLM 不确定性、量化成果、评估成本、保留人工审核、渐进式落地。</p>\n<h2>30 秒回答</h2>\n<p>底层原理：LLM 是概率模型，关键步骤必须加校验；成果要量化（提效多少）；评估成本（开发/知识库维护）；AI 做的事必须有人工审核；先 MVP 再扩展。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>原理：理解不确定性，加校验兜底</li>\n<li>成果：量化提效（如 2h -&gt; 5min）</li>\n<li>成本：Skill 开发、知识库维护、token</li>\n<li>审核：关键环节人工确认</li>\n<li>落地：选高频重复流程，渐进扩展</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>哪些场景不适合用 AI？</li>\n<li>怎么量化 AI 提效？</li>\n</ul>"
+    },
+    {
       "id": "PLATFORM-0001",
       "type": "technical",
       "question": "低代码平台是什么，你了不了解",
@@ -2870,6 +3005,28 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "system",
       "body_html": "<h2>一句话</h2>\n<p>用流式/分块迭代读取，别一次 read() 全量进内存。</p>\n<h2>30 秒回答</h2>\n<p>用生成器逐行迭代、分块读、mmap 内存映射，或用 pandas chunksize、dask/polars 惰性处理，只保留必要列。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>流式：逐行 for line in f，生成器</li>\n<li>分块：read(chunk)、pandas chunksize</li>\n<li>惰性：dask、polars、vaex</li>\n<li>mmap：内存映射大文件</li>\n<li>技巧：外部排序、流式计数（Counter）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>分块和逐行有什么区别？</li>\n<li>dask 和 pandas 区别？</li>\n</ul>"
+    },
+    {
+      "id": "SYSTEM-0003",
+      "type": "technical",
+      "question": "HashMap 为什么引入红黑树，ConcurrentHashMap 分段锁和 CAS 的区别",
+      "topic": [
+        "system",
+        "java"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-12-netease-bigdata",
+          "company": "网易（杭州）",
+          "position": "大数据开发工程师",
+          "date": "2026-06-12"
+        }
+      ],
+      "domain": "system",
+      "body_html": "<h2>一句话</h2>\n<p>JDK1.8 HashMap 链表过长转红黑树，把最坏 O(n) 降到 O(log n)；ConcurrentHashMap 用 CAS + 节点锁替代整段锁。</p>\n<h2>30 秒回答</h2>\n<p>HashMap 链表长度超过阈值（8）转红黑树，避免哈希冲突严重时查询退化为 O(n)。ConcurrentHashMap 1.7 分段锁（锁一段），1.8 改为 CAS 写 + synchronized 锁单个桶头节点，并发粒度更细。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>HashMap：链表 -&gt; 红黑树（长度 &gt;8），查询 O(n) -&gt; O(log n)</li>\n<li>ConcurrentHashMap 1.7：Segment 分段锁</li>\n<li>1.8：CAS 写桶头（无锁）、冲突时锁单节点，粒度更细、性能更好</li>\n<li>CAS：乐观、无锁、自旋；synchronized：重量级、阻塞</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么阈值是 8？</li>\n<li>CAS 的 ABA 问题？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0001",
@@ -4227,6 +4384,72 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>把治理收益量化、降低接入成本、建立规范和灰度推进，而不是只靠强制。</p>\n<h2>30 秒回答</h2>\n<p>先说清埋点/校验对业务的收益，提供规范文档和工具降低接入成本，设 SLA 和责任人，领导支持 + 灰度推进，用数据质量看板反馈。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>收益量化：质量提升、口径统一、减少返工</li>\n<li>降门槛：埋点规范、校验模板、工具化</li>\n<li>机制：SLA、责任人、质量看板</li>\n<li>推进：领导支持 + 灰度 + 逐步落地</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>业务不配合的根因是什么？</li>\n<li>怎么量化治理收益给业务看？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0065",
+      "type": "technical",
+      "question": "指标覆盖率如何衡量",
+      "topic": [
+        "warehouse",
+        "metrics"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2025-03-24-jd-data-dev",
+          "company": "京东",
+          "position": "数据开发",
+          "date": "2025-03-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>指标覆盖率 = 已注册的标准化指标数 / 业务实际需求指标总数。</p>\n<h2>30 秒回答</h2>\n<p>统计已注册标准化指标数量，除以业务方实际需要的指标总数；新需求先查指标平台是否已有，能复用不新建，覆盖率高说明指标体系建设好。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分子：已注册标准化指标</li>\n<li>分母：业务实际需求指标</li>\n<li>口径：注册的是聚合后标准指标，不是原始明细</li>\n<li>价值：衡量指标体系完备度，驱动复用</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>覆盖率低说明什么？</li>\n<li>怎么推动指标注册？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0066",
+      "type": "technical",
+      "question": "数仓宽表怎么设计，维度冗余有什么取舍",
+      "topic": [
+        "warehouse",
+        "wide-table"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2025-03-24-jd-data-dev",
+          "company": "京东",
+          "position": "数据开发",
+          "date": "2025-03-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>宽表把常用维度冗余进事实表，减少 join、提升查询，代价是存储冗余和一致性维护成本。</p>\n<h2>30 秒回答</h2>\n<p>把事实数据（DWD 明细）和维度数据（DIM 属性）join 成一张宽表，下游直接查、少 join；缺点是存储冗余、维度变更要同步。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>结构：事实 + 维度冗余</li>\n<li>优点：少 join、查询快、下游易用</li>\n<li>缺点：冗余存储、一致性维护、宽表膨胀</li>\n<li>优化：处理 join 倾斜、热点 key 打散、大任务拆分</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>宽表和星型模型什么关系？</li>\n<li>宽表太宽怎么办？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0067",
+      "type": "technical",
+      "question": "业务域和主题域的区别是什么",
+      "topic": [
+        "warehouse",
+        "domain"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2025-03-24-jd-data-dev",
+          "company": "京东",
+          "position": "数据开发",
+          "date": "2025-03-24"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>业务域按组织/业务流程划分，主题域按分析主题组织度量；实际落地常混用。</p>\n<h2>30 秒回答</h2>\n<p>业务域偏组织视角（交易域、物流域、支付域）；主题域偏数据分析视角（流量、内容、用户、搜推）。实际很多团队按主题域组织数仓，公共维度独立维护，减少跨域依赖。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>业务域：按企业业务线/流程</li>\n<li>主题域：按分析主题/度量维度</li>\n<li>实践：常混用，按主题域组织 DWD/DWS</li>\n<li>原则：域内聚合、跨域依赖少</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你项目怎么划分域？</li>\n<li>公共维度放哪？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -4498,6 +4721,51 @@ window.OS_DATA = {
       ],
       "domain": "sql",
       "body_html": "<h2>1. 历史累计充值</h2>\n<pre><code class=\"language-sql\">SELECT user_id, SUM(pay_amount) AS total_amount\nFROM pay\nGROUP BY user_id;</code></pre>\n<h2>2. 充值金额最高的日期及金额</h2>\n<pre><code class=\"language-sql\">SELECT user_id, pay_date, pay_amount\nFROM (\n  SELECT user_id, pay_date, pay_amount,\n         ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY pay_amount DESC, pay_date DESC) AS rn\n  FROM pay\n) s\nWHERE rn = 1;</code></pre>\n<h2>3. 连续 7 天没有充值记录的用户</h2>\n<pre><code class=\"language-sql\">SELECT DISTINCT user_id\nFROM pay p\nWHERE NOT EXISTS (\n  SELECT 1 FROM pay p2\n  WHERE p2.user_id = p.user_id\n    AND p2.pay_date &gt;= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)\n);</code></pre>\n<h2>注意</h2>\n<ul>\n<li>并列最高金额用 RANK/DENSE_RANK 按业务需要</li>\n<li>「连续 7 天无充值」要先确认口径：是最近 7 天还是任意连续 7 天窗口</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0013",
+      "type": "technical",
+      "question": "查询用户登录后最常发生的下一个行为",
+      "topic": [
+        "sql",
+        "window-function"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2025-03-24-jd-data-dev",
+          "company": "京东",
+          "position": "数据开发",
+          "date": "2025-03-24"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>思路</h2>\n<p>用 LEAD 取每个用户每次行为的「下一个行为」，筛出当前行为是登录的记录，统计下一行为频次取 TOP1。</p>\n<h2>代码</h2>\n<pre><code class=\"language-sql\">WITH action_with_next AS (\n    SELECT user_id, action_type, action_time,\n           LEAD(action_type) OVER (PARTITION BY user_id ORDER BY action_time) AS next_action\n    FROM user_action\n)\nSELECT next_action, COUNT(*) AS cnt\nFROM action_with_next\nWHERE action_type = &#x27;login&#x27; AND next_action IS NOT NULL\nGROUP BY next_action\nORDER BY cnt DESC\nLIMIT 1;</code></pre>\n<h2>注意</h2>\n<ul>\n<li>LEAD 按用户分区、按时间排序</li>\n<li>过滤当前行为是登录，next_action 即登录后的下一个行为</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0014",
+      "type": "technical",
+      "question": "输出用户连续登录的开始和结束日期",
+      "topic": [
+        "sql",
+        "gap",
+        "consecutive"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2025-03-24-jd-data-dev",
+          "company": "京东",
+          "position": "数据开发",
+          "date": "2025-03-24"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>思路</h2>\n<p>经典「日期减序号」法：连续日期减去连续序号得到相同值，按此值分组取 MIN/MAX 即为起止日期。</p>\n<h2>代码</h2>\n<pre><code class=\"language-sql\">WITH login_dedup AS (\n    SELECT DISTINCT user_id, login_date FROM user_login\n),\nlogin_grp AS (\n    SELECT user_id, login_date,\n           DATE_SUB(login_date, ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY login_date)) AS grp\n    FROM login_dedup\n)\nSELECT user_id,\n       MIN(login_date) AS start_date,\n       MAX(login_date) AS end_date,\n       DATEDIFF(MAX(login_date), MIN(login_date)) + 1 AS consecutive_days\nFROM login_grp\nGROUP BY user_id, grp\nORDER BY user_id, start_date;</code></pre>\n<h2>核心</h2>\n<p>连续日期 1/2/3 号，ROW_NUMBER 1/2/3，日期减序号得到同一个值，说明连续。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么先去重？</li>\n<li>有重复登录日期会怎样？</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -6609,6 +6877,24 @@ window.OS_DATA = {
       "date": "2026-08-27",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>介绍项目的框架</li>\n<li>湖仓一体和纯数仓的区别是什么</li>\n<li>数据回滚怎么处理</li>\n<li>项目每天的数据量是多少</li>\n<li>粒度是什么</li>\n<li>链路性能优化是做什么</li>\n<li>Flink 如何保证数据被精准一次地消费</li>\n<li>星型模型和雪花模型，各自适合用在哪些场景</li>\n<li>三范式的概念了解吗</li>\n<li>那你觉得数仓的表是符合三范式的吗</li>\n<li>手撕：直播间最多人数对应时刻（变式）</li>\n</ol>\n<blockquote>备注：阿里数开一面，北京。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-06-12-netease-bigdata",
+      "company": "网易（杭州）",
+      "business": "大数据开发",
+      "position": "大数据开发工程师（三面）",
+      "date": "2026-06-12",
+      "round": "三面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>来源小红书 @数据工程师勇哥。Flink + Doris 是主线。</blockquote>\n<h3>一面（技术细节）</h3>\n<ol>\n<li>自我介绍（打断）：你做的那个实时数仓，数据延迟是多少？数据量多大？</li>\n<li>场景题：要实时统计亿级用户点击流的 UV，要求去重且精准，不能有误差，你怎么做？（追问：Redis 扛不住亿级 QPS 怎么办？Flink 状态后端怎么调优？）</li>\n<li>手撕 SQL：给一张用户登录表，求连续登录 3 天的用户</li>\n<li>手撕算法：手写单例模式（Double Check Lock），为什么加 Volatile？</li>\n<li>实时：Flink 的 Exactly-Once 怎么实现，Checkpoint 机制详细讲</li>\n</ol>\n<h3>二面（Leader）</h3>\n<ol>\n<li>项目深挖：你做过最得意的项目是什么？如果现在重做，你会改进哪里？</li>\n<li>架构：把原来 ClickHouse 和 Hive 的任务迁移到 Doris，怎么设计？怎么保证数据一致性？Join 性能慢怎么办？（Bucket/Partition/Colocation Join/物化视图）</li>\n<li>智力题：10 亿个整数，内存只有 2G，怎么找出中位数？</li>\n<li>Java 基础：HashMap 在 JDK1.8 为什么引入红黑树？ConcurrentHashMap 分段锁和 CAS 的区别？</li>\n</ol>\n<h3>三面（HRBP）</h3>\n<ol>\n<li>抗压测试：网易加班多，项目上线压力大，你怎么看？</li>\n<li>稳定性：你有 5 年经验了，为什么离开上家公司？</li>\n<li>薪资：期望 30k+，公积金全额 12%，最低能接受多少？</li>\n</ol>\n<blockquote>备注：网易云音乐已把 Doris 作为统一引擎，必考分桶倾斜/写放大。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2025-03-24-jd-data-dev",
+      "company": "京东",
+      "business": "数据开发",
+      "position": "数据开发（一面）",
+      "date": "2025-03-24",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>Agent 深挖</li>\n<li>数据是从 Doris 导入的吗？性能怎么样？</li>\n<li>数据量有多少？宽表数据量是多少？</li>\n<li>产出是 AI 吗？</li>\n<li>指标覆盖率如何衡量？是原来的指标还是聚合后的指标？</li>\n<li>分成了哪些维度？</li>\n<li>宽表涉及到哪些数据？这个开发主要做了什么？数据量是多少？</li>\n<li>AI 在工作中可以有什么样的应用？</li>\n<li>AI 在应用于业务中需要注意什么？（底层原理、实现到什么成果、成本和提效）</li>\n<li>实时是否了解？</li>\n<li>MPP 框架</li>\n<li>工作流产出可以复用吗？</li>\n<li>数仓分层</li>\n<li>业务域和主题域</li>\n<li>主题域划分有哪些？</li>\n<li>手撕 SQL：用户最多的登录下一个行为</li>\n<li>手撕 SQL：输出用户连续登录的开始和结束日期</li>\n</ol>\n<blockquote>备注：来源小红书。QQ 频道离线数仓 899 张表，DAU 近 2000 万。</blockquote>"
     }
   ]
 };
