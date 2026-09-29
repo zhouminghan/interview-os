@@ -1,12 +1,12 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T10:46:32+08:00",
+  "generatedAt": "2026-09-29T10:52:39+08:00",
   "stats": {
-    "questions": 260,
-    "interviews": 15,
-    "technical": 188,
-    "project": 72,
+    "questions": 286,
+    "interviews": 16,
+    "technical": 201,
+    "project": 85,
     "domains": {
-      "spark": 32,
+      "spark": 34,
       "hdfs": 1,
       "storage": 10,
       "lakehouse": 7,
@@ -14,12 +14,12 @@ window.OS_DATA = {
       "flink": 6,
       "network": 4,
       "algorithm": 3,
-      "llm": 39,
+      "llm": 46,
       "platform": 2,
-      "system": 1,
-      "warehouse": 61,
+      "system": 2,
+      "warehouse": 64,
       "sql": 11,
-      "project": 72
+      "project": 85
     }
   },
   "domains": {
@@ -816,6 +816,34 @@ window.OS_DATA = {
       ],
       "domain": "spark",
       "body_html": "<h2>一句话</h2>\n<p>先区分数据倾斜还是单节点硬件/IO 问题，再针对性处理。</p>\n<h2>30 秒回答</h2>\n<p>看该节点上 task 的数据量是否异常大（倾斜），还是所有 task 都慢（硬件/IO）。看 executor 的 CPU、GC、磁盘 IO、网络；换节点重跑验证；倾斜处理热点 key，硬件问题换节点/查磁盘。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>倾斜：该节点 task 数据量远大于其他</li>\n<li>硬件/IO：该节点所有 task 都慢，与数据无关</li>\n<li>指标：CPU、GC、磁盘 IO、网络</li>\n<li>验证：换节点重跑同 stage</li>\n<li>处理：倾斜加盐/拆分，硬件换节点/修盘</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么快速判断是倾斜还是硬件？</li>\n<li>节点磁盘慢怎么看？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0033",
+      "type": "technical",
+      "question": "Spark 和 Flink 的核心区别，分别适配什么场景",
+      "topic": [
+        "spark",
+        "flink"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>Spark 是批处理引擎（微批），Flink 是真正的流处理引擎（低延迟、事件驱动）。</p>\n<h2>30 秒回答</h2>\n<p>Spark 用微批 DAG，适合离线批处理；Flink 以流为核心，低延迟、有状态，适合实时计算。游戏实时对局数据选 Flink，历史玩家行为数据选 Spark。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Spark：批处理、微批、吞吐高、延迟秒级</li>\n<li>Flink：流处理、事件驱动、毫秒级、有状态</li>\n<li>选型：实时对局/监控用 Flink，历史离线分析用 Spark</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Spark Streaming 和 Flink 区别？</li>\n<li>为什么实时对局用 Flink？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0034",
+      "type": "technical",
+      "question": "Spark SQL 数据倾斜怎么排查和解决",
+      "topic": [
+        "spark",
+        "skew"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>先定位热点 key，再用加盐、热点拆分或 AQE 处理。</p>\n<h2>30 秒回答</h2>\n<p>看 task 数据量/耗时找长尾，定位热点 key；group by 用两阶段加盐聚合，join 用热点拆分或加盐 join，开启 AQE skew join，过滤脏数据。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：UI task 分布、抽样统计 key</li>\n<li>group by：加盐两阶段聚合</li>\n<li>join：热点拆分、两阶段加盐 join</li>\n<li>通用：AQE skew join、过滤 null/脏数据</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你实际遇到的倾斜场景？</li>\n<li>加盐后怎么还原？</li>\n</ul>"
     },
     {
       "id": "HDFS-0001",
@@ -2659,6 +2687,108 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>ChatBI 链路：意图识别 -&gt; 指标口径解析 -&gt; RAG -&gt; SQL 生成 -&gt; 校验 -&gt; 执行 -&gt; 结果 -&gt; 评测。</p>\n<h2>30 秒回答</h2>\n<p>做问数 Agent 通常涉及：意图识别、指标字典/语义层、检索增强、SQL 生成与校验、权限、执行、评测。结合实际项目讲你负责的部分和效果。</p>\n<h2>待补充（真实经历）</h2>"
     },
     {
+      "id": "LLM-0040",
+      "type": "technical",
+      "question": "AI 训练数据去重怎么做，文本和行为序列去重有什么差异",
+      "topic": [
+        "llm",
+        "data-dedup"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>文本用 MinHash/SimHash 近重复 + 语义去重，行为序列用特征指纹 + 序列相似度去重。</p>\n<h2>30 秒回答</h2>\n<p>文本：精确哈希去重 + SimHash 近重复 + embedding 语义去重。行为序列：按用户+会话+特征做指纹去重，考虑时序和序列相似度，避免简单哈希误杀。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>文本：MinHash/SimHash、embedding 语义、编辑距离</li>\n<li>行为序列：会话切分、特征指纹、序列相似度</li>\n<li>差异：文本重语义，序列重时序和模式</li>\n<li>目标：去重不伤分布，保留多样性</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>语义去重怎么做？</li>\n<li>序列去重为什么不能只哈希？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0041",
+      "type": "technical",
+      "question": "怎么保证训练数据质量，核心指标有哪些",
+      "topic": [
+        "llm",
+        "data-quality"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>训练数据质量靠质检规则 + 标注一致性 + 模型评估 + 人工抽检，指标看覆盖、准确、一致、及时、去重和坏样率。</p>\n<h2>30 秒回答</h2>\n<p>核心指标：覆盖率、准确率、一致性、及时性、去重率、标注一致率、坏样本率。手段：规则质检、自动评估、人工抽检、badcase 回流。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>指标：覆盖、准确、一致、及时、去重、坏样率</li>\n<li>规则：格式、范围、分布校验</li>\n<li>评估：模型评测 + 标注一致性（如 Kappa）</li>\n<li>回流：badcase 分类、迭代</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>标注一致性怎么衡量？</li>\n<li>坏样本怎么回流？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0042",
+      "type": "technical",
+      "question": "FPS AI 队友训练数据管线从 0 到 1 怎么设计",
+      "topic": [
+        "llm",
+        "data-pipeline",
+        "game-ai"
+      ],
+      "difficulty": 4,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>按「采集 -&gt; 消息 -&gt; 实时/离线 -&gt; 清洗去重 -&gt; 多模态对齐 -&gt; 数据集 -&gt; 版本 -&gt; 评测」设计闭环。</p>\n<h2>30 秒回答</h2>\n<p>对局日志/埋点/回放采集，经 Kafka 分实时流和离线批，清洗去重、多模态对齐、质量筛选，产出带版本的训练数据集，交付模型并回流评测。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>采集：对局日志、操作/语音/画面埋点</li>\n<li>传输：Kafka 分层（实时 + 离线）</li>\n<li>处理：清洗、去重、对齐、筛选高质量</li>\n<li>数据：多模态对齐、版本管理、特征</li>\n<li>交付：训练集 + 评测集 + 反馈闭环</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>亿级对局怎么分层存？</li>\n<li>实时性和质量怎么平衡？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0043",
+      "type": "technical",
+      "question": "怎么筛选高质量职业选手对局数据，怎么定义高质量",
+      "topic": [
+        "llm",
+        "data-filtering"
+      ],
+      "difficulty": 4,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>用段位/胜率/操作指标等规则 + 模型打分定义和筛选高质量，分层使用避免低端数据拉低上限。</p>\n<h2>30 秒回答</h2>\n<p>高质量 = 高段位 + 高胜率 + 职业选手标签 + 对局质量评分。规则过滤 + 指标阈值 + 模型打分 + 人工抽检；高质量做 SFT 上限，低质量做预训练或负样本。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定义：段位、胜率、KDA、操作指标、职业标签</li>\n<li>筛选：规则 + 阈值 + 模型打分 + 抽检</li>\n<li>分层：高质量上限数据、低质量底噪/负样本</li>\n<li>目标：不拉低模型上限，保持分布多样性</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么自动给对局质量打分？</li>\n<li>低质量数据还有用吗？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0044",
+      "type": "technical",
+      "question": "游戏多模态数据（动作/语音/画面）怎么保证时序对齐",
+      "topic": [
+        "llm",
+        "multimodal",
+        "alignment"
+      ],
+      "difficulty": 4,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>用统一时间戳或游戏 tick/帧对齐，再做采样同步和质量校验。</p>\n<h2>30 秒回答</h2>\n<p>以游戏帧/tick 为基准统一时间戳，把操作、语音、画面按时间戳对齐；语音按时间窗、画面按帧采样；再校验对齐误差。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基准：游戏帧/tick 或统一时钟</li>\n<li>对齐：按时间戳/帧索引映射</li>\n<li>采样：画面按帧、语音按窗</li>\n<li>校验：对齐误差、缺失检测</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>不同模态采样率不同怎么对齐？</li>\n<li>对齐误差怎么度量？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0045",
+      "type": "technical",
+      "question": "大模型在游戏研发里有哪些落地场景（如混元）",
+      "topic": [
+        "llm",
+        "game",
+        "application"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>大模型落地游戏主要在智能 NPC/AI 队友、内容生成、研发提效和运营个性化。</p>\n<h2>30 秒回答</h2>\n<p>智能 NPC/AI 队友、对话与剧情生成、美术/资产生成、代码与测试提效、运营个性化推荐。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>体验：智能 NPC、AI 队友、动态对话</li>\n<li>内容：剧情、美术、关卡生成</li>\n<li>研发：代码生成、测试、文档</li>\n<li>运营：个性化推荐、反外挂</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>AI 队友和普通 NPC 区别？</li>\n<li>内容生成怎么控制风格一致？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0046",
+      "type": "technical",
+      "question": "从 0 到 1 搭建游戏 AI 训练数据平台，第一版先做什么",
+      "topic": [
+        "llm",
+        "data-platform",
+        "planning"
+      ],
+      "difficulty": 4,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>先跑通「采集接入 -&gt; 清洗去重 -&gt; 版本化数据集 -&gt; 交付」的最小闭环，再逐层加标注、多模态和评测。</p>\n<h2>30 秒回答</h2>\n<p>第一版：接入对局数据、基础清洗去重、版本管理、简单质检、交付训练集，先证明链路能跑通；再规划多模态、标注、评测。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>P0：采集接入、清洗去重、版本化、交付</li>\n<li>P1：质量质检、标注、badcase 回流</li>\n<li>P2：多模态、实时、评测平台</li>\n<li>原则：先闭环再扩展，优先交付价值</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么第一版不做标注？</li>\n<li>优先级怎么排？</li>\n</ul>"
+    },
+    {
       "id": "PLATFORM-0001",
       "type": "technical",
       "question": "低代码平台是什么，你了不了解",
@@ -2725,6 +2855,21 @@ window.OS_DATA = {
       ],
       "domain": "system",
       "body_html": "<h2>一句话</h2>\n<p>先定位进程和线程，再判断是流量、热点代码、GC、死循环还是锁竞争。</p>\n<h2>30 秒回答</h2>\n<p>用 top/监控定位高 CPU 进程和线程，看用户态/系统态/IO wait 占比，结合 jstack/火焰图定位热点代码；按流量突增、死循环、GC、锁竞争分类，再限流/扩容/优化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定位：top、监控、进程/线程</li>\n<li>分类：用户态（热点代码）、系统态（IO/系统调用）、GC</li>\n<li>工具：jstack、火焰图、GC 日志</li>\n<li>处理：限流、扩容、优化热点、修死循环/锁</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>用户态和系统态高分别说明什么？</li>\n<li>火焰图怎么看？</li>\n</ul>"
+    },
+    {
+      "id": "SYSTEM-0002",
+      "type": "technical",
+      "question": "Python 处理 10G 以上大日志文件怎么不内存溢出",
+      "topic": [
+        "system",
+        "python",
+        "big-file"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "system",
+      "body_html": "<h2>一句话</h2>\n<p>用流式/分块迭代读取，别一次 read() 全量进内存。</p>\n<h2>30 秒回答</h2>\n<p>用生成器逐行迭代、分块读、mmap 内存映射，或用 pandas chunksize、dask/polars 惰性处理，只保留必要列。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>流式：逐行 for line in f，生成器</li>\n<li>分块：read(chunk)、pandas chunksize</li>\n<li>惰性：dask、polars、vaex</li>\n<li>mmap：内存映射大文件</li>\n<li>技巧：外部排序、流式计数（Counter）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>分块和逐行有什么区别？</li>\n<li>dask 和 pandas 区别？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0001",
@@ -4038,6 +4183,50 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>数仓安全靠数据分级 + 库/表/行/列权限 + 脱敏 + 审计。</p>\n<h2>30 秒回答</h2>\n<p>数据分级分类（L1-L4），权限做到库级/表级/行级/列级，敏感字段脱敏，操作留审计日志，满足合规和最小权限原则。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>分级分类：按敏感程度定级</li>\n<li>权限：库/表/行/列粒度，最小权限</li>\n<li>脱敏：手机号、身份证、金额等</li>\n<li>审计：查询、下载、导出留痕</li>\n<li>合规：数据安全法、跨境等要求</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>行级权限怎么实现？</li>\n<li>脱敏和权限的区别？</li>\n</ul>"
     },
     {
+      "id": "WAREHOUSE-0062",
+      "type": "technical",
+      "question": "数仓建设落地过程中常见的最大问题是什么",
+      "topic": [
+        "warehouse",
+        "construction"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>落地最大问题通常是口径不统一、分层混乱、重复建设和数据质量，而非单纯技术。</p>\n<h2>30 秒回答</h2>\n<p>常见问题：指标口径不统一、分层职责不清、重复建表、历史包袱重、数据质量差、资源成本高、跨团队协作难。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>口径：业务口径不统一，同指标多套算法</li>\n<li>分层：职责不清、越层取数</li>\n<li>重复：缺乏资产登记，重复建设</li>\n<li>质量：脏数据、延迟、缺失</li>\n<li>治理：元数据、血缘、成本</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>你遇到的最大问题是哪个，怎么解决？</li>\n<li>数仓建设从哪一步开始最稳？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0063",
+      "type": "technical",
+      "question": "一亿条用户行为数据产出日活/留存/付费报表，怎么保证查询速度和时效",
+      "topic": [
+        "warehouse",
+        "report",
+        "performance"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>用分层预聚合 + 列存 OLAP + 分区分桶 + 物化视图保证速度和时效。</p>\n<h2>30 秒回答</h2>\n<p>DWD 明细 -&gt; DWS 按日/月预聚合，结果落 Doris/StarRocks 列存，分区裁剪 + 分桶 + 物化视图，再按天定时产出报表。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>预聚合：日活/留存/付费提前算成汇总层</li>\n<li>存储：列存 OLAP（Doris/StarRocks/ClickHouse）</li>\n<li>建模：分区分桶、排序键、物化视图</li>\n<li>时效：离线 T+1 为主，关键指标走实时</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>留存怎么高效计算？</li>\n<li>亿级数据一天能算完吗，怎么优化？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0064",
+      "type": "technical",
+      "question": "数据治理怎么推动业务方配合埋点和数据校验",
+      "topic": [
+        "warehouse",
+        "governance",
+        "collaboration"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>把治理收益量化、降低接入成本、建立规范和灰度推进，而不是只靠强制。</p>\n<h2>30 秒回答</h2>\n<p>先说清埋点/校验对业务的收益，提供规范文档和工具降低接入成本，设 SLA 和责任人，领导支持 + 灰度推进，用数据质量看板反馈。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>收益量化：质量提升、口径统一、减少返工</li>\n<li>降门槛：埋点规范、校验模板、工具化</li>\n<li>机制：SLA、责任人、质量看板</li>\n<li>推进：领导支持 + 灰度 + 逐步落地</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>业务不配合的根因是什么？</li>\n<li>怎么量化治理收益给业务看？</li>\n</ul>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -4268,24 +4457,25 @@ window.OS_DATA = {
     {
       "id": "SQL-0011",
       "type": "technical",
-      "question": "你是怎么定位慢 SQL 的",
+      "question": "用户充值表三道题：累计充值、最高金额日期、连续 7 天无充值",
       "topic": [
         "sql",
-        "slow-query"
+        "window-function",
+        "gap"
       ],
       "difficulty": 3,
       "frequency": "high",
       "source_type": "ai_generated",
       "sources": [
         {
-          "interview_id": "INTERVIEW-2026-09-25-xunlei-data-dev",
-          "company": "迅雷",
-          "position": "资深数据开发（一面）",
-          "date": "2026-09-25"
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
         }
       ],
       "domain": "sql",
-      "body_html": "<h2>一句话</h2>\n<p>用执行计划/Profile 看耗时、扫描行数、shuffle 和慢算子，定位瓶颈再优化。</p>\n<h2>30 秒回答</h2>\n<p>看执行计划（EXPLAIN）和 Profile，找耗时、扫描数据量大的算子，判断是全表扫描、shuffle、join 还是倾斜，再针对性优化。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>执行计划：看是否走索引/分区裁剪、join 策略</li>\n<li>Profile：看每个算子耗时、扫描行数、shuffle 量</li>\n<li>定位：全表扫描、慢 join、数据倾斜、低效子查询</li>\n<li>优化：加索引/物化视图、改写、调参</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>执行计划里最关注哪几个指标？</li>\n<li>全表扫描怎么优化？</li>\n</ul>"
+      "body_html": "<h2>1. 历史累计充值</h2>\n<pre><code class=\"language-sql\">SELECT user_id, SUM(pay_amount) AS total_amount\nFROM pay\nGROUP BY user_id;</code></pre>\n<h2>2. 充值金额最高的日期及金额</h2>\n<pre><code class=\"language-sql\">SELECT user_id, pay_date, pay_amount\nFROM (\n  SELECT user_id, pay_date, pay_amount,\n         ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY pay_amount DESC, pay_date DESC) AS rn\n  FROM pay\n) s\nWHERE rn = 1;</code></pre>\n<h2>3. 连续 7 天没有充值记录的用户</h2>\n<pre><code class=\"language-sql\">SELECT DISTINCT user_id\nFROM pay p\nWHERE NOT EXISTS (\n  SELECT 1 FROM pay p2\n  WHERE p2.user_id = p.user_id\n    AND p2.pay_date &gt;= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)\n);</code></pre>\n<h2>注意</h2>\n<ul>\n<li>并列最高金额用 RANK/DENSE_RANK 按业务需要</li>\n<li>「连续 7 天无充值」要先确认口径：是最近 7 天还是任意连续 7 天窗口</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -5947,9 +6137,319 @@ window.OS_DATA = {
       ],
       "domain": "project",
       "body_html": "<h2>回答框架</h2>\n<p>问岗位职责、团队规模、技术栈、业务方向，展示认真态度。</p>\n<h2>注意</h2>\n<p>结合面试内容问，别只问薪资福利。</p>"
+    },
+    {
+      "id": "PROJECT-0073",
+      "type": "project",
+      "question": "自我介绍 + 挑一个最核心的 AI 数据项目讲",
+      "topic": [
+        "project",
+        "ai-data",
+        "self-introduction"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>自我介绍简洁，重点挑一个 AI 数据项目用 STAR 讲：背景、目标、你的职责、核心难点、量化收益。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0074",
+      "type": "project",
+      "question": "玩过天美哪些游戏，了解天美在 AI 方面的布局吗",
+      "topic": [
+        "project",
+        "game",
+        "ai"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>结合天美产品（王者荣耀、和平精英、三角洲行动、暗区突围）和 AI 技术（绝悟、GiiNEX、智能 NPC、AI 队友）表达真实兴趣。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0075",
+      "type": "project",
+      "question": "游戏行业 AI 数据工程师和电商/社交数据岗最大的区别",
+      "topic": [
+        "project",
+        "industry"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>游戏数据更偏多模态、时序、对局上下文和 AI 训练数据；电商/社交更偏用户行为、指标、推荐。突出你对游戏 AI 数据的理解。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0076",
+      "type": "project",
+      "question": "你做过最有技术成就感的一件事",
+      "topic": [
+        "project",
+        "highlight"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>讲一个技术难点 + 解决过程 + 业务价值，说明为什么有成就感，落到数据量、性能、收益。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0077",
+      "type": "project",
+      "question": "怎么看待游戏行业 AI 热潮，天美的核心优势",
+      "topic": [
+        "project",
+        "industry"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>AI 热潮要落到具体体验和研发效率；天美优势在头部产品、海量对局数据和 AI 投入（绝悟/GiiNEX）。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0078",
+      "type": "project",
+      "question": "职业规划，为什么从互联网转游戏、为什么选天美",
+      "topic": [
+        "project",
+        "career"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>表达长期兴趣，把个人能力（数据工程 + AI）和游戏 AI 方向结合，说明天美的吸引力。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0079",
+      "type": "project",
+      "question": "对薪资和职级有大概预期吗",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>给合理区间，结合年限和岗位（5 年硕 T8-T9、总包 40-60W），别把话说死。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0080",
+      "type": "project",
+      "question": "为什么想离开现在的公司",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>讲正向理由（成长、方向、挑战），不踩老东家，突出对新方向的长期兴趣。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0081",
+      "type": "project",
+      "question": "和业务方/同事意见不合，怎么处理",
+      "topic": [
+        "project",
+        "conflict"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>先理解分歧本质、对齐目标和数据，用事实沟通，必要时升级决策，最终以项目利益为先。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0082",
+      "type": "project",
+      "question": "能否接受高强度工作节奏、大版本赶进度",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>表达能接受并说明如何高效应对（优先级、协作、可持续），不盲目承诺。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0083",
+      "type": "project",
+      "question": "还投了哪些公司，有没有其他 Offer 在流程里",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>诚实但不过度展开，说明进度和意向，聚焦当前岗位。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0084",
+      "type": "project",
+      "question": "对天美工作室了解多少，为什么想来",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>结合天美产品、AI 布局和岗位方向，表达真实了解和加入意愿。</p>\n<h2>待补充（真实经历）</h2>"
+    },
+    {
+      "id": "PROJECT-0085",
+      "type": "project",
+      "question": "现在的薪资结构和预期薪资",
+      "topic": [
+        "project",
+        "hr"
+      ],
+      "difficulty": 1,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+          "company": "腾讯天美",
+          "position": "AI 数据工程师",
+          "date": "2026-09-29"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<p>说明当前薪资结构，给合理预期区间，结合市场行情和岗位。</p>\n<h2>待补充（真实经历）</h2>"
     }
   ],
   "interviews": [
+    {
+      "interview_id": "INTERVIEW-2026-09-29-timi-ai-data-engineer",
+      "company": "腾讯天美",
+      "business": "游戏 AI 训练数据工程",
+      "position": "AI 数据工程师（4 轮）",
+      "date": "2026-09-29",
+      "round": "4 轮（技术 x2 + 总监 + HR）",
+      "body_html": "<h2>面经记录（原始）</h2>\n<h3>一面（技术基础）</h3>\n<ol>\n<li>自我介绍 + 挑一个最核心的 AI 数据项目：负责什么、解决什么核心问题</li>\n<li>SQL（用户充值表 user_id/pay_date/pay_amount）：历史累计充值；充值金额最高的日期；连续 7 天无充值</li>\n<li>数仓分几层，你们数仓怎么建设，落地最大问题</li>\n<li>Spark 和 Flink 核心区别、适配场景，实时对局 vs 历史行为分别选哪个</li>\n<li>AI 训练数据去重怎么做，文本 vs 行为序列去重差异</li>\n<li>怎么保证训练数据质量，核心指标</li>\n<li>Python 处理 10G+ 大日志不内存溢出，用过哪些库</li>\n<li>玩过天美哪些游戏，了解 AI 布局吗</li>\n</ol>\n<h3>二面（技术深度）</h3>\n<ol>\n<li>FPS AI 队友训练数据管线从 0 到 1（亿级对局、多模态、实时性、质量）</li>\n<li>混入低端玩家数据拉低上限，怎么筛选高质量职业选手对局，怎么定义高质量</li>\n<li>一亿条用户行为数据产出日活/留存/付费报表，怎么保证速度和时效</li>\n<li>Spark SQL 数据倾斜排查解决 + 实际案例</li>\n<li>多模态数据（动作/语音/画面）怎么保证时序对齐</li>\n<li>数据治理怎么推动业务方配合埋点和校验，遇到阻力怎么解决</li>\n<li>腾讯混元了解吗，大模型在游戏研发的落地场景</li>\n</ol>\n<h3>三面（总监）</h3>\n<ol>\n<li>游戏行业 AI 数据工程师 vs 电商/社交数据岗的区别</li>\n<li>最有技术成就感的一件事</li>\n<li>从 0 到 1 搭建游戏 AI 训练数据平台，第一版先做什么、怎么排优先级</li>\n<li>怎么看游戏 AI 热潮，天美核心优势</li>\n<li>职业规划，为什么转游戏、为什么天美</li>\n<li>薪资职级预期</li>\n</ol>\n<h3>四面（HRBP）</h3>\n<ol>\n<li>为什么离开现在的公司</li>\n<li>和业务/同事意见不合怎么处理</li>\n<li>能否接受高强度节奏、大版本赶进度</li>\n<li>还投了哪些公司、有没有其他 Offer</li>\n<li>对天美了解多少，为什么来</li>\n<li>薪资结构、预期薪资</li>\n</ol>\n<blockquote>备注：天美 AI 数据工程师，总包 40-60W。备考重点：SQL 窗口函数、Spark/Flink、训练数据全链路、天美产品与 AI（绝悟、GiiNEX）。</blockquote>"
+    },
     {
       "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
       "company": "欣旺达",
