@@ -8,6 +8,9 @@
   --accent: #2563EB;
   --accent-strong: #1D4ED8;
   --on-accent: #FFFFFF;
+  --cta: #EA580C;
+  --cta-strong: #C2410C;
+  --on-cta: #1C1917;
   --ok: #16A34A;
   --warn: #D97706;
   --danger: #DC2626;
@@ -30,6 +33,9 @@
   --accent: #3B82F6;
   --accent-strong: #60A5FA;
   --on-accent: #FFFFFF;
+  --cta: #F97316;
+  --cta-strong: #FB923C;
+  --on-cta: #0B1220;
   --ok: #22C55E;
   --warn: #F59E0B;
   --danger: #F87171;
@@ -89,8 +95,8 @@ p { margin: 0 0 1em; }
 
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border); font-size: .95rem; font-weight: 600; cursor: pointer; transition: background var(--dur), border-color var(--dur), color var(--dur); font-family: inherit; }
 .btn:hover { text-decoration: none; }
-.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.btn-primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+.btn-primary { background: var(--cta); border-color: var(--cta); color: var(--on-cta); }
+.btn-primary:hover { background: var(--cta-strong); border-color: var(--cta-strong); }
 .btn-secondary { background: var(--surface); color: var(--text); }
 .btn-secondary:hover { background: var(--surface-2); }
 .btn-sm { padding: 6px 12px; font-size: .84rem; }
@@ -100,7 +106,7 @@ p { margin: 0 0 1em; }
 
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
 .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-.stat b { display: block; font-size: 1.5rem; }
+.stat b { display: block; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
 .stat span { color: var(--muted); font-size: .84rem; }
 
 .domain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -128,7 +134,22 @@ p { margin: 0 0 1em; }
 .q-row.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
 .q-id { font-family: var(--mono); font-size: .72rem; color: var(--accent); font-weight: 700; }
 .q-title { font-weight: 600; }
-.q-meta { color: var(--muted); font-size: .76rem; white-space: nowrap; }
+.q-meta { color: var(--muted); font-size: .76rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* Leaderboard / 榜单 */
+.rank { flex: none; width: 28px; height: 28px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; font-size: .8rem; font-weight: 750; font-variant-numeric: tabular-nums; color: var(--muted); background: var(--surface-2); }
+.rank.top { background: var(--cta); color: var(--on-cta); }
+
+.rank-list { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+.rank-row { display: grid; grid-template-columns: auto 1fr auto; gap: 4px 12px; align-items: center; padding: 12px 14px; color: var(--text); border-bottom: 1px solid var(--border); }
+.rank-row:last-child { border-bottom: 0; }
+.rank-row:hover { background: var(--surface-2); text-decoration: none; }
+.rank-label { font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank-count { font-weight: 650; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.rank-share { color: var(--muted); font-weight: 500; font-size: .8rem; margin-left: 6px; }
+.rank-bar { grid-column: 1 / -1; height: 5px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.rank-bar i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+.rank-row.top .rank-bar i { background: var(--cta); }
 
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
 .tag { font-size: .75rem; padding: 2px 8px; border-radius: 6px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
@@ -201,6 +222,8 @@ select { padding: 8px 12px; border-radius: var(--radius); border: 1px solid var(
   .topbar-inner { padding: 0 10px; }
   .global-search { max-width: none; }
   .brand { font-size: .94rem; }
+  .q-meta { white-space: normal; text-align: right; }
+  .q-meta .q-id { display: none; }
 }
 @media (max-width: 520px) {
   .stats, .domain-grid { grid-template-columns: 1fr; }

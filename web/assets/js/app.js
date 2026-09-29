@@ -124,6 +124,8 @@
   function renderIndex() {
     const s = D.stats || {};
     const domainKeys = Object.keys(s.domains || {});
+    const domains = domainKeys.map((k) => ({ k: k, n: s.domains[k] || 0 })).sort((a, b) => b.n - a.n);
+    const maxN = domains.length ? domains[0].n : 1;
     const recent = D.interviews.slice(0, 3);
     $("#page").innerHTML =
       "<h1>Interview OS</h1>" +
@@ -134,9 +136,15 @@
         '<div class="stat"><b>' + (s.interviews || 0) + "</b><span>原始面经</span></div>" +
         '<div class="stat"><b>' + domainKeys.length + "</b><span>领域</span></div>" +
       "</div>" +
-      "<h2>领域</h2>" +
-      '<div class="domain-grid">' +
-        domainKeys.map((k) => '<a class="domain-card" href="questions.html?domain=' + encodeURIComponent(k) + '"><b>' + esc(domainLabel(k)) + "</b><br><span>" + (s.domains[k] || 0) + " 题</span></a>").join("") +
+      "<h2>领域榜单</h2>" +
+      '<div class="rank-list">' +
+        domains.map((d, i) =>
+          '<a class="rank-row' + (i < 3 ? " top" : "") + '" href="questions.html?domain=' + encodeURIComponent(d.k) + '">' +
+            '<span class="rank' + (i < 3 ? " top" : "") + '">' + (i + 1) + "</span>" +
+            '<span class="rank-label">' + esc(domainLabel(d.k)) + "</span>" +
+            '<span class="rank-count">' + d.n + ' 题<span class="rank-share">' + Math.round(d.n / Math.max(1, s.questions || 0) * 100) + "%</span></span>" +
+            '<span class="rank-bar"><i style="width:' + Math.round(d.n / maxN * 100) + '%"></i></span>' +
+          "</a>").join("") +
       "</div>" +
       "<h2>最近面经</h2>" +
       (recent.length ? '<div class="interview-list">' + recent.map(interviewCard).join("") + "</div>" : '<p class="muted">还没有面经。</p>');
@@ -191,11 +199,11 @@
       const list = filtered();
       const el = $("#q-list");
       if (!list.length) { el.innerHTML = '<p class="muted">没有匹配的问题。</p>'; return; }
-      el.innerHTML = list.map((q) =>
+      el.innerHTML = list.map((q, i) =>
         '<button class="q-row" data-id="' + esc(q.id) + '">' +
-          '<span class="q-id">' + esc(q.id) + "</span>" +
+          '<span class="rank' + (i < 3 ? " top" : "") + '">' + (i + 1) + "</span>" +
           '<span class="q-title">' + esc(q.question) + "</span>" +
-          '<span class="q-meta">' + esc(domainLabel(q.domain)) + " · " + diffStars(q.difficulty) + "</span>" +
+          '<span class="q-meta"><span class="q-id">' + esc(q.id) + "</span> · " + esc(domainLabel(q.domain)) + " · " + diffStars(q.difficulty) + "</span>" +
         "</button>").join("");
       if (!state.selected || !list.some((q) => q.id === state.selected)) state.selected = list[0].id;
       highlight();
@@ -272,10 +280,11 @@
       $("#iv-count").textContent = items.length + " 份面经";
       const el = $("#iv-list");
       if (!items.length) { el.innerHTML = '<p class="muted">没有匹配的面经。</p>'; return; }
-      el.innerHTML = items.map((iv) => {
+      el.innerHTML = items.map((iv, i) => {
         const open = state.expanded.has(iv.interview_id);
         return '<div class="interview-card' + (open ? " open" : "") + '" data-id="' + esc(iv.interview_id) + '">' +
           '<button class="interview-toggle" type="button" aria-expanded="' + open + '" aria-label="展开或折叠 ' + esc(iv.company || "") + '">' +
+            '<span class="rank' + (i < 3 ? " top" : "") + '">' + (i + 1) + "</span>" +
             '<span class="interview-main">' +
               '<span class="interview-head"><b>' + esc(iv.company || "") + " · " + esc(iv.business || "") + '</b><span class="muted">' + esc(iv.date || "") + '</span></span>' +
               '<span class="interview-sub">' + esc(iv.position || "") + (iv.round ? " · " + esc(iv.round) : "") + '</span>' +
