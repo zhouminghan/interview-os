@@ -1,8 +1,8 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T17:05:52+08:00",
+  "generatedAt": "2026-09-29T17:09:16+08:00",
   "stats": {
     "questions": 1994,
-    "interviews": 85,
+    "interviews": 88,
     "technical": 1888,
     "project": 106,
     "domains": {
@@ -29934,6 +29934,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>Carry 分享的迅雷大数据开发实习生两面：一面 30 分钟侧重数仓分层/OLAP/架构/AI，二面 20 分钟侧重软素质与业务。</blockquote>\n<h3>一面</h3>\n<ol>\n<li>数据域怎么建设的、主题域的划分逻辑</li>\n<li>数仓分层架构</li>\n<li>数据上报的方式，流式还是批次</li>\n<li>增量采集还是全量采集，binlog</li>\n<li>没有 DWS 层可以吗</li>\n<li>为什么选择 StarRocks，为什么实时性不如 ClickHouse</li>\n<li>Lambda 架构还是 Kappa 架构，Lambda 架构怎么和离线数据对得上</li>\n<li>怎么做需求，如果对不上数怎么办，怎么把问题前置，怎么避免问题</li>\n<li>Data Agent 怎么做的，MCP 怎么优化的</li>\n<li>AI 是怎么把自然语言变成数据语言</li>\n</ol>\n<h3>二面</h3>\n<ol>\n<li>主题域是怎么划分的</li>\n<li>指标体系</li>\n<li>数据对不上怎么办，需求说不清楚怎么办</li>\n<li>如何快速上手业务</li>\n<li>自己的优缺点</li>\n<li>最有成就感的时候</li>\n</ol>\n<blockquote>备注：来源小红书 Carry；一面 30min 10 题，二面 20min 6 题，亮点为 Data Agent + MCP + NL2SQL。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-07-23-01wanwu-mlops",
+      "company": "零一万物",
+      "business": "MLOps",
+      "position": "MLOps（211硕 5 年数据开发转）",
+      "date": "2026-07-23",
+      "round": "一面 + 二面 + 三面 + HR",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>数据工程师勇哥整理，211 硕 5 年数据开发转零一万物 MLOps。</blockquote>\n<h3>第一轮（技术电面，45 分钟）</h3>\n<ol>\n<li>5 年数据开发经验，为什么转 MLOps</li>\n<li>了解零一万物吗，模基共建怎么理解</li>\n<li>数据开发中最复杂的 Pipeline，调度怎么做</li>\n<li>MLOps 里 CI、CD、CT 分别指什么</li>\n<li>数据质量最棘手的问题，怎么解决</li>\n<li>离线数仓和实时数仓的经验</li>\n<li>用过哪些调度系统，Airflow 还是 DolphinScheduler</li>\n</ol>\n<h3>第二轮（技术深度面，1.5 小时）</h3>\n<ol>\n<li>模型监控要关注哪些指标</li>\n<li>数据漂移和概念漂移怎么区分</li>\n<li>特征存储中点查为什么重要</li>\n<li>多版本模型怎么路由和切流</li>\n<li>线上模型效果骤降，自动回滚策略</li>\n<li>A/B 测试流量分层和正交</li>\n<li>怎么保证 ML 实验可复现性</li>\n<li>批量推理和在线推理的区别</li>\n<li>实时流数据做特征怎么保证低延迟</li>\n<li>Kafka 消息没接收到怎么办，重试机制</li>\n<li>Redis 排行榜怎么实现，zset 排序规则</li>\n</ol>\n<h3>第三轮（交叉 / 算法面，1 小时）</h3>\n<ol>\n<li>手写 Self-Attention（零一万物真实考过）</li>\n<li>Transformer 结构，LayerNorm 和 BatchNorm 区别</li>\n<li>传统 OCR 和多模态大模型的区别</li>\n<li>3.1T token 语料，数据清洗 Pipeline 怎么设计</li>\n<li>模型幻觉问题怎么处理</li>\n<li>LoRA 和 QLoRA 原理</li>\n<li>RAG 检索不准确怎么优化</li>\n<li>多模态未来怎么做，Gemini 形式和 LLM 形式哪个好</li>\n<li>EVA 涌现现象怎么看</li>\n<li>零一万物开源 OAK 平台了解吗</li>\n<li>怎么看开闭源双线并行</li>\n</ol>\n<h3>第四轮（HRBP，30 分钟）</h3>\n<ol>\n<li>为什么选择零一万物</li>\n<li>期望薪资，目前总包</li>\n<li>为什么跳槽（别说前公司坏话）</li>\n<li>接受加班吗，创业公司节奏</li>\n<li>职业规划</li>\n</ol>\n<blockquote>备注：来源小红书 @数据工程师勇哥。必考手写 self-attention，二面开放式问题极多。Yi-Lightning 是 MoE 架构，OAK 平台已开源 Apache 2.0。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-07-22-kuaishou-kling",
       "company": "快手",
       "business": "可灵大模型数据",
@@ -30085,6 +30094,24 @@ window.OS_DATA = {
       "date": "2026-06-09",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>实习项目经历（大概 20 分钟）</li>\n<li>shuffle是什么 相关的一些知识</li>\n<li>spark 运行报错该怎么做检测</li>\n<li>小表广播是什么</li>\n<li>t 检验和 z 检验是什么</li>\n<li>spark 运行中 job stage task 的关系是什么</li>\n<li>求直播间最大在线人数</li>\n</ol>\n<blockquote>备注：小红书 @星号* 分享，原始记录只保留问题，不含当时答案。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-06-08-alibaba-cloud-6y",
+      "company": "阿里云智",
+      "business": "数据开发",
+      "position": "数据开发（社招 6 年）",
+      "date": "2026-06-08",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始，图片 OCR）</h2>\n<blockquote>涤生大数据整理，阿里云智社招 6 年数据开发岗面试题，非常看重 AI 赋能应用。</blockquote>\n<ol>\n<li>Text-to-SQL 应用经验</li>\n<li>Text-to-SQL 是否做过评测级建设</li>\n<li>Spark 任务优化中 AI 应用的流程</li>\n<li>大模型是否出现幻觉，是否做分类和校准</li>\n<li>AI 在 Spark 任务优化中没有分析到位的部分如何解决</li>\n<li>AI 在 Spark 任务优化中是否自动化，是否考虑做成 SOP</li>\n<li>数据资产管理可以从哪些方面入手使用 AI 大模型</li>\n<li>数据资产管理使用 AI 大模型可能出现哪些问题，哪些更容易做，如何完善</li>\n<li>团队新人如何给代码规范</li>\n<li>数仓项目介绍与项目问题</li>\n<li>数据湖相关问题</li>\n</ol>\n<blockquote>备注：来源小红书 @涤生大数据，阿里云智社招 6 年。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-06-01-bytedance-douyin-6y",
+      "company": "字节跳动",
+      "business": "数据开发",
+      "position": "数据开发（抖音社招 6 年）",
+      "date": "2026-06-01",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始，图片 OCR）</h2>\n<blockquote>涤生大数据整理，字节抖音社招 6 年数据开发岗面试题，整体大数据为主、AI 为辅。</blockquote>\n<ol>\n<li>自我介绍</li>\n<li>做得最好的项目，展开介绍</li>\n<li>项目细节、业务架构、项目难点</li>\n<li>数据治理怎么做，成果如何</li>\n<li>数仓规范设计，如何监督规范实施</li>\n<li>评价模型治理好坏的指标有哪些</li>\n<li>重复指标如何治理</li>\n<li>日常开发如何避免指标重复建设</li>\n<li>Spark 任务除了长时效还有哪些异常治理过，怎么发现、定位、解决</li>\n<li>Spark Shuffle 和 MR Shuffle 区别</li>\n<li>宽窄依赖，一段 SQL 启多少个 Job、Stage</li>\n<li>StarRocks 数据模型有几种，各自特性，SR 和 CK Join 性能对比</li>\n<li>小文件如何产生，如何治理</li>\n<li>数仓 AI 这块有哪些探索</li>\n<li>日常开发如何通过 AI 赋能提效</li>\n<li>Text-to-SQL 主流技术方向有哪几类，智能问数准确性如何提升</li>\n<li>SQL 连续登录变形题</li>\n</ol>\n<blockquote>备注：来源小红书 @涤生大数据，字节抖音社招 6 年。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-06-01-ctrip-warehouse",
