@@ -1,10 +1,10 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T12:33:20+08:00",
+  "generatedAt": "2026-09-29T12:40:19+08:00",
   "stats": {
-    "questions": 1988,
+    "questions": 1992,
     "interviews": 65,
-    "technical": 1884,
-    "project": 104,
+    "technical": 1887,
+    "project": 105,
     "domains": {
       "spark": 244,
       "hdfs": 4,
@@ -16,12 +16,12 @@ window.OS_DATA = {
       "algorithm": 9,
       "statistics": 1,
       "ml": 5,
-      "llm": 89,
+      "llm": 91,
       "platform": 2,
       "system": 7,
       "warehouse": 155,
-      "sql": 29,
-      "project": 104
+      "sql": 30,
+      "project": 105
     }
   },
   "domains": {
@@ -23747,6 +23747,36 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>核心不是选某一层，而是理解「数据终点从 BI 给人看变成数据给 AI 用」，在旧数仓栈上叠加 Embedding/向量检索/数据契约/Agent 反馈闭环。</p>\n<h2>30 秒回答</h2>\n<p>新能力栈 = 旧栈（SQL/建模/分层）+ Embedding/向量检索/混合召回/数据契约/SQL 沙箱/Agent 反馈/权限/幻觉防控。三项核心能力：打通数据→Embedding→向量库全链路、理解 SQL/图谱/全文/向量四种检索边界、跑稳反馈闭环。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>岗位变迁：从「BI 给人看」到「数据给 AI 用」</li>\n<li>不重学 AI，而是用 AI 视角重读旧能力：Chunk 策略/ANN 索引/批量写入本就是数开优势区</li>\n<li>四项能力：数据→Embedding→向量库、四种检索边界（SQL 精确过滤、向量语义、全文关键词、图谱关系）、反馈闭环、数据契约/权限/幻觉防控</li>\n<li>实战路线：金融数仓+治理→实时 Pipeline+图谱→搜索引擎+语义检索→Data Agent+反馈闭环</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>四种检索方式各自的边界？</li>\n</ul>"
     },
     {
+      "id": "LLM-0099",
+      "type": "technical",
+      "question": "数仓代码知识库怎么搭（表口径 / 血缘 / SQL 生成）",
+      "topic": [
+        "llm",
+        "warehouse",
+        "knowledge-base"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>把数仓 SQL 库升级成 LLM 可查的代码知识库：每表一份「四件套」（DDL + 元数据 + 加工逻辑 + 调度依赖），支持表口径问答、取数 SQL 生成、口径迭代。</p>\n<h2>30 秒回答</h2>\n<p>每表一个文件夹，四件套：<code>ddl.sql</code>（字段 + COMMENT）、<code>metadata.yml</code>（中文名/业务含义）、<code>{表}.sql</code>（加工逻辑）、<code>{库}.{表}.yml</code>（调度依赖，含 parentTask 表级血缘）。LLM 靠这些做口径问答和 SQL 生成，不解析 SQL 也能拿血缘。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>结构：<code>warehouse/{ods,dim,dwd,dws,ads}/{业务域}/{引擎}#{库}#{表}/</code></li>\n<li>四件套：DDL、metadata.yml、加工 SQL、调度 yml</li>\n<li>血缘来源：yml 的 parentTask.dataName 现成，不用 AST 解析 SQL</li>\n<li>方言：supersql（基于 Hive），含 <code>${YYYYMM}</code> 变量、<code>INSERT OVERWRITE ... PARTITION</code></li>\n<li>用途：表口径问答、取数 SQL 生成、口径/表状态迭代</li>\n<li>维护：git 只读镜像，定时 pull + 重建更新</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>表级血缘为什么不解析 SQL 也能拿？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0100",
+      "type": "technical",
+      "question": "数仓 Loop / Graph 工程（Agent 自维护）怎么搭",
+      "topic": [
+        "llm",
+        "warehouse",
+        "agent"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>数仓从人工维护升级为 Agent 自维护，四阶段：Harness（地基规则）→ Loop（循环自纠）→ Graph（多 Agent 协作）→ 数字人，每阶段可独立验收。</p>\n<h2>30 秒回答</h2>\n<p>阶段 0 先建代码知识库；阶段 1 Harness：CLAUDE.md 写分层/技术栈/命名规范/建表模板/禁止清单；阶段 2 Loop：让 Agent 循环执行 + 自纠；阶段 3 Graph：多 Agent 分工协作；阶段 4 数字人。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>阶段 0：代码知识库（表口径/血缘/SQL 生成）</li>\n<li>阶段 1 Harness：CLAUDE.md 项目宪法（分层职责、技术栈、命名规范 <code>{层级}_{业务域}_{粒度}_{描述}</code>、建表模板、禁止清单）</li>\n<li>阶段 2 Loop：Agent 循环执行 + 自纠闭环</li>\n<li>阶段 3 Graph：多 Agent 编排协作</li>\n<li>阶段 4：数字人（自主维护）</li>\n<li>分区规范：统一 <code>dt</code>（日）/<code>hh</code>（小时）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Harness 和 Loop 的区别是什么？</li>\n</ul>"
+    },
+    {
       "id": "PLATFORM-0001",
       "type": "technical",
       "question": "低代码平台是什么，你了不了解",
@@ -27290,6 +27320,21 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>用 <code>from_json</code> 把 JSON 字符串按 schema 转结构体，<code>explode</code> 展开数组，<code>transform</code> 处理数组内元素，单引号 JSON 先 replace 成双引号。</p>\n<h2>30 秒回答</h2>\n<p>字段里塞整个 JSON 时：先定义 schema，<code>from_json(col, schema)</code> 转 struct，再 <code>explode</code> 展开 array，最后 <code>select</code> 提取字段。Hive 不支持 from_json 的场景用 get_json_object + LATERAL VIEW explode；单引号 JSON 先 <code>regexp_replace</code> 成双引号。</p>\n<h2>1 分钟回答</h2>\n<pre><code class=\"language-sql\">SELECT id, name, type\nFROM (\n  SELECT explode(transform(\n    from_json(v5, &#x27;array&lt;struct&lt;id:bigint,name:string,type:array&lt;string&gt;&gt;&gt;&#x27;),\n    x -&gt; x\n  )) AS e\n) t;</code></pre>\n<ul>\n<li>from_json：字符串按 schema 解析成 struct/array</li>\n<li>explode：把数组一行拆多行</li>\n<li>transform：数组内元素做变换</li>\n<li>单引号 JSON：先 replace 成双引号再解析</li>\n<li>平台不支持 from_json：用 get_json_object 逐字段取</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>from_json 和 get_json_object 区别？</li>\n</ul>"
     },
     {
+      "id": "SQL-0030",
+      "type": "technical",
+      "question": "窗口函数 Frame 帧区间（ROWS 和 RANGE 的区别）",
+      "topic": [
+        "sql",
+        "window",
+        "frame"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>ROWS 按「物理行数」界定帧（前后 N 行），RANGE 按「排序键的值范围」界定帧（值差在 N 内）；ORDER BY 有重复值时两者结果会不同。</p>\n<h2>30 秒回答</h2>\n<p><code>ROWS BETWEEN 1 PRECEDING AND CURRENT ROW</code> 取「上一行 + 当前行」；<code>RANGE BETWEEN 1 PRECEDING AND CURRENT ROW</code> 取「值 - 1 到当前值」的所有行。排序键有并列时，RANGE 会把同值行都纳入，ROWS 只按行位置。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>ROWS：按行偏移，物理概念，<code>ROWS BETWEEN 2 PRECEDING AND CURRENT ROW</code></li>\n<li>RANGE：按值偏移，逻辑概念，<code>RANGE BETWEEN 100 PRECEDING AND CURRENT ROW</code>（数值型排序键）</li>\n<li>差异点：ORDER BY 列有重复值时，RANGE 会把同值的一批行视为一个「peer group」</li>\n<li>默认帧：有 ORDER BY 无 frame 时，默认 <code>RANGE UNBOUNDED PRECEDING AND CURRENT ROW</code></li>\n<li>注意：RANGE 需要排序键可比较，字符串/非数值排序键行为受限</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么 ORDER BY 有重复时 ROWS 和 RANGE 结果不同？</li>\n<li>默认帧是什么？</li>\n</ul>"
+    },
+    {
       "id": "PROJECT-0001",
       "type": "project",
       "question": "你实习搭建的看板有哪些指标",
@@ -29516,6 +29561,20 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "project",
       "body_html": "<h2>一句话</h2>\n<p>复盘通用教训：技术细节要严谨（Spark/Flink 机制别讲错）、表达要简洁量化（别绕、给数字）、经历要有可验证闭环（基线/动作/结果/边界）。</p>\n<h2>要点</h2>\n<ul>\n<li>技术正确性：方向对但机制表述不严谨（Barrier/两阶段提交/加盐）会放大「高级岗」风险</li>\n<li>表达：被要求「一句话」还展开、先讲通用套路再讲案例、薪资被追问不给数，都难让面试官快速识别上限</li>\n<li>证据闭环：项目要有基线、个人动作、结果指标、故障边界，别用「应该/好像/反正」</li>\n<li>JD 匹配：必备项（实时/OLAP 引擎/语言）缺证据要主动补</li>\n<li>外部因素：竞争/HC/职级/外包偏好无法验证，复盘别过度归因</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么「方向对但细节不稳」比「不会」更危险？</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0106",
+      "type": "project",
+      "question": "视频复盘法怎么练表达",
+      "topic": [
+        "project",
+        "expression"
+      ],
+      "difficulty": 1,
+      "frequency": "low",
+      "source_type": "knowledge",
+      "domain": "project",
+      "body_html": "<h2>一句话</h2>\n<p>每天录 3 分钟短视频回看，检查表情、眼神、流畅度，记下口头禅和卡顿逐个改，用「视频这面最诚实的镜子」纠正表达坏习惯。</p>\n<h2>要点</h2>\n<ul>\n<li>操作：每天录 3 分钟短视频，讲思考或见闻</li>\n<li>回看维度：表情是否自然、眼神是否坚定、说话是否流畅</li>\n<li>纠错：记下口头禅、卡顿、啰嗦，下次刻意改</li>\n<li>价值：视频回放暴露的自我形象与主观感受的差距，是快速改掉表达毛病的抓手</li>\n<li>侧重非语言表达（表情/眼神/流畅），区别于写作/口述复盘侧重内容逻辑</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>视频复盘和口述复盘有什么不同？</li>\n</ul>"
     }
   ],
   "interviews": [

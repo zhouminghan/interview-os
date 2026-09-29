@@ -92,3 +92,21 @@
 | ✅ | Flink盲区补全教案.md | Flink join 盲区 → FLINK-0023 |
 | ✅ | JSON数组解析练习 / from_json_explode实战练习 | → SQL-0029 |
 | ✅ | 复盘（货拉拉/企知道/Shein × 8 份） | 通用教训 → PROJECT-0105 |
+
+## 七、补录（遗漏检查）
+
+| 状态 | 来源文件 | 入库题目 |
+|------|----------|----------|
+| ✅ | Clippings-Spark 开窗可视化（Frame 区间） | SQL-0030（ROWS/RANGE） |
+| ✅ | wiki/concepts-视频复盘法 | PROJECT-0106（表达训练） |
+| ✅ | 工作专项/数仓项目-sgrp 代码知识库搭建 | LLM-0099（表口径/血缘/SQL 生成） |
+| ✅ | 工作专项/数仓项目-Loop 与 Graph 搭建 | LLM-0100（Agent 自维护） |
+
+## 八、wiki/concepts 概念笔记（数据开发相关）
+
+| 状态 | 来源文件 | 处理方式 |
+|------|----------|----------|
+| ✅ | FlinkSQL / StarRocks / 大数据 / 数开AI能力栈 / 数据治理 | 为 wiki/sources 的提炼，内容已由对应题目覆盖 |
+| ✅ | 视频复盘法 | → PROJECT-0106 |
+
+> 说明：wiki/concepts 下另有约 100+ 个 AI 工程概念笔记（Loop/Harness/Graph/RAG/Agent 等），属于「AI 工程」而非「数据开发面试」，暂未批量导入，避免题库过杂。
