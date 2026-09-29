@@ -1,8 +1,8 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T14:59:21+08:00",
+  "generatedAt": "2026-09-29T15:54:06+08:00",
   "stats": {
     "questions": 1994,
-    "interviews": 69,
+    "interviews": 75,
     "technical": 1888,
     "project": 106,
     "domains": {
@@ -29616,6 +29616,24 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<h3>一面（技术基础）</h3>\n<ol>\n<li>自我介绍，挑一个你最核心的 AI 数据相关项目讲一遍，你在里面负责什么，解决了什么核心问题？</li>\n<li>SQL 手写题（给定用户充值表 user_id, pay_date, pay_amount）：每个用户历史累计充值金额；每个用户充值金额最高的日期及对应金额；找出连续 7 天没有任何充值记录的用户</li>\n<li>数仓一般分几层？你们之前的数仓是怎么建设的？落地过程中遇到过最大的问题是什么？</li>\n<li>Spark 和 Flink 的核心区别是什么？分别适配什么业务场景？游戏里的实时对局数据和历史玩家行为数据分别选哪个？</li>\n<li>AI 训练数据的去重你们是怎么做的？文本数据和行为序列数据的去重逻辑有什么不一样？</li>\n<li>怎么保证训练数据的质量？你们搭建数据质量体系的时候，核心指标有哪些？</li>\n<li>Python 处理 10G 以上的大日志文件，怎么写不会内存溢出？用过哪些高效的数据处理库？</li>\n<li>玩过天美的哪些游戏？有没有了解过我们在 AI 方面的布局？</li>\n</ol>\n<h3>二面（技术深度）</h3>\n<ol>\n<li>场景设计题：现在要给 FPS 游戏的 AI 队友做训练，需要从 0 到 1 搭建完整的训练数据管线，从玩家对局数据采集到最终交付模型训练，你会怎么设计？要覆盖每天亿级对局日志、多模态数据（操作、语音、画面）、实时性、数据质量这几个核心点。</li>\n<li>接上题：如果训练数据里混了大量低端玩家的操作数据，拉低了模型的上限，你怎么筛选出高质量的职业选手对局数据？怎么定义「高质量数据」？</li>\n<li>一亿条用户行为数据，每天要产出日活、留存、付费等核心业务报表，怎么设计架构能保证查询速度和产出时效？</li>\n<li>Spark SQL 里遇到数据倾斜一般怎么排查和解决？说一个你实际遇到过的倾斜场景和完整处理过程。</li>\n<li>了解游戏里的多模态数据吗？比如角色动作数据、对局语音、游戏画面，做 AI 训练的时候怎么保证不同模态数据的时序对齐？</li>\n<li>做数据治理的时候，怎么推动业务方配合埋点和数据校验？有没有遇到过阻力，怎么解决的？</li>\n<li>有没有了解过腾讯混元大模型？你觉得大模型在游戏研发里可以有哪些落地场景？</li>\n</ol>\n<h3>三面（总监）</h3>\n<ol>\n<li>你觉得游戏行业的 AI 数据工程师，和电商、社交这些互联网行业的数据岗，最大的区别是什么？</li>\n<li>之前的工作里，你做过最有技术成就感的一件事是什么？为什么觉得它有价值？</li>\n<li>如果让你从 0 到 1 搭建游戏 AI 训练数据平台，第一个版本你会先做什么？怎么规划优先级？</li>\n<li>怎么看待现在游戏行业的 AI 热潮？你觉得天美在这方面的核心优势是什么？</li>\n<li>你的职业规划是什么样的？为什么想从互联网转到游戏行业？为什么选择天美？</li>\n<li>对薪资和职级有大概的预期吗？</li>\n</ol>\n<h3>四面（HRBP）</h3>\n<ol>\n<li>为什么想离开现在的公司？</li>\n<li>之前工作中有没有遇到过和业务方/同事意见不合的情况？怎么处理的？</li>\n<li>能接受高强度的工作节奏吗？游戏行业版本迭代快，大版本节点可能会赶进度。</li>\n<li>除了天美，还投了哪些公司？现在有其他 Offer 在流程里吗？</li>\n<li>对天美工作室有多少了解？为什么想来天美？</li>\n<li>现在的薪资结构是怎样的？预期薪资是多少？</li>\n</ol>\n<blockquote>备注：天美 AI 数据工程师，总包 40-60W。备考重点：SQL 窗口函数、Spark/Flink、训练数据全链路、天美产品与 AI（绝悟、GiiNEX）。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-09-28-persol-data-engineer",
+      "company": "PERSOL BPD（日本）",
+      "business": "数据工程",
+      "position": "数据工程师（一面 + 二面）",
+      "date": "2026-09-28",
+      "round": "一面 + 二面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>PERSOL Business Process Design 数据工程师，偏数据基盘/数据活用/业务改善，围绕真实项目深聊。</blockquote>\n<h3>一面（约 1 小时，无算法/现场 SQL）</h3>\n<ol>\n<li>做过哪些大规模数据处理或性能改善？（追问：为什么改善/瓶颈在哪/为什么选方案/改善前后变化）</li>\n<li>改善效果怎么衡量？（除性能指标，还聊对业务侧的影响）</li>\n<li>最近半年学过什么新技术？（为什么学/有没有试过/怎么判断能不能用）</li>\n<li>数据迁移时怎么保证正确性？（迁移前后核对/件数确认/内容检查/异常处理）</li>\n<li>有没有做过最后发现行不通的技术方案？（设计为什么没达预期/怎么定位调整）</li>\n<li>平时怎么用生成式 AI</li>\n<li>数据基盘里最想负责哪一部分（ETL/DWH/BI 连接/运用改善）</li>\n<li>为什么选择 PERSOL BPD</li>\n</ol>\n<h3>二面（偏项目推进与沟通）</h3>\n<ul>\n<li>和客户怎么沟通、怎么整理需求</li>\n<li>团队里怎么推进工作、有没有带人/项目推进经验</li>\n<li>之后想往什么方向发展</li>\n</ul>\n<blockquote>备注：来源小红书 @积极的Joz.6，日本 PERSOL BPD 数据工程师。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-09-27-atour-bigdata-dev",
+      "company": "亚朵",
+      "business": "大数据开发",
+      "position": "大数据开发（3 年数开社招）",
+      "date": "2026-09-27",
+      "round": "背景整理",
+      "body_html": "<h2>面经记录（背景整理）</h2>\n<blockquote>数据工程师勇哥整理的亚朵 3 年数开社招业务与技术背景，含数据痛点、技术选型、岗位工作内容。</blockquote>\n<h3>业务主线</h3>\n<ul>\n<li>酒店业务：PMS 房态、入住、预订 CRS、会员 CRM、门店经营指标、客户 VOC 用户评价</li>\n<li>亚朵星球零售：天猫抖音电商、达人投放、商品销售 ROI</li>\n<li>集团数字化平台「几木里」：酒店总经理工作台，经营数据大盘、门店指标监控、异常预警工单</li>\n</ul>\n<h3>数据痛点</h3>\n<p>多业务系统烟囱、酒店门店分散、业务人员多、指标口径混乱；需要统一指标、数据血缘、数据质量监控，保障门店经营数据可信。</p>\n<h3>技术选型</h3>\n<p>Hive/Spark 离线数仓 + Flink 实时 + DolphinScheduler 调度 + Kafka 消息采集 + MySQL 业务库 + BI 报表 + 数据治理平台（以开源组件二次落地为主，无自研底层引擎）。</p>\n<h3>岗位工作内容</h3>\n<ul>\n<li>搭建维护集团数仓，ODS/DWD/DWS/ADS 分层开发</li>\n<li>开发离线/实时数据管道，同步 PMS、CRM、电商多源业务数据</li>\n<li>开发经营指标、门店大盘、会员、零售电商指标，输出 ADS 报表层</li>\n<li>数据质量、数据血缘、指标口径管理，解决指标不一致</li>\n<li>对接业务/分析师，口径对齐，排查指标异常，任务运维与 SLA 保障</li>\n</ul>\n<blockquote>备注：来源小红书 @数据工程师勇哥，亚朵 3 年数开社招，消费数字化中台水平。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-09-26-sunwoda-data-dev",
       "company": "欣旺达",
       "business": "数据开发",
@@ -29706,6 +29724,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>分层建设，DWS 和 ADS 最主要的差异（追问：两层都在算指标，核心区别；哪些逻辑放 ADS、哪些放 DWS；仅仅只是粒度不同？分层判断依据。答：DWS 可给其他团队复用）</li>\n<li>DWS 口径是公用的，如何统一维护、保证大家口径对齐（文档、不同层级比对、质量监控，容易漏的是：录入资产平台）</li>\n<li>口径变更迭代的完整流程（需补充后续监控）</li>\n<li>DWS 和 ADS 都提到维度退化，到底在哪一层做？什么场景需要，有什么优势和缺陷</li>\n<li>数据倾斜定位、常见场景，两张大表 join 倾斜怎么处理</li>\n<li>Spark 执行过程，map/shuffle/reduce 具体做什么；统计 city 的 user_id 数，每个步骤输出什么（select city_id, count(distinct user_id) group by city）</li>\n<li>小文件，及治理前后效果</li>\n<li>复杂 SQL 改写及优化</li>\n<li>重复计算如何发现、典型问题，如何推动治理下线/合并</li>\n<li>存储治理项目及效果</li>\n<li>数据质量整体保障（完整性/准确性/一致性/及时性，事前事中事后）；误报漏报怎么处理；追问：什么样的规则实际中更能发现问题</li>\n</ol>\n<blockquote>备注：社招一面，拼多多数据开发。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-09-19-yi-dian-data-platform",
+      "company": "上海仪电（子公司）",
+      "business": "数据平台开发",
+      "position": "数据平台开发（2 年社招）",
+      "date": "2026-09-19",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>山复尔尔分享，上海仪电子公司数据平台开发社招一面，围绕简历项目展开，无太多八股。</blockquote>\n<ol>\n<li>自我介绍</li>\n<li>介绍一下你的整个项目架构</li>\n<li>重点讲一下你的后端与数据侧</li>\n<li>StarRocks 与 ClickHouse 的选型问题，为什么选 StarRocks</li>\n<li>讲一下你做的 StarRocks 慢 SQL 优化</li>\n<li>explain 的时候主要看哪些指标</li>\n<li>有没有看过 StarRocks 的源码</li>\n<li>你们数据的整个流程是怎么样的（数仓整体数据架构）</li>\n<li>讲一下你负责的离线数据处理的流程</li>\n<li>一个数据看板，不同的人想看到不同条件的指标要怎么做（低代码平台）</li>\n<li>说下你们的低代码平台是怎么做的</li>\n<li>如果 Kafka 丢失了消息，你会怎么处理</li>\n<li>手撕代码</li>\n</ol>\n<blockquote>备注：来源小红书 @山复尔尔，上海仪电子公司数据平台开发社招一面，双非本硕 2 年经验。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-09-18-bytedance-douyin",
       "company": "字节跳动",
       "business": "泛抖音",
@@ -29727,6 +29754,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<p>自我介绍</p>\n<ol>\n<li>说一说你在工作里做的 SparkSQL 优化</li>\n<li>根据 mapjoin 的原理，如果大表 left join 小表和大表 right join 小表，都可以用 mapjoin 吗</li>\n<li>你觉得 mapjoin 和 broadcast join 的区别是什么</li>\n<li>你说 broadcast 是广播变量，那么广播后的变量是存储在内存吗，那么与 mapjoin 有什么区别</li>\n<li>说一说你的数据模型设计，你是如何将需求转化为数仓语言的</li>\n<li>你懂存储长表，后续会用 Python 做数据处理（由此引出 SQL 题目）SQL：长表下一列中的两数相加（变式：添加权重后两数相加）</li>\n<li>谈一谈你做过的大模型项目吧</li>\n<li>你考虑过用户角色这一块吗，比如男生、女生或者小孩，你有在设计上区分吗</li>\n<li>你的知识库是爬取的 wiki 百科，那么如果 wiki 更新了你是怎么做的</li>\n</ol>\n<p>（想不起来了，问了好多）</p>\n<p>反问：AI 应用如何落地，在企业是如何运用的</p>\n<blockquote>备注：校招面，来源小红书。原始记录只保留问题，不含当时答案。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-09-09-anker-ai-data-engineer",
+      "company": "安克创新",
+      "business": "AI 数据",
+      "position": "AI 数据工程师（一面）",
+      "date": "2026-09-09",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>追风筝的人分享，安克 AI 数据工程师一面（已过），13 题，实习经历深挖 + 技术 + 求职动机。</blockquote>\n<ol>\n<li>简单自我介绍，讲实习经历和项目</li>\n<li>PJM 项目管理最重要的三个事情是什么，请排序</li>\n<li>业务方提一个数据分析/看板需求，你的完整处理流程是什么</li>\n<li>业务方要求分析成本，怎么分析（给 PNL/毛利成本数据）</li>\n<li>做毛利、成本分析时，指标口径怎么确认？收入/成本/毛利口径有哪些坑</li>\n<li>搭建业务 PNL 看板，你会怎么设计</li>\n<li>看板上线后毛利指标异常下滑，怎么做下钻分析</li>\n<li>数据分析完得出降本提毛利结论，怎么对齐业务方推动落地？业务不认可怎么办</li>\n<li>SQL 窗口函数了解吗</li>\n<li>之前做的 RAG 如何提高准确性和召回率</li>\n<li>计算机硕士背景，为什么应聘 AI 数据工程师而非纯算法/纯开发</li>\n<li>对安克创新业务有什么了解？理解 AI 数据工程岗位要解决什么业务问题</li>\n<li>why 安克 / why 该岗位，反问</li>\n</ol>\n<blockquote>备注：来源小红书 @追风筝的人，社招一面已过。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-09-09-bytedance-data-dev",
       "company": "字节跳动",
       "business": "数据开发",
@@ -29734,6 +29770,24 @@ window.OS_DATA = {
       "date": "2026-09-09",
       "round": "复活赛",
       "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>热乎的复活赛凉经，核心是四个问题 + 一个手撕链表。</blockquote>\n<h3>原文</h3>\n<ul>\n<li>Spark 怎么执行任务</li>\n<li>HDFS 读写原理</li>\n<li>TCP 和 UDP 的区别</li>\n<li>LLM 怎么调用工具</li>\n<li>手撕链表（追问细，没答上来）</li>\n</ul>\n<h3>面试题</h3>\n<h4>自我介绍 / 实习经历</h4>\n<ol>\n<li>请介绍你的实习与项目经历</li>\n<li>介绍部门，实习近况</li>\n</ol>\n<h4>Spark</h4>\n<ol>\n<li>Application、Job、Stage 的区别</li>\n<li>什么是 spark-submit？</li>\n<li>怎么提交 Spark 任务？</li>\n<li>spark-submit 提交任务，什么情况会分成多个 Job？</li>\n<li>什么情况不会拆分成多个 Job？</li>\n</ol>\n<h4>HDFS</h4>\n<ol>\n<li>介绍 HDFS 客户端读写服务的执行流程</li>\n</ol>\n<h4>存储引擎</h4>\n<ol>\n<li>对存储引擎了解哪些？（MySQL / OLAP / ClickHouse / Doris）</li>\n<li>InnoDB 怎么存储数据？</li>\n</ol>\n<h4>TCP / UDP</h4>\n<ol>\n<li>TCP 和 UDP 的区别</li>\n<li>TCP 拥塞控制了解吗？</li>\n<li>哪些协议基于 TCP？</li>\n<li>UDP 属于哪一层？</li>\n</ol>\n<h4>手撕算法</h4>\n<ol>\n<li>构建链表，并完成链表排序</li>\n</ol>\n<h4>LLM / Agent / Tool Calling</h4>\n<ol>\n<li>介绍大模型怎么调用工具（LLM Agent）</li>\n<li>云端接口 messages、tools 参数，框架如何控制工具调用？</li>\n<li>工具描述是框架封装，大模型本身如何识别、触发工具调用？</li>\n</ol>\n<h4>反问</h4>\n<ol>\n<li>你有什么想问我的吗？</li>\n</ol>\n<blockquote>备注：秋招复活赛，字节数据开发。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-09-08-netease-youdao-ai-data",
+      "company": "网易有道",
+      "business": "AI 数据平台",
+      "position": "AI 数据平台工程师（3 年社招）",
+      "date": "2026-09-08",
+      "round": "复盘",
+      "body_html": "<h2>面经记录（复盘）</h2>\n<blockquote>数据工程师勇哥整理，3 年数据开发转网易有道 AI 数据平台工程师上岸复盘。</blockquote>\n<h3>备考路线</h3>\n<ul>\n<li>官方一手资料：HuggingFace 有道子曰大模型、BCEmbedding、QAnything 开源源码与文档，吃透 RAG、向量检索、SFT 数据生产</li>\n<li>开源项目：DVC 数据集版本管理、LangChain 知识库、Spark 大规模文本处理</li>\n<li>社区实战：LLM 语料清洗、语义去重、RAG 工程踩坑、大模型数据治理</li>\n<li>业务背景：有道教育大模型业务线、伏羲游戏 AI</li>\n</ul>\n<h3>避雷</h3>\n<ul>\n<li>死磕 Transformer 底层，忽视 Spark、数据管道、数据质量、版本管理等工程核心</li>\n<li>把 AI 数据平台工程师理解成标注管理岗，缺平台化、流水线迭代思维</li>\n<li>不研究有道自研开源项目，套通用模板</li>\n</ul>\n<h3>面试策略（四轮）</h3>\n<p>一面守住大数据基本功；二面主攻系统设计与端到端数据流水线；三面储备业务价值、技术权衡；HR 面打磨稳定理性的转型动机。</p>\n<blockquote>备注：来源小红书 @数据工程师勇哥，网易有道社招上岸。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-09-03-dewu-data-dev",
+      "company": "得物",
+      "business": "数据开发",
+      "position": "数据开发（5 年社招，上岸）",
+      "date": "2026-09-03",
+      "round": "复盘",
+      "body_html": "<h2>面经记录（复盘）</h2>\n<blockquote>数据工程师勇哥整理，一本 5 年数据开发得物上岸复盘，含必刷资料与避雷。</blockquote>\n<h3>必刷资料（优先级从高到低）</h3>\n<ul>\n<li>得物技术公众号大数据专栏：Galaxy 平台、大禹平台、供应链实时数仓、Onedata 统一指标建模、实时特征框架（面试高频原题出处）</li>\n<li>Flink 官方文档：状态、Checkpoint、反压、CDC、流批一体</li>\n<li>OLAP 选型：ClickHouse/StarRocks 适用场景、更新痛点</li>\n<li>电商数仓通用：维度建模、数据分层、埋点治理、DQC、成本优化</li>\n</ul>\n<h3>避雷</h3>\n<ul>\n<li>只背八股，没有业务场景支撑</li>\n<li>把项目讲成流水账，没有难点、优化数据、业务收益</li>\n<li>不了解得物特色业务，套通用电商模板</li>\n</ul>\n<h3>答题公式</h3>\n<p>业务痛点 → 多方案对比 → 落地实现 → 线上问题与优化 → 最终指标/业务价值</p>\n<blockquote>备注：来源小红书 @数据工程师勇哥，得物社招上岸。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-08-31-bytedance-bigdata",
