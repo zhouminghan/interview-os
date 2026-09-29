@@ -1,9 +1,9 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:38:35+08:00",
+  "generatedAt": "2026-09-29T11:40:17+08:00",
   "stats": {
-    "questions": 430,
-    "interviews": 61,
-    "technical": 345,
+    "questions": 434,
+    "interviews": 63,
+    "technical": 349,
     "project": 85,
     "domains": {
       "spark": 43,
@@ -16,10 +16,10 @@ window.OS_DATA = {
       "algorithm": 9,
       "statistics": 1,
       "ml": 5,
-      "llm": 86,
+      "llm": 87,
       "platform": 2,
       "system": 7,
-      "warehouse": 99,
+      "warehouse": 102,
       "sql": 27,
       "project": 85
     }
@@ -4461,6 +4461,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>对话/行为/反馈/埋点四类数据分别走埋点上报和日志流水接入 ODS，再统一清洗、去重、脱敏、结构化，沉淀到样本/特征层。</p>\n<h2>30 秒回答</h2>\n<p>对话数据解析成结构化（轮次/角色/内容），行为埋点做事件标准化，反馈做正负样本标注，埋点做口径统一。清洗：去重、低质过滤、脱敏、格式统一、按用户/会话关联。离线走 Spark 批处理，实时走 Flink。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>接入：对话走流水，行为/埋点走 SDK 上报</li>\n<li>清洗：去重、低质过滤、敏感脱敏、格式统一、多源关联</li>\n<li>结构化：多轮对话按 session 建模，prompt/上下文/工具调用拆字段</li>\n<li>分流：离线 Spark 批处理，实时 Flink + Kafka</li>\n<li>用途：沉淀为样本层、特征层、评测数据</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>多轮对话怎么结构化？</li>\n<li>反馈数据怎么用于正负样本？</li>\n</ul>"
     },
     {
+      "id": "LLM-0096",
+      "type": "technical",
+      "question": "人在 AI 提效下的角色转变",
+      "topic": [
+        "llm",
+        "workflow"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-15-qizhidao-data-dev",
+          "company": "企知道",
+          "position": "数据开发（一面）",
+          "date": "2026-07-15"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>数据开发从「全流程开发者」变成「审核者 + 基建者」：AI 生成方案和代码，人做 review、纠偏、把关，并把精力转向数据治理。</p>\n<h2>30 秒回答</h2>\n<p>需求先丢给 Agent 生成设计文档，人 review 纠偏，确认后 AI 建表、写加工、走评审、自动上线。人不再逐字写 SQL，而是审方案、管口径、建好数据底座，让 AI 有高质量输入。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>流程转变：AI 理解需求 → 生成设计文档 → 人 review 纠偏 → AI 执行 + 评审 + 上线</li>\n<li>角色转变：从写 SQL 的开发者 → 审方案、管口径的审核者</li>\n<li>精力转移：从取数开发转向数据治理、基建（好的数据喂 AI）</li>\n<li>关键：不能让 AI 完全接管，评审和确认环节必须保留</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>哪些环节必须人把关？</li>\n<li>数据治理为什么对 AI 提效更重要？</li>\n</ul>"
+    },
+    {
       "id": "PLATFORM-0001",
       "type": "technical",
       "question": "低代码平台是什么，你了不了解",
@@ -6625,6 +6647,73 @@ window.OS_DATA = {
       ],
       "domain": "warehouse",
       "body_html": "<h2>一句话</h2>\n<p>一个 uid 对应多设备、一个 did 可能多人共用，靠 ID-Mapping 把 uid/did 映射成统一用户标识，再做去重和置信度。</p>\n<h2>30 秒回答</h2>\n<p>登录口径以 uid 为准，行为口径先按 did 统计再做 ID-Mapping 归一到用户。用映射表维护 uid↔did，处理一对多/多对一，刷数据用风控规则拦截（同设备多账号、异常频次）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>uid vs did：uid 是登录账号，did 是设备，未登录只有 did</li>\n<li>ID-Mapping：登录后把 did 绑定 uid，建立映射表</li>\n<li>一对多：一个 uid 多台设备，聚合时归一到 uid</li>\n<li>多对一：一个 did 多人共用，用登录行为/时间切分或降权</li>\n<li>反作弊：同设备多账号、异常频次做拦截，DAU 口径去重</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>未登录用户怎么统一身份？</li>\n<li>DAU 口径下刷数据怎么处理？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0103",
+      "type": "technical",
+      "question": "DWD 和 DWS 怎么区分",
+      "topic": [
+        "warehouse",
+        "dwd",
+        "dws"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-14-huolala-senior-bigdata",
+          "company": "货拉拉",
+          "position": "高级大数据开发（一面）",
+          "date": "2026-07-14"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>DWD 保留原子粒度、只做清洗不做聚合；DWS 做轻度汇总并冗余关联维度，服务下游取数。</p>\n<h2>30 秒回答</h2>\n<p>DWD 是明细事实层：ODS 经 ETL 清洗，一行代表一条业务行为，量级大的维度不做关联；DWS 把 DWD 轻度聚合，并关联频道/用户等维度冗余成宽表，下游不用再 join。一句话：DWD 保原子、DWS 做汇总 + 维度冗余。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>DWD：清洗 + 规范化 + 去重，保留事务型事实表粒度</li>\n<li>维度退化：只有量级小的维度（枚举翻译、订单详情）才在 DWD 退化</li>\n<li>DWS：轻度聚合 + 关联维度，冗余成宽表</li>\n<li>取舍：DWS 冗余维度有存储浪费，但下游取数快、口径统一</li>\n<li>大维度（用户画像等）不在 DWD 关联，避免明细表过重</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>什么维度适合在 DWD 退化？</li>\n<li>DWS 冗余维度的代价是什么？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0104",
+      "type": "technical",
+      "question": "存量表和新表的规范治理怎么推进",
+      "topic": [
+        "warehouse",
+        "governance"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-15-qizhidao-data-dev",
+          "company": "企知道",
+          "position": "数据开发（一面）",
+          "date": "2026-07-15"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>存量表「保持不动 + 标注主题域共识」，新表「平台强制规范」，边开发边治理，不强行回改老表。</p>\n<h2>30 秒回答</h2>\n<p>存量老表下游依赖多，强改风险大，保持不动、只记录它属于哪个主题域；新表由数据中台强制选业务域/主题域并拼命名前后缀，严格执行。这样逐步收敛，不搞一次性的推倒重来。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>存量：保持不动，大家共识它归属哪个主题域</li>\n<li>新表：平台强制命名 + 域归属，落地规范</li>\n<li>原因：改老表会牵连大量下游，收益低风险高</li>\n<li>原则：边开发边治理，不专项推倒重来</li>\n<li>平台化：建表时强制选域，自动拼前后缀</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么不能强改存量表？</li>\n<li>平台化强制怎么落地？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0105",
+      "type": "technical",
+      "question": "DWS 大宽表的时效风险怎么权衡",
+      "topic": [
+        "warehouse",
+        "wide-table"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-07-15-qizhidao-data-dev",
+          "company": "企知道",
+          "position": "数据开发（一面）",
+          "date": "2026-07-15"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>大宽表要等所有主题域上游跑完才产出，时效差；权衡是核心指标走细粒度主题域保时效，但代价是口径要维护多处。</p>\n<h2>30 秒回答</h2>\n<p>大宽表依赖多个主题域，任一上游延迟都会拖慢整张表，若下游接核心指标会放大延迟。折中：核心指标从细粒度主题域出，不都依赖大宽表；但这样同一指标口径要在大宽表和主题域两处维护，需权衡时效和口径一致性。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>风险：宽表要等所有上游依赖跑完，链路越长延迟越严重</li>\n<li>影响：下游接核心指标时，一处延迟全线拖延</li>\n<li>折中 1：核心指标走细粒度主题域，牺牲一点复用换时效</li>\n<li>折中 2：宽表依赖公共 DWS 维度层而非 DWD，数据量小、口径统一</li>\n<li>本质：时效 vs 口径一致性，按业务取舍</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么宽表会放大上游延迟？</li>\n<li>两处维护口径怎么保持一致？</li>\n</ul>"
     },
     {
       "id": "SQL-0001",
@@ -9371,6 +9460,24 @@ window.OS_DATA = {
       "date": "2026-07-17",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>数仓模型设计，离线和实时分别怎么设计，为什么</li>\n<li>高内聚低耦合在模型设计怎么体现</li>\n<li>维度退化怎么设计，哪些维度适合退化</li>\n<li>DWD 层设计原则是什么</li>\n<li>MapReduce 的 Shuffle 过程</li>\n<li>Map/Reduce task 个数怎么定，默认多少，分区怎么决定</li>\n<li>Hive 的 UDF、UDAF、UDTF 区别，开发分别继承什么</li>\n<li>两个大表 Join 数据倾斜怎么优化</li>\n<li>Flink 的 Exactly Once 怎么实现，反压怎么优化</li>\n<li>ClickHouse 解决什么问题，有什么缺点</li>\n<li>手撕 SQL：直播间峰值在线人数；连续活跃超四天用户</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-07-15-qizhidao-data-dev",
+      "company": "企知道",
+      "business": "专利数据数仓",
+      "position": "数据开发（一面）",
+      "date": "2026-07-15",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>待了两个公司，负责的业务是同一个？（背景确认）</li>\n<li>你们用大模型在数仓哪些方面做工作</li>\n<li>数据开发这块的 skill 有没有分工</li>\n<li>这个 Agent 是谁构建的</li>\n<li>做下来有没有体感，哪些地方需要人工参与</li>\n<li>用 git 的方式维护 skill，共享上去给别人用？</li>\n<li>MCP 就是数据开发平台上的血缘查询、保存、测试这些动作？</li>\n<li>这套 AI 工具下，人在需求里主要怎么做事</li>\n<li>元数据治理这块，规范治理是怎么推进的</li>\n<li>这些治理工作大概什么时候开始的</li>\n<li>规范的编写、发布是你主导还是有架构师主导</li>\n<li>频道数仓几个人在做，按主题分工？</li>\n<li>当前数仓亟待解决的问题有哪些</li>\n<li>宽表是建成那样还是现状是那样</li>\n<li>维度表现状是维度表比较多？</li>\n<li>Spark 优化，ETL 执行时长长怎么定位优化</li>\n<li>大模型之后，这块会有不同的处理思路吗</li>\n<li>当前 AI 运维的差距是什么</li>\n<li>今年出来看机会出于什么考虑</li>\n<li>未来规划想在 AI 方面做更深？</li>\n<li>996 工作节奏说明</li>\n</ol>\n<blockquote>备注：本人面试录音转写，结果「技术方向不太匹配」。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-07-14-huolala-senior-bigdata",
+      "company": "货拉拉",
+      "business": "数仓 / 实时数仓",
+      "position": "高级大数据开发（一面）",
+      "date": "2026-07-14",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>分层设计，具体讲一下怎么定义跟区分 DWD 和 DWS</li>\n<li>用一句话总结 DWD 和 DWS 的核心区别</li>\n<li>数仓分层还有一个目的「灵活可扩展」，怎么理解</li>\n<li>业务里新增维度的情况多不多</li>\n<li>负责的数据量级大概什么样</li>\n<li>分享一个印象最深的 Spark 调优案例</li>\n<li>数据端到端不丢不重怎么解决（Flink）</li>\n<li>数据治理跟 AI 的结合讲一下</li>\n<li>组织架构</li>\n<li>在职还是离职 / 薪资期望</li>\n</ol>\n<blockquote>备注：本人面试录音转写，结果「业务那边反映和岗位不太匹配」一面挂。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-07-11-xiaohongshu-ai-data-dev",
