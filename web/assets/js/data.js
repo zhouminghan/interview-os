@@ -1,8 +1,8 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T12:47:51+08:00",
+  "generatedAt": "2026-09-29T13:49:45+08:00",
   "stats": {
     "questions": 1994,
-    "interviews": 65,
+    "interviews": 68,
     "technical": 1888,
     "project": 106,
     "domains": {
@@ -29781,6 +29781,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>项目 dwd 里有多少表，怎么划分的</li>\n<li>项目里定时调度怎么做的</li>\n<li>假设一张表有五张上游依表依赖，这五张在凌晨产出，怎么保证第二天八点是可用的</li>\n<li>为什么分为五层，每层作用</li>\n<li>来一个业务诉求怎么去区分是什么域</li>\n<li>聚合层怎么考量？</li>\n<li>sql 优化</li>\n</ol>\n<blockquote>备注：面完三天 hr 说面试官没反馈。原始记录只保留问题。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-07-24-xunlei-bigdata-intern",
+      "company": "迅雷",
+      "business": "大数据开发",
+      "position": "大数据开发实习生（两面）",
+      "date": "2026-07-24",
+      "round": "一面 + 二面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>Carry 分享的迅雷大数据开发实习生两面：一面 30 分钟侧重数仓分层/OLAP/架构/AI，二面 20 分钟侧重软素质与业务。</blockquote>\n<h3>一面</h3>\n<ol>\n<li>数据域怎么建设的、主题域的划分逻辑</li>\n<li>数仓分层架构</li>\n<li>数据上报的方式，流式还是批次</li>\n<li>增量采集还是全量采集，binlog</li>\n<li>没有 DWS 层可以吗</li>\n<li>为什么选择 StarRocks，为什么实时性不如 ClickHouse</li>\n<li>Lambda 架构还是 Kappa 架构，Lambda 架构怎么和离线数据对得上</li>\n<li>怎么做需求，如果对不上数怎么办，怎么把问题前置，怎么避免问题</li>\n<li>Data Agent 怎么做的，MCP 怎么优化的</li>\n<li>AI 是怎么把自然语言变成数据语言</li>\n</ol>\n<h3>二面</h3>\n<ol>\n<li>主题域是怎么划分的</li>\n<li>指标体系</li>\n<li>数据对不上怎么办，需求说不清楚怎么办</li>\n<li>如何快速上手业务</li>\n<li>自己的优缺点</li>\n<li>最有成就感的时候</li>\n</ol>\n<blockquote>备注：来源小红书 Carry；一面 30min 10 题，二面 20min 6 题，亮点为 Data Agent + MCP + NL2SQL。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-07-22-kuaishou-kling",
       "company": "快手",
       "business": "可灵大模型数据",
@@ -30042,6 +30051,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>深挖项目 — 项目背景</li>\n<li>深挖项目 — 数仓架构</li>\n<li>深挖项目 — 项目执行过程、难点、解决方案</li>\n<li>反思为什么要引入实时</li>\n<li>口径统一问题怎么解决</li>\n<li>这么多指标是怎么设计来满足每天按时输出结果的</li>\n<li>数仓链路（非分层）</li>\n<li>项目反思中的血缘有什么用</li>\n<li>说一下 agent 的全流程（重点说一下 mcp 和 skill）</li>\n<li>Skill 的主要框架和内容</li>\n<li>用过别的什么好用的 skill</li>\n<li>Skill 与 prompt 的区别是什么</li>\n<li>SQL：查询每月最大消费金额和具体日期</li>\n<li>反问</li>\n</ol>\n<blockquote>备注：腾讯 QQ 频道数仓背景，重点考项目深挖、数仓链路、指标口径与 Agent/MCP/Skill。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-05-08-alibaba-data-dev-hr",
+      "company": "阿里巴巴",
+      "business": "数据开发",
+      "position": "数据开发工程师（一面）",
+      "date": "2026-05-08",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>阿里校招/基础岗初面风格：HR 软素质 4 题 + 技术基础 6 题，考察广度 + 表达 + 潜力。</blockquote>\n<ol>\n<li>你身上最突出的、能帮你做好数据开发工作的特质是什么</li>\n<li>你遇到过的压力最大的一段学习或项目经历是什么，如何度过</li>\n<li>你未来 3-5 年的职业规划大概是怎样考虑的</li>\n<li>实际编写过 Hive SQL 吗？如果有一张非常大的用户行为表，需要按天统计 UV，你会怎么优化这个 SQL 查询</li>\n<li>谈谈你对数据仓库分层（ODS、DWD、DWS、ADS）的理解，每一层的主要作用是什么</li>\n<li>数据清洗过程中，你通常如何处理缺失值和异常值，举一个实际例子</li>\n<li>了解过实时数据处理框架吗，比如 Flink，说说它的一个核心特点</li>\n<li>业务方反馈你提供的报表数据和他们后台看到的数据对不上，你的排查思路是什么</li>\n<li>如何理解\"数据质量\"，在数据开发流程中可以通过哪些手段保障它</li>\n<li>对于校招生进入这个岗位后的培养和成长路径，可以了解一下吗</li>\n</ol>\n<blockquote>备注：阿里数据开发工程师一面，HR/软素质 + 技术基础混合。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-05-06-xiaohongshu-warehouse",
       "company": "小红书",
       "business": "数仓社招",
@@ -30166,6 +30184,15 @@ window.OS_DATA = {
       "date": "2026-03-10",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>讲项目，做了什么？</li>\n<li>数据治理做了什么？</li>\n<li>小文件是如何治理？</li>\n<li>为什么要治理小文件？</li>\n<li>NameNode 的工作原理？</li>\n<li>计算治理是怎么做的？</li>\n<li>SQL 有哪些调优？</li>\n<li>为什么 count(distinct) 要换成 group by？</li>\n<li>代码里面有多个 count(distinct) 会发生什么？</li>\n<li>数据倾斜有哪些，如何解决？</li>\n<li>两阶段聚合的原理是什么？</li>\n<li>解释一下 SQL 的窗口函数，应用的场景？</li>\n<li>row_number()，rank()，dense_rank()</li>\n<li>实习中有主导过什么？怎么发现，如何解决？怎么做优化的？</li>\n<li>什么时候发生 shuffle？Spark shuffle 的原理，过程？</li>\n<li>Spark 分区器有哪些？</li>\n<li>宽窄依赖的区别？</li>\n<li>什么情况发生宽依赖、窄依赖、stage 的划分？</li>\n<li>Zookeeper 高可用？</li>\n<li>Hive 函数的执行顺序？</li>\n</ol>\n<blockquote>备注：小红书 @小书包_R 分享（360 赞），20 道题，覆盖治理、SQL、Spark、Hadoop 高可用。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2025-03-27-bytedance-transaction-ads",
+      "company": "字节跳动",
+      "business": "中国交易与广告",
+      "position": "大数据开发（一二面）",
+      "date": "2025-03-27",
+      "round": "一面 + 二面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>字节中国交易与广告大数据开发，一二面共 29 问，一面侧重基础与计算，二面侧重项目深挖与 AI。</blockquote>\n<h3>一面</h3>\n<ol>\n<li>自我介绍</li>\n<li>数据量级</li>\n<li>数仓分层架构</li>\n<li>主题域划分</li>\n<li>项目中遇到的难点、优化以及怎么解决的</li>\n<li>Doris 有什么特点（提示：MPP、列式存储）</li>\n<li>Spark 为什么比 MapReduce 快</li>\n<li>数据倾斜怎么处理</li>\n<li>三种排序函数（ROW_NUMBER、RANK、DENSE_RANK）</li>\n<li>有没有用过 AI Coding，解决了什么问题、有什么感受</li>\n<li>手撕：开窗函数题</li>\n<li>手撕：连续登录变形题</li>\n</ol>\n<h3>二面</h3>\n<ol>\n<li>自我介绍</li>\n<li>项目做了什么</li>\n<li>产出是什么</li>\n<li>如何去衡量准确率</li>\n<li>如果报告需求发生了变化，业务需要的结果要调整怎么办</li>\n<li>有哪些难点，怎么解决的</li>\n<li>宽窄依赖如何划分</li>\n<li>建模方式是怎么样的</li>\n<li>Doris 使用程度（建模和使用场景）</li>\n<li>UDF、UDTF、UDAF 的区别</li>\n<li>任务执行比较慢/卡住（看执行日志），怎么处理</li>\n<li>AI 对于一个任务需求的应用</li>\n<li>Agent 和 Skill 的区别是什么</li>\n<li>现在在哪里 / 最快到岗时间</li>\n<li>更想做的是数据分析还是数据开发</li>\n<li>反问</li>\n<li>手撕：开窗函数题（新老用户），追问：有几个 Stage</li>\n</ol>\n<blockquote>备注：来源小红书 momo；面试时间 2025-03-27（一面）/ 03-31（二面），业务线为广告/交易/营销。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2025-03-24-jd-data-dev",
