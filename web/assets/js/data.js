@@ -1,8 +1,8 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T17:24:38+08:00",
+  "generatedAt": "2026-09-29T17:27:14+08:00",
   "stats": {
     "questions": 1994,
-    "interviews": 94,
+    "interviews": 95,
     "technical": 1888,
     "project": 106,
     "domains": {
@@ -29905,6 +29905,15 @@ window.OS_DATA = {
       "date": "2026-08-31",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>8.31 一面，9.1 挂。复盘：八股和实习细节记忆不清、量化成果缺失是主因。面试愉快，不会的直说。</blockquote>\n<h3>一、数据开发与数仓基础</h3>\n<ol>\n<li>Hive 和 Spark 最大的区别是什么</li>\n<li>实习数据来自哪里：数仓、MySQL 还是自研数据平台</li>\n<li>实际工作中业务数据分析更多，还是 SQL 开发、数据建模更多</li>\n</ol>\n<h3>二、实习经历（数据分析实习）</h3>\n<ol>\n<li>平时如何获取和使用数据，底层用什么存储/平台，工作偏业务分析还是数据开发、SQL 和建模</li>\n</ol>\n<h3>三、Agent 项目与技术架构</h3>\n<ol>\n<li>为什么 Agent 要自己搭建，不用成熟的 Agent 框架（如 Codex），有什么优势</li>\n<li>项目用了什么 Agent 框架，哪些基于 LangChain，哪些自行设计开发，架构原因</li>\n<li>项目是否一人完成，分工和个人贡献（建表、飞书消息、任务拆解、Agent 开发、维护、评测）</li>\n</ol>\n<h3>四、Agent 项目效果与实际落地</h3>\n<ol>\n<li>Agent 是否真正投入使用，日活、用户数、覆盖业务范围</li>\n<li>做完 Agent 改善了什么，效果提升多少，如何用准确率/成功率/使用量证明价值</li>\n</ol>\n<h3>五、个人技术学习</h3>\n<ol>\n<li>最近看的技术书籍/内容，关注哪些技术方向（提到 ReAct）</li>\n</ol>\n<h3>六、SQL 手撕</h3>\n<ol>\n<li>查询每个用户各天访问次数最多的前 10 个网站</li>\n</ol>\n<blockquote>备注：字节大数据开发秋招一面。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-08-28-zhiyuan-data-dev",
+      "company": "智元机器人",
+      "business": "数据开发",
+      "position": "数据开发实习生（一面）",
+      "date": "2026-08-28",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍，一般没有打断</li>\n<li>项目拷打：问在上家做的工作</li>\n<li>问关系型数据库的引擎、数据结构（mysql innodb b+ 树，和红黑树的区别以及红黑树的应用）</li>\n<li>问简历上的 flask 开发框架</li>\n<li>问从 ODS 到 ADS 的建表逻辑，然后问宽表层的建表逻辑（订单宽表，重点可复用性）</li>\n<li>问数据血缘、数据治理（血缘看元数据，举例 hive metastore；治理结合 ds 调度）</li>\n<li>还有一些记不得了，总时间约一小时，没有算法题</li>\n</ol>\n<blockquote>备注：来源小红书，智元机器人数据开发实习生一面，已 oc。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-08-27-alibaba-data-dev",
