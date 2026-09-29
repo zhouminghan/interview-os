@@ -1,8 +1,8 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T17:22:22+08:00",
+  "generatedAt": "2026-09-29T17:23:23+08:00",
   "stats": {
     "questions": 1994,
-    "interviews": 91,
+    "interviews": 93,
     "technical": 1888,
     "project": 106,
     "domains": {
@@ -29923,6 +29923,24 @@ window.OS_DATA = {
       "date": "2026-08-19",
       "round": "二面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>你都做过哪些 ai 的探索</li>\n<li>那我们先不聊 ai 的事情，你来介绍下你的治理项目吧</li>\n<li>你刚刚提到因为一些历史问题导致的模型问题，能具体解释一下吗</li>\n<li>那请你解释一下啥是烟囱开发，如何看待这个事情，对我们有啥影响，我们该如何处理</li>\n<li>继续追问，既然你说了烟囱开发不可避免，那我们要如何处理呢</li>\n<li>你刚刚聊到了宽表，你是怎么看待宽表的</li>\n<li>一个好的宽表你觉得该是啥样的</li>\n<li>你刚刚聊到了业务 sense，这个东西比较虚，能给我举一些例子吗，他们是如何影响建模的</li>\n<li>介绍其中一个 ai 项目</li>\n<li>手撕 sql，easy 难度</li>\n<li>反问</li>\n</ol>\n<blockquote>备注：来源小红书 @Swayyy，字节大数据开发二面（校招），主要聊数仓建模，面试官水平高。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-08-19-bytedance-bigdata-3",
+      "company": "字节跳动",
+      "business": "大数据开发",
+      "position": "大数据开发（校招三面）",
+      "date": "2026-08-19",
+      "round": "三面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>随便挑一个项目先介绍一下（治理项目）</li>\n<li>这里的治理思路是啥，one by one 介绍一下</li>\n<li>为啥选择 paimon 处理这种问题呢，有啥困难吗</li>\n<li>是你提出的这个方案吗，还有没有其他方案</li>\n<li>说一下在阿里的实习吧，你觉得和字节比有啥区别呢</li>\n<li>你在那边做的啥业务，介绍一下你觉得那边数仓建模存在的问题</li>\n<li>你觉得这些问题怎么产生的，如果是你，你是哪些思路去处理呢</li>\n<li>介绍一下你实习中的业务吧，你觉得这里的指标体系是如何建设的，日常遇到问题如何排查、如何传导至产品侧做出产品上的改进</li>\n<li>sql + 算法</li>\n<li>反问</li>\n</ol>\n<blockquote>备注：来源小红书 @Swayyy，字节大数据开发三面（校招），唯一考算法的一轮，easy/mid 难度。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-08-19-bytedance-bigdata-4",
+      "company": "字节跳动",
+      "business": "数据开发",
+      "position": "数据开发（校招四面）",
+      "date": "2026-08-19",
+      "round": "四面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>你觉得你实习过的公司都有啥特别，简单概述下你的感受</li>\n<li>你在这些地方工作的职责要求会有不同吗，你是怎么看待的</li>\n<li>你为什么要从上个公司离职，怎么考虑的，暑期前离职不觉得浪费这个机会吗</li>\n<li>介绍下你的项目，我们一个一个聊，每个项目都介绍，追问具体干了啥</li>\n<li>谈一谈你对 xx 业务的理解，具体一些</li>\n<li>你希望未来 ai + data 能怎么发展</li>\n<li>问了一两个 408 的八股，比如 hashmap 的具体实现方式</li>\n<li>反问</li>\n</ol>\n<blockquote>备注：来源小红书 @Swayyy，字节数据开发四面（校招，大老板面），无手撕，重思路和方法论。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-07-25-bytedance-douyin-ml",
