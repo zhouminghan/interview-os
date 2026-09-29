@@ -1,25 +1,25 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:32:46+08:00",
+  "generatedAt": "2026-09-29T11:34:26+08:00",
   "stats": {
-    "questions": 415,
-    "interviews": 50,
-    "technical": 330,
+    "questions": 420,
+    "interviews": 51,
+    "technical": 335,
     "project": 85,
     "domains": {
       "spark": 42,
       "hdfs": 4,
       "storage": 18,
       "lakehouse": 7,
-      "starrocks": 11,
+      "starrocks": 13,
       "flink": 16,
       "network": 4,
       "algorithm": 8,
       "statistics": 1,
       "ml": 5,
-      "llm": 83,
+      "llm": 84,
       "platform": 2,
-      "system": 6,
-      "warehouse": 96,
+      "system": 7,
+      "warehouse": 97,
       "sql": 27,
       "project": 85
     }
@@ -1864,6 +1864,51 @@ window.OS_DATA = {
       ],
       "domain": "starrocks",
       "body_html": "<h2>一句话</h2>\n<p>靠加物化视图、索引（Bitmap/Bloom Filter）或调整排序键来加速，不必重建表。</p>\n<h2>30 秒回答</h2>\n<p>排序键/前缀索引覆盖不了该字段时，加物化视图预聚合、建 Bitmap/Bloom Filter 索引、调整排序键顺序、改写查询；实在不行再重建表调整分桶/排序键。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>物化视图：预计算常用维度聚合</li>\n<li>索引：Bitmap（低基数）、Bloom Filter（等值过滤）</li>\n<li>排序键：调整列顺序覆盖高频查询</li>\n<li>改写：换写法、减少扫描</li>\n<li>兜底：重建表调整分桶/排序键</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>物化视图和索引怎么选？</li>\n<li>什么情况必须重建表？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0012",
+      "type": "technical",
+      "question": "Flink 写入 StarRocks 慢，怎么排查和优化",
+      "topic": [
+        "starrocks",
+        "flink",
+        "sink"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-30-fliggy-data-dev",
+          "company": "飞猪",
+          "position": "数据开发 / 大数据（4 轮）",
+          "date": "2026-06-30"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>排查写入慢从 Flink 侧（并行度/反压）和 StarRocks 侧（分桶/表模型/Compaction/导入方式）两边看。</p>\n<h2>30 秒回答</h2>\n<p>Flink 侧看并行度、反压、批量大小、开启两阶段提交；StarRocks 侧看分桶是否均匀、是否主键模型频繁更新、Compaction 压力、Stream Load 批量参数。对症：加大 batch、调并行度、减 Compaction、换明细模型。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Flink 侧：sink 并行度、batch size、反压、两阶段提交开销</li>\n<li>StarRocks 侧：分桶是否倾斜、主键模型更新放大、Compaction 频繁、BE 负载</li>\n<li>优化：调大 batch、控制写入频率、分桶打散、必要时换明细模型</li>\n<li>定位：看 Flink 反压 + StarRocks 监控（导入吞吐、Compaction）</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>主键模型写入为什么比明细模型慢？</li>\n<li>怎么判断是 Flink 慢还是 StarRocks 慢？</li>\n</ul>"
+    },
+    {
+      "id": "STARROCKS-0013",
+      "type": "technical",
+      "question": "StarRocks 和 Doris 有什么区别",
+      "topic": [
+        "starrocks",
+        "doris"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-30-fliggy-data-dev",
+          "company": "飞猪",
+          "position": "数据开发 / 大数据（4 轮）",
+          "date": "2026-06-30"
+        }
+      ],
+      "domain": "starrocks",
+      "body_html": "<h2>一句话</h2>\n<p>两者同源于 Doris/百度 Palo 技术路线，都是 MPP 分析型数据库；StarRocks 侧重极致查询性能和向量化，Doris 侧重生态完善和易用。</p>\n<h2>30 秒回答</h2>\n<p>StarRocks 由 Doris 早期团队分叉而来，架构相似（FE/BE、向量化、MPP），StarRocks 在向量化执行、物化视图、湖仓分析上更激进；Doris 社区生态更成熟、云原生和多源融合更完善。选型看性能需求和团队生态。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>同源：都继承 Doris 的 MPP + 向量化 + FE/BE 架构</li>\n<li>StarRocks：查询性能、物化视图、存算分离推进快</li>\n<li>Doris：生态完善、易用、多源融合好</li>\n<li>分区分桶：都支持 Range/List 分区 + Hash 分桶，选高频过滤列分区、高基数列分桶</li>\n<li>选型：性能敏感选 StarRocks，生态/易用选 Doris</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>分区列和分桶列怎么选？</li>\n<li>两者在大宽表场景表现如何？</li>\n</ul>"
     },
     {
       "id": "FLINK-0001",
@@ -4215,6 +4260,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>防 Prompt 泄露（不暴露 system prompt）、工具最小权限、输入输出过滤、敏感信息脱敏、全程审计。</p>\n<h2>30 秒回答</h2>\n<p>不把 system prompt 当秘密但也要防注入；工具只给最小权限；对工具输入输出做过滤和脱敏；敏感操作要人确认；记录审计日志。防「用工具提示词诱导模型泄露内部规则或执行越权操作」。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Prompt 泄露：不硬编码密钥，system prompt 做注入防护</li>\n<li>最小权限：每个工具只授必要权限，按用户隔离</li>\n<li>输入输出过滤：脱敏、拦截危险指令</li>\n<li>敏感操作：人工确认 + 审计</li>\n<li>数据安全：权限校验贯穿「查询到返回结果」全链路</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Prompt 注入和 Prompt 泄露有什么区别？</li>\n<li>权限校验在 Agent 链路里怎么贯穿？</li>\n</ul>"
     },
     {
+      "id": "LLM-0093",
+      "type": "technical",
+      "question": "AI Agent 依赖的数据基础设施是什么",
+      "topic": [
+        "llm",
+        "infra"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-30-fliggy-data-dev",
+          "company": "飞猪",
+          "position": "数据开发 / 大数据（4 轮）",
+          "date": "2026-06-30"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>AI Agent 依赖四类数据基础设施：数据接入/治理、向量检索、元数据/知识库、评估监控与权限。</p>\n<h2>30 秒回答</h2>\n<p>底层要高质量数据（采集/清洗/治理）、向量库做语义检索、元数据+知识库做上下文、评估监控做效果度量，外加权限和血缘。数据工程师不会被淘汰，而是从「写报表」转向「建设 AI 可用的数据底座」。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>数据接入治理：清洗、去重、标注、质量控制</li>\n<li>向量检索：Embedding + 向量库做 RAG</li>\n<li>元数据/知识库：表结构、口径、血缘作为 Agent 上下文</li>\n<li>评估监控：准确率、召回、可观测性</li>\n<li>权限安全：全链路校验</li>\n<li>数据工程师角色：从报表建设转向 AI 数据底座建设，是升级不是淘汰</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>数据工程师会被 AI 淘汰吗？</li>\n<li>Agent 的数据底座和传统数仓有什么关系？</li>\n</ul>"
+    },
+    {
       "id": "PLATFORM-0001",
       "type": "technical",
       "question": "低代码平台是什么，你了不了解",
@@ -4360,6 +4427,28 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "system",
       "body_html": "<h2>一句话</h2>\n<p>栈 LIFO，队列 FIFO，堆是完全二叉树（堆顶是最大/最小值）；进程是资源分配单位，线程是 CPU 调度单位。</p>\n<h2>30 秒回答</h2>\n<p>栈后进先出，队列先进先出，堆用于优先队列/TopN；进程有独立内存，线程共享进程内存、切换开销小（Spark Executor=进程，Task=线程）。</p>\n<h2>追问</h2>\n<ul>\n<li>大顶堆和小顶堆区别？</li>\n<li>为什么线程切换比进程快？</li>\n</ul>"
+    },
+    {
+      "id": "SYSTEM-0008",
+      "type": "technical",
+      "question": "RTA 场景千亿请求、百万 QPS、毫秒级响应怎么设计",
+      "topic": [
+        "system",
+        "high-concurrency"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-30-fliggy-data-dev",
+          "company": "飞猪",
+          "position": "数据开发 / 大数据（4 轮）",
+          "date": "2026-06-30"
+        }
+      ],
+      "domain": "system",
+      "body_html": "<h2>一句话</h2>\n<p>分层缓存 + 本地内存 + 异步旁路 + 削峰限流，把核心竞价路径压到纯内存毫秒级，重逻辑异步化。</p>\n<h2>30 秒回答</h2>\n<p>核心路径：请求 → 网关 → 本地缓存/内存特征 → 规则/模型打分 → 返回，全程内存不落库；特征走特征平台预加载，重逻辑异步旁路；靠分层缓存（本地/Redis/远程）、限流降级、多级缓冲削峰扛住百万 QPS。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>核心链路纯内存：特征本地化 + 模型轻量，毫秒级返回</li>\n<li>分层缓存：本地缓存 → Redis → 远程服务，热点数据前置</li>\n<li>异步旁路：竞价决策同步，日志/归因异步落</li>\n<li>削峰限流：网关限流、降级兜底、缓冲吸收突发</li>\n<li>一致性：特征用快照，定期同步，牺牲一点实时性换性能</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>特征本地化和一致性怎么权衡？</li>\n<li>百万 QPS 的限流怎么做？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0001",
@@ -6291,6 +6380,28 @@ window.OS_DATA = {
       ],
       "domain": "warehouse",
       "body_html": "<h2>一句话</h2>\n<p>从基础属性、行为、偏好三层构建标签，分事实标签（可统计）和规则/模型标签（需计算），增量合并更新。</p>\n<h2>30 秒回答</h2>\n<p>基础属性（人口统计）→ 行为标签（近 N 天行为聚合，如消费频次/客单价）→ 偏好标签（品类/价格偏好）。事实标签直接统计，规则标签按阈值，模型标签靠预测。画像表按天增量合并。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>三层：基础属性 + 行为标签 + 偏好标签</li>\n<li>标签类型：事实标签（统计可得）、规则标签（阈值/条件）、模型标签（预测）</li>\n<li>维度：人口、消费、活跃、偏好、生命周期</li>\n<li>更新：画像表按天增量合并（新标签覆盖旧值，保留历史）</li>\n<li>用途：运营分层、精准营销、个性化推荐</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>事实标签和规则标签的区别？</li>\n<li>画像增量合并怎么做？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0100",
+      "type": "technical",
+      "question": "怎么评价一个数仓设计得好不好",
+      "topic": [
+        "warehouse",
+        "evaluation"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-30-fliggy-data-dev",
+          "company": "飞猪",
+          "position": "数据开发 / 大数据（4 轮）",
+          "date": "2026-06-30"
+        }
+      ],
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>看四件事：口径是否统一可信、模型是否可复用、链路是否稳定可回溯、成本是否可控。</p>\n<h2>30 秒回答</h2>\n<p>好数仓：指标口径统一、无烟囱重复建设、分层清晰复用度高、质量有熔断保障、血缘可回溯、存储计算成本合理。坏数仓：口径打架、大宽表堆砌、依赖混乱、任务经常挂、成本失控。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>口径统一：同一指标只有一处定义，多方对齐</li>\n<li>复用：公共层共享，避免重复建表</li>\n<li>稳定性：核心表有熔断、按时产出</li>\n<li>可回溯：血缘完整，问题能定位到上游</li>\n<li>成本：存储/计算不过度冗余</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>从 0 到 1 设计数仓第一步做什么？</li>\n<li>怎么量化数仓的建设收益？</li>\n</ul>"
     },
     {
       "id": "SQL-0001",
@@ -9046,6 +9157,15 @@ window.OS_DATA = {
       "date": "2026-07-03",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>AI 在实际工作中的使用</li>\n<li>介绍如何做数据采集</li>\n<li>介绍数据采集工具</li>\n<li>数据采集稳定性如何保证</li>\n<li>如何提高 agent 通用性</li>\n<li>手撕用户留存率</li>\n<li>如何落地过实际业务需求</li>\n<li>实习中的难题</li>\n<li>业内统一数据口径的常规做法</li>\n<li>数仓规范、指标开发规范如何制定</li>\n<li>规范制定后如何保障落地执行</li>\n<li>介绍自己的项目</li>\n<li>对当下 AI 编程的理解</li>\n<li>如何避免大模型幻觉</li>\n<li>你这边可以实习多久？是否可以尽快到岗？岗位工作地点是否适配？</li>\n</ol>\n<blockquote>备注：原始记录只保留问题，不含当时答案。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-06-30-fliggy-data-dev",
+      "company": "飞猪",
+      "business": "数据开发",
+      "position": "数据开发 / 大数据（4 轮）",
+      "date": "2026-06-30",
+      "round": "4 轮",
+      "body_html": "<h2>面经记录（原始）</h2>\n<h3>第一轮（必考基础 + 技术深度）</h3>\n<ol>\n<li>自我介绍，重点讲最近两年主导的最复杂项目</li>\n<li>JVM 内存模型说下。Full GC 什么时候触发？线上频繁 Full GC 怎么排查？</li>\n<li>synchronized 和 ReentrantLock 的区别？AQS 原理？锁升级过程？</li>\n<li>Spark Shuffle 和 MapReduce Shuffle 有什么区别？宽依赖和触发算子？groupBy 是行动算子吗？</li>\n<li>两个大表 join 产生数据倾斜怎么优化？至少三种方案</li>\n<li>Flink 怎么保证端到端一致性？反压怎么产生和优化？</li>\n<li>Flink 写入 StarRocks 慢，怎么排查和优化？</li>\n<li>星型模型和雪花模型区别？DWD 层做什么？事实表类型？库存用哪种？</li>\n<li>缓慢变化维（SCD），会员等级、地址要记录历史变化，表怎么设计？</li>\n<li>连续登录 4 天的用户有哪些？</li>\n<li>直播间最大同时在线人数？</li>\n<li>一千万个整数，5MB 内存，怎么排序？</li>\n<li>追问彩蛋：Reduce 个数由什么决定？默认分区？UDF/UDAF/UDTF 区别？</li>\n</ol>\n<h3>第二轮（架构与项目深挖 + 主管面）</h3>\n<ol>\n<li>你们数仓架构是 Lambda 还是 Kappa？为什么？</li>\n<li>数仓分数据域了吗？数据域和业务域有什么区别？</li>\n<li>数据治理怎么做的？异常数据怎么设置监控？</li>\n<li>飞猪 RTA 场景 — 千亿级请求，百万 QPS，毫秒级响应怎么设计？</li>\n<li>多个业务系统性别不统一（男/女 vs F/M），数仓里怎么处理？</li>\n<li>StarRocks 和 Doris 有什么区别？分区分桶策略？</li>\n<li>调度工具怎么组织任务依赖？比如 ODS→DWD→DWS 三张表怎么配？</li>\n<li>了解客户端埋点吗？怎么算好的埋点规范？</li>\n<li>怎么评价一个数仓干得好？从 0 到 1 设计数仓全栈怎么做？</li>\n</ol>\n<h3>第三轮（交叉面 / 总监面）</h3>\n<ol>\n<li>飞猪 AI 平台接入 214 个大模型，AI Agent 依赖的数据基础设施是什么？数据工程师会被淘汰吗？</li>\n<li>你觉得飞猪最大的数据价值在哪？</li>\n<li>如果产品经理提了一个不合理的数据需求，你怎么处理？</li>\n<li>如果给你一个陌生领域（比如跨境旅游），怎么快速熟悉业务？</li>\n</ol>\n<h3>第四轮（HR 面）</h3>\n<ol>\n<li>为什么离开上一家公司？</li>\n<li>讲一件你和同事发生冲突的事情</li>\n<li>你觉得什么样算一个好的数据研发？</li>\n<li>有没有之前做得不够好，现在回头看想改进的地方？</li>\n</ol>\n<blockquote>备注：网络面经整理，4 轮 30 题，覆盖基础、架构、治理、RTA、AI 与 HR。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-06-28-guazi-usedcar",
