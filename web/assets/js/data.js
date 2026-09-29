@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T16:56:03+08:00",
+  "generatedAt": "2026-09-29T17:02:41+08:00",
   "stats": {
     "questions": 1994,
     "interviews": 82,
