@@ -1,8 +1,8 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T17:27:14+08:00",
+  "generatedAt": "2026-09-29T17:28:21+08:00",
   "stats": {
     "questions": 1994,
-    "interviews": 95,
+    "interviews": 96,
     "technical": 1888,
     "project": 106,
     "domains": {
@@ -29959,6 +29959,15 @@ window.OS_DATA = {
       "date": "2026-08-19",
       "round": "四面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>你觉得你实习过的公司都有啥特别，简单概述下你的感受</li>\n<li>你在这些地方工作的职责要求会有不同吗，你是怎么看待的</li>\n<li>你为什么要从上个公司离职，怎么考虑的，暑期前离职不觉得浪费这个机会吗</li>\n<li>介绍下你的项目，我们一个一个聊，每个项目都介绍，追问具体干了啥</li>\n<li>谈一谈你对 xx 业务的理解，具体一些</li>\n<li>你希望未来 ai + data 能怎么发展</li>\n<li>问了一两个 408 的八股，比如 hashmap 的具体实现方式</li>\n<li>反问</li>\n</ol>\n<blockquote>备注：来源小红书 @Swayyy，字节数据开发四面（校招，大老板面），无手撕，重思路和方法论。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-08-13-bytedance-autumn-1",
+      "company": "字节跳动",
+      "business": "大数据开发",
+      "position": "大数据开发（秋招一面）",
+      "date": "2026-08-13",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>项目拷打：讲讲你对数仓分层的理解和各层的功能，举个实习过程中各层数据流转的例子，DWS→ADS 层怎么加工的，两层的区别在哪</li>\n<li>举一个你具体开发的指标策略，从 ODS 到 ADS 的全过程</li>\n<li>数据倾斜的类型，原因，怎么解决的</li>\n<li>维度建模的方式，什么时候用星型、什么时候雪花，举个例子；拉链表长什么样，还有什么其它维度表类型，什么时候用拉链表；OLTP 的建模方式；缓慢维</li>\n<li>实习过程中有没有遇到过 Spark 任务跑失败的情况，怎么排查的，遇到失败的原因哪几类</li>\n<li>批处理、流处理 → 引出实时和离线，Flink 的三种时间，离线数仓和实时数仓的存储架构有什么区别，实时数仓的流程；Spark 和 Flink 的区别，平时接触实时多吗</li>\n</ol>\n<blockquote>备注：来源小红书 @牛爷爷爱小丽，字节大数据开发秋招一面，45 分钟，无手撕。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-07-25-bytedance-douyin-ml",
