@@ -1,17 +1,17 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:40:17+08:00",
+  "generatedAt": "2026-09-29T11:42:54+08:00",
   "stats": {
-    "questions": 434,
-    "interviews": 63,
-    "technical": 349,
+    "questions": 438,
+    "interviews": 65,
+    "technical": 353,
     "project": 85,
     "domains": {
-      "spark": 43,
+      "spark": 44,
       "hdfs": 4,
       "storage": 21,
       "lakehouse": 7,
       "starrocks": 14,
-      "flink": 16,
+      "flink": 18,
       "network": 4,
       "algorithm": 9,
       "statistics": 1,
@@ -20,7 +20,7 @@ window.OS_DATA = {
       "platform": 2,
       "system": 7,
       "warehouse": 102,
-      "sql": 27,
+      "sql": 28,
       "project": 85
     }
   },
@@ -1022,6 +1022,28 @@ window.OS_DATA = {
       ],
       "domain": "spark",
       "body_html": "<h2>一句话</h2>\n<p>数据量均匀但倾斜，通常是某个 key 的 value 巨大、task 数量/资源不均、shuffle 分区算法问题或个别 executor 异常慢。</p>\n<h2>30 秒回答</h2>\n<p>可能原因：key 数量均匀但某个 key 的单条 value 特别大；分区数过少或 executor 资源不均；shuffle 分区函数导致部分分区热点；GC、磁盘、网络等单点性能问题。逐一用 Spark UI 看 task 数据量、shuffle read、GC time 排除。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>key 分布均匀但 value 大小不均</li>\n<li>分区数少，少量 task 扛大部分数据</li>\n<li>executor 资源不均或个别节点慢（硬件/网络/GC）</li>\n<li>shuffle 分区算法局部热点</li>\n<li>排查：Spark UI 看 task 耗时/数据量/GC，区分倾斜 vs 节点慢</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>怎么区分是数据倾斜还是节点慢？</li>\n<li>value 大小不均怎么处理？</li>\n</ul>"
+    },
+    {
+      "id": "SPARK-0044",
+      "type": "technical",
+      "question": "AQE 自适应查询执行是什么",
+      "topic": [
+        "spark",
+        "aqe"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-23-tencent-kuaishou-zhenti",
+          "company": "腾讯 / 快手",
+          "position": "数据开发（一面真题）",
+          "date": "2026-06-23"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>AQE 是 Spark 3.x 的运行时优化：根据 shuffle 中间结果的真实统计，动态合并分区、切换 Join 策略、优化倾斜 Join。</p>\n<h2>30 秒回答</h2>\n<p>AQE 在 shuffle 结束后拿到真实数据量，运行时做三件事：合并过小分区、把小表广播切换成 Broadcast Join、检测倾斜分区并拆分。比静态优化器更贴近真实数据分布。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>动态合并分区：shuffle 后分区太小就合并，减少 task 数</li>\n<li>动态切换 Join：发现某侧很小，运行时转 Broadcast Join</li>\n<li>优化倾斜 Join：检测倾斜分区自动拆分</li>\n<li>前提：<code>spark.sql.adaptive.enabled=true</code>（3.x 默认开）</li>\n<li>价值：不用人工猜数据量，运行时自适应</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>AQE 和静态优化器的区别？</li>\n<li>AQE 能完全替代人工加盐吗？</li>\n</ul>"
     },
     {
       "id": "HDFS-0001",
@@ -2316,6 +2338,42 @@ window.OS_DATA = {
       ],
       "domain": "flink",
       "body_html": "<h2>一句话</h2>\n<p>引入实时是业务驱动不是技术驱动：只有「当天运营监控、实时干预」这类分钟级诉求才上实时，其他场景离线 T+1 更划算。</p>\n<h2>30 秒回答</h2>\n<p>核心指标需要当天看趋势、做实时干预，T+1 等不了，所以上实时。但实时成本高（集群常驻、状态、小文件），所以只在少数核心指标做分钟级，其余继续离线。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>业务诉求：当天活动上线后想知道登录 UV 涨没涨，T+1 已经错过干预窗口</li>\n<li>边界判断：真正秒级场景占比很小，多数「小时级」用离线小时调度就能满足，不必上 Flink</li>\n<li>架构：Kafka + Flink + Iceberg，10 分钟一批刷新核心看板</li>\n<li>反思：实时是工具不是目的，业务要分钟级才上，否则离线更省钱</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>小时级诉求为什么可以不用 Flink？</li>\n<li>实时和离线的成本差异主要在哪？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0018",
+      "type": "technical",
+      "question": "Checkpoint 重启能精准回溯到某一秒吗",
+      "topic": [
+        "flink",
+        "checkpoint"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-23-tencent-kuaishou-zhenti",
+          "company": "腾讯 / 快手",
+          "position": "数据开发（一面真题）",
+          "date": "2026-06-23"
+        }
+      ],
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>不能。Checkpoint 保存的是 barrier 对齐时的状态和位点，粒度是「事件位点」而非时间戳，只能回溯到最近一次成功的 Checkpoint 位点。</p>\n<h2>30 秒回答</h2>\n<p>Checkpoint 记录的是算子状态 + source 位点（如 Kafka offset），是 barrier 对齐那一刻的一致性快照，不是按秒存的。重启从最近成功 Checkpoint 恢复位点，无法指定回溯到某个秒。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>barrier 对齐：所有并行度算子处理到 barrier 才做快照</li>\n<li>粒度：source 位点（offset/filename+position），不是时间戳</li>\n<li>恢复：从最近成功 Checkpoint 的位点精准重放</li>\n<li>想按时间回溯：要靠 savepoint 或业务侧记录时间 + 位点映射</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>Checkpoint 和 savepoint 有什么区别？</li>\n<li>想按业务时间回溯怎么办？</li>\n</ul>"
+    },
+    {
+      "id": "FLINK-0019",
+      "type": "technical",
+      "question": "Flink CDC 的原理（无锁读取 / Exactly-Once / 全量增量衔接）",
+      "topic": [
+        "flink",
+        "cdc"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "flink",
+      "body_html": "<h2>一句话</h2>\n<p>Flink CDC 基于 Debezium 读数据库底层日志（binlog/WAL）捕获变更，实现无锁读取、Checkpoint 端到端 Exactly-Once、全量增量无缝衔接。</p>\n<h2>30 秒回答</h2>\n<p>无锁：读 binlog/WAL 而非查表，不加锁、几乎零侵入。Exactly-Once：Checkpoint 保存 binlog 位点 + 下游幂等/事务提交。全量增量衔接：Incremental Snapshot 记 high watermark，全量 chunk 并行读，之后从位点续增量，不丢数据。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>数据源：MySQL binlog（ROW 格式）、PostgreSQL WAL、Oracle/SQLServer 日志</li>\n<li>无锁：不访问数据页，CPU/IO 开销极低</li>\n<li>Exactly-Once：Checkpoint 存位点，下游配合幂等/事务</li>\n<li>全量增量：2.0+ Incremental Snapshot，启动记位点，全量 chunk 并行，增量无缝衔接</li>\n<li>注意：要监控 binlog/WAL 保留策略，避免堆积</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么只开 auto-commit 达不到 Exactly-Once？</li>\n<li>全量阶段怎么和增量衔接不丢数据？</li>\n</ul>"
     },
     {
       "id": "NETWORK-0001",
@@ -7297,6 +7355,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>inner 取交集，left/right 保留一侧全量，full 两侧都保留，semi 只返回左表存在匹配的行，anti 返回左表不匹配的行。</p>\n<h2>30 秒回答</h2>\n<p>inner join 两边都匹配才返回；left join 保留左表全量、右表匹配不上的填 null；full join 两边都保留；left semi join 只返回左表在右表有匹配的行且不返回右表列；left anti join 返回左表在右表不存在的行。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>inner：交集</li>\n<li>left/right：保留驱动侧全量</li>\n<li>full：全外连接，两侧都保留</li>\n<li>left semi：等价 <code>WHERE EXISTS</code>，只出左表列，去重语义</li>\n<li>left anti：等价 <code>WHERE NOT EXISTS</code>，找「没有」的记录</li>\n<li>用途：semi 做过滤去重，anti 做差集/漏斗</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>left semi join 和 inner join 有什么区别？</li>\n<li>left anti join 的典型场景？</li>\n</ul>"
     },
     {
+      "id": "SQL-0028",
+      "type": "technical",
+      "question": "count(distinct) 的精度妥协优化",
+      "topic": [
+        "sql",
+        "distinct"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-06-23-tencent-kuaishou-zhenti",
+          "company": "腾讯 / 快手",
+          "position": "数据开发（一面真题）",
+          "date": "2026-06-23"
+        }
+      ],
+      "domain": "sql",
+      "body_html": "<h2>一句话</h2>\n<p>数据量极大且可接受少量误差时，用 <code>approx_count_distinct</code>（基于 HyperLogLog）做近似去重，内存和时间远低于精确 count(distinct)。</p>\n<h2>30 秒回答</h2>\n<p>精确 count(distinct) 要维护完整去重集合，大基数时内存大、单 reduce 慢；<code>approx_count_distinct(col, rsd)</code> 用 HyperLogLog 以 O(1) 近似空间估基数，误差可控（如 rsd=0.01 约 1% 误差）。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>精确：维护集合，内存随基数线性增长，易倾斜</li>\n<li>近似：HyperLogLog 概率结构，空间小、可并行</li>\n<li>参数 rsd：控制相对标准差，越小越准但越慢</li>\n<li>适用：UV 大盘、基数估算等可容忍误差的场景</li>\n<li>不适用：对账、金融等要求精确的场景</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>rsd 参数怎么选？</li>\n<li>什么场景不能用近似去重？</li>\n</ul>"
+    },
+    {
       "id": "PROJECT-0001",
       "type": "project",
       "question": "你实习搭建的看板有哪些指标",
@@ -9525,6 +9605,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍 + 最匹配的项目</li>\n<li>项目深挖：重构数据管道提升 50% 效率，瓶颈在哪，CPU 密集还是 IO 密集；构建训练数据集怎么做数据清洗，标注不一致怎么处理</li>\n<li>手撕：写一个 LRU 缓存，O(1)，实现 get 和 put</li>\n<li>PB 级推荐模型训练数据预处理服务（高吞吐、复杂负采样、分布一致性）</li>\n<li>RAG 解决大模型什么问题，向量召回和 BM25 适合什么场景，为什么混合</li>\n<li>字节做 AI 应用最大瓶颈是模型能力还是数据质量</li>\n<li>线上事故：第三方数据源 Schema 变更导致解析任务全挂，怎么处理</li>\n<li>手撕：二叉树最短路径</li>\n<li>LoRA 微调原理、Self-Attention 的 QKV 公式推导</li>\n<li>ReAct、Function Calling、MCP 协议的区别</li>\n</ol>"
     },
     {
+      "interview_id": "INTERVIEW-2026-06-23-tencent-kuaishou-zhenti",
+      "company": "腾讯 / 快手",
+      "business": "数据开发",
+      "position": "数据开发（一面真题）",
+      "date": "2026-06-23",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<h3>腾讯数据开发一面</h3>\n<ol>\n<li>线上任务慢的完整排查流程（定位 → 分析 → 解决）</li>\n<li>广播 vs Shuffle 区别（Shuffle 涉及磁盘 IO + 网络传输 + 排序）</li>\n<li>小文件对 Spark 的影响环节（IO 调度/任务数膨胀）</li>\n<li>Hive 二级分区 Spark 写入问题</li>\n<li>SQL 在 Spark 内部的完整运行流程</li>\n<li>核心业务 SQL 的优化维度 + 代码性能改写</li>\n<li>滑动窗口计算量预估（100 万条/分钟，每 5 分钟统计过去 1 小时 → 窗口重叠 12 倍）</li>\n<li>Checkpoint 重启能否精准回溯到某一秒（barrier 对齐位点，非时间戳）</li>\n</ol>\n<h3>腾讯软件开发-数据开发一面</h3>\n<ol>\n<li>MySQL 事务与隔离级别、Java 多线程、线程安全集合、线程生命周期、Zookeeper 选举</li>\n<li>Stage 划分规则（宽依赖为界）、AQE 原理、SQL 优化器（Catalyst → 物理计划 → 代码生成）</li>\n<li>count(distinct) 精度妥协优化（approx_count_distinct / HyperLogLog）</li>\n<li>加 CPU/内存不一定提速（瓶颈可能在 Shuffle/数据倾斜/GC）</li>\n<li>手撕算法：栈实现队列 + 连续性 SQL</li>\n</ol>\n<h3>快手数据开发实习一面</h3>\n<ol>\n<li>Skill 文档能否替代引擎全工作流（编排/分析/执行/质检/总结）</li>\n<li>Vibe Coding IDE Agent vs 自研 Agent 的本质区别</li>\n</ol>\n<blockquote>备注：涤生大数据整理的三场 2026 大厂校招数开一面真题，腾讯重底层原理，快手重 AI 工具落地。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-06-21-fliggy-bigdata",
       "company": "飞猪",
       "business": "大数据开发",
@@ -9775,6 +9864,15 @@ window.OS_DATA = {
       "date": "2026-04-15",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>广播 Join 和 Shuffle Join 的区别，Shuffle 为什么慢</li>\n<li>小文件问题是在 Spark 读的环节慢，还是运行时慢</li>\n<li>Hive 二级分区，Spark 写二级分区遇到过什么坑</li>\n<li>滑动窗口：每 5 分钟统计过去一小时的行为，100 万条/分钟，输出量和计算量怎么估算</li>\n<li>Flink 基于 Checkpoint 重启时，Kafka 的 offset 能精确回溯吗</li>\n<li>两段 SQL 有没有性能问题，在 Spark 里怎么执行</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-04-14-bytedance-bigdata-39q",
+      "company": "字节跳动",
+      "business": "大数据开发",
+      "position": "大数据开发（考生回忆精选）",
+      "date": "2026-04-14",
+      "round": "精选",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>请分享一个你处理过的数据量最大的项目，当时面临什么挑战？</li>\n<li>在团队协作中，如果和同事对某个技术方案有分歧，你会怎么处理？</li>\n<li>描述一下你优化一个运行缓慢的 Spark 作业的具体过程。</li>\n<li>如果产品经理临时要求提前两天交付数据报表，你会如何应对？</li>\n<li>你如何保证数据仓库中数据的一致性和准确性？</li>\n<li>请举例说明你从 0 到 1 搭建一个数据管道时考虑的关键点。</li>\n<li>当线上数据任务突然失败，你的第一反应和排查步骤是什么？</li>\n<li>你如何向一个非技术背景的同事解释一个复杂的数据模型？</li>\n<li>在数据开发过程中，你遇到过哪些数据倾斜问题，是怎么解决的？</li>\n<li>描述一次你通过数据分析发现业务问题并推动改进的经历。</li>\n<li>你如何看待数据开发中的「脏数据」问题，通常如何处理？</li>\n<li>当业务需求频繁变更导致数据模型需要重构时，你会怎么做？</li>\n<li>请分享一个你使用 Hive 或 Spark SQL 解决复杂业务逻辑的案例。</li>\n<li>你是如何管理和监控日常数据任务依赖关系的？</li>\n<li>如果发现上游数据源的数据格式突然发生变化，你会怎么处理？</li>\n<li>在数据质量监控方面，你通常关注哪些核心指标？</li>\n<li>请描述一次你为了提升数据处理效率而进行的技术选型或架构调整。</li>\n<li>当项目时间紧、任务重时，你是如何安排工作优先级并确保进度的？</li>\n<li>你如何理解数据开发中的「维度建模」，在实际项目中如何应用？</li>\n<li>在跨部门协作的数据项目中，如何确保各方对数据口径的理解一致？</li>\n<li>请分享一个你通过日志或监控发现并解决线上数据问题的案例。</li>\n<li>你如何评估一个新引入的大数据组件（如 Flink、Kafka）是否适合当前业务场景？</li>\n<li>当你的数据任务因为集群资源不足而频繁失败时，你会采取哪些措施？</li>\n<li>描述一次你主动学习并应用一项新技术到工作中的经历。</li>\n<li>在字节这样业务高速迭代的环境下，你如何设计数据架构以保证可扩展性和灵活性？</li>\n<li>面对海量实时数据（如抖音用户行为流），你会如何设计流处理链路来保证低延迟和高吞吐？</li>\n<li>请结合字节的 AB 实验场景，谈谈数据开发如何支持实验的快速迭代和效果评估。</li>\n<li>如果负责一个核心推荐模型的特征数据生产，你会如何保证数据输出的时效性和稳定性？</li>\n<li>在数据治理层面，针对用户隐私数据（如 PII 信息）的处理，你有哪些实践经验或思考？</li>\n<li>当业务方对同一个指标（如 DAU）的计算结果提出质疑时，如何快速定位并解释差异？</li>\n<li>如何为快速增长的业务（如电商大促）提前进行数据容量和性能评估？</li>\n<li>描述一个你处理过的涉及多数据源（日志、DB、第三方 API）复杂关联的数据项目。</li>\n<li>在数据中台的建设思路下，你如何设计可复用的数据公共层（DWD/DWS）？</li>\n<li>当需要从批处理架构向流批一体架构演进时，你会考虑哪些关键因素和挑战？</li>\n<li>如何设计一个健壮的实时数据质量监控和告警体系？</li>\n<li>在资源成本控制成为重要考量时，你有哪些优化数据存储和计算成本的具体方法？</li>\n<li>请分享一个你通过数据血缘分析解决数据依赖或影响范围评估问题的案例。</li>\n<li>对于机器学习平台所需的数据，在开发和交付时有哪些特别的注意事项？</li>\n<li>当数据任务依赖的底层引擎（如 Hadoop/Spark）版本需要升级时，你会如何规划和执行？</li>\n</ol>\n<blockquote>备注：考生回忆版，偏项目/行为 + 部分技术，共 39 道精选珍题。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-04-12-bytedance-agent-data-1",
