@@ -1,8 +1,8 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T17:30:27+08:00",
+  "generatedAt": "2026-09-29T17:31:00+08:00",
   "stats": {
     "questions": 1994,
-    "interviews": 98,
+    "interviews": 99,
     "technical": 1888,
     "project": 106,
     "domains": {
@@ -30193,6 +30193,15 @@ window.OS_DATA = {
       "date": "2026-06-08",
       "round": "一面",
       "body_html": "<h2>面经记录（原始，图片 OCR）</h2>\n<blockquote>涤生大数据整理，阿里云智社招 6 年数据开发岗面试题，非常看重 AI 赋能应用。</blockquote>\n<ol>\n<li>Text-to-SQL 应用经验</li>\n<li>Text-to-SQL 是否做过评测级建设</li>\n<li>Spark 任务优化中 AI 应用的流程</li>\n<li>大模型是否出现幻觉，是否做分类和校准</li>\n<li>AI 在 Spark 任务优化中没有分析到位的部分如何解决</li>\n<li>AI 在 Spark 任务优化中是否自动化，是否考虑做成 SOP</li>\n<li>数据资产管理可以从哪些方面入手使用 AI 大模型</li>\n<li>数据资产管理使用 AI 大模型可能出现哪些问题，哪些更容易做，如何完善</li>\n<li>团队新人如何给代码规范</li>\n<li>数仓项目介绍与项目问题</li>\n<li>数据湖相关问题</li>\n</ol>\n<blockquote>备注：来源小红书 @涤生大数据，阿里云智社招 6 年。</blockquote>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-06-08-jd-pay-data-dev",
+      "company": "京东支付",
+      "business": "数据开发",
+      "position": "数据开发（一面）",
+      "date": "2026-06-08",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始，图片 OCR）</h2>\n<blockquote>京东支付数据开发一面，主要范围：数仓建模、数据集市、指标体系、AI Agent、Hive SQL、窗口函数、数据倾斜、业务理解。</blockquote>\n<ol>\n<li>对部门的了解（面试官介绍业务）</li>\n<li>自我介绍</li>\n<li>我看你的实习经历比较多，但每段时间都不长，这是为什么</li>\n<li>为什么离开小米</li>\n<li>你如何理解数仓、数据集市和数据服务</li>\n<li>你对数仓分层是怎么理解的</li>\n<li>数仓建模和数据集市建模的区别是什么</li>\n<li>行转列、列转行</li>\n<li>业务要求明天上线，而标准数仓建模需要五天，你怎么办</li>\n<li>请介绍一下你设计指标体系的经历</li>\n<li>数据口径统一怎么落实</li>\n<li>刚才提到对 AI 这块比较了解，还有 Agent 实战经验，大概介绍一下你具备哪些技能</li>\n<li>主流大模型了解吗</li>\n<li>Hermes 了解吗</li>\n<li>做过 Skill 开发吗</li>\n<li>大模型的飘移问题怎么处理</li>\n<li>遇到过数据倾斜吗？怎么解决</li>\n<li>对全量表、增量表、拉链表的了解</li>\n</ol>\n<blockquote>备注：来源小红书，京东支付数据开发一面凉经。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-06-01-bytedance-douyin-6y",
