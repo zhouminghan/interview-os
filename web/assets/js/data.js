@@ -1,23 +1,23 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-29T11:06:05+08:00",
+  "generatedAt": "2026-09-29T11:07:43+08:00",
   "stats": {
-    "questions": 326,
-    "interviews": 26,
-    "technical": 241,
+    "questions": 336,
+    "interviews": 30,
+    "technical": 251,
     "project": 85,
     "domains": {
       "spark": 36,
       "hdfs": 1,
-      "storage": 13,
+      "storage": 14,
       "lakehouse": 7,
       "starrocks": 11,
       "flink": 9,
       "network": 4,
       "algorithm": 8,
-      "llm": 54,
+      "llm": 55,
       "platform": 2,
       "system": 6,
-      "warehouse": 73,
+      "warehouse": 81,
       "sql": 17,
       "project": 85
     }
@@ -1184,6 +1184,20 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "storage",
       "body_html": "<h2>一句话</h2>\n<p>内部表 Hive 管理元数据和数据，drop 连数据一起删；外部表只管理元数据，drop 不删数据文件。</p>\n<h2>30 秒回答</h2>\n<p>ODS 层用外部表（保留原始数据），DWD 以上用内部表（可随时重跑重建）。</p>\n<h2>追问</h2>\n<ul>\n<li>什么场景必须用外部表？</li>\n<li>外部表数据文件删了会怎样？</li>\n</ul>"
+    },
+    {
+      "id": "STORAGE-0015",
+      "type": "technical",
+      "question": "Kylin 和 Doris、ClickHouse 对比，适用场景",
+      "topic": [
+        "storage",
+        "olap"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>Kylin 预计算 Cube 适合固定报表，Doris/ClickHouse 实时/即席查询更灵活，正在替代 Kylin。</p>\n<h2>30 秒回答</h2>\n<p>Kylin 按维度组合预计算 Cube，查询快但维度爆炸成本高；Doris/ClickHouse 列存 + MPP，即席分析灵活；现代场景多用 Doris/StarRocks。</p>\n<h2>追问</h2>\n<ul>\n<li>Kylin 为什么式微？</li>\n<li>固定报表和即席分析分别选什么？</li>\n</ul>"
     },
     {
       "id": "LAKEHOUSE-0001",
@@ -3137,6 +3151,21 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>从「改模型」转向「改数据」，用更高质量、更少的数据提升模型效果。</p>\n<h2>30 秒回答</h2>\n<p>通过数据清洗、难例挖掘、主动学习、质量标注，用少量高质量数据达到更好训练效果；数据工程决定模型上限。</p>\n<h2>追问</h2>\n<ul>\n<li>Data-Centric 和 Model-Centric 区别？</li>\n<li>难例挖掘怎么做？</li>\n</ul>"
     },
     {
+      "id": "LLM-0064",
+      "type": "technical",
+      "question": "LLM、Workflow、Agent 三者的区别",
+      "topic": [
+        "llm",
+        "agent",
+        "workflow"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>LLM 是大脑（只对话输出），Agent 是 LLM + 工具，Workflow 是把步骤固化的可复用流程。</p>\n<h2>30 秒回答</h2>\n<p>LLM 本身不能干活，Agent 靠 LLM + 工具（MCP/Skill）执行；Workflow 是把标准流程拆成固定步骤串起来，可复用、团队共享。</p>\n<h2>追问</h2>\n<ul>\n<li>Agent 和 Workflow 什么时候用哪个？</li>\n<li>Harness 和 Agent 关系？</li>\n</ul>"
+    },
+    {
       "id": "PLATFORM-0001",
       "type": "technical",
       "question": "低代码平台是什么，你了不了解",
@@ -4787,6 +4816,118 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "warehouse",
       "body_html": "<h2>一句话</h2>\n<p>统一口径 + 公共层收口计算 + 监控对账，把相似指标融合到公共 DWS。</p>\n<h2>30 秒回答</h2>\n<p>指标平台统一注册口径，公共层只算一次、下游引用，监控比对多个模型同名指标差异，逐步把烟囱式 ADS 迁移到公共 DWS。</p>\n<h2>追问</h2>\n<ul>\n<li>存量模型怎么渐进合并？</li>\n<li>口径不一致怎么发现？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0077",
+      "type": "technical",
+      "question": "事实标签和规则标签的区别",
+      "topic": [
+        "warehouse",
+        "tag"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>事实标签是客观发生的属性（如性别、年龄），规则标签是由规则计算得到的（如高价值用户）。</p>\n<h2>30 秒回答</h2>\n<p>事实标签直接来自用户事实/属性，不依赖复杂规则；规则标签通过阈值或逻辑判定（如近 30 天消费 &gt; 1000 为高价值用户）。</p>\n<h2>追问</h2>\n<ul>\n<li>规则标签的规则怎么维护？</li>\n<li>标签值域溢出（算出来是 2，值域 -1~1）怎么办？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0078",
+      "type": "technical",
+      "question": "数据质量规则怎么按字段特征分类固化",
+      "topic": [
+        "warehouse",
+        "data-quality"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>枚举值字段做合规校验，核心关联字段做非空/唯一校验，数值字段做波动监控，时间字段做合理性校验。</p>\n<h2>30 秒回答</h2>\n<p>有限取值字段（类型、平台）做枚举值监控；join/去重关键字段（ID）做空值/唯一监控；数值指标做日环比波动；时间做合理性（不早于上线、不晚于当前）。</p>\n<h2>追问</h2>\n<ul>\n<li>空值监控适合哪些字段？</li>\n<li>规则怎么沉淀到平台？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0079",
+      "type": "technical",
+      "question": "同环比监控阈值怎么设计才不会误报",
+      "topic": [
+        "warehouse",
+        "monitoring"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>工作日/周末分开设阈值，节假日白名单，只监控核心指标，阈值取历史波动分位数。</p>\n<h2>30 秒回答</h2>\n<p>日环比区分工作日/周末，节假日活动日做白名单排除，只对核心指标设同环比，阈值用过去一个月波动分布 P95。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么长尾指标不设监控？</li>\n<li>日环比和周环比各抓什么？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0080",
+      "type": "technical",
+      "question": "数仓总线矩阵是什么，业务过程体现在哪",
+      "topic": [
+        "warehouse",
+        "modeling"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>总线矩阵行是业务过程、列是公共维度，交叉点标记该业务过程是否需要该维度。</p>\n<h2>30 秒回答</h2>\n<p>业务过程体现在 DWD 层（每个业务过程一张明细表），公共维度体现在 DIM 层；矩阵帮助建模前想清维度和业务过程的关联。</p>\n<h2>追问</h2>\n<ul>\n<li>总线矩阵和一致性维度什么关系？</li>\n<li>新增业务过程怎么更新矩阵？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0081",
+      "type": "technical",
+      "question": "数仓调度削峰填谷怎么做",
+      "topic": [
+        "warehouse",
+        "scheduling"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>非核心任务错峰到白天，核心任务高优队列 + 资源隔离，优化 DAG 依赖。</p>\n<h2>30 秒回答</h2>\n<p>凌晨是调度高峰，把周/月报、历史回刷、探索任务错峰到白天；核心链路高优队列 + 独立资源；梳理 DAG 去不必要串行依赖改并行。</p>\n<h2>追问</h2>\n<ul>\n<li>队列怎么分级？</li>\n<li>错峰会不会影响 SLA？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0082",
+      "type": "technical",
+      "question": "怎么判断哪些任务优先优化，哪些不着急",
+      "topic": [
+        "warehouse",
+        "optimization"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>看 SLA 影响、下游依赖数、资源消耗，投入产出比高的优先优化。</p>\n<h2>30 秒回答</h2>\n<p>优先优化：核心链路、下游依赖多、资源消耗 Top20% 的任务；不着急：无下游、时效要求低、资源消耗小的任务。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么统计任务资源消耗？</li>\n<li>优化优先级怎么量化？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0083",
+      "type": "technical",
+      "question": "数仓任务 Code Review 看哪些点",
+      "topic": [
+        "warehouse",
+        "code-review"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>看命名规范、口径、复用、性能、数据质量和权责。</p>\n<h2>30 秒回答</h2>\n<p>Review 点：分层/命名规范、指标口径是否复用公共层、SQL 性能（分区裁剪/倾斜）、数据质量校验、是否有 Owner 和评审记录。</p>\n<h2>追问</h2>\n<ul>\n<li>权责问题怎么落地？</li>\n<li>复用怎么在 review 时校验？</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0084",
+      "type": "technical",
+      "question": "数仓跨主题合并怎么做",
+      "topic": [
+        "warehouse",
+        "modeling"
+      ],
+      "difficulty": 4,
+      "frequency": "medium",
+      "source_type": "knowledge",
+      "domain": "warehouse",
+      "body_html": "<h2>一句话</h2>\n<p>用 DIM 层做桥梁、粒度对齐后合并，不直接 JOIN 事实表。</p>\n<h2>30 秒回答</h2>\n<p>跨主题合并（如流量域行为 + 用户域属性）：两边先在 DWS 按「用户+天」聚合对齐粒度，再用 DIM 用户属性 JOIN，避免事实表直接 JOIN。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么不用事实表直接 JOIN？</li>\n<li>粒度不一致怎么办？</li>\n</ul>"
     },
     {
       "id": "SQL-0001",
@@ -7269,6 +7410,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>数据倾斜优化具体场景、定位、方案选择</li>\n<li>Spark 宽窄依赖，Shuffle 流程，优化 Shuffle 很重的任务</li>\n<li>大模型训练数据处理流程，和传统数仓 ETL 本质区别</li>\n<li>1000 万张图片去重，几种方法，优缺点和适用场景</li>\n<li>SQL：训练样本表 sample(id, content, modal, quality_score)，统计每个模态下质量分前 30% 的样本数量和平均质量分</li>\n<li>Python 处理大文件（超过内存），Pandas 和 PySpark 性能和适用场景差异</li>\n<li>从零搭建多模态训练数据 Pipeline（视频/图片/音频，接入、清洗、质检、交付）</li>\n<li>视频训练数据质量维度，自动化质检规则过滤低质量视频</li>\n<li>难例挖掘：从海量无标注数据找对模型提升最大的样本</li>\n<li>大模型数据倾斜特殊场景（按标签分组某标签数据量特别大），除加盐扩容外的解法</li>\n<li>Ray 和 Spark 相比在大模型数据处理场景的优势劣势</li>\n<li>算法团队反馈数据集训练效果不好，怎么排查数据侧问题</li>\n<li>Data-Centric AI 怎么理解，从数据工程角度怎么提升训练数据效率</li>\n</ol>"
     },
     {
+      "interview_id": "INTERVIEW-2026-07-20-shein-warehouse",
+      "company": "SHEIN",
+      "business": "商家治理数仓",
+      "position": "资深数据开发（一面）",
+      "date": "2026-07-20",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>维度退化主要是什么，能解决什么问题</li>\n<li>如果一个维表数据量比较大，你会怎么样去设计这个维表</li>\n<li>Spark 任务比较慢，从 Web UI 里怎么排查</li>\n<li>LLM、Workflow、Agent 三者的区别</li>\n<li>你们 Claude Code 工具是怎么装的，MCP 和 skill 怎么用</li>\n</ol>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-06-26-bytedance-ai-data",
       "company": "字节跳动",
       "business": "AI 数据开发",
@@ -7305,6 +7455,24 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>来源小红书 @数据工程师勇哥。Flink + Doris 是主线。</blockquote>\n<h3>一面（技术细节）</h3>\n<ol>\n<li>自我介绍（打断）：你做的那个实时数仓，数据延迟是多少？数据量多大？</li>\n<li>场景题：要实时统计亿级用户点击流的 UV，要求去重且精准，不能有误差，你怎么做？（追问：Redis 扛不住亿级 QPS 怎么办？Flink 状态后端怎么调优？）</li>\n<li>手撕 SQL：给一张用户登录表，求连续登录 3 天的用户</li>\n<li>手撕算法：手写单例模式（Double Check Lock），为什么加 Volatile？</li>\n<li>实时：Flink 的 Exactly-Once 怎么实现，Checkpoint 机制详细讲</li>\n</ol>\n<h3>二面（Leader）</h3>\n<ol>\n<li>项目深挖：你做过最得意的项目是什么？如果现在重做，你会改进哪里？</li>\n<li>架构：把原来 ClickHouse 和 Hive 的任务迁移到 Doris，怎么设计？怎么保证数据一致性？Join 性能慢怎么办？（Bucket/Partition/Colocation Join/物化视图）</li>\n<li>智力题：10 亿个整数，内存只有 2G，怎么找出中位数？</li>\n<li>Java 基础：HashMap 在 JDK1.8 为什么引入红黑树？ConcurrentHashMap 分段锁和 CAS 的区别？</li>\n</ol>\n<h3>三面（HRBP）</h3>\n<ol>\n<li>抗压测试：网易加班多，项目上线压力大，你怎么看？</li>\n<li>稳定性：你有 5 年经验了，为什么离开上家公司？</li>\n<li>薪资：期望 30k+，公积金全额 12%，最低能接受多少？</li>\n</ol>\n<blockquote>备注：网易云音乐已把 Doris 作为统一引擎，必考分桶倾斜/写放大。</blockquote>"
     },
     {
+      "interview_id": "INTERVIEW-2026-06-01-ctrip-warehouse",
+      "company": "携程",
+      "business": "数仓",
+      "position": "数仓（一面）",
+      "date": "2026-06-01",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>举一个指标的例子，如何维护指标</li>\n<li>指标涉及不同的表如何维护</li>\n<li>一个标签涉及两张表，另一个标签涉及另外两张表，字段被删掉，会不会考虑关联成一张</li>\n<li>标签值域是 -1 到 1，但算出来是 2，怎么办</li>\n<li>标签开发做了哪些优化</li>\n<li>提示词怎么写，提示词中关于标签部分的模板，什么叫拆解任务</li>\n<li>事实标签和规则标签，举例</li>\n<li>任务难点：依赖上游任务，如何优化</li>\n<li>指标口径不统一怎么办</li>\n<li>如何做指标复用</li>\n<li>甘特图具体看哪些指标</li>\n<li>指标存在冗余如何处理</li>\n<li>如何定义核心标签</li>\n<li>如何保证任务的及时产出</li>\n<li>做了哪些告警，任务告警如何处理</li>\n<li>如果是因为触发某些规则没有产出，怎么处理，任务有没有做熔断</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-05-06-xiaohongshu-warehouse",
+      "company": "小红书",
+      "business": "数仓社招",
+      "position": "数仓技术面 27 题",
+      "date": "2026-05-06",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>数仓重构用了多久，实时建设用了多久</li>\n<li>离线数仓最大挑战，技术上的挑战</li>\n<li>离线解决的最大的问题</li>\n<li>如何量化数仓的好坏</li>\n<li>数仓存在哪些问题，是如何解决的</li>\n<li>如何保障指标一致性、复用性、粒度一致性（模型/数据质量/平台工具三层）</li>\n<li>数仓规范，每一个都展开</li>\n<li>数仓任务 code review 的点，权责问题</li>\n<li>数仓分层、分主题如何设计</li>\n<li>范式建模和维度建模，其他建模方式</li>\n<li>HSQL 优化方式</li>\n<li>简单说一下执行计划、map、reduce 数</li>\n<li>实时用的什么技术，遇到哪些问题，如何保障数据质量</li>\n<li>OLAP 数据库，了解 Kylin 吗，简单对比特性与优缺点、场景</li>\n<li>流量域怎么建设（用户行为 + 业务线），用户域怎么和流量域 merge（跨主题合并）</li>\n</ol>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-04-22-didi-finance",
       "company": "滴滴金融",
       "business": "数仓社招",
@@ -7312,6 +7480,15 @@ window.OS_DATA = {
       "date": "2026-04-22",
       "round": "一面 + 二面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>从 0 到 1 搭建数仓需要考虑哪些事情</li>\n<li>DWD 层怎么设计</li>\n<li>WITH AS 语句的实现逻辑</li>\n<li>怎么衡量数仓搭建的好与坏</li>\n<li>同一个指标分布在多个数据模型中，怎么保障数据一致性</li>\n<li>多个模型指标建设相似，怎么融合这些模型</li>\n<li>存量模型和新增模型怎么考虑</li>\n<li>Spark 执行流程，怎么解决数据倾斜</li>\n<li>Spark UI 排查问题</li>\n<li>Spark 任务从客户端提交到执行完成，和 Hadoop 哪些组件交互，怎么交互</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-04-22-qunar-warehouse",
+      "company": "去哪儿",
+      "business": "数仓社招",
+      "position": "数仓社招",
+      "date": "2026-04-22",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>数据质量怎么做</li>\n<li>准确性和完整性怎么做</li>\n<li>怎么把之前的工作固化成规则（什么样的数据做枚举值监控，什么样的数据做空值监控）</li>\n<li>什么样的同环比设置不会误报，并且是有价值的</li>\n<li>建模怎么做，前期设计、开发、完成后如何推广</li>\n<li>总线矩阵是啥样的，业务过程体现在哪</li>\n<li>削峰填谷怎么做的</li>\n<li>哪些任务优先优化，哪些任务不着急优化怎么判断</li>\n<li>有没有对 CPU 使用、资源情况的监控</li>\n<li>数仓表怎么推广，新表怎么替换老表</li>\n<li>日常做过什么优化，调度任务的优化呢</li>\n<li>倾斜优化做过几种</li>\n</ol>"
     },
     {
       "interview_id": "INTERVIEW-2026-04-15-meituan-bigdata",
