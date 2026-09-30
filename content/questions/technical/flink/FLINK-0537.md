@@ -1,0 +1,22 @@
+---
+id: FLINK-0537
+type: technical
+question: Flink 支持哪些 SQL 语句？
+difficulty: 0
+topic: []
+source_type: knowledge
+---
+
+Apache Flink SQL 支持以下语句：
+- SELECT 查询
+- CREATE TABLE、CREATE DATABASE、CREATE VIEW、CREATE FUNCTION
+- DROP TABLE、DROP DATABASE、DROP VIEW、DROP FUNCTION
+- ALTER TABLE、ALTER DATABASE、ALTER FUNCTION
+- INSERT TABLE
+- SQL HINTS
+- DESCRIBE
+- EXPLAIN
+- USE
+- SHOW
+
+---
