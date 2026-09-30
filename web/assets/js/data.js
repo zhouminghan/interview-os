@@ -1,10 +1,10 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-30T14:51:47+08:00",
+  "generatedAt": "2026-09-30T14:54:30+08:00",
   "stats": {
-    "questions": 2719,
+    "questions": 2760,
     "interviews": 99,
-    "technical": 2553,
-    "project": 166,
+    "technical": 2586,
+    "project": 174,
     "domains": {
       "spark": 397,
       "hdfs": 4,
@@ -19,9 +19,9 @@ window.OS_DATA = {
       "llm": 137,
       "platform": 2,
       "system": 7,
-      "warehouse": 287,
-      "sql": 30,
-      "project": 166
+      "warehouse": 302,
+      "sql": 48,
+      "project": 174
     }
   },
   "domains": {
@@ -34031,6 +34031,201 @@ window.OS_DATA = {
       "body_html": "<p>凌晨 ETL → DWD 聚合 → DWS 按 product_id 算 GMV → ADS ROW_NUMBER Top3 → 调度 9:30 前完成。</p>"
     },
     {
+      "id": "WAREHOUSE-0294",
+      "type": "technical",
+      "question": "Spark Shuffle 和 MapReduce Shuffle 的区别",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<p>| 维度 | Spark Shuffle | MR Shuffle | |------|--------------|------------| | 触发时机 | 宽依赖算子（groupByKey, reduceByKey, join） | Map 输出后必然触发 | | 中间文件 | 落盘 + 内存缓冲 | 强制落盘 | | 优化机制 | SortShuffle、BypassShuffle、Tungsten | 无 | | 性能 | 更高效，减少磁盘 I/O | 多次落盘，I/O 重 |</p>"
+    },
+    {
+      "id": "WAREHOUSE-0295",
+      "type": "technical",
+      "question": "Spark 如何判断 OOM 及解决 OOM",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<p><strong>判断</strong>：</p>\n<ul>\n<li>Driver OOM：<code>collect()</code> 数据过大、广播变量过大</li>\n<li>Executor OOM：Shuffle 数据倾斜、内存分配不足</li>\n</ul>\n<p><strong>解决</strong>：</p>\n<ul>\n<li>提高 <code>spark.executor.memory</code></li>\n<li>减少 <code>spark.sql.shuffle.partitions</code></li>\n<li>数据倾斜处理：加盐打散 / 两阶段聚合</li>\n<li>避免 <code>collect()</code> 全量数据到 Driver</li>\n<li>调大 <code>spark.memory.offHeap.size</code> 使用堆外内存</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0296",
+      "type": "technical",
+      "question": "Dynamic Allocation 是什么意思？",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<p>Spark 根据任务负载动态增减 Executor 数量，提高集群资源利用率。</p>"
+    },
+    {
+      "id": "WAREHOUSE-0297",
+      "type": "technical",
+      "question": "超大表和小表怎么 JOIN？",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<p><strong>Map Join（Broadcast Join）</strong>：小表广播到每个 Executor 内存，避免 Shuffle。</p>\n<ul>\n<li>小表阈值：<code>spark.sql.autoBroadcastJoinThreshold</code>（默认 10MB）</li>\n<li>Hive 中：<code>/*+ MAPJOIN(small_table) */</code></li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0298",
+      "type": "technical",
+      "question": "Spark SQL 还是 Spark API？",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<ul>\n<li>Spark SQL（DataFrame/DataSet）：声明式，Catalyst 优化器，性能好</li>\n<li>RDD API：命令式，灵活但需手动优化</li>\n</ul>\n<hr>\n<h3>二、Hive</h3>"
+    },
+    {
+      "id": "WAREHOUSE-0299",
+      "type": "technical",
+      "question": "Hive 数据倾斜原理和优化 — 多篇面经高频",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<p><strong>原因</strong>：</p>\n<ul>\n<li>热点 key 集中在少数 Reduce</li>\n<li>JOIN 时关联键分布不均</li>\n<li>GROUP BY 某个 key 数据量极大</li>\n</ul>\n<p><strong>优化</strong>：</p>\n<ul>\n<li>Map Join 小表</li>\n<li>加盐打散（key + 随机后缀）</li>\n<li>两阶段聚合（先局部聚合再全局聚合）</li>\n<li>开启 <code>hive.groupby.skewindata=true</code></li>\n<li>调整 Reduce 数量</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0300",
+      "type": "technical",
+      "question": "Hive External Table 对应概念",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<ul>\n<li>External Table：删除表只删元数据，数据文件保留在 HDFS</li>\n<li>Managed Table：删表同时删除 HDFS 数据</li>\n<li>对比：<code>EXTERNAL</code> 关键字控制</li>\n</ul>\n<hr>\n<h3>三、数仓建模 &amp; 设计</h3>"
+    },
+    {
+      "id": "WAREHOUSE-0301",
+      "type": "technical",
+      "question": "数仓怎么搭建，每层为什么这么搭，理论知识怎么落地",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<p><strong>考察深度</strong>：不能只背 ODS→DWD→DWS→ADS，要解释：</p>\n<ul>\n<li>每层的业务目的</li>\n<li>实际项目中遇到什么问题（数据质量、口径统一、调度依赖）</li>\n<li>层与层之间的数据流转逻辑</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0302",
+      "type": "technical",
+      "question": "什么是主题、主题域？",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<ul>\n<li><strong>主题</strong>：数仓中按业务线划分的数据集合（用户、订单、商品、供应链）</li>\n<li><strong>主题域</strong>：主题下的子分类（用户主题 → 用户画像、用户行为、用户资产）</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0303",
+      "type": "technical",
+      "question": "什么是粒度？",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<p>数据表中一行记录代表的最小业务含义。粒度越细，灵活性越高，存储越大。</p>"
+    },
+    {
+      "id": "WAREHOUSE-0304",
+      "type": "technical",
+      "question": "什么是业务流程？",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<p>业务从发生到结束的完整过程，数仓建模需要对齐业务流程设计数据链路。</p>"
+    },
+    {
+      "id": "WAREHOUSE-0305",
+      "type": "technical",
+      "question": "如果用 DWS 层优化留存率计算，怎么设计？",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<p><strong>思路</strong>：在 DWS 层预计算用户留存表</p>\n<ul>\n<li>字段：<code>first_login_date, day_offset, retain_count, new_user_count</code></li>\n<li>按天增量更新：每天只算昨天新增用户的留存</li>\n<li>避免每次从 DWD 全量扫描</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0306",
+      "type": "technical",
+      "question": "Star Schema 设计 E-commerce 数据库",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<ul>\n<li>Fact Table：订单事实表（order_id, customer_id, product_id, date_id, amount, quantity）</li>\n<li>Dim Tables：Customer、Product、Date、Store</li>\n<li>追问：track customer historical address → SCD Type 2（加 start_date/end_date）</li>\n</ul>"
+    },
+    {
+      "id": "WAREHOUSE-0307",
+      "type": "technical",
+      "question": "如何处理 Many-to-Many 关系？",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<p>引入中间桥接表（Bridge Table），拆成两个一对多。</p>"
+    },
+    {
+      "id": "WAREHOUSE-0308",
+      "type": "technical",
+      "question": "每天 10 点需要前一天交易 Top3 product，怎么设计 pipeline？",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "warehouse",
+      "body_html": "<p>| 步骤 | 内容 | |------|------| | 1 | 凌晨 ETL 处理前一天订单数据 → DWD | | 2 | 按 product_id 聚合 GMV/销量 → DWS | | 3 | ROW_NUMBER 取 Top3 → ADS | | 4 | 调度设为早上 9:30 前完成 | | 5 | 输出到报表 / 推送通知 |</p>\n<hr>\n<h3>四、备考建议</h3>\n<ol>\n<li><strong>Spark Shuffle / OOM / 数据倾斜</strong> — 三件套必能说清楚</li>\n<li><strong>Hive 内外部表 + 数据倾斜优化</strong> — 基础门槛</li>\n<li><strong>数仓分层不能只背诵</strong> — 准备一个自己项目的逐层设计 + 为什么</li>\n<li><strong>Star Schema + SCD</strong> — 北美岗高频，国内偶尔问</li>\n<li><strong>Pipeline 设计题</strong> — 考察工程思维，平时多看真实业务场景</li>\n</ol>"
+    },
+    {
       "id": "SQL-0001",
       "type": "technical",
       "question": "写 SQL 时需要注意什么",
@@ -34662,6 +34857,240 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "domain": "sql",
       "body_html": "<h2>一句话</h2>\n<p>ROWS 按「物理行数」界定帧（前后 N 行），RANGE 按「排序键的值范围」界定帧（值差在 N 内）；ORDER BY 有重复值时两者结果会不同。</p>\n<h2>30 秒回答</h2>\n<p><code>ROWS BETWEEN 1 PRECEDING AND CURRENT ROW</code> 取「上一行 + 当前行」；<code>RANGE BETWEEN 1 PRECEDING AND CURRENT ROW</code> 取「值 - 1 到当前值」的所有行。排序键有并列时，RANGE 会把同值行都纳入，ROWS 只按行位置。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>ROWS：按行偏移，物理概念，<code>ROWS BETWEEN 2 PRECEDING AND CURRENT ROW</code></li>\n<li>RANGE：按值偏移，逻辑概念，<code>RANGE BETWEEN 100 PRECEDING AND CURRENT ROW</code>（数值型排序键）</li>\n<li>差异点：ORDER BY 列有重复值时，RANGE 会把同值的一批行视为一个「peer group」</li>\n<li>默认帧：有 ORDER BY 无 frame 时，默认 <code>RANGE UNBOUNDED PRECEDING AND CURRENT ROW</code></li>\n<li>注意：RANGE 需要排序键可比较，字符串/非数值排序键行为受限</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么 ORDER BY 有重复时 ROWS 和 RANGE 结果不同？</li>\n<li>默认帧是什么？</li>\n</ul>"
+    },
+    {
+      "id": "SQL-0031",
+      "type": "technical",
+      "question": "连续最大登录天数",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p><strong>考察点</strong>：<code>ROW_NUMBER</code> + <code>DATE_SUB</code> 分组技巧</p>\n<pre><code class=\"language-sql\">-- 参考解法已在 每日一题/SQL01 中整理</code></pre>"
+    },
+    {
+      "id": "SQL-0032",
+      "type": "technical",
+      "question": "SQL 执行结果对比",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p>两段 SQL 执行结果是否相同？卡了一下，需复盘。</p>"
+    },
+    {
+      "id": "SQL-0033",
+      "type": "technical",
+      "question": "求没挂过科的同学 / 至少挂过两科的同学",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p><strong>表结构推测</strong>：<code>student_scores(student_id, course_id, score)</code>，挂科 = score &lt; 60</p>\n<pre><code class=\"language-sql\">-- 没挂过科：所有课程 score &gt;= 60\nSELECT student_id\nFROM student_scores\nGROUP BY student_id\nHAVING MIN(score) &gt;= 60;\n\n-- 至少挂过两科\nSELECT student_id\nFROM student_scores\nWHERE score &lt; 60\nGROUP BY student_id\nHAVING COUNT(*) &gt;= 2;</code></pre>"
+    },
+    {
+      "id": "SQL-0034",
+      "type": "technical",
+      "question": "日活/周活/月活 + 留存率",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p>| 指标 | 说明 | |------|------| | 日活(DAU) | <code>COUNT(DISTINCT user_id)</code> 按天 | | 周活(WAU) | 近7天去重用户数 | | 月活(MAU) | 近30天去重用户数 | | 次日留存 | 当日新增中第二天还活跃的比例 | | 三日/七日留存 | 同理，<code>MIN(login_date)</code> 取新增日 + JOIN 原表 |</p>"
+    },
+    {
+      "id": "SQL-0035",
+      "type": "technical",
+      "question": "LeetCode 184 — Department Highest Salary（北美岗）",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p>每个部门工资最高的员工。<code>DENSE_RANK</code> 或 <code>MAX</code> + JOIN。</p>"
+    },
+    {
+      "id": "SQL-0036",
+      "type": "technical",
+      "question": "LeetCode 196 — Delete Duplicate Emails（北美岗）",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p>保留最小 ID，删除重复 Email。</p>"
+    },
+    {
+      "id": "SQL-0037",
+      "type": "technical",
+      "question": "4 表 JOIN — Project / Employee / Department / Budget（北美岗）",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p>多表关联 + 子查询，考察 JOIN 功底。</p>"
+    },
+    {
+      "id": "SQL-0038",
+      "type": "technical",
+      "question": "购买过A但没买过B的用户 — CSDN 笔试题",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<pre><code class=\"language-sql\">-- NOT EXISTS\nSELECT user_id FROM purchase p1\nWHERE p1.product_id = &#x27;A&#x27;\n  AND NOT EXISTS (\n    SELECT 1 FROM purchase p2\n    WHERE p2.user_id = p1.user_id AND p2.product_id = &#x27;B&#x27;\n  );</code></pre>\n<hr>\n<h3>二、题型分类</h3>\n<p>| 题型 | 出现次数 | 难度 | |------|----------|------| | 连续问题（登录/购买） | 2 | 中 | | 留存率计算 | 1 | 中-难 | | 多表 JOIN | 2 | 中 | | 聚合 + HAVING | 1 | 易-中 | | LeetCode 原题 | 2 | 易-中 | | 执行结果对比 | 1 | 中 |</p>\n<hr>\n<h3>三、备考建议</h3>\n<ol>\n<li><strong>窗口函数熟练度</strong> — 连续登录、留存率是高频</li>\n<li><strong>多表 JOIN 能不乱</strong> — 北美岗必考 4 表联查</li>\n<li><strong>准备几道 LeetCode SQL 原题</strong> — 184/196 是经典</li>\n<li><strong>现场 SQL 心态</strong> — 紧张容易卡，平时多限时练</li>\n</ol>"
+    },
+    {
+      "id": "SQL-0039",
+      "type": "technical",
+      "question": "不同国家/地区 GMV 排名",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p><strong>难度</strong>：⭐⭐</p>\n<p><strong>业务场景</strong>：跨境电商平台需要按国家/地区统计销售额（GMV）并排名。</p>\n<p><strong>题目</strong>：计算 <strong>2025 年 6 月</strong>每个国家/地区的总 GMV 及其排名。GMV = 商品单价 × 销售数量，用 <code>RANK()</code> 降序排名。</p>\n<h4>表结构 <code>shein_orders</code></h4>\n<p>| 字段 | 类型 | 说明 | |---|---|---| | order_id | bigint | 订单 ID | | country | string | 国家 | | sku_id | string | SKU 编码 | | price | decimal(10,2) | 商品单价 | | sale_qty | int | 销售数量 | | order_time | string | 下单时间 |</p>\n<h4>样例数据</h4>\n<p>| order_id | country | sku_id | price | sale_qty | order_time | |---|---|---|---|---|---| | 1001 | US | SKU001 | 15.00 | 2 | 2025-06-01 10:00 | | 1002 | UK | SKU002 | 25.00 | 1 | 2025-06-02 11:00 | | 1003 | US | SKU003 | 10.00 | 3 | 2025-06-03 09:00 | | 1004 | JP | SKU001 | 15.00 | 1 | 2025-06-04 12:00 | | 1005 | US | SKU002 | 25.00 | 2 | 2025-06-05 14:00 | | 1006 | UK | SKU003 | 10.00 | 5 | 2025-06-06 10:00 | | 1007 | FR | SKU001 | 15.00 | 1 | 2025-06-07 08:00 |</p>\n<h4>预期输出</h4>\n<p>| country | gmv | rk | |---|---|---| | US | 110.00 | 1 | | UK | 75.00 | 2 | | JP | 15.00 | 3 | | FR | 15.00 | 3 |</p>\n<h4>SQL</h4>\n<pre><code class=\"language-sql\">SELECT country, gmv,\n       RANK() OVER (ORDER BY gmv DESC) AS rk\nFROM (\n    SELECT country,\n           ROUND(SUM(price * sale_qty), 2) AS gmv\n    FROM shein_orders\n    WHERE SUBSTR(order_time, 1, 7) = &#x27;2025-06&#x27;\n    GROUP BY country\n) t\nORDER BY rk;</code></pre>\n<p><strong>考点</strong>：GROUP BY + SUM + RANK 窗口函数 + 时间过滤</p>\n<hr>"
+    },
+    {
+      "id": "SQL-0040",
+      "type": "technical",
+      "question": "爆款商品销量增长趋势",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p><strong>难度</strong>：⭐⭐⭐</p>\n<p><strong>业务场景</strong>：SHEIN 需要监控爆款商品每周的销量增长趋势。</p>\n<p><strong>题目</strong>：计算每个 SKU 每周销量较上周的<strong>环比增长率</strong>，筛选出<strong>连续 3 周销量环比正增长</strong>的「潜力爆款」商品。</p>\n<h4>表结构 <code>weekly_sales</code></h4>\n<p>| 字段 | 类型 | 说明 | |---|---|---| | sku_id | string | SKU 编码 | | week | string | 周标识 (YYYYWW) | | sale_qty | int | 周销量 |</p>\n<h4>样例数据</h4>\n<p>| sku_id | week | sale_qty | |---|---|---| | SKU001 | 202523 | 100 | | SKU001 | 202524 | 120 | | SKU001 | 202525 | 150 | | SKU001 | 202526 | 180 | | SKU002 | 202523 | 80 | | SKU002 | 202524 | 70 | | SKU002 | 202525 | 90 | | SKU002 | 202526 | 95 | | SKU003 | 202523 | 200 | | SKU003 | 202524 | 210 | | SKU003 | 202525 | 215 | | SKU003 | 202526 | 220 |</p>\n<h4>预期输出</h4>\n<p>| sku_id | max_consecutive_weeks | |---|---| | SKU001 | 3 | | SKU003 | 3 |</p>\n<h4>SQL</h4>\n<pre><code class=\"language-sql\">SELECT sku_id, \n       MAX(consecutive_growth_weeks) AS max_consecutive_weeks\nFROM (\n    SELECT sku_id, week, growth_rate,\n           SUM(CASE WHEN growth_rate &gt; 0 THEN 1 ELSE 0 END)\n               OVER (PARTITION BY sku_id ORDER BY week\n                     ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS consecutive_growth_weeks\n    FROM (\n        SELECT sku_id, week, sale_qty,\n               ROUND(\n                   (sale_qty - LAG(sale_qty, 1) OVER (PARTITION BY sku_id ORDER BY week)) \n                   / LAG(sale_qty, 1) OVER (PARTITION BY sku_id ORDER BY week), 4) AS growth_rate\n        FROM weekly_sales\n    ) t\n) tt\nGROUP BY sku_id\nHAVING MAX(consecutive_growth_weeks) = 3;</code></pre>\n<p><strong>考点</strong>：LAG 环比计算 + ROWS BETWEEN 滑动窗口 + CASE WHEN 条件累加</p>\n<hr>"
+    },
+    {
+      "id": "SQL-0041",
+      "type": "technical",
+      "question": "SKU 库存周转天数",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p><strong>难度</strong>：⭐⭐⭐</p>\n<p><strong>业务场景</strong>：SHEIN 需要监控每个 SKU 的库存周转效率。</p>\n<p><strong>题目</strong>：计算 <strong>2025 年 6 月</strong>每个 SKU 的库存周转天数 = 期间内平均库存量 / 期间内日均销量。</p>\n<h4>表结构</h4>\n<p><strong><code>inventory_snapshot</code></strong> — 每日库存快照</p>\n<p>| 字段 | 类型 | 说明 | |---|---|---| | snap_date | string | 日期 | | sku_id | string | SKU | | stock | int | 当日库存 |</p>\n<p><strong><code>daily_sales</code></strong> — 每日销量</p>\n<p>| 字段 | 类型 | 说明 | |---|---|---| | sale_date | string | 日期 | | sku_id | string | SKU | | qty | int | 当日销量 |</p>\n<h4>样例数据</h4>\n<p><strong>inventory_snapshot</strong>：SKU001 库存 500→480→460，SKU002 库存 300→280→250</p>\n<p><strong>daily_sales</strong>：SKU001 每天 20 件，SKU002 每天 20/30/25 件</p>\n<h4>预期输出</h4>\n<p>| sku_id | avg_stock | avg_daily_sales | turnover_days | |---|---|---|---| | SKU001 | 480.00 | 20.00 | 24.0 | | SKU002 | 276.67 | 25.00 | 11.1 |</p>\n<h4>SQL</h4>\n<pre><code class=\"language-sql\">SELECT sku_id, avg_stock, avg_daily_sales,\n       ROUND(avg_stock / avg_daily_sales, 1) AS turnover_days\nFROM (\n    SELECT sku_id,\n           ROUND(AVG(stock), 2) AS avg_stock,\n           ROUND(SUM(qty) / COUNT(DISTINCT sale_date), 2) AS avg_daily_sales\n    FROM (\n        SELECT i.sku_id, i.stock,\n               COALESCE(s.qty, 0) AS qty, s.sale_date\n        FROM inventory_snapshot i\n        LEFT JOIN daily_sales s \n            ON i.sku_id = s.sku_id AND i.snap_date = s.sale_date\n        WHERE i.snap_date BETWEEN &#x27;2025-06-01&#x27; AND &#x27;2025-06-30&#x27;\n    ) t\n    GROUP BY sku_id\n) tt;</code></pre>\n<p><strong>考点</strong>：LEFT JOIN 保全集 + COALESCE 处理 NULL + 日均分母用 COUNT(DISTINCT)</p>\n<hr>"
+    },
+    {
+      "id": "SQL-0042",
+      "type": "technical",
+      "question": "上新商品首周销量",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p><strong>难度</strong>：⭐⭐⭐</p>\n<p><strong>业务场景</strong>：SHEIN 每天大量新品上架，需评估首周市场表现。</p>\n<p><strong>题目</strong>：统计每个上新商品在上架后 <strong>7 天内</strong>的累计销量。无销量的也要显示。</p>\n<h4>表结构</h4>\n<p><strong><code>product_launch</code></strong> — 商品上架时间</p>\n<p>| 字段 | 类型 | 说明 | |---|---|---| | sku_id | string | SKU | | launch_time | string | 上架时间 |</p>\n<p><strong><code>order_detail</code></strong> — 订单明细</p>\n<p>| 字段 | 类型 | 说明 | |---|---|---| | order_id | bigint | 订单 ID | | sku_id | string | SKU | | qty | int | 购买数量 | | order_time | string | 下单时间 |</p>\n<h4>样例数据</h4>\n<p>SKU001 (6/1 上架)：3 单 (6/2, 6/5, 6/9) SKU002 (6/3 上架)：3 单 (6/4, 6/8, 6/12) → 6/12 超过 7 天不计 SKU003 (6/5 上架)：2 单 (6/6, 6/14) → 6/14 超过 7 天不计</p>\n<h4>预期输出</h4>\n<p>| sku_id | launch_time | first_week_sales | |---|---|---| | SKU001 | 2025-06-01 08:00 | 3 | | SKU002 | 2025-06-03 10:00 | 3 | | SKU003 | 2025-06-05 09:00 | 1 |</p>\n<h4>SQL</h4>\n<pre><code class=\"language-sql\">SELECT l.sku_id, l.launch_time,\n       COALESCE(SUM(o.qty), 0) AS first_week_sales\nFROM product_launch l\nLEFT JOIN order_detail o \n    ON l.sku_id = o.sku_id\n    AND DATEDIFF(o.order_time, l.launch_time) BETWEEN 0 AND 6\nGROUP BY l.sku_id, l.launch_time;</code></pre>\n<p><strong>考点</strong>：LEFT JOIN + DATEDIFF 时间窗口 + COALESCE 空值处理</p>\n<hr>"
+    },
+    {
+      "id": "SQL-0043",
+      "type": "technical",
+      "question": "多仓库最优发货选择",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p><strong>难度</strong>：⭐⭐⭐⭐</p>\n<p><strong>业务场景</strong>：SHEIN 全球多仓库，订单产生时需自动选择最优出货仓。</p>\n<p><strong>题目</strong>：选择<strong>有库存</strong>（库存 ≥ 订购量）的仓库中<strong>距离用户最近</strong>的仓库。同时计算预计送达时间 = 距离 × 1.5 小时 + 拣货 1 小时。</p>\n<h4>表结构</h4>\n<p><strong><code>orders</code></strong> — 订单表</p>\n<p>| 字段 | 类型 | 说明 | |---|---|---| | order_id | bigint | 订单 ID | | sku_id | string | SKU | | qty | int | 购买数量 | | country | string | 收货国家 |</p>\n<p><strong><code>warehouse_stock</code></strong> — 仓库库存</p>\n<p>| 字段 | 类型 | 说明 | |---|---|---| | warehouse | string | 仓库编码 | | sku_id | string | SKU | | stock | int | 库存量 |</p>\n<p><strong><code>warehouse_distance</code></strong> — 仓库距离</p>\n<p>| 字段 | 类型 | 说明 | |---|---|---| | warehouse | string | 仓库编码 | | country | string | 国家 | | distance | int | 距离(公里) |</p>\n<h4>样例数据</h4>\n<p>orders: (1001,SKU001,2,US), (1002,SKU002,1,UK), (1003,SKU003,3,FR) warehouse_stock: WH_US(SKU001=10,SKU002=0), WH_UK(SKU001=5,SKU002=8,SKU003=2), WH_FR(SKU003=10,SKU001=3) warehouse_distance: WH_US→US=200, WH_UK→US=5500, WH_US→UK=5800, WH_UK→UK=150, WH_FR→UK=400, WH_UK→FR=500, WH_FR→FR=100, WH_US→FR=6200</p>\n<h4>预期输出</h4>\n<p>| order_id | sku_id | country | best_warehouse | min_distance_km | estimated_delivery_hours | |---|---|---|---|---|---| | 1001 | SKU001 | US | WH_US | 200 | 301.0 | | 1002 | SKU002 | UK | WH_UK | 150 | 226.0 | | 1003 | SKU003 | FR | WH_FR | 100 | 151.0 |</p>\n<h4>SQL</h4>\n<pre><code class=\"language-sql\">SELECT order_id, sku_id, country,\n       warehouse AS best_warehouse,\n       distance AS min_distance_km,\n       ROUND(distance * 1.5 + 1, 1) AS estimated_delivery_hours\nFROM (\n    SELECT o.order_id, o.sku_id, o.country,\n           ws.warehouse, wd.distance,\n           ROW_NUMBER() OVER (PARTITION BY o.order_id ORDER BY wd.distance ASC) AS rn\n    FROM orders o\n    JOIN warehouse_stock ws \n        ON o.sku_id = ws.sku_id AND ws.stock &gt;= o.qty\n    JOIN warehouse_distance wd \n        ON ws.warehouse = wd.warehouse AND o.country = wd.country\n) t\nWHERE rn = 1;</code></pre>\n<p><strong>考点</strong>：三表 JOIN + 库存过滤 (stock ≥ qty) + ROW_NUMBER 取最优 + 业务公式计算</p>\n<hr>\n<h3>题目汇总</h3>\n<p>| 题号 | 考点 | 难度 | 涉及函数 | |---|---|---|---| | ① GMV 排名 | GROUP BY + RANK | ⭐⭐ | SUM, RANK, SUBSTR | | ② 爆款增长 | 连续 N 周正增长 | ⭐⭐⭐ | LAG, ROWS BETWEEN, CASE WHEN + SUM OVER | | ③ 库存周转 | 两表 JOIN + 日均 | ⭐⭐⭐ | LEFT JOIN, COALESCE, AVG, COUNT DISTINCT | | ④ 首周销量 | 时间窗口 + 全集 | ⭐⭐⭐ | LEFT JOIN, DATEDIFF, COALESCE | | ⑤ 多仓最优发货 | 三表 JOIN + 条件过滤排最优 | ⭐⭐⭐⭐ | ROW_NUMBER, 多条件 JOIN |</p>"
+    },
+    {
+      "id": "SQL-0044",
+      "type": "technical",
+      "question": "题 ①：月活跃高消费用户",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p><strong>查询每个月购买订单 ≥ 3 笔 且 花费总金额 ≥ 200 的用户明细。按月份升序、购买金额降序。</strong></p>\n<h2>预期输出</h2>\n<p>| 月份 | 用户ID | 当月购买订单数 | 当月花费金额 | |---|---|---|---| | 2021-06 | S_001 | 3 | 256.7 | | ... | ... | ... | ... |</p>\n<h2>参考解法</h2>\n<pre><code class=\"language-sql\">SELECT\n  DATE_FORMAT(pay_dt, &#x27;yyyy-MM&#x27;) AS month,\n  user_id,\n  COUNT(DISTINCT order_id) AS order_cnt,\n  SUM(cost_amt) AS total_amt\nFROM dw_shein_pay_order_da\nGROUP BY DATE_FORMAT(pay_dt, &#x27;yyyy-MM&#x27;), user_id\nHAVING COUNT(DISTINCT order_id) &gt;= 3 AND SUM(cost_amt) &gt;= 200\nORDER BY month ASC, total_amt DESC;</code></pre>\n<hr>"
+    },
+    {
+      "id": "SQL-0045",
+      "type": "technical",
+      "question": "题 ②：每月各国新用户消费 Top 300",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p><strong>查询每个月、不同收货国家、购买金额排名前 300 名的新用户信息。</strong></p>\n<ul>\n<li><strong>新用户</strong>：首次购买的用户</li>\n<li><strong>新用户订单</strong>：首次购买当天所有订单都算</li>\n<li><strong>排名</strong>：金额相同则并列，不连续（RANK）</li>\n</ul>\n<h2>预期输出</h2>\n<p>| 月份 | 国家 | 用户类型 | 用户ID | 新用户订单数 | 新用户购买金额 | 排名 | |---|---|---|---|---|---|---| | 2021-06 | US | 新用户 | S_002 | 5 | 800 | 1 | | ... | ... | ... | ... | ... | ... | ... |</p>\n<h2>参考解法</h2>\n<pre><code class=\"language-sql\">WITH first_pay AS (\n  -- 每个用户首次购买日期\n  SELECT user_id, MIN(pay_dt) AS first_dt\n  FROM dw_shein_pay_order_da\n  GROUP BY user_id\n),\nnew_user_orders AS (\n  -- 新用户首次购买当天所有订单\n  SELECT \n    DATE_FORMAT(o.pay_dt, &#x27;yyyy-MM&#x27;) AS month,\n    o.country,\n    o.user_id,\n    COUNT(DISTINCT o.order_id) AS order_cnt,\n    SUM(o.cost_amt) AS total_amt\n  FROM dw_shein_pay_order_da o\n  INNER JOIN first_pay f \n    ON o.user_id = f.user_id AND o.pay_dt = f.first_dt\n  GROUP BY DATE_FORMAT(o.pay_dt, &#x27;yyyy-MM&#x27;), o.country, o.user_id\n)\nSELECT\n  month, country,\n  &#x27;新用户&#x27; AS user_type,\n  user_id, order_cnt, total_amt,\n  RANK() OVER (PARTITION BY month, country ORDER BY total_amt DESC) AS rank\nFROM new_user_orders\nQUALIFY RANK() OVER (PARTITION BY month, country ORDER BY total_amt DESC) &lt;= 300;\n\n-- Hive 兼容写法（无 QUALIFY）\n-- WHERE 子查询：SELECT ... FROM (\n--   SELECT *, RANK() OVER (...) AS rn FROM new_user_orders\n-- ) t WHERE rn &lt;= 300</code></pre>\n<hr>"
+    },
+    {
+      "id": "SQL-0046",
+      "type": "technical",
+      "question": "题 ③：7 月新用户 30 日复购",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p><strong>查询 2021 年 7 月每日新用户的 30 日复购情况。</strong></p>\n<ul>\n<li><strong>新用户</strong>：首次购买的用户</li>\n<li><strong>复购</strong>：首次购买后 1~30 天内再次购买（如 9/1 新用户 → 统计 9/2 ~ 10/1）</li>\n<li><strong>30 日复购率</strong> = 30 日内复购用户数 / 新用户数</li>\n</ul>\n<h2>预期输出</h2>\n<p>| 日期 | 国家 | 新用户数 | 30日复购用户数 | 30日复购金额 | 30日复购率 | |---|---|---|---|---|---| | 2021-07-01 | US | 20000 | 5000 | 400000 | 0.25 | | ... | ... | ... | ... | ... | ... |</p>\n<h2>参考解法</h2>\n<pre><code class=\"language-sql\">WITH first_pay AS (\n  -- 每个用户首次购买日期\n  SELECT user_id, MIN(pay_dt) AS first_dt\n  FROM dw_shein_pay_order_da\n  GROUP BY user_id\n),\njuly_new AS (\n  -- 7 月新用户（首次购买在 7 月）+ 首个购买日的国家\n  SELECT f.user_id, f.first_dt, o.country\n  FROM first_pay f\n  JOIN (SELECT user_id, country, pay_dt FROM dw_shein_pay_order_da) o\n    ON f.user_id = o.user_id AND f.first_dt = o.pay_dt\n  WHERE f.first_dt BETWEEN &#x27;2021-07-01&#x27; AND &#x27;2021-07-31&#x27;\n),\nrepurchase AS (\n  -- 新用户首次购买后 1~30 天内的复购\n  SELECT \n    j.first_dt,\n    j.country,\n    j.user_id,\n    COUNT(DISTINCT o.order_id) AS repurchase_cnt,\n    SUM(o.cost_amt) AS repurchase_amt\n  FROM july_new j\n  LEFT JOIN dw_shein_pay_order_da o\n    ON j.user_id = o.user_id\n    AND o.pay_dt BETWEEN DATE_ADD(j.first_dt, 1) AND DATE_ADD(j.first_dt, 30)\n  GROUP BY j.first_dt, j.country, j.user_id\n)\nSELECT\n  first_dt AS dt,\n  country,\n  COUNT(DISTINCT user_id) AS new_user_cnt,\n  SUM(CASE WHEN repurchase_cnt &gt; 0 THEN 1 ELSE 0 END) AS repurchase_user_cnt,\n  SUM(COALESCE(repurchase_amt, 0)) AS repurchase_amt,\n  ROUND(SUM(CASE WHEN repurchase_cnt &gt; 0 THEN 1 ELSE 0 END) * 1.0 / COUNT(DISTINCT user_id), 4) AS repurchase_rate\nFROM repurchase\nGROUP BY first_dt, country\nORDER BY first_dt, country;</code></pre>\n<hr>"
+    },
+    {
+      "id": "SQL-0047",
+      "type": "technical",
+      "question": "题 ④：各国用户平均复购间隔",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<p><strong>查询不同国家用户两次购买行为的平均时间间隔。</strong></p>\n<ul>\n<li>只购买过一次的用户不参与计算</li>\n<li>一天内同一用户多次下单只算一次（按天去重）</li>\n</ul>\n<h2>预期输出</h2>\n<p>| 国家 | 平均间隔天数 | |---|---| | US | 1.76 | | UK | 3.82 | | ... | ... |</p>\n<h2>参考解法</h2>\n<pre><code class=\"language-sql\">WITH daily_pay AS (\n  -- 按用户 + 日期去重（一天多次下单算一次）\n  SELECT DISTINCT user_id, pay_dt, country\n  FROM dw_shein_pay_order_da\n),\npay_with_lag AS (\n  -- 每个用户每次购买的日期 + 下一次购买日期\n  SELECT \n    country, user_id, pay_dt,\n    LEAD(pay_dt) OVER (PARTITION BY user_id ORDER BY pay_dt) AS next_dt\n  FROM daily_pay\n),\nintervals AS (\n  -- 计算相邻两次购买间隔天数\n  SELECT \n    country,\n    user_id,\n    DATEDIFF(next_dt, pay_dt) AS gap_days\n  FROM pay_with_lag\n  WHERE next_dt IS NOT NULL  -- 排除最后一次购买（没有下一次）\n)\nSELECT\n  country,\n  ROUND(AVG(gap_days), 2) AS avg_gap_days\nFROM intervals\nGROUP BY country\nORDER BY country;</code></pre>\n<hr>\n<p>题目难点总结 | 题号 | 考察点 | 难度 | |---|---|---| | ① | GROUP BY + HAVING 筛选 | ⭐⭐ | | ② | 首次购买日期 + RANK 窗口函数 + TopN | ⭐⭐⭐ | | ③ | 首次购买 + 时间窗口复购 + LEFT JOIN | ⭐⭐⭐⭐ | | ④ | DISTINCT 去重 + LEAD 窗口函数 + DATEDIFF | ⭐⭐⭐ |</p>"
+    },
+    {
+      "id": "SQL-0048",
+      "type": "technical",
+      "question": "SHEIN 面试题 — 品类会员数分析",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "sql",
+      "body_html": "<blockquote>📌 来源：&lt;https://blog.csdn.net/eason_nnn/article/details/123871125&gt;<br>📅 收录：2026-07-17</blockquote>\n<hr>\n<h3>题目描述</h3>\n<p>计算每个月、每个品类、不同类型用户的用户数量。共 6 个指标：</p>\n<p>| 指标 | 定义 | |---|---| | <strong>品类新会员数</strong> | 统计月当月首次购买该品类的用户数 | | <strong>品类老会员数</strong> | 截止统计月之前购买过该品类，且统计月内再次购买该品类的用户数 | | <strong>品类老会员复购数</strong> | 截止统计月之前购买过该品类，且在统计月内再次购买该品类的用户数（同一批老会员中有多少人复购） | | <strong>当期新会员转化数</strong> | 当期新会员（首次消费在统计月内的用户）中，有多少人购买了该品类 | | <strong>品类历史新会员数</strong> | 截止统计月之前有过购买行为、但从未买过该品类的用户数 | | <strong>品类历史新会员转化数</strong> | 品类历史新会员中，统计月内首次购买了该品类的用户数 |</p>\n<h3>表结构</h3>\n<p><strong><code>dw_order_detail_df</code></strong> — 全量销售明细表</p>\n<p>| 字段 | 类型 | 说明 | |---|---|---| | pay_time | varchar | 付款时间 (yyyy-MM-dd HH:mm:ss)，同一秒最多一个订单 | | sku | varchar | 商品名称 | | user_id | varchar | 用户 ID | | cate_nm | varchar | 品类名称 |</p>\n<h3>预期输出</h3>\n<p>以 2021-12 为例：</p>\n<p>| 月份 | 品类 | 品类新会员数 | 品类老会员数 | 品类老会员复购数 | 当期新会员转化数 | 品类历史新会员数 | 品类历史新会员转化数 | |---|---|---|---|---|---|---|---| | 2021-12 | A | 100 | 1000 | 300 | 20 | 20000 | 80 | | 2021-12 | B | 100 | 1000 | 300 | 20 | 20000 | 80 | | 2021-12 | C | 100 | 1000 | 300 | 20 | 20000 | 80 |</p>\n<hr>\n<h3>解题思路</h3>\n<p>核心是算出三个中间结果：</p>\n<ol>\n<li><strong>每个用户每个品类的首次购买月份</strong>（<code>first_cate_month</code>）</li>\n<li><strong>每个用户每个月的品类购买情况</strong>（<code>user_month_cate_buy</code> — 是否购买）</li>\n<li><strong>每个用户的首次购买月份</strong>（<code>first_month</code>）</li>\n</ol>\n<p>然后按月、按品类 JOIN 统计 6 个指标。</p>\n<hr>\n<h3>参考解法</h3>\n<pre><code class=\"language-sql\">WITH \n-- Step 1: 维度展开（月 + 品类 + 用户）\nmonthly_detail AS (\n  SELECT \n    DATE_FORMAT(pay_time, &#x27;yyyy-MM&#x27;) AS stat_month,\n    cate_nm,\n    user_id\n  FROM dw_order_detail_df\n  GROUP BY DATE_FORMAT(pay_time, &#x27;yyyy-MM&#x27;), cate_nm, user_id\n),\n\n-- Step 2: 每个用户每个品类的首次购买月份\nfirst_cate AS (\n  SELECT user_id, cate_nm, \n         MIN(stat_month) AS first_cate_month\n  FROM monthly_detail\n  GROUP BY user_id, cate_nm\n),\n\n-- Step 3: 每个用户首次购买的月份（全局）\nfirst_user AS (\n  SELECT user_id, MIN(stat_month) AS first_month\n  FROM monthly_detail\n  GROUP BY user_id\n),\n\n-- Step 4: 按月+品类展开所有组合\nall_combos AS (\n  SELECT DISTINCT stat_month, cate_nm FROM monthly_detail\n),\n\n-- Step 5: 主统计\ndetail AS (\n  SELECT \n    m.stat_month,\n    m.cate_nm,\n    m.user_id,\n\n    -- 是否当月首次购买该品类\n    CASE WHEN fc.first_cate_month = m.stat_month THEN 1 ELSE 0 END AS is_new_cate,\n\n    -- 是否当月之前买过该品类\n    CASE WHEN fc.first_cate_month &lt; m.stat_month THEN 1 ELSE 0 END AS is_old_cate,\n\n    -- 是否老会员且当月复购\n    CASE WHEN fc.first_cate_month &lt; m.stat_month THEN 1 ELSE 0 END AS is_old_cate_repurchase,\n\n    -- 是否当期新会员（首次消费在当月）\n    CASE WHEN fu.first_month = m.stat_month THEN 1 ELSE 0 END AS is_new_user,\n\n    -- 是否历史会员但没买过该品类\n    CASE WHEN fu.first_month &lt; m.stat_month AND fc.first_cate_month IS NULL THEN 1 ELSE 0 END AS is_hist_no_cate,\n\n    -- 历史没买过 + 当月首次买\n    CASE WHEN fu.first_month &lt; m.stat_month AND fc.first_cate_month = m.stat_month THEN 1 ELSE 0 END AS is_hist_convert\n\n  FROM monthly_detail m\n  LEFT JOIN first_cate fc ON m.user_id = fc.user_id AND m.cate_nm = fc.cate_nm\n  LEFT JOIN first_user fu ON m.user_id = fu.user_id\n)\n\nSELECT \n  stat_month AS month,\n  cate_nm AS category,\n\n  -- 品类新会员数\n  SUM(is_new_cate) AS new_cate_users,\n\n  -- 品类老会员数（之前买过 + 当月再次购买）\n  SUM(is_old_cate) AS old_cate_users,\n\n  -- 品类老会员复购数（和老会员数口径相同：之前买过且当月买了）\n  SUM(is_old_cate_repurchase) AS old_cate_repurchase,\n\n  -- 当期新会员转化数\n  SUM(CASE WHEN is_new_user = 1 AND is_new_cate = 1 THEN 1 ELSE 0 END) AS new_user_convert,\n\n  -- 品类历史新会员数\n  SUM(is_hist_no_cate) AS hist_no_cate_users,\n\n  -- 品类历史新会员转化数\n  SUM(is_hist_convert) AS hist_convert_users\n\nFROM detail\nGROUP BY stat_month, cate_nm\nORDER BY stat_month, cate_nm;</code></pre>\n<h4>关键点</h4>\n<ul>\n<li><code>first_cate_month</code> vs <code>first_month</code>：品类首次 vs 全局首次。前者用于判断「品类新/老」，后者用于判断「当期新会员」</li>\n<li><code>first_cate_month IS NULL</code>：该用户从未买过该品类 → 历史新会员的候选</li>\n<li>老会员数和老会员复购数在当前逻辑下结果相同（都是「之前买过且当月买了」），如有额外过滤条件可分开</li>\n</ul>"
     },
     {
       "id": "PROJECT-0001",
@@ -37578,6 +38007,110 @@ window.OS_DATA = {
       "frequency": "",
       "domain": "project",
       "body_html": "<p><strong>掌握程度</strong>：⬜</p>\n<p><strong>我的回答</strong>：</p>\n<hr>\n<blockquote>💡 面经中遇到的 HR / 软性问题持续归入这里。</blockquote>"
+    },
+    {
+      "id": "PROJECT-0168",
+      "type": "project",
+      "question": "需求预测：为什么是「建议供货量」而非「销量」？",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "project",
+      "body_html": "<p>| 概念 | 区别 | |------|------| | 销量 | 需求面指标，反映消费者实际购买量 | | 建议供货量 | 执行面指标，需叠加库存水位、采购 Lead Time、供应商产能 |</p>\n<p><strong>核心逻辑</strong>：预测销量 → 推导供货量 → 指导生产和采购决策。</p>"
+    },
+    {
+      "id": "PROJECT-0169",
+      "type": "project",
+      "question": "什么是到货及时率 (OTA)？",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "project",
+      "body_html": "<pre><code class=\"language-\">OTA = 准时送达订单数 / 应到货总订单数</code></pre>\n<p>关键点：</p>\n<ul>\n<li>定义\"准时\"的窗口时间（是否含宽限期）</li>\n<li>按订单级还是 SKU 级统计</li>\n</ul>"
+    },
+    {
+      "id": "PROJECT-0170",
+      "type": "project",
+      "question": "Sell-in / Sell-out / Sell-through",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "project",
+      "body_html": "<p>| 指标 | 含义 | 方向 | |------|------|------| | Sell-in | 品牌→渠道 入库量 | 铺货端 | | Sell-out | 渠道→消费者 实销量 | 消费端 | | Sell-through | Sell-out / Sell-in | 售罄率（消化速度） |</p>\n<p><strong>场景追问</strong>：地区增加 Sell-in 对 Sell-through 的影响？ → 分母变大，如果实销跟不上，售罄率掉 → 库存积压风险。</p>\n<hr>\n<h3>二、BQ 行为面试题</h3>"
+    },
+    {
+      "id": "PROJECT-0171",
+      "type": "project",
+      "question": "北美岗",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "project",
+      "body_html": "<p>| 问题 | 考察点 | |------|--------| | Tell me about the ETL pipeline at your current work | 能否清晰描述技术栈和流程 | | How do you solve data skewness | 是否有实际处理倾斜的经验 | | How do you solve a difficult issue | 解决问题的方法论 | | How do you handle conflicts | 团队协作 + 沟通能力 | | How to explain tech issues to non-tech people | 跨部门沟通 | | Do you have experience with multiple data sources | 数据集成经验 |</p>"
+    },
+    {
+      "id": "PROJECT-0172",
+      "type": "project",
+      "question": "国内岗",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "project",
+      "body_html": "<p>| 问题 | 考察点 | |------|--------| | 职业规划 | 稳定性 + 自我认知 | | 研究生论文介绍 | 学术能力 | | 还了解哪些大数据技术栈 | 技术广度 | | 对数仓几个角色的了解 | 岗位认知 |</p>"
+    },
+    {
+      "id": "PROJECT-0173",
+      "type": "project",
+      "question": "校招岗 — 牛客 2022",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "project",
+      "body_html": "<p>| 问题 | 考察点 | |------|--------| | 用过哪些技术？怎么学的？ | 学习能力 | | Hive 怎么自学的？ | 主动性 | | 看过 Hadoop 源码吗？ | 技术深度 | | 转正了为什么还面 SHEIN？ | 转职动机 | | 应届生入职场应该怎么做？ | 职业态度（CTO面） | | 管理层看重员工哪方面能力？ | 价值观（CTO面） |</p>\n<hr>\n<h3>三、场景设计题</h3>"
+    },
+    {
+      "id": "PROJECT-0174",
+      "type": "project",
+      "question": "每天 10 点推送前一天 Top3 交易 Product",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "project",
+      "body_html": "<p>完整 pipeline 设计思路 → 见 <code>SHEIN-大数据数仓面试题.md</code> 第8题</p>"
+    },
+    {
+      "id": "PROJECT-0175",
+      "type": "project",
+      "question": "多个 Data Source 拿数据的经历",
+      "difficulty": 0,
+      "topic": [
+        "SHEIN"
+      ],
+      "source_type": "knowledge",
+      "frequency": "",
+      "domain": "project",
+      "body_html": "<p>考察数据集成经验：是否做过异构数据源整合（API、DB、日志、文件）。</p>\n<hr>\n<h3>四、SHEIN 面试软性特点</h3>\n<p>| 特点 | 说明 | |------|------| | 项目深挖极深 | 不只问做了什么，追问「为什么这样设计」「理论知识怎么落地」 | | 体验两极分化 | 有的面试官专业且尊重人，有的态度刻薄 | | 转职动机必问 | 「为什么来 SHEIN」要准备好真诚的理由 | | 北美岗全英 | 4轮全英文，BQ 占比大 | | 校招 CTO 面偏软 | 考察价值观、成长潜力、学习能力 |</p>"
     }
   ],
   "interviews": [
