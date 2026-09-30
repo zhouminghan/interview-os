@@ -1,8 +1,8 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-30T14:54:30+08:00",
+  "generatedAt": "2026-09-30T14:55:41+08:00",
   "stats": {
     "questions": 2760,
-    "interviews": 99,
+    "interviews": 101,
     "technical": 2586,
     "project": 174,
     "domains": {
@@ -38559,6 +38559,15 @@ window.OS_DATA = {
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>维度退化主要是什么，能解决什么问题</li>\n<li>如果一个维表数据量比较大，你会怎么样去设计这个维表</li>\n<li>Spark 任务比较慢，从 Web UI 里怎么排查</li>\n<li>LLM、Workflow、Agent 三者的区别</li>\n<li>你们 Claude Code 工具是怎么装的，MCP 和 skill 怎么用</li>\n</ol>"
     },
     {
+      "interview_id": "INTERVIEW-2026-07-18-shein-2026-fupan",
+      "company": "SHEIN",
+      "business": "数据开发",
+      "position": "数据开发 / 高级数仓（2026 面试复盘 QA）",
+      "date": "2026-07-18",
+      "round": "复盘",
+      "body_html": "<h2>面经记录（复盘 QA）</h2>\n<blockquote>来源牛客网面经整理 + 网上原题搜索验证，SHEIN 数据开发 2026 面试复盘 QA 合集。</blockquote>\n<h3>一面（数据开发，2026-05）</h3>\n<blockquote>岗位：数据开发 / 高级数仓，难度偏高，技术深度要求高。核心考察 Flink 写入优化、实时计算、数据倾斜、SQL 算法。</blockquote>\n<h3>二面（StarRocks 资深开发，2026-06-27）</h3>\n<blockquote>核心考察 StarRocks 性能调优、实时 TopN、写入瓶颈、OOM、Flink 消费、OLAP 引擎对比。</blockquote>\n<blockquote>备注：详情与参考答案见 <code>shein-2026-mianjing</code> 面经合集及 SQL 域 SHEIN 真题。</blockquote>"
+    },
+    {
       "interview_id": "INTERVIEW-2026-07-17-kuaishou-60q",
       "company": "快手",
       "business": "数仓",
@@ -38566,6 +38575,15 @@ window.OS_DATA = {
       "date": "2026-07-17",
       "round": "一面",
       "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>数仓模型设计，离线和实时分别怎么设计，为什么</li>\n<li>高内聚低耦合在模型设计怎么体现</li>\n<li>维度退化怎么设计，哪些维度适合退化</li>\n<li>DWD 层设计原则是什么</li>\n<li>MapReduce 的 Shuffle 过程</li>\n<li>Map/Reduce task 个数怎么定，默认多少，分区怎么决定</li>\n<li>Hive 的 UDF、UDAF、UDTF 区别，开发分别继承什么</li>\n<li>两个大表 Join 数据倾斜怎么优化</li>\n<li>Flink 的 Exactly Once 怎么实现，反压怎么优化</li>\n<li>ClickHouse 解决什么问题，有什么缺点</li>\n<li>手撕 SQL：直播间峰值在线人数；连续活跃超四天用户</li>\n</ol>"
+    },
+    {
+      "interview_id": "INTERVIEW-2026-07-17-shein-2026-mianjing",
+      "company": "SHEIN",
+      "business": "数据开发",
+      "position": "数据开发 / 高级数仓（2026 面经合集）",
+      "date": "2026-07-17",
+      "round": "一面 + 二面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<h3>一面（数据开发，2026-05）</h3>\n<ol>\n<li>Flink 千亿级写入 Doris 优化</li>\n<li>实时 UV + Top100 页面秒级计算</li>\n<li>离线画像/漏斗每日 2 点前产出</li>\n<li>模型建设合理性量化</li>\n<li>数据倾斜（除加资源、改 JOIN 外）</li>\n<li>股票最大利润</li>\n</ol>\n<h3>二面（StarRocks 资深开发，2026-06-27）</h3>\n<ol>\n<li>StarRocks 性能调优</li>\n<li>实时 TopN</li>\n<li>写入速度 3m/s、产出 10m/s —— 写入瓶颈</li>\n<li>StarRocks OOM</li>\n<li>Flink 单条消费不延迟</li>\n<li>OLAP 引擎对比</li>\n</ol>\n<blockquote>备注：来源牛客网，SHEIN 数据开发 2026 面经合集，难度偏高。附高频 SQL 原题 10 道（已入库 SQL 域）。</blockquote>"
     },
     {
       "interview_id": "INTERVIEW-2026-07-15-qizhidao-data-dev",
