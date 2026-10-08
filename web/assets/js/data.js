@@ -1,9 +1,9 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-08T17:35:23+08:00",
+  "generatedAt": "2026-10-08T18:17:51+08:00",
   "stats": {
-    "questions": 3088,
+    "questions": 3090,
     "interviews": 102,
-    "technical": 2718,
+    "technical": 2720,
     "project": 370,
     "domains": {
       "spark": 397,
@@ -16,7 +16,7 @@ window.OS_DATA = {
       "algorithm": 9,
       "statistics": 1,
       "ml": 5,
-      "llm": 164,
+      "llm": 166,
       "platform": 2,
       "system": 7,
       "warehouse": 381,
@@ -528,6 +528,12 @@ window.OS_DATA = {
           "company": "美团",
           "position": "数据开发（一面）",
           "date": "2026-09-24"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
         }
       ],
       "domain": "spark",
@@ -619,6 +625,12 @@ window.OS_DATA = {
           "company": "小鹏",
           "position": "数据开发（27 届秋招一面）",
           "date": "2026-09-26"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
         }
       ],
       "domain": "spark",
@@ -732,6 +744,12 @@ window.OS_DATA = {
           "company": "字节跳动",
           "position": "大数据开发（一面）",
           "date": "2026-08-31"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
         }
       ],
       "domain": "spark",
@@ -1842,7 +1860,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q15</blockquote>\n<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
     },
     {
       "id": "SPARK-0107",
@@ -28536,7 +28554,7 @@ window.OS_DATA = {
       "frequency": "high",
       "source_type": "knowledge",
       "domain": "llm",
-      "body_html": "<h2>一句话</h2>\n<p>文本用 MinHash/SimHash 近重复 + 语义去重，行为序列用特征指纹 + 序列相似度去重。</p>\n<h2>30 秒回答</h2>\n<p>文本：精确哈希去重 + SimHash 近重复 + embedding 语义去重。行为序列：按用户+会话+特征做指纹去重，考虑时序和序列相似度，避免简单哈希误杀。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>文本：MinHash/SimHash、embedding 语义、编辑距离</li>\n<li>行为序列：会话切分、特征指纹、序列相似度</li>\n<li>差异：文本重语义，序列重时序和模式</li>\n<li>目标：去重不伤分布，保留多样性</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>语义去重怎么做？</li>\n<li>序列去重为什么不能只哈希？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q4</blockquote>\n<h2>一句话</h2>\n<p>文本用 MinHash/SimHash 近重复 + 语义去重，行为序列用特征指纹 + 序列相似度去重。</p>\n<h2>30 秒回答</h2>\n<p>文本：精确哈希去重 + SimHash 近重复 + embedding 语义去重。行为序列：按用户+会话+特征做指纹去重，考虑时序和序列相似度，避免简单哈希误杀。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>文本：MinHash/SimHash、embedding 语义、编辑距离</li>\n<li>行为序列：会话切分、特征指纹、序列相似度</li>\n<li>差异：文本重语义，序列重时序和模式</li>\n<li>目标：去重不伤分布，保留多样性</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>语义去重怎么做？</li>\n<li>序列去重为什么不能只哈希？</li>\n</ul>"
     },
     {
       "id": "LLM-0041",
@@ -28550,7 +28568,7 @@ window.OS_DATA = {
       "frequency": "high",
       "source_type": "knowledge",
       "domain": "llm",
-      "body_html": "<h2>一句话</h2>\n<p>训练数据质量靠质检规则 + 标注一致性 + 模型评估 + 人工抽检，指标看覆盖、准确、一致、及时、去重和坏样率。</p>\n<h2>30 秒回答</h2>\n<p>核心指标：覆盖率、准确率、一致性、及时性、去重率、标注一致率、坏样本率。手段：规则质检、自动评估、人工抽检、badcase 回流。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>指标：覆盖、准确、一致、及时、去重、坏样率</li>\n<li>规则：格式、范围、分布校验</li>\n<li>评估：模型评测 + 标注一致性（如 Kappa）</li>\n<li>回流：badcase 分类、迭代</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>标注一致性怎么衡量？</li>\n<li>坏样本怎么回流？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q5</blockquote>\n<h2>一句话</h2>\n<p>训练数据质量靠质检规则 + 标注一致性 + 模型评估 + 人工抽检，指标看覆盖、准确、一致、及时、去重和坏样率。</p>\n<h2>30 秒回答</h2>\n<p>核心指标：覆盖率、准确率、一致性、及时性、去重率、标注一致率、坏样本率。手段：规则质检、自动评估、人工抽检、badcase 回流。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>指标：覆盖、准确、一致、及时、去重、坏样率</li>\n<li>规则：格式、范围、分布校验</li>\n<li>评估：模型评测 + 标注一致性（如 Kappa）</li>\n<li>回流：badcase 分类、迭代</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>标注一致性怎么衡量？</li>\n<li>坏样本怎么回流？</li>\n</ul>"
     },
     {
       "id": "LLM-0042",
@@ -30259,6 +30277,52 @@ window.OS_DATA = {
       "frequency": "",
       "domain": "llm",
       "body_html": "<p>本质区别在三个层面：</p>\n<p><strong>1. 上下文的质量完全不同。</strong> ChatGPT 不知道我们团队的表叫什么名字、字段是什么含义、bitmap 的拼接规范是什么。每次用都要人工把 DDL、口径、规范手动贴进去。我们的方案是把这些业务知识结构化沉淀，Agent 自动检索注入——DE 只需要说\"建一张频道用户活跃 bitmap 表\"，不需要每次附带 2000 字的背景信息。</p>\n<p><strong>2. 产出的可靠性完全不同。</strong> ChatGPT 写出来的 SQL 可能语法正确但业务逻辑错误——比如该用 FULL OUTER JOIN 的地方用了 LEFT JOIN，该截断 729 位的地方截断了 730 位。我们有质检引擎做规则校验，有模板兜底核心逻辑，错误率从\"不确定\"变成了\"可量化可控\"。</p>\n<p><strong>3. 可复用性和组织资产化完全不同。</strong> 个人 prompt engineering 的经验在个人脑子里，换个人又要重新摸索。我们把最佳实践沉淀成 Skill 和知识库，任何一个 DE（包括新人）都可以用同一套能力，不依赖个人经验。这是从\"个人效率工具\"到\"团队基础设施\"的区别。</p>\n<p>一句话总结：<strong>ChatGPT 是通用能力，我们做的是把通用能力适配到具体业务场景的工程化落地——知识库提供上下文，Skill 提供可靠性，流程编排提供可控性。</strong></p>\n<hr>\n<blockquote>📋 问题设计覆盖六大模块：知识库建设（Q1/Q7/Q19/Q24）、Skill 开发（Q2/Q13/Q20）、流程编排（Q3/Q8/Q21）、质量校验（Q6/Q9）、Agent 原理与技术架构（Q11/Q12/Q14/Q15/Q16）、项目价值与深度细节（Q5/Q10/Q17/Q18/Q22/Q23/Q25/Q26/Q27）。每道问题围绕\"怎么做的\"+\"为什么这么做\"+\"效果如何\"+\"边界情况\"展开。</blockquote>"
+    },
+    {
+      "id": "LLM-0174",
+      "type": "technical",
+      "question": "Common Crawl 这类非结构化数据，会像传统数仓一样做主题划分或逻辑分层吗？存储和流转怎么设计？",
+      "topic": [
+        "llm",
+        "training-data",
+        "common-crawl"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>不按数仓的 ODS/DWD/DWS 主题分层，而是按「原始快照 → 清洗/去重 → 领域子集 → 训练数据集」的数据产品分层，存储走对象存储 + 列式文件，流转靠离线批处理 pipeline。</p>\n<h2>30 秒回答</h2>\n<p>Common Crawl 是网页级非结构化语料，和传统数仓的业务主题建模思路不同：核心不是「指标口径」，而是「数据质量与领域分布」。所以分层变成：原始 WARC/WET 快照落对象存储 → 解析成文本/JSON → 清洗去重（语言过滤、正文抽取、MinHash 去重）→ 按领域/任务切子集 → 打标后产出训练集，每层用 Parquet/ORC 列式 + 分区管理。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>不分业务主题，分「数据产品」：raw → clean → dedup → domain subset → labeled dataset</li>\n<li>存储：对象存储（S3/COS）为底座，列式 Parquet/ORC 承接结构化清洗结果</li>\n<li>流转：离线批处理（Spark/Flink）为主，靠分区和 manifest 做增量</li>\n<li>元数据：记录来源域名、语言、质量分、去重指纹，支撑筛选</li>\n<li>与传统数仓最大的差异：主题域服务于指标分析，训练数据服务于模型效果</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>WARC/WET/WAT 三种格式分别是什么？</li>\n<li>为什么训练语料不直接套数仓分层？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0175",
+      "type": "technical",
+      "question": "GraphRAG 问答系统构建前后的收益如何对比？评测指标和结果是什么？",
+      "topic": [
+        "llm",
+        "rag",
+        "graphrag"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>用「基线 RAG vs GraphRAG」做对照，指标看端到端准确率、召回率、答案忠实度（幻觉率）、延迟和成本，GraphRAG 在多跳/跨文档问题上收益最明显。</p>\n<h2>30 秒回答</h2>\n<p>构建前后对比：先跑一个普通向量 RAG 当基线，再上 GraphRAG（实体/关系抽取 + 图检索），同一批测试集打分。评测分两层：检索层看召回率/命中率，生成层看答案准确率、忠实度（有没有幻觉）、引用是否到位。结果通常是多跳推理类问题提升明显，单跳简单问题提升不大，还要权衡构建成本与查询延迟。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基线对照：Naive RAG（纯向量）vs GraphRAG（实体图谱 + 社区摘要）</li>\n<li>检索指标：Recall@K、命中率、是否召回关键实体/关系</li>\n<li>生成指标：答案准确率、忠实度/幻觉率、引用覆盖</li>\n<li>成本指标：建图耗时、查询延迟、Token 消耗</li>\n<li>典型结论：跨文档/多跳问题提升 10-20%，简单事实问答持平或略降</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>实体关系抽取本身不准怎么办？</li>\n<li>GraphRAG 的社区摘要是什么？</li>\n</ul>"
     },
     {
       "id": "PLATFORM-0001",
@@ -32113,6 +32177,12 @@ window.OS_DATA = {
           "company": "快手",
           "position": "大数据开发（实习）",
           "date": "2026-05-12"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
         }
       ],
       "domain": "warehouse",
@@ -33359,7 +33429,7 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "frequency": "",
       "domain": "warehouse",
-      "body_html": "<blockquote><strong>要点提纲</strong>：ODS→DWD→DWS→ADS 四层 | 按业务域划分 | DWS维度建模做宽表 | 减少下游JOIN</blockquote>\n<p>我们 QQ 频道的数仓用的是标准四层。ODS 是原始数据层，数据来源两个方向——大同平台的客户端埋点上报和 WeData 平台接出的后台流水，都是直接落表不做加工。DWD 层做清洗和规范化，比如字段标准化、异常过滤、去重这些。DWS 是我花精力最多的，主要做维度建模，把频道维度信息比如品类、类型，还有内容信息像帖子内容等都关联到宽表里，DS 做分析可以直接用，不需要额外 JOIN 维度表。ADS 就是面向具体业务报表的聚合层，接出 DataTalk 做 BI 看板。</p>\n<p>业务域上我们分了内容主题、搜推主题、流量主题、用户主题、资料主题、指标主题六大主题域，主要为了减少跨域依赖，每个域相对独立。</p>\n<blockquote>💡 <strong>专家补充</strong>（大数据架构师视角，面试中视情况展开）<br><br>- <strong>分层的本质是关注点分离</strong>：每一层只解决一个问题——ODS 解决\"数据进来\"，DWD 解决\"数据干净\"，DWS 解决\"数据好用\"，ADS 解决\"业务能看\"。层数不是越多越好，也有团队只用三层（去掉 DIM 独立层），关键看团队规模和复杂度是否需要那么细的分工<br>- <strong>业界演进趋势</strong>：传统分层是\"批处理思维\"，湖仓一体（Lakehouse）时代在模糊 DWD/DWS 的边界——通过物化视图（Materialized View）按需生成聚合层，不再显式维护 DWS 表。但目前大多数团队还是经典分层更成熟<br>- <strong>主题域划分的黄金原则</strong>：一个好的主题域划分应该满足\"高内聚低耦合\"——域内的表 90% 的 JOIN 在域内完成，跨域 JOIN 不超过 10%</blockquote>\n<hr>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q7</blockquote>\n<blockquote><strong>要点提纲</strong>：ODS→DWD→DWS→ADS 四层 | 按业务域划分 | DWS维度建模做宽表 | 减少下游JOIN</blockquote>\n<p>我们 QQ 频道的数仓用的是标准四层。ODS 是原始数据层，数据来源两个方向——大同平台的客户端埋点上报和 WeData 平台接出的后台流水，都是直接落表不做加工。DWD 层做清洗和规范化，比如字段标准化、异常过滤、去重这些。DWS 是我花精力最多的，主要做维度建模，把频道维度信息比如品类、类型，还有内容信息像帖子内容等都关联到宽表里，DS 做分析可以直接用，不需要额外 JOIN 维度表。ADS 就是面向具体业务报表的聚合层，接出 DataTalk 做 BI 看板。</p>\n<p>业务域上我们分了内容主题、搜推主题、流量主题、用户主题、资料主题、指标主题六大主题域，主要为了减少跨域依赖，每个域相对独立。</p>\n<blockquote>💡 <strong>专家补充</strong>（大数据架构师视角，面试中视情况展开）<br><br>- <strong>分层的本质是关注点分离</strong>：每一层只解决一个问题——ODS 解决\"数据进来\"，DWD 解决\"数据干净\"，DWS 解决\"数据好用\"，ADS 解决\"业务能看\"。层数不是越多越好，也有团队只用三层（去掉 DIM 独立层），关键看团队规模和复杂度是否需要那么细的分工<br>- <strong>业界演进趋势</strong>：传统分层是\"批处理思维\"，湖仓一体（Lakehouse）时代在模糊 DWD/DWS 的边界——通过物化视图（Materialized View）按需生成聚合层，不再显式维护 DWS 表。但目前大多数团队还是经典分层更成熟<br>- <strong>主题域划分的黄金原则</strong>：一个好的主题域划分应该满足\"高内聚低耦合\"——域内的表 90% 的 JOIN 在域内完成，跨域 JOIN 不超过 10%</blockquote>\n<hr>"
     },
     {
       "id": "WAREHOUSE-0178",
@@ -33645,7 +33715,7 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "frequency": "",
       "domain": "warehouse",
-      "body_html": "<blockquote><strong>要点提纲</strong>：OLA平台指标注册 | 覆盖率=已注册/业务需求 | 聚合后的标准化指标 | 口径统一 | 避免重复建设<br><strong>来源</strong>：京东JDY-数据开发一面-20260415、京东JDY-数据开发二面-20260415</blockquote>\n<p>指标覆盖率是已在 OLA 平台注册的标准化指标数 / 业务方实际需要的指标总数。我们注册的是聚合后的标准化指标，不是原始明细。比如\"频道 DAU\"\"帖子互动率\"这些经过定义口径、确认分子分母后才注册。</p>\n<p>指标开发过程按\"原子指标+修饰词+时间周期=派生指标\"管理。开发流程：先跟产品/DS 对齐需求确认口径和统计维度，看现有模型能不能支撑，不行就在 DWD 或 DWS 层新增加工逻辑，产出 ADS 指标表接入 DataTalk 做可视化。</p>\n<p>核心是看业务方的分析需求能不能被现有指标体系覆盖。新需求来了先查平台有没有已注册指标可复用，没有再新建，避免重复建设。</p>\n<hr>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q12</blockquote>\n<blockquote><strong>要点提纲</strong>：OLA平台指标注册 | 覆盖率=已注册/业务需求 | 聚合后的标准化指标 | 口径统一 | 避免重复建设<br><strong>来源</strong>：京东JDY-数据开发一面-20260415、京东JDY-数据开发二面-20260415</blockquote>\n<p>指标覆盖率是已在 OLA 平台注册的标准化指标数 / 业务方实际需要的指标总数。我们注册的是聚合后的标准化指标，不是原始明细。比如\"频道 DAU\"\"帖子互动率\"这些经过定义口径、确认分子分母后才注册。</p>\n<p>指标开发过程按\"原子指标+修饰词+时间周期=派生指标\"管理。开发流程：先跟产品/DS 对齐需求确认口径和统计维度，看现有模型能不能支撑，不行就在 DWD 或 DWS 层新增加工逻辑，产出 ADS 指标表接入 DataTalk 做可视化。</p>\n<p>核心是看业务方的分析需求能不能被现有指标体系覆盖。新需求来了先查平台有没有已注册指标可复用，没有再新建，避免重复建设。</p>\n<hr>"
     },
     {
       "id": "WAREHOUSE-0204",
@@ -34184,7 +34254,7 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "frequency": "",
       "domain": "warehouse",
-      "body_html": "<p><strong>掌握程度</strong>：⬜</p>\n<p><strong>答案要点</strong>：</p>\n<ul>\n<li>ODS 原始数据接入，DWD 清洗规范化，DWS 维度建模宽表聚合，ADS 面向业务报表</li>\n<li>分层核心价值：解耦、复用、质量可控、职责清晰</li>\n</ul>\n<blockquote>📖 来源：字节国际化数开一面</blockquote>\n<hr>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q9</blockquote>\n<p><strong>掌握程度</strong>：⬜</p>\n<p><strong>答案要点</strong>：</p>\n<ul>\n<li>ODS 原始数据接入，DWD 清洗规范化，DWS 维度建模宽表聚合，ADS 面向业务报表</li>\n<li>分层核心价值：解耦、复用、质量可控、职责清晰</li>\n</ul>\n<blockquote>📖 来源：字节国际化数开一面</blockquote>\n<hr>"
     },
     {
       "id": "WAREHOUSE-0253",
@@ -34852,7 +34922,7 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "frequency": "",
       "domain": "warehouse",
-      "body_html": "<p>回答：</p>\n<blockquote>ODS 接入主要依赖离线调度和实时链路。<br><br>对于日志数据，一般通过 Kafka 实时采集，分钟级入仓。<br><br>对于业务库数据，会根据业务特点选择全量或者增量同步。<br><br>一般初始化阶段采用全量同步，后续数据量越来越大之后，会切换成增量同步，通过更新时间字段或者 Binlog CDC 方式同步。<br><br>这样能够减少同步压力，提高时效性。</blockquote>\n<ul>\n<li>* *</li>\n</ul>\n<h2>二、数据治理</h2>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q8</blockquote>\n<p>回答：</p>\n<blockquote>ODS 接入主要依赖离线调度和实时链路。<br><br>对于日志数据，一般通过 Kafka 实时采集，分钟级入仓。<br><br>对于业务库数据，会根据业务特点选择全量或者增量同步。<br><br>一般初始化阶段采用全量同步，后续数据量越来越大之后，会切换成增量同步，通过更新时间字段或者 Binlog CDC 方式同步。<br><br>这样能够减少同步压力，提高时效性。</blockquote>\n<ul>\n<li>* *</li>\n</ul>\n<h2>二、数据治理</h2>"
     },
     {
       "id": "WAREHOUSE-0311",
@@ -34863,7 +34933,7 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "frequency": "",
       "domain": "warehouse",
-      "body_html": "<p>不要只说数据质量。</p>\n<p>可以这样回答：</p>\n<blockquote>我理解的数据治理主要包括四部分。<br><br>第一部分是元数据管理，包括表、字段、负责人、血缘关系维护。<br><br>第二部分是规范治理，比如命名规范、分层规范、开发规范。<br><br>第三部分是数据质量治理，包括空值、波动、延迟、唯一性等监控。<br><br>第四部分是资产治理，比如低频表识别、重复指标收敛、下线无效任务，提高资源利用率。<br><br>在日常工作中，我参与比较多的是规范治理和数据质量建设。</blockquote>\n<p>这样显得视野比较完整。</p>\n<ul>\n<li>* *</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q11</blockquote>\n<p>不要只说数据质量。</p>\n<p>可以这样回答：</p>\n<blockquote>我理解的数据治理主要包括四部分。<br><br>第一部分是元数据管理，包括表、字段、负责人、血缘关系维护。<br><br>第二部分是规范治理，比如命名规范、分层规范、开发规范。<br><br>第三部分是数据质量治理，包括空值、波动、延迟、唯一性等监控。<br><br>第四部分是资产治理，比如低频表识别、重复指标收敛、下线无效任务，提高资源利用率。<br><br>在日常工作中，我参与比较多的是规范治理和数据质量建设。</blockquote>\n<p>这样显得视野比较完整。</p>\n<ul>\n<li>* *</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0312",
@@ -36167,6 +36237,12 @@ window.OS_DATA = {
           "company": "小红书",
           "position": "AI 数据工程师（5 轮）",
           "date": "2026-05-30"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
         }
       ],
       "domain": "sql",

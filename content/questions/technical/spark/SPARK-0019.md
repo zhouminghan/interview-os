@@ -11,6 +11,10 @@ sources:
     company: 美团
     position: 数据开发（一面）
     date: 2026-09-24
+  - interview_id: INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing
+    company: 字节跳动
+    position: 数据开发（泛抖音，校招一面凉经）
+    date: 2026-09-28
 ---
 
 # 一句话
