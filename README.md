@@ -8,11 +8,11 @@
 
 面经 -> AI 结构化 -> QA / 知识沉淀 -> 主动训练 -> 薄弱点反馈 -> 再复习
 
-## 三类内容
+## 内容
 
-- Technical QA：有标准答案的技术题（正确性 + 表达 + 追问 + 项目结合）
-- Behavioral / HR：重表达、立场与信息组织的开放题
-- Negotiation：谈薪与谈判筹码
+- Technical QA：16 个技术域（Spark / Flink / 数仓 / 存储引擎 / StarRocks / 大模型 / SQL 等）的标准技术题
+- Project / 行为：项目深挖、HR 软素质、面试宝典等开放题
+- 原始面经：`content/interviews/` 保留原始面经原文
 
 ## 使用
 
@@ -35,4 +35,4 @@ python3 -m http.server 8000
 
 ## 状态
 
-v1：内容 Schema + AGENTS.md + 静态站点（可视化展示 + 随机训练 + 能力画像）已可用。
+当前约 3000+ 题 / 100+ 面经，静态站点（总览 / 问题库 / 面经 / 随机训练 / 能力画像）可用。

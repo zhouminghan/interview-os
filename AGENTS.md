@@ -27,9 +27,8 @@ content/
   interviews/              原始面经（历史事实，只读）
     2026/company-*/interview-*.md
   questions/               标准化问题（二次加工）
-    technical/             spark | flink | hive | sql | kafka | warehouse | mpp
-    behavioral/            hr | project
-    negotiation/
+    technical/             16 个技术域：spark | flink | warehouse | storage | starrocks | llm | sql | lakehouse | hdfs | platform | system | network | algorithm | statistics | ml
+    behavioral/            project（项目深挖 / HR 软素质 / 面试宝典）
   knowledge/               系统知识（二次加工）
 
 web/                       静态站点（本地可打开，GitHub Pages 可直接发布）
@@ -72,11 +71,8 @@ Schema 见 docs/content-schema.md。不要把 HR 开放题按「Q + 标准答案
 ## 7. Source Type（每条都要标）
 
 ```
-interview_record   面经原话
-ai_generated       AI 生成 / 补充
-ai_supplement      AI 在已有内容上追加
-user_note          用户自己的笔记
-knowledge          系统知识
+knowledge          系统知识（八股 / 技术手册 / 题库）
+ai_generated       AI 生成 / 补充的回答
 ```
 
 ## 8. Question ID
@@ -84,9 +80,10 @@ knowledge          系统知识
 前缀 + 4 位序号，稳定、不重排、不重复使用：
 
 ```
-FLINK-0001  SPARK-0001  SQL-0001   HIVE-0001
-KAFKA-0001  WAREHOUSE-0001  MPP-0001
-HR-0001     PROJECT-0001      NEG-0001
+FLINK-0001  SPARK-0001  SQL-0001  STORAGE-0001
+STARROCKS-0001  WAREHOUSE-0001  LLM-0001  LAKEHOUSE-0001
+ALGORITHM-0001  ML-0001  NETWORK-0001  PLATFORM-0001
+SYSTEM-0001  HDFS-0001  STATISTICS-0001  PROJECT-0001
 ```
 
 ## 9. Agent 工作流（新增 / 更新面经时）
