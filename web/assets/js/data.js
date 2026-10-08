@@ -1,14 +1,14 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-08T17:19:44+08:00",
+  "generatedAt": "2026-10-08T17:35:23+08:00",
   "stats": {
-    "questions": 3087,
+    "questions": 3088,
     "interviews": 102,
-    "technical": 2717,
+    "technical": 2718,
     "project": 370,
     "domains": {
       "spark": 397,
       "hdfs": 4,
-      "storage": 809,
+      "storage": 810,
       "lakehouse": 12,
       "starrocks": 223,
       "flink": 651,
@@ -1040,6 +1040,12 @@ window.OS_DATA = {
           "company": "腾讯 / 快手",
           "position": "数据开发（一面真题）",
           "date": "2026-06-23"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-10-05-tencent-cdg-data-eng",
+          "company": "腾讯 CDG",
+          "position": "数据工程（秋招一面）",
+          "date": "2026-10-05"
         }
       ],
       "domain": "spark",
@@ -15727,6 +15733,29 @@ window.OS_DATA = {
       "body_html": "<p>| 组件 | 定位 | |------|------| | <strong>Apache Kafka</strong> | 分布式消息系统/流平台，数据缓冲和存储 | | <strong>Apache Storm</strong> | 实时计算系统，逐条记录高速处理 | | <strong>Apache Flink</strong> | 流处理框架，事件时间处理 + 状态管理，也支持批处理 |</p>"
     },
     {
+      "id": "STORAGE-0816",
+      "type": "technical",
+      "question": "为什么 OLAP 查得快？",
+      "topic": [
+        "storage",
+        "olap",
+        "columnar"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-05-tencent-cdg-data-eng",
+          "company": "腾讯 CDG",
+          "position": "数据工程（秋招一面）",
+          "date": "2026-10-05"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>OLAP 快在「少读、并行、少算」：列式存储只读需要的列，MPP 分布式并行扫，向量化执行 + 压缩减少 IO，预聚合和排序键 / 前缀索引进一步裁剪扫描范围。</p>\n<h2>30 秒回答</h2>\n<p>核心四点：①列式存储，查询只扫涉及的列，同列数据压缩率高，IO 大幅下降；②MPP 架构，数据分散到多节点并行聚合；③向量化执行，按批处理而不是逐行；④预聚合 + 排序键 + 分区，把大扫描变成小范围定位。所以 OLAP 适合海量数据的聚合分析，不适合高频点查。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>列式存储：同列值类型一致，压缩率高，只读查询涉及的列，跳过多余列</li>\n<li>分布式 MPP：数据分片到多节点，并行扫描 + 并行聚合</li>\n<li>向量化执行：CPU 按批处理（SIMD），减少函数调用开销</li>\n<li>预聚合：物化视图 / 聚合模型提前算好，查询直接取结果</li>\n<li>排序键 + 前缀索引：按排序键快速定位范围，跳过无关数据块</li>\n<li>分区裁剪：按分区键只扫相关分区</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么 OLAP 不适合高并发点查 / 频繁 UPDATE？</li>\n<li>行存和列存各自的适用场景？</li>\n<li>列式存储的缺点是什么？</li>\n</ul>"
+    },
+    {
       "id": "LAKEHOUSE-0001",
       "type": "technical",
       "question": "Hudi 有实际使用吗，Hudi 是什么",
@@ -15976,6 +16005,12 @@ window.OS_DATA = {
           "company": "安克创新",
           "position": "数据岗（一面）",
           "date": "2026-09-23"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-10-05-tencent-cdg-data-eng",
+          "company": "腾讯 CDG",
+          "position": "数据工程（秋招一面）",
+          "date": "2026-10-05"
         }
       ],
       "domain": "starrocks",
@@ -29497,7 +29532,7 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "frequency": "",
       "domain": "llm",
-      "body_html": "<blockquote><strong>来源面经</strong>：腾讯-数据工程-20260415 Q20</blockquote>\n<p>知识库是一组<strong>结构化 Markdown 文件</strong>，每个文件对应一张表或一个业务域。</p>\n<p><strong>知识文件结构</strong>：表用途 → 核心字段含义 → 上下游依赖 → 常见使用场景 → 数据量级</p>\n<p><strong>AI 怎么用</strong>：</p>\n<ol>\n<li>Skill 执行时按需加载相关表知识</li>\n<li>回答业务问题时查找口径定义</li>\n<li>表知识文件可从元数据平台自动生成</li>\n</ol>\n<p><strong>设计关键点</strong>：不是越多越好，而是<strong>精简、结构化、可机器解析</strong>。一开始尝试塞整个 DDL，AI 反而被冗余信息干扰。精简到只保留 AI 真正需要的信息后效果好了很多。</p>\n<hr>"
+      "body_html": "<blockquote><strong>来源面经</strong>：腾讯-数据工程-20260415 Q20<br><strong>来源面经</strong>：腾讯 CDG-数据工程秋招一面-20261005 Agent Q1</blockquote>\n<p>知识库是一组<strong>结构化 Markdown 文件</strong>，每个文件对应一张表或一个业务域。</p>\n<p><strong>知识文件结构</strong>：表用途 → 核心字段含义 → 上下游依赖 → 常见使用场景 → 数据量级</p>\n<p><strong>AI 怎么用</strong>：</p>\n<ol>\n<li>Skill 执行时按需加载相关表知识</li>\n<li>回答业务问题时查找口径定义</li>\n<li>表知识文件可从元数据平台自动生成</li>\n</ol>\n<p><strong>设计关键点</strong>：不是越多越好，而是<strong>精简、结构化、可机器解析</strong>。一开始尝试塞整个 DDL，AI 反而被冗余信息干扰。精简到只保留 AI 真正需要的信息后效果好了很多。</p>\n<hr>"
     },
     {
       "id": "LLM-0108",
@@ -29618,7 +29653,7 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "frequency": "",
       "domain": "llm",
-      "body_html": "<blockquote><strong>要点提纲</strong>：业务知识库覆盖度 | Skill 颗粒度 | MCP 工具链完整度 | 评测体系 | 上下文窗口<br><strong>来源面经</strong>：字节-AI Agent数据开发一面-20260412 Q1</blockquote>\n<p>AI + 数据工程体系目前还在半自动化阶段，效果差有几个原因。</p>\n<p><strong>第一是业务知识库覆盖度不够</strong>。频道有几百张表、几十个业务域，目前只沉淀了核心域的表知识文件，AI 在涉及非核心域时容易\"幻觉\"——字段命名不规范、分区字段写错。</p>\n<p><strong>第二是 Skill 颗粒度太粗</strong>。比如建模 Skill 一上来就让 AI 生成完整 SQL，但实际业务规则太复杂，应该拆成\"识别建模模式 → 选择模板 → 填充参数\"几步，让人在中间能干预。</p>\n<p><strong>第三是 MCP 工具链不完整</strong>。平台侧目前提供的 MCP 工具集中在元数据查询和任务创建，像血缘解析、分区状态批量查这些核心能力还在补齐，导致回溯类 Skill 体验有断点。</p>\n<p><strong>第四是缺评测体系</strong>。Skill 改了之后效果是好是坏只能靠用户反馈，没有量化指标，迭代效率低。</p>\n<p><strong>优化方向</strong>：</p>\n<ol>\n<li><strong>业务知识库结构化做深</strong>：每张核心表都自动生成知识文件并定期回写</li>\n<li><strong>Skill 拆细 + 加评测</strong>：引入小规模 case 集回归，每次 Skill 改动跑一遍看准确率</li>\n<li><strong>推动平台侧补齐 MCP 工具</strong>：把血缘、分区状态、跨平台调度这些高频动作都覆盖</li>\n<li><strong>上下文窗口管理</strong>：超长上下文场景做摘要 + 增量加载，避免噪声</li>\n</ol>\n<blockquote>💡 <strong>专家补充</strong>：<br>- <strong>AI Agent 落地的瓶颈往往不在模型而在\"周边\"</strong>：知识库、工具链、评测体系——模型能力大家差不多，差距在于这些工程化基础是否扎实<br>- <strong>\"评测体系缺失\"是 AI 项目通病</strong>：90% 的团队改 Prompt / Skill 都靠拍脑袋，没有量化指标。建立 case 集 → 回归测试 → 指标可视化，是从 demo 到生产的必经之路<br>- <strong>Skill 颗粒度的设计原则是\"原子化 + 可组合\"</strong>：每个 Skill 只做一件事，复杂任务由多个 Skill 编排完成。这和软件工程的单一职责原则是一脉相承的</blockquote>\n<hr>"
+      "body_html": "<blockquote><strong>要点提纲</strong>：业务知识库覆盖度 | Skill 颗粒度 | MCP 工具链完整度 | 评测体系 | 上下文窗口<br><strong>来源面经</strong>：字节-AI Agent数据开发一面-20260412 Q1<br><strong>来源面经</strong>：腾讯 CDG-数据工程秋招一面-20261005 Agent Q3</blockquote>\n<p>AI + 数据工程体系目前还在半自动化阶段，效果差有几个原因。</p>\n<p><strong>第一是业务知识库覆盖度不够</strong>。频道有几百张表、几十个业务域，目前只沉淀了核心域的表知识文件，AI 在涉及非核心域时容易\"幻觉\"——字段命名不规范、分区字段写错。</p>\n<p><strong>第二是 Skill 颗粒度太粗</strong>。比如建模 Skill 一上来就让 AI 生成完整 SQL，但实际业务规则太复杂，应该拆成\"识别建模模式 → 选择模板 → 填充参数\"几步，让人在中间能干预。</p>\n<p><strong>第三是 MCP 工具链不完整</strong>。平台侧目前提供的 MCP 工具集中在元数据查询和任务创建，像血缘解析、分区状态批量查这些核心能力还在补齐，导致回溯类 Skill 体验有断点。</p>\n<p><strong>第四是缺评测体系</strong>。Skill 改了之后效果是好是坏只能靠用户反馈，没有量化指标，迭代效率低。</p>\n<p><strong>优化方向</strong>：</p>\n<ol>\n<li><strong>业务知识库结构化做深</strong>：每张核心表都自动生成知识文件并定期回写</li>\n<li><strong>Skill 拆细 + 加评测</strong>：引入小规模 case 集回归，每次 Skill 改动跑一遍看准确率</li>\n<li><strong>推动平台侧补齐 MCP 工具</strong>：把血缘、分区状态、跨平台调度这些高频动作都覆盖</li>\n<li><strong>上下文窗口管理</strong>：超长上下文场景做摘要 + 增量加载，避免噪声</li>\n</ol>\n<blockquote>💡 <strong>专家补充</strong>：<br>- <strong>AI Agent 落地的瓶颈往往不在模型而在\"周边\"</strong>：知识库、工具链、评测体系——模型能力大家差不多，差距在于这些工程化基础是否扎实<br>- <strong>\"评测体系缺失\"是 AI 项目通病</strong>：90% 的团队改 Prompt / Skill 都靠拍脑袋，没有量化指标。建立 case 集 → 回归测试 → 指标可视化，是从 demo 到生产的必经之路<br>- <strong>Skill 颗粒度的设计原则是\"原子化 + 可组合\"</strong>：每个 Skill 只做一件事，复杂任务由多个 Skill 编排完成。这和软件工程的单一职责原则是一脉相承的</blockquote>\n<hr>"
     },
     {
       "id": "LLM-0119",

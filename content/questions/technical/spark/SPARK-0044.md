@@ -11,6 +11,10 @@ sources:
     company: 腾讯 / 快手
     position: 数据开发（一面真题）
     date: 2026-06-23
+  - interview_id: INTERVIEW-2026-10-05-tencent-cdg-data-eng
+    company: 腾讯 CDG
+    position: 数据工程（秋招一面）
+    date: 2026-10-05
 ---
 
 # 一句话
