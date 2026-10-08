@@ -1,8 +1,8 @@
 window.OS_DATA = {
-  "generatedAt": "2026-09-30T15:00:10+08:00",
+  "generatedAt": "2026-10-08T17:19:44+08:00",
   "stats": {
     "questions": 3087,
-    "interviews": 101,
+    "interviews": 102,
     "technical": 2717,
     "project": 370,
     "domains": {
@@ -42071,6 +42071,15 @@ window.OS_DATA = {
     }
   ],
   "interviews": [
+    {
+      "interview_id": "INTERVIEW-2026-10-05-tencent-cdg-data-eng",
+      "company": "腾讯 CDG",
+      "business": "数据工程",
+      "position": "数据工程（秋招一面）",
+      "date": "2026-10-05",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<blockquote>腾讯同事帮忙推荐的秋招面试，核心部门。一上来直接手撕，一半时间在问 Agent，手撕做不出来挂了。</blockquote>\n<h3>手撕</h3>\n<ol>\n<li>SQL + 算法（算法题不是 hot 100，直接说不会做）</li>\n</ol>\n<h3>Agent</h3>\n<ol>\n<li>知识库构建方式</li>\n<li>专题数量、文档数量</li>\n<li>可以怎么优化</li>\n</ol>\n<h3>数开八股</h3>\n<ol>\n<li>为什么 OLAP 查得快</li>\n<li>排序键要怎么设置</li>\n<li>Spark AQE</li>\n</ol>\n<blockquote>备注：来源小红书，腾讯 CDG 数据工程秋招一面，约 1 小时。</blockquote>"
+    },
     {
       "interview_id": "INTERVIEW-2026-09-29-shengqu-game-ai",
       "company": "盛趣游戏",
