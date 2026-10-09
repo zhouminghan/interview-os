@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Broker 存数据，ZK 管元数据，Producer 写，Consumer 读。
+
+# 参考回答
+
+Kafka 集群由多个 Broker 组成，存消息分区副本；ZooKeeper 管元数据和选主；Producer 写消息，Consumer 订阅消费。新版本逐步去掉 ZK，用 KRaft。
+
+# 追问
+
+- KRaft 是什么？

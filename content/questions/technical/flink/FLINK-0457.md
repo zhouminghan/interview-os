@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Kafka 本身无优先级，用多 topic 模拟。
+
+# 参考回答
+
+Kafka 没有原生优先级，通常用多个 topic 区分优先级，消费端按优先级优先消费高优先级 topic。本质是应用层实现优先级。
+
+# 追问
+
+- 为什么 Kafka 不做优先级？

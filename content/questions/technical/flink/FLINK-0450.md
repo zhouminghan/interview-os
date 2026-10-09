@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+SSL 加密、SASL 认证、ACL 授权三层。
+
+# 参考回答
+
+Kafka 安全分三层：SSL/TLS 加密传输，SASL 做身份认证，ACL 做资源授权。生产开启认证加授权，最小权限原则。
+
+# 追问
+
+- 三层安全各解决什么？

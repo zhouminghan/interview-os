@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+JMX 暴露指标，Prometheus 采集，Grafana 展示。
+
+# 参考回答
+
+Kafka 通过 JMX 暴露指标，用 Prometheus 采集、Grafana 出图，配告警。重点监控吞吐、延迟、分区落后、磁盘和 GC。
+
+# 追问
+
+- 核心监控哪些指标？

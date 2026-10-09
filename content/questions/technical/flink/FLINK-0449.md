@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+MirrorMaker 消费源集群写到目标集群。
+
+# 参考回答
+
+MirrorMaker 2 从源 Kafka 集群消费消息，复制到目标集群，实现跨数据中心同步和灾备。配置源和目标集群地址、topic 映射。
+
+# 追问
+
+- 跨机房同步延迟怎么处理？

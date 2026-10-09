@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:08:24+08:00",
+  "generatedAt": "2026-10-09T17:10:17+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -24816,7 +24816,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>攒一批消息一起提交 offset。</p>\n<h2>参考回答</h2>\n<p>批量提交是把一批消息处理完再提交 offset，减少提交频率提高吞吐。注意别提交太频繁或太少，太频繁开销大，太少重启重复多。</p>\n<h2>追问</h2>\n<ul>\n<li>批量提交和单条提交怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0445",
@@ -24829,7 +24829,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>删除按时间大小，压缩按 key 保留最新。</p>\n<h2>参考回答</h2>\n<p>日志删除按保留时间或大小删旧数据，适合事件流；日志压缩按 key 只留最新值，适合状态变更。默认删除策略，配置 cleanup.policy 切换。</p>\n<h2>追问</h2>\n<ul>\n<li>两种策略能同时用吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0446",
@@ -24842,7 +24842,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Broker 存数据，ZK 管元数据，Producer 写，Consumer 读。</p>\n<h2>参考回答</h2>\n<p>Kafka 集群由多个 Broker 组成，存消息分区副本；ZooKeeper 管元数据和选主；Producer 写消息，Consumer 订阅消费。新版本逐步去掉 ZK，用 KRaft。</p>\n<h2>追问</h2>\n<ul>\n<li>KRaft 是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0447",
@@ -24855,7 +24855,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分区数看并行度，副本因子看容错。</p>\n<h2>参考回答</h2>\n<p>分区数按下游并行度和吞吐定，太少并行度不够，太多开销大；副本因子一般 2 或 3，平衡可靠性和存储成本。按业务增长留余量。</p>\n<h2>追问</h2>\n<ul>\n<li>分区太多有什么坏处？</li>\n</ul>"
     },
     {
       "id": "FLINK-0448",
@@ -24868,7 +24868,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>副本跟随 leader，挂掉从 ISR 选新 leader。</p>\n<h2>参考回答</h2>\n<p>每个分区一个 leader 多个 follower，写入走 leader，follower 同步。leader 挂了从 ISR 里选新 leader，保证不丢已提交数据。一致性靠 ISR 和 ack 配置。</p>\n<h2>追问</h2>\n<ul>\n<li>ack 参数怎么配？</li>\n</ul>"
     },
     {
       "id": "FLINK-0449",
@@ -24881,7 +24881,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MirrorMaker 消费源集群写到目标集群。</p>\n<h2>参考回答</h2>\n<p>MirrorMaker 2 从源 Kafka 集群消费消息，复制到目标集群，实现跨数据中心同步和灾备。配置源和目标集群地址、topic 映射。</p>\n<h2>追问</h2>\n<ul>\n<li>跨机房同步延迟怎么处理？</li>\n</ul>"
     },
     {
       "id": "FLINK-0450",
@@ -24894,7 +24894,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SSL 加密、SASL 认证、ACL 授权三层。</p>\n<h2>参考回答</h2>\n<p>Kafka 安全分三层：SSL/TLS 加密传输，SASL 做身份认证，ACL 做资源授权。生产开启认证加授权，最小权限原则。</p>\n<h2>追问</h2>\n<ul>\n<li>三层安全各解决什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0451",
@@ -24907,7 +24907,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>消息顺序写日志文件落盘。</p>\n<h2>参考回答</h2>\n<p>Kafka 消息顺序追加写日志文件持久化，靠页缓存和顺序 IO 提速。优化用 SSD、多磁盘、合理分区和清理策略。</p>\n<h2>追问</h2>\n<ul>\n<li>顺序写为什么快？</li>\n</ul>"
     },
     {
       "id": "FLINK-0452",
@@ -24920,7 +24920,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>JMX 暴露指标，Prometheus 采集，Grafana 展示。</p>\n<h2>参考回答</h2>\n<p>Kafka 通过 JMX 暴露指标，用 Prometheus 采集、Grafana 出图，配告警。重点监控吞吐、延迟、分区落后、磁盘和 GC。</p>\n<h2>追问</h2>\n<ul>\n<li>核心监控哪些指标？</li>\n</ul>"
     },
     {
       "id": "FLINK-0453",
@@ -24933,7 +24933,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多副本是基本备份，跨集群用 MirrorMaker。</p>\n<h2>参考回答</h2>\n<p>备份靠多副本，跨机房灾备用 MirrorMaker 同步到异地集群。恢复从副本或灾备集群恢复，配合消费 offset 继续处理。</p>\n<h2>追问</h2>\n<ul>\n<li>灾备恢复要多久？</li>\n</ul>"
     },
     {
       "id": "FLINK-0454",
@@ -24946,7 +24946,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>水平加 broker，垂直加硬件。</p>\n<h2>参考回答</h2>\n<p>扩展主要水平加 broker，分区重分配均衡负载；垂直加磁盘内存 CPU。容量按吞吐、消息大小、保留时间估算存储和带宽。</p>\n<h2>追问</h2>\n<ul>\n<li>扩容会中断吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0455",
@@ -24959,7 +24959,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>开审计日志记录操作，集中分析。</p>\n<h2>参考回答</h2>\n<p>审计靠开启 Kafka 审计日志，记录谁对哪个 topic 做了什么操作，集中到日志系统分析。用于合规和排查。</p>\n<h2>追问</h2>\n<ul>\n<li>审计日志记什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0456",
@@ -24972,7 +24972,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分区和副本重新分配均衡负载。</p>\n<h2>参考回答</h2>\n<p>负载均衡靠分区和副本重新分配到不同 broker，避免热点。加 broker 后做 rebalance，把分区均匀分过去。Kafka 也有自动均衡机制。</p>\n<h2>追问</h2>\n<ul>\n<li>重分配会中断服务吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0457",
@@ -24985,7 +24985,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Kafka 本身无优先级，用多 topic 模拟。</p>\n<h2>参考回答</h2>\n<p>Kafka 没有原生优先级，通常用多个 topic 区分优先级，消费端按优先级优先消费高优先级 topic。本质是应用层实现优先级。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 Kafka 不做优先级？</li>\n</ul>"
     },
     {
       "id": "FLINK-0458",
@@ -24998,7 +24998,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>副本自动接管，broker 恢复后补数据。</p>\n<h2>参考回答</h2>\n<p>Broker 故障时副本自动选新 leader 接管，服务不中断。故障 broker 恢复后重新加入，补齐缺失副本。副本因子够就不丢数据。</p>\n<h2>追问</h2>\n<ul>\n<li>副本因子不够会怎样？</li>\n</ul>"
     },
     {
       "id": "FLINK-0459",
@@ -25011,7 +25011,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用延迟 topic 或消费端定时任务实现。</p>\n<h2>参考回答</h2>\n<p>延迟处理可以用专门的延迟 topic，按延迟时间分桶，到点再消费；或消费端拿到消息后延迟执行。Kafka 本身无延迟队列，靠应用实现。</p>\n<h2>追问</h2>\n<ul>\n<li>延迟消息怎么保证可靠？</li>\n</ul>"
     },
     {
       "id": "FLINK-0460",
@@ -25024,7 +25024,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看吞吐、延迟、落后、错误率。</p>\n<h2>参考回答</h2>\n<p>核心指标是生产消费吞吐、端到端延迟、消费者落后量、错误率。告警阈值按基线定，比如落后超过一定量、延迟超阈值就告警。</p>\n<h2>追问</h2>\n<ul>\n<li>阈值怎么定？</li>\n</ul>"
     },
     {
       "id": "FLINK-0461",
@@ -25037,7 +25037,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>生产端批量发送，消费端批量拉取。</p>\n<h2>参考回答</h2>\n<p>批量处理在生产端攒一批消息一起发，消费端一次拉一批处理，减少网络和 IO 开销提高吞吐。批量大小按延迟和吞吐权衡。</p>\n<h2>追问</h2>\n<ul>\n<li>批量太大会怎样？</li>\n</ul>"
     },
     {
       "id": "FLINK-0462",
@@ -25050,7 +25050,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>日志按段管理，清理删除或压缩。</p>\n<h2>参考回答</h2>\n<p>日志分多个段文件，按保留时间或大小删除，或用日志压缩按 key 留最新。优化存储靠合理保留期、压缩和分层存储。</p>\n<h2>追问</h2>\n<ul>\n<li>分层存储是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0463",
@@ -25063,7 +25063,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>过滤转换放消费端或流处理层。</p>\n<h2>参考回答</h2>\n<p>Kafka 本身不做过滤转换，一般在消费端或 Flink 这类流处理层做。需要转换的话用流处理框架，Kafka 只负责传输存储。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 Kafka 不做转换？</li>\n</ul>"
     },
     {
       "id": "FLINK-0464",
@@ -25076,7 +25076,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SASL 认证加 ACL 授权。</p>\n<h2>参考回答</h2>\n<p>权限控制靠 SASL 认证确认身份，ACL 授权到 topic、group 级别的读写权限。可细化到具体操作，做最小权限授权。</p>\n<h2>追问</h2>\n<ul>\n<li>细粒度到什么程度？</li>\n</ul>"
     },
     {
       "id": "FLINK-0465",
@@ -25089,7 +25089,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 kafka-console、kafka-dump-log 等工具排查。</p>\n<h2>参考回答</h2>\n<p>追踪调试用命令行工具，比如 kafka-console-consumer 看消息、kafka-dump-log 看日志文件、describe 看分区状态。定位消息和分区问题。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么查某条消息在哪？</li>\n</ul>"
     },
     {
       "id": "FLINK-0466",
@@ -25102,7 +25102,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>管理工具看集群、分区、消费组状态。</p>\n<h2>参考回答</h2>\n<p>Kafka Manager、Confluent Control Center 这类工具能看集群状态、分区、消费组、落后情况，做运维管理。核心是可视化运维。</p>\n<h2>追问</h2>\n<ul>\n<li>这些工具能做什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0467",
@@ -25115,7 +25115,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>JMX 指标经 Prometheus 采集到 Grafana。</p>\n<h2>参考回答</h2>\n<p>Kafka 监控用 JMX 暴露指标，Prometheus 采集、Grafana 展示、配告警。重点看吞吐、延迟、落后、磁盘和错误率。</p>\n<h2>追问</h2>\n<ul>\n<li>监控和运维怎么结合？</li>\n</ul>"
     },
     {
       "id": "FLINK-0468",
@@ -25128,7 +25128,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>硬件用 SSD，JVM 调堆和 GC，OS 调页缓存。</p>\n<h2>参考回答</h2>\n<p>性能优化关键点：SSD 磁盘、合理内存给页缓存、JVM 调堆和 GC、操作系统调文件描述符和网络参数。评估靠压测吞吐和延迟。</p>\n<h2>追问</h2>\n<ul>\n<li>页缓存为什么重要？</li>\n</ul>"
     },
     {
       "id": "FLINK-0469",
@@ -25141,7 +25141,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>批量发送、压缩、异步发送提高写入。</p>\n<h2>参考回答</h2>\n<p>写入优化用批量发送减少请求、压缩省带宽、异步发送不阻塞。批量适合吞吐优先，异步适合不关心单条延迟，压缩适合带宽瓶颈。</p>\n<h2>追问</h2>\n<ul>\n<li>异步发送有什么风险？</li>\n</ul>"
     },
     {
       "id": "FLINK-0470",
@@ -25154,7 +25154,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>顺序写、零拷贝、页缓存提升 IO。</p>\n<h2>参考回答</h2>\n<p>Kafka 用顺序追加写日志、sendfile 零拷贝、页缓存加速读写。磁盘 IO 优化主要靠这些机制，配置上多磁盘和 SSD。</p>\n<h2>追问</h2>\n<ul>\n<li>零拷贝是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0471",
@@ -25167,7 +25167,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>批量消费、多线程并行提升读取。</p>\n<h2>参考回答</h2>\n<p>读取优化用批量消费减少请求，多线程或加大并行度并行消费。批量提高吞吐但加延迟，多线程要注意 offset 提交和顺序。</p>\n<h2>追问</h2>\n<ul>\n<li>多线程消费有什么坑？</li>\n</ul>"
     },
     {
       "id": "FLINK-0472",
@@ -25180,7 +25180,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>堆内存和页缓存各占，JVM 调好避免 OOM。</p>\n<h2>参考回答</h2>\n<p>Kafka 内存分 JVM 堆和页缓存，页缓存给消息读写。堆内存给对象和缓冲。调堆大小、GC，监控内存避免 OOM。</p>\n<h2>追问</h2>\n<ul>\n<li>Kafka 内存主要花在哪？</li>\n</ul>"
     },
     {
       "id": "FLINK-0473",
@@ -25193,7 +25193,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>压缩省带宽，调网络参数。</p>\n<h2>参考回答</h2>\n<p>网络优化用压缩算法省带宽，调 socket 缓冲、批量参数。评估靠吞吐和网络使用率。带宽是瓶颈就开压缩。</p>\n<h2>追问</h2>\n<ul>\n<li>压缩对 CPU 的影响？</li>\n</ul>"
     },
     {
       "id": "FLINK-0474",

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+SASL 认证加 ACL 授权。
+
+# 参考回答
+
+权限控制靠 SASL 认证确认身份，ACL 授权到 topic、group 级别的读写权限。可细化到具体操作，做最小权限授权。
+
+# 追问
+
+- 细粒度到什么程度？

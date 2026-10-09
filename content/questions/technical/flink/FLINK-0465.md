@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 kafka-console、kafka-dump-log 等工具排查。
+
+# 参考回答
+
+追踪调试用命令行工具，比如 kafka-console-consumer 看消息、kafka-dump-log 看日志文件、describe 看分区状态。定位消息和分区问题。
+
+# 追问
+
+- 怎么查某条消息在哪？

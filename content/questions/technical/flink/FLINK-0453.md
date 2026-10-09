@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+多副本是基本备份，跨集群用 MirrorMaker。
+
+# 参考回答
+
+备份靠多副本，跨机房灾备用 MirrorMaker 同步到异地集群。恢复从副本或灾备集群恢复，配合消费 offset 继续处理。
+
+# 追问
+
+- 灾备恢复要多久？

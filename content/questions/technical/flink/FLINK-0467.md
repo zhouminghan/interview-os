@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+JMX 指标经 Prometheus 采集到 Grafana。
+
+# 参考回答
+
+Kafka 监控用 JMX 暴露指标，Prometheus 采集、Grafana 展示、配告警。重点看吞吐、延迟、落后、磁盘和错误率。
+
+# 追问
+
+- 监控和运维怎么结合？
