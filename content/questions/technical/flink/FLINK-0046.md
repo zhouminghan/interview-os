@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 createTemporaryView 或 Catalog 注册表。
+
+# 参考回答
+
+注册表用 createTemporaryView 注册临时视图，或通过 Catalog 注册持久表。注册后就能在 SQL 里引用。
+
+# 追问
+
+- 临时表和持久表的区别？

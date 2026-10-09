@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+协调 checkpoint 的生成和完成。
+
+# 参考回答
+
+CheckpointCoordinator 是 JobManager 里的组件，定期触发 checkpoint，协调各算子对齐、快照，确认完成后提交。保证一致性快照。
+
+# 追问
+
+- checkpoint 触发谁发起的？

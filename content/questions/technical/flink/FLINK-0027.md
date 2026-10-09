@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+JobManager 管调度和协调，TaskManager 管计算。
+
+# 参考回答
+
+JobManager 负责作业调度、生成执行图、协调 checkpoint 和故障恢复；TaskManager 是工作节点，执行具体的 task、管理 slot 和状态。
+
+# 追问
+
+- JobManager 挂了怎么办？

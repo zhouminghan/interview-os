@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+StreamExecutionEnvironment 和老的 ExecutionEnvironment。
+
+# 参考回答
+
+Environment 是程序入口，流处理用 StreamExecutionEnvironment，老批处理用 ExecutionEnvironment。现在统一用 StreamExecutionEnvironment。
+
+# 追问
+
+- 环境里一般配置什么？

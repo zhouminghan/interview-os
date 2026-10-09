@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 toDataStream 或 toRetractStream 转换。
+
+# 参考回答
+
+Table API 转 DataStream 用 toDataStream，流式结果转回 DataStream；聚合结果可以用 toRetractStream 处理更新和撤回。反过来 DataStream 用 fromDataStream 转 Table。
+
+# 追问
+
+- 撤回流是什么？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Flink SQL 面向流和实时，Hive 面向离线批。
+
+# 参考回答
+
+Flink SQL 能处理流数据，支持事件时间、窗口、动态表，实时计算；Hive SQL 是离线批处理，面向 T+1。Flink SQL 也能查 Hive 表，但执行引擎和场景不同。
+
+# 追问
+
+- Flink SQL 查 Hive 表怎么配？

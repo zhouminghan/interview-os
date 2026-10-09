@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:25:31+08:00",
+  "generatedAt": "2026-10-09T16:27:41+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -19356,7 +19356,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 是分布式流处理引擎，真流式、低延迟、有状态、exactly-once。</p>\n<h2>参考回答</h2>\n<p>Flink 是开源分布式流处理框架，核心是真正的流式计算，不是微批。特点是低延迟、高吞吐、有状态、支持事件时间和 exactly-once，同时流批一体。</p>\n<h2>追问</h2>\n<ul>\n<li>Flink 为什么说是真流式？</li>\n</ul>"
     },
     {
       "id": "FLINK-0025",
@@ -19369,7 +19369,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>真流式低延迟、exactly-once、事件时间、流批一体。</p>\n<h2>参考回答</h2>\n<p>相比 Spark Streaming 的微批，Flink 是真正的逐条流式，延迟毫秒级；相比 Storm，Flink 吞吐更高、有 exactly-once 和状态管理。而且流批一体，一套引擎两用。</p>\n<h2>追问</h2>\n<ul>\n<li>微批和真流式差在哪？</li>\n</ul>"
     },
     {
       "id": "FLINK-0026",
@@ -19382,7 +19382,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>JobManager、TaskManager、ResourceManager、Dispatcher。</p>\n<h2>参考回答</h2>\n<p>Flink 架构有 JobManager 管作业调度和 checkpoint，TaskManager 跑实际任务，ResourceManager 管资源，Dispatcher 接提交。这是主从架构。</p>\n<h2>追问</h2>\n<ul>\n<li>各组件怎么协作？</li>\n</ul>"
     },
     {
       "id": "FLINK-0027",
@@ -19395,7 +19395,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>JobManager 管调度和协调，TaskManager 管计算。</p>\n<h2>参考回答</h2>\n<p>JobManager 负责作业调度、生成执行图、协调 checkpoint 和故障恢复；TaskManager 是工作节点，执行具体的 task、管理 slot 和状态。</p>\n<h2>追问</h2>\n<ul>\n<li>JobManager 挂了怎么办？</li>\n</ul>"
     },
     {
       "id": "FLINK-0028",
@@ -19408,7 +19408,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>TaskSlot 是 TaskManager 里的资源单位，一个 slot 跑一个并行子任务。</p>\n<h2>参考回答</h2>\n<p>TaskSlot 是 TaskManager 内的资源隔离单位，每个 slot 是一份 CPU 和内存。并行度决定需要多少 slot。同一个 slot 里的算子可以共享，提高利用率。</p>\n<h2>追问</h2>\n<ul>\n<li>slot 和并行度什么关系？</li>\n</ul>"
     },
     {
       "id": "FLINK-0029",
@@ -19421,7 +19421,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>状态是流处理中间结果，后端决定状态存哪里。</p>\n<h2>参考回答</h2>\n<p>Flink 状态是有状态计算保存的中间结果，比如聚合值。状态后端决定状态存哪：内存、文件或 RocksDB。RocksDB 适合大状态。</p>\n<h2>追问</h2>\n<ul>\n<li>状态后端怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0030",
@@ -19434,7 +19434,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>协调 checkpoint 的生成和完成。</p>\n<h2>参考回答</h2>\n<p>CheckpointCoordinator 是 JobManager 里的组件，定期触发 checkpoint，协调各算子对齐、快照，确认完成后提交。保证一致性快照。</p>\n<h2>追问</h2>\n<ul>\n<li>checkpoint 触发谁发起的？</li>\n</ul>"
     },
     {
       "id": "FLINK-0031",
@@ -19447,7 +19447,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>管理 TaskManager 和 slot 资源。</p>\n<h2>参考回答</h2>\n<p>ResourceManager 负责向集群申请和释放资源，管理 TaskManager 的 slot。不同部署模式对接不同的资源管理器，比如 YARN 或 K8s。</p>\n<h2>追问</h2>\n<ul>\n<li>YARN 和 K8s 的资源管理有区别吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0032",
@@ -19460,7 +19460,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>作业转成 DAG，拆算子成子任务分布到 slot 执行。</p>\n<h2>参考回答</h2>\n<p>Flink 把作业转成执行图，每个算子按并行度拆成子任务，分配到不同 TaskManager 的 slot 里，数据在子任务间流转。这是流水线式执行。</p>\n<h2>追问</h2>\n<ul>\n<li>执行图和作业图有什么区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0033",
@@ -19473,7 +19473,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>本地、Standalone、YARN、K8s 等。</p>\n<h2>参考回答</h2>\n<p>部署模式有本地调试、Standalone 集群、YARN、Kubernetes。生产常用 YARN 或 K8s，能统一管资源和高可用。</p>\n<h2>追问</h2>\n<ul>\n<li>生产上怎么选部署模式？</li>\n</ul>"
     },
     {
       "id": "FLINK-0034",
@@ -19486,7 +19486,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据流、转换算子、状态，流批一体。</p>\n<h2>参考回答</h2>\n<p>Flink 编程模型是数据流经过一系列算子转换，配合状态和窗口。核心抽象是 DataStream，批处理也被看成有界流，所以流批一体。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么批也是流？</li>\n</ul>"
     },
     {
       "id": "FLINK-0035",
@@ -19499,7 +19499,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>DataStream 流式，DataSet 批式，现在统一到 DataStream。</p>\n<h2>参考回答</h2>\n<p>DataStream 是流式 API，DataSet 是老的批式 API。Flink 后来把批处理也统一到 DataStream，DataSet 已废弃。有界流就是批。</p>\n<h2>追问</h2>\n<ul>\n<li>DataSet 为什么被废弃？</li>\n</ul>"
     },
     {
       "id": "FLINK-0036",
@@ -19512,7 +19512,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>StreamExecutionEnvironment 和老的 ExecutionEnvironment。</p>\n<h2>参考回答</h2>\n<p>Environment 是程序入口，流处理用 StreamExecutionEnvironment，老批处理用 ExecutionEnvironment。现在统一用 StreamExecutionEnvironment。</p>\n<h2>追问</h2>\n<ul>\n<li>环境里一般配置什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0037",
@@ -19525,7 +19525,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>一个批一个流，现在都走流式。</p>\n<h2>参考回答</h2>\n<p>ExecutionEnvironment 是批处理环境，StreamExecutionEnvironment 是流处理环境。Flink 统一后批也是有界流，都用 StreamExecutionEnvironment。</p>\n<h2>追问</h2>\n<ul>\n<li>环境对象怎么创建？</li>\n</ul>"
     },
     {
       "id": "FLINK-0038",
@@ -19538,7 +19538,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Kafka、文件、Socket、自定义 Source。</p>\n<h2>参考回答</h2>\n<p>Source 有 Kafka、文件、Socket、数据库 CDC、自定义。生产上 Kafka 和 CDC 最常用，通过 addSource 或 fromSource 接入。</p>\n<h2>追问</h2>\n<ul>\n<li>Kafka Source 怎么配？</li>\n</ul>"
     },
     {
       "id": "FLINK-0039",
@@ -19551,7 +19551,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>map、filter、keyBy、window、join 等。</p>\n<h2>参考回答</h2>\n<p>转换算子有 map、flatMap、filter、keyBy、reduce、window、join、union。keyBy 是分组的核心，会产生 keyed stream。</p>\n<h2>追问</h2>\n<ul>\n<li>keyBy 和 groupBy 的区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0040",
@@ -19564,7 +19564,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Kafka、文件、数据库、自定义 Sink。</p>\n<h2>参考回答</h2>\n<p>Sink 有 Kafka、文件、JDBC、各种 connector、自定义。输出要注意幂等和 exactly-once 配合。</p>\n<h2>追问</h2>\n<ul>\n<li>Sink 怎么保证 exactly-once？</li>\n</ul>"
     },
     {
       "id": "FLINK-0041",
@@ -19577,7 +19577,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 window 定义窗口，再聚合。</p>\n<h2>参考回答</h2>\n<p>窗口操作先 keyBy 分 key，再 window 指定窗口类型和大小，最后用聚合或 process 处理。窗口把无限流切成有限块算。</p>\n<h2>追问</h2>\n<ul>\n<li>窗口前为什么要 keyBy？</li>\n</ul>"
     },
     {
       "id": "FLINK-0042",
@@ -19590,7 +19590,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>事件时间、处理时间、摄入时间。</p>\n<h2>参考回答</h2>\n<p>事件时间是数据本身的时间戳，处理时间是算子处理时的系统时间，摄入时间是进 Flink 的时间。事件时间能正确处理乱序，最常用。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么事件时间最重要？</li>\n</ul>"
     },
     {
       "id": "FLINK-0043",
@@ -19603,7 +19603,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Watermark 标记事件时间进度，处理乱序和迟到。</p>\n<h2>参考回答</h2>\n<p>Watermark 是插入数据流里的时间标记，表示这个时间之前的数据都到了。按 watermark 触发窗口计算，配合允许迟到处理乱序数据。</p>\n<h2>追问</h2>\n<ul>\n<li>watermark 怎么生成？</li>\n</ul>"
     },
     {
       "id": "FLINK-0044",
@@ -19616,7 +19616,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用声明式方式写流处理和批处理。</p>\n<h2>参考回答</h2>\n<p>Table API 和 SQL 提供声明式编程，用表语义和 SQL 表达计算，底层转成 DataStream 执行。适合 SQL 熟悉的人，和批处理统一。</p>\n<h2>追问</h2>\n<ul>\n<li>SQL 和 DataStream 怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0045",
@@ -19629,7 +19629,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink SQL 面向流和实时，Hive 面向离线批。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 能处理流数据，支持事件时间、窗口、动态表，实时计算；Hive SQL 是离线批处理，面向 T+1。Flink SQL 也能查 Hive 表，但执行引擎和场景不同。</p>\n<h2>追问</h2>\n<ul>\n<li>Flink SQL 查 Hive 表怎么配？</li>\n</ul>"
     },
     {
       "id": "FLINK-0046",
@@ -19642,7 +19642,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 createTemporaryView 或 Catalog 注册表。</p>\n<h2>参考回答</h2>\n<p>注册表用 createTemporaryView 注册临时视图，或通过 Catalog 注册持久表。注册后就能在 SQL 里引用。</p>\n<h2>追问</h2>\n<ul>\n<li>临时表和持久表的区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0047",
@@ -19655,7 +19655,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>动态表是持续变化的表，流查询的结果。</p>\n<h2>参考回答</h2>\n<p>动态表就是随着数据流不断更新的表，Flink SQL 把流当成表处理，查询结果是另一个动态表。输出时转回流或写到外部。</p>\n<h2>追问</h2>\n<ul>\n<li>动态表和普通表什么区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0048",
@@ -19668,7 +19668,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Tumble、Hop、Session、Over 窗口。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 支持 Tumble 滚动窗口、Hop 滑动窗口、Session 会话窗口，还有 Over 窗口。跟流式窗口对应，配时间属性和 watermark 用。</p>\n<h2>追问</h2>\n<ul>\n<li>Tumble 和 Hop 的区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0049",
@@ -19681,7 +19681,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>事件时间用 watermark，处理时间用 proctime。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 里时间属性分事件时间和处理时间。事件时间列配 watermark，处理时间用 proctime() 生成。窗口和 join 都依赖时间属性。</p>\n<h2>追问</h2>\n<ul>\n<li>watermark 在 SQL 里怎么写？</li>\n</ul>"
     },
     {
       "id": "FLINK-0050",
@@ -19694,7 +19694,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 toDataStream 或 toRetractStream 转换。</p>\n<h2>参考回答</h2>\n<p>Table API 转 DataStream 用 toDataStream，流式结果转回 DataStream；聚合结果可以用 toRetractStream 处理更新和撤回。反过来 DataStream 用 fromDataStream 转 Table。</p>\n<h2>追问</h2>\n<ul>\n<li>撤回流是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0051",
@@ -19707,7 +19707,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Catalog 管理元数据，存表、数据库、函数。</p>\n<h2>参考回答</h2>\n<p>Catalog 是 Flink 的元数据管理，存数据库、表、视图、函数的定义。对接 Hive Metastore 就能复用 Hive 元数据。</p>\n<h2>追问</h2>\n<ul>\n<li>Catalog 有哪几种？</li>\n</ul>"
     },
     {
       "id": "FLINK-0052",
@@ -19720,7 +19720,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SQL 解析、优化、转执行图执行。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 先解析成逻辑计划，经过优化器做规则和成本优化，再转成物理执行图，最后翻译成 DataStream 或批任务执行。</p>\n<h2>追问</h2>\n<ul>\n<li>Flink 的优化器叫什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0053",
@@ -19733,7 +19733,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 planner 优化、合理窗口、减少状态、调资源。</p>\n<h2>参考回答</h2>\n<p>优化 SQL 主要靠优化器自动做谓词下推、join 优化，手动层面合理设窗口、控制状态大小、调并行度和资源。先看执行计划。</p>\n<h2>追问</h2>\n<ul>\n<li>SQL 执行计划怎么看？</li>\n</ul>"
     },
     {
       "id": "FLINK-0054",

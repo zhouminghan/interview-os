@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+map、filter、keyBy、window、join 等。
+
+# 参考回答
+
+转换算子有 map、flatMap、filter、keyBy、reduce、window、join、union。keyBy 是分组的核心，会产生 keyed stream。
+
+# 追问
+
+- keyBy 和 groupBy 的区别？
