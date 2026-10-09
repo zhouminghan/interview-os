@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+看 Flink UI 的 checkpoint 页和日志。
+
+# 参考回答
+
+监控 checkpoint 看 Flink UI 的 checkpoint 页面，能看到成功率、耗时、大小。失败看日志定位是超时还是状态太大。checkpoint 持续失败要重视，说明恢复不可靠。
+
+# 追问
+
+- checkpoint 失败怎么排查？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 RocksDB、状态 TTL、增量 checkpoint。
+
+# 参考回答
+
+大规模状态用 RocksDB 存到磁盘，配合增量 checkpoint 减少快照开销，用状态 TTL 清理过期状态，再加合理并行度分散状态。核心是别让状态无限膨胀。
+
+# 追问
+
+- 状态太大有哪些风险？

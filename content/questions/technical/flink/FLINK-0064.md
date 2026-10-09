@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+checkpoint 快照状态，故障从快照恢复。
+
+# 参考回答
+
+Flink 容错靠 checkpoint 定期对状态做一致性快照，存到可靠存储。任务挂了按重启策略从最近 checkpoint 恢复状态和 offset，继续处理。配合 source 重放实现 exactly-once。
+
+# 追问
+
+- 恢复会丢数据吗？

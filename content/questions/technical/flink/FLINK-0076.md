@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+继承 WindowAssigner 实现窗口分配逻辑。
+
+# 参考回答
+
+自定义窗口分配器要继承 WindowAssigner，实现 assignWindows 决定每条数据进哪些窗口，以及触发器等。一般内置窗口够用，特殊窗口语义才自定义。
+
+# 追问
+
+- 自定义分配器要实现什么？

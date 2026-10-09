@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+配 allowed lateness 容忍，超时走侧输出。
+
+# 参考回答
+
+晚到数据用 allowedLateness 允许窗口晚点关闭，迟到的数据更新结果；超过这个时间的走侧输出单独处理或丢弃。要权衡准确性和状态占用。
+
+# 追问
+
+- allowedLateness 会带来什么代价？

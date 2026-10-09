@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+不等待对齐，直接快照，减少阻塞。
+
+# 参考回答
+
+Unaligned checkpoint 是检查点不对齐，barrier 到了就快照，没到的数据也一起存进快照，避免等慢流阻塞。适合高吞吐或反压场景，代价是 checkpoint 稍大。
+
+# 追问
+
+- 什么时候用 Unaligned checkpoint？

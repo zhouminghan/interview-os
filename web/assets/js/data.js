@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:27:41+08:00",
+  "generatedAt": "2026-10-09T16:29:29+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -19746,7 +19746,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Keyed State 和 Operator State 两大类。</p>\n<h2>参考回答</h2>\n<p>Flink 状态分 Keyed State 和 Operator State。Keyed State 按 key 隔离，跟 keyBy 配合；Operator State 是算子级别，不按 key 分。还有 Broadcast State 广播到所有实例。</p>\n<h2>追问</h2>\n<ul>\n<li>三类状态分别什么场景用？</li>\n</ul>"
     },
     {
       "id": "FLINK-0055",
@@ -19759,7 +19759,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Keyed State 按 key 隔离，Operator State 不按 key。</p>\n<h2>参考回答</h2>\n<p>Keyed State 每个 key 独立一份状态，只能在 keyBy 后的 keyed stream 用；Operator State 是整个算子实例的状态，和 key 无关。Keyed State 更常用，适合聚合类状态。</p>\n<h2>追问</h2>\n<ul>\n<li>Operator State 适合什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0056",
@@ -19772,7 +19772,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>单值、列表、映射三种 Keyed State 类型。</p>\n<h2>参考回答</h2>\n<p>ValueState 存单个值，ListState 存列表，MapState 存键值对。选型看状态结构：一个值用 Value，多条用 List，按 key 查用 Map。MapState 遍历效率比 List 好。</p>\n<h2>追问</h2>\n<ul>\n<li>状态类型怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0057",
@@ -19785,7 +19785,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠 checkpoint 做一致快照，恢复时回放。</p>\n<h2>参考回答</h2>\n<p>Flink 靠 checkpoint 对状态做一致性快照，定期把状态和位置存下来，故障后从快照恢复。配合 source 重放和 sink 幂等，能保证状态和结果一致。</p>\n<h2>追问</h2>\n<ul>\n<li>一致性快照怎么做到？</li>\n</ul>"
     },
     {
       "id": "FLINK-0058",
@@ -19798,7 +19798,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>内存、文件、RocksDB 三种状态后端。</p>\n<h2>参考回答</h2>\n<p>状态后端有内存、文件、RocksDB。内存快但容量小、易丢；文件能落盘但性能一般；RocksDB 能存超大状态、支持增量 checkpoint，生产大状态首选。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么大状态用 RocksDB？</li>\n</ul>"
     },
     {
       "id": "FLINK-0059",
@@ -19811,7 +19811,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>只备份变化的部分，RocksDB 支持。</p>\n<h2>参考回答</h2>\n<p>增量检查点只把新增或变化的状态写出去，不全量快照。RocksDB 状态后端支持，大幅减少 checkpoint 的 IO 和时间，适合超大状态。</p>\n<h2>追问</h2>\n<ul>\n<li>增量 checkpoint 有什么好处？</li>\n</ul>"
     },
     {
       "id": "FLINK-0060",
@@ -19824,7 +19824,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>给状态设过期时间，自动清理。</p>\n<h2>参考回答</h2>\n<p>状态 TTL 是给状态设置存活时间，超过就自动清理，防止状态无限增长。配置 StateTtlConfig，指定过期时间和清理策略。注意 TTL 用处理时间还是事件时间。</p>\n<h2>追问</h2>\n<ul>\n<li>状态不清理会怎样？</li>\n</ul>"
     },
     {
       "id": "FLINK-0061",
@@ -19837,7 +19837,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 RocksDB、状态 TTL、增量 checkpoint。</p>\n<h2>参考回答</h2>\n<p>大规模状态用 RocksDB 存到磁盘，配合增量 checkpoint 减少快照开销，用状态 TTL 清理过期状态，再加合理并行度分散状态。核心是别让状态无限膨胀。</p>\n<h2>追问</h2>\n<ul>\n<li>状态太大有哪些风险？</li>\n</ul>"
     },
     {
       "id": "FLINK-0062",
@@ -19850,7 +19850,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从 checkpoint 或 savepoint 恢复状态和 offset。</p>\n<h2>参考回答</h2>\n<p>状态恢复就是从 checkpoint 或 savepoint 里加载状态快照和消费位点，重新启动任务从上次位置继续。恢复耗时取决于状态大小和存储位置。</p>\n<h2>追问</h2>\n<ul>\n<li>checkpoint 和 savepoint 恢复有区别吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0063",
@@ -19863,7 +19863,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>外部直接查询 Flink 的运行时状态。</p>\n<h2>参考回答</h2>\n<p>Queryable State 允许外部系统直接查询 Flink 正在运行的状态，不用额外写出去。比如实时查某个 key 的当前聚合值。但使用要小心，别暴露太多状态影响性能。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么现在用得少？</li>\n</ul>"
     },
     {
       "id": "FLINK-0064",
@@ -19876,7 +19876,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>checkpoint 快照状态，故障从快照恢复。</p>\n<h2>参考回答</h2>\n<p>Flink 容错靠 checkpoint 定期对状态做一致性快照，存到可靠存储。任务挂了按重启策略从最近 checkpoint 恢复状态和 offset，继续处理。配合 source 重放实现 exactly-once。</p>\n<h2>追问</h2>\n<ul>\n<li>恢复会丢数据吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0065",
@@ -19889,7 +19889,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>checkpoint 自动周期做，savepoint 手动触发可迁移。</p>\n<h2>参考回答</h2>\n<p>checkpoint 是自动周期性的，用于故障恢复，可被系统清理；savepoint 是手动触发的，用于升级、迁移、手动回滚，不会被自动删。savepoint 更稳定，支持跨版本恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>升级作业为什么要 savepoint？</li>\n</ul>"
     },
     {
       "id": "FLINK-0066",
@@ -19902,7 +19902,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多流算子等所有输入都到 barrier 再快照。</p>\n<h2>参考回答</h2>\n<p>检查点对齐是多输入算子要等所有输入的 barrier 都到了，再对状态做快照，保证一致性。代价是快的流要等慢的流，会阻塞。Unaligned checkpoint 就是解决这个。</p>\n<h2>追问</h2>\n<ul>\n<li>对齐为什么会阻塞？</li>\n</ul>"
     },
     {
       "id": "FLINK-0067",
@@ -19915,7 +19915,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>checkpoint 加可重放 source 加事务性 sink。</p>\n<h2>参考回答</h2>\n<p>Exactly-once 靠三块：checkpoint 保证状态一致，source 能重放，sink 用两阶段提交或幂等写。三者配合，故障恢复后既不丢也不重。端到端 exactly-once 要看 sink 支不支持。</p>\n<h2>追问</h2>\n<ul>\n<li>两阶段提交是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0068",
@@ -19928,7 +19928,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>不等待对齐，直接快照，减少阻塞。</p>\n<h2>参考回答</h2>\n<p>Unaligned checkpoint 是检查点不对齐，barrier 到了就快照，没到的数据也一起存进快照，避免等慢流阻塞。适合高吞吐或反压场景，代价是 checkpoint 稍大。</p>\n<h2>追问</h2>\n<ul>\n<li>什么时候用 Unaligned checkpoint？</li>\n</ul>"
     },
     {
       "id": "FLINK-0069",
@@ -19941,7 +19941,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>设 checkpoint 间隔和超时参数。</p>\n<h2>参考回答</h2>\n<p>配置 checkpoint 的间隔时间、超时时间、并发数这些参数。间隔按业务可容忍的数据丢失窗口设，超时要够快照完成。间隔太短频繁快照有开销，太长恢复丢得多。</p>\n<h2>追问</h2>\n<ul>\n<li>间隔设多少合适？</li>\n</ul>"
     },
     {
       "id": "FLINK-0070",
@@ -19954,7 +19954,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>指定 checkpoint 路径，启动时自动恢复。</p>\n<h2>参考回答</h2>\n<p>恢复步骤：启动时指定 checkpoint 或 savepoint 路径，Flink 加载状态快照和 offset，重建任务图，从保存的位置继续消费。可以指定从哪个 savepoint 恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么指定从 savepoint 启动？</li>\n</ul>"
     },
     {
       "id": "FLINK-0071",
@@ -19967,7 +19967,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>固定延迟、失败率、无限重启、不重启。</p>\n<h2>参考回答</h2>\n<p>重启策略有固定延迟重启、失败率重启、无限重启、不重启。生产常用失败率策略，按时间窗口内失败次数重启。要配 checkpoint 才能恢复状态。</p>\n<h2>追问</h2>\n<ul>\n<li>重启策略和 checkpoint 什么关系？</li>\n</ul>"
     },
     {
       "id": "FLINK-0072",
@@ -19980,7 +19980,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>保留最近几个 checkpoint，旧的自动清理。</p>\n<h2>参考回答</h2>\n<p>检查点清理策略是配置保留多少个 checkpoint，超出的自动删除，避免占满存储。一般保留最近几个，同时留一个 savepoint 用于手动回滚。别全清，否则没得恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>保留几个 checkpoint 合适？</li>\n</ul>"
     },
     {
       "id": "FLINK-0073",
@@ -19993,7 +19993,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看 Flink UI 的 checkpoint 页和日志。</p>\n<h2>参考回答</h2>\n<p>监控 checkpoint 看 Flink UI 的 checkpoint 页面，能看到成功率、耗时、大小。失败看日志定位是超时还是状态太大。checkpoint 持续失败要重视，说明恢复不可靠。</p>\n<h2>追问</h2>\n<ul>\n<li>checkpoint 失败怎么排查？</li>\n</ul>"
     },
     {
       "id": "FLINK-0074",
@@ -20006,7 +20006,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>滚动、滑动、会话、全局窗口。</p>\n<h2>参考回答</h2>\n<p>窗口有滚动窗口固定大小不重叠、滑动窗口有步长、会话窗口按活跃间隔、全局窗口所有数据一个窗口。窗口把无限流切成有限块做计算。</p>\n<h2>追问</h2>\n<ul>\n<li>全局窗口什么时候用？</li>\n</ul>"
     },
     {
       "id": "FLINK-0075",
@@ -20019,7 +20019,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>滚动不重叠，滑动有重叠，会话按活跃间隔。</p>\n<h2>参考回答</h2>\n<p>滚动窗口固定大小、不重叠；滑动窗口固定大小加滑动步长，可能重叠；会话窗口按数据活跃间隔动态切分，没有固定长度。选型看业务统计的时间粒度。</p>\n<h2>追问</h2>\n<ul>\n<li>会话窗口适合什么场景？</li>\n</ul>"
     },
     {
       "id": "FLINK-0076",
@@ -20032,7 +20032,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>继承 WindowAssigner 实现窗口分配逻辑。</p>\n<h2>参考回答</h2>\n<p>自定义窗口分配器要继承 WindowAssigner，实现 assignWindows 决定每条数据进哪些窗口，以及触发器等。一般内置窗口够用，特殊窗口语义才自定义。</p>\n<h2>追问</h2>\n<ul>\n<li>自定义分配器要实现什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0077",
@@ -20045,7 +20045,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>增量聚合和全量处理两大类。</p>\n<h2>参考回答</h2>\n<p>窗口函数分增量聚合，比如 reduce、aggregate，来一条算一条省内存；和全量 process，攒齐整个窗口再处理，灵活但占内存。能增量就增量，省状态。</p>\n<h2>追问</h2>\n<ul>\n<li>reduce 和 process 怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0078",
@@ -20058,7 +20058,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>触发器决定窗口什么时候计算和清理。</p>\n<h2>参考回答</h2>\n<p>Trigger 决定窗口什么时候触发计算，默认是 watermark 超过窗口结束时间就触发。也可以自定义，比如按数量、按时间提前触发。触发后还可决定是否保留窗口数据。</p>\n<h2>追问</h2>\n<ul>\n<li>默认触发器怎么触发？</li>\n</ul>"
     },
     {
       "id": "FLINK-0079",
@@ -20071,7 +20071,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Evictor 在计算前后移除窗口里的数据。</p>\n<h2>参考回答</h2>\n<p>Evictor 是窗口触发时，在计算前或后移除部分元素，比如只保留最后 N 条。一般用于特殊需求，会破坏增量聚合的省内存优势，尽量少用。</p>\n<h2>追问</h2>\n<ul>\n<li>Evictor 为什么影响性能？</li>\n</ul>"
     },
     {
       "id": "FLINK-0080",
@@ -20084,7 +20084,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配 allowed lateness 容忍，超时走侧输出。</p>\n<h2>参考回答</h2>\n<p>晚到数据用 allowedLateness 允许窗口晚点关闭，迟到的数据更新结果；超过这个时间的走侧输出单独处理或丢弃。要权衡准确性和状态占用。</p>\n<h2>追问</h2>\n<ul>\n<li>allowedLateness 会带来什么代价？</li>\n</ul>"
     },
     {
       "id": "FLINK-0081",
@@ -20097,7 +20097,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>周期性生成和间断生成，按最大事件时间或乱序容忍。</p>\n<h2>参考回答</h2>\n<p>Watermark 生成有周期性的和间断的，常用按最大事件时间减乱序容忍延迟生成。可以设置乱序延迟，比如允许迟到 5 秒。生成器选对直接影响窗口准确性和延迟。</p>\n<h2>追问</h2>\n<ul>\n<li>乱序容忍设多少？</li>\n</ul>"
     },
     {
       "id": "FLINK-0082",
@@ -20110,7 +20110,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多流 join 或 union 用最慢流的 watermark 对齐。</p>\n<h2>参考回答</h2>\n<p>多流时间对齐，比如双流 join，watermark 取所有输入流里最慢的，保证不会提前触发导致漏数据。各自流的 watermark 推进，算子用最小的那个。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么取最慢的 watermark？</li>\n</ul>"
     },
     {
       "id": "FLINK-0083",
@@ -20123,7 +20123,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实现 WatermarkGenerator 接口。</p>\n<h2>参考回答</h2>\n<p>自定义水位线生成器要实现 WatermarkGenerator，写 onEvent 和 onPeriodicEmit，按事件时间或周期生成 watermark。配合 assignTimestampsAndWatermarks 使用。</p>\n<h2>追问</h2>\n<ul>\n<li>onEvent 和 onPeriodicEmit 区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0084",

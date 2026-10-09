@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+指定 checkpoint 路径，启动时自动恢复。
+
+# 参考回答
+
+恢复步骤：启动时指定 checkpoint 或 savepoint 路径，Flink 加载状态快照和 offset，重建任务图，从保存的位置继续消费。可以指定从哪个 savepoint 恢复。
+
+# 追问
+
+- 怎么指定从 savepoint 启动？

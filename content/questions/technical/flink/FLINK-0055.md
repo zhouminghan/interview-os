@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Keyed State 按 key 隔离，Operator State 不按 key。
+
+# 参考回答
+
+Keyed State 每个 key 独立一份状态，只能在 keyBy 后的 keyed stream 用；Operator State 是整个算子实例的状态，和 key 无关。Keyed State 更常用，适合聚合类状态。
+
+# 追问
+
+- Operator State 适合什么？
