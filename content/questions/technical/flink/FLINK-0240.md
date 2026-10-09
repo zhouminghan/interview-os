@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+配 topic、bootstrap servers、format。
+
+# 参考回答
+
+Kafka 连接器在 DDL 里配 topic、bootstrap.servers、format，还有 offset、group id 这些。Source 和 Sink 都要配 format 序列化格式。
+
+# 追问
+
+- Kafka format 怎么选？

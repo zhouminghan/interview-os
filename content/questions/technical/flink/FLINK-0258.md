@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 EXPLAIN 看执行计划。
+
+# 参考回答
+
+SQL Client 里用 EXPLAIN 看查询的执行计划，分析算子和优化结果。定位性能和理解执行逻辑。
+
+# 追问
+
+- 执行计划里看什么？

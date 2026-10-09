@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+表函数，一行输入多行输出。
+
+# 参考回答
+
+TableFunction 是表值函数，一行输入产生多行输出。用 collect 收集结果。LATERAL TABLE 关联使用，做行展开。
+
+# 追问
+
+- LATERAL TABLE 是什么？

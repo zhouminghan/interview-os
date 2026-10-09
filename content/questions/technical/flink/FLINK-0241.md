@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 HBase Connector 配表名和 zookeeper。
+
+# 参考回答
+
+HBase 读写用 HBase Connector，配表名、zookeeper quorum、列族。可以做 lookup 维表和 sink。注意 HBase 是行存，适合点查。
+
+# 追问
+
+- HBase 适合什么场景？

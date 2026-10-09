@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+继承 AggregateFunction，实现累加和结果。
+
+# 参考回答
+
+UDAF 继承 AggregateFunction，实现累加器、accumulate 累加、getResult 返回结果。比标量 UDF 复杂，用于自定义聚合。
+
+# 追问
+
+- UDAF 要实现哪些方法？

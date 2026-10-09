@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+配 hosts 和 index，写文档或查索引。
+
+# 参考回答
+
+ES 连接器配 hosts、index，Sink 写文档，Source 读索引。批量写、控制刷新，避免频繁小写入。
+
+# 追问
+
+- ES sink 怎么批量写？

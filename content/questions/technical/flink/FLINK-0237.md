@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+靠 watermark 和 allowed lateness 处理。
+
+# 参考回答
+
+迟到数据处理靠 watermark 容忍乱序，超出 watermark 但还在 allowed lateness 内的数据更新结果，再超出的丢弃或侧输出。
+
+# 追问
+
+- 迟到数据侧输出怎么做？

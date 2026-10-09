@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 PyFlink 定义，注册后在 SQL 用。
+
+# 参考回答
+
+Python UDF 在 PyFlink 里用 udf 装饰器定义，注册后 SQL 调用。注意性能，频繁调用会有跨语言开销，能用内置函数就用内置。
+
+# 追问
+
+- Python UDF 性能怎么样？

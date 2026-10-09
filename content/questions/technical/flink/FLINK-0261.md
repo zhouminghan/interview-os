@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+继承 WindowFunction 或 AggregateFunction。
+
+# 参考回答
+
+自定义窗口聚合用 AggregateFunction 做增量聚合，或 WindowFunction 做全量窗口处理。复杂窗口逻辑用 process 处理。
+
+# 追问
+
+- 增量聚合和全量怎么选？

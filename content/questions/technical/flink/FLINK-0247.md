@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+继承 ScalarFunction，注册后 SQL 用。
+
+# 参考回答
+
+创建 UDF 继承 ScalarFunction，实现 eval 方法，用 createFunction 注册后 SQL 里调用。注意类型和序列化。
+
+# 追问
+
+- eval 方法怎么定义？

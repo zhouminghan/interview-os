@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+命令行客户端，交互式跑 SQL。
+
+# 参考回答
+
+Flink SQL Client 是命令行客户端，直接提交 SQL 查询和作业。配置好环境就能交互式跑，不用写 Java 代码。
+
+# 追问
+
+- SQL Client 适合什么场景？

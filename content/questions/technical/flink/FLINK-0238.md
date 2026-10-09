@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Group Window 老写法，TVF 新写法更灵活。
+
+# 参考回答
+
+Group Window 是老的窗口写法，嵌在 group by 里；Window TVF 是新的表值函数写法，把窗口独立出来，能做窗口 join 等更复杂的操作。
+
+# 追问
+
+- 为什么推荐 Window TVF？

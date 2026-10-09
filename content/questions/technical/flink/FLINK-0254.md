@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 USE CATALOG 和 SHOW 命令管理。
+
+# 参考回答
+
+SQL Client 里用 USE CATALOG、SHOW CATALOGS、SHOW TABLES 这些管理 Catalog 和表。配置文件里可以注册多个 Catalog。
+
+# 追问
+
+- 怎么切换 Catalog？

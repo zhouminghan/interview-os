@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 YAML 配环境，定义表和函数。
+
+# 参考回答
+
+环境配置文件是 YAML 格式，配置执行参数、Catalog、表、函数。SQL Client 启动时加载，省得每次手动建表。
+
+# 追问
+
+- 环境文件里配什么？

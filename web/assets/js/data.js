@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:39:49+08:00",
+  "generatedAt": "2026-10-09T16:41:57+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -22086,7 +22086,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 HOP 函数加窗口大小和滑动步长。</p>\n<h2>参考回答</h2>\n<p>滑动窗口用 HOP(时间列, 滑动步长, 窗口大小) 定义。窗口有重叠，步长小于窗口大小。适合需要连续滚动的统计。</p>\n<h2>追问</h2>\n<ul>\n<li>滑动窗口什么时候重叠？</li>\n</ul>"
     },
     {
       "id": "FLINK-0235",
@@ -22099,7 +22099,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 SESSION 函数加活跃间隔。</p>\n<h2>参考回答</h2>\n<p>会话窗口用 SESSION(时间列, 活跃间隔) 定义，按数据活跃间隔动态切分，没有固定大小。适合用户会话这类场景。</p>\n<h2>追问</h2>\n<ul>\n<li>会话窗口怎么切分？</li>\n</ul>"
     },
     {
       "id": "FLINK-0236",
@@ -22112,7 +22112,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>窗口表值函数，更灵活地定义窗口。</p>\n<h2>参考回答</h2>\n<p>窗口 TVF 是把窗口作为表值函数，比如 TUMBLE、HOP、CUMULATE，返回窗口表。比老 Group Window 更灵活，能单独处理窗口元数据。</p>\n<h2>追问</h2>\n<ul>\n<li>窗口 TVF 和 Group Window 区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0237",
@@ -22125,7 +22125,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠 watermark 和 allowed lateness 处理。</p>\n<h2>参考回答</h2>\n<p>迟到数据处理靠 watermark 容忍乱序，超出 watermark 但还在 allowed lateness 内的数据更新结果，再超出的丢弃或侧输出。</p>\n<h2>追问</h2>\n<ul>\n<li>迟到数据侧输出怎么做？</li>\n</ul>"
     },
     {
       "id": "FLINK-0238",
@@ -22138,7 +22138,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Group Window 老写法，TVF 新写法更灵活。</p>\n<h2>参考回答</h2>\n<p>Group Window 是老的窗口写法，嵌在 group by 里；Window TVF 是新的表值函数写法，把窗口独立出来，能做窗口 join 等更复杂的操作。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么推荐 Window TVF？</li>\n</ul>"
     },
     {
       "id": "FLINK-0239",
@@ -22151,7 +22151,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Kafka、JDBC、File、ES、HBase 等。</p>\n<h2>参考回答</h2>\n<p>内置连接器有 Kafka、JDBC、File System、Elasticsearch、HBase、DataGen、Hive 等。按数据源和 sink 类型选。</p>\n<h2>追问</h2>\n<ul>\n<li>实时场景最常用哪个？</li>\n</ul>"
     },
     {
       "id": "FLINK-0240",
@@ -22164,7 +22164,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配 topic、bootstrap servers、format。</p>\n<h2>参考回答</h2>\n<p>Kafka 连接器在 DDL 里配 topic、bootstrap.servers、format，还有 offset、group id 这些。Source 和 Sink 都要配 format 序列化格式。</p>\n<h2>追问</h2>\n<ul>\n<li>Kafka format 怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0241",
@@ -22177,7 +22177,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 HBase Connector 配表名和 zookeeper。</p>\n<h2>参考回答</h2>\n<p>HBase 读写用 HBase Connector，配表名、zookeeper quorum、列族。可以做 lookup 维表和 sink。注意 HBase 是行存，适合点查。</p>\n<h2>追问</h2>\n<ul>\n<li>HBase 适合什么场景？</li>\n</ul>"
     },
     {
       "id": "FLINK-0242",
@@ -22190,7 +22190,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配 url、表名、账号密码读写关系库。</p>\n<h2>参考回答</h2>\n<p>JDBC 连接器配 url、表名、用户名密码，Source 读表、Sink 写表、lookup 关联维表。批量写要配 batch size。</p>\n<h2>追问</h2>\n<ul>\n<li>lookup 和 sink 有什么不同？</li>\n</ul>"
     },
     {
       "id": "FLINK-0243",
@@ -22203,7 +22203,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配 hosts 和 index，写文档或查索引。</p>\n<h2>参考回答</h2>\n<p>ES 连接器配 hosts、index，Sink 写文档，Source 读索引。批量写、控制刷新，避免频繁小写入。</p>\n<h2>追问</h2>\n<ul>\n<li>ES sink 怎么批量写？</li>\n</ul>"
     },
     {
       "id": "FLINK-0244",
@@ -22216,7 +22216,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配路径和 format，读写文件。</p>\n<h2>参考回答</h2>\n<p>文件系统连接器配 path 和 format，读写本地、HDFS、S3 文件。format 常用 CSV、JSON、Parquet。适合文件流转。</p>\n<h2>追问</h2>\n<ul>\n<li>文件 format 怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0245",
@@ -22229,7 +22229,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>生成测试数据，配行数和字段。</p>\n<h2>参考回答</h2>\n<p>DataGen 连接器生成测试数据，配字段和生成速率，用于本地调试和压测。不用真实数据源就能跑通 SQL。</p>\n<h2>追问</h2>\n<ul>\n<li>DataGen 什么时候用？</li>\n</ul>"
     },
     {
       "id": "FLINK-0246",
@@ -22242,7 +22242,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>字符串、数学、时间、聚合等函数。</p>\n<h2>参考回答</h2>\n<p>内置函数有字符串、数学、日期时间、聚合、条件判断这些。像 concat、datediff、sum、if 都常用。跟标准 SQL 类似。</p>\n<h2>追问</h2>\n<ul>\n<li>常用字符串函数有哪些？</li>\n</ul>"
     },
     {
       "id": "FLINK-0247",
@@ -22255,7 +22255,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>继承 ScalarFunction，注册后 SQL 用。</p>\n<h2>参考回答</h2>\n<p>创建 UDF 继承 ScalarFunction，实现 eval 方法，用 createFunction 注册后 SQL 里调用。注意类型和序列化。</p>\n<h2>追问</h2>\n<ul>\n<li>eval 方法怎么定义？</li>\n</ul>"
     },
     {
       "id": "FLINK-0248",
@@ -22268,7 +22268,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>继承 AggregateFunction，实现累加和结果。</p>\n<h2>参考回答</h2>\n<p>UDAF 继承 AggregateFunction，实现累加器、accumulate 累加、getResult 返回结果。比标量 UDF 复杂，用于自定义聚合。</p>\n<h2>追问</h2>\n<ul>\n<li>UDAF 要实现哪些方法？</li>\n</ul>"
     },
     {
       "id": "FLINK-0249",
@@ -22281,7 +22281,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>继承 TableFunction，一条进多条出。</p>\n<h2>参考回答</h2>\n<p>UDTF 继承 TableFunction，实现 eval 方法，用 collect 输出多行。一条输入拆成多条输出，像 explode 就是内置的 UDTF。</p>\n<h2>追问</h2>\n<ul>\n<li>UDTF 怎么在 SQL 里用？</li>\n</ul>"
     },
     {
       "id": "FLINK-0250",
@@ -22294,7 +22294,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>表函数，一行输入多行输出。</p>\n<h2>参考回答</h2>\n<p>TableFunction 是表值函数，一行输入产生多行输出。用 collect 收集结果。LATERAL TABLE 关联使用，做行展开。</p>\n<h2>追问</h2>\n<ul>\n<li>LATERAL TABLE 是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0251",
@@ -22307,7 +22307,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 PyFlink 定义，注册后在 SQL 用。</p>\n<h2>参考回答</h2>\n<p>Python UDF 在 PyFlink 里用 udf 装饰器定义，注册后 SQL 调用。注意性能，频繁调用会有跨语言开销，能用内置函数就用内置。</p>\n<h2>追问</h2>\n<ul>\n<li>Python UDF 性能怎么样？</li>\n</ul>"
     },
     {
       "id": "FLINK-0252",
@@ -22320,7 +22320,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>命令行客户端，交互式跑 SQL。</p>\n<h2>参考回答</h2>\n<p>Flink SQL Client 是命令行客户端，直接提交 SQL 查询和作业。配置好环境就能交互式跑，不用写 Java 代码。</p>\n<h2>追问</h2>\n<ul>\n<li>SQL Client 适合什么场景？</li>\n</ul>"
     },
     {
       "id": "FLINK-0253",
@@ -22333,7 +22333,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>启动后输入 SQL 执行。</p>\n<h2>参考回答</h2>\n<p>SQL Client 启动后进入交互模式，输入 SQL 回车执行。可以建表、查数据、提交流作业。适合调试和探索。</p>\n<h2>追问</h2>\n<ul>\n<li>交互模式怎么退出？</li>\n</ul>"
     },
     {
       "id": "FLINK-0254",
@@ -22346,7 +22346,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 USE CATALOG 和 SHOW 命令管理。</p>\n<h2>参考回答</h2>\n<p>SQL Client 里用 USE CATALOG、SHOW CATALOGS、SHOW TABLES 这些管理 Catalog 和表。配置文件里可以注册多个 Catalog。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么切换 Catalog？</li>\n</ul>"
     },
     {
       "id": "FLINK-0255",
@@ -22359,7 +22359,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 YAML 配环境，定义表和函数。</p>\n<h2>参考回答</h2>\n<p>环境配置文件是 YAML 格式，配置执行参数、Catalog、表、函数。SQL Client 启动时加载，省得每次手动建表。</p>\n<h2>追问</h2>\n<ul>\n<li>环境文件里配什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0256",
@@ -22372,7 +22372,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 SET 和变量传参数。</p>\n<h2>参考回答</h2>\n<p>SQL Client 支持 SET 设置参数，也支持参数化查询传变量。用于配置执行参数和复用查询。</p>\n<h2>追问</h2>\n<ul>\n<li>SET 能设哪些参数？</li>\n</ul>"
     },
     {
       "id": "FLINK-0257",
@@ -22385,7 +22385,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 -f 指定 SQL 文件执行。</p>\n<h2>参考回答</h2>\n<p>用 sql-client -f 指定 SQL 文件，批量执行文件里的语句。适合部署和批量初始化。</p>\n<h2>追问</h2>\n<ul>\n<li>批量执行适合什么场景？</li>\n</ul>"
     },
     {
       "id": "FLINK-0258",
@@ -22398,7 +22398,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 EXPLAIN 看执行计划。</p>\n<h2>参考回答</h2>\n<p>SQL Client 里用 EXPLAIN 看查询的执行计划，分析算子和优化结果。定位性能和理解执行逻辑。</p>\n<h2>追问</h2>\n<ul>\n<li>执行计划里看什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0259",
@@ -22411,7 +22411,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>关联版本表，取某个时间的维度快照。</p>\n<h2>参考回答</h2>\n<p>Temporal Table Join 是关联版本化维表，按事件时间取对应版本的维度数据。适合缓慢变化维的场景，关联历史准确的维度。</p>\n<h2>追问</h2>\n<ul>\n<li>temporal join 和普通 join 区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0260",
@@ -22424,7 +22424,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 temporal join 或 lookup join 关联维表。</p>\n<h2>参考回答</h2>\n<p>流和维度表关联用 temporal join 关联版本表，或用 lookup join 实时查外部维表。维表小可以缓存，大的走外部查询。</p>\n<h2>追问</h2>\n<ul>\n<li>lookup join 怎么缓存维表？</li>\n</ul>"
     },
     {
       "id": "FLINK-0261",
@@ -22437,7 +22437,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>继承 WindowFunction 或 AggregateFunction。</p>\n<h2>参考回答</h2>\n<p>自定义窗口聚合用 AggregateFunction 做增量聚合，或 WindowFunction 做全量窗口处理。复杂窗口逻辑用 process 处理。</p>\n<h2>追问</h2>\n<ul>\n<li>增量聚合和全量怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0262",
@@ -22450,7 +22450,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠状态存窗口数据，watermark 触发计算。</p>\n<h2>参考回答</h2>\n<p>窗口聚合内部用状态保存窗口内的数据或增量聚合结果，watermark 到达窗口结束时触发计算和输出，然后清理状态。</p>\n<h2>追问</h2>\n<ul>\n<li>窗口状态什么时候清理？</li>\n</ul>"
     },
     {
       "id": "FLINK-0263",
@@ -22463,7 +22463,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多维度分组加窗口，配合预聚合。</p>\n<h2>参考回答</h2>\n<p>多维分析在 Flink SQL 里做多维度分组聚合，配窗口做时间切片。实时 OLAP 一般 Flink 算，再写查询层做多维下钻。</p>\n<h2>追问</h2>\n<ul>\n<li>实时 OLAP 的典型链路？</li>\n</ul>"
     },
     {
       "id": "FLINK-0264",

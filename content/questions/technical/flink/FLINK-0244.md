@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+配路径和 format，读写文件。
+
+# 参考回答
+
+文件系统连接器配 path 和 format，读写本地、HDFS、S3 文件。format 常用 CSV、JSON、Parquet。适合文件流转。
+
+# 追问
+
+- 文件 format 怎么选？

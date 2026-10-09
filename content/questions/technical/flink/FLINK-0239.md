@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Kafka、JDBC、File、ES、HBase 等。
+
+# 参考回答
+
+内置连接器有 Kafka、JDBC、File System、Elasticsearch、HBase、DataGen、Hive 等。按数据源和 sink 类型选。
+
+# 追问
+
+- 实时场景最常用哪个？
