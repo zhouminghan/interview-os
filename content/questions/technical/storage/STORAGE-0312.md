@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Observer 钩子嵌入操作前后。
+
+# 参考回答
+
+RegionObserver 是协处理器，把钩子嵌入 get、put、scan 等操作前后，执行自定义逻辑。用于二级索引、审计、权限校验这些。
+
+# 追问
+
+- Observer 有什么坑？

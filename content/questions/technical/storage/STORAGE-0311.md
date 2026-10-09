@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+列族配压缩，写 HFile 时压缩。
+
+# 参考回答
+
+压缩在列族配置，写 HFile 时按算法压缩数据块。读时解压。Snappy、LZ4 快，GZIP 压缩高。压缩省 IO 和存储，费 CPU。
+
+# 追问
+
+- 压缩在哪发生？

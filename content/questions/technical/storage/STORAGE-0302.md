@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+单行操作天然原子。
+
+# 参考回答
+
+单行内的 put、delete、checkAndPut 是原子的，因为写单行由锁和 MVCC 保证。跨行没有事务，靠应用层或外部协调保证。
+
+# 追问
+
+- 为什么只保证单行？

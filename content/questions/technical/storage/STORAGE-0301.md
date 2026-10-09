@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+扫描器合并多来源数据按序返回。
+
+# 参考回答
+
+Scanner 扫描时把 MemStore 和多个 HFile 的数据合并，按 RowKey 排序去重，过滤后返回。配合 Bloom Filter 和过滤器减少扫描量。
+
+# 追问
+
+- 扫描为什么慢？

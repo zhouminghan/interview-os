@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+相邻小 Region 合成一个。
+
+# 参考回答
+
+Region 合并把相邻的两个小 Region 合并成一个，减少 Region 数量。合并时合并元数据和数据文件，短暂不可用。适合删数据后 Region 变小。
+
+# 追问
+
+- 合并和分裂相反吗？

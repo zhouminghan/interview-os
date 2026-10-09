@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+客户端通过 RPC 和服务端交互。
+
+# 参考回答
+
+客户端 API 底层通过 RPC 和 RegionServer 交互，Connection 管理连接和缓存。get、put、scan 都转成 RPC 请求。连接是重量级对象要复用。
+
+# 追问
+
+- API 是同步还是异步？

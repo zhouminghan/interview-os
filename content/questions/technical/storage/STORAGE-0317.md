@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+increment 在服务端原子加。
+
+# 参考回答
+
+计数器用 increment，RegionServer 端直接对列值做原子加法，不用客户端读改写。避免并发读改写的冲突。适合计数统计。
+
+# 追问
+
+- increment 怎么原子？
