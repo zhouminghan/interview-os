@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+类型可序列化、注册 Kryo、避免闭包引用大对象。
+
+# 参考回答
+
+序列化问题解决：用可序列化的类型，注册 Kryo 类，闭包里别塞大对象或连接，用 POJO 或 Tuple。报 NotSerializableException 就查哪没序列化。
+
+# 追问
+
+- NotSerializableException 怎么定位？

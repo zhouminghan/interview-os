@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+开 checkpoint、source 可重放、sink 可靠。
+
+# 参考回答
+
+数据丢失先确认 checkpoint 开了，source offset 能重放，sink 可靠不丢。没开 checkpoint 或 sink 丢了就会少数据。配 exactly-once。
+
+# 追问
+
+- 没开 checkpoint 会怎样？

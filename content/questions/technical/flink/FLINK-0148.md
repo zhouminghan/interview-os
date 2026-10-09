@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 shade 或排除冲突依赖，统一版本。
+
+# 参考回答
+
+依赖冲突靠 maven shade 插件重定位，或排除冲突的依赖，统一版本。常见是 Hadoop、Guava 这些版本冲突，看 NoSuchMethodError 定位。
+
+# 追问
+
+- shade 插件怎么用？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+多 JobManager、ZooKeeper、可靠 checkpoint。
+
+# 参考回答
+
+高可用架构配多 JobManager 加 ZooKeeper 选主，checkpoint 和 savepoint 存可靠存储，重启策略配好。sink 幂等保证恢复一致。
+
+# 追问
+
+- ZooKeeper 挂了影响 HA 吗？

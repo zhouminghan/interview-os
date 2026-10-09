@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+算子内共享对象要线程安全，状态用 keyed state。
+
+# 参考回答
+
+并发安全注意算子内的共享可变对象要线程安全，外部连接用连接池，状态用 Flink 的 keyed state 而不是自己用 HashMap。闭包里的静态变量要小心。
+
+# 追问
+
+- 为什么别自己用 HashMap 存状态？

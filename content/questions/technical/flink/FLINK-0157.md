@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+对账、看 checkpoint、查 sink 幂等。
+
+# 参考回答
+
+一致性诊断靠和源端对账，看 checkpoint 是否正常，sink 是否幂等。不一致常见是迟到数据、重复消费或 sink 非幂等。
+
+# 追问
+
+- 重复消费怎么解决？

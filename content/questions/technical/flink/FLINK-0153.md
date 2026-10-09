@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+看执行图找瓶颈算子和 shuffle。
+
+# 参考回答
+
+执行计划看 Flink UI 的执行图，找数据量大的边、shuffle 多的算子、反压节点。优化就是减少 shuffle 和瓶颈算子开销。
+
+# 追问
+
+- 执行图里怎么看数据量？
