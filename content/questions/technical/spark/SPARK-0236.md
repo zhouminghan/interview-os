@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+REST 服务提交 Spark 作业，供其他系统调用。
+
+# 参考回答
+
+Livy 是 REST 接口服务，用来提交 Spark 作业、管理 session。大数据平台和 notebook 常通过 Livy 提交任务。
+
+# 追问
+
+- Livy 为什么被广泛使用？

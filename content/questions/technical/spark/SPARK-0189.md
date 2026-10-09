@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Structured 用自定义 Source 代替 Receiver。
+
+# 参考回答
+
+Structured Streaming 没有 Receiver 概念，自定义接收靠实现 Source 接口。从自定义系统读流数据。
+
+# 追问
+
+- Source 接口要实现哪些方法？

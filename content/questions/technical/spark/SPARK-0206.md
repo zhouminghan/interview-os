@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+filter 尽早做，放 join 和聚合前。
+
+# 参考回答
+
+filter 越早做越好，在 join、groupBy 前把数据过滤掉，后面要处理的数据就少了。这就是谓词下推的收益。
+
+# 追问
+
+- 为什么 filter 要前置？

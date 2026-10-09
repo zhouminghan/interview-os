@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 mapPartitions 代替 map，减少函数调用。
+
+# 参考回答
+
+map 优化主要是用 mapPartitions 按分区处理，减少每个元素的函数调用开销，还能复用连接等资源。
+
+# 追问
+
+- mapPartitions 什么时候用？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+查看已完成应用的 UI 和历史日志。
+
+# 参考回答
+
+History Server 是把 Spark 应用的事件日志集中起来，应用结束后也能看它的 UI、stage、executor 状态。排查历史任务很有用。
+
+# 追问
+
+- History Server 依赖什么数据？

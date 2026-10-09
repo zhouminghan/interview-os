@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Hadoop 资源管理器，Spark 最常用的部署模式。
+
+# 参考回答
+
+YARN 是 Hadoop 的资源管理器，Spark 跑在 YARN 上能统一管资源、多租户隔离。是传统大数据平台最主流的部署方式。
+
+# 追问
+
+- YARN 上跑 Spark 有几种模式？

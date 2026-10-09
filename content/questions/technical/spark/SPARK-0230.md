@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 pandas API 跑在 Spark 上。
+
+# 参考回答
+
+Koalas 是让 pandas 代码直接跑在 Spark 上的兼容层，pandas API 对应 DataFrame。后来并入了 PySpark 的 pandas API，方便 pandas 用户上 Spark。
+
+# 追问
+
+- Koalas 和 pandas 有什么区别？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+小表 broadcast、大表分桶、避免笛卡尔积。
+
+# 参考回答
+
+join 优化优先小表 broadcast，大表考虑分桶对齐或 sort merge，避免笛卡尔积。统计信息准能让优化器选对策略。
+
+# 追问
+
+- broadcast join 的限制？

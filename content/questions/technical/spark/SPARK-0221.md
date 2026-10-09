@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+控制 checkpoint 频率和血缘长度。
+
+# 参考回答
+
+容错优化是平衡重算成本和 checkpoint 开销，长血缘适当 checkpoint，宽依赖数据落盘减少重算。
+
+# 追问
+
+- checkpoint 太重会怎样？

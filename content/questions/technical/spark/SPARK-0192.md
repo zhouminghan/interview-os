@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+指标接入 Prometheus 或告警系统。
+
+# 参考回答
+
+监控告警把 Streaming 指标接到 Prometheus 这类系统，设延迟或积压阈值告警。Streaming 要特别关注积压和延迟突变。
+
+# 追问
+
+- 告警阈值怎么定？

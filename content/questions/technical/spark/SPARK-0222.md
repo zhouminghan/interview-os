@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+接入 Spark UI 和外部监控，及时发现问题。
+
+# 参考回答
+
+监控优化就是把 Spark UI、历史服务、Prometheus 接好，能快速定位慢 stage 和资源问题。监控不是性能优化，但能帮你找瓶颈。
+
+# 追问
+
+- 监控和调优什么关系？

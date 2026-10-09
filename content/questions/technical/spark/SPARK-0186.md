@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+checkpoint、WAL、幂等 sink 组合。
+
+# 参考回答
+
+容错策略就是 checkpoint 加 WAL 存状态和 offset，配合可重放 source 和幂等 sink，实现 exactly-once 恢复。
+
+# 追问
+
+- 三块缺一块会怎样？

@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:19:05+08:00",
+  "generatedAt": "2026-10-09T16:25:31+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -2250,7 +2250,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实现 DataSource 接口，定义读取和写入逻辑。</p>\n<h2>参考回答</h2>\n<p>自定义数据源要实现 DataSource API，定义怎么读、怎么写、schema 和分区。一般用 RelationProvider 和 CreatableRelationProvider。很少自己写，多用来对接特殊存储。</p>\n<h2>追问</h2>\n<ul>\n<li>什么情况需要自定义数据源？</li>\n</ul>"
     },
     {
       "id": "SPARK-0137",
@@ -2263,7 +2263,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>元数据来自 Hive Metastore 或内置 catalog。</p>\n<h2>参考回答</h2>\n<p>Spark SQL 元数据存在 Hive Metastore，管理表结构、分区、位置这些；也支持内置的内存 catalog。带 enableHiveSupport 就能用 Metastore 持久化元数据。</p>\n<h2>追问</h2>\n<ul>\n<li>内置 catalog 和 Metastore 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0138",
@@ -2276,7 +2276,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>继承 Rule 类，注册到 Catalyst 扩展。</p>\n<h2>参考回答</h2>\n<p>自定义优化规则就是继承 Rule[LogicalPlan]，写 transform 逻辑做计划改写，再通过 spark.sql.extensions 注册。用于加自己的逻辑优化，门槛较高。</p>\n<h2>追问</h2>\n<ul>\n<li>自定义规则适合什么场景？</li>\n</ul>"
     },
     {
       "id": "SPARK-0139",
@@ -2289,7 +2289,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配合 Hive 权限或统一权限系统做表级授权。</p>\n<h2>参考回答</h2>\n<p>Spark SQL 权限主要靠 Hive Metastore 的权限体系，或接外部统一权限服务，做库表列级别的授权。本身权限模型不重，生产上一般配合 Sentry、Ranger 这些。</p>\n<h2>追问</h2>\n<ul>\n<li>Ranger 这类权限系统怎么接入？</li>\n</ul>"
     },
     {
       "id": "SPARK-0140",
@@ -2302,7 +2302,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实现序列化反序列化接口，注册自定义格式。</p>\n<h2>参考回答</h2>\n<p>SerDe 是序列化和反序列化器，自定义要实现对数据的解析和写出。用于读写自定义格式。很少自己写，Parquet、ORC 已经够用。</p>\n<h2>追问</h2>\n<ul>\n<li>SerDe 和序列化的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0141",
@@ -2315,7 +2315,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>解析 SQL 成逻辑计划，优化后转物理计划。</p>\n<h2>参考回答</h2>\n<p>查询计划生成流程：SQL 解析成未解析的逻辑计划，绑定 schema 后成逻辑计划，Catalyst 优化，再转成物理计划，最后生成 RDD 执行。</p>\n<h2>追问</h2>\n<ul>\n<li>逻辑计划和物理计划差在哪？</li>\n</ul>"
     },
     {
       "id": "SPARK-0142",
@@ -2328,7 +2328,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 explain 看逻辑和物理计划。</p>\n<h2>参考回答</h2>\n<p>用 df.explain 看执行计划，explain 加 true 能看解析、逻辑、物理三层。重点看有没有全表扫、join 方式、shuffle 和分区裁剪。</p>\n<h2>追问</h2>\n<ul>\n<li>explain(true) 输出怎么读？</li>\n</ul>"
     },
     {
       "id": "SPARK-0143",
@@ -2341,7 +2341,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>收集表大小、基数、分布，供 CBO 估成本。</p>\n<h2>参考回答</h2>\n<p>统计信息用 ANALYZE TABLE 收集，记录行数、列基数、min max 等。CBO 靠它估算 join 成本和顺序。数据变更后要定期更新。</p>\n<h2>追问</h2>\n<ul>\n<li>统计信息过期会怎样？</li>\n</ul>"
     },
     {
       "id": "SPARK-0144",
@@ -2354,7 +2354,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>继承 UserDefinedAggregateFunction 或 Aggregator。</p>\n<h2>参考回答</h2>\n<p>自定义聚合函数要继承 UserDefinedAggregateFunction 或类型安全的 Aggregator，实现 update、merge、evaluate 这些方法。比标量 UDF 复杂。</p>\n<h2>追问</h2>\n<ul>\n<li>聚合函数和标量函数实现区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0145",
@@ -2367,7 +2367,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Spark 里物化视图主要靠缓存或第三方实现。</p>\n<h2>参考回答</h2>\n<p>Spark SQL 原生物化视图能力有限，主要靠 cache 缓存，或第三方工具。本质是把查询结果预存，查询直接复用。可以理解为持久化的缓存表。</p>\n<h2>追问</h2>\n<ul>\n<li>物化视图和 cache 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0146",
@@ -2380,7 +2380,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>基于微批的流处理，把流切成小批次处理。</p>\n<h2>参考回答</h2>\n<p>Spark Streaming 是老的流处理框架，把实时数据切成一个个小批次，用批处理引擎算。特点是简单、复用批处理生态，但延迟是秒级，不是真正的低延迟。</p>\n<h2>追问</h2>\n<ul>\n<li>微批和真流式的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0147",
@@ -2393,7 +2393,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>接收器收数据成小批次，Spark 引擎批次处理。</p>\n<h2>参考回答</h2>\n<p>Spark Streaming 架构是 Receiver 持续接收数据，攒成小 batch，交给 Spark 引擎按批处理。Discretized Stream 就是这些小 batch 的序列。</p>\n<h2>追问</h2>\n<ul>\n<li>Receiver 模式有什么问题？</li>\n</ul>"
     },
     {
       "id": "SPARK-0148",
@@ -2406,7 +2406,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>DStream 是连续 RDD 的序列，代表流数据。</p>\n<h2>参考回答</h2>\n<p>DStream 是离散流，本质是一串 RDD，每个 RDD 是一个小批次的数据。对 DStream 的转换其实是对里面每个 RDD 转换。</p>\n<h2>追问</h2>\n<ul>\n<li>DStream 和 RDD 什么关系？</li>\n</ul>"
     },
     {
       "id": "SPARK-0149",
@@ -2419,7 +2419,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Kafka、Socket、文件、Flume 等。</p>\n<h2>参考回答</h2>\n<p>数据源有 Kafka、TCP Socket、文件系统、Flume、自定义 Receiver。生产上 Kafka 最主流，用 Direct 方式直连，不依赖 Receiver。</p>\n<h2>追问</h2>\n<ul>\n<li>Direct 方式比 Receiver 好在哪里？</li>\n</ul>"
     },
     {
       "id": "SPARK-0150",
@@ -2432,7 +2432,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠 WAL 和 checkpoint，Direct 方式用 Kafka offset。</p>\n<h2>参考回答</h2>\n<p>容错靠 write ahead log 记录收到的数据，checkpoint 保存状态和 offset。Kafka Direct 方式把 offset 存在 Kafka 或 checkpoint，恢复时从 offset 重放。</p>\n<h2>追问</h2>\n<ul>\n<li>WAL 是什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0151",
@@ -2445,7 +2445,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>checkpoint 保存元数据、状态和 offset 用于恢复。</p>\n<h2>参考回答</h2>\n<p>检查点把配置、DStream 状态、offset 存到可靠存储。应用挂了重启能从 checkpoint 恢复。配置 checkpoint 目录，流式有状态操作必须配。</p>\n<h2>追问</h2>\n<ul>\n<li>什么操作必须配 checkpoint？</li>\n</ul>"
     },
     {
       "id": "SPARK-0152",
@@ -2458,7 +2458,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>合理批间隔、并行度、减少序列化。</p>\n<h2>参考回答</h2>\n<p>性能优化主要调批处理间隔、分区并行度，用 Direct Kafka 减少 Receiver 开销，合理内存和序列化。批间隔太小会积压，太大延迟高。</p>\n<h2>追问</h2>\n<ul>\n<li>积压了怎么办？</li>\n</ul>"
     },
     {
       "id": "SPARK-0153",
@@ -2471,7 +2471,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>window、reduceByWindow 等做滑动窗口统计。</p>\n<h2>参考回答</h2>\n<p>窗口操作有 window、reduceByKeyAndWindow、countByWindow，按窗口长度和滑动间隔算最近一段时间的聚合。适合近 N 分钟统计。</p>\n<h2>追问</h2>\n<ul>\n<li>窗口长度和滑动间隔是什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0154",
@@ -2484,7 +2484,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>继承 Receiver 实现 onStart 和 onStop。</p>\n<h2>参考回答</h2>\n<p>自定义 Receiver 要继承 Receiver，实现 onStart 接收数据、onStop 停止，用 store 方法把数据写入。对接特殊数据源时用。</p>\n<h2>追问</h2>\n<ul>\n<li>store 方法怎么用？</li>\n</ul>"
     },
     {
       "id": "SPARK-0155",
@@ -2497,7 +2497,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>消费慢时降低接收速率，防止数据积压。</p>\n<h2>参考回答</h2>\n<p>背压是当处理跟不上时，自动降低数据接收速率，避免内存爆。配置 spark.streaming.backpressure.enabled 开启，按处理时长动态调整。</p>\n<h2>追问</h2>\n<ul>\n<li>背压靠什么指标判断？</li>\n</ul>"
     },
     {
       "id": "SPARK-0156",
@@ -2510,7 +2510,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看 Streaming UI 和指标。</p>\n<h2>参考回答</h2>\n<p>监控看 Streaming UI，关注处理延迟、积压量、batch 耗时。积压持续增长说明处理跟不上，要优化或加资源。</p>\n<h2>追问</h2>\n<ul>\n<li>积压增长怎么定位？</li>\n</ul>"
     },
     {
       "id": "SPARK-0157",
@@ -2523,7 +2523,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>调 Receiver 数和分区数提高并行。</p>\n<h2>参考回答</h2>\n<p>并行度靠多个 Receiver 并行接收，数据处理分区数决定 task 数。分区数跟 core 数匹配，别太多太少。</p>\n<h2>追问</h2>\n<ul>\n<li>Receiver 数和分区数怎么配合？</li>\n</ul>"
     },
     {
       "id": "SPARK-0158",
@@ -2536,7 +2536,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>定期清理旧 checkpoint 和 WAL。</p>\n<h2>参考回答</h2>\n<p>数据清理主要是清过期的 checkpoint 目录、WAL 和中间数据，避免磁盘占满。可以设置 TTL 或定期脚本清理。</p>\n<h2>追问</h2>\n<ul>\n<li>清理 checkpoint 会影响恢复吗？</li>\n</ul>"
     },
     {
       "id": "SPARK-0159",
@@ -2549,7 +2549,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从 checkpoint 恢复状态和 offset，重放未处理数据。</p>\n<h2>参考回答</h2>\n<p>恢复靠 checkpoint 里的配置和 offset，重启后从上次位置继续。Direct Kafka 从保存的 offset 消费，保证不丢不重，配合幂等输出。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么保证不丢不重？</li>\n</ul>"
     },
     {
       "id": "SPARK-0160",
@@ -2562,7 +2562,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 foreachRDD 自定义写出逻辑。</p>\n<h2>参考回答</h2>\n<p>自定义输出用 foreachRDD，拿到每个 batch 的 RDD 自己写出去，比如写 Kafka、数据库。注意别把连接对象序列化，要在 worker 端建连接。</p>\n<h2>追问</h2>\n<ul>\n<li>foreachRDD 里建连接要注意什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0161",
@@ -2575,7 +2575,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按延迟要求和吞吐平衡设批间隔。</p>\n<h2>参考回答</h2>\n<p>批间隔决定延迟下限，设太小调度开销大，太大延迟高。一般几秒到几十秒，按业务延迟要求和吞吐能力平衡。</p>\n<h2>追问</h2>\n<ul>\n<li>批间隔和延迟什么关系？</li>\n</ul>"
     },
     {
       "id": "SPARK-0162",
@@ -2588,7 +2588,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 transform 对 DStream 的 RDD 做任意操作。</p>\n<h2>参考回答</h2>\n<p>自定义转换用 transform，能拿到每个 RDD 做任意转换，复用 RDD 的操作。比内置 DStream 转换更灵活。</p>\n<h2>追问</h2>\n<ul>\n<li>transform 和 map 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0163",
@@ -2601,7 +2601,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 ssc.checkpoint 指定可靠存储目录。</p>\n<h2>参考回答</h2>\n<p>检查点目录用 ssc.checkpoint 配置，要指向可靠存储比如 HDFS。有状态操作必须配，不然恢复不了。目录要长期保留。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 checkpoint 要放可靠存储？</li>\n</ul>"
     },
     {
       "id": "SPARK-0164",
@@ -2614,7 +2614,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实现自定义 Receiver 接收特殊数据。</p>\n<h2>参考回答</h2>\n<p>自定义数据源主要就是写自定义 Receiver，从特殊系统接收数据再 store 进 Spark。核心是实现 onStart 接收逻辑和 onStop 停止。</p>\n<h2>追问</h2>\n<ul>\n<li>自定义数据源有哪些坑？</li>\n</ul>"
     },
     {
       "id": "SPARK-0165",
@@ -2627,7 +2627,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>处理延迟、积压量、batch 耗时、吞吐。</p>\n<h2>参考回答</h2>\n<p>监控指标主要是调度延迟、处理延迟、积压的记录数、batch 处理耗时、吞吐量。重点看延迟和积压，判断是否跟得上。</p>\n<h2>追问</h2>\n<ul>\n<li>延迟和积压哪个更关键？</li>\n</ul>"
     },
     {
       "id": "SPARK-0166",
@@ -2640,7 +2640,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>基于 DataFrame 的流处理，流批统一，有 exactly-once 语义。</p>\n<h2>参考回答</h2>\n<p>Structured Streaming 是新一代流处理，把流当无限增长的 DataFrame 处理，跟批处理同一套 API。支持事件时间、窗口、水印和 exactly-once。</p>\n<h2>追问</h2>\n<ul>\n<li>流批统一是什么概念？</li>\n</ul>"
     },
     {
       "id": "SPARK-0167",
@@ -2653,7 +2653,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Structured 基于 DataFrame 流批统一，老版基于 RDD 微批。</p>\n<h2>参考回答</h2>\n<p>主要区别：Structured Streaming 用 DataFrame、Dataset 统一 API，有事件时间和 exactly-once；Spark Streaming 基于 RDD 微批，只有 at-least-once，要手动管状态。新项目都用 Structured。</p>\n<h2>追问</h2>\n<ul>\n<li>exactly-once 和 at-least-once 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0168",
@@ -2666,7 +2666,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>checkpoint 加 WAL 保证 exactly-once 恢复。</p>\n<h2>参考回答</h2>\n<p>容错靠 checkpoint 保存 offset 和状态，加 write-ahead log，恢复时从 checkpoint 重放，保证 exactly-once。引擎本身不可变，重算结果一致。</p>\n<h2>追问</h2>\n<ul>\n<li>checkpoint 里存了什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0169",
@@ -2679,7 +2679,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>checkpoint、幂等 sink、事务输出实现 exactly-once。</p>\n<h2>参考回答</h2>\n<p>端到端 exactly-once 需要三块：checkpoint 存 offset、幂等或事务性的 sink、可重放的 source。像写 Kafka 用事务，写文件用幂等重命名。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 sink 要幂等？</li>\n</ul>"
     },
     {
       "id": "SPARK-0170",
@@ -2692,7 +2692,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>滚动窗口、滑动窗口、会话窗口。</p>\n<h2>参考回答</h2>\n<p>窗口有滚动窗口固定大小不重叠、滑动窗口有滑动间隔、会话窗口按活跃间隔切分。配合事件时间和水印处理迟到数据。</p>\n<h2>追问</h2>\n<ul>\n<li>三种窗口分别适合什么场景？</li>\n</ul>"
     },
     {
       "id": "SPARK-0171",
@@ -2705,7 +2705,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>合理分区、状态清理、调整 trigger 和并行度。</p>\n<h2>参考回答</h2>\n<p>性能优化靠合理分区、控制状态大小和清理、选合适的 trigger、调并行度、减少小文件。状态膨胀和输出小文件是常见问题。</p>\n<h2>追问</h2>\n<ul>\n<li>状态膨胀怎么处理？</li>\n</ul>"
     },
     {
       "id": "SPARK-0172",
@@ -2718,7 +2718,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>checkpoint 存 offset、状态和元数据。</p>\n<h2>参考回答</h2>\n<p>checkpoint 保存消费 offset、聚合状态和查询元数据，重启从 checkpoint 恢复。必须配在可靠存储，且查询结构变了要小心恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>查询结构变了 checkpoint 还能用吗？</li>\n</ul>"
     },
     {
       "id": "SPARK-0173",
@@ -2731,7 +2731,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 foreach 或自定义 sink 写输出。</p>\n<h2>参考回答</h2>\n<p>自定义输出用 foreach 或 foreachBatch，自己写逻辑。foreachBatch 适合控制小文件或写多个地方。注意幂等性。</p>\n<h2>追问</h2>\n<ul>\n<li>foreach 和 foreachBatch 怎么选？</li>\n</ul>"
     },
     {
       "id": "SPARK-0174",
@@ -2744,7 +2744,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>自动调整消费速率，避免积压。</p>\n<h2>参考回答</h2>\n<p>Structured Streaming 内部有背压，消费跟不上就自动降速，靠 Kafka 动态限流。基本不用手动配。</p>\n<h2>追问</h2>\n<ul>\n<li>背压和反压是一回事吗？</li>\n</ul>"
     },
     {
       "id": "SPARK-0175",
@@ -2757,7 +2757,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看 Streaming UI 的指标和进度。</p>\n<h2>参考回答</h2>\n<p>监控看 Streaming Query Progress 和 UI，关注 input rate、处理速率、延迟、状态大小。积压持续增长要优化。</p>\n<h2>追问</h2>\n<ul>\n<li>Query Progress 里看什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0176",
@@ -2770,7 +2770,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分区数决定并行，可 repartition 调整。</p>\n<h2>参考回答</h2>\n<p>并行度由数据分区决定，可以 repartition 调整，Kafka 分区数也影响并行。分区数要跟 core 匹配。</p>\n<h2>追问</h2>\n<ul>\n<li>Kafka 分区数和并行度的关系？</li>\n</ul>"
     },
     {
       "id": "SPARK-0177",
@@ -2783,7 +2783,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>清理 checkpoint 和输出目录的过期数据。</p>\n<h2>参考回答</h2>\n<p>数据清理主要是清旧 checkpoint、状态和输出目录，配 retention 或定期清理。状态要做 TTL 清理，不然无限增长。</p>\n<h2>追问</h2>\n<ul>\n<li>状态 TTL 怎么配？</li>\n</ul>"
     },
     {
       "id": "SPARK-0178",
@@ -2796,7 +2796,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从 checkpoint 恢复 offset 和状态继续。</p>\n<h2>参考回答</h2>\n<p>恢复从 checkpoint 读 offset 和状态，从上次位置继续处理。sink 要幂等才能保证恢复后不重不丢。</p>\n<h2>追问</h2>\n<ul>\n<li>恢复时 sink 重复了怎么办？</li>\n</ul>"
     },
     {
       "id": "SPARK-0179",
@@ -2809,7 +2809,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 transform 或自定义 UDF 做转换。</p>\n<h2>参考回答</h2>\n<p>自定义转换用 transform 对 DataFrame 做任意转换，或写 UDF。跟批处理一样，流批统一的好处。</p>\n<h2>追问</h2>\n<ul>\n<li>流式里 UDF 有什么注意点？</li>\n</ul>"
     },
     {
       "id": "SPARK-0180",
@@ -2822,7 +2822,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>checkpointLocation 指定可靠存储路径。</p>\n<h2>参考回答</h2>\n<p>检查点目录用 writeStream 的 checkpointLocation 指定，必须可靠存储。查询恢复和 exactly-once 都靠它。</p>\n<h2>追问</h2>\n<ul>\n<li>两个查询能共用 checkpoint 目录吗？</li>\n</ul>"
     },
     {
       "id": "SPARK-0181",
@@ -2835,7 +2835,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>自定义 source 实现流式读取。</p>\n<h2>参考回答</h2>\n<p>自定义数据源要实现 Source 或 SourceProvider，定义怎么读流数据、offset 和 schema。门槛比自定义 Receiver 高。</p>\n<h2>追问</h2>\n<ul>\n<li>Source 和 Sink 都要自定义吗？</li>\n</ul>"
     },
     {
       "id": "SPARK-0182",
@@ -2848,7 +2848,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>input rate、处理速率、延迟、积压。</p>\n<h2>参考回答</h2>\n<p>监控指标有 input rate、process rate、batch 延迟、积压 offset 数、状态大小。重点看处理速率是否跟得上输入。</p>\n<h2>追问</h2>\n<ul>\n<li>处理速率跟不上怎么发现？</li>\n</ul>"
     },
     {
       "id": "SPARK-0183",
@@ -2861,7 +2861,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 mapGroupsWithState 或 UDAF 做有状态聚合。</p>\n<h2>参考回答</h2>\n<p>自定义聚合用 mapGroupsWithState 做任意状态聚合，或写 UDAF。有状态聚合要注意状态清理和 checkpoint。</p>\n<h2>追问</h2>\n<ul>\n<li>mapGroupsWithState 怎么用？</li>\n</ul>"
     },
     {
       "id": "SPARK-0184",
@@ -2874,7 +2874,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按业务聚合粒度设窗口，配合水印。</p>\n<h2>参考回答</h2>\n<p>窗口大小按业务统计粒度设，比如 5 分钟、1 小时。配合水印容忍迟到，窗口太大状态多，太小结果碎。</p>\n<h2>追问</h2>\n<ul>\n<li>窗口太大有什么代价？</li>\n</ul>"
     },
     {
       "id": "SPARK-0185",
@@ -2887,7 +2887,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 checkpointLocation 指定，一般不自定义实现。</p>\n<h2>参考回答</h2>\n<p>自定义检查点基本就是指定 checkpointLocation 路径，底层机制引擎管。自定义检查点实现很少见，除非改引擎。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么检查点底层不开放自定义？</li>\n</ul>"
     },
     {
       "id": "SPARK-0186",
@@ -2900,7 +2900,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>checkpoint、WAL、幂等 sink 组合。</p>\n<h2>参考回答</h2>\n<p>容错策略就是 checkpoint 加 WAL 存状态和 offset，配合可重放 source 和幂等 sink，实现 exactly-once 恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>三块缺一块会怎样？</li>\n</ul>"
     },
     {
       "id": "SPARK-0187",
@@ -2913,7 +2913,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Kryo 或 Encoder 自定义序列化。</p>\n<h2>参考回答</h2>\n<p>自定义序列化用 Kryo 注册自定义类，或定义 Encoder。Dataset 的 Encoder 比 Java 序列化高效，默认就能用。</p>\n<h2>追问</h2>\n<ul>\n<li>Encoder 是什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0188",
@@ -2926,7 +2926,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>一般自动背压，特殊场景调消费参数。</p>\n<h2>参考回答</h2>\n<p>Structured Streaming 背压基本自动，特殊情况调 Kafka 的 maxOffsetsPerTrigger 这类参数控制单批量。一般不用手动设阈值。</p>\n<h2>追问</h2>\n<ul>\n<li>maxOffsetsPerTrigger 是什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0189",
@@ -2939,7 +2939,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Structured 用自定义 Source 代替 Receiver。</p>\n<h2>参考回答</h2>\n<p>Structured Streaming 没有 Receiver 概念，自定义接收靠实现 Source 接口。从自定义系统读流数据。</p>\n<h2>追问</h2>\n<ul>\n<li>Source 接口要实现哪些方法？</li>\n</ul>"
     },
     {
       "id": "SPARK-0190",
@@ -2952,7 +2952,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>控制单批大小、并行度、避免小文件。</p>\n<h2>参考回答</h2>\n<p>批处理优化主要控制每批处理的数据量、合理并行度、输出合并避免小文件、减少 shuffle。看 processing time 是否稳定。</p>\n<h2>追问</h2>\n<ul>\n<li>小文件怎么避免？</li>\n</ul>"
     },
     {
       "id": "SPARK-0191",
@@ -2965,7 +2965,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 foreachBatch 写自定义格式。</p>\n<h2>参考回答</h2>\n<p>自定义输出格式用 foreachBatch 拿到每批 DataFrame，自己写任意格式。也可以实现自定义 Sink 注册。</p>\n<h2>追问</h2>\n<ul>\n<li>自定义 Sink 怎么注册？</li>\n</ul>"
     },
     {
       "id": "SPARK-0192",
@@ -2978,7 +2978,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>指标接入 Prometheus 或告警系统。</p>\n<h2>参考回答</h2>\n<p>监控告警把 Streaming 指标接到 Prometheus 这类系统，设延迟或积压阈值告警。Streaming 要特别关注积压和延迟突变。</p>\n<h2>追问</h2>\n<ul>\n<li>告警阈值怎么定？</li>\n</ul>"
     },
     {
       "id": "SPARK-0193",
@@ -2991,7 +2991,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 trigger 控制触发时机。</p>\n<h2>参考回答</h2>\n<p>触发器 trigger 控制什么时候处理，有默认微批、固定间隔、一次性、连续模式。按延迟和成本选。</p>\n<h2>追问</h2>\n<ul>\n<li>连续模式和微批模式的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0194",
@@ -3004,7 +3004,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>水印定义迟到容忍，超时数据丢弃。</p>\n<h2>参考回答</h2>\n<p>水印是事件时间上的一个阈值，表示最多容忍数据迟到多久。超过水印的迟到数据被丢弃。用 withWatermark 设置，配合窗口。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么要有水印？</li>\n</ul>"
     },
     {
       "id": "SPARK-0195",
@@ -3017,7 +3017,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 mapGroupsWithState 管理自定义状态。</p>\n<h2>参考回答</h2>\n<p>自定义状态用 mapGroupsWithState，按 key 维护任意状态，配合超时清理。状态要可序列化并配合 checkpoint。</p>\n<h2>追问</h2>\n<ul>\n<li>状态超时清理怎么配？</li>\n</ul>"
     },
     {
       "id": "SPARK-0196",
@@ -3030,7 +3030,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>资源、并行度、shuffle、序列化、内存、数据倾斜几个方面。</p>\n<h2>参考回答</h2>\n<p>优化主要从几个方面：资源配置、并行度、shuffle、序列化、内存和 GC、数据倾斜、存储格式。先定位瓶颈再针对优化。</p>\n<h2>追问</h2>\n<ul>\n<li>优化第一步是什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0197",
@@ -3043,7 +3043,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>调执行存储内存比例、off-heap、避免 OOM。</p>\n<h2>参考回答</h2>\n<p>内存优化调 spark.memory.fraction 控制执行存储比例，用 off-heap 存大对象，合理缓存级别，避免大对象和 OOM。内存够用是性能前提。</p>\n<h2>追问</h2>\n<ul>\n<li>执行内存和存储内存怎么权衡？</li>\n</ul>"
     },
     {
       "id": "SPARK-0198",
@@ -3056,7 +3056,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分区数设成 core 2 到 3 倍，动态调整。</p>\n<h2>参考回答</h2>\n<p>并行度就是分区数，一般设成总 core 的 2 到 3 倍。太小浪费资源，太大调度开销。可以用 coalesce、repartition 调整。</p>\n<h2>追问</h2>\n<ul>\n<li>并行度和分区数什么关系？</li>\n</ul>"
     },
     {
       "id": "SPARK-0199",
@@ -3069,7 +3069,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少 shuffle 次数和数据量，调 shuffle 参数。</p>\n<h2>参考回答</h2>\n<p>shuffle 优化核心是少 shuffle：小表 broadcast、提前 filter 减数据、用 reduceByKey 代替 groupByKey。再调 shuffle 分区数和内存。</p>\n<h2>追问</h2>\n<ul>\n<li>shuffle 分区数怎么定？</li>\n</ul>"
     },
     {
       "id": "SPARK-0200",
@@ -3082,7 +3082,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Kryo 代替 Java 序列化。</p>\n<h2>参考回答</h2>\n<p>序列化用 Kryo 比 Java 快几倍、占用小，注册自定义类效果更好。shuffle、缓存、广播都受益。</p>\n<h2>追问</h2>\n<ul>\n<li>Kryo 怎么注册自定义类？</li>\n</ul>"
     },
     {
       "id": "SPARK-0201",
@@ -3095,7 +3095,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>只缓存复用的数据，选对级别。</p>\n<h2>参考回答</h2>\n<p>缓存只对反复用的数据做，选合适级别，内存够用 MEMORY_ONLY，不够 MEMORY_AND_DISK。别什么都缓存，浪费内存。</p>\n<h2>追问</h2>\n<ul>\n<li>什么数据值得缓存？</li>\n</ul>"
     },
     {
       "id": "SPARK-0202",
@@ -3108,7 +3108,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>列式存储、分区裁剪、减少小文件。</p>\n<h2>参考回答</h2>\n<p>IO 优化靠列式 Parquet 减少读、分区裁剪、合并小文件、压缩。读得少 IO 就少，性能就快。</p>\n<h2>追问</h2>\n<ul>\n<li>小文件为什么拖慢性能？</li>\n</ul>"
     },
     {
       "id": "SPARK-0203",
@@ -3121,7 +3121,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>小表 broadcast、大表分桶、避免笛卡尔积。</p>\n<h2>参考回答</h2>\n<p>join 优化优先小表 broadcast，大表考虑分桶对齐或 sort merge，避免笛卡尔积。统计信息准能让优化器选对策略。</p>\n<h2>追问</h2>\n<ul>\n<li>broadcast join 的限制？</li>\n</ul>"
     },
     {
       "id": "SPARK-0204",
@@ -3134,7 +3134,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>提前过滤、预聚合、减少基数。</p>\n<h2>参考回答</h2>\n<p>groupBy 优化先 filter 减数据，再用 reduceByKey 做 map 端预聚合，避免 groupByKey 全量 shuffle。基数高可以加盐打散。</p>\n<h2>追问</h2>\n<ul>\n<li>reduceByKey 的预聚合在哪发生？</li>\n</ul>"
     },
     {
       "id": "SPARK-0205",
@@ -3147,7 +3147,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少排序数据量，加 limit 或分区内排序。</p>\n<h2>参考回答</h2>\n<p>sort 优化尽量减少要排的数据，加 limit 做 TopN，用分区内排序替代全局排序。排序本身代价高，能省则省。</p>\n<h2>追问</h2>\n<ul>\n<li>TopN 为什么不用全局排序？</li>\n</ul>"
     },
     {
       "id": "SPARK-0206",
@@ -3160,7 +3160,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>filter 尽早做，放 join 和聚合前。</p>\n<h2>参考回答</h2>\n<p>filter 越早做越好，在 join、groupBy 前把数据过滤掉，后面要处理的数据就少了。这就是谓词下推的收益。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 filter 要前置？</li>\n</ul>"
     },
     {
       "id": "SPARK-0207",
@@ -3173,7 +3173,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 mapPartitions 代替 map，减少函数调用。</p>\n<h2>参考回答</h2>\n<p>map 优化主要是用 mapPartitions 按分区处理，减少每个元素的函数调用开销，还能复用连接等资源。</p>\n<h2>追问</h2>\n<ul>\n<li>mapPartitions 什么时候用？</li>\n</ul>"
     },
     {
       "id": "SPARK-0208",
@@ -3186,7 +3186,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 reduceByKey 做 map 端预聚合。</p>\n<h2>参考回答</h2>\n<p>reduce 优化优先 reduceByKey，它在 map 端先局部聚合，减少 shuffle 数据量，比 groupByKey 再 reduce 快很多。</p>\n<h2>追问</h2>\n<ul>\n<li>reduceByKey 和 groupByKey 的差异？</li>\n</ul>"
     },
     {
       "id": "SPARK-0209",
@@ -3199,7 +3199,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>小表或小配置广播，避免重复传输。</p>\n<h2>参考回答</h2>\n<p>广播变量用于只读小数据，广播一次各节点复用。join 小表用 broadcast，配置字典也可以广播。注意别广播大数据。</p>\n<h2>追问</h2>\n<ul>\n<li>广播过大数据会怎样？</li>\n</ul>"
     },
     {
       "id": "SPARK-0210",
@@ -3212,7 +3212,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>只在行动里读值，避免重复累加。</p>\n<h2>参考回答</h2>\n<p>累加器优化主要是别在转换里读值，避免因重算重复累加，只在行动完成后读最终值。</p>\n<h2>追问</h2>\n<ul>\n<li>在转换里读累加器会怎样？</li>\n</ul>"
     },
     {
       "id": "SPARK-0211",
@@ -3225,7 +3225,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>长血缘才 checkpoint，别频繁。</p>\n<h2>参考回答</h2>\n<p>checkpoint 只在血缘很长或关键节点用，因为它要写盘有开销。cache 能解决复用就别 checkpoint。</p>\n<h2>追问</h2>\n<ul>\n<li>checkpoint 和 cache 怎么搭配？</li>\n</ul>"
     },
     {
       "id": "SPARK-0212",
@@ -3238,7 +3238,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分区均匀、按 key 特性选分区器。</p>\n<h2>参考回答</h2>\n<p>分区优化关键是分均匀，按 key 基数选 hash 或 range 分区器，热点 key 加盐。分区不均会导致倾斜。</p>\n<h2>追问</h2>\n<ul>\n<li>分区不均有什么表现？</li>\n</ul>"
     },
     {
       "id": "SPARK-0213",
@@ -3251,7 +3251,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加盐打散、两阶段聚合、小表广播。</p>\n<h2>参考回答</h2>\n<p>数据倾斜用加盐打散热点 key、两阶段聚合、大表 join 小表广播、开 AQE skew join。先定位倾斜 key 再处理。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么定位倾斜 key？</li>\n</ul>"
     },
     {
       "id": "SPARK-0214",
@@ -3264,7 +3264,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少单 task 数据、调内存、避免 collect 大结果。</p>\n<h2>参考回答</h2>\n<p>OOM 优化减少单 task 处理的数据量，调高 executor 内存，避免 collect 大结果到 driver，用序列化省内存。看是 driver 还是 executor OOM。</p>\n<h2>追问</h2>\n<ul>\n<li>driver OOM 和 executor OOM 怎么区分？</li>\n</ul>"
     },
     {
       "id": "SPARK-0215",
@@ -3277,7 +3277,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 G1、调堆大小和 Eden、减少对象。</p>\n<h2>参考回答</h2>\n<p>GC 优化用 G1 收集器，调堆大小和年轻代比例，减少频繁 full GC。对象复用、序列化也能减轻 GC 压力。</p>\n<h2>追问</h2>\n<ul>\n<li>full GC 频繁怎么排查？</li>\n</ul>"
     },
     {
       "id": "SPARK-0216",
@@ -3290,7 +3290,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少 shuffle、数据本地性、压缩传输。</p>\n<h2>参考回答</h2>\n<p>网络优化减少 shuffle 数据传输，提高数据本地性，开启 shuffle 压缩。网络是分布式瓶颈，少传数据最有效。</p>\n<h2>追问</h2>\n<ul>\n<li>数据本地性怎么提高？</li>\n</ul>"
     },
     {
       "id": "SPARK-0217",
@@ -3303,7 +3303,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 SSD、减少读写、合并小文件。</p>\n<h2>参考回答</h2>\n<p>磁盘 IO 优化上 SSD，减少 shuffle 和落盘，合并小文件，合理压缩。IO 慢会拖累整个任务。</p>\n<h2>追问</h2>\n<ul>\n<li>shuffle 落盘能避免吗？</li>\n</ul>"
     },
     {
       "id": "SPARK-0218",
@@ -3316,7 +3316,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>合理并行度、向量化、减少无效计算。</p>\n<h2>参考回答</h2>\n<p>CPU 优化靠合理并行度充分利用核，用 DataFrame 的向量化执行，减少无效计算和 UDF。CPU 打不满说明并行度不够。</p>\n<h2>追问</h2>\n<ul>\n<li>CPU 打不满怎么办？</li>\n</ul>"
     },
     {
       "id": "SPARK-0219",
@@ -3329,7 +3329,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 FAIR 调度、数据本地性、动态资源。</p>\n<h2>参考回答</h2>\n<p>调度优化用 FAIR 公平调度多作业共享，提高数据本地性减少网络，开动态资源分配省资源。</p>\n<h2>追问</h2>\n<ul>\n<li>FAIR 和 FIFO 调度的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0220",
@@ -3342,7 +3342,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>executor 数、核数、内存合理配。</p>\n<h2>参考回答</h2>\n<p>资源分配按数据量和任务类型配 executor 数、核数、内存，别过大过小。动态资源分配能自动调整。</p>\n<h2>追问</h2>\n<ul>\n<li>executor 核数怎么定？</li>\n</ul>"
     },
     {
       "id": "SPARK-0221",
@@ -3355,7 +3355,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>控制 checkpoint 频率和血缘长度。</p>\n<h2>参考回答</h2>\n<p>容错优化是平衡重算成本和 checkpoint 开销，长血缘适当 checkpoint，宽依赖数据落盘减少重算。</p>\n<h2>追问</h2>\n<ul>\n<li>checkpoint 太重会怎样？</li>\n</ul>"
     },
     {
       "id": "SPARK-0222",
@@ -3368,7 +3368,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>接入 Spark UI 和外部监控，及时发现问题。</p>\n<h2>参考回答</h2>\n<p>监控优化就是把 Spark UI、历史服务、Prometheus 接好，能快速定位慢 stage 和资源问题。监控不是性能优化，但能帮你找瓶颈。</p>\n<h2>追问</h2>\n<ul>\n<li>监控和调优什么关系？</li>\n</ul>"
     },
     {
       "id": "SPARK-0223",
@@ -3381,7 +3381,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>控制日志级别，避免日志刷屏影响性能。</p>\n<h2>参考回答</h2>\n<p>日志优化是生产用 WARN 或 ERROR 级别，别开 DEBUG，避免大量日志 IO 拖慢任务。关键信息才打日志。</p>\n<h2>追问</h2>\n<ul>\n<li>DEBUG 日志为什么影响性能？</li>\n</ul>"
     },
     {
       "id": "SPARK-0224",
@@ -3394,7 +3394,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>在性能可接受范围内开启必要安全。</p>\n<h2>参考回答</h2>\n<p>安全优化是平衡安全和性能，开启必要的认证加密，但别过度。加密和认证有开销，按合规要求开。</p>\n<h2>追问</h2>\n<ul>\n<li>加密的开销有多大？</li>\n</ul>"
     },
     {
       "id": "SPARK-0225",
@@ -3407,7 +3407,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>选 YARN 或 K8s 统一资源，按负载配。</p>\n<h2>参考回答</h2>\n<p>部署模式优化是生产用 YARN 或 K8s 统一资源管理，按负载选集群规模，避免 standalone 资源隔离差。</p>\n<h2>追问</h2>\n<ul>\n<li>YARN 和 K8s 怎么选？</li>\n</ul>"
     },
     {
       "id": "SPARK-0226",
@@ -3420,7 +3420,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Spark SQL、Streaming、MLlib、GraphX 加各种连接器。</p>\n<h2>参考回答</h2>\n<p>Spark 生态包括核心的 Spark Core、SQL、Streaming、MLlib、GraphX，加上 Delta Lake、各种 connector 和调度部署组件，形成一个完整的大数据平台。</p>\n<h2>追问</h2>\n<ul>\n<li>Spark 生态最核心的几个组件？</li>\n</ul>"
     },
     {
       "id": "SPARK-0227",
@@ -3433,7 +3433,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>机器学习库，提供算法和管道 API。</p>\n<h2>参考回答</h2>\n<p>MLlib 是 Spark 的机器学习库，提供分类、回归、聚类、协同过滤等算法，还有 Pipeline 和特征处理。能分布式训练，适合大规模数据。</p>\n<h2>追问</h2>\n<ul>\n<li>MLlib 和 sklearn 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0228",
@@ -3446,7 +3446,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>图计算库，提供图 API 和图算法。</p>\n<h2>参考回答</h2>\n<p>GraphX 是 Spark 的图计算组件，用图抽象和 Pregel 模型做 PageRank、连通分量这类图算法。现在用得不多了，图计算更多用专门的图数据库。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么图计算后来转向专门图库？</li>\n</ul>"
     },
     {
       "id": "SPARK-0229",
@@ -3459,7 +3459,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>给数据湖加 ACID、版本和流批一体。</p>\n<h2>参考回答</h2>\n<p>Delta Lake 是在数据湖上的存储层，给 Parquet 加 ACID 事务、时间旅行、schema 演进和流批一体。让数据湖更可靠，是 Spark 生态的重要扩展。</p>\n<h2>追问</h2>\n<ul>\n<li>Delta Lake 解决什么问题？</li>\n</ul>"
     },
     {
       "id": "SPARK-0230",
@@ -3472,7 +3472,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 pandas API 跑在 Spark 上。</p>\n<h2>参考回答</h2>\n<p>Koalas 是让 pandas 代码直接跑在 Spark 上的兼容层，pandas API 对应 DataFrame。后来并入了 PySpark 的 pandas API，方便 pandas 用户上 Spark。</p>\n<h2>追问</h2>\n<ul>\n<li>Koalas 和 pandas 有什么区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0231",
@@ -3485,7 +3485,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>客户端服务端解耦的 Spark 连接方式。</p>\n<h2>参考回答</h2>\n<p>Spark Connect 把客户端和服务端解耦，客户端只发逻辑计划，服务端执行。方便远程提交和多语言接入，是较新的特性。</p>\n<h2>追问</h2>\n<ul>\n<li>Spark Connect 和传统提交的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0232",
@@ -3498,7 +3498,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>提供 SQL 服务的组件，让外部用 SQL 查 Spark。</p>\n<h2>参考回答</h2>\n<p>Spark SQL Server 泛指用 Spark 提供 SQL 服务的组件，最常见的是 Thrift Server，通过 JDBC 提供 SQL 查询入口。</p>\n<h2>追问</h2>\n<ul>\n<li>SQL Server 和 Thrift Server 的关系？</li>\n</ul>"
     },
     {
       "id": "SPARK-0233",
@@ -3511,7 +3511,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 JDBC 提供 SQL 查询服务。</p>\n<h2>参考回答</h2>\n<p>Thrift Server 是 Spark 的 SQL 服务，客户端通过 JDBC 或 beeline 连接，用 SQL 查 Spark。适合给 BI 工具提供统一查询入口。</p>\n<h2>追问</h2>\n<ul>\n<li>Thrift Server 适合什么场景？</li>\n</ul>"
     },
     {
       "id": "SPARK-0234",
@@ -3524,7 +3524,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>查看已完成应用的 UI 和历史日志。</p>\n<h2>参考回答</h2>\n<p>History Server 是把 Spark 应用的事件日志集中起来，应用结束后也能看它的 UI、stage、executor 状态。排查历史任务很有用。</p>\n<h2>追问</h2>\n<ul>\n<li>History Server 依赖什么数据？</li>\n</ul>"
     },
     {
       "id": "SPARK-0235",
@@ -3537,7 +3537,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>提供 REST 接口提交管理 Spark 作业。</p>\n<h2>参考回答</h2>\n<p>Job Server 是第三方组件，用 REST 接口提交和管理 Spark 作业，支持作业复用上下文。现在用得少了，被 Livy 或平台替代。</p>\n<h2>追问</h2>\n<ul>\n<li>Job Server 和 Livy 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0236",
@@ -3550,7 +3550,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>REST 服务提交 Spark 作业，供其他系统调用。</p>\n<h2>参考回答</h2>\n<p>Livy 是 REST 接口服务，用来提交 Spark 作业、管理 session。大数据平台和 notebook 常通过 Livy 提交任务。</p>\n<h2>追问</h2>\n<ul>\n<li>Livy 为什么被广泛使用？</li>\n</ul>"
     },
     {
       "id": "SPARK-0237",
@@ -3563,7 +3563,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>基于 web 的 notebook，交互式跑 Spark。</p>\n<h2>参考回答</h2>\n<p>Zeppelin 是交互式 notebook，能写 Spark、SQL、Scala 并可视化。适合探索分析。现在很多被 Jupyter 替代。</p>\n<h2>追问</h2>\n<ul>\n<li>Zeppelin 和 Jupyter 怎么选？</li>\n</ul>"
     },
     {
       "id": "SPARK-0238",
@@ -3576,7 +3576,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>notebook 环境，通过内核跑 Spark。</p>\n<h2>参考回答</h2>\n<p>Jupyter 是 notebook，通过 PySpark 内核交互式跑 Spark。数据分析和探索很常用，比 Zeppelin 生态更大。</p>\n<h2>追问</h2>\n<ul>\n<li>PySpark 内核怎么装？</li>\n</ul>"
     },
     {
       "id": "SPARK-0239",
@@ -3589,7 +3589,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>资源调度框架，Spark 可以在上面跑。</p>\n<h2>参考回答</h2>\n<p>Mesos 是资源调度系统，Spark 可以作为一个框架跑在 Mesos 上。现在基本被 YARN 和 K8s 取代了。</p>\n<h2>追问</h2>\n<ul>\n<li>Mesos 为什么没落了？</li>\n</ul>"
     },
     {
       "id": "SPARK-0240",
@@ -3602,7 +3602,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>容器编排平台，Spark 原生支持跑在 K8s。</p>\n<h2>参考回答</h2>\n<p>Kubernetes 是容器编排平台，Spark 3 原生支持在 K8s 上跑，能弹性伸缩、统一资源管理。是现在部署的大趋势。</p>\n<h2>追问</h2>\n<ul>\n<li>K8s 上跑 Spark 有什么优势？</li>\n</ul>"
     },
     {
       "id": "SPARK-0241",
@@ -3615,7 +3615,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Hadoop 资源管理器，Spark 最常用的部署模式。</p>\n<h2>参考回答</h2>\n<p>YARN 是 Hadoop 的资源管理器，Spark 跑在 YARN 上能统一管资源、多租户隔离。是传统大数据平台最主流的部署方式。</p>\n<h2>追问</h2>\n<ul>\n<li>YARN 上跑 Spark 有几种模式？</li>\n</ul>"
     },
     {
       "id": "SPARK-0242",
@@ -3628,7 +3628,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Spark 自带的集群模式。</p>\n<h2>参考回答</h2>\n<p>Standalone 是 Spark 自带的主从集群，部署简单，适合小规模或测试。生产上资源隔离和管理不如 YARN 或 K8s。</p>\n<h2>追问</h2>\n<ul>\n<li>Standalone 的局限在哪？</li>\n</ul>"
     },
     {
       "id": "SPARK-0243",
@@ -3641,7 +3641,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分布式内存文件系统，给 Spark 加速数据访问。</p>\n<h2>参考回答</h2>\n<p>Alluxio 是内存级的分布式文件系统，缓存热数据，给 Spark 提供更快的数据访问。适合跨存储加速和共享数据。</p>\n<h2>追问</h2>\n<ul>\n<li>Alluxio 加速原理是什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0244",
@@ -3654,7 +3654,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数仓工具，Spark 经常用它的 Metastore。</p>\n<h2>参考回答</h2>\n<p>Hive 是数据仓库工具，Spark 常通过 Hive Metastore 管理元数据，也能读写 Hive 表。两者配合，Spark 当计算引擎。</p>\n<h2>追问</h2>\n<ul>\n<li>Spark 和 Hive 怎么配合？</li>\n</ul>"
     },
     {
       "id": "SPARK-0245",
@@ -3667,7 +3667,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>机器学习生命周期管理平台。</p>\n<h2>参考回答</h2>\n<p>MLflow 是 ML 生命周期管理平台，管实验、模型版本、部署。和 Spark MLlib 配合，做模型实验跟踪和部署。</p>\n<h2>追问</h2>\n<ul>\n<li>MLflow 管哪些环节？</li>\n</ul>"
     },
     {
       "id": "SPARK-0247",

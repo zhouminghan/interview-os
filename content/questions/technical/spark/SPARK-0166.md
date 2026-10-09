@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+基于 DataFrame 的流处理，流批统一，有 exactly-once 语义。
+
+# 参考回答
+
+Structured Streaming 是新一代流处理，把流当无限增长的 DataFrame 处理，跟批处理同一套 API。支持事件时间、窗口、水印和 exactly-once。
+
+# 追问
+
+- 流批统一是什么概念？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+从 checkpoint 恢复 offset 和状态继续。
+
+# 参考回答
+
+恢复从 checkpoint 读 offset 和状态，从上次位置继续处理。sink 要幂等才能保证恢复后不重不丢。
+
+# 追问
+
+- 恢复时 sink 重复了怎么办？

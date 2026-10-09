@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+window、reduceByWindow 等做滑动窗口统计。
+
+# 参考回答
+
+窗口操作有 window、reduceByKeyAndWindow、countByWindow，按窗口长度和滑动间隔算最近一段时间的聚合。适合近 N 分钟统计。
+
+# 追问
+
+- 窗口长度和滑动间隔是什么？

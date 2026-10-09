@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+收集表大小、基数、分布，供 CBO 估成本。
+
+# 参考回答
+
+统计信息用 ANALYZE TABLE 收集，记录行数、列基数、min max 等。CBO 靠它估算 join 成本和顺序。数据变更后要定期更新。
+
+# 追问
+
+- 统计信息过期会怎样？

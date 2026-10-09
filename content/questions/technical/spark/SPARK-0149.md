@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Kafka、Socket、文件、Flume 等。
+
+# 参考回答
+
+数据源有 Kafka、TCP Socket、文件系统、Flume、自定义 Receiver。生产上 Kafka 最主流，用 Direct 方式直连，不依赖 Receiver。
+
+# 追问
+
+- Direct 方式比 Receiver 好在哪里？

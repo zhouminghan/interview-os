@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 foreach 或自定义 sink 写输出。
+
+# 参考回答
+
+自定义输出用 foreach 或 foreachBatch，自己写逻辑。foreachBatch 适合控制小文件或写多个地方。注意幂等性。
+
+# 追问
+
+- foreach 和 foreachBatch 怎么选？

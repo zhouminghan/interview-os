@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+自定义 source 实现流式读取。
+
+# 参考回答
+
+自定义数据源要实现 Source 或 SourceProvider，定义怎么读流数据、offset 和 schema。门槛比自定义 Receiver 高。
+
+# 追问
+
+- Source 和 Sink 都要自定义吗？

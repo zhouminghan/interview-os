@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 Kryo 代替 Java 序列化。
+
+# 参考回答
+
+序列化用 Kryo 比 Java 快几倍、占用小，注册自定义类效果更好。shuffle、缓存、广播都受益。
+
+# 追问
+
+- Kryo 怎么注册自定义类？

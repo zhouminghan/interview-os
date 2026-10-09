@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 foreachBatch 写自定义格式。
+
+# 参考回答
+
+自定义输出格式用 foreachBatch 拿到每批 DataFrame，自己写任意格式。也可以实现自定义 Sink 注册。
+
+# 追问
+
+- 自定义 Sink 怎么注册？

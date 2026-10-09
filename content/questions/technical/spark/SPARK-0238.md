@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+notebook 环境，通过内核跑 Spark。
+
+# 参考回答
+
+Jupyter 是 notebook，通过 PySpark 内核交互式跑 Spark。数据分析和探索很常用，比 Zeppelin 生态更大。
+
+# 追问
+
+- PySpark 内核怎么装？

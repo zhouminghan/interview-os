@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+长血缘才 checkpoint，别频繁。
+
+# 参考回答
+
+checkpoint 只在血缘很长或关键节点用，因为它要写盘有开销。cache 能解决复用就别 checkpoint。
+
+# 追问
+
+- checkpoint 和 cache 怎么搭配？

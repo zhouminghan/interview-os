@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+调 Receiver 数和分区数提高并行。
+
+# 参考回答
+
+并行度靠多个 Receiver 并行接收，数据处理分区数决定 task 数。分区数跟 core 数匹配，别太多太少。
+
+# 追问
+
+- Receiver 数和分区数怎么配合？

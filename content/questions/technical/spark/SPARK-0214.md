@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+减少单 task 数据、调内存、避免 collect 大结果。
+
+# 参考回答
+
+OOM 优化减少单 task 处理的数据量，调高 executor 内存，避免 collect 大结果到 driver，用序列化省内存。看是 driver 还是 executor OOM。
+
+# 追问
+
+- driver OOM 和 executor OOM 怎么区分？

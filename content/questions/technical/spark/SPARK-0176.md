@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+分区数决定并行，可 repartition 调整。
+
+# 参考回答
+
+并行度由数据分区决定，可以 repartition 调整，Kafka 分区数也影响并行。分区数要跟 core 匹配。
+
+# 追问
+
+- Kafka 分区数和并行度的关系？

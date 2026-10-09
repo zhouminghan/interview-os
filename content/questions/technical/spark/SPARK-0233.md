@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 JDBC 提供 SQL 查询服务。
+
+# 参考回答
+
+Thrift Server 是 Spark 的 SQL 服务，客户端通过 JDBC 或 beeline 连接，用 SQL 查 Spark。适合给 BI 工具提供统一查询入口。
+
+# 追问
+
+- Thrift Server 适合什么场景？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Spark 自带的集群模式。
+
+# 参考回答
+
+Standalone 是 Spark 自带的主从集群，部署简单，适合小规模或测试。生产上资源隔离和管理不如 YARN 或 K8s。
+
+# 追问
+
+- Standalone 的局限在哪？

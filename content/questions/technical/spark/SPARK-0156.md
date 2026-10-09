@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+看 Streaming UI 和指标。
+
+# 参考回答
+
+监控看 Streaming UI，关注处理延迟、积压量、batch 耗时。积压持续增长说明处理跟不上，要优化或加资源。
+
+# 追问
+
+- 积压增长怎么定位？

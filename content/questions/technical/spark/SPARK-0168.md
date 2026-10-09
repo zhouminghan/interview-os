@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+checkpoint 加 WAL 保证 exactly-once 恢复。
+
+# 参考回答
+
+容错靠 checkpoint 保存 offset 和状态，加 write-ahead log，恢复时从 checkpoint 重放，保证 exactly-once。引擎本身不可变，重算结果一致。
+
+# 追问
+
+- checkpoint 里存了什么？

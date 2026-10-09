@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+基于 web 的 notebook，交互式跑 Spark。
+
+# 参考回答
+
+Zeppelin 是交互式 notebook，能写 Spark、SQL、Scala 并可视化。适合探索分析。现在很多被 Jupyter 替代。
+
+# 追问
+
+- Zeppelin 和 Jupyter 怎么选？

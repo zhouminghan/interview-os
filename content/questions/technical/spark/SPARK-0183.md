@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 mapGroupsWithState 或 UDAF 做有状态聚合。
+
+# 参考回答
+
+自定义聚合用 mapGroupsWithState 做任意状态聚合，或写 UDAF。有状态聚合要注意状态清理和 checkpoint。
+
+# 追问
+
+- mapGroupsWithState 怎么用？
