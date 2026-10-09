@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:48:46+08:00",
+  "generatedAt": "2026-10-09T17:50:22+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -12915,7 +12915,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>控制字典大小和加载频率。</p>\n<h2>参考回答</h2>\n<p>字典加载优化控制字典大小、用增量刷新、合理缓存。字典小加载快，太大内存高。按变更频率设刷新。</p>\n<h2>追问</h2>\n<ul>\n<li>字典加载怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0567",
@@ -12928,7 +12928,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>max_threads 控制查询并行。</p>\n<h2>参考回答</h2>\n<p>查询并行度用 max_threads 控制单查询线程数，默认按 CPU 核数。线程太多切换开销大，太少用不满 CPU。按核数调。</p>\n<h2>追问</h2>\n<ul>\n<li>并行度怎么调？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0568",
@@ -12941,7 +12941,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SSD、缓存、减少扫描。</p>\n<h2>参考回答</h2>\n<p>磁盘 IO 瓶颈上 SSD、加大缓存、优化排序键减少扫描、压缩减少 IO 量。监控磁盘 IO 找瓶颈。合并错峰。</p>\n<h2>追问</h2>\n<ul>\n<li>IO 瓶颈怎么处理？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0569",
@@ -12954,7 +12954,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>预编译查询减少重复解析。</p>\n<h2>参考回答</h2>\n<p>查询预编译把 SQL 编译成执行计划缓存，重复查询省解析开销。适合固定 SQL 高频执行。参数化查询配合。</p>\n<h2>追问</h2>\n<ul>\n<li>预编译怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0570",
@@ -12967,7 +12967,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用近似聚合和预聚合。</p>\n<h2>参考回答</h2>\n<p>聚合优化用 uniq 近似代替 count distinct，预聚合减少实时聚合，减少分组基数。聚合本身 ClickHouse 已高度优化。</p>\n<h2>追问</h2>\n<ul>\n<li>聚合怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0571",
@@ -12980,7 +12980,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按需分配，限制上限。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 内存按查询需要分配，配置上限防止 OOM。聚合内存大，可以落盘。内存分配用 jemalloc 优化。</p>\n<h2>追问</h2>\n<ul>\n<li>内存怎么管？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0572",
@@ -12993,7 +12993,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>复用连接，配置连接数。</p>\n<h2>参考回答</h2>\n<p>连接池配置最大连接数、超时。客户端复用连接避免频繁建连。并发高加大连接池。连接是资源要管好。</p>\n<h2>追问</h2>\n<ul>\n<li>连接池怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0573",
@@ -13006,7 +13006,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>查询失败可以重试。</p>\n<h2>参考回答</h2>\n<p>查询重试配置重试次数，失败自动重试。适合偶发错误。注意重试会重复执行，幂等查询才安全。客户端也做重试。</p>\n<h2>追问</h2>\n<ul>\n<li>重试注意什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0574",
@@ -13019,7 +13019,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用真实负载测吞吐延迟。</p>\n<h2>参考回答</h2>\n<p>基准测试用真实或模拟负载，测查询吞吐和 P99 延迟。clickhouse-benchmark 工具或自建压测。对比优化前后。</p>\n<h2>追问</h2>\n<ul>\n<li>基准怎么测？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0575",
@@ -13032,7 +13032,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分片加副本，Distributed 表分发。</p>\n<h2>参考回答</h2>\n<p>分布式架构分片加副本，本地表加 Distributed 表做分发，ZooKeeper 协调副本。分片横向扩展，副本高可用。</p>\n<h2>追问</h2>\n<ul>\n<li>分布式怎么设计？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0576",
@@ -13045,7 +13045,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>副本加多节点部署。</p>\n<h2>参考回答</h2>\n<p>高可用用副本加多节点，单节点挂了副本顶上。分布式表自动路由。ZooKeeper 集群也要高可用。副本因子 2 以上。</p>\n<h2>追问</h2>\n<ul>\n<li>高可用怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0577",
@@ -13058,7 +13058,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>副本通过 ZK 协调同步。</p>\n<h2>参考回答</h2>\n<p>副本同步靠 ZooKeeper 协调，写入一个副本后其他副本从队列拉取数据块同步。副本间最终一致，ZK 记录同步状态。</p>\n<h2>追问</h2>\n<ul>\n<li>副本怎么同步？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0578",
@@ -13071,7 +13071,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加节点，数据重新分片。</p>\n<h2>参考回答</h2>\n<p>扩容加节点，新分片加入后数据重新分布。加副本提升读并发。扩容要规划分片和数据迁移。Distributed 表配置更新。</p>\n<h2>追问</h2>\n<ul>\n<li>扩容怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0579",
@@ -13084,7 +13084,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>副本自动接管。</p>\n<h2>参考回答</h2>\n<p>节点故障时副本自动接管，查询路由到健康副本。故障节点恢复后重新同步数据。副本数够就不丢数据不中断。</p>\n<h2>追问</h2>\n<ul>\n<li>故障恢复怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0580",
@@ -13097,7 +13097,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>副本最终一致，单节点强一致。</p>\n<h2>参考回答</h2>\n<p>单节点写入是原子的，副本之间最终一致。查询可能读到不同副本的微小延迟数据。对一致性要求高的场景注意副本同步延迟。</p>\n<h2>追问</h2>\n<ul>\n<li>一致性怎么保证？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0581",
@@ -13110,7 +13110,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>文件备份或快照备份。</p>\n<h2>参考回答</h2>\n<p>备份用 BACKUP 命令或文件系统快照，数据目录和元数据一起备。恢复从备份还原。定期备份并验证。</p>\n<h2>追问</h2>\n<ul>\n<li>备份恢复怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0582",
@@ -13123,7 +13123,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>监控节点、副本、资源指标。</p>\n<h2>参考回答</h2>\n<p>健康监控看节点存活、副本同步、CPU 内存磁盘、查询延迟。用 Prometheus 采集配告警。副本积压和节点异常及时告警。</p>\n<h2>追问</h2>\n<ul>\n<li>健康监控看什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0583",
@@ -13136,7 +13136,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>异常时拒绝请求保护集群。</p>\n<h2>参考回答</h2>\n<p>熔断机制在资源超限或异常时拒绝新请求，防止雪崩。配置内存、并发阈值。保护集群稳定，避免单个问题拖垮。</p>\n<h2>追问</h2>\n<ul>\n<li>熔断怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0584",
@@ -13149,7 +13149,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Kafka 表引擎实时消费写入。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 的 Kafka 表引擎订阅 topic，实时消费写入。或中间用 Flink 消费再写。适合实时数据接入。</p>\n<h2>追问</h2>\n<ul>\n<li>Kafka 集成怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0585",
@@ -13162,7 +13162,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Kafka 引擎、Flink、CDC 同步。</p>\n<h2>参考回答</h2>\n<p>实时同步用 Kafka 表引擎、Flink 写入、或 CDC 同步数据库变更。按实时性和数据源选。Flink 加 ClickHouse 是常见组合。</p>\n<h2>追问</h2>\n<ul>\n<li>实时同步怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0586",
@@ -13175,7 +13175,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>源表写入时增量触发。</p>\n<h2>参考回答</h2>\n<p>物化视图在源表写入时自动触发，把增量数据算进目标表。是增量的，不手动刷新。查询读目标表结果。</p>\n<h2>追问</h2>\n<ul>\n<li>物化视图怎么更新？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0587",
@@ -13188,7 +13188,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>JSON 类型或 JSON 函数解析。</p>\n<h2>参考回答</h2>\n<p>用 JSON 类型存，或 JSONExtract 函数解析。JSON 类型查询更灵活。大量 JSON 解析慢，能拆列就拆。</p>\n<h2>追问</h2>\n<ul>\n<li>JSON 怎么处理？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0588",
@@ -13201,7 +13201,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>认证、授权、加密、审计。</p>\n<h2>参考回答</h2>\n<p>安全加固用用户认证、库表级授权、传输加密、审计日志。网络隔离和防火墙。最小权限原则。生产开安全。</p>\n<h2>追问</h2>\n<ul>\n<li>安全怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0589",
@@ -13214,7 +13214,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按用户和库隔离，配额限流。</p>\n<h2>参考回答</h2>\n<p>多租户按用户或库隔离，配置配额和资源限制。不同租户不同库和权限。重要租户可独立集群。</p>\n<h2>追问</h2>\n<ul>\n<li>多租户怎么隔离？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0590",
@@ -13227,7 +13227,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>不支持分布式事务。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 不支持跨节点分布式事务，它是分析引擎。写入是单节点原子，跨节点要应用层协调。不适合事务场景。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么没事务？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0591",
@@ -13240,7 +13240,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>查询量、延迟、资源、副本。</p>\n<h2>参考回答</h2>\n<p>关键指标是查询量、查询延迟、CPU 内存磁盘、副本同步、写入速率。监控这些能发现问题。Prometheus 采集。</p>\n<h2>追问</h2>\n<ul>\n<li>关键指标有哪些？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0592",
@@ -13253,7 +13253,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Prometheus 采集，Grafana 展示。</p>\n<h2>参考回答</h2>\n<p>用 Prometheus 采集 ClickHouse 指标，Grafana 出图配告警。有现成 dashboard。监控查询、资源、副本。</p>\n<h2>追问</h2>\n<ul>\n<li>Grafana 怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0593",
@@ -13266,7 +13266,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按时间分区排序，列式存日志。</p>\n<h2>参考回答</h2>\n<p>日志分析用 ClickHouse 按时间分区、设备或应用排序，TTL 归档。聚合函数做统计。适合海量日志的快速分析。</p>\n<h2>追问</h2>\n<ul>\n<li>日志怎么建模？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0594",
@@ -13279,7 +13279,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>时间分区加设备排序。</p>\n<h2>参考回答</h2>\n<p>时序建模按时间分区、设备或指标排序，TTL 过期。适合监控指标、设备数据。聚合函数算趋势和统计。</p>\n<h2>追问</h2>\n<ul>\n<li>时序怎么建模？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0595",
@@ -13292,7 +13292,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>小表广播，避免大表跨节点 join。</p>\n<h2>参考回答</h2>\n<p>分布式 JOIN 优化小表广播到各节点，大表 join 尽量本地完成。ClickHouse join 弱，分布式 join 更弱，先预聚合。</p>\n<h2>追问</h2>\n<ul>\n<li>分布式 join 怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0596",

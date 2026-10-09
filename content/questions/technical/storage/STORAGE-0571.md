@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+按需分配，限制上限。
+
+# 参考回答
+
+ClickHouse 内存按查询需要分配，配置上限防止 OOM。聚合内存大，可以落盘。内存分配用 jemalloc 优化。
+
+# 追问
+
+- 内存怎么管？

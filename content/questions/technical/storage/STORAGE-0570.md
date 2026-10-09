@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用近似聚合和预聚合。
+
+# 参考回答
+
+聚合优化用 uniq 近似代替 count distinct，预聚合减少实时聚合，减少分组基数。聚合本身 ClickHouse 已高度优化。
+
+# 追问
+
+- 聚合怎么优化？

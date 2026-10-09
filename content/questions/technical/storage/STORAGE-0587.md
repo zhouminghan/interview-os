@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+JSON 类型或 JSON 函数解析。
+
+# 参考回答
+
+用 JSON 类型存，或 JSONExtract 函数解析。JSON 类型查询更灵活。大量 JSON 解析慢，能拆列就拆。
+
+# 追问
+
+- JSON 怎么处理？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+max_threads 控制查询并行。
+
+# 参考回答
+
+查询并行度用 max_threads 控制单查询线程数，默认按 CPU 核数。线程太多切换开销大，太少用不满 CPU。按核数调。
+
+# 追问
+
+- 并行度怎么调？

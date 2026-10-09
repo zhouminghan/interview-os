@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Kafka 引擎、Flink、CDC 同步。
+
+# 参考回答
+
+实时同步用 Kafka 表引擎、Flink 写入、或 CDC 同步数据库变更。按实时性和数据源选。Flink 加 ClickHouse 是常见组合。
+
+# 追问
+
+- 实时同步怎么做？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Prometheus 采集，Grafana 展示。
+
+# 参考回答
+
+用 Prometheus 采集 ClickHouse 指标，Grafana 出图配告警。有现成 dashboard。监控查询、资源、副本。
+
+# 追问
+
+- Grafana 怎么配？
