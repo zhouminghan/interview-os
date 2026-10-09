@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+无依赖 stage 并行跑。
+
+# 参考回答
+
+并行执行把无依赖的多个 stage 同时跑，减少总耗时。开启 parallel execution，适合多表 join、union。注意别抢资源。
+
+# 追问
+
+- 并行度怎么控？

@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:19:30+08:00",
+  "generatedAt": "2026-10-09T17:21:18+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -7065,7 +7065,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>临时表只在当前 session 有效。</p>\n<h2>参考回答</h2>\n<p>临时表用 CREATE TEMPORARY TABLE 建，session 结束自动删。适合中间结果、临时计算，不污染正式表。数据存在临时目录，生命周期跟 session 绑定。</p>\n<h2>追问</h2>\n<ul>\n<li>临时表和普通表区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0117",
@@ -7078,7 +7078,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>EXTERNAL 关键字建外部表，指定位置。</p>\n<h2>参考回答</h2>\n<p>外部表建表加 EXTERNAL，指定 LOCATION 指向已有数据。删表只删元数据，数据保留。适合数据要共享、迁移或不能误删的场景。</p>\n<h2>追问</h2>\n<ul>\n<li>外部表路径在哪？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0118",
@@ -7091,7 +7091,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按字段分目录，查询只扫相关分区。</p>\n<h2>参考回答</h2>\n<p>分区表建表 PARTITIONED BY 分区字段，数据按分区存子目录。分区字段选高频过滤的，一般是日期。查询带分区条件走裁剪，大幅减少扫描。</p>\n<h2>追问</h2>\n<ul>\n<li>分区字段怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0119",
@@ -7104,7 +7104,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>桶表按 hash 分文件，适合 join 和采样。</p>\n<h2>参考回答</h2>\n<p>桶表 CLUSTERED BY 分桶字段 INTO 桶数，按 hash 分到固定文件。适合 join 和采样，分桶键选高基数均匀的。桶数和并行度匹配。</p>\n<h2>追问</h2>\n<ul>\n<li>桶表 join 为什么快？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0120",
@@ -7117,7 +7117,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Hive 索引少用，靠列存和分区优化。</p>\n<h2>参考回答</h2>\n<p>Hive 索引有 Compact 和 Bitmap，但实际少用，维护成本高，列式存储加分区分桶已经够快。新版主要靠 ORC 内部索引。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 Hive 不依赖索引？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0121",
@@ -7130,7 +7130,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>统计信息描述数据分布，供优化器估算。</p>\n<h2>参考回答</h2>\n<p>统计信息有行数、列基数、分布，用 ANALYZE TABLE 收集。CBO 靠它选执行计划。数据变更后要重收集，否则计划不准。</p>\n<h2>追问</h2>\n<ul>\n<li>统计信息过期影响？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0122",
@@ -7143,7 +7143,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>少读、少 shuffle、少倾斜。</p>\n<h2>参考回答</h2>\n<p>查询优化核心是少读数据、少 shuffle、处理倾斜。手段有分区裁剪、列裁剪、谓词下推、MapJoin、并行执行。先看执行计划找瓶颈。</p>\n<h2>追问</h2>\n<ul>\n<li>优化策略怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0123",
@@ -7156,7 +7156,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>EXPLAIN 看执行计划。</p>\n<h2>参考回答</h2>\n<p>用 EXPLAIN 看查询的执行计划，能看 stage、join 方式、MapJoin、分区裁剪。重点看有没有全表扫、不必要的 shuffle。是优化的第一步。</p>\n<h2>追问</h2>\n<ul>\n<li>执行计划里看什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0124",
@@ -7169,7 +7169,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>存储、SQL、配置、资源四层优化。</p>\n<h2>参考回答</h2>\n<p>性能优化从存储列式分区、SQL 少 join 少 shuffle、配置开向量化 CBO、资源合理分配。先定位瓶颈再针对性优化。</p>\n<h2>追问</h2>\n<ul>\n<li>四层怎么排序？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0125",
@@ -7182,7 +7182,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>热点 key 导致个别任务慢。</p>\n<h2>参考回答</h2>\n<p>倾斜是某些 key 数据特别多，导致少数 reduce 慢。检测看任务耗时分布。解决用加盐打散、两阶段聚合、MapJoin。先定位热点 key。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么定位热点 key？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0126",
@@ -7195,7 +7195,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SQL、配置、资源、存储四层面优化。</p>\n<h2>参考回答</h2>\n<p>SQL 优化少 join 少 distinct，配置开向量化 CBO，资源合理分配队列和并行度，存储用列式分区。层层推进，先定位再优化。</p>\n<h2>追问</h2>\n<ul>\n<li>最有效的优化是什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0127",
@@ -7208,7 +7208,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>热点 key 导致少数任务拖尾。</p>\n<h2>参考回答</h2>\n<p>倾斜表现是少数任务跑特别久，其他任务早完成。原因是 key 分布不均、join 键热点。检测看任务耗时和 reduce 数据量。解决加盐、两阶段聚合、MapJoin。</p>\n<h2>追问</h2>\n<ul>\n<li>加盐后怎么还原？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0128",
@@ -7221,7 +7221,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MapJoin、Bucket MapJoin、SMB Join 优化。</p>\n<h2>参考回答</h2>\n<p>MapJoin 小表广播到 map 端；Bucket MapJoin 分桶表 join；SMB Join 要求排序分桶，最高效。按表大小和是否分桶选策略，核心是减少 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>三种 join 怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0129",
@@ -7234,7 +7234,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>小表加载进内存，map 端 join 免 shuffle。</p>\n<h2>参考回答</h2>\n<p>MapJoin 把小表加载到每个 map 的内存，join 在 map 端完成，避免 shuffle。配置自动 MapJoin 和阈值。适合大表 join 小表，性能提升明显。</p>\n<h2>追问</h2>\n<ul>\n<li>小表多大合适？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0130",
@@ -7247,7 +7247,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>提前过滤、预聚合、处理倾斜。</p>\n<h2>参考回答</h2>\n<p>GROUP BY 优化先 filter 减数据，开启 map 端预聚合，处理热点 key 倾斜。分组基数太高会慢，能近似就近似。</p>\n<h2>追问</h2>\n<ul>\n<li>map 端预聚合是什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0131",
@@ -7260,7 +7260,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>无依赖 stage 并行跑。</p>\n<h2>参考回答</h2>\n<p>并行执行把无依赖的多个 stage 同时跑，减少总耗时。开启 parallel execution，适合多表 join、union。注意别抢资源。</p>\n<h2>追问</h2>\n<ul>\n<li>并行度怎么控？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0132",
@@ -7273,7 +7273,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分析场景用 ORC 或 Parquet 列式。</p>\n<h2>参考回答</h2>\n<p>ORC 和 Parquet 都是列式，压缩好、查询只读需要的列。ORC 在 Hive 生态更原生，Parquet 跨引擎通用。分析场景用列式，配压缩。</p>\n<h2>追问</h2>\n<ul>\n<li>ORC 和 Parquet 怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0133",
@@ -7286,7 +7286,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>压缩省存储费 CPU。</p>\n<h2>参考回答</h2>\n<p>Snappy、lz4 快，gzip 压缩率高但慢，zstd 平衡。选压缩看 CPU 和存储权衡，分析场景配 snappy 或 zstd。列式格式自带压缩。</p>\n<h2>追问</h2>\n<ul>\n<li>压缩影响查询吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0134",
@@ -7299,7 +7299,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分区字段选高频过滤，粒度别太细。</p>\n<h2>参考回答</h2>\n<p>分区字段选查询最常过滤的，一般是时间。粒度按业务定，太细小文件多，太粗裁剪效果差。分区数量适中，配合生命周期管理。</p>\n<h2>追问</h2>\n<ul>\n<li>分区太细有什么问题？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0135",
@@ -7312,7 +7312,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分桶键选高基数均匀，桶数匹配并行度。</p>\n<h2>参考回答</h2>\n<p>分桶键选高基数均匀的字段，桶数和 reducer 数或并行度匹配。分桶适合 join 和采样，配合分区使用。桶太多小文件多。</p>\n<h2>追问</h2>\n<ul>\n<li>桶数怎么定？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0136",
@@ -7325,7 +7325,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Hive 索引少用，靠列存分区。</p>\n<h2>参考回答</h2>\n<p>Hive 索引价值有限，列式存储加分区已经能覆盖大部分优化。与其建索引，不如用 ORC 内部索引、合理分区和分桶。索引维护成本高，不推荐。</p>\n<h2>追问</h2>\n<ul>\n<li>索引为什么不推荐？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0137",
@@ -7338,7 +7338,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看计划定位，用优化规则改进。</p>\n<h2>参考回答</h2>\n<p>查询计划优化先 EXPLAIN 看，找全表扫和大 shuffle，再用谓词下推、MapJoin、并行执行改进。统计信息准能让 CBO 选对计划。</p>\n<h2>追问</h2>\n<ul>\n<li>计划里找什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0138",
@@ -7351,7 +7351,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>过滤条件提前到数据源执行。</p>\n<h2>参考回答</h2>\n<p>谓词下推把 where 条件推到扫描阶段，读数据时就过滤，减少 IO。默认开启，列式格式和分区裁剪配合效果最好。</p>\n<h2>追问</h2>\n<ul>\n<li>谓词下推失效场景？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0139",
@@ -7364,7 +7364,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按任务量配资源，队列隔离。</p>\n<h2>参考回答</h2>\n<p>资源优化按任务量配 executor、内存、核数，用队列按业务隔离，开动态资源分配。资源别过配浪费，也别不够 OOM。</p>\n<h2>追问</h2>\n<ul>\n<li>资源怎么估算？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0140",
@@ -7377,7 +7377,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>并行度由 reduce 数和分区决定。</p>\n<h2>参考回答</h2>\n<p>并行度由 reduce 任务数决定，可以手动设或按数据量自动。太低处理慢，太高调度开销大。一般设成和数据量匹配，配合分区分桶。</p>\n<h2>追问</h2>\n<ul>\n<li>reduce 数怎么设？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0141",
@@ -7390,7 +7390,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>合理分配执行和缓存内存，避免 OOM。</p>\n<h2>参考回答</h2>\n<p>内存优化合理分配执行内存和容器内存，避免大任务 OOM。MapJoin 小表要能放内存，执行内存要给够。配向量化和内存参数。</p>\n<h2>追问</h2>\n<ul>\n<li>OOM 怎么排查？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0142",
@@ -7403,7 +7403,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>调堆大小和 GC 参数。</p>\n<h2>参考回答</h2>\n<p>JVM 调优调堆内存大小、GC 算法和新生代比例。堆太小 OOM，太大 GC 停顿长。用 G1 收集器，按任务内存需求配。</p>\n<h2>追问</h2>\n<ul>\n<li>GC 参数怎么调？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0143",
@@ -7416,7 +7416,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>列式压缩、分区裁剪、减少小文件。</p>\n<h2>参考回答</h2>\n<p>磁盘 IO 优化用列式压缩减少读取、分区裁剪减少扫描、合并小文件。SSD 也有帮助。IO 是 Hive 常见的瓶颈，读得少就快。</p>\n<h2>追问</h2>\n<ul>\n<li>小文件为什么拖慢？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0144",
@@ -7429,7 +7429,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Hive 缓存有限，靠 LLAP 或物化。</p>\n<h2>参考回答</h2>\n<p>Hive 本身缓存弱，LLAP 能缓存热数据，物化视图缓存结果。适合高频小结果集。批处理一般不需要缓存。</p>\n<h2>追问</h2>\n<ul>\n<li>LLAP 缓存什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0145",
@@ -7442,7 +7442,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>元数据统一管理、备份、权限。</p>\n<h2>参考回答</h2>\n<p>元数据管理用 Metastore 统一存，做好备份、权限和一致性校验。元数据变更要规范，配合血缘和资产管理。别让元数据和实际数据不一致。</p>\n<h2>追问</h2>\n<ul>\n<li>元数据不一致怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0146",

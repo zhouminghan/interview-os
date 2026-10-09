@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Hive 索引少用，靠列存和分区优化。
+
+# 参考回答
+
+Hive 索引有 Compact 和 Bitmap，但实际少用，维护成本高，列式存储加分区分桶已经够快。新版主要靠 ORC 内部索引。
+
+# 追问
+
+- 为什么 Hive 不依赖索引？

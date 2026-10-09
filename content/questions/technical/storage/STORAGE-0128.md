@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+MapJoin、Bucket MapJoin、SMB Join 优化。
+
+# 参考回答
+
+MapJoin 小表广播到 map 端；Bucket MapJoin 分桶表 join；SMB Join 要求排序分桶，最高效。按表大小和是否分桶选策略，核心是减少 shuffle。
+
+# 追问
+
+- 三种 join 怎么选？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+压缩省存储费 CPU。
+
+# 参考回答
+
+Snappy、lz4 快，gzip 压缩率高但慢，zstd 平衡。选压缩看 CPU 和存储权衡，分析场景配 snappy 或 zstd。列式格式自带压缩。
+
+# 追问
+
+- 压缩影响查询吗？

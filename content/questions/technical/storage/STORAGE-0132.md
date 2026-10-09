@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+分析场景用 ORC 或 Parquet 列式。
+
+# 参考回答
+
+ORC 和 Parquet 都是列式，压缩好、查询只读需要的列。ORC 在 Hive 生态更原生，Parquet 跨引擎通用。分析场景用列式，配压缩。
+
+# 追问
+
+- ORC 和 Parquet 怎么选？
