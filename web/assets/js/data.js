@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T15:58:37+08:00",
+  "generatedAt": "2026-10-09T16:01:23+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -16312,7 +16312,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>StarRocks 是一个开源的 MPP 架构列式分析型数据库，主打极速多维分析。</p>\n<h2>参考回答</h2>\n<p>StarRocks 是新一代的 OLAP 数据库，MPP 架构、列式存储加向量化执行，主打海量数据的实时分析。它兼容 MySQL 协议，能直接当 BI 的查询引擎用，做报表、大屏、实时数仓都行。</p>\n<h2>追问</h2>\n<ul>\n<li>StarRocks 和 ClickHouse 的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0017",
@@ -16325,7 +16325,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MPP 分布式、列存、向量化、兼容 MySQL、支持实时更新。</p>\n<h2>参考回答</h2>\n<p>特点就几个：MPP 架构横向扩展、列式存储压缩好、向量化执行查得快、支持主键模型做实时更新、兼容 MySQL 协议好接入。所以它既快又好用，是现在很主流的 OLAP 引擎。</p>\n<h2>追问</h2>\n<ul>\n<li>实时更新靠什么模型实现？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0018",
@@ -16338,7 +16338,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>传统数据库面向事务点查，StarRocks 面向海量分析聚合。</p>\n<h2>参考回答</h2>\n<p>传统库像 MySQL 是行存、面向高频点查和事务；StarRocks 是列存、MPP、面向 TB 到 PB 级的分析聚合。一个重 ACID 和并发写，一个重扫描和聚合吞吐。</p>\n<h2>追问</h2>\n<ul>\n<li>行存和列存各自的适用场景？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0019",
@@ -16351,7 +16351,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>前端 FE 管元数据和查询计划，后端 BE 管存储和计算。</p>\n<h2>参考回答</h2>\n<p>StarRocks 分两层：FE 是前端节点，负责元数据管理、SQL 解析、查询计划；BE 是后端节点，负责实际存储和计算。FE 有 leader 和 follower 保证高可用，BE 存数据分片并执行查询。</p>\n<h2>追问</h2>\n<ul>\n<li>FE 的 leader 和 follower 是什么关系？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0020",
@@ -16364,7 +16364,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MPP 是多个节点并行处理同一查询，各自算一部分再汇总。</p>\n<h2>参考回答</h2>\n<p>MPP 就是大规模并行处理，把一个大查询拆到多个 BE 上并行执行，每个节点算自己那部分数据，最后聚合返回。StarRocks 靠数据分桶分散到多个 BE，查询时所有 BE 并行扫，所以快。</p>\n<h2>追问</h2>\n<ul>\n<li>MPP 和 MapReduce 的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0021",
@@ -16377,7 +16377,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>FE 管元数据和查询计划，BE 管存储和计算。</p>\n<h2>参考回答</h2>\n<p>FE 相当于大脑，负责元数据、SQL 解析优化、生成执行计划；BE 相当于手脚，负责存数据、执行查询。一般 FE 三台保证高可用，BE 按数据量水平扩。</p>\n<h2>追问</h2>\n<ul>\n<li>FE 挂了查询还能用吗？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0022",
@@ -16390,7 +16390,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>明细、聚合、主键、更新四类模型。</p>\n<h2>参考回答</h2>\n<p>StarRocks 支持明细模型、聚合模型、主键模型、更新模型。明细存原始明细，聚合写入时预聚合，主键模型按主键覆盖更新，更新模型支持部分列更新。选型看数据是明细、要聚合还是频繁更新。</p>\n<h2>追问</h2>\n<ul>\n<li>主键模型和更新模型有什么区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0023",
@@ -16403,7 +16403,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>列式存储按列连续存，分析时只读需要的列，压缩也好。</p>\n<h2>参考回答</h2>\n<p>列式存储就是同一列的数据存在一起，查询只扫涉及的列，省 IO；同列数据类型一致，压缩率高。OLAP 场景大多是查少数几列做聚合，所以列存天然比行存快。</p>\n<h2>追问</h2>\n<ul>\n<li>列式存储的缺点是什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0024",
@@ -16416,7 +16416,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>向量化执行、CBO 优化器、谓词下推、物化视图。</p>\n<h2>参考回答</h2>\n<p>查询引擎特点就是向量化执行，按批处理而不是逐行；CBO 基于成本选最优执行计划；还有谓词下推、分区裁剪、物化视图加速。这些加起来让它聚合查询特别快。</p>\n<h2>追问</h2>\n<ul>\n<li>向量化执行为什么快？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0025",
@@ -16429,7 +16429,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>主键模型按主键覆盖，更新模型支持部分列更新，底层靠 Tablet 和版本。</p>\n<h2>参考回答</h2>\n<p>StarRocks 的更新主要靠主键模型和更新模型，按主键 upsert，新数据覆盖旧数据；底层用 Tablet 加多版本机制，更新是写入新版本再后台 Compaction 合并。明细模型则不做合并，原样保留。</p>\n<h2>追问</h2>\n<ul>\n<li>Compaction 是什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0026",
@@ -16442,7 +16442,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Broker Load、Stream Load、Routine Load、Insert、Spark 和 Flink 导入。</p>\n<h2>参考回答</h2>\n<p>导入方式挺多：Broker Load 从对象存储或 HDFS 批量导入，Stream Load 走 HTTP 实时导入，Routine Load 从 Kafka 持续消费，还有 Insert Into 和 Spark、Flink Connector。离线批量用 Broker Load，实时用 Routine Load 或 Flink。</p>\n<h2>追问</h2>\n<ul>\n<li>Broker Load 和 Routine Load 的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0027",
@@ -16455,7 +16455,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 CREATE TABLE 指定字段、模型、分区、分桶和排序键。</p>\n<h2>参考回答</h2>\n<p>创建表时要指定字段类型、数据模型、分区字段、分桶字段和排序键，还可以设副本数。比如建一张明细表按日期分区、按用户 id 分桶、排序键选常用查询字段。分区分桶排序键设计直接决定查询性能。</p>\n<h2>追问</h2>\n<ul>\n<li>分桶字段怎么选？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0028",
@@ -16468,7 +16468,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>常用时间 Range 分区，也支持 List 分区。</p>\n<h2>参考回答</h2>\n<p>最常见是按时间做 Range 分区，方便按天删数据和裁剪；也支持 List 分区按枚举值。设计原则是分区字段选最常过滤的，尤其是时间。分区能让查询只扫相关分区。</p>\n<h2>追问</h2>\n<ul>\n<li>分区和分桶有什么区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0029",
@@ -16481,7 +16481,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Bucket 分桶决定数据怎么分散到 BE，影响并行度和倾斜。</p>\n<h2>参考回答</h2>\n<p>分桶就是把一张表的数据按某列的 hash 分成多个桶，分散到不同 BE。作用一是并行查询，二是分布均匀避免倾斜。分桶字段一般选高基数的，桶数一般和 BE 数量成倍数。</p>\n<h2>追问</h2>\n<ul>\n<li>分桶数怎么确定？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0030",
@@ -16494,7 +16494,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>自研列式存储格式，配合压缩和索引。</p>\n<h2>参考回答</h2>\n<p>StarRocks 用自研的列式存储，按列组织、支持编码压缩、有前缀索引和 Bitmap 等索引，底层分 Tablet 管理。这个格式就是为快速扫描和聚合设计的。</p>\n<h2>追问</h2>\n<ul>\n<li>Tablet 是什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0031",
@@ -16507,7 +16507,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>物化视图是预计算好的结果，查询时直接复用加速。</p>\n<h2>参考回答</h2>\n<p>物化视图把常用的聚合结果提前算好存下来，查询命中就直接取结果，不用现算。适合高频的固定维度聚合。缺点是占存储、刷新有延迟，所以要在加速和成本之间权衡。</p>\n<h2>追问</h2>\n<ul>\n<li>物化视图和普通表有什么区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0032",
@@ -16520,7 +16520,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>提高并发、合并小批次、合理分区分桶、选对导入方式。</p>\n<h2>参考回答</h2>\n<p>导入优化主要几招：提高导入并发度、避免太碎的小批次、合理设计分区分桶减少热点、选合适的导入方式，比如大批量用 Broker Load、实时用 Routine Load。还有开事务批量提交减少版本数。</p>\n<h2>追问</h2>\n<ul>\n<li>小批次太多会有什么问题？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0033",
@@ -16533,7 +16533,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠多副本、事务导入、版本机制保证一致。</p>\n<h2>参考回答</h2>\n<p>StarRocks 通过多副本同步、导入事务、版本号机制来保证一致性。查询读到的是某个一致版本，导入要么成功要么失败，不会读到写一半的数据。副本之间也有校验和修复机制。</p>\n<h2>追问</h2>\n<ul>\n<li>副本不一致时怎么修复？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0034",
@@ -16546,7 +16546,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Routine Load 或 Flink 从 Kafka 持续消费实时写入。</p>\n<h2>参考回答</h2>\n<p>流式导入主要通过 Routine Load 订阅 Kafka，持续消费数据写入，配合主键模型做 upsert 更新。也常用 Flink Connector 直接把实时数据写进 StarRocks。这样就支撑实时数仓和实时大屏。</p>\n<h2>追问</h2>\n<ul>\n<li>Routine Load 的消费位点怎么管理？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0035",
@@ -16559,7 +16559,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Broker Load 从 HDFS、对象存储批量导入，适合大文件离线加载。</p>\n<h2>参考回答</h2>\n<p>Broker Load 是 StarRocks 的批量导入方式，通过 Broker 从 HDFS、S3 这类外部存储拉数据批量加载，适合历史数据初始化和大批量离线导入。可以并行加载多个文件，支持错误行过滤。</p>\n<h2>追问</h2>\n<ul>\n<li>Broker Load 和 Stream Load 的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0036",
@@ -16572,7 +16572,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>兼容 MySQL 协议和大部分标准 SQL，含窗口函数、子查询、CTE。</p>\n<h2>参考回答</h2>\n<p>StarRocks 兼容 MySQL 协议，标准 SQL 基本都支持，包括 join、子查询、CTE、窗口函数、聚合函数。也支持一些分析型扩展，比如 ARRAY、JSON 类型。所以 MySQL 用户上手成本很低。</p>\n<h2>追问</h2>\n<ul>\n<li>和标准 SQL 有什么差异？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0037",
@@ -16585,7 +16585,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>窗口函数按分区排序做行间计算，写法跟标准 SQL 一致。</p>\n<h2>参考回答</h2>\n<p>StarRocks 支持标准窗口函数，像 row_number、rank、lag、lead、sum over 这些，按 partition by 分组、order by 排序后做行间计算。典型用法是分组 TopN、累计值、环比。</p>\n<h2>追问</h2>\n<ul>\n<li>rank 和 dense_rank 的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0038",
@@ -16598,7 +16598,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>子查询交给优化器改写，优先转成 join 提升性能。</p>\n<h2>参考回答</h2>\n<p>StarRocks 的优化器会处理子查询，很多能改写成 join 或半连接，提升性能。写的时候尽量把相关子查询改成 join 或 CTE，避免逐行执行。执行计划里能看子查询是怎么被优化的。</p>\n<h2>追问</h2>\n<ul>\n<li>相关子查询和 join 哪个快？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0039",
@@ -16611,7 +16611,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>标准聚合加近似聚合，比如 count distinct、bitmap、hll。</p>\n<h2>参考回答</h2>\n<p>除了 sum、count、avg、max、min 这些标准聚合，StarRocks 还支持 count distinct、bitmap、hll 近似去重，大基数去重用 bitmap 或 hll 会快很多。还有窗口聚合和 group by 的 cube、rollup。</p>\n<h2>追问</h2>\n<ul>\n<li>bitmap 去重和 count distinct 的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0040",
@@ -16624,7 +16624,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 limit 加 offset，但深分页要注意性能。</p>\n<h2>参考回答</h2>\n<p>StarRocks 用 limit 和 offset 做分页。但 offset 很大时会扫很多数据，性能差，所以深分页一般配合排序键、或改成游标、或限制 offset 范围。实际业务很少做特别深的分页。</p>\n<h2>追问</h2>\n<ul>\n<li>深分页为什么慢？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0041",
@@ -16637,7 +16637,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>有 Broadcast Join、Shuffle Join、Bucket Shuffle Join、Colocate Join。</p>\n<h2>参考回答</h2>\n<p>StarRocks 支持多种 join：小表广播 join、大表 shuffle join、还有 bucket shuffle join 和 colocate join，后两者利用分桶减少数据传输。优化器会按表大小和分桶自动选策略。</p>\n<h2>追问</h2>\n<ul>\n<li>Colocate Join 的前提是什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0042",
@@ -16650,7 +16650,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ARRAY 存数组，MAP 存键值对，方便存多值字段。</p>\n<h2>参考回答</h2>\n<p>StarRocks 支持 ARRAY 和 MAP 类型，ARRAY 存数组、MAP 存键值对。对多值字段很方便，比如一个商品挂多个标签。查询时可以用 array 函数、lateral view 展开处理。</p>\n<h2>追问</h2>\n<ul>\n<li>ARRAY 字段怎么展开成多行？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0043",
@@ -16663,7 +16663,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 JSON 类型存半结构化数据，配合 json 函数解析。</p>\n<h2>参考回答</h2>\n<p>StarRocks 支持 JSON 类型，能存半结构化数据。查询用 json_extract、json_query 这些函数解析字段。适合日志里那种结构不固定的字段，但大量解析会慢，能用列存就不要塞 JSON。</p>\n<h2>追问</h2>\n<ul>\n<li>JSON 字段查询为什么慢？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0044",
@@ -16676,7 +16676,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>排序键决定存储顺序和前缀索引，ORDER BY 全局排序代价高。</p>\n<h2>参考回答</h2>\n<p>StarRocks 的排序分两层：建表时的排序键决定数据存储顺序和前缀索引，影响查询性能；查询里的 ORDER BY 是全局排序，数据量大时代价高。所以把常用过滤字段设成排序键比查询时排序更高效。</p>\n<h2>追问</h2>\n<ul>\n<li>排序键怎么选？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0045",
@@ -16689,7 +16689,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CTE 是临时命名结果集，用 WITH 定义，可复用。</p>\n<h2>参考回答</h2>\n<p>CTE 就是 WITH 定义的公用表表达式，把一个子查询起个名，后面多次引用，逻辑更清晰。StarRocks 支持 CTE，优化器也可能对它做物化或内联。比重复写子查询好读。</p>\n<h2>追问</h2>\n<ul>\n<li>CTE 和子查询有什么区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0046",
