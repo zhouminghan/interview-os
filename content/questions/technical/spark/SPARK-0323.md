@@ -9,7 +9,7 @@ source_type: knowledge
 
 > **来源面经**：字节-大数据开发-20260414 Q34
 
-QQ 频道选 Iceberg：支持 Flink 写 + Spark 读（流批一体）、ACID 事务。Hudi 适合 upsert 场景（MOR/COW 两种模式），Delta Lake 跟 Spark 生态集成最好。三者功能趋同，看团队技术栈和生态适配。
+常见选 Iceberg：支持 Flink 写 + Spark 读（流批一体）、ACID 事务。Hudi 适合 upsert 场景（MOR/COW 两种模式），Delta Lake 跟 Spark 生态集成最好。三者功能趋同，看团队技术栈和生态适配。
 
 > 💡 **专家补充**（大数据架构师视角，面试中视情况展开）
 >

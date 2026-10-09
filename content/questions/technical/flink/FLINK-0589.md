@@ -27,7 +27,7 @@ source_type: knowledge
 - 失败回滚：预提交还没正式提交的数据要么丢弃要么补偿
 - 典型实现：**Kafka 事务性写入**、**Iceberg 事务提交**
 
-**实战场景**：QQ 频道项目里 Flink 写 Iceberg，Iceberg 本身支持 ACID 事务，配合 Flink 的两阶段提交——写入和 checkpoint 绑定，没成功提交的数据下游 Spark 读不到，靠这个保证一致性。
+**实战场景**：Flink 写 Iceberg，Iceberg 本身支持 ACID 事务，配合 Flink 的两阶段提交——写入和 checkpoint 绑定，没成功提交的数据下游 Spark 读不到，靠这个保证一致性。
 
 **反例**：如果 sink 直接 `INSERT INTO` 非主键表（无幂等无事务），就只能保证 at-least-once，重启可能产生重复数据。
 
@@ -79,7 +79,7 @@ source_type: knowledge
 >
 > ---
 >
-> **项目落地**：我在 QQ 频道实时数仓做 Flink 写 Iceberg 时，就是这套机制——
+> **项目落地**：我在实时数仓做 Flink 写 Iceberg 时，就是这套机制——
 > - Flink 每 1 分钟 Checkpoint 一次
 > - Iceberg Sink 在 Checkpoint Barrier 到达时**预写数据文件**（Parquet 格式落到 HDFS），但**不提交 snapshot**
 > - 等 JM 通知 Checkpoint complete 后，**才把 snapshot 提交到 Iceberg Catalog**，这时候下游 Spark 离线作业才能查到这批数据

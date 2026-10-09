@@ -32,7 +32,7 @@ Exactly-Once 端到端保障：Kafka Source offset 保存到 Checkpoint → 失�
 > - **Flink 内部一致性**：靠 Barrier 对齐机制保证算子状态和数据进度同步快照
 > - **Sink 端事务或幂等**：要么用两阶段提交（比如 Kafka 事务、Iceberg 的 ACID Commit），要么用幂等写入（比如 MySQL 按主键 upsert）
 >
-> 这三个环节缺一不可。我自己的项目里 QQ 频道实时数仓 Flink 写 Iceberg，就是用 Iceberg 的事务提交配合 Flink 的两阶段提交，**checkpoint 没成功 = 这批数据下游不可见**，这样保证一致性。
+> 这三个环节缺一不可。我自己的项目里实时数仓 Flink 写 Iceberg，就是用 Iceberg 的事务提交配合 Flink 的两阶段提交，**checkpoint 没成功 = 这批数据下游不可见**，这样保证一致性。
 >
 > 最后讲 **Savepoint**。Savepoint 和 Checkpoint 底层格式一样，区别在用途——「**Checkpoint 是自动挡，Savepoint 是手动挡**」。Checkpoint 是 Flink 周期性自动触发的，专门用于故障恢复；Savepoint 是开发人员主动触发的，用于**计划内重启**——比如升级 Flink 版本、调整作业并行度、改算子逻辑，发版前手动打一个 Savepoint，新版本作业从这个 Savepoint 启动，状态无缝迁移。
 >
@@ -44,6 +44,6 @@ Exactly-Once 端到端保障：Kafka Source offset 保存到 Checkpoint → 失�
 > - 先讲 Checkpoint 用「不停车拍照」比喻 Barrier
 > - 再讲 Exactly-Once **必须主动说"端到端"**，分 source / flink / sink 三方
 > - 最后用「自动挡 vs 手动挡」收尾区分 Savepoint
-> - 项目落地举例 QQ 频道 Flink + Iceberg 双重提交
+> - 项目落地举例 Flink + Iceberg 双重提交
 
 ---

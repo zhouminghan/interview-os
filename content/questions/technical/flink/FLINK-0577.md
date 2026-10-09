@@ -13,6 +13,6 @@ Kafka：分布式消息队列，Topic（分类）、Partition（并行度保障�
 
 Flink：实时流处理引擎，真正逐条处理、Exactly-Once、Checkpoint 容错。
 
-典型架构：Kafka 数据传输层 + Flink 实时计算层。QQ 频道：Flink 消费 Kafka 写 Iceberg。
+典型架构：Kafka 数据传输层 + Flink 实时计算层。常见做法：Flink 消费 Kafka 写 Iceberg。
 
 ---

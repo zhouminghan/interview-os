@@ -28,7 +28,7 @@ source_type: knowledge
 | 资源使用 | 长期占用 | 跑完释放 |
 | 时间语义 | 强调事件时间 + watermark | 处理时间为主 |
 
-**流批一体落地实践**：QQ 频道项目里 **Flink 处理 Kafka 流写 Iceberg，Iceberg 这层就是流批桥梁**——Flink 实时写、Spark 批量读，本质上是流批一体的实际形态。
+**流批一体落地实践**：**Flink 处理 Kafka 流写 Iceberg，Iceberg 这层就是流批桥梁**——Flink 实时写、Spark 批量读，本质上是流批一体的实际形态。
 
 > 💡 **专家补充**：
 > - **流批一体的真正难点是"统一存储"而非"统一计算"**——Flink 早就支持流批两种执行模式了，但没有 Iceberg/Hudi 这种 ACID 表格式，存储层不统一就只能在计算层"流批一体"，数据还是分两份
