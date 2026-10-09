@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+增量 checkpoint、合理间隔、减少状态。
+
+# 参考回答
+
+checkpoint 优化用增量 checkpoint、合理设置间隔、减少状态大小、本地恢复。间隔太短频繁快照有开销，太长恢复丢得多。
+
+# 追问
+
+- checkpoint 间隔怎么定？

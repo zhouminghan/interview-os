@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Flink 流写 Iceberg，做湖仓一体。
+
+# 参考回答
+
+Flink SQL 流式写 Iceberg，利用 Iceberg 的 ACID 事务和 schema 演进，做湖仓一体。Flink 实时写，Spark 等批量读，流批统一。
+
+# 追问
+
+- Iceberg 的优势是什么？

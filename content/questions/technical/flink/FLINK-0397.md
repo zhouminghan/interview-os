@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Flink CDC 监听 binlog，实时同步到下游。
+
+# 参考回答
+
+CDC 架构用 Flink CDC 监听数据库 binlog 和 WAL，把增删改转成流，SQL 加工后同步到下游库或数据湖。实现实时数据同步和数仓入仓。
+
+# 追问
+
+- Flink CDC 的原理？

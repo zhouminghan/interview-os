@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 RocksDB、调缓存、增量 checkpoint。
+
+# 参考回答
+
+大状态后端优化用 RocksDB，调块缓存和写缓冲，配增量 checkpoint 减少快照，用状态 TTL 清理。状态访问慢就加大缓存。
+
+# 追问
+
+- RocksDB 状态怎么调优？

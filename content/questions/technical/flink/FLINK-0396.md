@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+多 JobManager HA、资源隔离、监控告警。
+
+# 参考回答
+
+高可用高性能集群配多 JobManager 加 ZooKeeper，资源组隔离不同作业，checkpoint 存可靠存储，配监控告警。K8s 或 YARN 统一资源管理。
+
+# 追问
+
+- 高可用怎么配置？

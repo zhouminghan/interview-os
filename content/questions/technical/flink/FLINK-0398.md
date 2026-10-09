@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 Catalog 管理元数据，对接 Hive Metastore。
+
+# 参考回答
+
+元数据管理用 Catalog，存库表函数定义，对接 Hive Metastore 复用元数据。表结构、schema 统一在 Catalog 管理，SQL 里引用。
+
+# 追问
+
+- Hive Catalog 怎么配？
