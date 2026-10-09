@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+讲 Flink 和 Kafka、数仓、数据湖的集成。
+
+# 参考回答
+
+展示集成能力讲 Flink 和 Kafka、Doris、Hive、数据湖这些怎么配合，你做过什么集成方案。体现全链路视角。
+
+# 追问
+
+- 集成能力为什么重要？

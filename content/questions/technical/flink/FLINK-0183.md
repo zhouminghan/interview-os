@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+watermark 推进事件时间，触发窗口和定时器。
+
+# 参考回答
+
+事件时间靠 watermark 推进，算子按事件时间排序处理，窗口和定时器按 watermark 触发。乱序用 watermark 容忍和迟到处理。
+
+# 追问
+
+- 事件时间和处理时间的取舍？

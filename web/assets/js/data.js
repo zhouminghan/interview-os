@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:35:41+08:00",
+  "generatedAt": "2026-10-09T16:37:53+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -21306,7 +21306,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Netty 做节点间网络传输，配合缓冲和反压。</p>\n<h2>参考回答</h2>\n<p>Flink 网络传输基于 Netty，数据在算子间通过网络缓冲和队列传输，配合 credit 机制做反压。网络层是流式的，边发送边处理。</p>\n<h2>追问</h2>\n<ul>\n<li>网络层为什么用 Netty？</li>\n</ul>"
     },
     {
       "id": "FLINK-0175",
@@ -21319,7 +21319,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按 slot 和资源把子任务分配到 TaskManager。</p>\n<h2>参考回答</h2>\n<p>任务调度把算子拆成子任务，按 slot 资源和本地性分配到 TaskManager，考虑负载均衡。调度由 JobManager 的 Scheduler 完成。</p>\n<h2>追问</h2>\n<ul>\n<li>调度怎么考虑数据本地性？</li>\n</ul>"
     },
     {
       "id": "FLINK-0176",
@@ -21332,7 +21332,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>堆内存加托管内存加 off-heap，统一管理。</p>\n<h2>参考回答</h2>\n<p>Flink 内存分堆内存、托管内存、网络缓冲和 off-heap。托管内存给 RocksDB 和批处理算子，用 MemorySegment 管理，减少 GC 和对象开销。</p>\n<h2>追问</h2>\n<ul>\n<li>托管内存的用途？</li>\n</ul>"
     },
     {
       "id": "FLINK-0177",
@@ -21345,7 +21345,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>状态序列化到文件，RocksDB 用 SST 文件。</p>\n<h2>参考回答</h2>\n<p>检查点把状态序列化存到可靠存储，RocksDB 后端存 SST 文件，支持增量。优化靠增量 checkpoint、压缩和本地恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>增量 checkpoint 怎么减小存储？</li>\n</ul>"
     },
     {
       "id": "FLINK-0178",
@@ -21358,7 +21358,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>逻辑优化规则加成本优化。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 优化先是逻辑优化，做谓词下推、常量折叠这些规则改写，再用成本模型选物理执行方式。和 Calcite 优化器有关。</p>\n<h2>追问</h2>\n<ul>\n<li>逻辑优化和成本优化区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0179",
@@ -21371,7 +21371,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>流式 join 用状态保存两边的数据。</p>\n<h2>参考回答</h2>\n<p>Flink 流式 join 在两边维护状态，数据来了和另一边的状态匹配，配合 watermark 清理过期状态。有 regular join、interval join 和 temporal join。</p>\n<h2>追问</h2>\n<ul>\n<li>regular join 和 interval join 区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0180",
@@ -21384,7 +21384,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>keyed state 按 key 分布，改并行度重分配。</p>\n<h2>参考回答</h2>\n<p>有状态的水平扩展靠 keyed state 按 key hash 分布，改并行度时从 savepoint 重分配状态。RocksDB 状态能支持更大规模。</p>\n<h2>追问</h2>\n<ul>\n<li>状态重分配怎么做？</li>\n</ul>"
     },
     {
       "id": "FLINK-0181",
@@ -21397,7 +21397,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从 checkpoint 恢复状态，source 重放。</p>\n<h2>参考回答</h2>\n<p>故障恢复是从最近 checkpoint 加载状态，source 从保存的 offset 重放，sink 用幂等或两阶段提交保证一致。整个过程自动完成。</p>\n<h2>追问</h2>\n<ul>\n<li>恢复期间数据会丢吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0182",
@@ -21410,7 +21410,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 barrier 标记做异步一致性快照。</p>\n<h2>参考回答</h2>\n<p>Flink 的分布式快照借鉴 Chandy-Lamport 算法，用 barrier 标记流，各算子收到 barrier 就快照状态，最终形成一致性快照。不用停止整个流。</p>\n<h2>追问</h2>\n<ul>\n<li>barrier 是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0183",
@@ -21423,7 +21423,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>watermark 推进事件时间，触发窗口和定时器。</p>\n<h2>参考回答</h2>\n<p>事件时间靠 watermark 推进，算子按事件时间排序处理，窗口和定时器按 watermark 触发。乱序用 watermark 容忍和迟到处理。</p>\n<h2>追问</h2>\n<ul>\n<li>事件时间和处理时间的取舍？</li>\n</ul>"
     },
     {
       "id": "FLINK-0184",
@@ -21436,7 +21436,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 实时算 GMV、用户行为、库存。</p>\n<h2>参考回答</h2>\n<p>电商用 Flink 从订单和埋点流实时算 GMV、用户行为分析、库存预警，写 Doris 供看板。典型是 Flink 加 Kafka 加 Doris。</p>\n<h2>追问</h2>\n<ul>\n<li>电商实时大屏的链路？</li>\n</ul>"
     },
     {
       "id": "FLINK-0185",
@@ -21449,7 +21449,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 做实时规则和反欺诈拦截。</p>\n<h2>参考回答</h2>\n<p>银行用 Flink 实时分析交易流水，用规则引擎和 CEP 匹配欺诈模式，毫秒级拦截风险交易。强调低延迟和 exactly-once。</p>\n<h2>追问</h2>\n<ul>\n<li>风控为什么强调低延迟？</li>\n</ul>"
     },
     {
       "id": "FLINK-0186",
@@ -21462,7 +21462,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 算实时特征，驱动推荐排序。</p>\n<h2>参考回答</h2>\n<p>社交媒体用 Flink 实时处理用户行为，算实时特征和热度，输出给推荐排序。离线训练加在线实时特征更新。</p>\n<h2>追问</h2>\n<ul>\n<li>实时特征和离线特征怎么结合？</li>\n</ul>"
     },
     {
       "id": "FLINK-0187",
@@ -21475,7 +21475,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 实时处理位置和订单，优化派单。</p>\n<h2>参考回答</h2>\n<p>物流用 Flink 实时处理骑手位置和订单流，算实时供需和路径，支撑派单优化。实时位置数据量很大。</p>\n<h2>追问</h2>\n<ul>\n<li>位置数据的实时处理难点？</li>\n</ul>"
     },
     {
       "id": "FLINK-0188",
@@ -21488,7 +21488,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 做实时出价和效果统计。</p>\n<h2>参考回答</h2>\n<p>广告平台用 Flink 实时处理竞价请求，做实时出价、频控和效果统计。极低延迟是关键，毫秒级响应。</p>\n<h2>追问</h2>\n<ul>\n<li>实时竞价为什么要求低延迟？</li>\n</ul>"
     },
     {
       "id": "FLINK-0189",
@@ -21501,7 +21501,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 检测异常流量和攻击模式。</p>\n<h2>参考回答</h2>\n<p>网络安全用 Flink 实时分析流量，用 CEP 检测 DDoS、暴力破解这类攻击模式，实时告警。</p>\n<h2>追问</h2>\n<ul>\n<li>DDoS 检测怎么做？</li>\n</ul>"
     },
     {
       "id": "FLINK-0190",
@@ -21514,7 +21514,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 实时分析玩家行为，做实时运营。</p>\n<h2>参考回答</h2>\n<p>游戏用 Flink 实时分析玩家登录、付费、行为，做实时运营活动和防作弊。实时性强，数据量巨大。</p>\n<h2>追问</h2>\n<ul>\n<li>游戏数据量为什么大？</li>\n</ul>"
     },
     {
       "id": "FLINK-0191",
@@ -21527,7 +21527,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 实时监控设备状态和告警。</p>\n<h2>参考回答</h2>\n<p>能源用 Flink 实时接入设备传感器数据，做状态监控、异常告警和预测维护。设备数据乱序多，用事件时间。</p>\n<h2>追问</h2>\n<ul>\n<li>传感器数据为什么乱序？</li>\n</ul>"
     },
     {
       "id": "FLINK-0192",
@@ -21540,7 +21540,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 处理患者生命体征，实时预警。</p>\n<h2>参考回答</h2>\n<p>医疗用 Flink 实时处理患者监测数据，做生命体征异常预警。对准确性和实时性要求都很高。</p>\n<h2>追问</h2>\n<ul>\n<li>医疗场景的准确性要求？</li>\n</ul>"
     },
     {
       "id": "FLINK-0193",
@@ -21553,7 +21553,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 实时分析产线数据，优化生产。</p>\n<h2>参考回答</h2>\n<p>制造用 Flink 实时分析生产线传感器数据，做质量检测、故障预警和产能优化。工业场景时序数据多。</p>\n<h2>追问</h2>\n<ul>\n<li>工业时序数据怎么建模？</li>\n</ul>"
     },
     {
       "id": "FLINK-0194",
@@ -21566,7 +21566,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看原理、状态、checkpoint、调优几方面。</p>\n<h2>参考回答</h2>\n<p>评估 Flink 能力看对架构、状态、checkpoint、时间语义、调优的理解，再看有没有真实项目经验。原理加实战都要问。</p>\n<h2>追问</h2>\n<ul>\n<li>原理和实战怎么分配权重？</li>\n</ul>"
     },
     {
       "id": "FLINK-0195",
@@ -21579,7 +21579,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>窗口 TopN、双流 join、连续登录等。</p>\n<h2>参考回答</h2>\n<p>常见编程题有窗口 TopN、双流 join、连续 N 天登录、实时去重、CEP 模式匹配。考的是窗口、状态、时间语义的运用。</p>\n<h2>追问</h2>\n<ul>\n<li>连续登录怎么用 Flink 做？</li>\n</ul>"
     },
     {
       "id": "FLINK-0196",
@@ -21592,7 +21592,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>问 checkpoint、exactly-once、watermark 原理。</p>\n<h2>参考回答</h2>\n<p>考原理问 checkpoint 怎么保证一致性、exactly-once 怎么实现、watermark 怎么处理乱序、状态后端怎么选。让候选人讲机制不讲概念。</p>\n<h2>追问</h2>\n<ul>\n<li>原理题怎么区分深度？</li>\n</ul>"
     },
     {
       "id": "FLINK-0197",
@@ -21605,7 +21605,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>问平台设计、资源规划、灾备、多集群。</p>\n<h2>参考回答</h2>\n<p>评估架构师问平台设计、资源规划、高可用、灾备、多集群、成本优化这些系统性的东西，看有没有全局视角。</p>\n<h2>追问</h2>\n<ul>\n<li>架构师和普通开发问什么区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0198",
@@ -21618,7 +21618,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>问具体调优案例和量化结果。</p>\n<h2>参考回答</h2>\n<p>检验调优经验问具体遇到的性能问题、怎么定位、怎么优化、提升了多少。能讲出量化的调优过程才是有真经验。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么判断调优经验真假？</li>\n</ul>"
     },
     {
       "id": "FLINK-0199",
@@ -21631,7 +21631,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按背景、挑战、方案、效果讲。</p>\n<h2>参考回答</h2>\n<p>展示项目用 STAR 结构讲：业务背景、技术难点、你的方案、量化效果。突出你在数据量、延迟、稳定性上的优化成果。</p>\n<h2>追问</h2>\n<ul>\n<li>STAR 结构是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0200",
@@ -21644,7 +21644,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>先结论再展开，结合项目讲。</p>\n<h2>参考回答</h2>\n<p>回答技巧是先给结论，再讲原理，最后结合项目经验。不会的坦诚说，别硬编。能讲到自己的踩坑和优化最加分。</p>\n<h2>追问</h2>\n<ul>\n<li>不会的题怎么答？</li>\n</ul>"
     },
     {
       "id": "FLINK-0201",
@@ -21657,7 +21657,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>讲 Flink 和 Kafka、数仓、数据湖的集成。</p>\n<h2>参考回答</h2>\n<p>展示集成能力讲 Flink 和 Kafka、Doris、Hive、数据湖这些怎么配合，你做过什么集成方案。体现全链路视角。</p>\n<h2>追问</h2>\n<ul>\n<li>集成能力为什么重要？</li>\n</ul>"
     },
     {
       "id": "FLINK-0202",
@@ -21670,7 +21670,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>讲定位过程、根因、解决和预防。</p>\n<h2>参考回答</h2>\n<p>回答故障处理讲：现象是什么、怎么定位、根因是什么、怎么解决、怎么预防。重点体现排查思路，不是只讲结果。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么排查思路比结果重要？</li>\n</ul>"
     },
     {
       "id": "FLINK-0203",
@@ -21683,7 +21683,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>原理、实战、调优、项目四方面准备。</p>\n<h2>参考回答</h2>\n<p>准备 Flink 面试从四块：核心原理、编程 API、性能调优、项目实战。原理加项目结合讲，再刷点编程题。</p>\n<h2>追问</h2>\n<ul>\n<li>准备时间怎么分配？</li>\n</ul>"
     },
     {
       "id": "FLINK-0204",

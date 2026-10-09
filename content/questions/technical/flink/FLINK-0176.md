@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+堆内存加托管内存加 off-heap，统一管理。
+
+# 参考回答
+
+Flink 内存分堆内存、托管内存、网络缓冲和 off-heap。托管内存给 RocksDB 和批处理算子，用 MemorySegment 管理，减少 GC 和对象开销。
+
+# 追问
+
+- 托管内存的用途？

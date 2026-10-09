@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+状态序列化到文件，RocksDB 用 SST 文件。
+
+# 参考回答
+
+检查点把状态序列化存到可靠存储，RocksDB 后端存 SST 文件，支持增量。优化靠增量 checkpoint、压缩和本地恢复。
+
+# 追问
+
+- 增量 checkpoint 怎么减小存储？
