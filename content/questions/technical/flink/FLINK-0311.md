@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+并行度、内存、checkpoint、miniBatch 等参数。
+
+# 参考回答
+
+常见调优参数有并行度、托管内存、checkpoint 间隔、miniBatch 开关、状态 TTL、join 策略提示。按瓶颈调，别盲调，先看执行计划和指标。
+
+# 追问
+
+- 调优顺序是什么？

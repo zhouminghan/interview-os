@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+实现 FormatFactory 定义序列化和反序列化。
+
+# 参考回答
+
+自定义 Format 要实现 FormatFactory 和序列化反序列化逻辑，在 DDL 里用 FORMAT 指定。很少自己写，内置 CSV、JSON、Avro 基本够用。
+
+# 追问
+
+- Format 和 Connector 的区别？

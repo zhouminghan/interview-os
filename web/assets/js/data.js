@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:58:41+08:00",
+  "generatedAt": "2026-10-09T17:00:54+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -22866,7 +22866,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>重启策略决定任务失败后怎么重试。</p>\n<h2>参考回答</h2>\n<p>重启策略有固定延迟、失败率、无限重启、不重启几种。SQL 作业在配置里设，配合 checkpoint 才能恢复状态。失败率策略按时间窗口内失败次数限制重启。</p>\n<h2>追问</h2>\n<ul>\n<li>重启策略和 checkpoint 什么关系？</li>\n</ul>"
     },
     {
       "id": "FLINK-0295",
@@ -22879,7 +22879,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 cancel 取消，或先打 savepoint 再停。</p>\n<h2>参考回答</h2>\n<p>优雅停止一般先打一个 savepoint，再取消作业，这样状态和 offset 都保存了。直接 cancel 会丢状态。升级或迁移前都要先打 savepoint。</p>\n<h2>追问</h2>\n<ul>\n<li>stop 和 cancel 有什么区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0296",
@@ -22892,7 +22892,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>外部存储恢复后，作业靠 checkpoint 和重试继续。</p>\n<h2>参考回答</h2>\n<p>外部存储故障时，作业会因连接失败而重试或重启，恢复后从 checkpoint 或 offset 继续。sink 要幂等，避免恢复期间重复写。外部系统要配好超时和重试。</p>\n<h2>追问</h2>\n<ul>\n<li>外部系统故障时数据会丢吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0297",
@@ -22905,7 +22905,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>容错配置或侧输出，把错误数据分流。</p>\n<h2>参考回答</h2>\n<p>数据格式错误会导致反序列化失败。处理方式有：容错配置跳过错误数据、把错误数据侧输出单独记录、或前置校验数据源。生产上一般跳过错误并记日志。</p>\n<h2>追问</h2>\n<ul>\n<li>跳过错误数据有什么风险？</li>\n</ul>"
     },
     {
       "id": "FLINK-0298",
@@ -22918,7 +22918,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 fromDataStream 和 toDataStream 互转。</p>\n<h2>参考回答</h2>\n<p>Table API 和 DataStream 可以互转：DataStream 用 fromDataStream 转成表，表用 toDataStream 转回流。这样复杂逻辑用 DataStream 写，声明式部分用 SQL 写。</p>\n<h2>追问</h2>\n<ul>\n<li>互转时 schema 怎么处理？</li>\n</ul>"
     },
     {
       "id": "FLINK-0299",
@@ -22931,7 +22931,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>同一个 TableEnvironment 里混用 Table API 和 SQL。</p>\n<h2>参考回答</h2>\n<p>在同一个 TableEnvironment 里，注册表后既可以用 Table API 做链式转换，也可以用 sqlQuery 写 SQL，两者操作同一批表。灵活组合，怎么顺手怎么来。</p>\n<h2>追问</h2>\n<ul>\n<li>Table API 和 SQL 哪个优先？</li>\n</ul>"
     },
     {
       "id": "FLINK-0300",
@@ -22944,7 +22944,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SQL 和 DataStream 用互转接口混合。</p>\n<h2>参考回答</h2>\n<p>一个应用里可以先 DataStream 做复杂转换，转成表用 SQL 聚合，再转回 DataStream 输出。用 fromDataStream 和 toDataStream 串起来，取长补短。</p>\n<h2>追问</h2>\n<ul>\n<li>混合使用有什么坑？</li>\n</ul>"
     },
     {
       "id": "FLINK-0301",
@@ -22957,7 +22957,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>INNER JOIN 两边维护状态做持续匹配。</p>\n<h2>参考回答</h2>\n<p>流式 INNER JOIN 会在两边各自维护状态，一条数据来了就跟另一边的状态匹配，匹配上的输出，同时自己也存进状态供对方匹配。状态要配 TTL 清理，不然无限增长。</p>\n<h2>追问</h2>\n<ul>\n<li>流式 join 的状态为什么会长大？</li>\n</ul>"
     },
     {
       "id": "FLINK-0302",
@@ -22970,7 +22970,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>左连接保留左表全部，右连接反之，全外连接两边都保留。</p>\n<h2>参考回答</h2>\n<p>LEFT JOIN 保留左表全部记录，右表没匹配就填 null；RIGHT JOIN 反过来；FULL OUTER JOIN 两边都保留。流式里都靠状态实现，状态管理和 TTL 是重点。</p>\n<h2>追问</h2>\n<ul>\n<li>外连接在流里状态更大吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0303",
@@ -22983,7 +22983,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CROSS JOIN 是笛卡尔积，两边每条都组合。</p>\n<h2>参考回答</h2>\n<p>CROSS JOIN 不做关联条件，两表每条记录都两两组合，数据量爆炸。基本只在小表或生成组合场景用，大表千万别用，会 OOM。一定要加条件改成普通 join。</p>\n<h2>追问</h2>\n<ul>\n<li>笛卡尔积为什么危险？</li>\n</ul>"
     },
     {
       "id": "FLINK-0304",
@@ -22996,7 +22996,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Interval Join 限定了关联的时间范围。</p>\n<h2>参考回答</h2>\n<p>Interval Join 在 join 条件里加时间范围，比如 A 的事件时间在 B 的前后 5 分钟内才匹配。这样状态可以被时间清理，不会无限增长。适合订单和支付这类有先后关系的场景。</p>\n<h2>追问</h2>\n<ul>\n<li>Interval Join 和 regular join 的区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0305",
@@ -23009,7 +23009,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>regular 无时间限制状态大，interval 有时间范围状态可控。</p>\n<h2>参考回答</h2>\n<p>Regular Join 不限时间，两边状态会一直涨，要配 TTL；Interval Join 限定时间窗口，状态能按时间清理。能用 interval 就用 interval，状态更可控。</p>\n<h2>追问</h2>\n<ul>\n<li>regular join 状态怎么控制？</li>\n</ul>"
     },
     {
       "id": "FLINK-0306",
@@ -23022,7 +23022,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 FOR SYSTEM_TIME AS OF 关联版本化维表。</p>\n<h2>参考回答</h2>\n<p>Temporal Table Join 用 FOR SYSTEM_TIME AS OF 时间点，关联维表在该时间点的版本。维表要声明主键和时间，记录每次变化。适合缓慢变化维，取历史准确的维度。</p>\n<h2>追问</h2>\n<ul>\n<li>维表怎么变成时态表？</li>\n</ul>"
     },
     {
       "id": "FLINK-0307",
@@ -23035,7 +23035,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>流数据实时查外部维表做关联。</p>\n<h2>参考回答</h2>\n<p>Lookup Join 是流数据来一条，就按关联键去外部维表查一次，比如查 MySQL、HBase。维表可以配缓存，避免每次都查。适合维表在外部系统、实时查询的场景。</p>\n<h2>追问</h2>\n<ul>\n<li>Lookup Join 为什么要缓存维表？</li>\n</ul>"
     },
     {
       "id": "FLINK-0308",
@@ -23048,7 +23048,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 UDAF 或在 DataStream 里用 ProcessFunction。</p>\n<h2>参考回答</h2>\n<p>SQL 里的有状态自定义函数主要是 UDAF，它维护累加器状态。更复杂的有状态逻辑，建议转 DataStream 用 ProcessFunction 和 keyed state 实现，比硬在 SQL UDF 里做简单。</p>\n<h2>追问</h2>\n<ul>\n<li>UDAF 的状态怎么管理？</li>\n</ul>"
     },
     {
       "id": "FLINK-0309",
@@ -23061,7 +23061,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 savepoint 迁移，注意状态结构兼容。</p>\n<h2>参考回答</h2>\n<p>升级作业用 savepoint 迁移状态，注意状态 schema 要兼容。改了聚合逻辑或字段，状态可能对不上，需要做状态迁移或重置。不兼容就从新起点重跑。</p>\n<h2>追问</h2>\n<ul>\n<li>状态不兼容怎么办？</li>\n</ul>"
     },
     {
       "id": "FLINK-0310",
@@ -23074,7 +23074,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>逻辑规则优化加成本优化选物理计划。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 优化器先做规则优化，比如谓词下推、列裁剪、子查询改写，再用成本模型选物理执行方式，比如 join 策略。基于 Calcite 框架实现。</p>\n<h2>追问</h2>\n<ul>\n<li>规则优化和成本优化区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0311",
@@ -23087,7 +23087,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>并行度、内存、checkpoint、miniBatch 等参数。</p>\n<h2>参考回答</h2>\n<p>常见调优参数有并行度、托管内存、checkpoint 间隔、miniBatch 开关、状态 TTL、join 策略提示。按瓶颈调，别盲调，先看执行计划和指标。</p>\n<h2>追问</h2>\n<ul>\n<li>调优顺序是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0312",
@@ -23100,7 +23100,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>小表 broadcast、interval join、lookup 缓存、状态 TTL。</p>\n<h2>参考回答</h2>\n<p>JOIN 优化：小维表 broadcast，有时间关系用 interval join 控制状态，外部维表用 lookup 加缓存，regular join 配状态 TTL。先看执行计划选对 join 策略。</p>\n<h2>追问</h2>\n<ul>\n<li>大表 join 怎么优化？</li>\n</ul>"
     },
     {
       "id": "FLINK-0313",
@@ -23113,7 +23113,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>把一批数据攒起来一起处理，减少状态访问。</p>\n<h2>参考回答</h2>\n<p>MiniBatch 是把流数据攒成小批次一起处理，减少状态读写次数，提高吞吐。但会加一点延迟。适合高吞吐、可容忍小延迟的聚合场景，配置开启并设 batch 大小。</p>\n<h2>追问</h2>\n<ul>\n<li>MiniBatch 会带来什么代价？</li>\n</ul>"
     },
     {
       "id": "FLINK-0314",
@@ -23126,7 +23126,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加盐打散、两阶段聚合、LocalGlobal 优化。</p>\n<h2>参考回答</h2>\n<p>SQL 数据倾斜用加盐打散热点 key、两阶段聚合，开 LocalGlobal 优化做本地预聚合。看子任务处理量分布定位倾斜，再针对热点 key 处理。</p>\n<h2>追问</h2>\n<ul>\n<li>加盐在 SQL 里怎么实现？</li>\n</ul>"
     },
     {
       "id": "FLINK-0315",
@@ -23139,7 +23139,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>先本地预聚合再全局聚合，减少 shuffle。</p>\n<h2>参考回答</h2>\n<p>LocalGlobal 优化在 shuffle 前先做一次本地聚合，把数据量减下来再全局聚合，减少网络传输和倾斜。适合 group by 聚合，能大幅提升吞吐。</p>\n<h2>追问</h2>\n<ul>\n<li>LocalGlobal 和两阶段聚合关系？</li>\n</ul>"
     },
     {
       "id": "FLINK-0316",
@@ -23152,7 +23152,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>根据一边的过滤结果动态裁剪另一边的分区。</p>\n<h2>参考回答</h2>\n<p>动态分区裁剪是在 join 时，根据一边表过滤出来的分区值，动态跳过另一边表无关的分区，减少扫描。批处理里收益明显，让优化器自动做。</p>\n<h2>追问</h2>\n<ul>\n<li>和静态分区裁剪的区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0317",
@@ -23165,7 +23165,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按数据量和资源设并行度，压测调优。</p>\n<h2>参考回答</h2>\n<p>并行度按数据量和 slot 资源设，一般 source 的并行度跟 Kafka 分区对齐，下游按算力调。太低处理不过来，太高状态和调度开销大。压测找最优值。</p>\n<h2>追问</h2>\n<ul>\n<li>并行度和 slot 什么关系？</li>\n</ul>"
     },
     {
       "id": "FLINK-0318",
@@ -23178,7 +23178,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>堆内存加托管内存，按状态和计算需求调。</p>\n<h2>参考回答</h2>\n<p>SQL 作业内存分堆内存和托管内存，托管内存给 RocksDB 和排序。状态大就多给托管内存，计算重就多给堆。避免 OOM 和频繁 GC。</p>\n<h2>追问</h2>\n<ul>\n<li>托管内存和堆内存怎么分配？</li>\n</ul>"
     },
     {
       "id": "FLINK-0319",
@@ -23191,7 +23191,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 EXPLAIN 看逻辑和物理执行计划。</p>\n<h2>参考回答</h2>\n<p>EXPLAIN 能看查询的逻辑计划和物理计划，包括 join 方式、分区、优化后的算子。分析性能先看执行计划，定位全表扫和 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>执行计划里看哪些关键点？</li>\n</ul>"
     },
     {
       "id": "FLINK-0320",
@@ -23204,7 +23204,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>在 DDL 里配 WATERMARK FOR 或用自定义策略。</p>\n<h2>参考回答</h2>\n<p>SQL 里 watermark 主要在 DDL 里用 WATERMARK FOR 定义，简单的减延迟就行。复杂的自定义生成策略要转 DataStream 用 WatermarkGenerator 实现。</p>\n<h2>追问</h2>\n<ul>\n<li>自定义 watermark 策略怎么实现？</li>\n</ul>"
     },
     {
       "id": "FLINK-0321",
@@ -23217,7 +23217,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实现 FormatFactory 定义序列化和反序列化。</p>\n<h2>参考回答</h2>\n<p>自定义 Format 要实现 FormatFactory 和序列化反序列化逻辑，在 DDL 里用 FORMAT 指定。很少自己写，内置 CSV、JSON、Avro 基本够用。</p>\n<h2>追问</h2>\n<ul>\n<li>Format 和 Connector 的区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0322",
@@ -23230,7 +23230,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实现 CatalogFactory，管理自定义元数据。</p>\n<h2>参考回答</h2>\n<p>自定义 Catalog 要实现 CatalogFactory，定义怎么管理库、表、函数的元数据。对接自己的元数据中心时用。一般用内置的 Hive Catalog 就够了。</p>\n<h2>追问</h2>\n<ul>\n<li>什么场景需要自定义 Catalog？</li>\n</ul>"
     },
     {
       "id": "FLINK-0323",
@@ -23243,7 +23243,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>异步函数不阻塞线程，等待外部结果时并发处理。</p>\n<h2>参考回答</h2>\n<p>异步函数用于访问外部系统，用 AsyncDataStream 和 AsyncFunction 实现，请求外部时不阻塞线程，提高吞吐。SQL 里主要是异步 lookup，DataStream 里用异步 IO。</p>\n<h2>追问</h2>\n<ul>\n<li>异步 IO 为什么提升吞吐？</li>\n</ul>"
     },
     {
       "id": "FLINK-0324",

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+SQL 和 DataStream 用互转接口混合。
+
+# 参考回答
+
+一个应用里可以先 DataStream 做复杂转换，转成表用 SQL 聚合，再转回 DataStream 输出。用 fromDataStream 和 toDataStream 串起来，取长补短。
+
+# 追问
+
+- 混合使用有什么坑？

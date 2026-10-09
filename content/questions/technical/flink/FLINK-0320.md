@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+在 DDL 里配 WATERMARK FOR 或用自定义策略。
+
+# 参考回答
+
+SQL 里 watermark 主要在 DDL 里用 WATERMARK FOR 定义，简单的减延迟就行。复杂的自定义生成策略要转 DataStream 用 WatermarkGenerator 实现。
+
+# 追问
+
+- 自定义 watermark 策略怎么实现？

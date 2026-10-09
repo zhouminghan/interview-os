@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 cancel 取消，或先打 savepoint 再停。
+
+# 参考回答
+
+优雅停止一般先打一个 savepoint，再取消作业，这样状态和 offset 都保存了。直接 cancel 会丢状态。升级或迁移前都要先打 savepoint。
+
+# 追问
+
+- stop 和 cancel 有什么区别？

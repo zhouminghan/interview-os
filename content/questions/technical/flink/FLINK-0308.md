@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 UDAF 或在 DataStream 里用 ProcessFunction。
+
+# 参考回答
+
+SQL 里的有状态自定义函数主要是 UDAF，它维护累加器状态。更复杂的有状态逻辑，建议转 DataStream 用 ProcessFunction 和 keyed state 实现，比硬在 SQL UDF 里做简单。
+
+# 追问
+
+- UDAF 的状态怎么管理？

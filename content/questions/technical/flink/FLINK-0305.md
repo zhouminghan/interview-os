@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+regular 无时间限制状态大，interval 有时间范围状态可控。
+
+# 参考回答
+
+Regular Join 不限时间，两边状态会一直涨，要配 TTL；Interval Join 限定时间窗口，状态能按时间清理。能用 interval 就用 interval，状态更可控。
+
+# 追问
+
+- regular join 状态怎么控制？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 FOR SYSTEM_TIME AS OF 关联版本化维表。
+
+# 参考回答
+
+Temporal Table Join 用 FOR SYSTEM_TIME AS OF 时间点，关联维表在该时间点的版本。维表要声明主键和时间，记录每次变化。适合缓慢变化维，取历史准确的维度。
+
+# 追问
+
+- 维表怎么变成时态表？
