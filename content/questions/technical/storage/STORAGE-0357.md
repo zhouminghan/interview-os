@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 BulkLoad，批量写入。
+
+# 参考回答
+
+数据导入用 BulkLoad 直接加载 HFile 最快，或批量 Put 提高吞吐。预分区避免热点。大批量初始化优先 BulkLoad。
+
+# 追问
+
+- BulkLoad 流程？

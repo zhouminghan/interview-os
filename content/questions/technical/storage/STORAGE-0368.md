@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+TTL、版本数、Major Compaction。
+
+# 参考回答
+
+数据清理靠 TTL 过期、版本数限制、Major Compaction 清理删除标记。定期清理控制存储增长。Major 错峰做。
+
+# 追问
+
+- 清理不及时会怎样？

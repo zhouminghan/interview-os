@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+关键指标监控加告警。
+
+# 参考回答
+
+监控优化关注 Region 数、读写量、内存、GC、磁盘、请求延迟。用 Prometheus 采集配 Grafana 告警。监控全了问题早发现。
+
+# 追问
+
+- 核心监控什么？
