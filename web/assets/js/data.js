@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:40:28+08:00",
+  "generatedAt": "2026-10-09T17:43:00+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -11355,7 +11355,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>限制单查询内存，防止 OOM。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 内存管理限制单查询最大内存，超了抛异常或落盘。配置 max_memory_usage 等参数。聚合大查询要控制内存。</p>\n<h2>追问</h2>\n<ul>\n<li>内存超了怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0447",
@@ -11368,7 +11368,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>每隔一段数据建一个索引项。</p>\n<h2>参考回答</h2>\n<p>稀疏索引不是每行一个索引，而是每 N 行记录一个主键值。定位时先找到大概范围再扫描。省索引空间，查询也能加速。</p>\n<h2>追问</h2>\n<ul>\n<li>稀疏索引和稠密索引区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0448",
@@ -11381,7 +11381,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>有 LowCardinality、Nullable 等特殊类型。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 有 LowCardinality 低基数字符串省空间、Nullable 允许空值、数组、Tuple 等。特殊类型适合特定场景优化。</p>\n<h2>追问</h2>\n<ul>\n<li>LowCardinality 有什么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0449",
@@ -11394,7 +11394,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>表函数动态生成表。</p>\n<h2>参考回答</h2>\n<p>表函数像 table 函数，动态生成数据表，比如 file 读文件、remote 查远程、generate 生成数据。灵活读外部和临时数据。</p>\n<h2>追问</h2>\n<ul>\n<li>表函数什么时候用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0450",
@@ -11407,7 +11407,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分片加副本部署。</p>\n<h2>参考回答</h2>\n<p>集群部署分片加副本，分片横向扩展，副本高可用。配 Distributed 表和 ZooKeeper。单机强，集群用于海量数据。</p>\n<h2>追问</h2>\n<ul>\n<li>分片副本怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0451",
@@ -11420,7 +11420,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Distributed 表把查询分发到各分片。</p>\n<h2>参考回答</h2>\n<p>Distributed 表引擎本身不存数据，把查询分发到各分片节点，聚合结果返回。写也分发。是集群访问的统一入口。</p>\n<h2>追问</h2>\n<ul>\n<li>Distributed 表怎么工作？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0452",
@@ -11433,7 +11433,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>批量写，避免频繁小写入。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 高并发写靠批量写入，一次写一批，后台合并。频繁小写入会导致大量数据块，影响性能。用 Buffer 表或攒批写。</p>\n<h2>追问</h2>\n<ul>\n<li>小批量写为什么不好？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0453",
@@ -11446,7 +11446,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>写入形成数据块，后台合并。</p>\n<h2>参考回答</h2>\n<p>写入流程：数据按分区和排序键组织成数据块写入，后台 MergeTree 定期合并小块。写入是追加，更新删除靠 alter 或特殊引擎。</p>\n<h2>追问</h2>\n<ul>\n<li>写入为什么快？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0454",
@@ -11459,7 +11459,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分区按目录，分桶按哈希分文件。</p>\n<h2>参考回答</h2>\n<p>分区按分区键分目录，查询裁剪；分桶按哈希分文件，用于均衡。ClickHouse 主要是分区，分桶概念不如 Hive 明确。</p>\n<h2>追问</h2>\n<ul>\n<li>分区键怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0455",
@@ -11472,7 +11472,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据过期自动删除或归档。</p>\n<h2>参考回答</h2>\n<p>ClickHouse TTL 给表或列设生存时间，到期自动删除或移到冷存储。适合时序和日志数据，控制存储。后台任务执行 TTL。</p>\n<h2>追问</h2>\n<ul>\n<li>TTL 怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0456",
@@ -11485,7 +11485,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>主键稀疏索引和跳数索引。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 有主键稀疏索引、跳数索引（Skip Index）、Bloom Filter。主键索引定位数据范围，跳数索引跳过无关数据块。</p>\n<h2>追问</h2>\n<ul>\n<li>索引类型怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0457",
@@ -11498,7 +11498,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>跳数索引快速跳过无关数据块。</p>\n<h2>参考回答</h2>\n<p>跳数索引在每个数据块上存统计信息，查询时先判断块是否可能匹配，不匹配直接跳过。有 minmax、set、bloom filter 类型，加速过滤。</p>\n<h2>追问</h2>\n<ul>\n<li>跳数索引怎么加速？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0458",
@@ -11511,7 +11511,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>解析优化后并行执行。</p>\n<h2>参考回答</h2>\n<p>查询流程：解析 SQL、生成执行计划、分片并行执行、聚合结果返回。向量化执行和索引加速扫描。分布式查询各分片算再汇总。</p>\n<h2>追问</h2>\n<ul>\n<li>分布式查询怎么执行？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0459",
@@ -11524,7 +11524,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>过滤条件推到扫描阶段。</p>\n<h2>参考回答</h2>\n<p>谓词下推把 where 条件推到数据读取阶段，配合主键和跳数索引减少扫描。是 ClickHouse 快的重要原因。</p>\n<h2>追问</h2>\n<ul>\n<li>下推依赖什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0460",
@@ -11537,7 +11537,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>默认不支持 NULL，用 Nullable 包装。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 默认列不允许 NULL，需要时用 Nullable 类型包装。Nullable 有额外开销，尽量别用。存储空值用默认值替代。</p>\n<h2>追问</h2>\n<ul>\n<li>Nullable 有什么开销？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0461",
@@ -11550,7 +11550,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>聚合函数有优化实现和近似算法。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 聚合函数高度优化，有近似聚合 uniq、count distinct 优化。按数据分布用单线程或多线程聚合。聚合是它的强项。</p>\n<h2>追问</h2>\n<ul>\n<li>近似聚合怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0462",
@@ -11563,7 +11563,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>LowCardinality 和字符串函数优化。</p>\n<h2>参考回答</h2>\n<p>字符串优化用 LowCardinality 存低基数字符串省空间，字符串函数用优化的 SIMD 实现。编码选对，UTF-8 处理高效。</p>\n<h2>追问</h2>\n<ul>\n<li>LowCardinality 怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0463",
@@ -11576,7 +11576,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>字典是外部键值映射，内存加速关联。</p>\n<h2>参考回答</h2>\n<p>Dictionary 从外部数据源加载键值映射到内存，查询时做维表关联和映射。类似维表，内存中查很快。支持定时刷新。</p>\n<h2>追问</h2>\n<ul>\n<li>字典和维表区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0464",
@@ -11589,7 +11589,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Array 存多值，配数组函数处理。</p>\n<h2>参考回答</h2>\n<p>Array 类型存多值字段，用 array 函数做展开、过滤、聚合。适合标签、多值属性。配合 arrayJoin 展开分析。</p>\n<h2>追问</h2>\n<ul>\n<li>Array 怎么展开？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0465",
@@ -11602,7 +11602,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Nested 是平行的多个数组。</p>\n<h2>参考回答</h2>\n<p>Nested 结构是多个平行数组，类似多列的数组。用于存一对多的嵌套数据。查询用数组函数处理。</p>\n<h2>追问</h2>\n<ul>\n<li>Nested 和 Array 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0466",
@@ -11615,7 +11615,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>支持标准窗口函数。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 支持 row_number、rank、lag、lead、sum over 等窗口函数。做分组 TopN、累计、环比。窗口函数性能不错。</p>\n<h2>追问</h2>\n<ul>\n<li>窗口函数常用哪些？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0467",
@@ -11628,7 +11628,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>物化视图预存聚合结果。</p>\n<h2>参考回答</h2>\n<p>物化视图把查询结果预先算好存到目标表，查询命中直接复用。适合高频聚合。写入时触发更新，注意刷新和一致性。</p>\n<h2>追问</h2>\n<ul>\n<li>物化视图怎么刷新？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0468",
@@ -11641,7 +11641,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>日志引擎存小表临时数据。</p>\n<h2>参考回答</h2>\n<p>日志引擎有 TinyLog、Log、StripeLog，适合小数据量、临时表、测试。不支持索引和分区，数据量大了别用。</p>\n<h2>追问</h2>\n<ul>\n<li>日志引擎和 MergeTree 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0469",
@@ -11654,7 +11654,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MergeTree 是基础，其他是变体。</p>\n<h2>参考回答</h2>\n<p>MergeTree 家族有 ReplacingMergeTree 去重、SummingMergeTree 预聚合、AggregatingMergeTree 聚合、Replicated 系列做副本。按数据特性选。</p>\n<h2>追问</h2>\n<ul>\n<li>SummingMergeTree 适合什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0470",
@@ -11667,7 +11667,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>TTL 把冷数据移到冷存储。</p>\n<h2>参考回答</h2>\n<p>冷热分离用 TTL 把老数据移到冷存储卷，或归档到外部存储。热数据放 SSD，冷数据放 HDD 或对象存储。省成本。</p>\n<h2>追问</h2>\n<ul>\n<li>冷热分离怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0471",
@@ -11680,7 +11680,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>查询分发到各分片，结果汇总。</p>\n<h2>参考回答</h2>\n<p>分布式查询计划把查询拆到各分片节点并行执行，中间结果再聚合返回。分布式表做分发。分片越多并行越高。</p>\n<h2>追问</h2>\n<ul>\n<li>分布式计划怎么生成？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0472",
@@ -11693,7 +11693,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用户角色权限，库表级授权。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 权限分用户和角色，按库表授权，支持读写、DDL 等操作权限。配用户密码和访问控制。生产开权限管理。</p>\n<h2>追问</h2>\n<ul>\n<li>权限怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0473",
@@ -11706,7 +11706,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>命令行、JDBC、HTTP 接口。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 支持命令行客户端、JDBC、ODBC、HTTP 接口。程序用 JDBC，BI 用 HTTP 或驱动。原生 TCP 协议性能最好。</p>\n<h2>追问</h2>\n<ul>\n<li>客户端怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0474",
@@ -11719,7 +11719,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>支持查询结果缓存。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 新版本支持查询缓存，缓存查询结果，命中直接返回。适合重复查询。配置缓存大小和时间。默认关闭。</p>\n<h2>追问</h2>\n<ul>\n<li>缓存什么时候开？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0475",
@@ -11732,7 +11732,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CREATE TABLE 指定 ENGINE 和分区排序键。</p>\n<h2>参考回答</h2>\n<p>建 MergeTree 表指定 ENGINE=MergeTree，PARTITION BY 分区键，ORDER BY 排序键。排序键决定存储顺序和主键，按查询设计。</p>\n<h2>追问</h2>\n<ul>\n<li>分区键和排序键怎么设？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0476",

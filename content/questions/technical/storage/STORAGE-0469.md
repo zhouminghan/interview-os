@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+MergeTree 是基础，其他是变体。
+
+# 参考回答
+
+MergeTree 家族有 ReplacingMergeTree 去重、SummingMergeTree 预聚合、AggregatingMergeTree 聚合、Replicated 系列做副本。按数据特性选。
+
+# 追问
+
+- SummingMergeTree 适合什么？

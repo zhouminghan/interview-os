@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Nested 是平行的多个数组。
+
+# 参考回答
+
+Nested 结构是多个平行数组，类似多列的数组。用于存一对多的嵌套数据。查询用数组函数处理。
+
+# 追问
+
+- Nested 和 Array 区别？

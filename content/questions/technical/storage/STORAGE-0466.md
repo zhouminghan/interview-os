@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+支持标准窗口函数。
+
+# 参考回答
+
+ClickHouse 支持 row_number、rank、lag、lead、sum over 等窗口函数。做分组 TopN、累计、环比。窗口函数性能不错。
+
+# 追问
+
+- 窗口函数常用哪些？

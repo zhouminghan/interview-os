@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Distributed 表把查询分发到各分片。
+
+# 参考回答
+
+Distributed 表引擎本身不存数据，把查询分发到各分片节点，聚合结果返回。写也分发。是集群访问的统一入口。
+
+# 追问
+
+- Distributed 表怎么工作？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+LowCardinality 和字符串函数优化。
+
+# 参考回答
+
+字符串优化用 LowCardinality 存低基数字符串省空间，字符串函数用优化的 SIMD 实现。编码选对，UTF-8 处理高效。
+
+# 追问
+
+- LowCardinality 怎么用？

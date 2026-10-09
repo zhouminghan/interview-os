@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Array 存多值，配数组函数处理。
+
+# 参考回答
+
+Array 类型存多值字段，用 array 函数做展开、过滤、聚合。适合标签、多值属性。配合 arrayJoin 展开分析。
+
+# 追问
+
+- Array 怎么展开？

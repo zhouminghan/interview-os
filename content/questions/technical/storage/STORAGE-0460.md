@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+默认不支持 NULL，用 Nullable 包装。
+
+# 参考回答
+
+ClickHouse 默认列不允许 NULL，需要时用 Nullable 类型包装。Nullable 有额外开销，尽量别用。存储空值用默认值替代。
+
+# 追问
+
+- Nullable 有什么开销？
