@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+系统表加 Prometheus 监控。
+
+# 参考回答
+
+监控用 system.metrics、system.events 查指标，或 Prometheus 采集。看查询量、延迟、内存、CPU、IO。配 Grafana 告警。
+
+# 追问
+
+- 监控哪些指标？

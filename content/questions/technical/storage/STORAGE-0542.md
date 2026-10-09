@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+看慢查询和并发定位。
+
+# 参考回答
+
+CPU 高看 query_log 找耗时查询，看并发查询数。聚合复杂、扫描大、join 都会吃 CPU。优化 SQL 或限制并发。
+
+# 追问
+
+- CPU 高怎么定位？

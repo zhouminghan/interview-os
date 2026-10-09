@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+分析用 MergeTree 族。
+
+# 参考回答
+
+表引擎选择：分析场景用 MergeTree 族，去重用 ReplacingMergeTree，聚合用 Summing/AggregatingMergeTree，小表临时用 Log 或 Memory。按数据特性选。
+
+# 追问
+
+- 引擎怎么选？

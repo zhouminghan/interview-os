@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+限制并发查询数。
+
+# 参考回答
+
+并发控制用 max_concurrent_queries 限制同时执行的查询数，防止资源打满。配合优先级和资源限制。
+
+# 追问
+
+- 并发怎么控？

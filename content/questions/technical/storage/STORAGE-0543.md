@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+提前算好聚合结果。
+
+# 参考回答
+
+预聚合用 SummingMergeTree、AggregatingMergeTree 或物化视图，提前算好聚合，查询直接读结果。省查询时实时聚合。
+
+# 追问
+
+- 预聚合怎么做？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+查 system.replicas 看同步。
+
+# 参考回答
+
+副本同步查 system.replicas 表，看队列积压和同步延迟。积压多说明副本跟不上，要排查网络或负载。
+
+# 追问
+
+- 副本同步怎么看？

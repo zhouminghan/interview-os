@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+LowCardinality 和简单函数。
+
+# 参考回答
+
+字符串优化用 LowCardinality 存低基数字符串，用简单函数代替正则。字符串函数本身优化过，但复杂处理慢。
+
+# 追问
+
+- 字符串怎么优化？

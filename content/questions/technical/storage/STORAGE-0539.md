@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+小表 join 大表，用字典替代维表。
+
+# 参考回答
+
+JOIN 优化小表放右边、用字典替代维表 join、先预聚合减少数据量。ClickHouse join 弱，尽量避免大表 join 大表。
+
+# 追问
+
+- join 怎么优化？

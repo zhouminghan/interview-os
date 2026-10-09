@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:47:11+08:00",
+  "generatedAt": "2026-10-09T17:48:46+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -12525,7 +12525,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分析用 MergeTree 族。</p>\n<h2>参考回答</h2>\n<p>表引擎选择：分析场景用 MergeTree 族，去重用 ReplacingMergeTree，聚合用 Summing/AggregatingMergeTree，小表临时用 Log 或 Memory。按数据特性选。</p>\n<h2>追问</h2>\n<ul>\n<li>引擎怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0537",
@@ -12538,7 +12538,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>预聚合结果，查询直接复用。</p>\n<h2>参考回答</h2>\n<p>物化视图把聚合结果提前算好，查询命中直接读结果，省去实时聚合。适合高频聚合查询。写入时增量更新。</p>\n<h2>追问</h2>\n<ul>\n<li>物化视图适合什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0538",
@@ -12551,7 +12551,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>排序键做主索引，跳数索引辅助。</p>\n<h2>参考回答</h2>\n<p>索引选择：排序键作为主稀疏索引，按过滤字段设计；跳数索引按过滤类型选，等值用 bloom filter，范围用 minmax。别建太多索引。</p>\n<h2>追问</h2>\n<ul>\n<li>索引怎么设计？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0539",
@@ -12564,7 +12564,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>小表 join 大表，用字典替代维表。</p>\n<h2>参考回答</h2>\n<p>JOIN 优化小表放右边、用字典替代维表 join、先预聚合减少数据量。ClickHouse join 弱，尽量避免大表 join 大表。</p>\n<h2>追问</h2>\n<ul>\n<li>join 怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0540",
@@ -12577,7 +12577,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>EXPLAIN 看执行计划。</p>\n<h2>参考回答</h2>\n<p>EXPLAIN 查看查询计划，看扫描范围、索引使用、join 方式、并行度。分析慢查询先看计划，定位扫描量大和 join 慢。</p>\n<h2>追问</h2>\n<ul>\n<li>计划里看什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0541",
@@ -12590,7 +12590,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>系统表加 Prometheus 监控。</p>\n<h2>参考回答</h2>\n<p>监控用 system.metrics、system.events 查指标，或 Prometheus 采集。看查询量、延迟、内存、CPU、IO。配 Grafana 告警。</p>\n<h2>追问</h2>\n<ul>\n<li>监控哪些指标？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0542",
@@ -12603,7 +12603,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看慢查询和并发定位。</p>\n<h2>参考回答</h2>\n<p>CPU 高看 query_log 找耗时查询，看并发查询数。聚合复杂、扫描大、join 都会吃 CPU。优化 SQL 或限制并发。</p>\n<h2>追问</h2>\n<ul>\n<li>CPU 高怎么定位？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0543",
@@ -12616,7 +12616,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>提前算好聚合结果。</p>\n<h2>参考回答</h2>\n<p>预聚合用 SummingMergeTree、AggregatingMergeTree 或物化视图，提前算好聚合，查询直接读结果。省查询时实时聚合。</p>\n<h2>追问</h2>\n<ul>\n<li>预聚合怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0544",
@@ -12629,7 +12629,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配 uncompressed cache 和 mark cache。</p>\n<h2>参考回答</h2>\n<p>缓存配置 uncompressed_cache_size 控制未压缩数据缓存，mark cache 缓存索引。按内存和热数据量配。缓存大命中高。</p>\n<h2>追问</h2>\n<ul>\n<li>缓存配多大？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0545",
@@ -12642,7 +12642,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>压缩省 IO 费 CPU。</p>\n<h2>参考回答</h2>\n<p>压缩省磁盘和 IO，但读写要解压压缩，费 CPU。按 CPU 和存储权衡。LZ4 快，ZSTD 压缩高。列式数据压缩比高。</p>\n<h2>追问</h2>\n<ul>\n<li>压缩怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0546",
@@ -12655,7 +12655,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分片均匀，减少跨节点聚合。</p>\n<h2>参考回答</h2>\n<p>分布式查询优化分片键均匀、减少分片间数据传输、用本地表查询避免二次分发。分片数合理，负载均衡。</p>\n<h2>追问</h2>\n<ul>\n<li>分布式查询怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0547",
@@ -12668,7 +12668,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>限制内存、聚合落盘、优化查询。</p>\n<h2>参考回答</h2>\n<p>内存溢出限制单查询内存、聚合超限落盘、优化大聚合和 join。加大内存或减少并发。定位是哪个查询 OOM。</p>\n<h2>追问</h2>\n<ul>\n<li>OOM 怎么解决？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0548",
@@ -12681,7 +12681,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CPU 多核、内存大、SSD。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 吃 CPU 和内存，配多核 CPU、大内存给缓存、SSD 磁盘。按数据量和查询复杂度配。单机性能强。</p>\n<h2>追问</h2>\n<ul>\n<li>硬件怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0549",
@@ -12694,7 +12694,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按用户或查询设优先级。</p>\n<h2>参考回答</h2>\n<p>查询优先级配置不同用户或查询的优先级，资源紧张时高优先级先执行。配合并发限制做资源管理。</p>\n<h2>追问</h2>\n<ul>\n<li>优先级怎么设？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0550",
@@ -12707,7 +12707,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>压缩、TTL、清理旧分区。</p>\n<h2>参考回答</h2>\n<p>磁盘优化用压缩、TTL 过期删除、定期清理旧分区和数据块。冷热分离把冷数据移走。列式存储本身省空间。</p>\n<h2>追问</h2>\n<ul>\n<li>磁盘占用怎么降？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0551",
@@ -12720,7 +12720,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>压缩减少传输，分布式减少跨节点。</p>\n<h2>参考回答</h2>\n<p>网络优化压缩数据减少传输、分布式查询减少跨节点数据传输、分片键设计合理。带宽瓶颈时开压缩。</p>\n<h2>追问</h2>\n<ul>\n<li>网络怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0552",
@@ -12733,7 +12733,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>临时表存中间结果复用。</p>\n<h2>参考回答</h2>\n<p>临时表存中间结果，避免重复计算。Memory 引擎临时表在内存中快，session 结束自动删。适合复杂查询的中间结果。</p>\n<h2>追问</h2>\n<ul>\n<li>临时表怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0553",
@@ -12746,7 +12746,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>控制合并并发和时机。</p>\n<h2>参考回答</h2>\n<p>Merge 优化控制合并线程数、合并块大小、错峰合并。合并太多抢 IO，太少数据块多查询慢。按负载调合并参数。</p>\n<h2>追问</h2>\n<ul>\n<li>合并怎么调？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0554",
@@ -12759,7 +12759,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>LowCardinality 和简单函数。</p>\n<h2>参考回答</h2>\n<p>字符串优化用 LowCardinality 存低基数字符串，用简单函数代替正则。字符串函数本身优化过，但复杂处理慢。</p>\n<h2>追问</h2>\n<ul>\n<li>字符串怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0555",
@@ -12772,7 +12772,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>限制并发查询数。</p>\n<h2>参考回答</h2>\n<p>并发控制用 max_concurrent_queries 限制同时执行的查询数，防止资源打满。配合优先级和资源限制。</p>\n<h2>追问</h2>\n<ul>\n<li>并发怎么控？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0556",
@@ -12785,7 +12785,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配置日志级别控制输出。</p>\n<h2>参考回答</h2>\n<p>日志级别配置 trace、debug、info、warning、error。生产用 info 或 warning，别开 debug 刷日志。日志级别影响性能。</p>\n<h2>追问</h2>\n<ul>\n<li>日志级别怎么设？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0557",
@@ -12798,7 +12798,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>设置查询超时防止长查询占资源。</p>\n<h2>参考回答</h2>\n<p>查询超时配置 max_execution_time，超过就中断。防止慢查询长时间占用资源。按业务查询时长设。</p>\n<h2>追问</h2>\n<ul>\n<li>超时设多少？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0558",
@@ -12811,7 +12811,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用物化视图或预聚合表。</p>\n<h2>参考回答</h2>\n<p>重复聚合用物化视图或 SummingMergeTree 预聚合，避免每次现算。查询命中预聚合结果，省重复计算。</p>\n<h2>追问</h2>\n<ul>\n<li>重复聚合怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0559",
@@ -12824,7 +12824,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配置合并触发条件和并发。</p>\n<h2>参考回答</h2>\n<p>分区合并配置合并线程、块大小阈值、合并策略。按写入负载调，避免合并抢资源。MergeTree 后台自动合并。</p>\n<h2>追问</h2>\n<ul>\n<li>合并怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0560",
@@ -12837,7 +12837,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>避免频繁展开大数组。</p>\n<h2>参考回答</h2>\n<p>数组操作避免频繁 arrayJoin 展开大数组，能用数组聚合就用数组聚合。数组函数本身优化过，但展开会放大数据量。</p>\n<h2>追问</h2>\n<ul>\n<li>数组怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0561",
@@ -12850,7 +12850,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>限制结果集大小防止内存爆。</p>\n<h2>参考回答</h2>\n<p>限制 max_result_rows 等参数控制结果集大小，超了报错。防止超大结果占内存。大结果集应该聚合后返回。</p>\n<h2>追问</h2>\n<ul>\n<li>结果集限制？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0562",
@@ -12863,7 +12863,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ON CLUSTER 同步所有节点。</p>\n<h2>参考回答</h2>\n<p>分布式 DDL 用 ON CLUSTER 在集群所有节点执行，保持结构一致。批量建表改表用分布式 DDL，省得逐节点操作。</p>\n<h2>追问</h2>\n<ul>\n<li>分布式 DDL 怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0563",
@@ -12876,7 +12876,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少 ZK 操作，独立部署。</p>\n<h2>参考回答</h2>\n<p>ZK 优化减少副本同步频率、减少小写入产生的大量 ZK 操作。ZK 独立部署、资源给足。ZK 是副本协调的关键。</p>\n<h2>追问</h2>\n<ul>\n<li>ZK 怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0564",
@@ -12889,7 +12889,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>查 system.replicas 看同步。</p>\n<h2>参考回答</h2>\n<p>副本同步查 system.replicas 表，看队列积压和同步延迟。积压多说明副本跟不上，要排查网络或负载。</p>\n<h2>追问</h2>\n<ul>\n<li>副本同步怎么看？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0565",
@@ -12902,7 +12902,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>物化列预计算省查询计算。</p>\n<h2>参考回答</h2>\n<p>物化列提前算好派生值存下来，查询直接读，省计算。适合高频派生字段，但占存储和写入开销。</p>\n<h2>追问</h2>\n<ul>\n<li>物化列代价？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0566",
