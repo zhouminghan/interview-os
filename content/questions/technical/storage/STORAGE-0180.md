@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+按库表授权，配角色和用户。
+
+# 参考回答
+
+Hive 权限按库表粒度授权，支持角色、用户，细化到 select、insert。生产配 Ranger 或 Sentry 统一权限。最小权限原则，定期审计。
+
+# 追问
+
+- 权限怎么细化？

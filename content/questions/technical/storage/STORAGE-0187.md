@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+HiveServer2 和 Metastore 多实例。
+
+# 参考回答
+
+高可用把 HiveServer2 和 Metastore 部署多实例，前面挂负载均衡。Metastore 数据库也要高可用。任一实例挂了自动切。
+
+# 追问
+
+- 高可用的关键是什么？

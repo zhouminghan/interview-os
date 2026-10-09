@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+多个 HiveServer2 分担查询负载。
+
+# 参考回答
+
+负载均衡用多个 HiveServer2 实例，前面挂 LB 分发请求。按连接数或轮询。避免单点压力，提高并发能力。
+
+# 追问
+
+- LB 策略怎么选？

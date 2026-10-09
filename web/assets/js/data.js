@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:23:02+08:00",
+  "generatedAt": "2026-10-09T17:24:56+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -7845,7 +7845,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>集中收集 Hive 日志，分析定位问题。</p>\n<h2>参考回答</h2>\n<p>Hive 日志分服务日志和任务日志，集中到日志系统，按时间和关键词检索。排查失败任务看执行日志。日志保留和清理要规划。</p>\n<h2>追问</h2>\n<ul>\n<li>任务失败看什么日志？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0177",
@@ -7858,7 +7858,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看报错、执行计划、日志定位。</p>\n<h2>参考回答</h2>\n<p>排查查询问题先看报错信息，再看 EXPLAIN 执行计划和日志。常见问题是语法、权限、资源、数据格式。定位到具体原因再处理。</p>\n<h2>追问</h2>\n<ul>\n<li>慢查询怎么排查？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0178",
@@ -7871,7 +7871,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>定期备份 Metastore 数据库。</p>\n<h2>参考回答</h2>\n<p>元数据备份就是备份 Metastore 的关系库，定期做全量加增量备份。恢复时还原数据库。元数据丢了表就查不了，备份很重要。</p>\n<h2>追问</h2>\n<ul>\n<li>元数据备份频率？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0179",
@@ -7884,7 +7884,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从备份还原 Metastore 数据库。</p>\n<h2>参考回答</h2>\n<p>恢复元数据从备份还原 Metastore 的库，然后校验表和数据一致性。恢复后要验证表能查。注意备份版本和数据对应。</p>\n<h2>追问</h2>\n<ul>\n<li>恢复后怎么校验？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0180",
@@ -7897,7 +7897,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按库表授权，配角色和用户。</p>\n<h2>参考回答</h2>\n<p>Hive 权限按库表粒度授权，支持角色、用户，细化到 select、insert。生产配 Ranger 或 Sentry 统一权限。最小权限原则，定期审计。</p>\n<h2>追问</h2>\n<ul>\n<li>权限怎么细化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0181",
@@ -7910,7 +7910,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按角色授权，最小权限。</p>\n<h2>参考回答</h2>\n<p>用户权限用角色打包，把角色授给用户。按业务角色划分，比如分析师只读、开发可写。最小权限原则，权限变更走流程。</p>\n<h2>追问</h2>\n<ul>\n<li>权限怎么不失控？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0182",
@@ -7923,7 +7923,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>认证、授权、加密、审计四块。</p>\n<h2>参考回答</h2>\n<p>Hive 安全分认证、授权、加密、审计。Kerberos 认证，Ranger 授权，数据加密，审计日志。按合规要求配置，生产全开。</p>\n<h2>追问</h2>\n<ul>\n<li>安全四块怎么配合？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0183",
@@ -7936,7 +7936,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>认证加授权加审计，分层落地。</p>\n<h2>参考回答</h2>\n<p>安全策略先做认证，再做库表级授权，配审计日志。按数据分级设权限，敏感数据额外管控。定期审计权限。</p>\n<h2>追问</h2>\n<ul>\n<li>敏感数据怎么管控？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0184",
@@ -7949,7 +7949,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>审计日志记录谁做了什么操作。</p>\n<h2>参考回答</h2>\n<p>审计日志记录用户、时间、SQL、访问的资源。用于合规追溯和排查。配置开启审计，集中存储，按用户和资源查询分析。</p>\n<h2>追问</h2>\n<ul>\n<li>审计日志记什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0185",
@@ -7962,7 +7962,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按用户和资源检索审计日志。</p>\n<h2>参考回答</h2>\n<p>审计日志分析按用户、时间、资源检索，看谁访问了敏感数据。用日志分析工具聚合。定期审计，异常访问告警。</p>\n<h2>追问</h2>\n<ul>\n<li>审计日志怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0186",
@@ -7975,7 +7975,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>服务故障时自动切换到备用节点。</p>\n<h2>参考回答</h2>\n<p>故障转移是 HiveServer2 或 Metastore 挂掉时切到备用实例。配置多实例加负载均衡，实现高可用。核心是元数据和状态共享。</p>\n<h2>追问</h2>\n<ul>\n<li>故障转移怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0187",
@@ -7988,7 +7988,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>HiveServer2 和 Metastore 多实例。</p>\n<h2>参考回答</h2>\n<p>高可用把 HiveServer2 和 Metastore 部署多实例，前面挂负载均衡。Metastore 数据库也要高可用。任一实例挂了自动切。</p>\n<h2>追问</h2>\n<ul>\n<li>高可用的关键是什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0188",
@@ -8001,7 +8001,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多个 HiveServer2 分担查询负载。</p>\n<h2>参考回答</h2>\n<p>负载均衡用多个 HiveServer2 实例，前面挂 LB 分发请求。按连接数或轮询。避免单点压力，提高并发能力。</p>\n<h2>追问</h2>\n<ul>\n<li>LB 策略怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0189",
@@ -8014,7 +8014,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>资源、存储、SQL、调度综合优化。</p>\n<h2>参考回答</h2>\n<p>集群性能优化从资源配足、存储列式、SQL 优化、调度合理。监控集群资源利用率，找瓶颈针对性优化。整体而不是单点。</p>\n<h2>追问</h2>\n<ul>\n<li>集群瓶颈怎么找？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0190",
@@ -8027,7 +8027,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>版本统一管理，升级走流程。</p>\n<h2>参考回答</h2>\n<p>版本管理统一 Hive 和相关组件版本，用配置管理和发布工具。升级前测试兼容，留回滚。记录版本变更历史。</p>\n<h2>追问</h2>\n<ul>\n<li>版本怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0191",
@@ -8040,7 +8040,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>测试环境验证，生产灰度，留回滚。</p>\n<h2>参考回答</h2>\n<p>升级先在测试环境验证兼容性和性能，再生产灰度升级，留回滚方案。升级前备份元数据。别跨大版本直接跳。</p>\n<h2>追问</h2>\n<ul>\n<li>升级注意什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0192",
@@ -8053,7 +8053,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配置集中管理，变更走流程。</p>\n<h2>参考回答</h2>\n<p>配置管理用配置中心统一管 Hive 参数，变更前验证、走审批，变更后确认。关键配置改动要重启生效，注意一致性。</p>\n<h2>追问</h2>\n<ul>\n<li>配置变更怎么生效？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0193",
@@ -8066,7 +8066,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配置文件统一组织，版本化管理。</p>\n<h2>参考回答</h2>\n<p>配置文件按模块组织，用配置中心或版本管理工具管。改配置要有记录和评审。环境差异用环境变量区分。</p>\n<h2>追问</h2>\n<ul>\n<li>配置怎么组织？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0194",
@@ -8079,7 +8079,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>依赖包统一管理，避免冲突。</p>\n<h2>参考回答</h2>\n<p>依赖管理统一 UDF 和连接器的 jar 包，避免版本冲突。用构建工具打包，统一上传。依赖变更要测试。</p>\n<h2>追问</h2>\n<ul>\n<li>依赖冲突怎么处理？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0195",
@@ -8092,7 +8092,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>依赖包统一版本，更新走流程。</p>\n<h2>参考回答</h2>\n<p>依赖包集中管理版本，更新前测试兼容性。避免多个版本混用。UDF 的 jar 统一上传目录，命名规范。</p>\n<h2>追问</h2>\n<ul>\n<li>依赖包怎么组织？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0196",
@@ -8105,7 +8105,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>本地、单机、集群部署。</p>\n<h2>参考回答</h2>\n<p>Hive 部署有本地测试、单机、集群模式。生产用集群，Metastore 独立服务，执行引擎跑 YARN。按规模和可用性选。</p>\n<h2>追问</h2>\n<ul>\n<li>生产部署怎么规划？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0197",
@@ -8118,7 +8118,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Metastore 独立、执行引擎配 YARN。</p>\n<h2>参考回答</h2>\n<p>部署 Hive 集群：Metastore 独立部署接关系库，HiveServer2 多实例，执行引擎配 YARN 或 Spark。配置高可用和监控。</p>\n<h2>追问</h2>\n<ul>\n<li>部署顺序？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0198",
@@ -8131,7 +8131,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>任务耗时、资源、成功率、数据量。</p>\n<h2>参考回答</h2>\n<p>监控指标有任务耗时、资源使用、成功率、数据量、延迟。用调度平台和监控系统采集，按基线设告警阈值。</p>\n<h2>追问</h2>\n<ul>\n<li>核心指标哪几个？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0199",
@@ -8144,7 +8144,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看任务耗时、资源、吞吐。</p>\n<h2>参考回答</h2>\n<p>监控 Hive 性能看任务耗时趋势、资源利用率、吞吐。慢任务和异常增长要关注。用监控平台出图配告警。</p>\n<h2>追问</h2>\n<ul>\n<li>性能监控看什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0200",
@@ -8157,7 +8157,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>指标超阈值告警，多渠道通知。</p>\n<h2>参考回答</h2>\n<p>告警机制按指标阈值触发，分级通知，比如失败、超时、数据异常。走邮件、电话、IM。避免告警泛滥，分级处理。</p>\n<h2>追问</h2>\n<ul>\n<li>告警怎么分级？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0201",
@@ -8170,7 +8170,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按基线和重要度设告警规则。</p>\n<h2>参考回答</h2>\n<p>告警规则按历史基线设阈值，核心任务严格告警，边缘任务宽松。区分告警级别，配对应通知人。定期校准阈值。</p>\n<h2>追问</h2>\n<ul>\n<li>阈值怎么校准？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0202",
@@ -8183,7 +8183,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>元数据备份加数据多副本。</p>\n<h2>参考回答</h2>\n<p>备份策略：元数据定期备份，数据靠 HDFS 多副本或跨集群同步。按重要度定备份频率。定期演练恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>备份频率怎么定？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0203",
@@ -8196,7 +8196,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>HDFS 多副本或跨集群同步。</p>\n<h2>参考回答</h2>\n<p>数据备份靠 HDFS 多副本，或用 distcp、跨集群同步工具备份到异地。元数据单独备份。重要数据定期同步灾备集群。</p>\n<h2>追问</h2>\n<ul>\n<li>跨集群同步用什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0204",
@@ -8209,7 +8209,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从备份恢复元数据和数据。</p>\n<h2>参考回答</h2>\n<p>恢复策略分元数据恢复和数据恢复。元数据还原 Metastore 库，数据从副本或灾备恢复。恢复后校验一致性。定期演练。</p>\n<h2>追问</h2>\n<ul>\n<li>恢复怎么演练？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0205",
@@ -8222,7 +8222,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从副本或备份还原数据。</p>\n<h2>参考回答</h2>\n<p>数据恢复从 HDFS 副本或灾备集群拷回，配合元数据还原。恢复后对账验证行数和关键指标。注意恢复期间别写数据。</p>\n<h2>追问</h2>\n<ul>\n<li>恢复后怎么验证？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0206",
