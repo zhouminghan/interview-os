@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+临时表只在当前 session 有效。
+
+# 参考回答
+
+临时表用 CREATE TEMPORARY TABLE 建，session 结束自动删，只在当前会话可见。适合中间结果、临时计算，不污染正式表。
+
+# 追问
+
+- 临时表存哪？

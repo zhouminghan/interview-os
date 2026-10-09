@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+有 Compact 和 Bitmap 索引，但实际少用。
+
+# 参考回答
+
+Hive 索引有 Compact 和 Bitmap，但实际很少用，因为列式存储加分区分桶已经够快，索引维护成本高。新版基本靠 ORC 内部索引和分区优化。
+
+# 追问
+
+- 为什么不建索引？

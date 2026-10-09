@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+查询计划是 SQL 到执行任务的转换结果。
+
+# 参考回答
+
+查询计划把 SQL 解析优化后转成执行阶段，用 EXPLAIN 查看。看计划里的 join 方式、stage 数、分区裁剪、MapJoin，定位性能问题。
+
+# 追问
+
+- EXPLAIN 怎么解读？

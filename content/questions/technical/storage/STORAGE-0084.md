@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+建表复制、导出导入、直接拷贝文件。
+
+# 参考回答
+
+复制数据可以 CTAS 建表复制、INSERT 重写、EXPORT IMPORT、或直接拷 HDFS 文件。CTAS 简单，EXPORT 适合跨集群，直接拷贝最快但要自己管元数据。
+
+# 追问
+
+- 跨集群复制用什么？

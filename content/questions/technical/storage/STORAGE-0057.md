@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+TextFile、SequenceFile、ORC、Parquet、Avro。
+
+# 参考回答
+
+TextFile 纯文本通用；SequenceFile 二进制键值；ORC、Parquet 是列式，分析场景首选；Avro 带 schema 适合序列化。选格式看场景，数仓分析用 ORC 或 Parquet。
+
+# 追问
+
+- Avro 适合什么场景？

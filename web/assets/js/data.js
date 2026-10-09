@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:15:12+08:00",
+  "generatedAt": "2026-10-09T17:17:23+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -6285,7 +6285,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>列式存储按列组织数据，查询只读需要的列。</p>\n<h2>参考回答</h2>\n<p>列式存储把同一列的数据放一起，查询只扫涉及的列，压缩率也高。ORC、Parquet 就是列式格式。分析场景首选列式，IO 和存储都省。</p>\n<h2>追问</h2>\n<ul>\n<li>列式存储为什么压缩好？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0057",
@@ -6298,7 +6298,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>TextFile、SequenceFile、ORC、Parquet、Avro。</p>\n<h2>参考回答</h2>\n<p>TextFile 纯文本通用；SequenceFile 二进制键值；ORC、Parquet 是列式，分析场景首选；Avro 带 schema 适合序列化。选格式看场景，数仓分析用 ORC 或 Parquet。</p>\n<h2>追问</h2>\n<ul>\n<li>Avro 适合什么场景？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0058",
@@ -6311,7 +6311,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>建新表用目标格式重写数据。</p>\n<h2>参考回答</h2>\n<p>格式转换一般建一张目标格式的新表，用 INSERT OVERWRITE 从旧表读数据写进去。也可以改表格式再重写分区。注意字段类型和分区要对应。</p>\n<h2>追问</h2>\n<ul>\n<li>格式转换要注意什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0059",
@@ -6324,7 +6324,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>常见 gzip、snappy、lz4、zstd。</p>\n<h2>参考回答</h2>\n<p>gzip 压缩率高但慢，snappy、lz4 快，zstd 平衡。选压缩看 CPU 和存储权衡，分析场景配 snappy 或 zstd。ORC、Parquet 内部自带压缩配置。</p>\n<h2>追问</h2>\n<ul>\n<li>压缩对查询的影响？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0060",
@@ -6337,7 +6337,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>表属性控制格式、压缩、存储等行为。</p>\n<h2>参考回答</h2>\n<p>表属性有格式、压缩、事务、生命周期这些，用 TBLPROPERTIES 设置。比如设置 ORC 压缩、开启事务。合理配表属性能省存储和优化查询。</p>\n<h2>追问</h2>\n<ul>\n<li>常用表属性有哪些？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0061",
@@ -6350,7 +6350,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>存储位置在 HDFS，按库表分区组织目录。</p>\n<h2>参考回答</h2>\n<p>Hive 数据存 HDFS，默认按库、表、分区组织目录。管理上统一目录规范、控制权限、做生命周期。生产一般指定 warehouse 目录，按业务规划路径。</p>\n<h2>追问</h2>\n<ul>\n<li>存储位置怎么规划？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0062",
@@ -6363,7 +6363,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>临时表只在当前 session 有效。</p>\n<h2>参考回答</h2>\n<p>临时表用 CREATE TEMPORARY TABLE 建，session 结束自动删，只在当前会话可见。适合中间结果、临时计算，不污染正式表。</p>\n<h2>追问</h2>\n<ul>\n<li>临时表存哪？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0063",
@@ -6376,7 +6376,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>内部表删表删数据，外部表删表只删元数据。</p>\n<h2>参考回答</h2>\n<p>内部表数据由 Hive 管，DROP 删数据；外部表数据在外部位置，DROP 只删元数据，数据还在。外部表适合数据要共享或不能删的场景，用 EXTERNAL 关键字建。</p>\n<h2>追问</h2>\n<ul>\n<li>生产为什么常用外部表？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0064",
@@ -6389,7 +6389,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>视图是查询定义，本身不存数据。</p>\n<h2>参考回答</h2>\n<p>Hive 视图只是保存查询定义，查视图就是现跑底层查询，所以没有\"更新\"概念。改定义用 ALTER VIEW 或重建。适合封装复杂查询，但每次查都要算。</p>\n<h2>追问</h2>\n<ul>\n<li>视图和表什么区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0065",
@@ -6402,7 +6402,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>物化视图预存结果，查询复用。</p>\n<h2>参考回答</h2>\n<p>物化视图把查询结果预先算好存下来，查询命中直接复用，加速。要手动刷新，占存储。适合高频聚合结果，Hive 新版本支持。</p>\n<h2>追问</h2>\n<ul>\n<li>物化视图怎么刷新？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0066",
@@ -6415,7 +6415,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>有 Compact 和 Bitmap 索引，但实际少用。</p>\n<h2>参考回答</h2>\n<p>Hive 索引有 Compact 和 Bitmap，但实际很少用，因为列式存储加分区分桶已经够快，索引维护成本高。新版基本靠 ORC 内部索引和分区优化。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么不建索引？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0067",
@@ -6428,7 +6428,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 ANALYZE TABLE 收集统计信息。</p>\n<h2>参考回答</h2>\n<p>统计信息用 ANALYZE TABLE 收集行数、列基数、分布。CBO 靠它选执行计划。数据大变更后要重收集，否则计划不准。可以配自动收集。</p>\n<h2>追问</h2>\n<ul>\n<li>多久收集一次？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0068",
@@ -6441,7 +6441,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>查询计划是 SQL 到执行任务的转换结果。</p>\n<h2>参考回答</h2>\n<p>查询计划把 SQL 解析优化后转成执行阶段，用 EXPLAIN 查看。看计划里的 join 方式、stage 数、分区裁剪、MapJoin，定位性能问题。</p>\n<h2>追问</h2>\n<ul>\n<li>EXPLAIN 怎么解读？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0069",
@@ -6454,7 +6454,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MapReduce、Tez、Spark 三种引擎。</p>\n<h2>参考回答</h2>\n<p>MapReduce 最老最慢，Tez 用 DAG 优化比 MR 快，Spark 内存计算最快。现在多配 Spark 或 Tez。配置执行引擎参数切换，性能差别明显。</p>\n<h2>追问</h2>\n<ul>\n<li>Tez 和 Spark 怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0070",
@@ -6467,7 +6467,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>谓词下推、列裁剪、MapJoin、倾斜优化。</p>\n<h2>参考回答</h2>\n<p>优化策略有谓词下推、列裁剪、MapJoin、并行执行、倾斜优化、CBO。核心是少读数据、少 shuffle。先看执行计划再针对性优化。</p>\n<h2>追问</h2>\n<ul>\n<li>优化第一步做什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0071",
@@ -6480,7 +6480,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>无依赖的 stage 并行跑。</p>\n<h2>参考回答</h2>\n<p>并行执行把没有依赖关系的多个 stage 同时执行，减少总耗时。适合多表 join、union 场景。开启 parallel execution，注意别抢太多资源。</p>\n<h2>追问</h2>\n<ul>\n<li>并行度怎么控制？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0072",
@@ -6493,7 +6493,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>资源交给 YARN 或资源管理器调度。</p>\n<h2>参考回答</h2>\n<p>Hive 本身不管理资源，执行引擎跑在 YARN 或集群资源管理器上。通过队列、配额、优先级管理资源。生产按业务分队列，控制并发和资源。</p>\n<h2>追问</h2>\n<ul>\n<li>资源怎么按业务隔离？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0073",
@@ -6506,7 +6506,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>存储、SQL、参数、资源四个层面优化。</p>\n<h2>参考回答</h2>\n<p>性能优化从存储用列式加分区，SQL 减少 join 和 shuffle，参数开向量化 CBO，资源合理分配。先定位慢在哪，再针对性优化，别盲调。</p>\n<h2>追问</h2>\n<ul>\n<li>四个层面怎么排序？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0074",
@@ -6519,7 +6519,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Hive 本身查询缓存能力有限。</p>\n<h2>参考回答</h2>\n<p>Hive 原生查询缓存能力弱，主要靠 LLAP 或外部缓存层加速。常见做法是把高频结果物化或放 OLAP 引擎。Hive 定位是离线批，不强调查询缓存。</p>\n<h2>追问</h2>\n<ul>\n<li>高频查询怎么加速？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0075",
@@ -6532,7 +6532,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>结果缓存靠 LLAP 或物化视图实现。</p>\n<h2>参考回答</h2>\n<p>查询结果缓存主要靠 LLAP 的内存缓存，或把结果物化成表。适合反复查的小结果集。Hive 默认不缓存结果，批处理一次算完。</p>\n<h2>追问</h2>\n<ul>\n<li>LLAP 是什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0076",
@@ -6545,7 +6545,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>字段、分区、分桶、格式、压缩、位置。</p>\n<h2>参考回答</h2>\n<p>建表要考虑字段类型、分区字段、分桶、存储格式、压缩、存储位置、内外表。CREATE TABLE 里指定这些参数。设计好表结构是性能的基础。</p>\n<h2>追问</h2>\n<ul>\n<li>建表最先定什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0077",
@@ -6558,7 +6558,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>INTO 追加，OVERWRITE 覆盖。</p>\n<h2>参考回答</h2>\n<p>INSERT INTO 追加数据，INSERT OVERWRITE 覆盖目标分区。数仓任务基本都用 OVERWRITE，避免重复。也支持多路输出和动态分区。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么数仓用 OVERWRITE？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0078",
@@ -6571,7 +6571,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>LOAD 直接搬文件，INSERT 走计算。</p>\n<h2>参考回答</h2>\n<p>LOAD DATA 直接把文件搬进表目录，不经过计算，快；INSERT 走查询计算。LOAD 适合数据已经是目标格式、只做搬运的场景。LOAD 不做格式转换和校验。</p>\n<h2>追问</h2>\n<ul>\n<li>LOAD 和 INSERT 性能差多少？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0079",
@@ -6584,7 +6584,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>EXPORT 导出表数据和元数据，IMPORT 导入。</p>\n<h2>参考回答</h2>\n<p>EXPORT 把表的数据和元数据一起导出到 HDFS，IMPORT 再导入，用于跨集群迁移和备份。注意迁移时路径和权限，适合整表迁移场景。</p>\n<h2>追问</h2>\n<ul>\n<li>EXPORT 和普通导出区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0080",
@@ -6597,7 +6597,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>覆盖重写、ACID 表、拉链表。</p>\n<h2>参考回答</h2>\n<p>更新方法：INSERT OVERWRITE 整分区重写最简单，ACID 表支持单条 update，拉链表记录变更。数仓多用全量重写或拉链表，单条 update 少用。</p>\n<h2>追问</h2>\n<ul>\n<li>拉链表和 ACID 怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0081",
@@ -6610,7 +6610,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>DELETE 要求 ACID 表，且面向批量。</p>\n<h2>参考回答</h2>\n<p>Hive 的 DELETE 只对 ACID 表有效，且要求 ORC 和分桶。和传统库不同，Hive delete 是批量操作，性能一般，不面向高频单行删除。离线多靠重写。</p>\n<h2>追问</h2>\n<ul>\n<li>Hive delete 为什么有门槛？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0082",
@@ -6623,7 +6623,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MERGE 按条件匹配后插入或更新。</p>\n<h2>参考回答</h2>\n<p>MERGE 根据匹配条件决定插入还是更新，类似 upsert。要求 ACID 表。适合数据同步和增量合并，把 insert 和 update 合成一步。</p>\n<h2>追问</h2>\n<ul>\n<li>MERGE 适合什么场景？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0083",
@@ -6636,7 +6636,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>TRUNCATE 清空表，比 DELETE 快。</p>\n<h2>参考回答</h2>\n<p>TRUNCATE 直接清空表数据，不逐条删，速度快。内部表删数据文件，外部表只删目录里的文件。注意不可恢复，删前确认。</p>\n<h2>追问</h2>\n<ul>\n<li>TRUNCATE 能恢复吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0084",
@@ -6649,7 +6649,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>建表复制、导出导入、直接拷贝文件。</p>\n<h2>参考回答</h2>\n<p>复制数据可以 CTAS 建表复制、INSERT 重写、EXPORT IMPORT、或直接拷 HDFS 文件。CTAS 简单，EXPORT 适合跨集群，直接拷贝最快但要自己管元数据。</p>\n<h2>追问</h2>\n<ul>\n<li>跨集群复制用什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0085",
@@ -6662,7 +6662,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>改列、分区、属性和重命名。</p>\n<h2>参考回答</h2>\n<p>ALTER TABLE 能改列、加删分区、改表属性、重命名表。改列要小心，和已有数据格式要匹配。加删分区最常用，配合生命周期管理。</p>\n<h2>追问</h2>\n<ul>\n<li>改列要注意什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0086",

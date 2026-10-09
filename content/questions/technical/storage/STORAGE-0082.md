@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+MERGE 按条件匹配后插入或更新。
+
+# 参考回答
+
+MERGE 根据匹配条件决定插入还是更新，类似 upsert。要求 ACID 表。适合数据同步和增量合并，把 insert 和 update 合成一步。
+
+# 追问
+
+- MERGE 适合什么场景？

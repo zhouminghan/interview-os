@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 ANALYZE TABLE 收集统计信息。
+
+# 参考回答
+
+统计信息用 ANALYZE TABLE 收集行数、列基数、分布。CBO 靠它选执行计划。数据大变更后要重收集，否则计划不准。可以配自动收集。
+
+# 追问
+
+- 多久收集一次？

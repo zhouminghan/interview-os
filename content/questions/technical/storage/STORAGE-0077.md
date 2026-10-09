@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+INTO 追加，OVERWRITE 覆盖。
+
+# 参考回答
+
+INSERT INTO 追加数据，INSERT OVERWRITE 覆盖目标分区。数仓任务基本都用 OVERWRITE，避免重复。也支持多路输出和动态分区。
+
+# 追问
+
+- 为什么数仓用 OVERWRITE？

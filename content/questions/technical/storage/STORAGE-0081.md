@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+DELETE 要求 ACID 表，且面向批量。
+
+# 参考回答
+
+Hive 的 DELETE 只对 ACID 表有效，且要求 ORC 和分桶。和传统库不同，Hive delete 是批量操作，性能一般，不面向高频单行删除。离线多靠重写。
+
+# 追问
+
+- Hive delete 为什么有门槛？

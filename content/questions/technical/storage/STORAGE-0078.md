@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+LOAD 直接搬文件，INSERT 走计算。
+
+# 参考回答
+
+LOAD DATA 直接把文件搬进表目录，不经过计算，快；INSERT 走查询计算。LOAD 适合数据已经是目标格式、只做搬运的场景。LOAD 不做格式转换和校验。
+
+# 追问
+
+- LOAD 和 INSERT 性能差多少？

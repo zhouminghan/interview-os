@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+MapReduce、Tez、Spark 三种引擎。
+
+# 参考回答
+
+MapReduce 最老最慢，Tez 用 DAG 优化比 MR 快，Spark 内存计算最快。现在多配 Spark 或 Tez。配置执行引擎参数切换，性能差别明显。
+
+# 追问
+
+- Tez 和 Spark 怎么选？
