@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+有 ARRAY JOIN、LIMIT BY 等扩展语法。
+
+# 参考回答
+
+ClickHouse 有 ARRAY JOIN、LIMIT BY、SAMPLE、FORMAT 等扩展，还有特殊函数和引擎语法。基础 SQL 兼容，扩展是它的特色。
+
+# 追问
+
+- 有哪些特有语法？

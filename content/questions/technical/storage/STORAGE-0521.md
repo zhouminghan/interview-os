@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+表名、引擎、行数、大小。
+
+# 参考回答
+
+system.tables 存表名、引擎、库、行数、大小、创建时间。用于监控表大小和数据量，做容量管理。
+
+# 追问
+
+- system.tables 看什么？

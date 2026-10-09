@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Bitmap 做去重和交并集。
+
+# 参考回答
+
+Bitmap 函数用于大基数去重、交并集计算，比如 bitmapAnd、bitmapOr。适合用户圈选、去重统计。比 count distinct 高效。
+
+# 追问
+
+- Bitmap 适合什么？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+建表加 TTL 子句。
+
+# 参考回答
+
+建表时 TTL 时间列 + INTERVAL 保留期，到期自动删。比如 TTL event_time + INTERVAL 30 DAY。后台任务执行。
+
+# 追问
+
+- TTL 怎么生效？

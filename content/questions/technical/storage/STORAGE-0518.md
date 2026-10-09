@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+RENAME TABLE 改表名。
+
+# 参考回答
+
+用 RENAME TABLE 旧名 TO 新名。只改元数据，很快。分布式表要注意同步。改名不影响数据。
+
+# 追问
+
+- 改名快吗？

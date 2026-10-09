@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+DESCRIBE 或查系统表。
+
+# 参考回答
+
+DESCRIBE TABLE 看表结构，system.tables、system.columns 查元数据。用于了解表定义和容量。
+
+# 追问
+
+- 元数据查什么？

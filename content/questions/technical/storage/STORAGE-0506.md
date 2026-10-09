@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Nested 字段用 ARRAY JOIN 展开查。
+
+# 参考回答
+
+Nested 表是平行数组，查询用 ARRAY JOIN 展开成多行。或直接数组函数处理。适合一对多的嵌套数据。
+
+# 追问
+
+- Nested 怎么展开？

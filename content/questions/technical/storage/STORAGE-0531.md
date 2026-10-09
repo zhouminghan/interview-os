@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+限制单查询内存，防止 OOM。
+
+# 参考回答
+
+内存参数 max_memory_usage 限制单查询内存，超了抛异常。max_bytes_before_external_group_by 让聚合落盘。按节点内存配。
+
+# 追问
+
+- 内存超了怎么办？

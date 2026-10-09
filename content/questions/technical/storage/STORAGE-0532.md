@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+控制查询并发和线程。
+
+# 参考回答
+
+并行查询配置 max_concurrent_queries 限制并发查询数，max_threads 控制单查询线程。按 CPU 核数配，别超太多。
+
+# 追问
+
+- 并发怎么配？

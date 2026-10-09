@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+SELECT 后加 ARRAY JOIN 数组字段。
+
+# 参考回答
+
+用 ARRAY JOIN 或 LEFT ARRAY JOIN 把数组字段展开成多行。SELECT ... ARRAY JOIN tags，tags 的每个元素一行。
+
+# 追问
+
+- ARRAY JOIN 语法？
