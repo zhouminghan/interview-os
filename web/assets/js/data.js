@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-08T18:17:51+08:00",
+  "generatedAt": "2026-10-09T15:58:37+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -32616,7 +32616,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据仓库就是把各个业务系统的数据集中起来、清洗整合好，专门给分析和报表用的一个地方。</p>\n<h2>参考回答</h2>\n<p>说白了，数据仓库是一个面向主题、集成、相对稳定、能反映历史变化的数据集合。它跟业务库不一样，不是用来做下单交易的，而是把这些业务数据拉过来、洗干净、按主题组织好，让分析师和 BI 直接查。核心就四个字：面向分析。企业里通常用它做日报、看板，把指标口径统一起来。</p>\n<h2>追问</h2>\n<ul>\n<li>数据仓库和业务数据库最本质的区别是什么？</li>\n<li>为什么数据仓库要强调「面向主题」？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0112",
@@ -32629,7 +32629,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据库服务业务交易，数据仓库服务分析决策。</p>\n<h2>参考回答</h2>\n<p>数据库是业务系统在用的，要求高并发、快读写、事务一致，存的是当下最新状态；数据仓库是给分析用的，数据量大、以读为主、存历史快照。简单记就是：数据库面向「操作」，数据仓库面向「分析」。所以数据库通常行存、强调 ACID，数仓通常列存、做聚合扫描。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 OLTP 和 OLAP 的存储引擎设计不一样？</li>\n<li>数据库和数仓在数据量级上的差异？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0113",
@@ -32642,7 +32642,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>星型是事实表直接连一圈维度表，雪花把维度表再拆开规范化。</p>\n<h2>参考回答</h2>\n<p>星型模型就是中间一张事实表，周围维度表直接挂上来，维度表里允许冗余，查询时 join 少、简单、快；雪花模型把维度表继续拆成更细的表，像雪花一样分叉，减少冗余但 join 变多、查询变慢。数仓实践里绝大多数用星型，因为存储便宜，查询性能更重要。</p>\n<h2>追问</h2>\n<ul>\n<li>数仓为什么更偏爱星型而不是雪花？</li>\n<li>星型模型的冗余会带来什么维护问题？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0114",
@@ -32655,7 +32655,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>需求分析到数据调研，再到建模、ETL 开发、调度上线、质量校验。</p>\n<h2>参考回答</h2>\n<p>一般先做需求调研，搞清楚业务要看什么指标、口径怎么定；然后做数据调研，看源数据在哪、质量怎么样；接着分层建模，从 ODS 到 DWD、DWS、ADS 一层层设计；再写 ETL 把数据加工出来、配调度；最后加质量校验和监控，上线后持续维护。核心是口径一定要跟业务对齐。</p>\n<h2>追问</h2>\n<ul>\n<li>建模之前为什么要先做需求调研？</li>\n<li>数据调研阶段主要看什么？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0115",
@@ -32668,7 +32668,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ETL 是抽取、转换、加载三个动作，把原始数据变成能用的数据。</p>\n<h2>参考回答</h2>\n<p>E 是 Extract，从源系统把数据抽出来；T 是 Transform，做清洗、格式统一、口径计算、去重这些加工；L 是 Load，把加工好的数据装进数仓。现在很多其实是 ELT，先把原始数据拉进来，再在数仓里用 SQL 做转换，因为算力便宜了，放后面转换更灵活。</p>\n<h2>追问</h2>\n<ul>\n<li>ETL 和 ELT 的区别？</li>\n<li>什么时候选 ELT 更合适？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0116",
@@ -32681,7 +32681,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>离线常见 DataX、Sqoop、Kettle，实时常见 Flink CDC、Canal。</p>\n<h2>参考回答</h2>\n<p>批量离线的一般用 DataX、Sqoop 做跨库抽取，Kettle 做图形化加工，也有直接拿 Spark 写 ETL 的；实时的常用 Canal、Debezium 监听 binlog，配合 Flink 做流式处理。选型主要看数据量、实时性要求和团队技术栈。</p>\n<h2>追问</h2>\n<ul>\n<li>Sqoop 和 DataX 有什么差别？</li>\n<li>实时同步为什么常用 Flink CDC？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0117",
@@ -32694,7 +32694,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Hive 把 SQL 翻译成 MapReduce 或 Spark 任务，让数仓能用 SQL 处理海量数据。</p>\n<h2>参考回答</h2>\n<p>Hive 本质是数仓的存储和元数据层，建在 HDFS 之上，把文件映射成表，让不懂 MapReduce 的人也能用 SQL 做大数据加工。它负责管理表结构、分区、元数据，实际计算现在多交给 Spark 或 Tez 去执行，是离线数仓最核心的底座之一。</p>\n<h2>追问</h2>\n<ul>\n<li>Hive 和传统数据库在存储和执行上有什么不同？</li>\n<li>Hive 为什么要做分区？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0118",
@@ -32707,7 +32707,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>OLAP 是面向分析的联机分析处理，常见操作有钻取、上卷、切片、切块、旋转。</p>\n<h2>参考回答</h2>\n<p>OLAP 就是给分析场景用的，专门做多维聚合和复杂查询，跟业务交易那种点查不一样。主要操作：下钻看明细、上卷看汇总、切片固定一个维度、切块固定多个维度、旋转换视角。典型系统是 ClickHouse、Doris、Kylin 这些。</p>\n<h2>追问</h2>\n<ul>\n<li>OLAP 和 OLTP 的区别？</li>\n<li>下钻和上卷是什么关系？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0119",
@@ -32720,7 +32720,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据仓库是企业统一的数据底座，把散落的数据整合成可信的、口径一致的资产。</p>\n<h2>参考回答</h2>\n<p>我理解数据仓库就是企业的数据大脑，把各个业务系统的数据收拢、清洗、按主题组织，统一指标口径。作用主要有三个：一是支撑报表看板，二是做历史沉淀和趋势分析，三是让数据和口径可信、可复用。没有数仓，各部门各算各的，口径对不上，决策就不可靠。</p>\n<h2>追问</h2>\n<ul>\n<li>数据仓库如何保证口径统一？</li>\n<li>数仓对企业的价值怎么量化？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0120",
@@ -32733,7 +32733,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>建模就是按主题划分业务域，分层设计事实表和维度表，控制冗余和口径。</p>\n<h2>参考回答</h2>\n<p>我的经验是先按业务域切主题，比如交易域、用户域、商品域；然后分层，ODS 贴源、DWD 做明细清洗、DWS 做汇总、ADS 面向应用；具体建模用星型模型，事实表存度量、维度表存描述。举例子的话，订单主题就做一张订单事实表，周围挂用户、商品、时间、地区这些维度表。</p>\n<h2>追问</h2>\n<ul>\n<li>维度建模和关系建模怎么选？</li>\n<li>事实表和维度表分别存什么？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0121",
@@ -32746,7 +32746,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>常见难题是数据倾斜、口径不一致、上游延迟，解决靠先定位根因再对症下药。</p>\n<h2>参考回答</h2>\n<p>印象比较深的一次是某个任务突然从半小时跑到三小时，排查发现是热点 key 数据倾斜，少数 task 一直跑不完。我的做法是先看 Spark UI 定位到倾斜的 stage，再对热点 key 加盐打散、做两阶段聚合，最后把时长压回正常。这种题的关键是先定位再动手，别上来就瞎调参数。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么判断是数据倾斜还是节点硬件问题？</li>\n<li>加盐打散后怎么再聚合回来？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0122",
@@ -32759,7 +32759,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>OLAP 面向海量数据做多维分析，典型案例就是电商实时大屏或运营报表。</p>\n<h2>参考回答</h2>\n<p>OLAP 是联机分析处理，核心是海量数据的聚合和多维下钻。举个例子，电商平台要做一张实时 GMV 大屏，按地区、品类、时间多维度看成交额，这就是典型 OLAP，用 Doris、ClickHouse 这类列存加预聚合，秒级出结果。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 OLAP 引擎查聚合这么快？</li>\n<li>实时大屏和离线报表在架构上有什么区别？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0123",
@@ -32772,7 +32772,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠事前规范、事中校验、事后监控三层来兜住质量和一致性。</p>\n<h2>参考回答</h2>\n<p>事前定好口径和表规范，把指标定义清楚；事中在 ETL 里加 DQC 校验，比如空值率、主键唯一性、环比波动；事后做监控告警，发现异常就回溯重刷。一致性主要靠统一指标字典和口径注册，大家用同一套定义，不各算各的。</p>\n<h2>追问</h2>\n<ul>\n<li>数据质量校验一般看哪些指标？</li>\n<li>口径不一致时怎么处理？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0124",
@@ -32785,7 +32785,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ETL 是数仓的生产流水线，没有它数据就是一堆脏的原始日志。</p>\n<h2>参考回答</h2>\n<p>ETL 就是把原始数据加工成可分析数据的过程，抽取、清洗、转换、加载。它重要在：数仓质量好不好，九成取决于 ETL 做得好不好。数据不干净、口径算错，下游报表全跟着错。所以 ETL 是数仓的命脉。</p>\n<h2>追问</h2>\n<ul>\n<li>清洗阶段主要处理哪些脏数据？</li>\n<li>ETL 的 T 和 L 为什么现在经常互换顺序？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0125",
@@ -32798,7 +32798,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>我比较熟 MySQL 的 InnoDB，B+ 树索引加事务 ACID，适合在线业务。</p>\n<h2>参考回答</h2>\n<p>InnoDB 用 B+ 树组织数据，支持行锁和事务 ACID，适合高并发点查和写。特点是有聚簇索引、二级索引回表、用 MVCC 做一致性读。应用场景就是业务系统的在线库。分析场景它就不太行了，得换列存引擎。</p>\n<h2>追问</h2>\n<ul>\n<li>InnoDB 的聚簇索引和非聚簇索引区别？</li>\n<li>MVCC 解决什么问题？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0126",
@@ -32811,7 +32811,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>大数据量靠分区裁剪和列存，高并发靠索引、缓存和读写分离。</p>\n<h2>参考回答</h2>\n<p>数据量大主要靠分区、列式存储、预聚合来减少扫描；查询慢就建合适的索引、上物化视图。高并发写入和查询要分开，读写分离、加缓存、控制并发。数仓场景大部分是读多写少，重点是把大表扫改成小范围扫。</p>\n<h2>追问</h2>\n<ul>\n<li>分区和分桶分别解决什么问题？</li>\n<li>预聚合和物化视图有什么关系？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0127",
@@ -32824,7 +32824,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>优化就是围绕少读、少 shuffle、少倾斜做文章。</p>\n<h2>参考回答</h2>\n<p>有一次日报链路整体超时，我从三处入手：大表 join 小表改成 broadcast 避免 shuffle；分区裁剪加谓词下推，只扫需要的分区；热点 key 加盐打散。最后整体时长降了一半多。核心思路就是先看执行计划，找到最慢的 stage 再对症下药。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么判断一个 stage 为什么慢？</li>\n<li>broadcast join 对表大小有什么要求？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0128",
@@ -32837,7 +32837,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>星型维度表不拆、join 少；雪花维度表拆细、冗余少但 join 多。</p>\n<h2>参考回答</h2>\n<p>星型是事实表直接连维度表，维度表保留冗余，结构简单、查询快；雪花把维度表继续规范化，拆成多张小表，省存储但查询要 join 更多层，性能差一点。数仓为了查询快，基本都选星型，存储冗余无所谓，反正便宜。</p>\n<h2>追问</h2>\n<ul>\n<li>星型模型的冗余会带来什么问题？</li>\n<li>什么场景下反而会选雪花？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0129",
@@ -32850,7 +32850,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>粒度决定事实表一行代表什么，聚合层次决定预计算到什么程度。</p>\n<h2>参考回答</h2>\n<p>设计时先定最细粒度，比如订单明细一行代表一个订单或一个订单行，这决定表能回答多细的问题。然后往上做聚合，按天、周、月或按维度汇总到 DWS。原则是最细粒度放 DWD，常用聚合提前算好放 DWS，避免每次现算。</p>\n<h2>追问</h2>\n<ul>\n<li>粒度太细或太粗分别有什么问题？</li>\n<li>聚合层放 DWS 还是 ADS 怎么判断？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0130",
@@ -32863,7 +32863,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据湖存原始异构数据、便宜灵活，数据仓库存加工好的结构化数据、面向分析。</p>\n<h2>参考回答</h2>\n<p>数据湖就像个大水池，什么格式、什么结构的数据都先原样丢进去，便宜、灵活，适合存海量原始数据和做探索；数据仓库是把数据洗干净、按主题建模好的，口径明确、查询快，但更贵更重。现在趋势是湖仓一体，湖做存储底座，加上仓的治理能力。</p>\n<h2>追问</h2>\n<ul>\n<li>湖仓一体解决什么问题？</li>\n<li>数据湖为什么容易变成数据沼泽？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0131",
@@ -32876,7 +32876,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>需求分析先问清楚业务目标和指标口径，再倒推数据来源和模型设计。</p>\n<h2>参考回答</h2>\n<p>我会先跟业务聊清楚他们到底要做什么决策、看哪些指标、口径怎么定，然后把指标拆成维度和度量，倒推需要哪些数据、从哪来、粒度到哪。接着才是分层建模和 ETL 设计。关键是一开始就把口径对齐，不然后面返工很痛苦。</p>\n<h2>追问</h2>\n<ul>\n<li>指标口径不清晰时怎么推进？</li>\n<li>需求和设计之间怎么保持可追溯？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0132",
@@ -32889,7 +32889,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>常用 Hive 加 Spark 做离线加工，DolphinScheduler 做调度，Doris 或 ClickHouse 做查询。</p>\n<h2>参考回答</h2>\n<p>我主要用过 Hive 加 Spark 做离线加工，调度用 DolphinScheduler 或 DataWorks，实时用 Flink，查询层用 Doris、ClickHouse。选它们的理由是 Hive 和 Spark 生态成熟、适合离线批量，Doris 兼容 MySQL 协议、多维分析快，调度平台能管依赖和重跑。</p>\n<h2>追问</h2>\n<ul>\n<li>DataWorks 和 DolphinScheduler 有什么区别？</li>\n<li>为什么查询层要用 Doris 而不是直接查 Hive？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0133",
@@ -32902,7 +32902,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>安全核心是数据分级、脱敏、权限最小化，敏感字段不下发。</p>\n<h2>参考回答</h2>\n<p>我遇到过手机号、身份证这类敏感字段，处理方式是先做数据分级，PII 字段在数仓里脱敏存储，比如打码或加密；下游取数按角色授权，最小权限原则，敏感数据不直接暴露。再加审计日志，谁查了什么能追溯。</p>\n<h2>追问</h2>\n<ul>\n<li>脱敏有哪些常见方式？</li>\n<li>数据分级一般分几级？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0134",
@@ -32915,7 +32915,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从数据量、实时性、查询模式、成本和团队栈几个维度综合选。</p>\n<h2>参考回答</h2>\n<p>我会先看数据量级、要不要实时、查询是点查还是聚合分析、预算多少、团队熟不熟这套技术。离线为主就 Hive 加 Spark 加调度；要实时就加 Flink；查询层要快就 Doris、ClickHouse。没有银弹，都是权衡出来的。</p>\n<h2>追问</h2>\n<ul>\n<li>自建数仓和买云上数仓怎么权衡？</li>\n<li>数据量多少算适合上列存 OLAP 引擎？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0135",
@@ -32928,7 +32928,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据治理是让数据可信、可管、可复用的一套规范加流程。</p>\n<h2>参考回答</h2>\n<p>我理解数据治理不只是数据质量，还包括元数据、血缘、口径、权限、生命周期这些。落到数仓里就是：指标统一注册、表有规范和注释、血缘能追踪、数据分级加脱敏、质量有监控。核心目标是让数据敢用、好用。</p>\n<h2>追问</h2>\n<ul>\n<li>元数据管理和数据血缘是什么关系？</li>\n<li>数据治理为什么难推动？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0136",
@@ -32941,7 +32941,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>缓慢变化维是维度属性会随时间变，比如用户等级、会员状态。</p>\n<h2>参考回答</h2>\n<p>维度表里的属性不是一成不变的，像用户从普通会员升到 VIP，这就是缓慢变化维。处理方式常见三种：直接覆盖是 Type1，拉链表保留历史是 Type2，加一列存历史是 Type3。最常用是拉链表，用起止时间记录每次变化。</p>\n<h2>追问</h2>\n<ul>\n<li>拉链表怎么实现？</li>\n<li>Type1 和 Type2 的区别？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0137",
@@ -32954,7 +32954,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>迁移难点在数据一致性、口径对齐和双跑验证。</p>\n<h2>参考回答</h2>\n<p>我经历过的迁移挑战主要是：新老平台口径要完全一致，不然报表对不上；迁移过程要双跑一段时间，两边结果比对，确认一致再切流；还有历史数据回刷和依赖重配。关键是留好回滚和备份，不能一把切。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么保证迁移前后口径一致？</li>\n<li>双跑验证一般跑多久才放心切流？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0138",
@@ -32967,7 +32967,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数仓把数据变成统一可信的指标，直接喂给看板和决策。</p>\n<h2>参考回答</h2>\n<p>数仓支持决策的核心是把散乱数据变成统一口径的指标，让管理层看到的是同一个数。再往上就是报表、看板、BI 自助分析，甚至给算法提供特征。决策质量取决于数据质量和时效，所以数仓要保证准和快。</p>\n<h2>追问</h2>\n<ul>\n<li>如何保证决策层看到的指标口径一致？</li>\n<li>数据时效对决策的影响？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0139",
@@ -32980,7 +32980,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>协作关键在分工清晰、口径对齐、有文档和评审。</p>\n<h2>参考回答</h2>\n<p>数仓团队一般分建模、开发、治理几个角色。我的经验是先把口径和建模规范统一，大家都按同一套来；开发完做代码评审和质量校验；上下游变更及时同步。避免各做各的、重复建表。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么避免团队里重复建表？</li>\n<li>口径变更怎么同步给所有人？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0140",
@@ -32993,7 +32993,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用数据发现业务瓶颈，推动流程优化。</p>\n<h2>参考回答</h2>\n<p>举个例子，之前通过漏斗分析发现下单到支付转化率很低，定位到某个支付环节卡住，业务据此优化后转化率提升了。数仓的价值就是让业务问题从拍脑袋变成看数据说话。</p>\n<h2>追问</h2>\n<ul>\n<li>分析结论如何推动业务真正落地？</li>\n<li>怎么证明优化是数据带来的？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0141",
@@ -33006,7 +33006,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠清晰排期、里程碑、质量门禁和灰度发布。</p>\n<h2>参考回答</h2>\n<p>我会把需求拆成里程碑，排期留 buffer；开发过程设质量门禁，比如代码评审、DQC 校验、测试环境跑通；上线用灰度，先小范围验证再全量。核心是早暴露问题，别到最后一刻才发现对不上。</p>\n<h2>追问</h2>\n<ul>\n<li>质量门禁一般卡哪些环节？</li>\n<li>灰度发布怎么个灰度法？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0142",
@@ -33019,7 +33019,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>湖仓一体、实时化、AI 原生是三大方向。</p>\n<h2>参考回答</h2>\n<p>我看三个趋势：一是湖仓一体，湖和仓边界变模糊；二是实时数仓，从 T+1 往秒级走，用 Flink 加 Doris 这类做流批一体；三是 AI 原生，用大模型做 Text2SQL、自动建模、数据治理提效。数据从给人看变成给人加 AI 一起用。</p>\n<h2>追问</h2>\n<ul>\n<li>流批一体解决什么问题？</li>\n<li>AI 在数仓里能落地哪些场景？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0143",
@@ -33032,7 +33032,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>调优围绕少读、少 shuffle、少倾斜、合理并行度。</p>\n<h2>参考回答</h2>\n<p>我的经验是先看执行计划和 Spark UI，找到最慢的 stage，再针对性调。常见手段：分区裁剪、列裁剪、谓词下推减少读；小表 broadcast 减少 shuffle；热点 key 加盐；调整并行度和内存。调完对比前后时长验证效果。</p>\n<h2>追问</h2>\n<ul>\n<li>并行度是不是越大越好？</li>\n<li>谓词下推是什么？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0144",
@@ -33045,7 +33045,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>扩展性靠分层解耦、分区设计和可水平扩容的存储计算。</p>\n<h2>参考回答</h2>\n<p>数据涨了以后，我会在建模时就预留分区，按天分区方便扩容和裁剪；存储计算分离，计算资源不够就加节点；分层设计让上游变更不影响下游。核心是别把架构写死，留出扩展的余地。</p>\n<h2>追问</h2>\n<ul>\n<li>存算分离对扩展性有什么好处？</li>\n<li>分区设计时怎么留余量？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0145",
@@ -33058,7 +33058,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数仓就是企业的统一账本，让所有人都看同一套数。</p>\n<h2>参考回答</h2>\n<p>我会打个比方：业务系统像各个门店的收银机，各记各的账；数仓像总部财务，把账统一归集、口径统一，最后出一份大家都能信的报表。价值就是让决策不用再各说各话、反复对数据。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么让业务方愿意配合数据治理？</li>\n<li>怎么量化数仓的价值？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0146",
@@ -33071,7 +33071,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时数仓用流处理做到秒级可见，传统离线是 T+1。</p>\n<h2>参考回答</h2>\n<p>传统数仓是 T+1 批量加工，昨天数据今天看；实时数仓用 Flink、Kafka 加 Doris 这类，数据进来秒级就能查。区别在时效、架构复杂度和成本。实时适合大屏、风控、实时监控，离线适合日报、复杂分析。现在多是流批一体，一套链路兼顾。</p>\n<h2>追问</h2>\n<ul>\n<li>实时数仓的迟到数据怎么处理？</li>\n<li>流批一体怎么保证口径一致？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0147",
@@ -33084,7 +33084,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>最挑战的一般是海量数据下的性能和口径统一。</p>\n<h2>参考回答</h2>\n<p>我觉得最有挑战的是既要数据量大、时效高，又要口径绝对一致。比如高峰期几十亿条日志，要准实时出报表还不能跟离线对不上。解法是分层加宽表、预聚合、流批口径统一，再配一套严格的质量校验。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么保证流批结果一致？</li>\n<li>海量日志的实时聚合怎么做？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0148",
@@ -33097,7 +33097,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数仓出 ADS 结果表，直接对接 BI 或大屏做可视化。</p>\n<h2>参考回答</h2>\n<p>我一般把指标加工到 ADS 层，产出结果表，然后接 BI 工具或大屏，比如 FineBI、DataV、Tableau 这类，直接查表出图。关键是上游口径要稳，下游可视化才不会错。</p>\n<h2>追问</h2>\n<ul>\n<li>可视化和数仓分层怎么衔接？</li>\n<li>ADS 层结果表怎么设计？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0149",
@@ -33110,7 +33110,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分层是为了解耦、复用和隔离影响，常见 ODS、DWD、DWS、ADS 四层。</p>\n<h2>参考回答</h2>\n<p>分层的好处是各层职责清晰：ODS 贴源存原始、DWD 做明细清洗、DWS 做汇总、ADS 面向应用。这样上游变动不影响下游，中间结果能复用，也方便排查。缺点是链路变长、有冗余，但利大于弊。</p>\n<h2>追问</h2>\n<ul>\n<li>各层分别解决什么问题？</li>\n<li>分层太多会有什么坏处？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0150",
@@ -33123,7 +33123,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>事实表存可度量的业务事件，维度表存描述属性的维度信息。</p>\n<h2>参考回答</h2>\n<p>事实表存的是业务过程产生的度量，比如订单事实表里的金额、数量；维度表存的是描述性属性，比如用户维度里的姓名、城市。举个例子：一张订单事实表，挂用户、商品、时间、地区四张维度表，金额是度量，商品名、地区是维度。</p>\n<h2>追问</h2>\n<ul>\n<li>事实表一般有哪些类型？</li>\n<li>维度和度量怎么区分？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0151",
@@ -33136,7 +33136,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>维度退化就是维度属性直接退化进事实表，不再单独建维表。</p>\n<h2>参考回答</h2>\n<p>有些维度只有一个属性，比如订单号，单独建一张维表不值当，就直接把它放进事实表当一列，这就是维度退化。好处是少 join、结构简单。常见于订单号、发票号这类高基数、又没有其他属性的维度。</p>\n<h2>追问</h2>\n<ul>\n<li>维度退化有什么优缺点？</li>\n<li>什么维度适合退化？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0152",
@@ -33149,7 +33149,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ETL 工具核心是抽取、转换、加载，外加调度和监控。</p>\n<h2>参考回答</h2>\n<p>主要功能就三块：从不同源抽数据、做清洗转换、加载到目标库，配套还有调度、增量识别、异常重试和监控。本质是把数据从原始状态流水线式地加工成可用状态。</p>\n<h2>追问</h2>\n<ul>\n<li>ETL 工具的增量抽取怎么做？</li>\n<li>为什么还需要调度能力？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0153",
@@ -33162,7 +33162,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数仓四大设计原则是面向主题、集成、相对稳定、反映历史变化。</p>\n<h2>参考回答</h2>\n<p>这是道选择题，考的是数仓的四个经典特性。不是设计原则的选项，通常是「面向事务」「高并发实时写入」这类，那是业务数据库的特征，不是数仓的。记住四个关键词就行：主题、集成、稳定、历史。</p>\n<h2>追问</h2>\n<ul>\n<li>这四个特性分别怎么理解？</li>\n<li>为什么数仓强调「相对稳定」？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0154",
@@ -33175,7 +33175,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数仓最常见的是星型模型，也就是维度建模。</p>\n<h2>参考回答</h2>\n<p>答案是星型模型。因为它 join 少、查询快、好理解，跟 OLAP 分析场景最匹配。雪花模型虽然更规范省存储，但 join 多、查询慢，实际用得少。所以数仓建模默认就选星型。</p>\n<h2>追问</h2>\n<ul>\n<li>星型和雪花怎么选？</li>\n<li>维度建模和关系建模的区别？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0155",
@@ -33188,7 +33188,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>元数据来自元数据管理系统或数据字典，而不是业务明细数据。</p>\n<h2>参考回答</h2>\n<p>这题考的是元数据的来源。元数据描述的是「数据的数据」，比如表结构、字段含义、血缘关系、口径定义，这些通常存在专门的元数据管理系统或数据字典里。业务库的明细数据本身不是元数据来源。</p>\n<h2>追问</h2>\n<ul>\n<li>元数据分哪几类？</li>\n<li>元数据在数仓里有什么用？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0156",
@@ -33201,7 +33201,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据质量管理靠 DQC 这类质量校验工具，比如 Griffin、Deequ。</p>\n<h2>参考回答</h2>\n<p>这题考的是数据质量工具。常见的有 Apache Griffin、Deequ、还有各家平台的 DQC 模块。它们做的事就是定义质量规则，比如空值率、唯一性、范围校验，然后定期跑、出报告、告警。</p>\n<h2>追问</h2>\n<ul>\n<li>数据质量一般校验哪些维度？</li>\n<li>DQC 规则怎么设计？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0157",
@@ -33214,7 +33214,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>主流集成方式是 ETL、ELT、CDC 流式，纯人工手动不算。</p>\n<h2>参考回答</h2>\n<p>数据集成的方式主要有 ETL、ELT、CDC 实时同步、流式接入这些。不属于集成的选项一般是「人工手动录入」这类，因为它不是系统化的自动数据管道。记住集成核心是「抽、转、载」加实时同步。</p>\n<h2>追问</h2>\n<ul>\n<li>ETL 和 ELT 的区别？</li>\n<li>CDC 和批量抽取的区别？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0158",
@@ -33227,7 +33227,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>识别数据冗余靠规范化，也就是范式分析。</p>\n<h2>参考回答</h2>\n<p>这题答案是规范化或范式分析，通过函数依赖分析把重复数据拆开，消除冗余。不过要注意，数仓里其实经常故意保留冗余，像星型模型的维度表就是反规范化，为了查询快。所以规范化更多用在业务库设计里。</p>\n<h2>追问</h2>\n<ul>\n<li>规范化有哪几范式？</li>\n<li>数仓为什么反而要反规范化？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0159",
@@ -33240,7 +33240,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数仓常见组件是数据源、ETL、存储、元数据、查询层，业务交易引擎不算。</p>\n<h2>参考回答</h2>\n<p>数仓架构一般分这几块：数据源、ETL 加工、存储计算、元数据管理、查询或 BI 层。不是组件的选项通常是「业务交易引擎」这类，因为那是 OLTP 业务系统的核心，不在数仓架构里。</p>\n<h2>追问</h2>\n<ul>\n<li>数仓架构各组件怎么协作？</li>\n<li>OLTP 和 OLAP 在架构上怎么隔离？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0160",
@@ -33253,7 +33253,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "warehouse",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>评估数据质量看准确性、完整性、一致性、及时性、唯一性。</p>\n<h2>参考回答</h2>\n<p>这题考的是数据质量维度，常见五个：准确性、完整性、一致性、及时性、唯一性。面试里最常被追问的是准确性和一致性，一个是数据对不对，一个是不同地方的数据口径是不是同一个数。</p>\n<h2>追问</h2>\n<ul>\n<li>准确性和一致性的区别？</li>\n<li>数据及时性怎么衡量？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0162",
