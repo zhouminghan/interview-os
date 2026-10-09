@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+repartition 或 coalesce 调整分区数。
+
+# 参考回答
+
+DataFrame 分区用 repartition 或 coalesce 调，repartition 会 shuffle 但能增能减，coalesce 只能减且尽量不 shuffle。分区数影响并行度。
+
+# 追问
+
+- 增分区和减分区分别用什么？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Parquet、ORC、CSV、JSON、JDBC、Hive 等。
+
+# 参考回答
+
+Spark SQL 支持的数据源很多：Parquet、ORC、CSV、JSON、JDBC、Hive 表、Avro，还有第三方扩展。日常最常用 Parquet 和 JDBC。
+
+# 追问
+
+- 为什么 Parquet 最常用？

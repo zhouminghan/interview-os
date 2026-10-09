@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+orderBy 或 sort，可多列、指定升降序。
+
+# 参考回答
+
+排序用 orderBy 或 sort，传列和升降序。全局排序会 shuffle，大数据量代价高，尽量加 limit 或用分区内排序。
+
+# 追问
+
+- 全局排序为什么慢？

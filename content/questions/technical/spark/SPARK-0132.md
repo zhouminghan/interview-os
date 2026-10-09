@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+列式存储、分区、broadcast、AQE、参数调优。
+
+# 参考回答
+
+SQL 性能调优套路：数据存 Parquet 列式、合理分区、小表 broadcast、开启 AQE、调整并行度和内存。先 explain 定位再动手。
+
+# 追问
+
+- AQE 能自动做什么？

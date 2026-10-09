@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 UDF、UDAF 扩展标量和聚合函数。
+
+# 参考回答
+
+自定义函数分 UDF 标量函数和 UDAF 聚合函数，用 udf 或继承对应类实现。Python UDF 性能差，优先 Pandas UDF。内置能搞定就别自定义。
+
+# 追问
+
+- Pandas UDF 为什么比普通 UDF 快？

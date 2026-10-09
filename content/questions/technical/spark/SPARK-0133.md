@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+row_number、rank、lag、sum over 这些。
+
+# 参考回答
+
+窗口函数有排序类的 row_number、rank、dense_rank，偏移类的 lag、lead，聚合类的 sum、avg over。用于 TopN、环比、累计。
+
+# 追问
+
+- rank 和 dense_rank 的区别？

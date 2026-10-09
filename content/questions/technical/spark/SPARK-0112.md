@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+cache 或 persist，默认 MEMORY_AND_DISK。
+
+# 参考回答
+
+DataFrame 缓存用 cache 或 persist，默认级别是 MEMORY_AND_DISK，跟 RDD 默认不一样。缓存复用的表能省重复计算。
+
+# 追问
+
+- DataFrame 默认缓存级别为什么不同？

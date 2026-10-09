@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 udf 包装普通函数注册成列函数。
+
+# 参考回答
+
+UDF 是用 udf 把普通函数包装成能作用在列上的函数。Python UDF 性能差，尽量用内置函数或 Pandas UDF。能不用就不用。
+
+# 追问
+
+- Python UDF 为什么慢？

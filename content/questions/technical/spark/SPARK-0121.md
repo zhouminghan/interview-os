@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+兼容标准 SQL 和大部分 Hive 语法。
+
+# 参考回答
+
+Spark SQL 支持标准 SQL 的 select、join、窗口函数、子查询，也兼容大部分 Hive 语法和 UDF。基本拿 Hive 的 SQL 直接跑没问题。
+
+# 追问
+
+- 有哪些 Hive 语法不兼容？

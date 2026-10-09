@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+broadcast、sort merge、shuffle hash join 等。
+
+# 参考回答
+
+Spark 的 join 策略有 broadcast hash join 广播小表、sort merge join 大表排序归并、shuffle hash join。CBO 和 AQE 会按表大小自动选。小表 broadcast 最省 shuffle。
+
+# 追问
+
+- broadcast join 对表大小有什么限制？

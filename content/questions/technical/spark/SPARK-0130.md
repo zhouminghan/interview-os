@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+调执行内存、存储内存、off-heap 参数。
+
+# 参考回答
+
+SQL 内存管理用 spark.memory.fraction 控制执行存储比例，还有 off-heap 内存。大查询要保证执行内存够，否则 spill 到磁盘变慢。
+
+# 追问
+
+- spill 是什么？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用列式格式、谓词下推、列剪裁、broadcast join。
+
+# 参考回答
+
+DataFrame 性能优化靠：存 Parquet 列式格式、谓词下推减少读、列剪裁只读需要的列、小表 broadcast join、合理分区。Catalyst 优化器会自动做很多。
+
+# 追问
+
+- 列式格式为什么快？

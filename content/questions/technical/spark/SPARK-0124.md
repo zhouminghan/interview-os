@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+看执行计划，用谓词下推、列剪裁、broadcast、调参数。
+
+# 参考回答
+
+优化 SQL 先用 explain 看执行计划，找全表扫和大 shuffle，再靠谓词下推、列剪裁、小表 broadcast、合理分区分桶。AQE 也能自动优化很多。
+
+# 追问
+
+- explain 里重点看什么？

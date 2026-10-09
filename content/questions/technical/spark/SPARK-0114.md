@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+join、groupBy、distinct 会触发 shuffle。
+
+# 参考回答
+
+DataFrame 里 join、groupBy、distinct、repartition 这些宽依赖操作都会 shuffle。优化就是减少 shuffle 次数和数据量，比如 broadcast 小表。
+
+# 追问
+
+- 怎么减少 shuffle？

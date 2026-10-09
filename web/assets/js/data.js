@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:17:11+08:00",
+  "generatedAt": "2026-10-09T16:19:05+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -1860,7 +1860,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q15</blockquote>\n<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q15</blockquote>\n<h2>一句话</h2>\n<p>内连接、外连接、半连接、交叉连接等。</p>\n<h2>参考回答</h2>\n<p>join 类型有 inner、left、right、full outer、left_semi、left_anti、cross。cross 是笛卡尔积要小心。跟 SQL 的 join 类型对应。</p>\n<h2>追问</h2>\n<ul>\n<li>left_semi 和 inner 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0107",
@@ -1873,7 +1873,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>orderBy 或 sort，可多列、指定升降序。</p>\n<h2>参考回答</h2>\n<p>排序用 orderBy 或 sort，传列和升降序。全局排序会 shuffle，大数据量代价高，尽量加 limit 或用分区内排序。</p>\n<h2>追问</h2>\n<ul>\n<li>全局排序为什么慢？</li>\n</ul>"
     },
     {
       "id": "SPARK-0108",
@@ -1886,7 +1886,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Window 定义分区和排序，再套聚合函数。</p>\n<h2>参考回答</h2>\n<p>窗口操作先定义 Window.partitionBy 加 orderBy，再配合 row_number、lag、sum 这些。用于分组 TopN、累计值、环比这类行间计算。</p>\n<h2>追问</h2>\n<ul>\n<li>窗口函数会 shuffle 吗？</li>\n</ul>"
     },
     {
       "id": "SPARK-0109",
@@ -1899,7 +1899,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 udf 包装普通函数注册成列函数。</p>\n<h2>参考回答</h2>\n<p>UDF 是用 udf 把普通函数包装成能作用在列上的函数。Python UDF 性能差，尽量用内置函数或 Pandas UDF。能不用就不用。</p>\n<h2>追问</h2>\n<ul>\n<li>Python UDF 为什么慢？</li>\n</ul>"
     },
     {
       "id": "SPARK-0110",
@@ -1912,7 +1912,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>df.rdd 直接转成 RDD[Row]。</p>\n<h2>参考回答</h2>\n<p>用 df.rdd 把 DataFrame 转成 RDD，元素是 Row 对象。一般不需要转，除非要调用 RDD 特有 API。</p>\n<h2>追问</h2>\n<ul>\n<li>什么时候需要转回 RDD？</li>\n</ul>"
     },
     {
       "id": "SPARK-0111",
@@ -1925,7 +1925,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>rdd.toDF 加 schema 转成 DataFrame。</p>\n<h2>参考回答</h2>\n<p>RDD 转 DataFrame 用 toDF，可以自动推断或传 StructType 指定 schema。有 schema 才能利用 DataFrame 优化。</p>\n<h2>追问</h2>\n<ul>\n<li>转 DataFrame 时 schema 重要吗？</li>\n</ul>"
     },
     {
       "id": "SPARK-0112",
@@ -1938,7 +1938,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>cache 或 persist，默认 MEMORY_AND_DISK。</p>\n<h2>参考回答</h2>\n<p>DataFrame 缓存用 cache 或 persist，默认级别是 MEMORY_AND_DISK，跟 RDD 默认不一样。缓存复用的表能省重复计算。</p>\n<h2>追问</h2>\n<ul>\n<li>DataFrame 默认缓存级别为什么不同？</li>\n</ul>"
     },
     {
       "id": "SPARK-0113",
@@ -1951,7 +1951,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用列式格式、谓词下推、列剪裁、broadcast join。</p>\n<h2>参考回答</h2>\n<p>DataFrame 性能优化靠：存 Parquet 列式格式、谓词下推减少读、列剪裁只读需要的列、小表 broadcast join、合理分区。Catalyst 优化器会自动做很多。</p>\n<h2>追问</h2>\n<ul>\n<li>列式格式为什么快？</li>\n</ul>"
     },
     {
       "id": "SPARK-0114",
@@ -1964,7 +1964,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>join、groupBy、distinct 会触发 shuffle。</p>\n<h2>参考回答</h2>\n<p>DataFrame 里 join、groupBy、distinct、repartition 这些宽依赖操作都会 shuffle。优化就是减少 shuffle 次数和数据量，比如 broadcast 小表。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么减少 shuffle？</li>\n</ul>"
     },
     {
       "id": "SPARK-0115",
@@ -1977,7 +1977,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>repartition 或 coalesce 调整分区数。</p>\n<h2>参考回答</h2>\n<p>DataFrame 分区用 repartition 或 coalesce 调，repartition 会 shuffle 但能增能减，coalesce 只能减且尽量不 shuffle。分区数影响并行度。</p>\n<h2>追问</h2>\n<ul>\n<li>增分区和减分区分别用什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0116",
@@ -1990,7 +1990,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Spark SQL 用 SQL 查结构化数据，带 Catalyst 优化。</p>\n<h2>参考回答</h2>\n<p>Spark SQL 是 Spark 的结构化查询模块，能直接写 SQL 或 DataFrame API，背后有 Catalyst 优化器。特点是统一、快、兼容 Hive。</p>\n<h2>追问</h2>\n<ul>\n<li>Spark SQL 和 Hive 什么关系？</li>\n</ul>"
     },
     {
       "id": "SPARK-0117",
@@ -2003,7 +2003,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>解析、优化、执行三层，核心是 Catalyst。</p>\n<h2>参考回答</h2>\n<p>Spark SQL 架构是 SQL 解析成逻辑计划，Catalyst 做逻辑优化和物理优化，最后生成 RDD 执行。优化器是核心，负责谓词下推、列剪裁这些。</p>\n<h2>追问</h2>\n<ul>\n<li>逻辑优化和物理优化分别做什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0118",
@@ -2016,7 +2016,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SparkSession.builder 配置后 getOrCreate。</p>\n<h2>参考回答</h2>\n<p>创建 SparkSession 用 builder 链式配置 appName、master 这些，最后 getOrCreate，已经存在就复用。是 SQL 和 DataFrame 的入口。</p>\n<h2>追问</h2>\n<ul>\n<li>getOrCreate 和 create 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0119",
@@ -2029,7 +2029,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Parquet、ORC、CSV、JSON、JDBC、Hive 等。</p>\n<h2>参考回答</h2>\n<p>Spark SQL 支持的数据源很多：Parquet、ORC、CSV、JSON、JDBC、Hive 表、Avro，还有第三方扩展。日常最常用 Parquet 和 JDBC。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 Parquet 最常用？</li>\n</ul>"
     },
     {
       "id": "SPARK-0120",
@@ -2042,7 +2042,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 spark.read.format 或快捷方法读。</p>\n<h2>参考回答</h2>\n<p>读不同格式用 spark.read，比如 spark.read.parquet、csv、json、jdbc，或用 format 指定。读取时可以顺带指定 schema 和选项。</p>\n<h2>追问</h2>\n<ul>\n<li>读 CSV 为什么建议手动指定 schema？</li>\n</ul>"
     },
     {
       "id": "SPARK-0121",
@@ -2055,7 +2055,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>兼容标准 SQL 和大部分 Hive 语法。</p>\n<h2>参考回答</h2>\n<p>Spark SQL 支持标准 SQL 的 select、join、窗口函数、子查询，也兼容大部分 Hive 语法和 UDF。基本拿 Hive 的 SQL 直接跑没问题。</p>\n<h2>追问</h2>\n<ul>\n<li>有哪些 Hive 语法不兼容？</li>\n</ul>"
     },
     {
       "id": "SPARK-0122",
@@ -2068,7 +2068,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>createOrReplaceTempView 注册临时表。</p>\n<h2>参考回答</h2>\n<p>用 createOrReplaceTempView 把 DataFrame 注册成临时视图，就能用 SQL 查。还有 createGlobalTempView 是全局的。临时视图只在当前 session 有效。</p>\n<h2>追问</h2>\n<ul>\n<li>临时视图和全局视图的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0123",
@@ -2081,7 +2081,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>spark.udf.register 注册 SQL 函数。</p>\n<h2>参考回答</h2>\n<p>Spark SQL 的 UDF 用 udf 包装后 register 注册，就能在 SQL 里用。和 DataFrame UDF 类似，但注册后 SQL 可调用。</p>\n<h2>追问</h2>\n<ul>\n<li>SQL UDF 和 DataFrame UDF 有什么不同？</li>\n</ul>"
     },
     {
       "id": "SPARK-0124",
@@ -2094,7 +2094,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看执行计划，用谓词下推、列剪裁、broadcast、调参数。</p>\n<h2>参考回答</h2>\n<p>优化 SQL 先用 explain 看执行计划，找全表扫和大 shuffle，再靠谓词下推、列剪裁、小表 broadcast、合理分区分桶。AQE 也能自动优化很多。</p>\n<h2>追问</h2>\n<ul>\n<li>explain 里重点看什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0125",
@@ -2107,7 +2107,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Catalyst 是 Spark SQL 的优化器，逻辑加物理优化。</p>\n<h2>参考回答</h2>\n<p>Catalyst 是 Spark SQL 的核心优化器，把逻辑计划做规则优化和成本优化，再生成物理执行计划。支持自定义规则扩展。它是 Spark SQL 快的关键。</p>\n<h2>追问</h2>\n<ul>\n<li>Catalyst 的规则优化和成本优化区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0126",
@@ -2120,7 +2120,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>过滤条件提前到数据源执行，减少读数据。</p>\n<h2>参考回答</h2>\n<p>谓词下推是把 where 过滤条件推到数据源层，比如读 Parquet 时就只读满足条件的行，减少 IO 和后续处理量。列式格式尤其受益。</p>\n<h2>追问</h2>\n<ul>\n<li>谓词下推能推到哪些数据源？</li>\n</ul>"
     },
     {
       "id": "SPARK-0127",
@@ -2133,7 +2133,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>只读查询用到的列，跳过无关列。</p>\n<h2>参考回答</h2>\n<p>列剪裁就是只扫描 select 和 where 里用到的列，其他列不读。列式存储天然支持，能大幅减少 IO。Spark SQL 会自动做。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么列式存储能列剪裁？</li>\n</ul>"
     },
     {
       "id": "SPARK-0128",
@@ -2146,7 +2146,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>只扫 where 条件命中的分区。</p>\n<h2>参考回答</h2>\n<p>分区剪裁是根据分区字段的过滤条件，只扫描命中的分区，跳过无关分区。前提是表有分区且过滤条件用到了分区字段。</p>\n<h2>追问</h2>\n<ul>\n<li>分区剪裁生效的条件是什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0129",
@@ -2159,7 +2159,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>broadcast、sort merge、shuffle hash join 等。</p>\n<h2>参考回答</h2>\n<p>Spark 的 join 策略有 broadcast hash join 广播小表、sort merge join 大表排序归并、shuffle hash join。CBO 和 AQE 会按表大小自动选。小表 broadcast 最省 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>broadcast join 对表大小有什么限制？</li>\n</ul>"
     },
     {
       "id": "SPARK-0130",
@@ -2172,7 +2172,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>调执行内存、存储内存、off-heap 参数。</p>\n<h2>参考回答</h2>\n<p>SQL 内存管理用 spark.memory.fraction 控制执行存储比例，还有 off-heap 内存。大查询要保证执行内存够，否则 spill 到磁盘变慢。</p>\n<h2>追问</h2>\n<ul>\n<li>spill 是什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0131",
@@ -2185,7 +2185,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>cacheTable 或 CACHE TABLE 缓存表。</p>\n<h2>参考回答</h2>\n<p>Spark SQL 缓存用 cacheTable 或 SQL 里的 CACHE TABLE，把表数据缓存到内存，后面查直接复用。适合反复查的小结果表。</p>\n<h2>追问</h2>\n<ul>\n<li>缓存表什么时候失效？</li>\n</ul>"
     },
     {
       "id": "SPARK-0132",
@@ -2198,7 +2198,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>列式存储、分区、broadcast、AQE、参数调优。</p>\n<h2>参考回答</h2>\n<p>SQL 性能调优套路：数据存 Parquet 列式、合理分区、小表 broadcast、开启 AQE、调整并行度和内存。先 explain 定位再动手。</p>\n<h2>追问</h2>\n<ul>\n<li>AQE 能自动做什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0133",
@@ -2211,7 +2211,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>row_number、rank、lag、sum over 这些。</p>\n<h2>参考回答</h2>\n<p>窗口函数有排序类的 row_number、rank、dense_rank，偏移类的 lag、lead，聚合类的 sum、avg over。用于 TopN、环比、累计。</p>\n<h2>追问</h2>\n<ul>\n<li>rank 和 dense_rank 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0134",
@@ -2224,7 +2224,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 UDF、UDAF 扩展标量和聚合函数。</p>\n<h2>参考回答</h2>\n<p>自定义函数分 UDF 标量函数和 UDAF 聚合函数，用 udf 或继承对应类实现。Python UDF 性能差，优先 Pandas UDF。内置能搞定就别自定义。</p>\n<h2>追问</h2>\n<ul>\n<li>Pandas UDF 为什么比普通 UDF 快？</li>\n</ul>"
     },
     {
       "id": "SPARK-0135",
@@ -2237,7 +2237,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>支持基础类型、复杂类型和用户自定义类型。</p>\n<h2>参考回答</h2>\n<p>Spark SQL 有基础类型整型、字符串、时间，复杂类型 array、map、struct，还能自定义类型。和 DataFrame schema 对应。</p>\n<h2>追问</h2>\n<ul>\n<li>struct 和 map 有什么区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0136",

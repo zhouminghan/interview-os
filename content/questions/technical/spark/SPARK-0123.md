@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+spark.udf.register 注册 SQL 函数。
+
+# 参考回答
+
+Spark SQL 的 UDF 用 udf 包装后 register 注册，就能在 SQL 里用。和 DataFrame UDF 类似，但注册后 SQL 可调用。
+
+# 追问
+
+- SQL UDF 和 DataFrame UDF 有什么不同？

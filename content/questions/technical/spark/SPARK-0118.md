@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+SparkSession.builder 配置后 getOrCreate。
+
+# 参考回答
+
+创建 SparkSession 用 builder 链式配置 appName、master 这些，最后 getOrCreate，已经存在就复用。是 SQL 和 DataFrame 的入口。
+
+# 追问
+
+- getOrCreate 和 create 的区别？

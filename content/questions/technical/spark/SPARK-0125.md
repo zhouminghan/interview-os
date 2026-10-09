@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Catalyst 是 Spark SQL 的优化器，逻辑加物理优化。
+
+# 参考回答
+
+Catalyst 是 Spark SQL 的核心优化器，把逻辑计划做规则优化和成本优化，再生成物理执行计划。支持自定义规则扩展。它是 Spark SQL 快的关键。
+
+# 追问
+
+- Catalyst 的规则优化和成本优化区别？
