@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+分析用 ORC/Parquet，序列化用 Avro。
+
+# 参考回答
+
+ORC、Parquet 列式适合分析，Avro 带 schema 适合序列化传输，TextFile 通用。选格式看场景，数仓分析用列式配压缩。
+
+# 追问
+
+- 格式转换怎么做？

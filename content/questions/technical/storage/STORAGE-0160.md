@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Avro 带 schema，适合序列化和传输。
+
+# 参考回答
+
+Avro 是行式格式，自带 schema，跨语言序列化好。适合消息传输和数据交换，不如列式适合分析。Hive 里做数据交换用。
+
+# 追问
+
+- Avro 为什么适合传输？

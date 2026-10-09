@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:21:18+08:00",
+  "generatedAt": "2026-10-09T17:23:02+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -7455,7 +7455,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Hive 缓存弱，靠 LLAP 或物化视图。</p>\n<h2>参考回答</h2>\n<p>Hive 本身查询缓存能力有限，LLAP 能缓存热数据，物化视图缓存结果。适合高频小结果集。批处理场景一般不依赖缓存。</p>\n<h2>追问</h2>\n<ul>\n<li>LLAP 缓存原理？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0147",
@@ -7468,7 +7468,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>合理资源分配，避免大查询互相拖累。</p>\n<h2>参考回答</h2>\n<p>并发查询优化靠合理资源队列、限制单查询资源、用 LLAP 或物化视图降单查询开销。避免一个大查询占满资源拖垮其他。</p>\n<h2>追问</h2>\n<ul>\n<li>并发和资源怎么平衡？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0148",
@@ -7481,7 +7481,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>锁防止并发写冲突。</p>\n<h2>参考回答</h2>\n<p>Hive 有共享锁和排他锁，写表时加锁防止并发冲突。并发读不锁，写和写互斥。锁会带来等待，大批量写要注意锁竞争。</p>\n<h2>追问</h2>\n<ul>\n<li>锁冲突怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0149",
@@ -7494,7 +7494,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>少用事务，批量处理。</p>\n<h2>参考回答</h2>\n<p>Hive 事务有性能开销，能不用就不用。需要更新时用批量，控制 compaction 频率。事务表要 ORC 和分桶，设计好才能保证性能。</p>\n<h2>追问</h2>\n<ul>\n<li>事务为什么影响性能？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0150",
@@ -7507,7 +7507,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ACID 是事务特性，Hive 有限支持。</p>\n<h2>参考回答</h2>\n<p>Hive ACID 靠 delta 文件和 compactor 实现，支持 insert、update、delete。要 ORC 和分桶表。适合需要更新的表，纯批量分析不建议开。</p>\n<h2>追问</h2>\n<ul>\n<li>ACID 表有什么限制？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0151",
@@ -7520,7 +7520,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>LOAD 快、并行导入、避免小文件。</p>\n<h2>参考回答</h2>\n<p>导入用 LOAD 直接搬文件最快，INSERT 走计算。并行导入、控制分区和文件大小。导出用 INSERT 写文件或 EXPORT，注意格式和压缩。</p>\n<h2>追问</h2>\n<ul>\n<li>LOAD 和 INSERT 怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0152",
@@ -7533,7 +7533,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按数据自动建分区。</p>\n<h2>参考回答</h2>\n<p>动态分区插入时按数据的分区字段值自动建分区。配置开启 dynamic partition，限制分区数防止爆炸。适合数据分区值多、手动指定麻烦的场景。</p>\n<h2>追问</h2>\n<ul>\n<li>动态分区有什么坑？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0153",
@@ -7546,7 +7546,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>查询带分区条件只扫相关分区。</p>\n<h2>参考回答</h2>\n<p>分区裁剪是 where 带分区字段，只扫命中分区。查询条件里一定要带分区字段，否则全表扫。是 Hive 最有效的优化。</p>\n<h2>追问</h2>\n<ul>\n<li>分区裁剪失效原因？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0154",
@@ -7559,7 +7559,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按列存储，查询只读需要的列。</p>\n<h2>参考回答</h2>\n<p>列式存储同列数据放一起，查询只扫涉及的列，压缩也好。ORC、Parquet 是列式。分析场景首选，省 IO 和存储。</p>\n<h2>追问</h2>\n<ul>\n<li>列式为什么适合分析？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0155",
@@ -7572,7 +7572,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分析用 ORC/Parquet，序列化用 Avro。</p>\n<h2>参考回答</h2>\n<p>ORC、Parquet 列式适合分析，Avro 带 schema 适合序列化传输，TextFile 通用。选格式看场景，数仓分析用列式配压缩。</p>\n<h2>追问</h2>\n<ul>\n<li>格式转换怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0156",
@@ -7585,7 +7585,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>压缩省存储费 CPU。</p>\n<h2>参考回答</h2>\n<p>Snappy、lz4 快，gzip 压缩率高，zstd 平衡。按 CPU 和存储权衡，分析配 snappy 或 zstd。列式格式自带压缩。</p>\n<h2>追问</h2>\n<ul>\n<li>压缩影响查询吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0157",
@@ -7598,7 +7598,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分析用列式，选对格式省存储提速。</p>\n<h2>参考回答</h2>\n<p>文件格式选列式 ORC/Parquet，配压缩和分区。文件太大分块，太小合并。格式选对是存储优化的基础。</p>\n<h2>追问</h2>\n<ul>\n<li>文件大小多少合适？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0158",
@@ -7611,7 +7611,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ORC 是 Hive 原生的列式格式。</p>\n<h2>参考回答</h2>\n<p>ORC 是列式存储，压缩好、带索引和统计信息，查询只读需要的列。Hive 生态最常用，适合离线数仓。比 TextFile 小很多，查询快。</p>\n<h2>追问</h2>\n<ul>\n<li>ORC 有什么优势？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0159",
@@ -7624,7 +7624,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Parquet 是跨引擎通用的列式格式。</p>\n<h2>参考回答</h2>\n<p>Parquet 列式存储，跨 Spark、Flink、Impala 等通用，schema 支持好。适合多引擎共享的数据。和 ORC 类似，选型看生态。</p>\n<h2>追问</h2>\n<ul>\n<li>Parquet 和 ORC 怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0160",
@@ -7637,7 +7637,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Avro 带 schema，适合序列化和传输。</p>\n<h2>参考回答</h2>\n<p>Avro 是行式格式，自带 schema，跨语言序列化好。适合消息传输和数据交换，不如列式适合分析。Hive 里做数据交换用。</p>\n<h2>追问</h2>\n<ul>\n<li>Avro 为什么适合传输？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0161",
@@ -7650,7 +7650,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SequenceFile 是二进制键值格式。</p>\n<h2>参考回答</h2>\n<p>SequenceFile 是 Hadoop 原生的二进制格式，按键值存，支持压缩。适合中间数据存储。现在分析场景多被列式替代。</p>\n<h2>追问</h2>\n<ul>\n<li>SequenceFile 还常用吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0162",
@@ -7663,7 +7663,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>RCFile 是早期的行列混合格式。</p>\n<h2>参考回答</h2>\n<p>RCFile 是 Hive 早期的列式格式，按行组分列存，比纯行式好但不如 ORC。现在基本被 ORC、Parquet 取代，了解即可。</p>\n<h2>追问</h2>\n<ul>\n<li>RCFile 为什么被取代？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0163",
@@ -7676,7 +7676,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>TextFile 纯文本，通用但占空间。</p>\n<h2>参考回答</h2>\n<p>TextFile 是纯文本格式，人可读、通用，但占空间、查询慢。适合小数据或临时查看。分析场景不用，用列式。</p>\n<h2>追问</h2>\n<ul>\n<li>TextFile 什么时候用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0164",
@@ -7689,7 +7689,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>JSON 半结构化，灵活但解析慢。</p>\n<h2>参考回答</h2>\n<p>JSON 存半结构化数据，灵活，但解析慢、占空间。适合结构不固定的数据，能用列式就不要大量存 JSON。查询用 json 函数解析。</p>\n<h2>追问</h2>\n<ul>\n<li>JSON 查询为什么慢？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0165",
@@ -7702,7 +7702,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CSV 通用文本格式，适合交换。</p>\n<h2>参考回答</h2>\n<p>CSV 逗号分隔文本，通用、易读，适合数据交换和导入。注意分隔符、转义和引号处理。分析场景导入后转列式。</p>\n<h2>追问</h2>\n<ul>\n<li>CSV 解析注意什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0166",
@@ -7715,7 +7715,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>压缩比是压缩前后大小的比例。</p>\n<h2>参考回答</h2>\n<p>压缩比是原始大小除以压缩后大小，受数据重复度和压缩算法影响。重复度高压缩比好。选压缩看压缩比和 CPU 的权衡。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么提高压缩比？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0167",
@@ -7728,7 +7728,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>列式压缩、生命周期、清理小文件。</p>\n<h2>参考回答</h2>\n<p>存储优化用列式压缩、数据生命周期清理过期分区、合并小文件。冷数据可转低成本和压缩格式。定期清理无效数据。</p>\n<h2>追问</h2>\n<ul>\n<li>冷数据怎么处理？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0168",
@@ -7741,7 +7741,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>优化器做逻辑和物理优化。</p>\n<h2>参考回答</h2>\n<p>Hive 优化器做谓词下推、列裁剪、join 优化，CBO 基于统计信息选计划。配置开启 CBO 和向量化，统计信息收集准。</p>\n<h2>追问</h2>\n<ul>\n<li>CBO 和 RBO 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0169",
@@ -7754,7 +7754,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看计划定位，用优化策略改进。</p>\n<h2>参考回答</h2>\n<p>执行计划优化先 EXPLAIN 看，找全表扫和大 shuffle，用 MapJoin、分区裁剪、并行执行改进。统计信息准能让优化器选对计划。</p>\n<h2>追问</h2>\n<ul>\n<li>计划里重点看什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0170",
@@ -7767,7 +7767,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ANALYZE TABLE 收集统计信息。</p>\n<h2>参考回答</h2>\n<p>统计信息用 ANALYZE TABLE 收集行数、基数、分布，CBO 靠它选计划。数据变更后要重收集。收集有开销，可以配自动收集。</p>\n<h2>追问</h2>\n<ul>\n<li>统计信息多久收集？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0171",
@@ -7780,7 +7780,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>少读、少 shuffle、少倾斜。</p>\n<h2>参考回答</h2>\n<p>查询优化核心少读数据、少 shuffle、处理倾斜。手段是分区裁剪、列裁剪、谓词下推、MapJoin、并行执行。先看计划再优化。</p>\n<h2>追问</h2>\n<ul>\n<li>优化第一步？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0172",
@@ -7793,7 +7793,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>资源交给 YARN 管理，队列隔离。</p>\n<h2>参考回答</h2>\n<p>Hive 资源由 YARN 管理，按队列、配额、优先级分配。生产按业务分队列，控制并发。合理资源是性能的基础。</p>\n<h2>追问</h2>\n<ul>\n<li>队列怎么划分？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0173",
@@ -7806,7 +7806,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>合理资源分配，控制单查询资源。</p>\n<h2>参考回答</h2>\n<p>并发处理优化靠资源队列隔离、限制单查询资源、并行执行。避免大查询占满资源。按业务分队列，错峰调度。</p>\n<h2>追问</h2>\n<ul>\n<li>并发和资源怎么平衡？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0174",
@@ -7819,7 +7819,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>查询调度交给 YARN，按队列和优先级。</p>\n<h2>参考回答</h2>\n<p>Hive 查询调度由 YARN 完成，按队列、优先级、资源分配任务。配置公平调度器，按业务设权重。调度影响任务排队和资源利用。</p>\n<h2>追问</h2>\n<ul>\n<li>公平调度和容量调度区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0175",
@@ -7832,7 +7832,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>监控任务耗时、资源、成功率。</p>\n<h2>参考回答</h2>\n<p>监控 Hive 看任务耗时、资源使用、成功率、数据量。用调度平台和监控系统采集指标，配告警。慢任务和失败任务要及时发现。</p>\n<h2>追问</h2>\n<ul>\n<li>核心监控指标？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0176",

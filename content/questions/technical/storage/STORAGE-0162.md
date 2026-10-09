@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+RCFile 是早期的行列混合格式。
+
+# 参考回答
+
+RCFile 是 Hive 早期的列式格式，按行组分列存，比纯行式好但不如 ORC。现在基本被 ORC、Parquet 取代，了解即可。
+
+# 追问
+
+- RCFile 为什么被取代？

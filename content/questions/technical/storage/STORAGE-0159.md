@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Parquet 是跨引擎通用的列式格式。
+
+# 参考回答
+
+Parquet 列式存储，跨 Spark、Flink、Impala 等通用，schema 支持好。适合多引擎共享的数据。和 ORC 类似，选型看生态。
+
+# 追问
+
+- Parquet 和 ORC 怎么选？

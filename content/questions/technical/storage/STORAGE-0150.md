@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+ACID 是事务特性，Hive 有限支持。
+
+# 参考回答
+
+Hive ACID 靠 delta 文件和 compactor 实现，支持 insert、update、delete。要 ORC 和分桶表。适合需要更新的表，纯批量分析不建议开。
+
+# 追问
+
+- ACID 表有什么限制？
