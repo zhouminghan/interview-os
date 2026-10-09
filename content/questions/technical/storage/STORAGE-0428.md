@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+按排序键组织，后台合并数据块。
+
+# 参考回答
+
+MergeTree 按排序键组织数据，后台合并小的数据块。支持分区、主键、TTL。是 ClickHouse 分析场景最常用的引擎。
+
+# 追问
+
+- MergeTree 为什么快？

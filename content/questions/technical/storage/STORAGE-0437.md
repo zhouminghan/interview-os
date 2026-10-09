@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+一条 DDL 在所有节点执行。
+
+# 参考回答
+
+分布式 DDL 用 ON CLUSTER 指定集群，DDL 在集群所有节点执行，保持表结构一致。建表删表都用分布式 DDL。
+
+# 追问
+
+- 分布式 DDL 怎么写？

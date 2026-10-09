@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+元数据存本地文件系统。
+
+# 参考回答
+
+ClickHouse 元数据存在本地文件系统，表结构等定义在 metadata 目录。分布式协调靠 ZooKeeper。集群元数据各节点独立。
+
+# 追问
+
+- 元数据在哪？

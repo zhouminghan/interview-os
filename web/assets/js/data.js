@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:38:51+08:00",
+  "generatedAt": "2026-10-09T17:40:28+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -10965,7 +10965,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>脚本化部署、巡检、扩缩容。</p>\n<h2>参考回答</h2>\n<p>运维自动化把部署、巡检、备份、扩缩容脚本化，用配置管理工具统一执行。减少人工失误，提高效率。监控告警也自动化。</p>\n<h2>追问</h2>\n<ul>\n<li>自动化收益？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0417",
@@ -10978,7 +10978,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>跨集群复制加快照备份。</p>\n<h2>参考回答</h2>\n<p>灾难恢复用 Replication 跨集群同步，加定期快照备份。主集群故障切灾备，恢复数据。定期演练，保证 RTO 和 RPO 达标。</p>\n<h2>追问</h2>\n<ul>\n<li>RTO RPO 怎么定？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0418",
@@ -10991,7 +10991,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>快照备份加复制。</p>\n<h2>参考回答</h2>\n<p>数据备份用快照定期备份表，跨集群复制做实时同步。元数据也备份。备份存异地，定期验证可恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>备份频率？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0419",
@@ -11004,7 +11004,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加 RegionServer 后均衡 Region。</p>\n<h2>参考回答</h2>\n<p>扩容加 RegionServer，新节点注册后均衡器把 Region 迁过去，负载重新分布。数据不用手动迁移，HDFS 自动。扩容平滑。</p>\n<h2>追问</h2>\n<ul>\n<li>扩容步骤？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0420",
@@ -11017,7 +11017,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分级、脱敏、权限、审计。</p>\n<h2>参考回答</h2>\n<p>数据合规靠数据分级、敏感数据脱敏加密、权限管控、审计追溯。按合规要求设保留期，到期删除。定期审计。</p>\n<h2>追问</h2>\n<ul>\n<li>合规怎么落地？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0421",
@@ -11030,7 +11030,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看指标、日志、线程定位瓶颈。</p>\n<h2>参考回答</h2>\n<p>性能诊断看读写延迟、GC、IO、Region 分布、线程。结合日志和线程栈定位慢点。是热点、缓存、还是资源问题，逐个排除。</p>\n<h2>追问</h2>\n<ul>\n<li>诊断从哪开始？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0422",
@@ -11043,7 +11043,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>封装快照和 BulkLoad 做迁移。</p>\n<h2>参考回答</h2>\n<p>迁移工具封装快照导出和 BulkLoad 导入，批量并行迁移，带校验和重试。支持增量迁移。比手工逐条迁移快且可靠。</p>\n<h2>追问</h2>\n<ul>\n<li>工具做了什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0423",
@@ -11056,7 +11056,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>TTL 分级管理数据生命周期。</p>\n<h2>参考回答</h2>\n<p>生命周期管理按数据热度设 TTL，热数据常驻，冷数据过期或归档。分级保留策略。定期清理，控制存储增长。</p>\n<h2>追问</h2>\n<ul>\n<li>生命周期怎么设计？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0424",
@@ -11069,7 +11069,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Prometheus 采集，Grafana 展示告警。</p>\n<h2>参考回答</h2>\n<p>监控平台用 Prometheus 采集 HBase 指标，Grafana 出图和告警。监控 Region、读写量、延迟、GC、磁盘。告警分级通知。</p>\n<h2>追问</h2>\n<ul>\n<li>监控平台怎么搭？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0425",
@@ -11082,7 +11082,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>面向海量数据的高性能 OLAP。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 设计目标是海量数据的极速 OLAP 分析，列式存储、向量化执行、单机性能极强。面向分析查询，不是事务处理。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 ClickHouse 快？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0426",
@@ -11095,7 +11095,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>只读需要的列，压缩好。</p>\n<h2>参考回答</h2>\n<p>列式存储查询只扫涉及的列，压缩率高，适合聚合分析。行式适合点查和事务。OLAP 场景列式优势明显。</p>\n<h2>追问</h2>\n<ul>\n<li>列式为什么适合分析？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0427",
@@ -11108,7 +11108,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MergeTree 族最核心。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 表引擎有 MergeTree 族（最核心）、Log、Memory、Distributed、Replicated 等。MergeTree 用于分析，Log 用于小表临时，Memory 内存表。</p>\n<h2>追问</h2>\n<ul>\n<li>常用哪个引擎？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0428",
@@ -11121,7 +11121,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按排序键组织，后台合并数据块。</p>\n<h2>参考回答</h2>\n<p>MergeTree 按排序键组织数据，后台合并小的数据块。支持分区、主键、TTL。是 ClickHouse 分析场景最常用的引擎。</p>\n<h2>追问</h2>\n<ul>\n<li>MergeTree 为什么快？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0429",
@@ -11134,7 +11134,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>表引擎管数据存储，库引擎管库内表。</p>\n<h2>参考回答</h2>\n<p>表引擎决定表数据怎么存、怎么读写；数据库引擎管一个库内的表，比如普通库、Replicated 库、Lazy 库。两者分工不同。</p>\n<h2>追问</h2>\n<ul>\n<li>库引擎有哪些？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0430",
@@ -11147,7 +11147,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按分片键把数据分到不同节点。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 分片把数据按分片键分布到多个节点，查询时并行聚合。Distributed 表做分发。分片加副本实现横向扩展和高可用。</p>\n<h2>追问</h2>\n<ul>\n<li>分片和副本区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0431",
@@ -11160,7 +11160,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>副本保证高可用和数据冗余。</p>\n<h2>参考回答</h2>\n<p>副本把分片的数据复制到多个节点，一个节点挂了副本顶上，保证高可用。副本也提升读并发。副本之间靠 ZooKeeper 协调。</p>\n<h2>追问</h2>\n<ul>\n<li>副本怎么同步？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0432",
@@ -11173,7 +11173,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>元数据存本地文件系统。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 元数据存在本地文件系统，表结构等定义在 metadata 目录。分布式协调靠 ZooKeeper。集群元数据各节点独立。</p>\n<h2>追问</h2>\n<ul>\n<li>元数据在哪？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0433",
@@ -11186,7 +11186,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ZK 协调副本和分布式 DDL。</p>\n<h2>参考回答</h2>\n<p>ZooKeeper 在 ClickHouse 里协调副本同步、分布式 DDL、分片元数据。副本一致性靠 ZK 协调。单机不需要 ZK。</p>\n<h2>追问</h2>\n<ul>\n<li>ZK 挂了影响？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0434",
@@ -11199,7 +11199,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>不支持完整事务，面向分析。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 不支持完整 ACID 事务，它是分析引擎，面向大批量写入和聚合查询，不是事务场景。更新删除能力也弱。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么不做事务？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0435",
@@ -11212,7 +11212,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ClickHouse 用数据块版本实现并发。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 的 MVCC 靠数据块版本和不可变数据，读操作看到一致快照，写操作创建新块。并发读不阻塞，写合并后台做。</p>\n<h2>追问</h2>\n<ul>\n<li>MVCC 怎么实现？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0436",
@@ -11225,7 +11225,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多线程单进程，充分利用 CPU。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 是单进程多线程，充分利用多核 CPU 并行执行查询和合并。没有分布式计算框架，靠单机并行加多副本。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么单进程多线程？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0437",
@@ -11238,7 +11238,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>一条 DDL 在所有节点执行。</p>\n<h2>参考回答</h2>\n<p>分布式 DDL 用 ON CLUSTER 指定集群，DDL 在集群所有节点执行，保持表结构一致。建表删表都用分布式 DDL。</p>\n<h2>追问</h2>\n<ul>\n<li>分布式 DDL 怎么写？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0438",
@@ -11251,7 +11251,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ClickHouse 单机列式分析，Hadoop 分布式批处理。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 是单机性能极强列式 OLAP，秒级查询；Hadoop 是分布式批处理生态，延迟高。ClickHouse 做交互分析，Hadoop 做大规模离线。</p>\n<h2>追问</h2>\n<ul>\n<li>两者怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0439",
@@ -11264,7 +11264,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>海量数据的交互式分析。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 适合海量数据的聚合分析、实时报表、日志分析、OLAP。数据量大、查询复杂、要秒级出结果的场景。</p>\n<h2>追问</h2>\n<ul>\n<li>典型场景有哪些？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0440",
@@ -11277,7 +11277,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>高频更新、事务、小数据点查。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 不适合高频更新删除、事务场景、小数据量点查。它面向大批量写入和聚合分析，不是 OLTP。多表 join 也偏弱。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 join 弱？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0441",
@@ -11290,7 +11290,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>LZ4、ZSTD 等压缩算法。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 支持 LZ4、ZSTD、GZIP 等压缩，默认 LZ4 快，ZSTD 压缩高。按 CPU 和存储权衡选。列式数据压缩率高。</p>\n<h2>追问</h2>\n<ul>\n<li>压缩怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0442",
@@ -11303,7 +11303,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>排序键决定存储顺序，主键是排序键前缀。</p>\n<h2>参考回答</h2>\n<p>排序键决定数据物理排序，主键通常是排序键的前缀，用于索引加速。ClickHouse 主键不唯一，是稀疏索引。</p>\n<h2>追问</h2>\n<ul>\n<li>主键和排序键什么关系？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0443",
@@ -11316,7 +11316,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>物化列是预计算的存储列。</p>\n<h2>参考回答</h2>\n<p>物化列按表达式预计算并存下来，查询时直接读结果，不用现算。适合高频的派生字段，省查询计算，但占存储。</p>\n<h2>追问</h2>\n<ul>\n<li>物化列和普通列区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0444",
@@ -11329,7 +11329,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按时间分区排序，聚合优化。</p>\n<h2>参考回答</h2>\n<p>时序数据优化按时间分区、排序键放设备或时间，用 TTL 归档，聚合函数优化。时间范围查询走分区裁剪。</p>\n<h2>追问</h2>\n<ul>\n<li>时序数据怎么建模？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0445",
@@ -11342,7 +11342,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Block 是列式数据块，处理的最小单位。</p>\n<h2>参考回答</h2>\n<p>Block 是 ClickHouse 内存中列式的数据块，一批列向量。查询按 Block 批处理，配合向量化执行提高性能。是处理的基本单位。</p>\n<h2>追问</h2>\n<ul>\n<li>Block 和向量化什么关系？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0446",

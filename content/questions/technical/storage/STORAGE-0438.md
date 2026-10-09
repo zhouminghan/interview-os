@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+ClickHouse 单机列式分析，Hadoop 分布式批处理。
+
+# 参考回答
+
+ClickHouse 是单机性能极强列式 OLAP，秒级查询；Hadoop 是分布式批处理生态，延迟高。ClickHouse 做交互分析，Hadoop 做大规模离线。
+
+# 追问
+
+- 两者怎么选？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+MergeTree 族最核心。
+
+# 参考回答
+
+ClickHouse 表引擎有 MergeTree 族（最核心）、Log、Memory、Distributed、Replicated 等。MergeTree 用于分析，Log 用于小表临时，Memory 内存表。
+
+# 追问
+
+- 常用哪个引擎？
