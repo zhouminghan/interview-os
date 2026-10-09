@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+减少 join，预聚合。
+
+# 参考回答
+
+跨表查询优化减少 join、先预聚合、小表广播或字典。ClickHouse 跨表 join 弱，尽量单表宽表。
+
+# 追问
+
+- 跨表怎么优化？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+查 system 表定位问题。
+
+# 参考回答
+
+排查用 system.query_log 看慢查询、system.replicas 看副本、system.metrics 看资源。系统表是排查的入口。
+
+# 追问
+
+- 系统表怎么看？

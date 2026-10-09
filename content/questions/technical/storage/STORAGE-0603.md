@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+查 system.replicas 队列积压。
+
+# 参考回答
+
+副本不同步查 system.replicas 看积压，检查 ZK 状态和网络。积压大排查是网络慢还是副本负载高。修复后自动追赶。
+
+# 追问
+
+- 副本不同步怎么查？

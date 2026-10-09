@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 UUID 或雪花算法。
+
+# 参考回答
+
+分布式 ID 用 generateUUIDv4 或雪花算法，保证唯一。ClickHouse 本身不管 ID，应用层生成。避免依赖自增。
+
+# 追问
+
+- ID 怎么生成？

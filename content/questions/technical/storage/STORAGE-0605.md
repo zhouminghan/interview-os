@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+批量导入，分区分批。
+
+# 参考回答
+
+大数据导入用 INSERT SELECT 或 clickhouse-client 批量，按分区分批导入。控制每批大小，避免小写入。导入后合并。
+
+# 追问
+
+- 大数据怎么导入？
