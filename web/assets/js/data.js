@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:03:17+08:00",
+  "generatedAt": "2026-10-09T16:07:54+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -17027,7 +17027,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 EXPLAIN 看执行计划，分逻辑计划和物理计划。</p>\n<h2>参考回答</h2>\n<p>用 EXPLAIN 前缀看执行计划，能看到 join 顺序、join 方式、分区裁剪这些。分析慢查询先看计划里有没有全表扫、broadcast 选得对不对、统计信息是否过期。</p>\n<h2>追问</h2>\n<ul>\n<li>执行计划里重点看哪几项？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0072",
@@ -17040,7 +17040,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>统计信息是表的数据分布信息，CBO 靠它估算成本。</p>\n<h2>参考回答</h2>\n<p>统计信息记录表的行数、基数、数据分布等，CBO 靠它估算执行计划成本。要定期收集，尤其数据大变更后，过期了会导致选错 join 顺序或方式，查询变慢。</p>\n<h2>追问</h2>\n<ul>\n<li>统计信息多久收集一次？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0073",
@@ -17053,7 +17053,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看执行计划定位瓶颈，再调统计信息、索引、模型和 SQL。</p>\n<h2>参考回答</h2>\n<p>先 EXPLAIN 看计划，找最慢的算子；再看统计信息是否过期、要不要加物化视图或索引、排序键分桶合不合理、SQL 能不能改写。一步步定位，别瞎调。</p>\n<h2>追问</h2>\n<ul>\n<li>慢查询最常卡在哪一步？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0074",
@@ -17066,7 +17066,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>主要有前缀索引、Bitmap 索引、Bloom Filter 索引。</p>\n<h2>参考回答</h2>\n<p>StarRocks 索引分几类：前缀索引是排序键自带的，Bitmap 适合低基数等值过滤，Bloom Filter 适合高基数等值判断。根据查询的过滤字段类型来选。</p>\n<h2>追问</h2>\n<ul>\n<li>Bitmap 索引和 Bloom Filter 的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0075",
@@ -17079,7 +17079,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>把常用聚合结果预计算，查询命中直接复用。</p>\n<h2>参考回答</h2>\n<p>物化视图把高频的 group by 聚合提前算好，查询命中就透明改写复用，省掉实时聚合。适合维度固定、查询频繁的场景，代价是占存储和刷新成本。</p>\n<h2>追问</h2>\n<ul>\n<li>物化视图刷新延迟怎么处理？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0076",
@@ -17092,7 +17092,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按数据量、副本数、查询 QPS 和增长估算节点规模。</p>\n<h2>参考回答</h2>\n<p>容量规划主要看数据量大小、副本数、峰值 QPS、数据增长趋势，反推需要多少 BE 和磁盘。要留 30% 左右的余量，避免突然增长打满。存算分离的话计算和存储分开估。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么建议留 30% 余量？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0077",
@@ -17105,7 +17105,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>合理分配查询内存和导入内存，避免 OOM。</p>\n<h2>参考回答</h2>\n<p>内存调优主要控制单查询内存上限、执行内存和导入内存的分配。大查询要限制内存防止 OOM，同时保证缓存够用。一般按节点内存和并发数来配。</p>\n<h2>追问</h2>\n<ul>\n<li>内存不够时会怎样？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0078",
@@ -17118,7 +17118,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 SSD、合理分区减少扫描、控制 Compaction 时机。</p>\n<h2>参考回答</h2>\n<p>IO 优化一方面上 SSD、提高磁盘吞吐，另一方面从查询侧减少扫描量，靠分区裁剪、列裁剪、索引。还要控制 Compaction 别在高峰期抢 IO。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么判断是 IO 瓶颈？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0079",
@@ -17131,7 +17131,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分区键选时间等高频过滤字段，控制分区粒度别太细。</p>\n<h2>参考回答</h2>\n<p>分区一般按时间，粒度按查询和生命周期定，比如按天还是按月。原则是分区字段一定是查询里最常过滤的，分区数别太多，不然元数据开销大。</p>\n<h2>追问</h2>\n<ul>\n<li>分区太细会有什么问题？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0080",
@@ -17144,7 +17144,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>瓶颈多在数据倾斜、慢 JOIN、统计信息过期、扫描量过大。</p>\n<h2>参考回答</h2>\n<p>常见瓶颈：数据倾斜导致少数 BE 慢、大表 JOIN 选错策略、统计信息过期导致计划差、扫描量过大。解法分别是分桶设计、join 策略、更新统计信息、加分区裁剪和索引。</p>\n<h2>追问</h2>\n<ul>\n<li>数据倾斜怎么定位？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0081",
@@ -17157,7 +17157,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加资源、控制单查询资源、资源组隔离、用物化视图降开销。</p>\n<h2>参考回答</h2>\n<p>提高并发主要是加 BE 节点和内存，同时用资源组隔离，限制单查询占用的资源，避免一个大查询把并发全拖慢。还可以用物化视图降低单查询开销。</p>\n<h2>追问</h2>\n<ul>\n<li>资源组怎么隔离？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0082",
@@ -17170,7 +17170,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分桶键选高基数列，热点数据单独处理或加盐。</p>\n<h2>参考回答</h2>\n<p>数据倾斜一般是因为分桶键基数低或热点 key。解法是分桶键选高基数、均匀的列，热点 key 可以加盐打散或单独分桶。看 tablet 数据分布就能发现倾斜。</p>\n<h2>追问</h2>\n<ul>\n<li>加盐打散会带来什么问题？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0083",
@@ -17183,7 +17183,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>存算分离按需伸缩，资源组隔离，物化视图降计算。</p>\n<h2>参考回答</h2>\n<p>资源优化就是别浪费也别不够。存算分离可以按需扩缩，资源组给不同业务分配额，物化视图减少重复计算。还要定期清理冷数据。</p>\n<h2>追问</h2>\n<ul>\n<li>冷数据怎么处理？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0084",
@@ -17196,7 +17196,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Compaction 后台合并小版本，减少文件数和读放大。</p>\n<h2>参考回答</h2>\n<p>Compaction 是把导入产生的小版本文件后台合并成大文件，减少文件数量和读放大。调优主要是控制并发和触发时机，避免影响前台查询。高峰期可以限制 Compaction 资源。</p>\n<h2>追问</h2>\n<ul>\n<li>版本太多会导致什么问题？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0085",
@@ -17209,7 +17209,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看监控指标、慢查询、执行计划、日志逐层定位。</p>\n<h2>参考回答</h2>\n<p>诊断性能先看集群监控，CPU、内存、磁盘 IO、QPS；再定位慢查询，看执行计划；结合 BE 日志和 tablet 分布。逐层排除是计算瓶颈、IO 瓶颈还是倾斜。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么区分计算瓶颈和 IO 瓶颈？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0086",
@@ -17222,7 +17222,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>FE 多副本选主，BE 数据多副本，自动容错。</p>\n<h2>参考回答</h2>\n<p>高可用分两部分：FE 用多节点选主，主挂了自动切；BE 数据多副本，单节点挂了副本顶上。跨机架部署能进一步提高容灾能力。</p>\n<h2>追问</h2>\n<ul>\n<li>副本数一般设几个？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0087",
@@ -17235,7 +17235,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用快照、导出或副本做备份，恢复靠重放或副本。</p>\n<h2>参考回答</h2>\n<p>备份一般用快照备份元数据和数据，或导出到外部存储。恢复就是反向导入。多副本本身也算一种容灾，但防误删还得靠真正的备份。</p>\n<h2>追问</h2>\n<ul>\n<li>快照和导出备份的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0088",
@@ -17248,7 +17248,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Prometheus 加 Grafana 或云监控看核心指标。</p>\n<h2>参考回答</h2>\n<p>监控通常用 Prometheus 采集指标、Grafana 出图，看 QPS、延迟、CPU、内存、磁盘、tablet 健康状态。再配告警，指标异常就通知。</p>\n<h2>追问</h2>\n<ul>\n<li>核心监控指标有哪些？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0089",
@@ -17261,7 +17261,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分 FE、BE 日志，定位问题看对应节点日志和错误栈。</p>\n<h2>参考回答</h2>\n<p>StarRocks 日志分 FE 和 BE 两类，FE 日志看元数据和查询入口，BE 日志看执行和存储。排查时按时间和请求 ID 关联，找 error 和异常堆栈。</p>\n<h2>追问</h2>\n<ul>\n<li>FE 日志和 BE 日志分别记什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0090",
@@ -17274,7 +17274,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加 BE 节点并重新均衡数据，FE 加节点提容灾。</p>\n<h2>参考回答</h2>\n<p>扩容主要是加 BE 节点，新节点加入后数据会重新均衡；BE 一般无损横向扩。FE 也可以加，提升高可用。存算分离下扩计算更灵活。</p>\n<h2>追问</h2>\n<ul>\n<li>扩容会中断服务吗？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0091",
@@ -17287,7 +17287,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>先备份、读升级说明、灰度升级、验证再全量。</p>\n<h2>参考回答</h2>\n<p>升级要先备份元数据和数据，读版本升级说明看兼容性，先灰度升一部分节点，验证查询导入正常再全量。注意别跨大版本直接跳，按官方路线走。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么要灰度升级？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0092",
@@ -17300,7 +17300,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>先查副本和版本，触发修复或重新导入。</p>\n<h2>参考回答</h2>\n<p>数据不一致一般是副本没同步全。先看 tablet 副本状态，触发副本修复或均衡；如果是对账发现结果不对，查导入任务和版本，必要时重导。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么发现数据不一致？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0093",
@@ -17313,7 +17313,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠副本自动容错，节点恢复后自动补数据。</p>\n<h2>参考回答</h2>\n<p>BE 节点失效后，查询会自动走其他副本，不中断。节点恢复后会自动补缺失的副本。FE 失效则靠 follower 选主。只要副本数够，单点故障不影响服务。</p>\n<h2>追问</h2>\n<ul>\n<li>副本数不够时节点挂了会怎样？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0094",
@@ -17326,7 +17326,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>调导入并发参数，分桶均匀，避免单节点热点。</p>\n<h2>参考回答</h2>\n<p>导入并发优化主要调导入任务的并行度和 batch 大小，同时保证分桶均匀，避免数据都压到少数节点。Broker Load 可以多文件并行，Routine Load 调消费并发。</p>\n<h2>追问</h2>\n<ul>\n<li>并发越高越好吗？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0095",
@@ -17339,7 +17339,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>常用 SHOW BACKENDS、SHOW TABLETS、ALTER SYSTEM 等。</p>\n<h2>参考回答</h2>\n<p>常用命令有 SHOW BACKENDS 看节点、SHOW TABLETS 看分片、ALTER SYSTEM ADD 或 DROP BACKEND 管理节点、SHOW LOAD 看导入。还有 SHOW PROC 看内部状态。</p>\n<h2>追问</h2>\n<ul>\n<li>SHOW PROC 能看什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0096",
@@ -17352,7 +17352,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看日志定位，常见端口冲突、元数据损坏、配置错误。</p>\n<h2>参考回答</h2>\n<p>先看 FE、BE 启动日志，常见是端口被占、元数据损坏、配置写错、磁盘问题。定位到具体报错再针对性处理，必要时用备份恢复元数据。</p>\n<h2>追问</h2>\n<ul>\n<li>元数据损坏怎么恢复？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0097",
@@ -17365,7 +17365,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看是数据量大还是倾斜，优化计划或调超时参数。</p>\n<h2>参考回答</h2>\n<p>查询超时先 EXPLAIN 看计划，是扫描量大、JOIN 慢还是倾斜；能优化就优化 SQL 和模型，实在是大查询就调大 query timeout 或走异步。</p>\n<h2>追问</h2>\n<ul>\n<li>超时参数调大有什么风险？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0098",
@@ -17378,7 +17378,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看导入报错和错误行，定位格式、类型、网络问题。</p>\n<h2>参考回答</h2>\n<p>导入失败先看导入任务的报错信息，常见是字段格式不匹配、类型转换失败、网络抖动、超过过滤比例。按报错定位后修数据或调参重导。</p>\n<h2>追问</h2>\n<ul>\n<li>错误行过滤比例是什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0099",
@@ -17391,7 +17391,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>follower 自动选主，恢复后重新加入，必要时恢复元数据。</p>\n<h2>参考回答</h2>\n<p>FE 多副本时，leader 挂了 follower 会自动选主，服务不断。宕机节点恢复后重新加入同步。如果是元数据损坏，用备份的元数据恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>leader 和 follower 怎么选举？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0100",
@@ -17404,7 +17404,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>副本自动顶上，节点恢复后自动补数据。</p>\n<h2>参考回答</h2>\n<p>BE 挂了，查询走其他副本不影响。恢复后 BE 重新加入集群，会自动补齐缺失的副本数据。前提是副本数够，否则要先修节点。</p>\n<h2>追问</h2>\n<ul>\n<li>副本数不够怎么办？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0101",
@@ -17417,7 +17417,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用元数据恢复或重建，必要时从 FE 快照恢复。</p>\n<h2>参考回答</h2>\n<p>元数据不一致一般靠 FE 的元数据快照恢复，或重新加载元数据。如果多 FE 之间不一致，先确认 leader 正确，再触发同步。严重时用备份恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>FE 之间元数据怎么同步？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0102",
@@ -17430,7 +17430,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>限制查询内存、调小并发、优化大查询、加内存。</p>\n<h2>参考回答</h2>\n<p>OOM 先看是查询还是导入引起的。查询 OOM 就限制单查询内存、调低并发、优化 SQL；导入 OOM 就调 batch。根本解决是加内存或优化数据模型。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么判断是哪个查询 OOM？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0103",
@@ -17443,7 +17443,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>清理冷数据、缩副本、扩盘或加节点。</p>\n<h2>参考回答</h2>\n<p>磁盘不够先清理过期分区和冷数据，缩副本数或转存算分离，再扩盘加节点。要配磁盘水位告警，提前发现。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么设置磁盘水位告警？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0104",
@@ -17456,7 +17456,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SQL 语法、类型、权限、资源、数据问题。</p>\n<h2>参考回答</h2>\n<p>查询失败常见是 SQL 写错、类型不匹配、没有权限、内存超限、表不存在或分区缺失。按报错信息逐项排除。</p>\n<h2>追问</h2>\n<ul>\n<li>报错信息里最先看什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0105",
@@ -17469,7 +17469,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看节点连通性、端口、防火墙、丢包。</p>\n<h2>参考回答</h2>\n<p>网络问题先 ping 和 telnet 看节点连通性，检查端口是否开放、防火墙白名单、DNS 解析，再看有没有丢包和延迟。FE 和 BE 之间网络不稳定会直接影响查询。</p>\n<h2>追问</h2>\n<ul>\n<li>FE 和 BE 之间要开哪些端口？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0106",
@@ -17482,7 +17482,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>选对模型、合理分区分桶排序键、控制列数和类型。</p>\n<h2>参考回答</h2>\n<p>表设计核心是选对数据模型，分区按时间、分桶选高基数列、排序键选高频过滤字段。列不要太多，类型能小就小，注释要全。设计好能少走很多优化弯路。</p>\n<h2>追问</h2>\n<ul>\n<li>列太多会有什么问题？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0107",
@@ -17495,7 +17495,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分区键选高频过滤字段，通常是时间。</p>\n<h2>参考回答</h2>\n<p>分区键一般选查询里最常过滤的字段，绝大多数是时间。粒度按业务定，天级最常见。原则是让查询能靠分区裁剪只扫相关分区。</p>\n<h2>追问</h2>\n<ul>\n<li>分区键和分桶键怎么配合？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0108",
@@ -17508,7 +17508,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>聚合表在建表时指定维度列和聚合函数，写入即预聚合。</p>\n<h2>参考回答</h2>\n<p>聚合模型在建表时把列分成维度列和指标列，指标列指定 sum、max 这类聚合函数，相同维度写入时自动合并。适合明细不用保留、只要汇总的场景。</p>\n<h2>追问</h2>\n<ul>\n<li>聚合模型会丢明细，怎么权衡？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0109",
@@ -17521,7 +17521,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>复合键用多个列组成主键或排序键，顺序很关键。</p>\n<h2>参考回答</h2>\n<p>复合键就是多列组成的键，设计时列的顺序很重要，排前面的在索引里优先级高。一般把等值过滤、高区分度的列放前面。</p>\n<h2>追问</h2>\n<ul>\n<li>排序键列顺序怎么定？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0110",
@@ -17534,7 +17534,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>明细全保留，聚合按维度预聚合，看是否要原始明细。</p>\n<h2>参考回答</h2>\n<p>明细模型原样存每行，适合要保留明细、任意下钻；聚合模型按维度预聚合，省空间、查询快，但丢明细。看业务要不要原始明细来选。</p>\n<h2>追问</h2>\n<ul>\n<li>两种模型能混用吗？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0111",
@@ -17547,7 +17547,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>事实表做明细或聚合，维度表做主键模型或维度表。</p>\n<h2>参考回答</h2>\n<p>StarRocks 里星型就是一张事实表加多张维度表，事实表用明细或聚合模型，维度表用主键模型。查询时事实表 join 维度表，维度表通常很小可以 broadcast。</p>\n<h2>追问</h2>\n<ul>\n<li>维度表为什么一般很小？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0112",
@@ -17560,7 +17560,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>雪花把维度表再拆细，但 StarRocks 里很少用。</p>\n<h2>参考回答</h2>\n<p>雪花模型就是维度表继续规范化拆成多层，StarRocks 里不推荐，因为列存加宽表更高效，join 越多越慢。一般用星型或直接大宽表。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么列存下更倾向宽表？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0113",
@@ -17573,7 +17573,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>预聚合表把常用聚合提前算好，等价于聚合模型或物化视图。</p>\n<h2>参考回答</h2>\n<p>预聚合就是提前把常用维度的聚合结果算好存下来，可以用聚合模型，也可以建物化视图。设计要点是聚合维度要覆盖高频查询。</p>\n<h2>追问</h2>\n<ul>\n<li>聚合模型和物化视图怎么选？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0114",
@@ -17586,7 +17586,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>时序数据按时间分区，排序键放设备 id 加时间。</p>\n<h2>参考回答</h2>\n<p>时序数据建模核心是时间分区加设备 id 这类标识分桶，排序键放设备 id 和时间。这样按设备查时间序列只扫一个分区的一段数据，非常快。</p>\n<h2>追问</h2>\n<ul>\n<li>时序数据为什么适合按设备分桶？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0115",
@@ -17599,7 +17599,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>覆盖高频聚合、维度固定、刷新频率按业务。</p>\n<h2>参考回答</h2>\n<p>物化视图要针对高频、维度相对固定的聚合查询来建，别建太多。刷新频率按业务时效定，实时性要求高就异步刷新调快，但要权衡资源。</p>\n<h2>追问</h2>\n<ul>\n<li>物化视图建太多会怎样？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0116",
@@ -17612,7 +17612,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>StarRocks 本身不是 ML 引擎，主要做特征查询和快速取数。</p>\n<h2>参考回答</h2>\n<p>StarRocks 不是机器学习平台，它的定位是给 ML 提供海量特征数据的快速查询和聚合。可以算一些基础统计和向量检索，真正训练还是交给专门框架。</p>\n<h2>追问</h2>\n<ul>\n<li>特征查询为什么适合用 StarRocks？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0117",
@@ -17625,7 +17625,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>StarRocks 主打 OLAP，主键模型补了一点 OLTP 式更新能力。</p>\n<h2>参考回答</h2>\n<p>StarRocks 核心是 OLAP，主键模型支持 upsert 实时更新，但别把它当 OLTP 数据库用，它没有完整的事务和索引，高并发点查也不如 MySQL。定位是分析引擎。</p>\n<h2>追问</h2>\n<ul>\n<li>StarRocks 为什么不能替代 MySQL？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0118",
@@ -17638,7 +17638,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>稀疏数据靠列存天然适配，用 ARRAY、MAP 存稀疏特征。</p>\n<h2>参考回答</h2>\n<p>稀疏数据比如用户行为特征，大量空值，列存天然省空间。也可以用 ARRAY、MAP 类型存稀疏特征，避免建几百列。Bitmap 也能表达稀疏集合。</p>\n<h2>追问</h2>\n<ul>\n<li>稀疏数据为什么适合列存？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0119",
@@ -17651,7 +17651,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>向量化按批处理、用 SIMD 加速、减少调用开销。</p>\n<h2>参考回答</h2>\n<p>向量化计算一次处理一批数据，利用 CPU SIMD 指令并行算，函数调用次数也少，所以比逐行处理快很多。聚合、过滤这些收益最明显。</p>\n<h2>追问</h2>\n<ul>\n<li>SIMD 是什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0120",
@@ -17664,7 +17664,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>StarRocks 本身不做预测，主要输出特征给模型。</p>\n<h2>参考回答</h2>\n<p>预测分析不是 StarRocks 的主场，它负责快速产出特征和训练数据，预测靠模型服务。可以算移动平均这类简单时序统计，但复杂预测交给算法。</p>\n<h2>追问</h2>\n<ul>\n<li>预测链路里 StarRocks 在哪一环？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0121",
@@ -17677,7 +17677,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用地理类型和函数做距离、范围计算，能力有限。</p>\n<h2>参考回答</h2>\n<p>StarRocks 支持一些地理空间类型和函数，能做点、距离、范围判断这类基础分析。但专业 GIS 场景它不是首选，一般够用就行。</p>\n<h2>追问</h2>\n<ul>\n<li>专业 GIS 一般用什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0122",
@@ -17690,7 +17690,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>写自定义函数扩展标量或聚合逻辑。</p>\n<h2>参考回答</h2>\n<p>UDF 就是用户自定义函数，StarRocks 支持标量 UDF 和聚合 UDF，用 C++ 或 Java 写。当内置函数不够用时扩展。但 UDF 会影响性能，能内置就别自己写。</p>\n<h2>追问</h2>\n<ul>\n<li>UDF 为什么会影响性能？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0123",
@@ -17703,7 +17703,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>支持窗口函数、多维聚合、近似计算等统计能力。</p>\n<h2>参考回答</h2>\n<p>StarRocks 能做窗口函数、cube、rollup、分组聚合、bitmap 和 hll 近似计算这些统计分析。复杂统计模型它不擅长，那是统计工具的事。</p>\n<h2>追问</h2>\n<ul>\n<li>近似计算什么时候用？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0124",
@@ -17716,7 +17716,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>定位是快速取数，挖掘靠外部算法平台。</p>\n<h2>参考回答</h2>\n<p>StarRocks 不是数据挖掘引擎，它提供快速的数据查询和特征聚合，挖掘建模交给 Spark、Python 或机器学习平台。它是数据供给层。</p>\n<h2>追问</h2>\n<ul>\n<li>数据挖掘和 OLAP 的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0125",
@@ -17729,7 +17729,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠 Routine Load、Flink 实时导入加主键模型做实时分析。</p>\n<h2>参考回答</h2>\n<p>实时分析靠实时导入，Routine Load 订阅 Kafka 或 Flink 写入，配合主键模型 upsert，秒级可见。常用于实时大屏、实时监控、实时对账。</p>\n<h2>追问</h2>\n<ul>\n<li>实时和离线怎么保证口径一致？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0126",
@@ -17742,7 +17742,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MPP 多节点并行处理，适合海量数据的分析聚合。</p>\n<h2>参考回答</h2>\n<p>MPP 把查询拆到多个节点并行执行，天然适合 OLAP 这种大规模扫描加聚合的场景，横向加节点就能提升算力。比单机或 MapReduce 模型更适合交互式查询。</p>\n<h2>追问</h2>\n<ul>\n<li>MPP 和 MapReduce 的关键区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0127",
@@ -17755,7 +17755,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>列存、压缩、索引、分桶，为快速扫描设计。</p>\n<h2>参考回答</h2>\n<p>存储引擎设计核心是面向分析：列式存储减少 IO、编码压缩省空间、前缀索引和 Bitmap 加速过滤、分桶保证分布式。一切都是为了让扫描和聚合更快。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么分析引擎都选列存？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0128",
@@ -17768,7 +17768,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>自研能深度优化向量化、CBO 和存储，性能可控。</p>\n<h2>参考回答</h2>\n<p>自研查询引擎而不是用 Presto，是因为能做更深度的向量化、CBO 优化器和存储引擎联动，性能上限更高，也不受别人架构约束。代价是研发投入大。</p>\n<h2>追问</h2>\n<ul>\n<li>Presto 这类引擎的短板是什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0129",
@@ -17781,7 +17781,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>两者同源，StarRocks 从 Doris 分支出来，架构相似。</p>\n<h2>参考回答</h2>\n<p>StarRocks 和 Doris 同源，都是 MPP 加列存，很多设计类似。StarRocks 从 Doris 早期版本分叉出来独立发展，后续在性能、主键模型、存算分离上有自己的路线。面试说清同源加各自演进就行。</p>\n<h2>追问</h2>\n<ul>\n<li>选型时两者怎么对比？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0130",
@@ -17794,7 +17794,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>元数据由 FE 管理，多副本保证高可用。</p>\n<h2>参考回答</h2>\n<p>元数据由 FE 统一管理，存表结构、分区、分桶、tablet 分布这些，FE 之间多副本同步保证高可用。元数据变了会同步给所有 FE 和 BE。</p>\n<h2>追问</h2>\n<ul>\n<li>元数据里都存哪些信息？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0131",

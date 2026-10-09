@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+常用 SHOW BACKENDS、SHOW TABLETS、ALTER SYSTEM 等。
+
+# 参考回答
+
+常用命令有 SHOW BACKENDS 看节点、SHOW TABLETS 看分片、ALTER SYSTEM ADD 或 DROP BACKEND 管理节点、SHOW LOAD 看导入。还有 SHOW PROC 看内部状态。
+
+# 追问
+
+- SHOW PROC 能看什么？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+主要有前缀索引、Bitmap 索引、Bloom Filter 索引。
+
+# 参考回答
+
+StarRocks 索引分几类：前缀索引是排序键自带的，Bitmap 适合低基数等值过滤，Bloom Filter 适合高基数等值判断。根据查询的过滤字段类型来选。
+
+# 追问
+
+- Bitmap 索引和 Bloom Filter 的区别？
