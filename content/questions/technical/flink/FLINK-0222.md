@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+建表、建库、建视图、定义连接器。
+
+# 参考回答
+
+Flink SQL 的 DDL 包括 CREATE TABLE 建表配连接器、CREATE DATABASE、CREATE VIEW，还能定义 watermark、主键、分区这些。
+
+# 追问
+
+- 建表 DDL 里配什么？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+元数据管理，存表、库、函数。
+
+# 参考回答
+
+Catalog 管理 Flink SQL 的元数据，存数据库、表、视图、函数的定义。对接 Hive Metastore 复用 Hive 元数据。
+
+# 追问
+
+- Catalog 有哪几种实现？

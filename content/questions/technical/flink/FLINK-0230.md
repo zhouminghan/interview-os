@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 JDBC 读写数据库表。
+
+# 参考回答
+
+JDBC Connector 在 DDL 里配 url、表名、用户名密码，就能读写关系库。可以做 lookup 和 sink，注意批量写。
+
+# 追问
+
+- JDBC sink 怎么批量写？

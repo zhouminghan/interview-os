@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Tumble、Hop、Session、Cumulate 等。
+
+# 参考回答
+
+Flink SQL 窗口有 Tumble 滚动、Hop 滑动、Session 会话、Cumulate 累计窗口。按时间聚合粒度选，配时间属性用。
+
+# 追问
+
+- Cumulate 窗口是什么？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+regular、interval、temporal join。
+
+# 参考回答
+
+Flink SQL 的 join 有 regular join、interval join、temporal join。regular 用状态持续匹配，interval 限时间范围，temporal 关联版本表。
+
+# 追问
+
+- 三种 join 分别什么场景？

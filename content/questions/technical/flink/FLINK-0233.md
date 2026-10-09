@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 TUMBLE 函数加窗口大小。
+
+# 参考回答
+
+滚动窗口用 TUMBLE(时间列, INTERVAL) 定义，比如 TUMBLE(ts, INTERVAL '5' MINUTE)。窗口不重叠，按固定大小切分。
+
+# 追问
+
+- 滚动窗口怎么配时间属性？

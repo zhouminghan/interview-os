@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+在 DDL 里用 WATERMARK FOR 定义。
+
+# 参考回答
+
+SQL 里定义 watermark 是在建表 DDL 里用 WATERMARK FOR 时间列 AS 时间减延迟。比如减去 5 秒容忍乱序。
+
+# 追问
+
+- 乱序延迟设多少？

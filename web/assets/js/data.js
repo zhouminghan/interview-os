@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:37:53+08:00",
+  "generatedAt": "2026-10-09T16:39:49+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -21696,7 +21696,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从开发到调优到架构师，逐步深入。</p>\n<h2>参考回答</h2>\n<p>Flink 工程师发展路径：从写作业到性能调优、平台建设，再到架构师。积累项目经验，深入原理，逐步承担更大的系统设计。</p>\n<h2>追问</h2>\n<ul>\n<li>各阶段的核心能力？</li>\n</ul>"
     },
     {
       "id": "FLINK-0205",
@@ -21709,7 +21709,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>原理、状态、checkpoint、SQL、调优、平台。</p>\n<h2>参考回答</h2>\n<p>成为专家要掌握核心原理、状态和 checkpoint、时间语义、SQL、性能调优、平台建设，还要有大规模实战经验。</p>\n<h2>追问</h2>\n<ul>\n<li>专家和普通开发的分水岭？</li>\n</ul>"
     },
     {
       "id": "FLINK-0206",
@@ -21722,7 +21722,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 是大数据技能里的实时分支。</p>\n<h2>参考回答</h2>\n<p>Flink 是大数据工程师技能栈里的实时计算部分，和数仓、Spark、存储引擎互补。大数据工程师要懂全链路，Flink 是其中实时的一环。</p>\n<h2>追问</h2>\n<ul>\n<li>大数据工程师要会哪些？</li>\n</ul>"
     },
     {
       "id": "FLINK-0207",
@@ -21735,7 +21735,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>提 issue、修 bug、改进文档、提 PR。</p>\n<h2>参考回答</h2>\n<p>参与 Flink 社区从提 issue、修文档、认领 good first issue 开始，逐步提 PR 修 bug 加功能。读贡献指南，跟着社区规范。</p>\n<h2>追问</h2>\n<ul>\n<li>good first issue 是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0208",
@@ -21748,7 +21748,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>官方有认证，证明系统掌握，但实践更重要。</p>\n<h2>参考回答</h2>\n<p>Flink 官方有认证考试，能证明系统掌握程度，但企业更看重实战经验。认证作为学习路径可以，别只看证书。</p>\n<h2>追问</h2>\n<ul>\n<li>认证和实战哪个重要？</li>\n</ul>"
     },
     {
       "id": "FLINK-0209",
@@ -21761,7 +21761,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>流批一体、实时数仓、AI 融合。</p>\n<h2>参考回答</h2>\n<p>流处理趋势是流批一体、实时数仓普及、和 AI 结合做实时特征，还有存算分离和云原生。实时化是明确方向。</p>\n<h2>追问</h2>\n<ul>\n<li>实时数仓为什么是趋势？</li>\n</ul>"
     },
     {
       "id": "FLINK-0210",
@@ -21774,7 +21774,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>跟版本、读源码、做项目、逛社区。</p>\n<h2>参考回答</h2>\n<p>持续学习靠跟进版本、读源码、做实战项目、逛社区和看技术博客。重点学自己项目用得上的，边用边深挖。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么高效读源码？</li>\n</ul>"
     },
     {
       "id": "FLINK-0211",
@@ -21787,7 +21787,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>专家深挖技术，架构师看全局设计。</p>\n<h2>参考回答</h2>\n<p>Flink 专家深挖引擎原理和调优，架构师偏系统设计、资源规划、跨系统集成。专家往深度，架构师往广度。</p>\n<h2>追问</h2>\n<ul>\n<li>技术深度和架构广度哪个难？</li>\n</ul>"
     },
     {
       "id": "FLINK-0212",
@@ -21800,7 +21800,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时数仓普及，需求持续增长。</p>\n<h2>参考回答</h2>\n<p>企业做实时数仓和实时分析，Flink 人才需求在涨，尤其懂流批一体和实时数仓的。要实时加数仓加 SQL 综合能力。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么综合能力吃香？</li>\n</ul>"
     },
     {
       "id": "FLINK-0213",
@@ -21813,7 +21813,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>补数仓、存储、平台全局能力。</p>\n<h2>参考回答</h2>\n<p>从 Flink 工程师转架构师，要补数仓建模、存储引擎、平台设计、资源治理这些全局能力，从单点技术转向系统设计。</p>\n<h2>追问</h2>\n<ul>\n<li>转型最难补的是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0214",
@@ -21826,7 +21826,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink SQL 面向流，支持动态表和实时。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 是流式 SQL，能查持续变化的动态表，支持时间属性、窗口、流式 join。传统 SQL 面向静态表，Flink SQL 多了流语义。</p>\n<h2>追问</h2>\n<ul>\n<li>流式 SQL 的核心差异？</li>\n</ul>"
     },
     {
       "id": "FLINK-0215",
@@ -21839,7 +21839,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>动态表随流持续变化，是流查询的抽象。</p>\n<h2>参考回答</h2>\n<p>动态表是把数据流看成的持续更新的表，查询结果是另一个动态表。流和表可以互相转换，这是 Flink SQL 的核心。</p>\n<h2>追问</h2>\n<ul>\n<li>流和表怎么转换？</li>\n</ul>"
     },
     {
       "id": "FLINK-0216",
@@ -21852,7 +21852,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink SQL 实时强，Spark SQL 批处理生态好。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 实时能力更强，事件时间、低延迟、exactly-once 是优势；Spark SQL 批处理和生态更成熟。流场景选 Flink，批场景两者都行。</p>\n<h2>追问</h2>\n<ul>\n<li>实时场景为什么选 Flink？</li>\n</ul>"
     },
     {
       "id": "FLINK-0217",
@@ -21865,7 +21865,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>基础类型、复杂类型、ROW 等。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 支持 INT、STRING 等基础类型，ARRAY、MAP、ROW 复杂类型，还有时间类型。和 Java 类型对应。</p>\n<h2>追问</h2>\n<ul>\n<li>ROW 类型什么时候用？</li>\n</ul>"
     },
     {
       "id": "FLINK-0218",
@@ -21878,7 +21878,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>一套 SQL 既处理流也处理批。</p>\n<h2>参考回答</h2>\n<p>流批统一就是一套 Table API 和 SQL 同时处理无界流和有界批，批是有界流的特例。不用维护两套代码。</p>\n<h2>追问</h2>\n<ul>\n<li>流批统一有什么价值？</li>\n</ul>"
     },
     {
       "id": "FLINK-0219",
@@ -21891,7 +21891,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>事件时间和处理时间两种。</p>\n<h2>参考回答</h2>\n<p>时间属性分事件时间和处理时间。事件时间从数据字段取，配 watermark；处理时间用 proctime()。窗口和 join 都要指定时间属性。</p>\n<h2>追问</h2>\n<ul>\n<li>时间属性在哪指定？</li>\n</ul>"
     },
     {
       "id": "FLINK-0220",
@@ -21904,7 +21904,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>事件时间看数据时间戳，处理时间看系统时间。</p>\n<h2>参考回答</h2>\n<p>事件时间是数据里带的时间，能处理乱序，结果可重现；处理时间是算子处理时的系统时间，简单但乱序和重放会不准。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么事件时间可重现？</li>\n</ul>"
     },
     {
       "id": "FLINK-0221",
@@ -21917,7 +21917,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>在 DDL 里用 WATERMARK FOR 定义。</p>\n<h2>参考回答</h2>\n<p>SQL 里定义 watermark 是在建表 DDL 里用 WATERMARK FOR 时间列 AS 时间减延迟。比如减去 5 秒容忍乱序。</p>\n<h2>追问</h2>\n<ul>\n<li>乱序延迟设多少？</li>\n</ul>"
     },
     {
       "id": "FLINK-0222",
@@ -21930,7 +21930,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>建表、建库、建视图、定义连接器。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 的 DDL 包括 CREATE TABLE 建表配连接器、CREATE DATABASE、CREATE VIEW，还能定义 watermark、主键、分区这些。</p>\n<h2>追问</h2>\n<ul>\n<li>建表 DDL 里配什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0223",
@@ -21943,7 +21943,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>元数据管理，存表、库、函数。</p>\n<h2>参考回答</h2>\n<p>Catalog 管理 Flink SQL 的元数据，存数据库、表、视图、函数的定义。对接 Hive Metastore 复用 Hive 元数据。</p>\n<h2>追问</h2>\n<ul>\n<li>Catalog 有哪几种实现？</li>\n</ul>"
     },
     {
       "id": "FLINK-0224",
@@ -21956,7 +21956,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>临时表 session 内有效，永久表存 Catalog。</p>\n<h2>参考回答</h2>\n<p>临时表只当前 session 有效，用 createTemporaryTable 建；永久表存 Catalog，跨 session 用。临时表适合中间结果。</p>\n<h2>追问</h2>\n<ul>\n<li>临时表和永久表怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0225",
@@ -21969,7 +21969,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CREATE VIEW 建逻辑视图。</p>\n<h2>参考回答</h2>\n<p>视图用 CREATE VIEW 定义，是对查询的命名，不存数据。临时视图 session 内有效，永久视图存 Catalog。</p>\n<h2>追问</h2>\n<ul>\n<li>视图和表有什么区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0226",
@@ -21982,7 +21982,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>流式 group by 是持续聚合，结果持续更新。</p>\n<h2>参考回答</h2>\n<p>流处理里 GROUP BY 是持续聚合，数据来一条更新一次结果，配窗口做有界聚合。和批处理的一次性 group by 不同。</p>\n<h2>追问</h2>\n<ul>\n<li>流式 group by 状态会膨胀吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0227",
@@ -21995,7 +21995,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>OVER 窗口做行级计算，和传统 SQL 类似。</p>\n<h2>参考回答</h2>\n<p>OVER 窗口在 Flink SQL 里做行级聚合，比如排名、累计，和传统 SQL 的窗口函数类似，但流里配时间属性。</p>\n<h2>追问</h2>\n<ul>\n<li>OVER 窗口在流里怎么触发？</li>\n</ul>"
     },
     {
       "id": "FLINK-0228",
@@ -22008,7 +22008,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 SQL 做模式匹配，类似 CEP。</p>\n<h2>参考回答</h2>\n<p>MATCH_RECOGNIZE 是 SQL 里的模式匹配，能做事件序列检测，类似 CEP。定义 pattern 和 measures 匹配事件流。</p>\n<h2>追问</h2>\n<ul>\n<li>MATCH_RECOGNIZE 和 CEP 怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0229",
@@ -22021,7 +22021,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>regular、interval、temporal join。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 的 join 有 regular join、interval join、temporal join。regular 用状态持续匹配，interval 限时间范围，temporal 关联版本表。</p>\n<h2>追问</h2>\n<ul>\n<li>三种 join 分别什么场景？</li>\n</ul>"
     },
     {
       "id": "FLINK-0230",
@@ -22034,7 +22034,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 JDBC 读写数据库表。</p>\n<h2>参考回答</h2>\n<p>JDBC Connector 在 DDL 里配 url、表名、用户名密码，就能读写关系库。可以做 lookup 和 sink，注意批量写。</p>\n<h2>追问</h2>\n<ul>\n<li>JDBC sink 怎么批量写？</li>\n</ul>"
     },
     {
       "id": "FLINK-0231",
@@ -22047,7 +22047,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>标量、聚合、表函数三种自定义函数。</p>\n<h2>参考回答</h2>\n<p>UDF 是标量函数，UDAF 是聚合函数，UDTF 是表函数，一条进多条出。分别用对应接口实现，注册后在 SQL 用。</p>\n<h2>追问</h2>\n<ul>\n<li>UDTF 适合什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0232",
@@ -22060,7 +22060,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Tumble、Hop、Session、Cumulate 等。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 窗口有 Tumble 滚动、Hop 滑动、Session 会话、Cumulate 累计窗口。按时间聚合粒度选，配时间属性用。</p>\n<h2>追问</h2>\n<ul>\n<li>Cumulate 窗口是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0233",
@@ -22073,7 +22073,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 TUMBLE 函数加窗口大小。</p>\n<h2>参考回答</h2>\n<p>滚动窗口用 TUMBLE(时间列, INTERVAL) 定义，比如 TUMBLE(ts, INTERVAL '5' MINUTE)。窗口不重叠，按固定大小切分。</p>\n<h2>追问</h2>\n<ul>\n<li>滚动窗口怎么配时间属性？</li>\n</ul>"
     },
     {
       "id": "FLINK-0234",

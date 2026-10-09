@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+OVER 窗口做行级计算，和传统 SQL 类似。
+
+# 参考回答
+
+OVER 窗口在 Flink SQL 里做行级聚合，比如排名、累计，和传统 SQL 的窗口函数类似，但流里配时间属性。
+
+# 追问
+
+- OVER 窗口在流里怎么触发？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+CREATE VIEW 建逻辑视图。
+
+# 参考回答
+
+视图用 CREATE VIEW 定义，是对查询的命名，不存数据。临时视图 session 内有效，永久视图存 Catalog。
+
+# 追问
+
+- 视图和表有什么区别？
