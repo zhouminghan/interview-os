@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+消息带时间戳，可按时间定位。
+
+# 参考回答
+
+Kafka 消息带时间戳，可以用 offset 或时间戳定位消费位置。按时间查询或过滤用 timestamp 找 offset，再从该位置消费。
+
+# 追问
+
+- 按时间定位怎么用？

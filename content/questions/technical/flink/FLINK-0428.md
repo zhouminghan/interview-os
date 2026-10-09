@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+支持 gzip、snappy、lz4、zstd。
+
+# 参考回答
+
+Kafka 支持 gzip、snappy、lz4、zstd 压缩。gzip 压缩率高但慢，snappy、lz4 快，zstd 平衡好。按 CPU 和带宽权衡，一般 lz4 或 zstd。
+
+# 追问
+
+- 压缩有什么代价？

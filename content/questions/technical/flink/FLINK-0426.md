@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+组内消费者分摊分区，加入离开触发重平衡。
+
+# 参考回答
+
+一个 Consumer Group 里的消费者分摊 Topic 的分区，一个分区只被一个消费者消费。消费者加入或离开会触发 rebalance 重新分配分区，期间短暂停止消费。
+
+# 追问
+
+- rebalance 有什么影响？

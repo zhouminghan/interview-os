@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Topic 是消息分类，Partition 是并行单位，Consumer Group 是消费组。
+
+# 参考回答
+
+Topic 是消息的逻辑分类，一个 Topic 分多个 Partition 实现并行，Consumer Group 里的消费者分摊 Partition。分区数决定并行度，要跟下游并行度对齐。
+
+# 追问
+
+- 分区数怎么定？

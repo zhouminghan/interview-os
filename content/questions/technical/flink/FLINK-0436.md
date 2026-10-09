@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+拦截器在收发消息前后做处理。
+
+# 参考回答
+
+Kafka 拦截器在消息发送前或消费前做拦截，比如加埋点、过滤、统计。实现 ProducerInterceptor 或 ConsumerInterceptor，配置到客户端。
+
+# 追问
+
+- 拦截器适合做什么？

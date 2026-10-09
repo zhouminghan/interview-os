@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+幂等生产者靠 PID 和序号去重。
+
+# 参考回答
+
+幂等生产者给每条消息分配 PID 和序号，broker 端去重，防止重试导致重复。开启 enable.idempotence。适合需要不重复的场景。
+
+# 追问
+
+- 幂等能跨分区吗？

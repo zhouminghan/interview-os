@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+事务加幂等实现 exactly-once。
+
+# 参考回答
+
+Kafka exactly-once 靠幂等生产者加事务，跨分区原子写入。Flink 配合 Kafka 用两阶段提交实现端到端 exactly-once。注意性能开销和事务超时。
+
+# 追问
+
+- 事务影响性能吗？
