@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+cache 和 persist 按级别缓存到内存或磁盘。
+
+# 参考回答
+
+持久化用 cache 或 persist，级别有内存、磁盘、序列化、副本这些。默认 cache 就是内存。选级权衡内存和重算成本。
+
+# 追问
+
+- 持久化级别怎么选？

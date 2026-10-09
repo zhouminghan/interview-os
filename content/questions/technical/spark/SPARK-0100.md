@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+select、filter、groupBy、agg、join、withColumn 等。
+
+# 参考回答
+
+常用操作有 select 选列、filter 过滤、groupBy 加 agg 聚合、join 关联、withColumn 加列、orderBy 排序、drop 删列。都是声明式，交给优化器。
+
+# 追问
+
+- 声明式操作有什么好处？

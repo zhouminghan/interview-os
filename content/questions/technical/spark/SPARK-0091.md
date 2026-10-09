@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+通过 repartition、coalesce 或建 RDD 时指定分区数。
+
+# 参考回答
+
+并行度通过分区数控制，可以创建时指定，或用 repartition、coalesce 调整。一般设成 core 数的 2 到 3 倍，repartition 会 shuffle，coalesce 能避免 shuffle 但只能减分区。
+
+# 追问
+
+- repartition 和 coalesce 的区别？

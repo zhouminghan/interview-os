@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+cache 存内存不截断血缘，checkpoint 落可靠存储截断血缘。
+
+# 参考回答
+
+cache 是放内存或本地磁盘加速，血缘还在，数据丢了重算；checkpoint 是写到 HDFS 这类可靠存储，截断血缘，恢复直接读盘。checkpoint 用于长血缘防栈溢出，cache 用于复用加速。
+
+# 追问
+
+- 什么时候必须用 checkpoint？

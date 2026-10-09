@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+内存够用 MEMORY_ONLY，不够就 MEMORY_AND_DISK。
+
+# 参考回答
+
+选级别看数据大小和内存：内存放得下就 MEMORY_ONLY 最快；放不下就 MEMORY_AND_DISK，避免 OOM 重算；内存特别紧张就用 DISK_ONLY 或序列化省内存。高频复用才值得持久化。
+
+# 追问
+
+- 序列化持久化有什么代价？

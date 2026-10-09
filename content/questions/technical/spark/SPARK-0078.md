@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+并行化集合、读外部存储、从其他 RDD 转换。
+
+# 参考回答
+
+创建方式主要有三种：用 parallelize 把本地集合并行化，从 HDFS、Hive 等外部数据源读，还有从其他 RDD 转换出来。日常最多是读数据源。
+
+# 追问
+
+- parallelize 适合什么场景？

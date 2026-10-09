@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+SparkSession 是统一入口，内部包了 SparkContext。
+
+# 参考回答
+
+SparkSession 是 Spark 2.0 后的统一入口，整合了 SQLContext 和 HiveContext，内部持有 SparkContext。日常用 SparkSession 就行，SparkContext 还是底层连接。
+
+# 追问
+
+- 怎么从 SparkSession 拿 SparkContext？

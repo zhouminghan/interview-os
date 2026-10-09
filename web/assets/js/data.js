@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:13:07+08:00",
+  "generatedAt": "2026-10-09T16:17:11+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -1080,7 +1080,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Spark 是内存计算的分布式大数据引擎，快、通用、易用。</p>\n<h2>参考回答</h2>\n<p>Spark 是分布式计算引擎，核心是内存计算，把中间结果放内存，比 MapReduce 快很多。特点是快、通用，批处理、流处理、SQL、机器学习都做，API 也友好。</p>\n<h2>追问</h2>\n<ul>\n<li>Spark 为什么比 MapReduce 快？</li>\n</ul>"
     },
     {
       "id": "SPARK-0047",
@@ -1093,7 +1093,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Spark 内存计算、DAG 复用、API 丰富，比 MR 快很多。</p>\n<h2>参考回答</h2>\n<p>相比 MapReduce，Spark 把中间结果放内存而不是反复写磁盘，DAG 能复用中间结果，还支持交互式查询。所以迭代计算和复杂流水线快得多，一般快几倍到几十倍。</p>\n<h2>追问</h2>\n<ul>\n<li>迭代计算为什么 MR 慢？</li>\n</ul>"
     },
     {
       "id": "SPARK-0048",
@@ -1106,7 +1106,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Spark Core、Spark SQL、Streaming、MLlib、GraphX。</p>\n<h2>参考回答</h2>\n<p>核心组件有 Spark Core 管 RDD 和调度，Spark SQL 做结构化查询，Spark Streaming 做流处理，MLlib 做机器学习，GraphX 做图计算。现在流处理主要用 Structured Streaming。</p>\n<h2>追问</h2>\n<ul>\n<li>Structured Streaming 和 Spark Streaming 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0049",
@@ -1119,7 +1119,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Driver 管调度和主逻辑，Executor 管计算和存数据。</p>\n<h2>参考回答</h2>\n<p>Driver 是主节点，解析程序、生成 DAG、分配任务；Executor 是工作节点，执行 task、缓存数据、返回结果。一个应用一个 Driver，多个 Executor 并行干活。</p>\n<h2>追问</h2>\n<ul>\n<li>Driver 挂了会怎样？</li>\n</ul>"
     },
     {
       "id": "SPARK-0050",
@@ -1132,7 +1132,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>local、standalone、YARN、K8s 等模式。</p>\n<h2>参考回答</h2>\n<p>部署模式有 local 本地跑、standalone 自带集群、YARN 上跑、K8s 上跑，还有 Mesos。生产上最常用 YARN 或 K8s，能统一管资源。</p>\n<h2>追问</h2>\n<ul>\n<li>YARN 和 K8s 部署怎么选？</li>\n</ul>"
     },
     {
       "id": "SPARK-0051",
@@ -1145,7 +1145,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SparkContext 是应用和集群的入口，负责连接和资源。</p>\n<h2>参考回答</h2>\n<p>SparkContext 是 Spark 应用和集群之间的连接入口，负责申请资源、创建 RDD、发任务。老版本直接用，Spark 2.0 以后被 SparkSession 包了一层。</p>\n<h2>追问</h2>\n<ul>\n<li>一个应用能建多个 SparkContext 吗？</li>\n</ul>"
     },
     {
       "id": "SPARK-0052",
@@ -1158,7 +1158,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>提交任务到 Driver 生成 DAG，切 Stage 发 Executor 执行。</p>\n<h2>参考回答</h2>\n<p>应用提交后 Driver 解析代码生成 DAG，按宽窄依赖切成 Stage，再分成 task 发到各 Executor 并行执行，中间 shuffle 落盘，最后聚合返回结果。</p>\n<h2>追问</h2>\n<ul>\n<li>从提交到执行中间经过哪些步骤？</li>\n</ul>"
     },
     {
       "id": "SPARK-0053",
@@ -1171,7 +1171,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SparkSession 是统一入口，内部包了 SparkContext。</p>\n<h2>参考回答</h2>\n<p>SparkSession 是 Spark 2.0 后的统一入口，整合了 SQLContext 和 HiveContext，内部持有 SparkContext。日常用 SparkSession 就行，SparkContext 还是底层连接。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么从 SparkSession 拿 SparkContext？</li>\n</ul>"
     },
     {
       "id": "SPARK-0054",
@@ -1184,7 +1184,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>内存分执行和存储两块，统一管理加动态调整。</p>\n<h2>参考回答</h2>\n<p>Spark 内存主要分执行内存和存储内存，执行内存用于 shuffle 和聚合，存储内存用于缓存 RDD。采用统一内存管理，两者可以动态借用，提高利用率。</p>\n<h2>追问</h2>\n<ul>\n<li>执行内存和存储内存怎么分配？</li>\n</ul>"
     },
     {
       "id": "SPARK-0055",
@@ -1197,7 +1197,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>窄依赖一个父分区对应一个子分区，宽依赖是一对多要 shuffle。</p>\n<h2>参考回答</h2>\n<p>窄依赖是子 RDD 一个分区只依赖父 RDD 一个分区，比如 map、filter，不用 shuffle；宽依赖是一个子分区依赖多个父分区，比如 groupByKey、join，要 shuffle。宽依赖就是 Stage 的边界。</p>\n<h2>追问</h2>\n<ul>\n<li>宽依赖为什么是 Stage 边界？</li>\n</ul>"
     },
     {
       "id": "SPARK-0056",
@@ -1210,7 +1210,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠血缘重算和 checkpoint 恢复。</p>\n<h2>参考回答</h2>\n<p>Spark 容错靠 RDD 的血缘，某个分区丢了就从上游重新算，不用全量重来。重要数据可以 checkpoint 落盘，断点恢复更快。宽依赖的数据还会 shuffle 落盘。</p>\n<h2>追问</h2>\n<ul>\n<li>血缘重算和 checkpoint 哪个更快？</li>\n</ul>"
     },
     {
       "id": "SPARK-0057",
@@ -1223,7 +1223,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>DAG 描述计算依赖关系，用于调度和容错。</p>\n<h2>参考回答</h2>\n<p>DAG 是有向无环图，描述 RDD 之间的依赖关系。Spark 靠它切 Stage、安排执行顺序，也靠它做容错重算。</p>\n<h2>追问</h2>\n<ul>\n<li>DAG 和 Stage 什么关系？</li>\n</ul>"
     },
     {
       "id": "SPARK-0058",
@@ -1236,7 +1236,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>DAGScheduler 切 Stage，TaskScheduler 分 task 到 Executor。</p>\n<h2>参考回答</h2>\n<p>调度分两层：DAGScheduler 把 DAG 切成 Stage，TaskScheduler 把 task 分发到 Executor，还要考虑数据本地性。任务优先级、资源也在这里协调。</p>\n<h2>追问</h2>\n<ul>\n<li>数据本地性是什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0059",
@@ -1249,7 +1249,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>遇到宽依赖就切一个新 Stage。</p>\n<h2>参考回答</h2>\n<p>Stage 划分看依赖：窄依赖在一个 Stage 内流水线执行，遇到宽依赖也就是 shuffle 就切新 Stage。所以一个 job 里 shuffle 越多 Stage 越多。</p>\n<h2>追问</h2>\n<ul>\n<li>一个 job 有多少 Stage 怎么判断？</li>\n</ul>"
     },
     {
       "id": "SPARK-0060",
@@ -1262,7 +1262,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据按 key 重分区，写盘再拉取。</p>\n<h2>参考回答</h2>\n<p>shuffle 是数据按 key 重新分区，map 端先写盘并排序，reduce 端再拉取对应数据。shuffle 是 Spark 最耗时的部分，涉及磁盘 IO 和网络传输。</p>\n<h2>追问</h2>\n<ul>\n<li>shuffle 为什么是性能瓶颈？</li>\n</ul>"
     },
     {
       "id": "SPARK-0061",
@@ -1275,7 +1275,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>小数据广播到各 Executor，避免重复传输。</p>\n<h2>参考回答</h2>\n<p>广播变量把只读的小数据集发到每个 Executor 缓存一份，join 或计算时直接本地用，避免每个 task 都传一遍。大表 join 小表时用 broadcast 能省大量 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>广播变量适合多大数据？</li>\n</ul>"
     },
     {
       "id": "SPARK-0062",
@@ -1288,7 +1288,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>累加器跨 task 做只加操作的全局计数。</p>\n<h2>参考回答</h2>\n<p>累加器用于在分布式 task 里做全局聚合，比如计数、求和。它只支持加操作，保证容错，常用于统计坏数据条数这类。</p>\n<h2>追问</h2>\n<ul>\n<li>累加器为什么只支持加法？</li>\n</ul>"
     },
     {
       "id": "SPARK-0063",
@@ -1301,7 +1301,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Java 或 Kryo 序列化对象，Kryo 更快更省。</p>\n<h2>参考回答</h2>\n<p>Spark 传输数据要序列化，默认 Java 序列化慢且大，推荐 Kryo，快几倍、占用小。shuffle、缓存、广播都会用到序列化，所以选对很重要。</p>\n<h2>追问</h2>\n<ul>\n<li>Kryo 为什么比 Java 序列化快？</li>\n</ul>"
     },
     {
       "id": "SPARK-0064",
@@ -1314,7 +1314,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少 shuffle、合理并行度、用 DataFrame、调内存。</p>\n<h2>参考回答</h2>\n<p>性能优化围绕少 shuffle、少数据量、少序列化：小表 broadcast、减少 groupBy、合理并行度、用 DataFrame 代替 RDD、内存够用。先看 UI 定位慢的 stage。</p>\n<h2>追问</h2>\n<ul>\n<li>优化第一步做什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0065",
@@ -1327,7 +1327,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>统一内存管理，执行和存储动态借用。</p>\n<h2>参考回答</h2>\n<p>内存管理分静态和统一两种，现在默认统一管理，执行内存和存储内存可以互相借用。还有堆外内存。关键参数是 spark.memory.fraction 这些，控制执行存储比例。</p>\n<h2>追问</h2>\n<ul>\n<li>静态和统一管理的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0066",
@@ -1340,7 +1340,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>checkpoint 把数据落可靠存储，截断血缘。</p>\n<h2>参考回答</h2>\n<p>checkpoint 是把 RDD 数据写到可靠存储比如 HDFS，截断长血缘，容错恢复时不用从头算。跟 cache 不同，它不占内存，但要重新读盘。</p>\n<h2>追问</h2>\n<ul>\n<li>checkpoint 和 cache 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0067",
@@ -1353,7 +1353,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>cache 和 persist 按级别缓存到内存或磁盘。</p>\n<h2>参考回答</h2>\n<p>持久化用 cache 或 persist，级别有内存、磁盘、序列化、副本这些。默认 cache 就是内存。选级权衡内存和重算成本。</p>\n<h2>追问</h2>\n<ul>\n<li>持久化级别怎么选？</li>\n</ul>"
     },
     {
       "id": "SPARK-0068",
@@ -1366,7 +1366,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看 Spark UI、日志和外部监控。</p>\n<h2>参考回答</h2>\n<p>监控主要看 Spark UI，能看到 job、stage、task、executor 状态和资源。还可以看 driver 和 executor 日志，或用 Prometheus 等外部监控。</p>\n<h2>追问</h2>\n<ul>\n<li>Spark UI 里重点看什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0069",
@@ -1379,7 +1379,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Driver 和 Executor 各自记日志，用 log4j 管理。</p>\n<h2>参考回答</h2>\n<p>Spark 日志分 Driver 和 Executor，用 log4j 配置。排查时 Driver 日志看调度和主逻辑，Executor 日志看 task 执行和报错。</p>\n<h2>追问</h2>\n<ul>\n<li>排查 task 失败看哪个日志？</li>\n</ul>"
     },
     {
       "id": "SPARK-0070",
@@ -1392,7 +1392,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>慢任务在别的节点重跑一份，谁先完用谁。</p>\n<h2>参考回答</h2>\n<p>推测执行就是发现某个 task 特别慢，就在另一个节点再跑一份，谁先完成用谁的结果。解决个别节点慢或数据倾斜导致的拖尾问题。</p>\n<h2>追问</h2>\n<ul>\n<li>推测执行有什么副作用？</li>\n</ul>"
     },
     {
       "id": "SPARK-0071",
@@ -1405,7 +1405,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按负载自动增减 Executor，节省资源。</p>\n<h2>参考回答</h2>\n<p>动态资源分配根据任务负载自动增减 Executor，空闲就释放，忙就申请。适合资源池共享的场景，配置开启后能省不少资源。</p>\n<h2>追问</h2>\n<ul>\n<li>动态资源分配适合什么场景？</li>\n</ul>"
     },
     {
       "id": "SPARK-0072",
@@ -1418,7 +1418,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>并行度决定 task 数，一般设成 core 数的 2 到 3 倍。</p>\n<h2>参考回答</h2>\n<p>并行度就是 task 数量，决定任务多细。一般设成总 core 数的 2 到 3 倍，太小浪费资源，太大调度开销大。可以按数据量和 shuffle 分区数调。</p>\n<h2>追问</h2>\n<ul>\n<li>并行度过大或过小有什么问题？</li>\n</ul>"
     },
     {
       "id": "SPARK-0073",
@@ -1431,7 +1431,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 CMS 或 G1，调堆内存和 GC 参数减少停顿。</p>\n<h2>参考回答</h2>\n<p>Spark 的 GC 影响稳定性，大内存一般用 G1，控制堆大小和 Eden 比例，减少 full GC。对象复用和序列化也能减轻 GC 压力。</p>\n<h2>追问</h2>\n<ul>\n<li>full GC 频繁说明什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0074",
@@ -1444,7 +1444,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Netty 做节点间通信。</p>\n<h2>参考回答</h2>\n<p>Spark 用 Netty 做 RPC，负责 Driver 和 Executor 之间的消息传递、任务下发和状态上报。RPC 稳定性直接影响任务调度。</p>\n<h2>追问</h2>\n<ul>\n<li>RPC 超时会怎样？</li>\n</ul>"
     },
     {
       "id": "SPARK-0075",
@@ -1457,7 +1457,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>认证、授权、加密、审计几块。</p>\n<h2>参考回答</h2>\n<p>Spark 安全包括 Kerberos 认证、权限授权、数据传输加密、审计日志。生产上配合 YARN 或 K8s 的安全体系，再加 Spark 自己的 ACL。</p>\n<h2>追问</h2>\n<ul>\n<li>Kerberos 认证是什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0076",
@@ -1470,7 +1470,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>RDD 是弹性分布式数据集，不可变、可分片、可重算。</p>\n<h2>参考回答</h2>\n<p>RDD 是 Spark 最核心的抽象，一个不可变、分区的数据集合。特点是弹性能容错、分布式存多节点、不可变保证线程安全、靠血缘重算。是 Spark 早期的主编程模型。</p>\n<h2>追问</h2>\n<ul>\n<li>RDD 的弹性体现在哪？</li>\n</ul>"
     },
     {
       "id": "SPARK-0077",
@@ -1483,7 +1483,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分区列表、compute 函数、依赖列表、分区器、优先位置。</p>\n<h2>参考回答</h2>\n<p>五大特性：一是分区列表，二是每个分区的计算函数，三是依赖关系，四是可选的 key-value 分区器，五是数据本地性的优先位置。这五条定义了 RDD 怎么存、怎么算、怎么恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>优先位置有什么用？</li>\n</ul>"
     },
     {
       "id": "SPARK-0078",
@@ -1496,7 +1496,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>并行化集合、读外部存储、从其他 RDD 转换。</p>\n<h2>参考回答</h2>\n<p>创建方式主要有三种：用 parallelize 把本地集合并行化，从 HDFS、Hive 等外部数据源读，还有从其他 RDD 转换出来。日常最多是读数据源。</p>\n<h2>追问</h2>\n<ul>\n<li>parallelize 适合什么场景？</li>\n</ul>"
     },
     {
       "id": "SPARK-0079",
@@ -1509,7 +1509,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>转换是惰性不执行，行动触发真正计算。</p>\n<h2>参考回答</h2>\n<p>转换操作返回新 RDD，是惰性的，不真正算，比如 map、filter；行动操作触发整个计算，返回结果或写出去，比如 count、collect。只有遇到行动才真正执行。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么转换要设计成惰性？</li>\n</ul>"
     },
     {
       "id": "SPARK-0080",
@@ -1522,7 +1522,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>转换只记录不执行，行动才触发计算。</p>\n<h2>参考回答</h2>\n<p>惰性求值就是 map、filter 这些转换只构建血缘关系，不立刻算，等遇到 count、collect 这类行动才真正执行。好处是能做全局优化，减少不必要计算。</p>\n<h2>追问</h2>\n<ul>\n<li>惰性求值带来什么优化？</li>\n</ul>"
     },
     {
       "id": "SPARK-0081",
@@ -1535,7 +1535,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>内存、磁盘、序列化、副本的各种组合。</p>\n<h2>参考回答</h2>\n<p>持久化级别有 MEMORY_ONLY、MEMORY_AND_DISK、DISK_ONLY，加上 SER 序列化变体、再带 _2 副本的变体。默认 cache 是 MEMORY_ONLY。按内存和重算成本选。</p>\n<h2>追问</h2>\n<ul>\n<li>MEMORY_AND_DISK 和 MEMORY_ONLY 怎么选？</li>\n</ul>"
     },
     {
       "id": "SPARK-0082",
@@ -1548,7 +1548,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>内存够用 MEMORY_ONLY，不够就 MEMORY_AND_DISK。</p>\n<h2>参考回答</h2>\n<p>选级别看数据大小和内存：内存放得下就 MEMORY_ONLY 最快；放不下就 MEMORY_AND_DISK，避免 OOM 重算；内存特别紧张就用 DISK_ONLY 或序列化省内存。高频复用才值得持久化。</p>\n<h2>追问</h2>\n<ul>\n<li>序列化持久化有什么代价？</li>\n</ul>"
     },
     {
       "id": "SPARK-0083",
@@ -1561,7 +1561,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>窄依赖一对一分区，宽依赖一对多要 shuffle。</p>\n<h2>参考回答</h2>\n<p>依赖分窄依赖和宽依赖。窄依赖子分区只依赖一个父分区，比如 map；宽依赖一个子分区依赖多个父分区，比如 groupByKey。宽依赖决定 Stage 边界和 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>哪些算子产生宽依赖？</li>\n</ul>"
     },
     {
       "id": "SPARK-0084",
@@ -1574,7 +1574,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>血统记录 RDD 的转换链条，用于容错重算。</p>\n<h2>参考回答</h2>\n<p>血统就是 RDD 从父 RDD 一步步转换来的关系链。某个分区数据丢了，就根据血统从最近的父 RDD 重新算，不用从头再来。这是 Spark 容错的基础。</p>\n<h2>追问</h2>\n<ul>\n<li>血统太长会怎样？</li>\n</ul>"
     },
     {
       "id": "SPARK-0085",
@@ -1587,7 +1587,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>默认 HashPartitioner 或 RangePartitioner。</p>\n<h2>参考回答</h2>\n<p>分区策略决定数据怎么分到各分区。默认是 HashPartitioner 按 key hash 分，还有 RangePartitioner 按范围分。分区分得好不好直接影响并行度和倾斜。</p>\n<h2>追问</h2>\n<ul>\n<li>hash 分区为什么会倾斜？</li>\n</ul>"
     },
     {
       "id": "SPARK-0086",
@@ -1600,7 +1600,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>继承 Partitioner，自定义 numPartitions 和 getPartition。</p>\n<h2>参考回答</h2>\n<p>自定义分区器就是继承 Partitioner，实现分区数和 getPartition 方法，按自己的规则把 key 分到指定分区。用于解决默认 hash 不均导致的数据倾斜。</p>\n<h2>追问</h2>\n<ul>\n<li>自定义分区器解决什么问题？</li>\n</ul>"
     },
     {
       "id": "SPARK-0087",
@@ -1613,7 +1613,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>cache 或 persist 把数据缓存到内存磁盘复用。</p>\n<h2>参考回答</h2>\n<p>缓存就是把计算好的 RDD 存到内存或磁盘，后面再用就不用重算。用 cache 或 persist 指定级别。适合被多次复用的数据，比如 join 两边的表。</p>\n<h2>追问</h2>\n<ul>\n<li>什么数据值得缓存？</li>\n</ul>"
     },
     {
       "id": "SPARK-0088",
@@ -1626,7 +1626,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>cache 存内存不截断血缘，checkpoint 落可靠存储截断血缘。</p>\n<h2>参考回答</h2>\n<p>cache 是放内存或本地磁盘加速，血缘还在，数据丢了重算；checkpoint 是写到 HDFS 这类可靠存储，截断血缘，恢复直接读盘。checkpoint 用于长血缘防栈溢出，cache 用于复用加速。</p>\n<h2>追问</h2>\n<ul>\n<li>什么时候必须用 checkpoint？</li>\n</ul>"
     },
     {
       "id": "SPARK-0089",
@@ -1639,7 +1639,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>map 端按 key 分区写盘，reduce 端拉取聚合。</p>\n<h2>参考回答</h2>\n<p>shuffle 时 map 端把数据按 key 分桶写盘并排序，reduce 端拉取自己分区的数据做聚合。中间大量磁盘 IO 和网络传输，是性能杀手。</p>\n<h2>追问</h2>\n<ul>\n<li>shuffle 落盘为什么不可避免？</li>\n</ul>"
     },
     {
       "id": "SPARK-0090",
@@ -1652,7 +1652,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少 shuffle、用宽依赖少的算子、合理缓存和分区。</p>\n<h2>参考回答</h2>\n<p>优化 RDD 主要减少 shuffle，比如用 reduceByKey 代替 groupByKey，减少数据量用 filter 提前过滤，合理分区，复用数据加 cache。本质还是少 shuffle 少数据。</p>\n<h2>追问</h2>\n<ul>\n<li>reduceByKey 为什么比 groupByKey 好？</li>\n</ul>"
     },
     {
       "id": "SPARK-0091",
@@ -1665,7 +1665,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>通过 repartition、coalesce 或建 RDD 时指定分区数。</p>\n<h2>参考回答</h2>\n<p>并行度通过分区数控制，可以创建时指定，或用 repartition、coalesce 调整。一般设成 core 数的 2 到 3 倍，repartition 会 shuffle，coalesce 能避免 shuffle 但只能减分区。</p>\n<h2>追问</h2>\n<ul>\n<li>repartition 和 coalesce 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0092",
@@ -1678,7 +1678,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠血缘重算，配合 checkpoint 加速恢复。</p>\n<h2>参考回答</h2>\n<p>RDD 容错靠血缘，分区丢了从上游重算。因为 RDD 不可变，重算结果一致。长链加 checkpoint 截断，恢复更快。宽依赖的数据 shuffle 落盘也减少重算量。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 RDD 不可变有利于容错？</li>\n</ul>"
     },
     {
       "id": "SPARK-0093",
@@ -1691,7 +1691,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>窄依赖无 shuffle，宽依赖要 shuffle。</p>\n<h2>参考回答</h2>\n<p>窄依赖每个子分区只依赖一个父分区，像 map、filter；宽依赖一个子分区依赖多个父分区，像 join、groupByKey，必须 shuffle。宽依赖是 Stage 划分的依据。</p>\n<h2>追问</h2>\n<ul>\n<li>宽依赖和 Stage 的关系？</li>\n</ul>"
     },
     {
       "id": "SPARK-0094",
@@ -1704,7 +1704,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>map、filter、flatMap、join、groupByKey、reduceByKey 等。</p>\n<h2>参考回答</h2>\n<p>常见转换有 map 映射、filter 过滤、flatMap 展开、join 关联、groupByKey 分组、reduceByKey 分组聚合、distinct 去重。转换都是惰性的。</p>\n<h2>追问</h2>\n<ul>\n<li>map 和 flatMap 的区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0095",
@@ -1717,7 +1717,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>collect、count、take、reduce、save 等。</p>\n<h2>参考回答</h2>\n<p>行动操作触发计算，常见 collect 拉回、count 计数、take 取前几个、reduce 聚合、foreach 遍历、saveAsTextFile 保存。行动会真正执行整个 DAG。</p>\n<h2>追问</h2>\n<ul>\n<li>collect 有什么风险？</li>\n</ul>"
     },
     {
       "id": "SPARK-0096",
@@ -1730,7 +1730,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>DataFrame 有 schema、列式、带优化器，RDD 是原始对象集合。</p>\n<h2>参考回答</h2>\n<p>DataFrame 是带 schema 的结构化数据，像一张表，有 Catalyst 优化器，性能好；RDD 是原始对象集合，没有结构，操作灵活但性能差、易出错。现在都优先用 DataFrame。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 DataFrame 比 RDD 快？</li>\n</ul>"
     },
     {
       "id": "SPARK-0097",
@@ -1743,7 +1743,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Dataset 结合 RDD 类型安全和 DataFrame 优化。</p>\n<h2>参考回答</h2>\n<p>Dataset 是强类型的结构化数据，既有 RDD 的编译期类型安全，又有 DataFrame 的 Catalyst 优化。主要在 Scala、Java 里用，Python 没有 Dataset 只有 DataFrame。</p>\n<h2>追问</h2>\n<ul>\n<li>Python 为什么没有 Dataset？</li>\n</ul>"
     },
     {
       "id": "SPARK-0098",
@@ -1756,7 +1756,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>DataFrame 是 Dataset[Row] 的特例。</p>\n<h2>参考回答</h2>\n<p>DataFrame 本质是 Dataset[Row]，即没有编译期类型的 Dataset。Dataset 是带泛型的强类型版本。所以两者共享同一套优化器和 API。</p>\n<h2>追问</h2>\n<ul>\n<li>Dataset[Row] 里的 Row 是什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0099",
@@ -1769,7 +1769,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>读数据源、从 RDD 转换、或用 range 构造。</p>\n<h2>参考回答</h2>\n<p>创建 DataFrame 主要靠 spark.read 读 CSV、Parquet、JSON、JDBC 这些，也可以从 RDD 加 schema 转换，或 spark.range 构造。读文件是最常用的。</p>\n<h2>追问</h2>\n<ul>\n<li>读 Parquet 和 CSV 有什么区别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0100",
@@ -1782,7 +1782,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>select、filter、groupBy、agg、join、withColumn 等。</p>\n<h2>参考回答</h2>\n<p>常用操作有 select 选列、filter 过滤、groupBy 加 agg 聚合、join 关联、withColumn 加列、orderBy 排序、drop 删列。都是声明式，交给优化器。</p>\n<h2>追问</h2>\n<ul>\n<li>声明式操作有什么好处？</li>\n</ul>"
     },
     {
       "id": "SPARK-0101",
@@ -1795,7 +1795,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>schema 是 DataFrame 的列名和类型定义。</p>\n<h2>参考回答</h2>\n<p>schema 就是表结构，定义每列名字、类型、是否可空。有了 schema，Spark 能提前校验、做列裁剪和优化。可以用自动推断或手动指定。</p>\n<h2>追问</h2>\n<ul>\n<li>自动推断 schema 有什么坑？</li>\n</ul>"
     },
     {
       "id": "SPARK-0102",
@@ -1808,7 +1808,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 StructType 加 StructField 手动定义。</p>\n<h2>参考回答</h2>\n<p>定义 schema 用 StructType 包多个 StructField，每个字段写名字、类型、可空性。手动定义比自动推断更可靠，尤其数据里 null 多或类型复杂时。</p>\n<h2>追问</h2>\n<ul>\n<li>StructField 里都有什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0103",
@@ -1821,7 +1821,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>select、withColumn、drop、rename 等操作列。</p>\n<h2>参考回答</h2>\n<p>列操作主要是 select 选列、withColumn 新建或替换列、drop 删列、withColumnRenamed 改名。列表达式用 col 或 $ 引用。</p>\n<h2>追问</h2>\n<ul>\n<li>withColumn 和 select 的差别？</li>\n</ul>"
     },
     {
       "id": "SPARK-0104",
@@ -1834,7 +1834,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 filter 或 where 加条件过滤行。</p>\n<h2>参考回答</h2>\n<p>过滤用 filter 或 where，传条件表达式，支持 and、or、in、like 这些。过滤越早做越好，能减少后面要处理的数据量。</p>\n<h2>追问</h2>\n<ul>\n<li>filter 和 where 有区别吗？</li>\n</ul>"
     },
     {
       "id": "SPARK-0105",
@@ -1847,7 +1847,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>groupBy 加 agg 做分组统计。</p>\n<h2>参考回答</h2>\n<p>分组聚合用 groupBy 指定分组列，再 agg 里写 sum、count、avg、max 这些聚合函数。多列分组就 groupBy 多列。结果是一个新 DataFrame。</p>\n<h2>追问</h2>\n<ul>\n<li>groupBy 会产生 shuffle 吗？</li>\n</ul>"
     },
     {
       "id": "SPARK-0106",

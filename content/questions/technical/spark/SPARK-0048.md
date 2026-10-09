@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Spark Core、Spark SQL、Streaming、MLlib、GraphX。
+
+# 参考回答
+
+核心组件有 Spark Core 管 RDD 和调度，Spark SQL 做结构化查询，Spark Streaming 做流处理，MLlib 做机器学习，GraphX 做图计算。现在流处理主要用 Structured Streaming。
+
+# 追问
+
+- Structured Streaming 和 Spark Streaming 的区别？

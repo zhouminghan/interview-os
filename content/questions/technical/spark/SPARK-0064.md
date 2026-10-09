@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+减少 shuffle、合理并行度、用 DataFrame、调内存。
+
+# 参考回答
+
+性能优化围绕少 shuffle、少数据量、少序列化：小表 broadcast、减少 groupBy、合理并行度、用 DataFrame 代替 RDD、内存够用。先看 UI 定位慢的 stage。
+
+# 追问
+
+- 优化第一步做什么？

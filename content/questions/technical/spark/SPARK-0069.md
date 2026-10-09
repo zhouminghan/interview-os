@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Driver 和 Executor 各自记日志，用 log4j 管理。
+
+# 参考回答
+
+Spark 日志分 Driver 和 Executor，用 log4j 配置。排查时 Driver 日志看调度和主逻辑，Executor 日志看 task 执行和报错。
+
+# 追问
+
+- 排查 task 失败看哪个日志？

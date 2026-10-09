@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Dataset 结合 RDD 类型安全和 DataFrame 优化。
+
+# 参考回答
+
+Dataset 是强类型的结构化数据，既有 RDD 的编译期类型安全，又有 DataFrame 的 Catalyst 优化。主要在 Scala、Java 里用，Python 没有 Dataset 只有 DataFrame。
+
+# 追问
+
+- Python 为什么没有 Dataset？

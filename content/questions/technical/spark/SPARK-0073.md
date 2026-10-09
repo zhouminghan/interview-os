@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 CMS 或 G1，调堆内存和 GC 参数减少停顿。
+
+# 参考回答
+
+Spark 的 GC 影响稳定性，大内存一般用 G1，控制堆大小和 Eden 比例，减少 full GC。对象复用和序列化也能减轻 GC 压力。
+
+# 追问
+
+- full GC 频繁说明什么？

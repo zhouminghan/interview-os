@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 Java 或 Kryo 序列化对象，Kryo 更快更省。
+
+# 参考回答
+
+Spark 传输数据要序列化，默认 Java 序列化慢且大，推荐 Kryo，快几倍、占用小。shuffle、缓存、广播都会用到序列化，所以选对很重要。
+
+# 追问
+
+- Kryo 为什么比 Java 序列化快？

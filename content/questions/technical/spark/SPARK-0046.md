@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Spark 是内存计算的分布式大数据引擎，快、通用、易用。
+
+# 参考回答
+
+Spark 是分布式计算引擎，核心是内存计算，把中间结果放内存，比 MapReduce 快很多。特点是快、通用，批处理、流处理、SQL、机器学习都做，API 也友好。
+
+# 追问
+
+- Spark 为什么比 MapReduce 快？

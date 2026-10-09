@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+checkpoint 把数据落可靠存储，截断血缘。
+
+# 参考回答
+
+checkpoint 是把 RDD 数据写到可靠存储比如 HDFS，截断长血缘，容错恢复时不用从头算。跟 cache 不同，它不占内存，但要重新读盘。
+
+# 追问
+
+- checkpoint 和 cache 的区别？

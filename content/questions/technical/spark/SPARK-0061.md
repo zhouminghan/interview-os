@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+小数据广播到各 Executor，避免重复传输。
+
+# 参考回答
+
+广播变量把只读的小数据集发到每个 Executor 缓存一份，join 或计算时直接本地用，避免每个 task 都传一遍。大表 join 小表时用 broadcast 能省大量 shuffle。
+
+# 追问
+
+- 广播变量适合多大数据？

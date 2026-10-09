@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+DataFrame 是 Dataset[Row] 的特例。
+
+# 参考回答
+
+DataFrame 本质是 Dataset[Row]，即没有编译期类型的 Dataset。Dataset 是带泛型的强类型版本。所以两者共享同一套优化器和 API。
+
+# 追问
+
+- Dataset[Row] 里的 Row 是什么？

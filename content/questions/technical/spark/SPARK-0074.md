@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 Netty 做节点间通信。
+
+# 参考回答
+
+Spark 用 Netty 做 RPC，负责 Driver 和 Executor 之间的消息传递、任务下发和状态上报。RPC 稳定性直接影响任务调度。
+
+# 追问
+
+- RPC 超时会怎样？

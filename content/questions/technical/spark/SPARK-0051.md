@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+SparkContext 是应用和集群的入口，负责连接和资源。
+
+# 参考回答
+
+SparkContext 是 Spark 应用和集群之间的连接入口，负责申请资源、创建 RDD、发任务。老版本直接用，Spark 2.0 以后被 SparkSession 包了一层。
+
+# 追问
+
+- 一个应用能建多个 SparkContext 吗？
