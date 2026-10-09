@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+模拟故障，验证 checkpoint 恢复。
+
+# 参考回答
+
+容错测试模拟任务失败和重启，验证从 checkpoint 能正确恢复，数据不丢不重。用 MiniCluster 注入故障测试。
+
+# 追问
+
+- 容错测试重点验证什么？

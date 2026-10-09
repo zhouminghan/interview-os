@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+一个加时间间隔，一个算时间差。
+
+# 参考回答
+
+TIMESTAMPADD 在时间上加一个间隔，TIMESTAMPDIFF 算两个时间的差。单位有秒、分钟、小时、天这些。
+
+# 追问
+
+- 这两个函数常在哪用？

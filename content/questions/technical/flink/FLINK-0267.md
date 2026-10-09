@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+多流合并取最小 watermark。
+
+# 参考回答
+
+多流合并时 watermark 取所有输入流的最小值，保证不会因为某条流慢而提前触发导致丢数据。join 和 union 都这样。
+
+# 追问
+
+- 为什么取最小而不是最大？

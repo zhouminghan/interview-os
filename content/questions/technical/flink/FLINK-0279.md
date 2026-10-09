@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+靠 checkpoint 快照恢复状态。
+
+# 参考回答
+
+故障恢复从 checkpoint 加载状态快照，保证恢复到一致的状态。配合 source offset 重放和 sink 幂等。
+
+# 追问
+
+- 状态一致性的核心机制？

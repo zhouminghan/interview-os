@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+状态是聚合和 join 的中间结果，引擎自动管理。
+
+# 参考回答
+
+Flink SQL 里的状态是聚合、join 保存的中间结果，引擎自动管理，不用手动管。状态大小要监控，配 TTL 清理。
+
+# 追问
+
+- SQL 状态和 DataStream 状态一样吗？

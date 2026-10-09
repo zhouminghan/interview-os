@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+查 checkpoint、sink、offset。
+
+# 参考回答
+
+数据丢失查 checkpoint 是否开、sink 是否可靠、offset 是否正确。没开 checkpoint 或 sink 丢了数据就会少。
+
+# 追问
+
+- 怎么发现数据丢了？

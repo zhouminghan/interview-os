@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 DATE_FORMAT、TO_TIMESTAMP 等函数。
+
+# 参考回答
+
+时间格式转换用 DATE_FORMAT 格式化输出，TO_TIMESTAMP 解析字符串成时间。注意格式串要匹配。
+
+# 追问
+
+- 字符串转时间用哪个函数？

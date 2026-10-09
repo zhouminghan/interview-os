@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:41:57+08:00",
+  "generatedAt": "2026-10-09T16:43:53+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -22476,7 +22476,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>在 DDL 里配事件时间列和 watermark。</p>\n<h2>参考回答</h2>\n<p>定义事件时间在 DDL 里指定时间列，配 WATERMARK FOR 时间列 AS 时间减延迟。这样窗口和 join 就用事件时间。</p>\n<h2>追问</h2>\n<ul>\n<li>事件时间列怎么指定？</li>\n</ul>"
     },
     {
       "id": "FLINK-0265",
@@ -22489,7 +22489,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>周期性和间断，按最大事件时间或乱序延迟。</p>\n<h2>参考回答</h2>\n<p>watermark 策略有周期性的和间断的，常见是最大事件时间减乱序延迟。也支持单调递增。按数据乱序程度选策略。</p>\n<h2>追问</h2>\n<ul>\n<li>乱序延迟怎么设？</li>\n</ul>"
     },
     {
       "id": "FLINK-0266",
@@ -22502,7 +22502,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>watermark 容忍、allowed lateness、侧输出。</p>\n<h2>参考回答</h2>\n<p>乱序数据用 watermark 容忍延迟，allowed lateness 允许窗口晚关，超出的走侧输出。三层机制按需组合。</p>\n<h2>追问</h2>\n<ul>\n<li>三层机制怎么配合？</li>\n</ul>"
     },
     {
       "id": "FLINK-0267",
@@ -22515,7 +22515,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多流合并取最小 watermark。</p>\n<h2>参考回答</h2>\n<p>多流合并时 watermark 取所有输入流的最小值，保证不会因为某条流慢而提前触发导致丢数据。join 和 union 都这样。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么取最小而不是最大？</li>\n</ul>"
     },
     {
       "id": "FLINK-0268",
@@ -22528,7 +22528,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 TIMESTAMPDIFF 算时间差。</p>\n<h2>参考回答</h2>\n<p>时间间隔用 TIMESTAMPDIFF(单位, 开始, 结束) 计算两个时间的差。SQL 里做时间差和区间判断常用。</p>\n<h2>追问</h2>\n<ul>\n<li>时间差怎么转成秒？</li>\n</ul>"
     },
     {
       "id": "FLINK-0269",
@@ -22541,7 +22541,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配置全局时区，用 TIMESTAMP 和本地时区。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 时区可配置，用 TIMESTAMP 类型和时区参数统一。跨时区数据要注意统一到同一时区再算。</p>\n<h2>追问</h2>\n<ul>\n<li>跨时区数据怎么处理？</li>\n</ul>"
     },
     {
       "id": "FLINK-0270",
@@ -22554,7 +22554,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>一个加时间间隔，一个算时间差。</p>\n<h2>参考回答</h2>\n<p>TIMESTAMPADD 在时间上加一个间隔，TIMESTAMPDIFF 算两个时间的差。单位有秒、分钟、小时、天这些。</p>\n<h2>追问</h2>\n<ul>\n<li>这两个函数常在哪用？</li>\n</ul>"
     },
     {
       "id": "FLINK-0271",
@@ -22567,7 +22567,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>带版本的表，记录数据随时间的变化。</p>\n<h2>参考回答</h2>\n<p>时态表是带时间版本的表，记录每个版本的数据，能查历史某时间点的状态。用于 temporal join 关联历史维度。</p>\n<h2>追问</h2>\n<ul>\n<li>时态表和普通维表区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0272",
@@ -22580,7 +22580,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>一般不在 SQL 里直接互转，各自用。</p>\n<h2>参考回答</h2>\n<p>事件时间和处理时间一般不直接转换，它们语义不同。事件时间从字段来，处理时间用 proctime。混用容易出错。</p>\n<h2>追问</h2>\n<ul>\n<li>什么情况会混用？</li>\n</ul>"
     },
     {
       "id": "FLINK-0273",
@@ -22593,7 +22593,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 DATE_FORMAT、TO_TIMESTAMP 等函数。</p>\n<h2>参考回答</h2>\n<p>时间格式转换用 DATE_FORMAT 格式化输出，TO_TIMESTAMP 解析字符串成时间。注意格式串要匹配。</p>\n<h2>追问</h2>\n<ul>\n<li>字符串转时间用哪个函数？</li>\n</ul>"
     },
     {
       "id": "FLINK-0274",
@@ -22606,7 +22606,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>状态是聚合和 join 的中间结果，引擎自动管理。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 里的状态是聚合、join 保存的中间结果，引擎自动管理，不用手动管。状态大小要监控，配 TTL 清理。</p>\n<h2>追问</h2>\n<ul>\n<li>SQL 状态和 DataStream 状态一样吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0275",
@@ -22619,7 +22619,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配 checkpoint 和 sink 决定一致性。</p>\n<h2>参考回答</h2>\n<p>一致性语义靠 checkpoint 加 sink 类型，exactly-once 需要两阶段提交的 sink。默认 checkpoint 保证 at-least-once 到 exactly-once。</p>\n<h2>追问</h2>\n<ul>\n<li>exactly-once 依赖什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0276",
@@ -22632,7 +22632,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>checkpoint 自动，savepoint 手动可迁移。</p>\n<h2>参考回答</h2>\n<p>checkpoint 是自动周期性的，用于故障恢复；savepoint 手动触发，用于升级迁移，不会自动删。SQL 作业也是这个区别。</p>\n<h2>追问</h2>\n<ul>\n<li>升级 SQL 作业用哪个？</li>\n</ul>"
     },
     {
       "id": "FLINK-0277",
@@ -22645,7 +22645,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配置 RocksDB 或内存状态后端。</p>\n<h2>参考回答</h2>\n<p>SQL 作业状态后端在配置里设，生产大状态用 RocksDB，能落盘支持大状态。配置 checkpoint 和状态后端一起。</p>\n<h2>追问</h2>\n<ul>\n<li>RocksDB 状态后端好在哪？</li>\n</ul>"
     },
     {
       "id": "FLINK-0278",
@@ -22658,7 +22658,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>给状态设过期时间，自动清理。</p>\n<h2>参考回答</h2>\n<p>状态 TTL 给聚合或 join 的状态设过期时间，超时自动清理，防止无限增长。SQL 里通过配置启用。</p>\n<h2>追问</h2>\n<ul>\n<li>状态不清理有什么后果？</li>\n</ul>"
     },
     {
       "id": "FLINK-0279",
@@ -22671,7 +22671,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠 checkpoint 快照恢复状态。</p>\n<h2>参考回答</h2>\n<p>故障恢复从 checkpoint 加载状态快照，保证恢复到一致的状态。配合 source offset 重放和 sink 幂等。</p>\n<h2>追问</h2>\n<ul>\n<li>状态一致性的核心机制？</li>\n</ul>"
     },
     {
       "id": "FLINK-0280",
@@ -22684,7 +22684,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>外部直接查运行中的状态。</p>\n<h2>参考回答</h2>\n<p>Queryable State 允许外部查询 Flink 运行中的状态，SQL 里用得少，主要在 DataStream 用。实时查某个 key 的聚合值。</p>\n<h2>追问</h2>\n<ul>\n<li>Queryable State 有什么风险？</li>\n</ul>"
     },
     {
       "id": "FLINK-0281",
@@ -22697,7 +22697,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>无界 key、无 TTL、状态没清理。</p>\n<h2>参考回答</h2>\n<p>状态增长过快多是 key 无界、没有 TTL、聚合维度太多。解法是加 TTL、限制 key、清理过期状态、减少分组基数。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么判断状态增长是否正常？</li>\n</ul>"
     },
     {
       "id": "FLINK-0282",
@@ -22710,7 +22710,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Redis Connector 或 lookup。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 和 Redis 集成可以用 Redis Connector 做 lookup 或 sink，存实时结果供查询。常见实时大屏查 Redis。</p>\n<h2>追问</h2>\n<ul>\n<li>Redis 在实时链路里做什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0283",
@@ -22723,7 +22723,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>监听数据库变更，实时同步。</p>\n<h2>参考回答</h2>\n<p>Flink CDC 连接器监听 MySQL、PG 等数据库的 binlog 和 WAL，把增删改变成流，实时同步到下游。是实时数据同步的核心。</p>\n<h2>追问</h2>\n<ul>\n<li>CDC 和批量同步区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0284",
@@ -22736,7 +22736,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实现 DynamicTableSource 和 Sink。</p>\n<h2>参考回答</h2>\n<p>自定义连接器要实现 DynamicTableSource 和 DynamicTableSink 接口，定义读取、写入和 schema。门槛较高，特殊数据源才写。</p>\n<h2>追问</h2>\n<ul>\n<li>什么时候需要自定义连接器？</li>\n</ul>"
     },
     {
       "id": "FLINK-0285",
@@ -22749,7 +22749,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>窗口内分组再排名取前 K。</p>\n<h2>参考回答</h2>\n<p>滑动窗口 Top-K 是窗口内按 key 聚合，再用排名函数取前 K。SQL 里窗口聚合加 row_number 过滤排名。</p>\n<h2>追问</h2>\n<ul>\n<li>Top-K 用哪个排名函数？</li>\n</ul>"
     },
     {
       "id": "FLINK-0286",
@@ -22762,7 +22762,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 test harness 测 UDF 和 SQL。</p>\n<h2>参考回答</h2>\n<p>SQL 作业测试用 MiniCluster 或 test harness，测 UDF、SQL 查询逻辑。集成测试用 MiniCluster 跑完整作业验证输出。</p>\n<h2>追问</h2>\n<ul>\n<li>单元测试和集成测试边界？</li>\n</ul>"
     },
     {
       "id": "FLINK-0287",
@@ -22775,7 +22775,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看执行计划、日志、SQL Client。</p>\n<h2>参考回答</h2>\n<p>调试用 EXPLAIN 看执行计划，看日志，用 SQL Client 交互式验证。本地 MiniCluster 复现问题。</p>\n<h2>追问</h2>\n<ul>\n<li>调试 SQL 最先做什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0288",
@@ -22788,7 +22788,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>查 checkpoint、sink、offset。</p>\n<h2>参考回答</h2>\n<p>数据丢失查 checkpoint 是否开、sink 是否可靠、offset 是否正确。没开 checkpoint 或 sink 丢了数据就会少。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么发现数据丢了？</li>\n</ul>"
     },
     {
       "id": "FLINK-0289",
@@ -22801,7 +22801,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 MiniCluster 本地跑完整作业。</p>\n<h2>参考回答</h2>\n<p>MiniCluster 是本地模拟的 Flink 集群，能在单机跑完整作业做集成测试。验证端到端逻辑不用起真集群。</p>\n<h2>追问</h2>\n<ul>\n<li>MiniCluster 和真集群差在哪？</li>\n</ul>"
     },
     {
       "id": "FLINK-0290",
@@ -22814,7 +22814,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用侧输出或过滤分流错误数据。</p>\n<h2>参考回答</h2>\n<p>错误数据处理用侧输出把坏数据分流，或加过滤和清洗逻辑。记录错误原因，方便回溯和修复。</p>\n<h2>追问</h2>\n<ul>\n<li>错误数据要保留吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0291",
@@ -22827,7 +22827,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>模拟故障，验证 checkpoint 恢复。</p>\n<h2>参考回答</h2>\n<p>容错测试模拟任务失败和重启，验证从 checkpoint 能正确恢复，数据不丢不重。用 MiniCluster 注入故障测试。</p>\n<h2>追问</h2>\n<ul>\n<li>容错测试重点验证什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0292",
@@ -22840,7 +22840,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>重启策略、忽略或跳过错数据。</p>\n<h2>参考回答</h2>\n<p>错误处理策略有重启策略、跳过错误数据、侧输出。按错误类型配，可恢复的靠重启，数据错误靠侧输出或过滤。</p>\n<h2>追问</h2>\n<ul>\n<li>重启策略有哪些？</li>\n</ul>"
     },
     {
       "id": "FLINK-0293",
@@ -22853,7 +22853,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看日志、异常堆栈、错误码定位。</p>\n<h2>参考回答</h2>\n<p>处理异常看日志和异常堆栈，按错误码和消息定位。区分数据问题、资源问题、代码问题，分别处理。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么区分问题类型？</li>\n</ul>"
     },
     {
       "id": "FLINK-0294",

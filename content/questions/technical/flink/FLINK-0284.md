@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+实现 DynamicTableSource 和 Sink。
+
+# 参考回答
+
+自定义连接器要实现 DynamicTableSource 和 DynamicTableSink 接口，定义读取、写入和 schema。门槛较高，特殊数据源才写。
+
+# 追问
+
+- 什么时候需要自定义连接器？

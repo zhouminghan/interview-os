@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+watermark 容忍、allowed lateness、侧输出。
+
+# 参考回答
+
+乱序数据用 watermark 容忍延迟，allowed lateness 允许窗口晚关，超出的走侧输出。三层机制按需组合。
+
+# 追问
+
+- 三层机制怎么配合？

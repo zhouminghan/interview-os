@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 MiniCluster 本地跑完整作业。
+
+# 参考回答
+
+MiniCluster 是本地模拟的 Flink 集群，能在单机跑完整作业做集成测试。验证端到端逻辑不用起真集群。
+
+# 追问
+
+- MiniCluster 和真集群差在哪？

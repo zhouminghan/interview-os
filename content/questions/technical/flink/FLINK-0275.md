@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+配 checkpoint 和 sink 决定一致性。
+
+# 参考回答
+
+一致性语义靠 checkpoint 加 sink 类型，exactly-once 需要两阶段提交的 sink。默认 checkpoint 保证 at-least-once 到 exactly-once。
+
+# 追问
+
+- exactly-once 依赖什么？

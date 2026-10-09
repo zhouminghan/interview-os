@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+配置 RocksDB 或内存状态后端。
+
+# 参考回答
+
+SQL 作业状态后端在配置里设，生产大状态用 RocksDB，能落盘支持大状态。配置 checkpoint 和状态后端一起。
+
+# 追问
+
+- RocksDB 状态后端好在哪？

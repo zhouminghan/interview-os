@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 Redis Connector 或 lookup。
+
+# 参考回答
+
+Flink SQL 和 Redis 集成可以用 Redis Connector 做 lookup 或 sink，存实时结果供查询。常见实时大屏查 Redis。
+
+# 追问
+
+- Redis 在实时链路里做什么？

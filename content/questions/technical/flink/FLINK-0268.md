@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 TIMESTAMPDIFF 算时间差。
+
+# 参考回答
+
+时间间隔用 TIMESTAMPDIFF(单位, 开始, 结束) 计算两个时间的差。SQL 里做时间差和区间判断常用。
+
+# 追问
+
+- 时间差怎么转成秒？

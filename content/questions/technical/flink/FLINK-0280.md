@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+外部直接查运行中的状态。
+
+# 参考回答
+
+Queryable State 允许外部查询 Flink 运行中的状态，SQL 里用得少，主要在 DataStream 用。实时查某个 key 的聚合值。
+
+# 追问
+
+- Queryable State 有什么风险？

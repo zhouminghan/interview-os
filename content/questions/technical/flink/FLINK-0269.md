@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+配置全局时区，用 TIMESTAMP 和本地时区。
+
+# 参考回答
+
+Flink SQL 时区可配置，用 TIMESTAMP 类型和时区参数统一。跨时区数据要注意统一到同一时区再算。
+
+# 追问
+
+- 跨时区数据怎么处理？
