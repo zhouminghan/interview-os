@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+查系统表 system.parts。
+
+# 参考回答
+
+查表大小用 system.parts 系统表，sum 各数据块大小。system.tables 有总行数和大小。用于容量管理和监控。
+
+# 追问
+
+- 表大小怎么查？

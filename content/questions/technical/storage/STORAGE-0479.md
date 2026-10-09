@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+支持 SELECT 插入、指定格式。
+
+# 参考回答
+
+INSERT 支持 INSERT SELECT 从查询插入，FORMAT 指定输入格式，还支持异步插入。大批量插入常用 INSERT SELECT。
+
+# 追问
+
+- 异步插入是什么？

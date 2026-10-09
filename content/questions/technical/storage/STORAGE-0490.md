@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+uniq 是近似去重，count distinct 精确。
+
+# 参考回答
+
+uniq 用近似算法快速去重，有误差；count(distinct) 精确但慢。大基数场景用 uniq 或 uniqCombined，性能好很多。能接受误差就用近似。
+
+# 追问
+
+- uniq 误差多少？

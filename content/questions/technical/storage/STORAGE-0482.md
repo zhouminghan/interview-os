@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+ENGINE 用 ReplacingMergeTree。
+
+# 参考回答
+
+建表 ENGINE=ReplacingMergeTree，指定主键，合并时相同主键只保留最新版本。适合重复数据去重，但合并是异步的，查询要配合。
+
+# 追问
+
+- ReplacingMergeTree 注意什么？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+arrayJoin 把数组展开成多行。
+
+# 参考回答
+
+arrayJoin 把数组字段的每个元素展开成一行，类似 explode。用于行转列，把多值字段拆开分析。
+
+# 追问
+
+- arrayJoin 怎么用？

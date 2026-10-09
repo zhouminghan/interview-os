@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:43:00+08:00",
+  "generatedAt": "2026-10-09T17:45:36+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -11745,7 +11745,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>建表时加 TTL 子句。</p>\n<h2>参考回答</h2>\n<p>建表时用 TTL 子句设数据过期，比如 TTL 时间列加 INTERVAL 30 DAY。到期自动删除。也可设列级 TTL。</p>\n<h2>追问</h2>\n<ul>\n<li>TTL 语法？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0477",
@@ -11758,7 +11758,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ALTER TABLE ADD COLUMN。</p>\n<h2>参考回答</h2>\n<p>添加列用 ALTER TABLE 表 ADD COLUMN 列名 类型。ClickHouse 加列很快，只改元数据。可以加默认值。</p>\n<h2>追问</h2>\n<ul>\n<li>加列快吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0478",
@@ -11771,7 +11771,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>改列类型和删除列有限制。</p>\n<h2>参考回答</h2>\n<p>ClickHouse ALTER 加列、删列、改默认值可以，但改列类型有严格限制，删除列要谨慎。部分操作要重写数据，大表慢。</p>\n<h2>追问</h2>\n<ul>\n<li>改列类型注意什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0479",
@@ -11784,7 +11784,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>支持 SELECT 插入、指定格式。</p>\n<h2>参考回答</h2>\n<p>INSERT 支持 INSERT SELECT 从查询插入，FORMAT 指定输入格式，还支持异步插入。大批量插入常用 INSERT SELECT。</p>\n<h2>追问</h2>\n<ul>\n<li>异步插入是什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0480",
@@ -11797,7 +11797,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>INSERT SELECT 或 clickhouse-client 批量导入。</p>\n<h2>参考回答</h2>\n<p>批量导入用 INSERT SELECT 从文件或外部表导入，或用 clickhouse-client 的批量命令。大批量一次导入，避免频繁小写入。</p>\n<h2>追问</h2>\n<ul>\n<li>批量导入多大合适？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0481",
@@ -11810,7 +11810,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>支持但代价高，是重写操作。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 支持 UPDATE 和 DELETE，但底层是重写数据块，代价高。适合批量低频更新。高频更新不适合，用别的引擎。</p>\n<h2>追问</h2>\n<ul>\n<li>更新为什么代价高？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0482",
@@ -11823,7 +11823,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ENGINE 用 ReplacingMergeTree。</p>\n<h2>参考回答</h2>\n<p>建表 ENGINE=ReplacingMergeTree，指定主键，合并时相同主键只保留最新版本。适合重复数据去重，但合并是异步的，查询要配合。</p>\n<h2>追问</h2>\n<ul>\n<li>ReplacingMergeTree 注意什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0483",
@@ -11836,7 +11836,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ENGINE 用 Distributed。</p>\n<h2>参考回答</h2>\n<p>分布式表 ENGINE=Distributed(集群, 库, 表, 分片键)，不存数据，做查询分发。底层各分片有本地表。先建本地表再建分布式表。</p>\n<h2>追问</h2>\n<ul>\n<li>分布式表怎么建？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0484",
@@ -11849,7 +11849,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>LIMIT BY 按分组每组取前 N 条。</p>\n<h2>参考回答</h2>\n<p>LIMIT BY 字段 加 LIMIT N，按字段分组每组取前 N 条。类似分组 TopN，比窗口函数简单。常配合 ORDER BY 用。</p>\n<h2>追问</h2>\n<ul>\n<li>LIMIT BY 和窗口 TopN 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0485",
@@ -11862,7 +11862,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>arrayJoin 把数组展开成多行。</p>\n<h2>参考回答</h2>\n<p>arrayJoin 把数组字段的每个元素展开成一行，类似 explode。用于行转列，把多值字段拆开分析。</p>\n<h2>追问</h2>\n<ul>\n<li>arrayJoin 怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0486",
@@ -11875,7 +11875,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>row_number over 分区排序。</p>\n<h2>参考回答</h2>\n<p>排名用 row_number() over(partition by 字段 order by 排序)，过滤排名取前 N。rank、dense_rank 也支持。做分组 TopN。</p>\n<h2>追问</h2>\n<ul>\n<li>三种排名函数区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0487",
@@ -11888,7 +11888,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>次日留存是首日用户次日还活跃的比例。</p>\n<h2>参考回答</h2>\n<p>留存率用首日活跃用户 join 次日活跃用户，留存人数除以首日人数。SQL 里按用户和日期关联计算，用窗口或 join。</p>\n<h2>追问</h2>\n<ul>\n<li>留存怎么算？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0488",
@@ -11901,7 +11901,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>格式化、加减、取年月日。</p>\n<h2>参考回答</h2>\n<p>常用日期函数有 toDate 转日期、toYYYYMM 取年月、dateDiff 求差、addDays 加天数、formatDateTime 格式化。时间聚合常用。</p>\n<h2>追问</h2>\n<ul>\n<li>日期怎么聚合？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0489",
@@ -11914,7 +11914,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>JSONExtract 系列函数解析。</p>\n<h2>参考回答</h2>\n<p>用 JSONExtract 系列函数按 key 提取 JSON 值，或 visitParamExtract 简化。JSON 类型也支持。大量解析慢，尽量拆列。</p>\n<h2>追问</h2>\n<ul>\n<li>JSON 解析慢吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0490",
@@ -11927,7 +11927,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>uniq 是近似去重，count distinct 精确。</p>\n<h2>参考回答</h2>\n<p>uniq 用近似算法快速去重，有误差；count(distinct) 精确但慢。大基数场景用 uniq 或 uniqCombined，性能好很多。能接受误差就用近似。</p>\n<h2>追问</h2>\n<ul>\n<li>uniq 误差多少？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0491",
@@ -11940,7 +11940,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>arrayJoin 做行转列，聚合做列转行。</p>\n<h2>参考回答</h2>\n<p>行转列用 arrayJoin 把数组展开，列转行用条件聚合 sumIf 或数组函数。窗口和数组函数组合实现行列转换。</p>\n<h2>追问</h2>\n<ul>\n<li>行列转换怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0492",
@@ -11953,7 +11953,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>JOIN 是弱项，大表 join 慢。</p>\n<h2>参考回答</h2>\n<p>ClickHouse JOIN 偏弱，适合小表 join 大表，大表 join 大表性能差。没有好的 join 优化器。多表 join 建议先预聚合或换引擎。</p>\n<h2>追问</h2>\n<ul>\n<li>JOIN 怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0493",
@@ -11966,7 +11966,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>dictGet 函数查字典。</p>\n<h2>参考回答</h2>\n<p>字典用 dictGet(字典名, 字段, 键) 查值，做维表映射。先建字典再在查询里用 dictGet 关联。比 join 快。</p>\n<h2>追问</h2>\n<ul>\n<li>dictGet 怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0494",
@@ -11979,7 +11979,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CREATE MATERIALIZED VIEW 指定目标表。</p>\n<h2>参考回答</h2>\n<p>物化视图用 CREATE MATERIALIZED VIEW 加 TO 目标表，定义聚合查询。写入源表时触发更新。查询走物化视图结果。</p>\n<h2>追问</h2>\n<ul>\n<li>物化视图怎么刷新？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0495",
@@ -11992,7 +11992,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>支持子查询，但优化有限。</p>\n<h2>参考回答</h2>\n<p>ClickHouse 支持标量子查询、IN 子查询，但子查询优化不如传统库。复杂相关子查询性能一般，建议改写 join。</p>\n<h2>追问</h2>\n<ul>\n<li>子查询怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0496",
@@ -12005,7 +12005,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>url 表函数读远程文件。</p>\n<h2>参考回答</h2>\n<p>url 表函数直接读远程 HTTP 文件，指定格式和列。适合读外部数据源，不用先落地。查询里 SELECT FROM url(...)。</p>\n<h2>追问</h2>\n<ul>\n<li>url 函数怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0497",
@@ -12018,7 +12018,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CUBE 做多维度组合聚合。</p>\n<h2>参考回答</h2>\n<p>GROUP BY CUBE 对所有维度组合做聚合，加上 ROLLUP 做层级汇总。适合多维分析，但组合多结果大。</p>\n<h2>追问</h2>\n<ul>\n<li>CUBE 和 ROLLUP 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0498",
@@ -12031,7 +12031,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>查系统表 system.parts。</p>\n<h2>参考回答</h2>\n<p>查表大小用 system.parts 系统表，sum 各数据块大小。system.tables 有总行数和大小。用于容量管理和监控。</p>\n<h2>追问</h2>\n<ul>\n<li>表大小怎么查？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0499",
@@ -12044,7 +12044,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>like 通配符，match 正则。</p>\n<h2>参考回答</h2>\n<p>like 用 % 和 _ 做简单通配匹配，快；match 用正则表达式，功能强但慢。简单匹配用 like，复杂用 match。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0500",
@@ -12057,7 +12057,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>match、extract、replace 系列。</p>\n<h2>参考回答</h2>\n<p>正则函数有 match 判断、extract 提取、replaceRegexpOne 替换。用于复杂字符串处理。正则性能一般，能简单函数就简单函数。</p>\n<h2>追问</h2>\n<ul>\n<li>正则函数有哪些？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0501",
@@ -12070,7 +12070,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>sumIf、countIf 做条件聚合。</p>\n<h2>参考回答</h2>\n<p>条件聚合用 sumIf、countIf、avgIf 这些，按条件只聚合满足的数据。比如 countIf(条件) 统计满足条件的条数。省去 case when。</p>\n<h2>追问</h2>\n<ul>\n<li>条件聚合怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0502",
@@ -12083,7 +12083,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>toStartOfHour/toStartOfDay 分组。</p>\n<h2>参考回答</h2>\n<p>按时间聚合用 toStartOfHour、toStartOfDay 把时间截断到小时或天，再 group by。适合时序指标聚合。</p>\n<h2>追问</h2>\n<ul>\n<li>时间截断函数？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0503",
@@ -12096,7 +12096,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SAMPLE 子句做抽样。</p>\n<h2>参考回答</h2>\n<p>用 SAMPLE 子句按比例抽样，快速查看数据。分桶表抽样更均匀。适合大数据量下做探索和近似计算。</p>\n<h2>追问</h2>\n<ul>\n<li>SAMPLE 怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0504",
@@ -12109,7 +12109,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>IN 会转成哈希集合加速。</p>\n<h2>参考回答</h2>\n<p>ClickHouse IN 子句会把值转成哈希集合，查找快。大量值时用 IN 或 join。IN 值太多注意内存。</p>\n<h2>追问</h2>\n<ul>\n<li>IN 和 join 怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0505",
@@ -12122,7 +12122,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>字段定义 Array 类型。</p>\n<h2>参考回答</h2>\n<p>字段用 Array(类型) 存多值，写入数组字面量，查询用数组函数。适合标签、多值属性。配 arrayJoin 展开。</p>\n<h2>追问</h2>\n<ul>\n<li>Array 怎么查询？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0506",

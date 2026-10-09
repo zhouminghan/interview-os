@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+CUBE 做多维度组合聚合。
+
+# 参考回答
+
+GROUP BY CUBE 对所有维度组合做聚合，加上 ROLLUP 做层级汇总。适合多维分析，但组合多结果大。
+
+# 追问
+
+- CUBE 和 ROLLUP 区别？

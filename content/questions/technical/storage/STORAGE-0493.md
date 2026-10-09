@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+dictGet 函数查字典。
+
+# 参考回答
+
+字典用 dictGet(字典名, 字段, 键) 查值，做维表映射。先建字典再在查询里用 dictGet 关联。比 join 快。
+
+# 追问
+
+- dictGet 怎么用？

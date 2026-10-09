@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+like 通配符，match 正则。
+
+# 参考回答
+
+like 用 % 和 _ 做简单通配匹配，快；match 用正则表达式，功能强但慢。简单匹配用 like，复杂用 match。
+
+# 追问
+
+- 怎么选？

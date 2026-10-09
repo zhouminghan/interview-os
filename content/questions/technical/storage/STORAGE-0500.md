@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+match、extract、replace 系列。
+
+# 参考回答
+
+正则函数有 match 判断、extract 提取、replaceRegexpOne 替换。用于复杂字符串处理。正则性能一般，能简单函数就简单函数。
+
+# 追问
+
+- 正则函数有哪些？

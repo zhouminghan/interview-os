@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+LIMIT BY 按分组每组取前 N 条。
+
+# 参考回答
+
+LIMIT BY 字段 加 LIMIT N，按字段分组每组取前 N 条。类似分组 TopN，比窗口函数简单。常配合 ORDER BY 用。
+
+# 追问
+
+- LIMIT BY 和窗口 TopN 区别？

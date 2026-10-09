@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+JSONExtract 系列函数解析。
+
+# 参考回答
+
+用 JSONExtract 系列函数按 key 提取 JSON 值，或 visitParamExtract 简化。JSON 类型也支持。大量解析慢，尽量拆列。
+
+# 追问
+
+- JSON 解析慢吗？

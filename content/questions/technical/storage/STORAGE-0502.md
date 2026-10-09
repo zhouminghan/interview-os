@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+toStartOfHour/toStartOfDay 分组。
+
+# 参考回答
+
+按时间聚合用 toStartOfHour、toStartOfDay 把时间截断到小时或天，再 group by。适合时序指标聚合。
+
+# 追问
+
+- 时间截断函数？

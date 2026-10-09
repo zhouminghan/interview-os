@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+ENGINE 用 Distributed。
+
+# 参考回答
+
+分布式表 ENGINE=Distributed(集群, 库, 表, 分片键)，不存数据，做查询分发。底层各分片有本地表。先建本地表再建分布式表。
+
+# 追问
+
+- 分布式表怎么建？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+格式化、加减、取年月日。
+
+# 参考回答
+
+常用日期函数有 toDate 转日期、toYYYYMM 取年月、dateDiff 求差、addDays 加天数、formatDateTime 格式化。时间聚合常用。
+
+# 追问
+
+- 日期怎么聚合？
