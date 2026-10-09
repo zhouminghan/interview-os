@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:00:54+08:00",
+  "generatedAt": "2026-10-09T17:02:46+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -23256,7 +23256,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>动态表是持续更新的表，代表流的查询结果。</p>\n<h2>参考回答</h2>\n<p>动态表把数据流看成不断更新的表，SQL 查询结果是另一个动态表，输出时转回流或写到外部。流和表互相转换，这是 Flink SQL 的核心思想。</p>\n<h2>追问</h2>\n<ul>\n<li>流和表怎么转换？</li>\n</ul>"
     },
     {
       "id": "FLINK-0325",
@@ -23269,7 +23269,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>流式聚合靠状态累加，数据来一条更新一次结果。</p>\n<h2>参考回答</h2>\n<p>流式聚合用状态保存每个 key 的累加值，来一条数据更新一次。优化靠 miniBatch 减少状态访问、LocalGlobal 预聚合、状态 TTL 清理。</p>\n<h2>追问</h2>\n<ul>\n<li>流式聚合状态会一直涨吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0326",
@@ -23282,7 +23282,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用主键去重、窗口去重或状态加 TTL。</p>\n<h2>参考回答</h2>\n<p>无界流去重用主键模型按 key 去重，或用窗口内 distinct、ROW_NUMBER 去重。纯无界去重要状态存所有见过的 key，要配 TTL 或 Bloom Filter 控制状态。</p>\n<h2>追问</h2>\n<ul>\n<li>无界去重状态怎么控制？</li>\n</ul>"
     },
     {
       "id": "FLINK-0327",
@@ -23295,7 +23295,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>连续查询对持续到来的数据不断更新结果。</p>\n<h2>参考回答</h2>\n<p>连续查询就是流式 SQL 查询，数据持续进来，结果持续更新。靠状态和动态表实现，窗口、聚合、join 都是连续查询。它不会像批查询那样一次性结束。</p>\n<h2>追问</h2>\n<ul>\n<li>连续查询和批查询的本质区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0328",
@@ -23308,7 +23308,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>流式天然是增量计算，状态只更新变化部分。</p>\n<h2>参考回答</h2>\n<p>增量计算就是只算新来的数据，状态里维护累加结果，不用重算历史。流式聚合、join 天然是增量的。这也是流处理比批处理更高效的原因之一。</p>\n<h2>追问</h2>\n<ul>\n<li>增量计算为什么快？</li>\n</ul>"
     },
     {
       "id": "FLINK-0329",
@@ -23321,7 +23321,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>lookup join 查外部维表，temporal join 关联版本表。</p>\n<h2>参考回答</h2>\n<p>维表关联分 lookup join 和 temporal join。lookup 实时查外部维表，靠缓存减少查询；temporal 关联版本表取历史快照。优化是缓存维表、控制维表大小。</p>\n<h2>追问</h2>\n<ul>\n<li>维表太大怎么办？</li>\n</ul>"
     },
     {
       "id": "FLINK-0330",
@@ -23334,7 +23334,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 row_number 窗口函数排名取前 N。</p>\n<h2>参考回答</h2>\n<p>TopN 用 row_number over 分区排序，过滤排名小于等于 N。优化靠窗口大小控制状态、用排序键避免全排序。全局 TopN 比分组 TopN 状态更大。</p>\n<h2>追问</h2>\n<ul>\n<li>TopN 状态大吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0331",
@@ -23347,7 +23347,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>规则优化改写计划，成本优化选物理执行方式。</p>\n<h2>参考回答</h2>\n<p>规则优化按固定规则改写逻辑计划，比如谓词下推、列裁剪；成本优化基于统计信息估算代价，选最优的 join 顺序和策略。两者结合生成执行计划。</p>\n<h2>追问</h2>\n<ul>\n<li>统计信息不准会怎样？</li>\n</ul>"
     },
     {
       "id": "FLINK-0332",
@@ -23360,7 +23360,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用主键模型、窗口去重或近似去重。</p>\n<h2>参考回答</h2>\n<p>高性能去重优先用主键模型按 key 覆盖，或用窗口内 ROW_NUMBER 去重。大基数去重用 Bloom Filter 或近似算法控制状态。精确去重代价高，能近似就近似。</p>\n<h2>追问</h2>\n<ul>\n<li>精确去重和近似去重怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0333",
@@ -23373,7 +23373,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看指标、执行计划、反压定位瓶颈。</p>\n<h2>参考回答</h2>\n<p>排查性能看吞吐、延迟、反压、CPU、状态大小这些指标，结合执行计划找瓶颈算子。是倾斜、状态大、还是外部调用慢，逐个排除。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么区分瓶颈类型？</li>\n</ul>"
     },
     {
       "id": "FLINK-0334",
@@ -23386,7 +23386,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从反压算子往下游找瓶颈。</p>\n<h2>参考回答</h2>\n<p>反压说明下游处理跟不上。看反压状态找到最下游的慢算子，分析是计算重、外部调用慢还是倾斜。加并行度、优化算子或处理倾斜。</p>\n<h2>追问</h2>\n<ul>\n<li>反压会丢数据吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0335",
@@ -23399,7 +23399,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>提高处理能力或降低输入速率。</p>\n<h2>参考回答</h2>\n<p>数据堆积说明消费跟不上，处理能力不足。解法是加并行度、优化慢算子、处理倾斜，或者源头限流。看消费延迟持续增长就说明在堆积。</p>\n<h2>追问</h2>\n<ul>\n<li>堆积和反压什么关系？</li>\n</ul>"
     },
     {
       "id": "FLINK-0336",
@@ -23412,7 +23412,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>状态过大、堆太小、数据倾斜是常见原因。</p>\n<h2>参考回答</h2>\n<p>OOM 常见是状态过大、堆内存配小、数据倾斜、大对象。解决用 RocksDB 存状态、调大内存、处理倾斜、加状态 TTL。看是 TaskManager 还是 JobManager OOM。</p>\n<h2>追问</h2>\n<ul>\n<li>TaskManager OOM 怎么排查？</li>\n</ul>"
     },
     {
       "id": "FLINK-0337",
@@ -23425,7 +23425,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>本地、Standalone、YARN、K8s 等模式。</p>\n<h2>参考回答</h2>\n<p>部署模式有本地调试、Standalone 集群、YARN、Kubernetes。生产常用 YARN 或 K8s，统一资源管理。K8s 弹性更好，YARN 传统大数据平台更常见。</p>\n<h2>追问</h2>\n<ul>\n<li>YARN 和 K8s 怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0338",
@@ -23438,7 +23438,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Flink Operator 部署，按负载扩缩容。</p>\n<h2>参考回答</h2>\n<p>K8s 上用 Flink Operator 部署，定义 FlinkDeployment，自动管理生命周期。扩缩容靠改并行度或加 TaskManager，可配自动扩缩按指标调整。</p>\n<h2>追问</h2>\n<ul>\n<li>Operator 能做什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0339",
@@ -23451,7 +23451,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>提交、生成执行图、调度、运行、结束或取消。</p>\n<h2>参考回答</h2>\n<p>任务提交后 Dispatcher 接收，生成 JobGraph，JobManager 转 ExecutionGraph 调度到 TaskManager 执行。生命周期就是提交、运行、失败重启、完成或取消。</p>\n<h2>追问</h2>\n<ul>\n<li>JobGraph 和 ExecutionGraph 区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0340",
@@ -23464,7 +23464,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配置 slot 数、核数、堆和托管内存。</p>\n<h2>参考回答</h2>\n<p>资源需求配置 TaskManager 数量、slot 数、每 slot 的 CPU 和内存，还有堆内存和托管内存。按状态大小和计算量估算，压测调整。</p>\n<h2>追问</h2>\n<ul>\n<li>内存怎么估算？</li>\n</ul>"
     },
     {
       "id": "FLINK-0341",
@@ -23477,7 +23477,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>吞吐、延迟、checkpoint、反压、资源指标。</p>\n<h2>参考回答</h2>\n<p>监控指标有吞吐量、延迟、checkpoint 成功率、反压、CPU 内存、状态大小。用 Metrics Reporter 接到 Prometheus 等，配 Grafana 和告警。</p>\n<h2>追问</h2>\n<ul>\n<li>核心监控哪几个？</li>\n</ul>"
     },
     {
       "id": "FLINK-0342",
@@ -23490,7 +23490,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 savepoint 迁移，双跑对比灰度。</p>\n<h2>参考回答</h2>\n<p>灰度发布用 savepoint 从旧版本迁移状态到新版本，先小流量或双跑对比结果，确认一致再全量切。版本管理靠 savepoint 和作业版本号。</p>\n<h2>追问</h2>\n<ul>\n<li>双跑怎么对比？</li>\n</ul>"
     },
     {
       "id": "FLINK-0343",
@@ -23503,7 +23503,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>本地小数据调试，savepoint 迁移上线。</p>\n<h2>参考回答</h2>\n<p>调试先在本地或测试环境用小数据跑，验证逻辑和结果。上线打 savepoint 迁移状态，灰度验证后全量。配好监控和告警再上生产。</p>\n<h2>追问</h2>\n<ul>\n<li>上线前要验证什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0344",
@@ -23516,7 +23516,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少状态加载和资源申请时间。</p>\n<h2>参考回答</h2>\n<p>启动慢主要是状态加载和资源申请。用增量 checkpoint、本地恢复减少状态读取，减少大状态初始化。初始化开销大的逻辑移到运行后。</p>\n<h2>追问</h2>\n<ul>\n<li>本地恢复是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0345",
@@ -23529,7 +23529,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多 JobManager 加 ZooKeeper 选主。</p>\n<h2>参考回答</h2>\n<p>高可用配多个 JobManager，用 ZooKeeper 做选主和元数据存储，主挂了自动切。checkpoint 存可靠存储，重启从 checkpoint 恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>JobManager 挂了任务会丢吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0346",
@@ -23542,7 +23542,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 savepoint 迁移，注意状态兼容。</p>\n<h2>参考回答</h2>\n<p>升级用 savepoint 迁移状态，注意状态 schema 和算子逻辑兼容。不兼容要做状态迁移或从新起点重跑。升级前读版本说明。</p>\n<h2>追问</h2>\n<ul>\n<li>状态不兼容怎么处理？</li>\n</ul>"
     },
     {
       "id": "FLINK-0347",
@@ -23555,7 +23555,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SQL Client 提交的作业能在 Web UI 看到。</p>\n<h2>参考回答</h2>\n<p>SQL Client 提交的作业会出现在 Flink Web UI，能看到作业状态、执行图、指标。两个配合用，SQL Client 写查询，Web UI 监控运行。</p>\n<h2>追问</h2>\n<ul>\n<li>Web UI 能看什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0348",
@@ -23568,7 +23568,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 CREATE FUNCTION 注册 UDF。</p>\n<h2>参考回答</h2>\n<p>SQL Client 里用 CREATE FUNCTION 注册 UDF，指定函数名和实现类。UDF 的 jar 包要放在 classpath 里。注册后就能在 SQL 里调用。</p>\n<h2>追问</h2>\n<ul>\n<li>UDF 的 jar 放哪？</li>\n</ul>"
     },
     {
       "id": "FLINK-0349",
@@ -23581,7 +23581,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>一个会话保持状态和临时表。</p>\n<h2>参考回答</h2>\n<p>SQL Client 会话是交互式执行环境，会话内注册的临时表和函数在会话期间有效。可以切 catalog、切库，会话结束临时对象失效。</p>\n<h2>追问</h2>\n<ul>\n<li>会话和作业什么关系？</li>\n</ul>"
     },
     {
       "id": "FLINK-0350",
@@ -23594,7 +23594,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>作业失败按重启策略自动重启。</p>\n<h2>参考回答</h2>\n<p>任务异常或失败会按重启策略自动重启，策略有固定延迟、失败率等。配合 checkpoint 从上次位置恢复。超过重启上限就彻底失败。</p>\n<h2>追问</h2>\n<ul>\n<li>重启策略怎么配？</li>\n</ul>"
     },
     {
       "id": "FLINK-0351",
@@ -23607,7 +23607,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>一致性错误常见重复或丢失，靠 source 重放和 sink 幂等。</p>\n<h2>参考回答</h2>\n<p>端到端一致性错误要么重复要么丢失。处理靠 source 可重放、checkpoint 存 offset、sink 幂等或两阶段提交。对账发现不一致就回放重算。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么发现一致性错误？</li>\n</ul>"
     },
     {
       "id": "FLINK-0352",
@@ -23620,7 +23620,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠 checkpoint 和重启策略自动恢复。</p>\n<h2>参考回答</h2>\n<p>自动恢复靠 checkpoint 保存状态和 offset，配合重启策略失败自动重启，从 checkpoint 恢复继续处理。真正自我修复还需要监控告警和外部干预。</p>\n<h2>追问</h2>\n<ul>\n<li>自动恢复能解决所有故障吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0353",
@@ -23633,7 +23633,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看日志、异常堆栈、执行图定位问题算子。</p>\n<h2>参考回答</h2>\n<p>异常定位看日志和异常堆栈，找到出错的算子，结合执行图和指标分析。是数据问题、资源问题还是代码问题，分别处理。日志要能关联到具体 task。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么快速定位出错算子？</li>\n</ul>"
     },
     {
       "id": "FLINK-0354",

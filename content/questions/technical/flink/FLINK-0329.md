@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+lookup join 查外部维表，temporal join 关联版本表。
+
+# 参考回答
+
+维表关联分 lookup join 和 temporal join。lookup 实时查外部维表，靠缓存减少查询；temporal 关联版本表取历史快照。优化是缓存维表、控制维表大小。
+
+# 追问
+
+- 维表太大怎么办？

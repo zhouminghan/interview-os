@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+状态过大、堆太小、数据倾斜是常见原因。
+
+# 参考回答
+
+OOM 常见是状态过大、堆内存配小、数据倾斜、大对象。解决用 RocksDB 存状态、调大内存、处理倾斜、加状态 TTL。看是 TaskManager 还是 JobManager OOM。
+
+# 追问
+
+- TaskManager OOM 怎么排查？

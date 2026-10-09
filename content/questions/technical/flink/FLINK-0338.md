@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 Flink Operator 部署，按负载扩缩容。
+
+# 参考回答
+
+K8s 上用 Flink Operator 部署，定义 FlinkDeployment，自动管理生命周期。扩缩容靠改并行度或加 TaskManager，可配自动扩缩按指标调整。
+
+# 追问
+
+- Operator 能做什么？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用主键去重、窗口去重或状态加 TTL。
+
+# 参考回答
+
+无界流去重用主键模型按 key 去重，或用窗口内 distinct、ROW_NUMBER 去重。纯无界去重要状态存所有见过的 key，要配 TTL 或 Bloom Filter 控制状态。
+
+# 追问
+
+- 无界去重状态怎么控制？
