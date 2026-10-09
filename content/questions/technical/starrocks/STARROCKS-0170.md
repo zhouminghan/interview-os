@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+兼容 MySQL 协议，提供 JDBC 和官方驱动。
+
+# 参考回答
+
+StarRocks 兼容 MySQL 协议，标准 MySQL 客户端和 JDBC 都能连，官方也提供自己的 JDBC 驱动。所以接入成本很低。
+
+# 追问
+
+- 兼容 MySQL 协议有什么好处？

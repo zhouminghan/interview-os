@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 Operator 在 K8s 上部署管理集群。
+
+# 参考回答
+
+StarRocks 提供 Operator 支持在 Kubernetes 部署，把 FE、BE 跑成容器，用 CRD 管理集群生命周期，做扩缩容、升级。适合云原生环境。
+
+# 追问
+
+- Operator 和 Helm 的定位区别？

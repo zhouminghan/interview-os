@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 Broker Load 从 HDFS 导入，建表映射分区。
+
+# 参考回答
+
+Hive 数据直接落在 HDFS，用 Broker Load 批量导入 StarRocks，分区、分桶重新设计。也可以先建 Hive 外表查，再逐步导入热数据。
+
+# 追问
+
+- 先外表再导入的策略？

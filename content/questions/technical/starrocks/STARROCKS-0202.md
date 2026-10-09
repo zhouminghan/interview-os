@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+标签宽表或 bitmap 存标签，支持圈选。
+
+# 参考回答
+
+用户画像用 StarRocks 存用户标签，可以用宽表或 bitmap 存标签集合，支持按标签组合圈选人群。bitmap 在人群圈选上特别高效。
+
+# 追问
+
+- bitmap 圈选为什么快？

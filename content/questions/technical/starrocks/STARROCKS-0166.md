@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+读 HDFS 数据、Hive 外表、配合 Spark 做加工。
+
+# 参考回答
+
+StarRocks 能通过 Hive 外表直接查 HDFS 上的表，也能用 Broker Load 从 HDFS 导入，还能和 Spark 配合，Spark 加工完导入 StarRocks 查询。
+
+# 追问
+
+- Hive 外表和导入的取舍？

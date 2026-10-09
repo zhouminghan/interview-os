@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+常用 TPC-H、TPC-DS、SSB、ClickBench。
+
+# 参考回答
+
+常用基准有 TPC-H、TPC-DS 测复杂分析，SSB 测星型模型多维聚合，ClickBench 测单表聚合。各有侧重点，选跟自己业务像的测。
+
+# 追问
+
+- SSB 和 TPC-H 的区别？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+复杂 ETL 别全压给 StarRocks，用 Spark 或 Flink 加工再导入。
+
+# 参考回答
+
+StarRocks 擅长查询，不擅长复杂 ETL。复杂清洗、多源 join 这类用 Spark 或 Flink 做完，再把结果导入 StarRocks 供查询。它适合做 ETL 的最后一跳或轻量转换。
+
+# 追问
+
+- 什么算轻量转换？

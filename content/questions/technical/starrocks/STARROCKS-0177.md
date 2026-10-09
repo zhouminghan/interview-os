@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+导出 ClickHouse 数据再导入，注意建模差异。
+
+# 参考回答
+
+从 ClickHouse 迁移主要是导出数据再导入 StarRocks，但建模思路不同：ClickHouse 偏宽表，StarRocks 偏多表 join，可以借机重建设计。
+
+# 追问
+
+- ClickHouse 宽表迁移怎么拆？

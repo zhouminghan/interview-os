@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 Flink Connector 流式写入 StarRocks。
+
+# 参考回答
+
+Flink Connector 支持把实时流数据直接 sink 到 StarRocks，配合主键模型 upsert，是实时数仓的标准写法。注意反压和批量提交调优。
+
+# 追问
+
+- Flink 写 StarRocks 怎么调优？
