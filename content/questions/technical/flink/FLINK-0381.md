@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Flink 实时算多维聚合，写 OLAP 引擎查询。
+
+# 参考回答
+
+多维实时 OLAP 用 Flink SQL 做多维度实时聚合，写到 Doris、StarRocks 这类 OLAP 引擎，下游做多维下钻查询。Flink 算，OLAP 查。
+
+# 追问
+
+- 为什么不在 Flink 里直接查？

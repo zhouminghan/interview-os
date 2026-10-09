@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+SQL 用 MATCH_RECOGNIZE 做模式匹配。
+
+# 参考回答
+
+SQL 层用 MATCH_RECOGNIZE 做模式匹配，等价于 CEP 的能力。复杂模式也可以转 DataStream 用 CEP API。SQL 适合声明式规则，DataStream CEP 更灵活。
+
+# 追问
+
+- MATCH_RECOGNIZE 和 CEP 怎么选？

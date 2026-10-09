@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+State Processor 离线读写 savepoint 状态。
+
+# 参考回答
+
+State Processor API 能离线读取和修改 savepoint 里的状态，做状态分析、迁移、修复。SQL 作业状态也可以用这个 API 处理，适合状态治理场景。
+
+# 追问
+
+- 什么场景用 State Processor？

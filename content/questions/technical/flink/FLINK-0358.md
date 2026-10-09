@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+转 DataStream 用 ProcessFunction，再转回表。
+
+# 参考回答
+
+SQL 里用 ProcessFunction 要把表转成 DataStream，在 ProcessFunction 里访问状态、定时器、侧输出做复杂逻辑，再转回表。SQL 表达不了的逻辑走这条路。
+
+# 追问
+
+- 什么逻辑 SQL 表达不了？

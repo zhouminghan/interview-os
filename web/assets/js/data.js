@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:02:46+08:00",
+  "generatedAt": "2026-10-09T17:04:45+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -23646,7 +23646,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Blink 是阿里版 Flink，后来合并回社区。</p>\n<h2>参考回答</h2>\n<p>Blink SQL 是阿里基于 Flink 改进的版本，优化了流批一体、SQL 能力。后来 Blink 的很多特性合并回了 Apache Flink 社区版。现在说 Flink SQL 基本就是指合并后的版本。</p>\n<h2>追问</h2>\n<ul>\n<li>Blink 带来了哪些改进？</li>\n</ul>"
     },
     {
       "id": "FLINK-0355",
@@ -23659,7 +23659,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>API、状态、配置的兼容性问题。</p>\n<h2>参考回答</h2>\n<p>版本升级会碰到 API 变化、状态序列化不兼容、配置参数改名、连接器版本变化。解决靠读升级说明、用 savepoint 迁移、状态不兼容就重跑或做迁移。</p>\n<h2>追问</h2>\n<ul>\n<li>状态不兼容怎么办？</li>\n</ul>"
     },
     {
       "id": "FLINK-0356",
@@ -23672,7 +23672,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>注意新语法、废弃语法和默认行为变化。</p>\n<h2>参考回答</h2>\n<p>版本迁移注意新加或废弃的 SQL 语法，比如窗口 TVF、连接器参数变化，还有默认行为变化。迁移前看 release note，在测试环境先验证 SQL 兼容性。</p>\n<h2>追问</h2>\n<ul>\n<li>迁移前要验证什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0357",
@@ -23685,7 +23685,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 toDataStream 转出做自定义操作再转回。</p>\n<h2>参考回答</h2>\n<p>SQL 作业里嵌自定义操作，可以把表 toDataStream 转成流，做 DataStream 的自定义逻辑，再用 fromDataStream 转回表继续 SQL。这样复杂逻辑用 DataStream 写。</p>\n<h2>追问</h2>\n<ul>\n<li>转来转去有性能损耗吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0358",
@@ -23698,7 +23698,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>转 DataStream 用 ProcessFunction，再转回表。</p>\n<h2>参考回答</h2>\n<p>SQL 里用 ProcessFunction 要把表转成 DataStream，在 ProcessFunction 里访问状态、定时器、侧输出做复杂逻辑，再转回表。SQL 表达不了的逻辑走这条路。</p>\n<h2>追问</h2>\n<ul>\n<li>什么逻辑 SQL 表达不了？</li>\n</ul>"
     },
     {
       "id": "FLINK-0359",
@@ -23711,7 +23711,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SQL 用 MATCH_RECOGNIZE 做模式匹配。</p>\n<h2>参考回答</h2>\n<p>SQL 层用 MATCH_RECOGNIZE 做模式匹配，等价于 CEP 的能力。复杂模式也可以转 DataStream 用 CEP API。SQL 适合声明式规则，DataStream CEP 更灵活。</p>\n<h2>追问</h2>\n<ul>\n<li>MATCH_RECOGNIZE 和 CEP 怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0360",
@@ -23724,7 +23724,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>State Processor 离线读写 savepoint 状态。</p>\n<h2>参考回答</h2>\n<p>State Processor API 能离线读取和修改 savepoint 里的状态，做状态分析、迁移、修复。SQL 作业状态也可以用这个 API 处理，适合状态治理场景。</p>\n<h2>追问</h2>\n<ul>\n<li>什么场景用 State Processor？</li>\n</ul>"
     },
     {
       "id": "FLINK-0361",
@@ -23737,7 +23737,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>PyFlink 用 Python 写 Flink SQL 和 UDF。</p>\n<h2>参考回答</h2>\n<p>PyFlink 让 Python 用户能写 Flink SQL 和 UDF，适合数据分析师和算法团队。SQL 部分一样，UDF 用 Python 写，注意跨语言性能开销。</p>\n<h2>追问</h2>\n<ul>\n<li>Python UDF 性能如何？</li>\n</ul>"
     },
     {
       "id": "FLINK-0362",
@@ -23750,7 +23750,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Gelly 在 DataStream 层用，SQL 不太直接集成。</p>\n<h2>参考回答</h2>\n<p>Gelly 是 DataStream 层的图计算库，SQL 层不太直接集成。图计算逻辑在 DataStream 里用 Gelly 做，结果再转表用 SQL。现在 Gelly 用得少。</p>\n<h2>追问</h2>\n<ul>\n<li>图计算为什么不在 SQL 里做？</li>\n</ul>"
     },
     {
       "id": "FLINK-0363",
@@ -23763,7 +23763,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>转 DataStream 做自定义转换再转回。</p>\n<h2>参考回答</h2>\n<p>自定义 Transformation 同样靠表转 DataStream，做自定义算子转换，再转回表。SQL 和 DataStream 互操作是嵌入自定义逻辑的统一方式。</p>\n<h2>追问</h2>\n<ul>\n<li>自定义转换的典型场景？</li>\n</ul>"
     },
     {
       "id": "FLINK-0364",
@@ -23776,7 +23776,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>小表广播到各节点，join 本地完成免 shuffle。</p>\n<h2>参考回答</h2>\n<p>Broadcast Join 把小的维表广播到所有 TaskManager，join 时本地直接关联，不用按 key shuffle，省大量网络。小表要能塞进内存，用 join hint 指定。</p>\n<h2>追问</h2>\n<ul>\n<li>广播表多大合适？</li>\n</ul>"
     },
     {
       "id": "FLINK-0365",
@@ -23789,7 +23789,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Window Join 按窗口关联，Interval Join 按时间范围关联。</p>\n<h2>参考回答</h2>\n<p>Window Join 是先把两边数据放进同样的时间窗口，再在窗口内 join；Interval Join 是按两事件的时间差范围关联。两者都依赖事件时间和 watermark。</p>\n<h2>追问</h2>\n<ul>\n<li>两者怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0366",
@@ -23802,7 +23802,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 interval join、状态 TTL 控制状态。</p>\n<h2>参考回答</h2>\n<p>JOIN 状态过大靠 interval join 限制时间范围、配状态 TTL 定期清理过期数据。regular join 必须配 TTL，否则状态无限增长。也可以用窗口 join 天然清理。</p>\n<h2>追问</h2>\n<ul>\n<li>状态 TTL 怎么配？</li>\n</ul>"
     },
     {
       "id": "FLINK-0367",
@@ -23815,7 +23815,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>JOIN 状态随 checkpoint 快照，恢复时还原。</p>\n<h2>参考回答</h2>\n<p>JOIN 的两边状态都纳入 checkpoint 快照，故障恢复时从快照还原状态和 offset，继续处理。状态一致性靠 barrier 对齐保证，不丢不重。</p>\n<h2>追问</h2>\n<ul>\n<li>恢复后 JOIN 结果会重复吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0368",
@@ -23828,7 +23828,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多流 join 维护多份状态，watermark 取最慢流。</p>\n<h2>参考回答</h2>\n<p>多流 join 在每边维护状态，数据来了和所有其他流的状态匹配。watermark 取所有流的最小值，防止提前触发丢数据。状态多，要特别控制 TTL。</p>\n<h2>追问</h2>\n<ul>\n<li>多流 join 状态为什么大？</li>\n</ul>"
     },
     {
       "id": "FLINK-0369",
@@ -23841,7 +23841,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>JOIN 后 watermark 取最慢输入流。</p>\n<h2>参考回答</h2>\n<p>JOIN 的 watermark 取所有输入流的最小值，慢流会拖慢整体触发。延迟问题靠优化慢流、调乱序容忍。某条流长期慢会导致结果延迟，要监控。</p>\n<h2>追问</h2>\n<ul>\n<li>慢流导致延迟怎么处理？</li>\n</ul>"
     },
     {
       "id": "FLINK-0370",
@@ -23854,7 +23854,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 join 关联修正表，或主键模型去重。</p>\n<h2>参考回答</h2>\n<p>流式去重用主键模型或窗口去重；数据修正用 join 关联修正表，把错误数据替换成修正值。也可以双流 join 做实时对账和修正。</p>\n<h2>追问</h2>\n<ul>\n<li>数据修正怎么保证幂等？</li>\n</ul>"
     },
     {
       "id": "FLINK-0371",
@@ -23867,7 +23867,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>流式 join 是持续匹配，受时间和状态影响。</p>\n<h2>参考回答</h2>\n<p>传统数据库 join 是静态数据一次匹配完；流式 join 数据持续到来，持续匹配，还引入事件时间、watermark、状态和乱序。这是流处理特有的语义。</p>\n<h2>追问</h2>\n<ul>\n<li>流式 join 有哪些额外语义？</li>\n</ul>"
     },
     {
       "id": "FLINK-0372",
@@ -23880,7 +23880,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时聚合指标，写查询层供下游用。</p>\n<h2>参考回答</h2>\n<p>实时指标用 Flink SQL 做实时聚合，配窗口算分钟级或小时级指标，写到 Doris、Redis 或消息队列。下游看板或服务直接查。核心是口径和实时性。</p>\n<h2>追问</h2>\n<ul>\n<li>指标口径怎么统一？</li>\n</ul>"
     },
     {
       "id": "FLINK-0373",
@@ -23893,7 +23893,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 MATCH_RECOGNIZE 匹配欺诈模式。</p>\n<h2>参考回答</h2>\n<p>欺诈检测用 MATCH_RECOGNIZE 定义欺诈行为模式，比如短时间内频繁交易、异地登录。SQL 里声明模式，匹配到就输出告警。实时拦截风险。</p>\n<h2>追问</h2>\n<ul>\n<li>欺诈检测为什么强调实时？</li>\n</ul>"
     },
     {
       "id": "FLINK-0374",
@@ -23906,7 +23906,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SQL 做清洗、转换、join，再写目标。</p>\n<h2>参考回答</h2>\n<p>实时 ETL 用 Flink SQL 从 Kafka 或 CDC 读，写 SQL 做清洗、过滤、转换、join，再写到目标库或数据湖。SQL 声明式，开发和维护简单。</p>\n<h2>追问</h2>\n<ul>\n<li>复杂 ETL 还用 SQL 吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0375",
@@ -23919,7 +23919,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 MATCH_RECOGNIZE 做模式匹配。</p>\n<h2>参考回答</h2>\n<p>Flink SQL 用 MATCH_RECOGNIZE 定义事件序列模式，支持连续、可选、重复和时间约束，匹配事件流输出结果。是 SQL 版的 CEP。</p>\n<h2>追问</h2>\n<ul>\n<li>复杂模式 SQL 表达不了怎么办？</li>\n</ul>"
     },
     {
       "id": "FLINK-0376",
@@ -23932,7 +23932,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink SQL 做实时分层加工，写数据湖或查询层。</p>\n<h2>参考回答</h2>\n<p>实时数仓用 Flink SQL 从 Kafka 读，做 DWD 清洗、DWS 聚合，写到 Iceberg、Doris 这类存储。分层和离线类似，但都是实时流。典型链路 Flink 加 Kafka 加 Doris。</p>\n<h2>追问</h2>\n<ul>\n<li>实时数仓和离线数仓怎么协同？</li>\n</ul>"
     },
     {
       "id": "FLINK-0377",
@@ -23945,7 +23945,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时采集行为做漏斗、路径、指标。</p>\n<h2>参考回答</h2>\n<p>用户行为分析用 Flink SQL 实时处理点击、浏览事件，做漏斗、路径、活跃指标。窗口和状态算行为聚合，写到查询层供分析。</p>\n<h2>追问</h2>\n<ul>\n<li>漏斗分析怎么做？</li>\n</ul>"
     },
     {
       "id": "FLINK-0378",
@@ -23958,7 +23958,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用规则和模式匹配检测异常，触发告警。</p>\n<h2>参考回答</h2>\n<p>异常检测用 Flink SQL 的规则和 MATCH_RECOGNIZE 检测异常模式，比如流量突增、连续失败。检测到就输出告警事件，下游触发通知。</p>\n<h2>追问</h2>\n<ul>\n<li>告警怎么避免误报？</li>\n</ul>"
     },
     {
       "id": "FLINK-0379",
@@ -23971,7 +23971,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时聚合核心指标，写查询层供大屏。</p>\n<h2>参考回答</h2>\n<p>电商大屏用 Flink SQL 实时聚合 GMV、订单、UV 等核心指标，写到 Doris 或 Redis，前端大屏定时查询秒级刷新。链路是 Flink 算，查询层出。</p>\n<h2>追问</h2>\n<ul>\n<li>大屏指标怎么分层算？</li>\n</ul>"
     },
     {
       "id": "FLINK-0380",
@@ -23984,7 +23984,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用事件时间和窗口做时间序列聚合。</p>\n<h2>参考回答</h2>\n<p>时序分析用事件时间和窗口做按时间聚合，比如滑动窗口算移动平均、环比。配合 watermark 处理乱序。适合设备监控、指标趋势。</p>\n<h2>追问</h2>\n<ul>\n<li>时序分析为什么用事件时间？</li>\n</ul>"
     },
     {
       "id": "FLINK-0381",
@@ -23997,7 +23997,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Flink 实时算多维聚合，写 OLAP 引擎查询。</p>\n<h2>参考回答</h2>\n<p>多维实时 OLAP 用 Flink SQL 做多维度实时聚合，写到 Doris、StarRocks 这类 OLAP 引擎，下游做多维下钻查询。Flink 算，OLAP 查。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么不在 Flink 里直接查？</li>\n</ul>"
     },
     {
       "id": "FLINK-0382",
@@ -24010,7 +24010,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 RocksDB、状态 TTL、增量 checkpoint。</p>\n<h2>参考回答</h2>\n<p>大状态作业用 RocksDB 存状态、配状态 TTL 清理、增量 checkpoint 减少快照开销，合理并行度分散状态。状态访问慢就调 RocksDB 缓存。</p>\n<h2>追问</h2>\n<ul>\n<li>状态大对 checkpoint 有什么影响？</li>\n</ul>"
     },
     {
       "id": "FLINK-0383",
@@ -24023,7 +24023,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>批量写、调并行度、用异步 IO 减少等待。</p>\n<h2>参考回答</h2>\n<p>高并发写入优化靠批量提交减少写次数、提高并行度、用异步 IO 避免阻塞。sink 连接池调好，避免频繁建连接。写瓶颈多在外部系统。</p>\n<h2>追问</h2>\n<ul>\n<li>批量写有什么风险？</li>\n</ul>"
     },
     {
       "id": "FLINK-0384",

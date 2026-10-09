@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+SQL 做清洗、转换、join，再写目标。
+
+# 参考回答
+
+实时 ETL 用 Flink SQL 从 Kafka 或 CDC 读，写 SQL 做清洗、过滤、转换、join，再写到目标库或数据湖。SQL 声明式，开发和维护简单。
+
+# 追问
+
+- 复杂 ETL 还用 SQL 吗？

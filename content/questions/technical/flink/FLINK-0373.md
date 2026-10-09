@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 MATCH_RECOGNIZE 匹配欺诈模式。
+
+# 参考回答
+
+欺诈检测用 MATCH_RECOGNIZE 定义欺诈行为模式，比如短时间内频繁交易、异地登录。SQL 里声明模式，匹配到就输出告警。实时拦截风险。
+
+# 追问
+
+- 欺诈检测为什么强调实时？

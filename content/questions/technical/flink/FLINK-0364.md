@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+小表广播到各节点，join 本地完成免 shuffle。
+
+# 参考回答
+
+Broadcast Join 把小的维表广播到所有 TaskManager，join 时本地直接关联，不用按 key shuffle，省大量网络。小表要能塞进内存，用 join hint 指定。
+
+# 追问
+
+- 广播表多大合适？

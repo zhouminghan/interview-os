@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+PyFlink 用 Python 写 Flink SQL 和 UDF。
+
+# 参考回答
+
+PyFlink 让 Python 用户能写 Flink SQL 和 UDF，适合数据分析师和算法团队。SQL 部分一样，UDF 用 Python 写，注意跨语言性能开销。
+
+# 追问
+
+- Python UDF 性能如何？
