@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+调堆、GC、堆外内存。
+
+# 参考回答
+
+JVM 调优用 G1 收集器、合理堆大小、堆外给 BucketCache。避免 full GC 停顿。堆大小按内存和缓存需求配。
+
+# 追问
+
+- full GC 频繁怎么办？

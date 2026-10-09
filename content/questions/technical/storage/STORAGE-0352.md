@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+堆、缓存、MemStore 合理分配。
+
+# 参考回答
+
+内存管理分堆内存、BlockCache、MemStore，按读写比例分配。堆外给 BucketCache。避免 OOM 和频繁 GC。
+
+# 追问
+
+- 内存怎么分？

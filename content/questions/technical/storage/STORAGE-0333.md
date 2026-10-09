@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+RowKey 加盐分散热点。
+
+# 参考回答
+
+数据倾斜靠 RowKey 加盐打散热点 key，预分区配合。避免递增 RowKey 导致写热点。倾斜会导致个别 Region 过大，及时分裂。
+
+# 追问
+
+- 加盐怎么还原？

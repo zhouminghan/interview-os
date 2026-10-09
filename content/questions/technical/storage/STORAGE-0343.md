@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+ZK 独立部署，别和 HBase 抢资源。
+
+# 参考回答
+
+ZooKeeper 单独部署，调 session 超时和快照参数。ZK 压力不大但要稳定，它挂了 HBase 不可用。监控 ZK 状态。
+
+# 追问
+
+- ZK 挂了影响多大？

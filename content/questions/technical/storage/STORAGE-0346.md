@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+读缓存 BlockCache，写缓存 MemStore。
+
+# 参考回答
+
+缓存优化读多加大 BlockCache 并用堆外，写多调 MemStore。按读写比例分配内存。命中率高读写都快。
+
+# 追问
+
+- 缓存怎么配？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Region 大小适中，别太大太小。
+
+# 参考回答
+
+Region 太小 Region 数多、元数据大；太大 split 和 compact 重。一般几 GB 到十几 GB。按数据和负载调 Region 大小阈值。
+
+# 追问
+
+- Region 多大合适？

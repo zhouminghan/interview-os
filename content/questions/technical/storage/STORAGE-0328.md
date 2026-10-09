@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+合理分配堆、BlockCache、MemStore。
+
+# 参考回答
+
+内存优化合理分配堆给 BlockCache 和 MemStore，读多给缓存，写多给 MemStore。避免堆太小 OOM 或太大 GC 长。按读写比例调。
+
+# 追问
+
+- 内存怎么分配？

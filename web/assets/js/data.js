@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:33:32+08:00",
+  "generatedAt": "2026-10-09T17:35:19+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -9795,7 +9795,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按 RowKey 范围预分 Region，避免热点。</p>\n<h2>参考回答</h2>\n<p>预分区策略按 RowKey 范围均匀切分，比如 hash 分区或范围分区。选型看 RowKey 分布，均匀就范围分，不均就 hash 分。预分区好能避免初期热点。</p>\n<h2>追问</h2>\n<ul>\n<li>预分区怎么定分区数？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0327",
@@ -9808,7 +9808,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>列族少、列短、类型小。</p>\n<h2>参考回答</h2>\n<p>列族设计越少越好，一般一到两个。列名短省空间，类型选小。相关访问频率一致的列放同族。别一个列族塞几十个列族。</p>\n<h2>追问</h2>\n<ul>\n<li>列族多少合适？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0328",
@@ -9821,7 +9821,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>合理分配堆、BlockCache、MemStore。</p>\n<h2>参考回答</h2>\n<p>内存优化合理分配堆给 BlockCache 和 MemStore，读多给缓存，写多给 MemStore。避免堆太小 OOM 或太大 GC 长。按读写比例调。</p>\n<h2>追问</h2>\n<ul>\n<li>内存怎么分配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0329",
@@ -9834,7 +9834,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>调缓存大小和策略。</p>\n<h2>参考回答</h2>\n<p>BlockCache 调优调整缓存大小、淘汰策略。读多场景加大缓存，用 BucketCache 配合堆外内存。命中率高读就快。</p>\n<h2>追问</h2>\n<ul>\n<li>Lru 和 Bucket 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0330",
@@ -9847,7 +9847,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>批量写、预分区、调 MemStore。</p>\n<h2>参考回答</h2>\n<p>写入优化用批量 Put、预分区避免热点、合理 MemStore 大小、BulkLoad 大批量导入。WAL 可以异步或并行写。写瓶颈多在热点和 flush。</p>\n<h2>追问</h2>\n<ul>\n<li>写热点怎么解决？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0331",
@@ -9860,7 +9860,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>BlockCache、Bloom Filter、RowKey 设计。</p>\n<h2>参考回答</h2>\n<p>读优化靠 BlockCache 命中、Bloom Filter 减少无效读、RowKey 设计贴合查询、过滤器减少扫描。点查优化 get 别用 scan。</p>\n<h2>追问</h2>\n<ul>\n<li>读慢怎么排查？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0332",
@@ -9873,7 +9873,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>控制触发时机和并发。</p>\n<h2>参考回答</h2>\n<p>Compaction 调优控制触发文件数和大小、并发数、高峰期限流。避免 compact 抢 IO 影响读写。Major compact 错峰执行。</p>\n<h2>追问</h2>\n<ul>\n<li>compact 影响查询吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0333",
@@ -9886,7 +9886,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>RowKey 加盐分散热点。</p>\n<h2>参考回答</h2>\n<p>数据倾斜靠 RowKey 加盐打散热点 key，预分区配合。避免递增 RowKey 导致写热点。倾斜会导致个别 Region 过大，及时分裂。</p>\n<h2>追问</h2>\n<ul>\n<li>加盐怎么还原？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0334",
@@ -9899,7 +9899,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>调堆、GC、堆外内存。</p>\n<h2>参考回答</h2>\n<p>JVM 调优用 G1 收集器、合理堆大小、堆外给 BucketCache。避免 full GC 停顿。堆大小按内存和缓存需求配。</p>\n<h2>追问</h2>\n<ul>\n<li>full GC 频繁怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0335",
@@ -9912,7 +9912,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>调 RPC 线程和连接参数。</p>\n<h2>参考回答</h2>\n<p>网络优化调 RPC 处理线程数、连接超时、缓冲区大小。高并发场景加大线程池。网络是 HBase 读写的重要环节。</p>\n<h2>追问</h2>\n<ul>\n<li>网络瓶颈怎么排查？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0336",
@@ -9925,7 +9925,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Region 大小适中，别太大太小。</p>\n<h2>参考回答</h2>\n<p>Region 太小 Region 数多、元数据大；太大 split 和 compact 重。一般几 GB 到十几 GB。按数据和负载调 Region 大小阈值。</p>\n<h2>追问</h2>\n<ul>\n<li>Region 多大合适？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0337",
@@ -9938,7 +9938,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>批量一次提交多条，减少 RPC。</p>\n<h2>参考回答</h2>\n<p>批量操作一次提交多条 Put、Get，减少网络往返。批量大小要适中，太大内存高、失败重试多。大批量导入用 BulkLoad。</p>\n<h2>追问</h2>\n<ul>\n<li>批量大小怎么定？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0338",
@@ -9951,7 +9951,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>缩小扫描范围，加过滤器和缓存。</p>\n<h2>参考回答</h2>\n<p>scan 优化设 start 和 stop 缩小范围、加过滤器、控制返回列、加大缓存。全表扫最慢，能精确 get 就别 scan。</p>\n<h2>追问</h2>\n<ul>\n<li>scan 为什么慢？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0339",
@@ -9964,7 +9964,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>过滤器放服务端，尽早过滤。</p>\n<h2>参考回答</h2>\n<p>过滤器在服务端执行减少传输，组合过滤器时把过滤性强的放前面。行键过滤比列值过滤高效。减少返回的数据。</p>\n<h2>追问</h2>\n<ul>\n<li>过滤器顺序重要吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0340",
@@ -9977,7 +9977,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>协处理器逻辑要轻，别阻塞。</p>\n<h2>参考回答</h2>\n<p>协处理器在服务端跑，逻辑要轻量，别做重 IO 和慢调用，否则拖慢整个 Region。能用过滤器就别用协处理器。谨慎使用。</p>\n<h2>追问</h2>\n<ul>\n<li>协处理器为什么慎用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0341",
@@ -9990,7 +9990,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>内存、线程、Region 数调优。</p>\n<h2>参考回答</h2>\n<p>RegionServer 调优内存分配、RPC 线程、Region 数量。Region 数别太多，内存够 BlockCache 和 MemStore。监控 GC 和负载。</p>\n<h2>追问</h2>\n<ul>\n<li>Region 数怎么控制？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0342",
@@ -10003,7 +10003,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>异步写 WAL、分组提交。</p>\n<h2>参考回答</h2>\n<p>WAL 优化用异步写、分组提交减少刷盘次数。WAL 放独立磁盘避免和 HFile 抢 IO。牺牲一点可靠性换性能要谨慎。</p>\n<h2>追问</h2>\n<ul>\n<li>WAL 性能影响写入？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0343",
@@ -10016,7 +10016,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ZK 独立部署，别和 HBase 抢资源。</p>\n<h2>参考回答</h2>\n<p>ZooKeeper 单独部署，调 session 超时和快照参数。ZK 压力不大但要稳定，它挂了 HBase 不可用。监控 ZK 状态。</p>\n<h2>追问</h2>\n<ul>\n<li>ZK 挂了影响多大？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0344",
@@ -10029,7 +10029,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>副本数、块大小、本地性优化。</p>\n<h2>参考回答</h2>\n<p>HDFS 优化调副本数、块大小，HBase 块可以设大点。保证数据本地性，磁盘用 SSD。HDFS 是 HBase 存储底座，IO 直接影响性能。</p>\n<h2>追问</h2>\n<ul>\n<li>块大小设多大？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0345",
@@ -10042,7 +10042,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>RowKey 加盐、预分区分散。</p>\n<h2>参考回答</h2>\n<p>热点是某个 Region 读写特别多。用 RowKey 加盐、hash 预分区分散。避免递增 RowKey。观察 Region 的读写分布定位热点。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么发现热点？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0346",
@@ -10055,7 +10055,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>读缓存 BlockCache，写缓存 MemStore。</p>\n<h2>参考回答</h2>\n<p>缓存优化读多加大 BlockCache 并用堆外，写多调 MemStore。按读写比例分配内存。命中率高读写都快。</p>\n<h2>追问</h2>\n<ul>\n<li>缓存怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0347",
@@ -10068,7 +10068,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>控制版本数和 TTL。</p>\n<h2>参考回答</h2>\n<p>多版本优化限制版本数、配 TTL，避免版本过多占存储。不需要历史就设 1 版本。版本多读合并也慢。</p>\n<h2>追问</h2>\n<ul>\n<li>版本设多少？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0348",
@@ -10081,7 +10081,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>RowKey、列族、列名、预分区综合。</p>\n<h2>参考回答</h2>\n<p>表结构优化：RowKey 短且均匀、列族少、列名短、预分区合理、版本和 TTL 配好。表结构设计好是性能的前提。</p>\n<h2>追问</h2>\n<ul>\n<li>表结构优先优化什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0349",
@@ -10094,7 +10094,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>复用连接、批量、异步。</p>\n<h2>参考回答</h2>\n<p>客户端优化复用 Connection、批量操作、用异步 API、合理超时重试。连接是重量级对象别频繁建。客户端缓存也能加速。</p>\n<h2>追问</h2>\n<ul>\n<li>连接为什么复用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0350",
@@ -10107,7 +10107,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>预分区减少自动分裂，调分裂阈值。</p>\n<h2>参考回答</h2>\n<p>Region 分裂优化靠预分区减少初期分裂，调分裂阈值避免频繁分裂。分裂会短暂影响读写，错峰更好。控制 Region 数量。</p>\n<h2>追问</h2>\n<ul>\n<li>分裂影响大吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0351",
@@ -10120,7 +10120,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>选合适压缩算法。</p>\n<h2>参考回答</h2>\n<p>压缩选 Snappy、LZ4 快，ZSTD 平衡，GZIP 压缩高。按 CPU 和存储权衡。列族配压缩，省存储和 IO。</p>\n<h2>追问</h2>\n<ul>\n<li>压缩影响读写吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0352",
@@ -10133,7 +10133,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>堆、缓存、MemStore 合理分配。</p>\n<h2>参考回答</h2>\n<p>内存管理分堆内存、BlockCache、MemStore，按读写比例分配。堆外给 BucketCache。避免 OOM 和频繁 GC。</p>\n<h2>追问</h2>\n<ul>\n<li>内存怎么分？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0353",
@@ -10146,7 +10146,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SSD、缓存、减少扫描。</p>\n<h2>参考回答</h2>\n<p>IO 优化用 SSD、加大 BlockCache 减少磁盘读、Bloom Filter 减少无效读、压缩减少 IO 量。IO 是 HBase 常见瓶颈。</p>\n<h2>追问</h2>\n<ul>\n<li>IO 瓶颈怎么判断？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0354",
@@ -10159,7 +10159,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少 Region 数，控制 Meta 表大小。</p>\n<h2>参考回答</h2>\n<p>元数据性能优化减少 Region 数量，别让 Meta 表太大。客户端缓存 Region 位置减少 Meta 访问。Region 太多元数据开销大。</p>\n<h2>追问</h2>\n<ul>\n<li>Region 多有什么问题？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0355",
@@ -10172,7 +10172,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>RowKey、缓存、过滤器综合优化。</p>\n<h2>参考回答</h2>\n<p>查询优化靠 RowKey 设计贴合查询、BlockCache 命中、Bloom Filter 减读、过滤器减少扫描。点查用 get，范围查设好起止。</p>\n<h2>追问</h2>\n<ul>\n<li>查询优化核心是什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0356",

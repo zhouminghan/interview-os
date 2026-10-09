@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+控制触发时机和并发。
+
+# 参考回答
+
+Compaction 调优控制触发文件数和大小、并发数、高峰期限流。避免 compact 抢 IO 影响读写。Major compact 错峰执行。
+
+# 追问
+
+- compact 影响查询吗？

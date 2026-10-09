@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+BlockCache、Bloom Filter、RowKey 设计。
+
+# 参考回答
+
+读优化靠 BlockCache 命中、Bloom Filter 减少无效读、RowKey 设计贴合查询、过滤器减少扫描。点查优化 get 别用 scan。
+
+# 追问
+
+- 读慢怎么排查？
