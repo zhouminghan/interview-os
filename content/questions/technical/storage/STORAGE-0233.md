@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+get 按 RowKey 查单行，scan 范围扫描。
+
+# 参考回答
+
+get 按单个 RowKey 精确定位一行，快；scan 扫描一段 RowKey 范围，数据量大慢。点查用 get，范围查询用 scan，scan 要设 start 和 stop 范围。
+
+# 追问
+
+- scan 为什么慢？

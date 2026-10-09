@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+先迁移数据，再下线节点。
+
+# 参考回答
+
+缩容先 decommission 节点，让 HDFS 把数据复制到其他节点，再下线。确认数据完整后移除。缩容要分步做，验证每步。
+
+# 追问
+
+- decommission 是什么？

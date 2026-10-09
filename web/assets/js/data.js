@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:24:56+08:00",
+  "generatedAt": "2026-10-09T17:26:56+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -8235,7 +8235,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>元数据灾备加数据跨集群同步。</p>\n<h2>参考回答</h2>\n<p>容灾方案：Metastore 数据库做灾备，数据靠 HDFS 副本和跨集群同步。主集群故障切灾备。定期演练，保证可恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>容灾和备份区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0207",
@@ -8248,7 +8248,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>异地同步数据加元数据备份。</p>\n<h2>参考回答</h2>\n<p>容灾实现：用 distcp 或同步工具把数据同步到灾备集群，元数据定期备份。故障时在灾备集群恢复服务。定期演练切换。</p>\n<h2>追问</h2>\n<ul>\n<li>灾备切换多久？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0208",
@@ -8261,7 +8261,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加节点、扩存储和计算资源。</p>\n<h2>参考回答</h2>\n<p>扩容加 DataNode 扩存储、加计算节点扩算力，HiveServer2 和 Metastore 也按需加实例。按数据增长和查询负载规划。</p>\n<h2>追问</h2>\n<ul>\n<li>扩容注意什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0209",
@@ -8274,7 +8274,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加节点后数据自动均衡。</p>\n<h2>参考回答</h2>\n<p>扩容加 DataNode 和计算节点，HDFS 自动均衡数据。HiveServer2 加实例挂负载均衡。扩容过程平滑，不影响服务。</p>\n<h2>追问</h2>\n<ul>\n<li>数据均衡要多久？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0210",
@@ -8287,7 +8287,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>迁移数据后下线节点。</p>\n<h2>参考回答</h2>\n<p>缩容先把要下线节点的数据迁移走，再安全下线节点。计算资源缩容要先停相关任务。缩容比扩容要小心，别丢数据。</p>\n<h2>追问</h2>\n<ul>\n<li>缩容怎么不丢数据？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0211",
@@ -8300,7 +8300,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>先迁移数据，再下线节点。</p>\n<h2>参考回答</h2>\n<p>缩容先 decommission 节点，让 HDFS 把数据复制到其他节点，再下线。确认数据完整后移除。缩容要分步做，验证每步。</p>\n<h2>追问</h2>\n<ul>\n<li>decommission 是什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0212",
@@ -8313,7 +8313,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>选低峰期做维护操作。</p>\n<h2>参考回答</h2>\n<p>维护窗口选业务低峰期，比如凌晨，做升级、迁移、清理这类影响服务的操作。提前通知业务方，留回滚方案。</p>\n<h2>追问</h2>\n<ul>\n<li>维护窗口怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0213",
@@ -8326,7 +8326,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按业务低峰和依赖规划。</p>\n<h2>参考回答</h2>\n<p>维护时间看业务低峰、上下游任务依赖、数据 SLA。避开高峰和关键任务，提前通知。维护操作要控制在窗口内完成。</p>\n<h2>追问</h2>\n<ul>\n<li>维护超时怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0214",
@@ -8339,7 +8339,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>升级前测试新旧版本兼容。</p>\n<h2>参考回答</h2>\n<p>版本兼容性测试在测试环境跑现有 SQL 和作业，对比结果和性能。评估标准是结果一致、性能不退化。兼容性过了才升级。</p>\n<h2>追问</h2>\n<ul>\n<li>兼容性测什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0215",
@@ -8352,7 +8352,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>测试环境全量回归再升级。</p>\n<h2>参考回答</h2>\n<p>保证兼容先测试环境回归现有任务，对比结果，再灰度生产。发现不兼容就调整或回滚。升级前读 release note。</p>\n<h2>追问</h2>\n<ul>\n<li>回归测什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0216",
@@ -8365,7 +8365,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配置变更前验证正确性和影响。</p>\n<h2>参考回答</h2>\n<p>配置验证在测试环境改配置跑任务，确认行为符合预期。用配置检查工具验证参数合法性。变更后监控效果。</p>\n<h2>追问</h2>\n<ul>\n<li>配置验证怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0217",
@@ -8378,7 +8378,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>测试环境验证再上生产。</p>\n<h2>参考回答</h2>\n<p>验证配置先在测试环境跑代表性任务，对比结果和性能。确认无副作用再上生产，灰度生效。配置变更要记录。</p>\n<h2>追问</h2>\n<ul>\n<li>哪些配置要重点验证？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0218",
@@ -8391,7 +8391,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>定期检查服务和依赖状态。</p>\n<h2>参考回答</h2>\n<p>健康检查看 HiveServer2、Metastore、执行引擎、HDFS 状态，检查关键指标。定期巡检，异常提前发现。自动化健康检查脚本。</p>\n<h2>追问</h2>\n<ul>\n<li>健康检查看什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0219",
@@ -8404,7 +8404,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>检查服务、元数据、存储和任务。</p>\n<h2>参考回答</h2>\n<p>健康检查按服务、元数据、存储、任务逐项看。服务进程在不在、元数据能不能查、HDFS 正常不、任务能不能跑。定期巡检加告警。</p>\n<h2>追问</h2>\n<ul>\n<li>巡检频率多少？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0220",
@@ -8417,7 +8417,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用真实负载测吞吐和延迟。</p>\n<h2>参考回答</h2>\n<p>性能测试用真实或模拟负载跑代表性 SQL，测执行时间、吞吐、资源占用。对比优化前后效果。压测工具和基准测试结合。</p>\n<h2>追问</h2>\n<ul>\n<li>性能测试看什么指标？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0221",
@@ -8430,7 +8430,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>准备数据、跑 SQL、测指标。</p>\n<h2>参考回答</h2>\n<p>性能测试准备代表性数据，跑典型 SQL，记录执行时间和资源。对比基线，分析瓶颈。多次跑取稳定值。</p>\n<h2>追问</h2>\n<ul>\n<li>性能基线怎么建？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0222",
@@ -8443,7 +8443,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按数据量和查询负载估算资源。</p>\n<h2>参考回答</h2>\n<p>容量规划按数据增长、查询并发、保留期估算存储和计算。留余量应对峰值。定期复盘调整。</p>\n<h2>追问</h2>\n<ul>\n<li>容量怎么估算？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0223",
@@ -8456,7 +8456,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据量、并发、增长综合估算。</p>\n<h2>参考回答</h2>\n<p>容量规划先盘点数据量和增长、查询并发和峰值，再估算存储、计算、内存。留 30% 余量，定期复盘调整。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么留余量？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0224",
@@ -8469,7 +8469,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>监控、备份、容量、规范四位一体。</p>\n<h2>参考回答</h2>\n<p>运维最佳实践：监控告警全覆盖，备份恢复可验证，容量规划留余量，变更走流程。自动化运维，减少人为失误。</p>\n<h2>追问</h2>\n<ul>\n<li>运维核心是什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0225",
@@ -8482,7 +8482,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>HBase 是 Hadoop 上的分布式列族存储，适合海量点查。</p>\n<h2>参考回答</h2>\n<p>HBase 是构建在 HDFS 上的分布式列族数据库，按 RowKey 点查快、可横向扩展、支持多版本。适合海量数据的实时读写，比如用户画像、时序数据。</p>\n<h2>追问</h2>\n<ul>\n<li>HBase 为什么点查快？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0226",
@@ -8495,7 +8495,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>HBase 列族存储、海量可扩展，MySQL 行存、事务强。</p>\n<h2>参考回答</h2>\n<p>HBase 是列族存储、面向海量数据、横向扩展，没有完整事务；MySQL 行存、ACID 事务、适合结构化点查和事务。选型看数据量和场景。</p>\n<h2>追问</h2>\n<ul>\n<li>HBase 为什么没事务？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0227",
@@ -8508,7 +8508,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>表按行键组织，列分族，单元格带版本。</p>\n<h2>参考回答</h2>\n<p>Table 是表，RowKey 是行键唯一标识一行，Column Family 是列族，Column Qualifier 是列族下的具体列，Cell 是行列确定的值，Version 是时间戳版本。数据按 RowKey 排序存。</p>\n<h2>追问</h2>\n<ul>\n<li>列族是什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0228",
@@ -8521,7 +8521,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按列族物理存储，列族内动态加列。</p>\n<h2>参考回答</h2>\n<p>HBase 数据按列族物理存储，一个列族的列存在一起。列族内可以动态加列，不用预先定义所有列。所以叫列族存储，介于行存和列存之间。</p>\n<h2>追问</h2>\n<ul>\n<li>列族存和列存区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0229",
@@ -8534,7 +8534,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Region 是表的分片，大了自动分裂。</p>\n<h2>参考回答</h2>\n<p>Region 是 HBase 表按 RowKey 范围的分片，分布在不同 RegionServer。Region 数据大到阈值就分裂成两个，保持负载均衡和查询效率。</p>\n<h2>追问</h2>\n<ul>\n<li>Region 分裂影响查询吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0230",
@@ -8547,7 +8547,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>NameSpace 是表的逻辑分组。</p>\n<h2>参考回答</h2>\n<p>NameSpace 类似数据库的库，把表分组管理，支持配额和权限隔离。默认在 default 命名空间。多租户和隔离用。</p>\n<h2>追问</h2>\n<ul>\n<li>NameSpace 和库一样吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0231",
@@ -8560,7 +8560,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>时间戳区分版本，保留多个历史值。</p>\n<h2>参考回答</h2>\n<p>HBase 每个 Cell 带时间戳，可以保留多个版本。写入用时间戳区分版本，读取指定版本或最新。实现数据版本控制。</p>\n<h2>追问</h2>\n<ul>\n<li>版本数怎么控制？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0232",
@@ -8573,7 +8573,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>建表时预先分好 Region，避免热点。</p>\n<h2>参考回答</h2>\n<p>预分区建表时按 RowKey 范围预先分多个 Region，避免数据都写进一个 Region 造成热点。RowKey 设计配合预分区，分布更均匀。</p>\n<h2>追问</h2>\n<ul>\n<li>不预分区会怎样？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0233",
@@ -8586,7 +8586,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>get 按 RowKey 查单行，scan 范围扫描。</p>\n<h2>参考回答</h2>\n<p>get 按单个 RowKey 精确定位一行，快；scan 扫描一段 RowKey 范围，数据量大慢。点查用 get，范围查询用 scan，scan 要设 start 和 stop 范围。</p>\n<h2>追问</h2>\n<ul>\n<li>scan 为什么慢？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0234",
@@ -8599,7 +8599,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>flush 落盘、compact 合并、split 分裂。</p>\n<h2>参考回答</h2>\n<p>flush 把内存里的数据刷到磁盘 HFile；compact 合并多个 HFile 减少文件数；split 把大 Region 分裂成两个。三者是 HBase 存储维护的核心。</p>\n<h2>追问</h2>\n<ul>\n<li>compact 为什么重要？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0235",
@@ -8612,7 +8612,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>WAL 先记日志再写内存，保证不丢。</p>\n<h2>参考回答</h2>\n<p>WAL 是预写日志，数据写入前先记日志，再写内存。故障恢复时重放 WAL，防止内存数据丢失。是 HBase 可靠性的保障。</p>\n<h2>追问</h2>\n<ul>\n<li>WAL 怎么保证不丢数据？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0236",

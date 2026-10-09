@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+加节点、扩存储和计算资源。
+
+# 参考回答
+
+扩容加 DataNode 扩存储、加计算节点扩算力，HiveServer2 和 Metastore 也按需加实例。按数据增长和查询负载规划。
+
+# 追问
+
+- 扩容注意什么？
