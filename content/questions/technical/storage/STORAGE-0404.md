@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+RowKey 加缓存加 Bloom 优化。
+
+# 参考回答
+
+实时查询优化靠 RowKey 贴合查询、BlockCache 命中、Bloom Filter 减读。点查用 get。一个案例优化后 P99 延迟降了一半。
+
+# 追问
+
+- 实时查询怎么优化？

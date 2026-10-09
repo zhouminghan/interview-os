@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+HBase 做查询层，实时计算用 Flink。
+
+# 参考回答
+
+实时计算用 Flink 等流处理框架算，结果写 HBase 供点查。HBase 不做计算，只做快速读写。典型是 Flink 加 HBase。
+
+# 追问
+
+- HBase 在实时链路的作用？

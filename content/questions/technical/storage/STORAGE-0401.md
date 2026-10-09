@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+NameSpace 配额加 RPC 限流。
+
+# 参考回答
+
+资源隔离用 NameSpace 分租户，配 Region 和表配额，RPC 按租户限流。不同业务分开，避免互相影响。重要业务独立资源。
+
+# 追问
+
+- 隔离怎么配？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+多 Master、多副本、ZK 集群。
+
+# 参考回答
+
+高可用配多 Master 选主、HDFS 多副本、ZooKeeper 集群。RegionServer 挂了 Region 自动重分配。数据多副本保证不丢。
+
+# 追问
+
+- 高可用关键是什么？

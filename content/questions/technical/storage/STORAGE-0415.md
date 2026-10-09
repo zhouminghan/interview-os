@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+ACL 加 Ranger 统一授权。
+
+# 参考回答
+
+权限控制用 ACL 做库表级授权，配 Ranger 统一管理。按角色授权，最小权限。配合 Kerberos 认证。定期审计权限。
+
+# 追问
+
+- 权限怎么统一管？

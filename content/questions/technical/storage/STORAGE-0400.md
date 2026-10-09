@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+RowKey、缓存、批量综合优化。
+
+# 参考回答
+
+读写优化从 RowKey 设计、BlockCache 和 MemStore 调优、批量操作、预分区。先定位读写瓶颈，再针对性调。压测验证效果。
+
+# 追问
+
+- 读写优化重点？

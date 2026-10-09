@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 BulkLoad 导入。
+
+# 参考回答
+
+大批量导入用 BulkLoad，先生成 HFile 再加载，不走 WAL 和 MemStore，速度快。分批生成 HFile，控制内存。预分区避免热点。
+
+# 追问
+
+- BulkLoad 流程？

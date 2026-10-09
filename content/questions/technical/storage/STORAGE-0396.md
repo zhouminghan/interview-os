@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+加盐 RowKey 分散热点。
+
+# 参考回答
+
+Region 热点用 RowKey 加盐或 hash 打散，预分区。监控各 Region 读写量定位热点。避免递增 RowKey。处理后热点消除。
+
+# 追问
+
+- 热点怎么定位？

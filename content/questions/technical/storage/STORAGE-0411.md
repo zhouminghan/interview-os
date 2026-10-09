@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+HBase 不适合复杂分析，导出到分析引擎。
+
+# 参考回答
+
+HBase 定位是点查，复杂分析不擅长。方案是把数据导出到 Hive、Spark 或 OLAP 引擎做分析。HBase 只做实时查询层。
+
+# 追问
+
+- 分析为什么不在 HBase？

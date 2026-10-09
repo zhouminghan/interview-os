@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:37:08+08:00",
+  "generatedAt": "2026-10-09T17:38:51+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -10575,7 +10575,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>TTL 加版本控制加定期 compact。</p>\n<h2>参考回答</h2>\n<p>数据清理方案：列族配 TTL 自动过期、限制版本数、定期 Major Compaction 清理删除标记。错峰执行 compact，监控存储增长。</p>\n<h2>追问</h2>\n<ul>\n<li>清理方案怎么设计？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0387",
@@ -10588,7 +10588,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠 WAL、MVCC、多副本保证。</p>\n<h2>参考回答</h2>\n<p>一致性靠 WAL 不丢写、MVCC 一致读、多副本可靠。单行强一致，跨行最终一致，靠应用层协调。对账发现不一致就重放修复。</p>\n<h2>追问</h2>\n<ul>\n<li>跨行一致怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0388",
@@ -10601,7 +10601,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Phoenix 或索引表实现。</p>\n<h2>参考回答</h2>\n<p>二级索引用 Phoenix 最省事，或用协处理器加索引表。写数据同步维护索引，查询先查索引。索引一致性靠同步写保证。</p>\n<h2>追问</h2>\n<ul>\n<li>用 Phoenix 还是自建？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0389",
@@ -10614,7 +10614,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>BulkLoad 导入，快照导出。</p>\n<h2>参考回答</h2>\n<p>导入用 BulkLoad 生成 HFile 直接加载，比逐条 Put 快几十倍。导出用快照或 Export 工具。迁移场景快照加导出最方便。</p>\n<h2>追问</h2>\n<ul>\n<li>导入导出工具怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0390",
@@ -10627,7 +10627,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>RowKey 加盐预分区解决热点。</p>\n<h2>参考回答</h2>\n<p>数据倾斜用 RowKey 加盐打散热点 key，配合预分区。观察 Region 读写分布定位热点。改成 hash 加业务 ID 后分布均匀。</p>\n<h2>追问</h2>\n<ul>\n<li>加盐怎么设计？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0391",
@@ -10640,7 +10640,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多 Master、多副本、ZK 集群。</p>\n<h2>参考回答</h2>\n<p>高可用配多 Master 选主、HDFS 多副本、ZooKeeper 集群。RegionServer 挂了 Region 自动重分配。数据多副本保证不丢。</p>\n<h2>追问</h2>\n<ul>\n<li>高可用关键是什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0392",
@@ -10653,7 +10653,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看指标定位瓶颈，逐步排除。</p>\n<h2>参考回答</h2>\n<p>性能排查看读写延迟、GC、磁盘 IO、Region 分布。一个案例是读慢，定位到 BlockCache 太小命中低，加大缓存后恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>排查从哪开始？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0393",
@@ -10666,7 +10666,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>指标采集、阈值告警、分级通知。</p>\n<h2>参考回答</h2>\n<p>监控告警体系用 Prometheus 采集指标，按阈值分级告警，通知走邮件电话 IM。核心指标是 Region、读写量、延迟、GC、磁盘。定期校准阈值。</p>\n<h2>追问</h2>\n<ul>\n<li>告警怎么分级？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0394",
@@ -10679,7 +10679,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>传输 SSL 加落盘加密。</p>\n<h2>参考回答</h2>\n<p>数据加密分传输层 SSL 和落盘加密，落盘用 HDFS 加密或列族加密。敏感数据开启，注意性能和密钥管理。生产配合 Kerberos。</p>\n<h2>追问</h2>\n<ul>\n<li>加密怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0395",
@@ -10692,7 +10692,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>快照加导出迁移，对账验证。</p>\n<h2>参考回答</h2>\n<p>数据迁移用快照加 Export 跨集群，迁移后对账行数和关键指标。迁移期间双写或停写，保证一致性。分表分批迁移。</p>\n<h2>追问</h2>\n<ul>\n<li>迁移怎么验证？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0396",
@@ -10705,7 +10705,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加盐 RowKey 分散热点。</p>\n<h2>参考回答</h2>\n<p>Region 热点用 RowKey 加盐或 hash 打散，预分区。监控各 Region 读写量定位热点。避免递增 RowKey。处理后热点消除。</p>\n<h2>追问</h2>\n<ul>\n<li>热点怎么定位？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0397",
@@ -10718,7 +10718,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>跨集群复制加快照备份。</p>\n<h2>参考回答</h2>\n<p>容灾备份用 Replication 跨集群同步，加定期快照备份。主集群故障切灾备。定期演练恢复，验证备份可用。</p>\n<h2>追问</h2>\n<ul>\n<li>灾备切换怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0398",
@@ -10731,7 +10731,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从快照恢复表，校验数据。</p>\n<h2>参考回答</h2>\n<p>数据恢复从快照重建表，或从灾备集群还原。恢复后校验行数和关键字段。快照恢复比逐条导入快很多。</p>\n<h2>追问</h2>\n<ul>\n<li>恢复后怎么校验？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0399",
@@ -10744,7 +10744,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>部署、巡检、告警自动化。</p>\n<h2>参考回答</h2>\n<p>运维自动化用脚本或平台做自动化部署、巡检、扩缩容、备份。把重复操作脚本化，减少人为错误。监控告警也自动化。</p>\n<h2>追问</h2>\n<ul>\n<li>哪些操作自动化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0400",
@@ -10757,7 +10757,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>RowKey、缓存、批量综合优化。</p>\n<h2>参考回答</h2>\n<p>读写优化从 RowKey 设计、BlockCache 和 MemStore 调优、批量操作、预分区。先定位读写瓶颈，再针对性调。压测验证效果。</p>\n<h2>追问</h2>\n<ul>\n<li>读写优化重点？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0401",
@@ -10770,7 +10770,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>NameSpace 配额加 RPC 限流。</p>\n<h2>参考回答</h2>\n<p>资源隔离用 NameSpace 分租户，配 Region 和表配额，RPC 按租户限流。不同业务分开，避免互相影响。重要业务独立资源。</p>\n<h2>追问</h2>\n<ul>\n<li>隔离怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0402",
@@ -10783,7 +10783,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 BulkLoad 导入。</p>\n<h2>参考回答</h2>\n<p>大批量导入用 BulkLoad，先生成 HFile 再加载，不走 WAL 和 MemStore，速度快。分批生成 HFile，控制内存。预分区避免热点。</p>\n<h2>追问</h2>\n<ul>\n<li>BulkLoad 流程？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0403",
@@ -10796,7 +10796,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>NameSpace 分租户加配额。</p>\n<h2>参考回答</h2>\n<p>多租户用 NameSpace 分租户，每个租户自己的表，配配额和权限。资源隔离靠 Region 配额和 RPC 限流。轻量共享，重要独享。</p>\n<h2>追问</h2>\n<ul>\n<li>多租户怎么隔离？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0404",
@@ -10809,7 +10809,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>RowKey 加缓存加 Bloom 优化。</p>\n<h2>参考回答</h2>\n<p>实时查询优化靠 RowKey 贴合查询、BlockCache 命中、Bloom Filter 减读。点查用 get。一个案例优化后 P99 延迟降了一半。</p>\n<h2>追问</h2>\n<ul>\n<li>实时查询怎么优化？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0405",
@@ -10822,7 +10822,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>冷热分离，冷数据归档。</p>\n<h2>参考回答</h2>\n<p>数据归档把冷数据从热表迁到归档存储，或建历史表。热表只留近期数据。归档用快照或导出。降低热表存储和查询压力。</p>\n<h2>追问</h2>\n<ul>\n<li>冷热怎么分？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0406",
@@ -10835,7 +10835,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配置版本数和 TTL。</p>\n<h2>参考回答</h2>\n<p>版本控制配置列族最大版本数和 TTL。写入带时间戳区分版本，读指定版本数。按业务需要保留历史，不需要就 1 版本。</p>\n<h2>追问</h2>\n<ul>\n<li>版本保留几个？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0407",
@@ -10848,7 +10848,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>对账发现不一致，重放修复。</p>\n<h2>参考回答</h2>\n<p>一致性案例：下游发现数据不一致，对账定位到某段数据丢失，通过重放 WAL 或从副本修复。根因是配置错误，修正后恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>不一致怎么发现？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0408",
@@ -10861,7 +10861,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>检查连通性、超时、带宽。</p>\n<h2>参考回答</h2>\n<p>网络问题排查节点连通性、端口、带宽、丢包。一个案例是跨机架延迟高，调整拓扑后恢复。网络影响读写，要监控。</p>\n<h2>追问</h2>\n<ul>\n<li>网络怎么排查？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0409",
@@ -10874,7 +10874,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用压测工具模拟真实负载。</p>\n<h2>参考回答</h2>\n<p>压力测试用 HBase 自带的 PerformanceEvaluation 或自建压测，模拟真实读写负载，测吞吐和延迟。压测别影响生产，用独立集群。</p>\n<h2>追问</h2>\n<ul>\n<li>压测用什么工具？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0410",
@@ -10887,7 +10887,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>测吞吐和延迟，对比优化前后。</p>\n<h2>参考回答</h2>\n<p>基准测试用固定数据量测读写吞吐和 P99 延迟，作为基线。优化后再测对比。PerformanceEvaluation 工具测点查和扫描。</p>\n<h2>追问</h2>\n<ul>\n<li>基准怎么建？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0411",
@@ -10900,7 +10900,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>HBase 不适合复杂分析，导出到分析引擎。</p>\n<h2>参考回答</h2>\n<p>HBase 定位是点查，复杂分析不擅长。方案是把数据导出到 Hive、Spark 或 OLAP 引擎做分析。HBase 只做实时查询层。</p>\n<h2>追问</h2>\n<ul>\n<li>分析为什么不在 HBase？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0412",
@@ -10913,7 +10913,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>HBase 做查询层，实时计算用 Flink。</p>\n<h2>参考回答</h2>\n<p>实时计算用 Flink 等流处理框架算，结果写 HBase 供点查。HBase 不做计算，只做快速读写。典型是 Flink 加 HBase。</p>\n<h2>追问</h2>\n<ul>\n<li>HBase 在实时链路的作用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0413",
@@ -10926,7 +10926,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>表规范、生命周期、权限治理。</p>\n<h2>参考回答</h2>\n<p>数据治理做表命名规范、TTL 生命周期、权限分级、冷热分离。清理解散无主表和过期数据。治理让 HBase 更规范可维护。</p>\n<h2>追问</h2>\n<ul>\n<li>治理做什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0414",
@@ -10939,7 +10939,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>认证、授权、加密、审计。</p>\n<h2>参考回答</h2>\n<p>数据安全用 Kerberos 认证、ACL 授权、加密、审计四块。敏感数据加密和脱敏，最小权限。定期审计访问记录。</p>\n<h2>追问</h2>\n<ul>\n<li>安全四块怎么落地？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0415",
@@ -10952,7 +10952,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ACL 加 Ranger 统一授权。</p>\n<h2>参考回答</h2>\n<p>权限控制用 ACL 做库表级授权，配 Ranger 统一管理。按角色授权，最小权限。配合 Kerberos 认证。定期审计权限。</p>\n<h2>追问</h2>\n<ul>\n<li>权限怎么统一管？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0416",
