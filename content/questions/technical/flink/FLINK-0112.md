@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+合理分配堆、托管内存和 off-heap。
+
+# 参考回答
+
+Flink 内存分堆内存、托管内存和 off-heap。托管内存给状态和 RocksDB，要按状态大小配够。避免 OOM 和频繁 GC。
+
+# 追问
+
+- 托管内存是什么？

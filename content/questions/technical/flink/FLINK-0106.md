@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+客户端提交到 Dispatcher，生成作业图调度执行。
+
+# 参考回答
+
+作业提交是客户端打包上传，Dispatcher 接收后生成 JobGraph，JobManager 转成 ExecutionGraph，调度到 TaskManager 执行。
+
+# 追问
+
+- JobGraph 和 ExecutionGraph 的区别？

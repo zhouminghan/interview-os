@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+改并行度或加 TaskManager 触发 rescale。
+
+# 参考回答
+
+扩缩容可以改并行度或加 TaskManager，从 savepoint 恢复时重新分配状态。自动扩缩容靠外部系统按指标调整。
+
+# 追问
+
+- rescale 状态怎么重新分配？

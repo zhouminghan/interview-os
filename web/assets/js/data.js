@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:29:29+08:00",
+  "generatedAt": "2026-10-09T16:31:43+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -20136,7 +20136,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>下游处理慢时向上游传导压力，降低消费速率。</p>\n<h2>参考回答</h2>\n<p>反压是下游处理不过来时，把压力向上游传导，上游降低发送速率，避免数据积压和 OOM。Flink 用网络缓冲池和 credit 机制实现反压。</p>\n<h2>追问</h2>\n<ul>\n<li>反压会丢数据吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0085",
@@ -20149,7 +20149,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>通过检查网络缓冲池使用率判断。</p>\n<h2>参考回答</h2>\n<p>Flink 反压检测看任务输出缓冲池的使用率，满就说明下游消费慢，在反压。UI 里能看到反压状态，从高到低定位瓶颈算子。</p>\n<h2>追问</h2>\n<ul>\n<li>反压状态 OK 和 HIGH 什么意思？</li>\n</ul>"
     },
     {
       "id": "FLINK-0086",
@@ -20162,7 +20162,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看 Flink UI 的反压状态。</p>\n<h2>参考回答</h2>\n<p>监控反压看 Flink UI 的反压页面，每个算子标 OK 或 HIGH 表示反压程度。反压 HIGH 就顺着找最下游的瓶颈算子。</p>\n<h2>追问</h2>\n<ul>\n<li>反压严重怎么定位根因？</li>\n</ul>"
     },
     {
       "id": "FLINK-0087",
@@ -20175,7 +20175,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>把相邻算子串成一条链，减少线程和序列化开销。</p>\n<h2>参考回答</h2>\n<p>任务链接把条件允许的相邻算子合并成一个 task，在同一个线程里流水线执行，减少线程切换和网络传输。大部分算子默认会链起来。</p>\n<h2>追问</h2>\n<ul>\n<li>什么情况不能链接？</li>\n</ul>"
     },
     {
       "id": "FLINK-0088",
@@ -20188,7 +20188,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>控制哪些算子共享 slot。</p>\n<h2>参考回答</h2>\n<p>槽共享组让同组的算子共享 slot，提高资源利用率。可以配置 slotSharingGroup 把算子分组，默认所有算子一个组。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么要拆槽共享组？</li>\n</ul>"
     },
     {
       "id": "FLINK-0089",
@@ -20201,7 +20201,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用网络缓冲和 credit 机制控制数据流速。</p>\n<h2>参考回答</h2>\n<p>流量控制靠网络缓冲池和信用机制，下游给上游发 credit 表示能接收多少数据，上游按 credit 发送，避免缓冲爆掉。</p>\n<h2>追问</h2>\n<ul>\n<li>credit 机制怎么工作的？</li>\n</ul>"
     },
     {
       "id": "FLINK-0090",
@@ -20214,7 +20214,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>并行度、状态、序列化、数据倾斜、GC、网络。</p>\n<h2>参考回答</h2>\n<p>性能因素主要是并行度、状态大小和访问、序列化开销、数据倾斜、GC 停顿、网络传输。先定位瓶颈是 CPU、IO 还是倾斜。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么快速定位瓶颈？</li>\n</ul>"
     },
     {
       "id": "FLINK-0091",
@@ -20227,7 +20227,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>keyBy 前加盐、两阶段聚合、局部预聚合。</p>\n<h2>参考回答</h2>\n<p>数据倾斜处理用热点 key 加盐打散，两阶段聚合，或者用 local keyBy 先局部聚合。核心是把热点 key 分散到多个并行实例。</p>\n<h2>追问</h2>\n<ul>\n<li>加盐后怎么还原？</li>\n</ul>"
     },
     {
       "id": "FLINK-0092",
@@ -20240,7 +20240,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按 slot 分配，考虑数据本地性和负载。</p>\n<h2>参考回答</h2>\n<p>Flink 调度按 slot 把子任务分配到 TaskManager，考虑 slot 数量和负载均衡。不同部署模式交给外部资源管理器，内部再做子任务调度。</p>\n<h2>追问</h2>\n<ul>\n<li>slot 分配要考虑什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0093",
@@ -20253,7 +20253,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按吞吐和资源设，别太低也别太高。</p>\n<h2>参考回答</h2>\n<p>并行度按数据量和资源设，一般每个 TaskManager 的 slot 数乘 TaskManager 数。太低处理不过来，太高调度和状态开销大。可以按吞吐压测调。</p>\n<h2>追问</h2>\n<ul>\n<li>并行度太高有什么代价？</li>\n</ul>"
     },
     {
       "id": "FLINK-0094",
@@ -20266,7 +20266,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>从事件流里检测符合模式的事件序列。</p>\n<h2>参考回答</h2>\n<p>CEP 是复杂事件处理，从数据流里匹配事件序列模式，比如连续三次登录失败。Flink CEP 提供模式 API 和 NFA 状态机检测，适合风控、异常检测。</p>\n<h2>追问</h2>\n<ul>\n<li>CEP 适合什么场景？</li>\n</ul>"
     },
     {
       "id": "FLINK-0095",
@@ -20279,7 +20279,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>定义 Pattern，用 CEP.pattern 匹配。</p>\n<h2>参考回答</h2>\n<p>CEP 检测模式是先定义 Pattern，比如 begin 开始、next 紧跟、where 条件，再 CEP.pattern 对数据流匹配，用 select 输出匹配结果。</p>\n<h2>追问</h2>\n<ul>\n<li>Pattern 怎么定义？</li>\n</ul>"
     },
     {
       "id": "FLINK-0096",
@@ -20292,7 +20292,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>连续、可选、重复、分组等。</p>\n<h2>参考回答</h2>\n<p>CEP 模式操作有 next 严格连续、followedBy 宽松连续、optional 可选、oneOrMore 和 times 重复、group 分组。组合起来表达复杂事件规则。</p>\n<h2>追问</h2>\n<ul>\n<li>next 和 followedBy 区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0097",
@@ -20305,7 +20305,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>within 定义模式匹配的时间窗口。</p>\n<h2>参考回答</h2>\n<p>CEP 时间约束用 within 限制整个模式必须在多长时间内匹配完，超时就不算。配合事件时间或处理时间用。</p>\n<h2>追问</h2>\n<ul>\n<li>超时的事件怎么处理？</li>\n</ul>"
     },
     {
       "id": "FLINK-0098",
@@ -20318,7 +20318,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配事件时间和 watermark，或处理时间避免乱序影响。</p>\n<h2>参考回答</h2>\n<p>CEP 乱序处理靠事件时间加 watermark，模式按事件时间排序匹配。乱序严重时要配合 watermark 容忍，或对关键场景用处理时间。</p>\n<h2>追问</h2>\n<ul>\n<li>事件时间对 CEP 为什么重要？</li>\n</ul>"
     },
     {
       "id": "FLINK-0099",
@@ -20331,7 +20331,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用动态模式或每次匹配时重新构建。</p>\n<h2>参考回答</h2>\n<p>CEP 模式动态更新比较麻烦，可以每次匹配时从配置重新构建 pattern，或用第三方动态规则方案。原生 CEP 模式编译后不好改。</p>\n<h2>追问</h2>\n<ul>\n<li>动态规则一般怎么实现？</li>\n</ul>"
     },
     {
       "id": "FLINK-0100",
@@ -20344,7 +20344,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>底层处理函数，能访问状态、时间和侧输出。</p>\n<h2>参考回答</h2>\n<p>ProcessFunction 是最灵活的算子，能访问 keyed state、事件时间、定时器和侧输出，适合复杂有状态逻辑。窗口底层就是用它实现。</p>\n<h2>追问</h2>\n<ul>\n<li>ProcessFunction 和 map 区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0101",
@@ -20357,7 +20357,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 OutputTag 把特殊事件分流到侧输出。</p>\n<h2>参考回答</h2>\n<p>侧输出用 OutputTag 定义旁路，主流程处理正常数据，异常或特殊事件用 context.output 发到侧输出，单独处理。适合分流脏数据。</p>\n<h2>追问</h2>\n<ul>\n<li>侧输出适合什么场景？</li>\n</ul>"
     },
     {
       "id": "FLINK-0102",
@@ -20370,7 +20370,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>AsyncDataStream 实现异步访问外部系统。</p>\n<h2>参考回答</h2>\n<p>异步 IO 用 AsyncDataStream 和 AsyncFunction，对外部系统异步请求，不阻塞线程，提高吞吐。适合查 Redis、数据库这类外部调用。</p>\n<h2>追问</h2>\n<ul>\n<li>异步 IO 为什么能提高吞吐？</li>\n</ul>"
     },
     {
       "id": "FLINK-0103",
@@ -20383,7 +20383,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>在 ProcessFunction 里用 state 读写状态。</p>\n<h2>参考回答</h2>\n<p>自定义状态更新在 ProcessFunction 或 RichFunction 里，通过 RuntimeContext 获取 state，在 process 里读写。这是有状态计算的核心。</p>\n<h2>追问</h2>\n<ul>\n<li>state 怎么获取？</li>\n</ul>"
     },
     {
       "id": "FLINK-0104",
@@ -20396,7 +20396,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Flink Operator 或原生 K8s 模式部署。</p>\n<h2>参考回答</h2>\n<p>K8s 部署可以用 Flink Operator，定义 FlinkDeployment 提交；或原生 K8s 模式，提交时指定 K8s 集群。Operator 管理生命周期更方便。</p>\n<h2>追问</h2>\n<ul>\n<li>Operator 和原生模式怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0105",
@@ -20409,7 +20409,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多 JobManager 加 ZooKeeper 选主。</p>\n<h2>参考回答</h2>\n<p>高可用配多个 JobManager，用 ZooKeeper 做选主和元数据存储，主挂了自动切。checkpoint 存可靠存储，恢复靠 savepoint。</p>\n<h2>追问</h2>\n<ul>\n<li>ZooKeeper 在 HA 里的作用？</li>\n</ul>"
     },
     {
       "id": "FLINK-0106",
@@ -20422,7 +20422,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>客户端提交到 Dispatcher，生成作业图调度执行。</p>\n<h2>参考回答</h2>\n<p>作业提交是客户端打包上传，Dispatcher 接收后生成 JobGraph，JobManager 转成 ExecutionGraph，调度到 TaskManager 执行。</p>\n<h2>追问</h2>\n<ul>\n<li>JobGraph 和 ExecutionGraph 的区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0107",
@@ -20435,7 +20435,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>吞吐、延迟、checkpoint、反压、资源等。</p>\n<h2>参考回答</h2>\n<p>监控指标有吞吐量、延迟、checkpoint 成功率、反压、CPU 内存、状态大小。用 Metrics Reporter 接到 Prometheus 等系统。</p>\n<h2>追问</h2>\n<ul>\n<li>Metrics Reporter 怎么配？</li>\n</ul>"
     },
     {
       "id": "FLINK-0108",
@@ -20448,7 +20448,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看日志、重启策略、从 checkpoint 恢复。</p>\n<h2>参考回答</h2>\n<p>异常处理先看日志定位，靠重启策略自动重启，从 checkpoint 恢复。持续失败要查根因，是数据问题还是资源问题。</p>\n<h2>追问</h2>\n<ul>\n<li>持续失败怎么定位根因？</li>\n</ul>"
     },
     {
       "id": "FLINK-0109",
@@ -20461,7 +20461,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 log4j 或 logback 配日志级别和输出。</p>\n<h2>参考回答</h2>\n<p>Flink 日志用 log4j 或 logback 配置，JobManager 和 TaskManager 分别记。生产配到集中日志系统，方便排查。</p>\n<h2>追问</h2>\n<ul>\n<li>JobManager 和 TaskManager 日志分开放？</li>\n</ul>"
     },
     {
       "id": "FLINK-0110",
@@ -20474,7 +20474,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 savepoint 做有状态升级。</p>\n<h2>参考回答</h2>\n<p>升级作业先打 savepoint，停旧作业，用新代码从 savepoint 启动，保留状态。注意 API 和状态兼容性，不兼容要迁移状态。</p>\n<h2>追问</h2>\n<ul>\n<li>状态不兼容怎么办？</li>\n</ul>"
     },
     {
       "id": "FLINK-0111",
@@ -20487,7 +20487,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>改并行度或加 TaskManager 触发 rescale。</p>\n<h2>参考回答</h2>\n<p>扩缩容可以改并行度或加 TaskManager，从 savepoint 恢复时重新分配状态。自动扩缩容靠外部系统按指标调整。</p>\n<h2>追问</h2>\n<ul>\n<li>rescale 状态怎么重新分配？</li>\n</ul>"
     },
     {
       "id": "FLINK-0112",
@@ -20500,7 +20500,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>合理分配堆、托管内存和 off-heap。</p>\n<h2>参考回答</h2>\n<p>Flink 内存分堆内存、托管内存和 off-heap。托管内存给状态和 RocksDB，要按状态大小配够。避免 OOM 和频繁 GC。</p>\n<h2>追问</h2>\n<ul>\n<li>托管内存是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0113",
@@ -20513,7 +20513,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>调网络缓冲、背压相关参数。</p>\n<h2>参考回答</h2>\n<p>网络参数主要是网络缓冲大小、数量，影响吞吐和反压。高吞吐场景调大缓冲，但要控制内存。默认参数一般够，别乱调。</p>\n<h2>追问</h2>\n<ul>\n<li>网络缓冲调大有什么代价？</li>\n</ul>"
     },
     {
       "id": "FLINK-0114",

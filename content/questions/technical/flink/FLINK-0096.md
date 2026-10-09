@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+连续、可选、重复、分组等。
+
+# 参考回答
+
+CEP 模式操作有 next 严格连续、followedBy 宽松连续、optional 可选、oneOrMore 和 times 重复、group 分组。组合起来表达复杂事件规则。
+
+# 追问
+
+- next 和 followedBy 区别？

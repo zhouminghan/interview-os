@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+在 ProcessFunction 里用 state 读写状态。
+
+# 参考回答
+
+自定义状态更新在 ProcessFunction 或 RichFunction 里，通过 RuntimeContext 获取 state，在 process 里读写。这是有状态计算的核心。
+
+# 追问
+
+- state 怎么获取？

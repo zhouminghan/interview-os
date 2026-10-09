@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+按 slot 分配，考虑数据本地性和负载。
+
+# 参考回答
+
+Flink 调度按 slot 把子任务分配到 TaskManager，考虑 slot 数量和负载均衡。不同部署模式交给外部资源管理器，内部再做子任务调度。
+
+# 追问
+
+- slot 分配要考虑什么？

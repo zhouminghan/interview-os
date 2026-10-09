@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+看 Flink UI 的反压状态。
+
+# 参考回答
+
+监控反压看 Flink UI 的反压页面，每个算子标 OK 或 HIGH 表示反压程度。反压 HIGH 就顺着找最下游的瓶颈算子。
+
+# 追问
+
+- 反压严重怎么定位根因？

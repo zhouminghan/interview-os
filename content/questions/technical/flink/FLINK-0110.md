@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 savepoint 做有状态升级。
+
+# 参考回答
+
+升级作业先打 savepoint，停旧作业，用新代码从 savepoint 启动，保留状态。注意 API 和状态兼容性，不兼容要迁移状态。
+
+# 追问
+
+- 状态不兼容怎么办？

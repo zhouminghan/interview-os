@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 OutputTag 把特殊事件分流到侧输出。
+
+# 参考回答
+
+侧输出用 OutputTag 定义旁路，主流程处理正常数据，异常或特殊事件用 context.output 发到侧输出，单独处理。适合分流脏数据。
+
+# 追问
+
+- 侧输出适合什么场景？
