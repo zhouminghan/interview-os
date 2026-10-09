@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+减少 shuffle、用 forward、rebalance 等策略。
+
+# 参考回答
+
+数据交换策略有 forward、keyBy、rebalance、broadcast。优化是减少跨节点传输，用 forward 本地传递，keyBy 时才 shuffle。
+
+# 追问
+
+- forward 和 rebalance 的区别？

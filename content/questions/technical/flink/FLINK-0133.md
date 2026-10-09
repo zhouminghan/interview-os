@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+连接器、Table API、ML、CEP、Gelly 等。
+
+# 参考回答
+
+Flink 生态有各种连接器、Table API 和 SQL、ML 库、CEP、Gelly，加上 Flink CDC 和 Operator。围绕流计算形成一个平台。
+
+# 追问
+
+- Flink CDC 是什么？

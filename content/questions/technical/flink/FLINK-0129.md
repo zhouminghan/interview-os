@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用对应序列化器和格式处理。
+
+# 参考回答
+
+Flink 处理 JSON、Avro 用对应的 format 和序列化器，定义 schema 解析。生产上 Avro 更常用，因为带 schema 和压缩。
+
+# 追问
+
+- Avro 和 JSON 怎么选？

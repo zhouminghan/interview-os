@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:31:43+08:00",
+  "generatedAt": "2026-10-09T16:33:40+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -20526,7 +20526,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据倾斜、状态过大、序列化、GC、网络。</p>\n<h2>参考回答</h2>\n<p>常见瓶颈是数据倾斜、状态过大导致访问慢、序列化开销、GC 停顿、网络传输。用 UI 和指标定位到具体算子再优化。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么定位是哪个算子慢？</li>\n</ul>"
     },
     {
       "id": "FLINK-0115",
@@ -20539,7 +20539,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用高效序列化、减少传输数据、注册类型。</p>\n<h2>参考回答</h2>\n<p>序列化优化用 Flink 自带的序列化器或 Kryo，减少传输字段，避免大对象。POJO 类型比泛型快，尽量用明确类型。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 POJO 比泛型快？</li>\n</ul>"
     },
     {
       "id": "FLINK-0116",
@@ -20552,7 +20552,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少状态访问次数、用 RocksDB 调优。</p>\n<h2>参考回答</h2>\n<p>状态优化减少访问次数，能一次读完就一次读完，RocksDB 调优块缓存和写缓冲。状态太大要分 key 或用 TTL。</p>\n<h2>追问</h2>\n<ul>\n<li>状态访问频繁会怎样？</li>\n</ul>"
     },
     {
       "id": "FLINK-0117",
@@ -20565,7 +20565,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>增量 checkpoint、合理间隔、减少状态。</p>\n<h2>参考回答</h2>\n<p>checkpoint 优化用 RocksDB 增量 checkpoint，合理间隔，减少状态大小和快照耗时。别太频繁，也别间隔太长。</p>\n<h2>追问</h2>\n<ul>\n<li>checkpoint 太频繁有什么影响？</li>\n</ul>"
     },
     {
       "id": "FLINK-0118",
@@ -20578,7 +20578,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>调堆大小、用 G1、减少对象分配。</p>\n<h2>参考回答</h2>\n<p>避免 GC 暂停用 G1 收集器，合理堆大小，减少对象创建和复用对象。GC 频繁会拖慢吞吐，要监控 GC 指标。</p>\n<h2>追问</h2>\n<ul>\n<li>GC 指标怎么看？</li>\n</ul>"
     },
     {
       "id": "FLINK-0119",
@@ -20591,7 +20591,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加并行度、减少序列化、优化网络。</p>\n<h2>参考回答</h2>\n<p>提高吞吐靠加并行度、减少序列化开销、优化网络缓冲、减少状态访问。吞吐和延迟要平衡，看业务优先哪个。</p>\n<h2>追问</h2>\n<ul>\n<li>吞吐和延迟怎么平衡？</li>\n</ul>"
     },
     {
       "id": "FLINK-0120",
@@ -20604,7 +20604,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少批处理、调 checkpoint 间隔、用连续模式。</p>\n<h2>参考回答</h2>\n<p>降低延迟减少数据在算子间的等待，调小 checkpoint 间隔、用连续模式或更快 trigger。延迟和吞吐往往冲突。</p>\n<h2>追问</h2>\n<ul>\n<li>连续模式和微批模式？</li>\n</ul>"
     },
     {
       "id": "FLINK-0121",
@@ -20617,7 +20617,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加盐打散、局部聚合、分散热点 key。</p>\n<h2>参考回答</h2>\n<p>热点分区就是某个 key 数据特别多，用加盐打散、局部预聚合、自定义分区器分散。跟数据倾斜处理类似。</p>\n<h2>追问</h2>\n<ul>\n<li>热点和倾斜是一回事吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0122",
@@ -20630,7 +20630,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>减少 shuffle、用 forward、rebalance 等策略。</p>\n<h2>参考回答</h2>\n<p>数据交换策略有 forward、keyBy、rebalance、broadcast。优化是减少跨节点传输，用 forward 本地传递，keyBy 时才 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>forward 和 rebalance 的区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0123",
@@ -20643,7 +20643,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分层优化并行度、状态、checkpoint、资源。</p>\n<h2>参考回答</h2>\n<p>大规模调优是系统性的：并行度合理、状态用 RocksDB 加 TTL、checkpoint 增量、资源配够、监控到位。逐个瓶颈解决。</p>\n<h2>追问</h2>\n<ul>\n<li>大规模作业最先看什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0124",
@@ -20656,7 +20656,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Kafka Source 和 Sink，配 offset 和 exactly-once。</p>\n<h2>参考回答</h2>\n<p>Flink 和 Kafka 集成用 Kafka Source 和 Sink，Source 管 offset 提交，Sink 配合两阶段提交实现 exactly-once。是实时数仓最经典的组合。</p>\n<h2>追问</h2>\n<ul>\n<li>offset 怎么管理？</li>\n</ul>"
     },
     {
       "id": "FLINK-0125",
@@ -20669,7 +20669,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>读写 HDFS、用 YARN 部署。</p>\n<h2>参考回答</h2>\n<p>Flink 和 Hadoop 集成主要是读写 HDFS 文件、用 YARN 做资源管理。通过配置 Hadoop 路径和 classpath 就能访问。</p>\n<h2>追问</h2>\n<ul>\n<li>Flink 读写 HDFS 怎么配？</li>\n</ul>"
     },
     {
       "id": "FLINK-0126",
@@ -20682,7 +20682,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Hive Catalog 读 Hive 表，写 Hive 表。</p>\n<h2>参考回答</h2>\n<p>Flink 和 Hive 集成通过 Hive Catalog 复用 Hive 元数据，能读写 Hive 表。支持流写 Hive 和批读 Hive 数据。</p>\n<h2>追问</h2>\n<ul>\n<li>Hive Catalog 是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0127",
@@ -20695,7 +20695,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Flink ML 或在线学习，流式更新模型。</p>\n<h2>参考回答</h2>\n<p>实时机器学习用 Flink 做特征实时计算和在线学习，流式更新模型。大规模训练一般还是离线，Flink 做特征和预测服务。</p>\n<h2>追问</h2>\n<ul>\n<li>Flink ML 和离线训练怎么分工？</li>\n</ul>"
     },
     {
       "id": "FLINK-0128",
@@ -20708,7 +20708,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 ES Connector 写索引。</p>\n<h2>参考回答</h2>\n<p>Flink 写 ES 用 Elasticsearch Connector，把结果写进索引。注意批量写和幂等，避免频繁小写入。</p>\n<h2>追问</h2>\n<ul>\n<li>写 ES 怎么避免小批量？</li>\n</ul>"
     },
     {
       "id": "FLINK-0129",
@@ -20721,7 +20721,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用对应序列化器和格式处理。</p>\n<h2>参考回答</h2>\n<p>Flink 处理 JSON、Avro 用对应的 format 和序列化器，定义 schema 解析。生产上 Avro 更常用，因为带 schema 和压缩。</p>\n<h2>追问</h2>\n<ul>\n<li>Avro 和 JSON 怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0130",
@@ -20734,7 +20734,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 RabbitMQ Connector 收发消息。</p>\n<h2>参考回答</h2>\n<p>Flink 和 RabbitMQ 集成用 Connector，Source 消费队列、Sink 发布消息。RabbitMQ 的 exactly-once 支持比 Kafka 弱，一般 at-least-once。</p>\n<h2>追问</h2>\n<ul>\n<li>RabbitMQ 和 Kafka 怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0131",
@@ -20747,7 +20747,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Gelly 或对接外部图库。</p>\n<h2>参考回答</h2>\n<p>Flink 自带 Gelly 做图计算，也可以把结果导出给 Neo4j 这类图库。图计算不是 Flink 主战场，复杂的用专门图引擎。</p>\n<h2>追问</h2>\n<ul>\n<li>Flink 做图计算的局限？</li>\n</ul>"
     },
     {
       "id": "FLINK-0132",
@@ -20760,7 +20760,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Metrics Reporter 接 Prometheus 等。</p>\n<h2>参考回答</h2>\n<p>监控集成用 Metrics Reporter 把 Flink 指标推到 Prometheus、InfluxDB 等，再配 Grafana 和告警。</p>\n<h2>追问</h2>\n<ul>\n<li>常见监控栈是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0133",
@@ -20773,7 +20773,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>连接器、Table API、ML、CEP、Gelly 等。</p>\n<h2>参考回答</h2>\n<p>Flink 生态有各种连接器、Table API 和 SQL、ML 库、CEP、Gelly，加上 Flink CDC 和 Operator。围绕流计算形成一个平台。</p>\n<h2>追问</h2>\n<ul>\n<li>Flink CDC 是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0134",
@@ -20786,7 +20786,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Source 读、转换清洗、Sink 写，流式加工。</p>\n<h2>参考回答</h2>\n<p>实时 ETL 用 Flink 从 Kafka 或 CDC 读，做清洗、过滤、转换、join，再写到目标库或数仓。实时数仓的 ETL 就是这套。</p>\n<h2>追问</h2>\n<ul>\n<li>实时 ETL 和离线 ETL 的区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0135",
@@ -20799,7 +20799,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时特征计算加模型打分，输出推荐结果。</p>\n<h2>参考回答</h2>\n<p>实时推荐用 Flink 做实时特征计算和在线打分，把用户行为实时变成特征，输出推荐结果。离线训练加在线预测的组合。</p>\n<h2>追问</h2>\n<ul>\n<li>推荐里 Flink 负责什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0136",
@@ -20812,7 +20812,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时采集行为，做漏斗、路径、实时指标。</p>\n<h2>参考回答</h2>\n<p>用户行为分析用 Flink 实时采集点击、浏览行为，算实时漏斗、路径分析、活跃指标。配合窗口和状态做多维统计。</p>\n<h2>追问</h2>\n<ul>\n<li>漏斗分析怎么算？</li>\n</ul>"
     },
     {
       "id": "FLINK-0137",
@@ -20825,7 +20825,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时规则检测、反欺诈、异常交易。</p>\n<h2>参考回答</h2>\n<p>金融风控用 Flink 做实时规则引擎、反欺诈检测，用 CEP 匹配异常行为模式，实时拦截风险交易。</p>\n<h2>追问</h2>\n<ul>\n<li>风控为什么强调实时？</li>\n</ul>"
     },
     {
       "id": "FLINK-0138",
@@ -20838,7 +20838,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 Flink CDC 做实时异构同步。</p>\n<h2>参考回答</h2>\n<p>实时同步用 Flink CDC 监听数据库变更，实时同步到下游库或数仓。替代传统批量的 Sqoop，秒级同步。</p>\n<h2>追问</h2>\n<ul>\n<li>Flink CDC 原理是什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0139",
@@ -20851,7 +20851,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时接入设备数据，做监控和告警。</p>\n<h2>参考回答</h2>\n<p>物联网用 Flink 实时接入海量设备数据，做监控、告警、状态判断。事件时间和乱序处理很关键，设备数据经常乱序。</p>\n<h2>追问</h2>\n<ul>\n<li>物联网数据为什么乱序多？</li>\n</ul>"
     },
     {
       "id": "FLINK-0140",
@@ -20864,7 +20864,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时聚合指标，写查询层供大屏展示。</p>\n<h2>参考回答</h2>\n<p>实时仪表盘用 Flink 实时聚合指标，写到 Doris、Redis 这类查询层，前端大屏定时查询刷新。链路是 Flink 算，查询层出。</p>\n<h2>追问</h2>\n<ul>\n<li>大屏链路怎么设计？</li>\n</ul>"
     },
     {
       "id": "FLINK-0141",
@@ -20877,7 +20877,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 CEP 和规则检测异常模式。</p>\n<h2>参考回答</h2>\n<p>异常检测用 Flink CEP 或规则引擎实时匹配异常模式，比如流量突增、连续失败，实时告警。</p>\n<h2>追问</h2>\n<ul>\n<li>异常检测和风控的区别？</li>\n</ul>"
     },
     {
       "id": "FLINK-0142",
@@ -20890,7 +20890,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时分流统计，对比实验组指标。</p>\n<h2>参考回答</h2>\n<p>A/B 测试用 Flink 按实验标识实时分流，分别统计各组的核心指标，实时看效果。配合状态和窗口做实时对比。</p>\n<h2>追问</h2>\n<ul>\n<li>A/B 测试指标怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0143",
@@ -20903,7 +20903,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>实时更新索引，支撑搜索。</p>\n<h2>参考回答</h2>\n<p>实时搜索用 Flink 把数据变化实时写到搜索索引，比如 ES，保证搜索结果实时性。Flink 负责实时索引更新。</p>\n<h2>追问</h2>\n<ul>\n<li>搜索索引为什么用 Flink 更新？</li>\n</ul>"
     },
     {
       "id": "FLINK-0144",

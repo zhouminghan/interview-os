@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Kafka Source 和 Sink，配 offset 和 exactly-once。
+
+# 参考回答
+
+Flink 和 Kafka 集成用 Kafka Source 和 Sink，Source 管 offset 提交，Sink 配合两阶段提交实现 exactly-once。是实时数仓最经典的组合。
+
+# 追问
+
+- offset 怎么管理？

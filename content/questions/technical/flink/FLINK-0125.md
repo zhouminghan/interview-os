@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+读写 HDFS、用 YARN 部署。
+
+# 参考回答
+
+Flink 和 Hadoop 集成主要是读写 HDFS 文件、用 YARN 做资源管理。通过配置 Hadoop 路径和 classpath 就能访问。
+
+# 追问
+
+- Flink 读写 HDFS 怎么配？

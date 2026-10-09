@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 Flink CDC 做实时异构同步。
+
+# 参考回答
+
+实时同步用 Flink CDC 监听数据库变更，实时同步到下游库或数仓。替代传统批量的 Sqoop，秒级同步。
+
+# 追问
+
+- Flink CDC 原理是什么？
