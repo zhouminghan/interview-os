@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+CREATE USER 建用户，GRANT 授权，可改密码、删用户。
+
+# 参考回答
+
+用 CREATE USER 创建用户并设密码，GRANT 给用户或角色授权，REVOKE 回收权限。改密码用 SET PASSWORD 或 ALTER USER，删用户 DROP USER。一般配合角色做权限管理。
+
+# 追问
+
+- GRANT 和 REVOKE 的用法？

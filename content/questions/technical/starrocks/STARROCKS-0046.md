@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+按用户、角色、库表、操作粒度授权。
+
+# 参考回答
+
+StarRocks 权限分用户、角色两层，权限可以到库、表甚至列粒度，操作权限分 select、insert、alter 等。用 role 把权限打包，再把 role 授予用户，管理更清晰。
+
+# 追问
+
+- 用户和角色有什么区别？

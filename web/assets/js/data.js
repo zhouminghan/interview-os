@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T16:01:23+08:00",
+  "generatedAt": "2026-10-09T16:03:17+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -16702,7 +16702,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按用户、角色、库表、操作粒度授权。</p>\n<h2>参考回答</h2>\n<p>StarRocks 权限分用户、角色两层，权限可以到库、表甚至列粒度，操作权限分 select、insert、alter 等。用 role 把权限打包，再把 role 授予用户，管理更清晰。</p>\n<h2>追问</h2>\n<ul>\n<li>用户和角色有什么区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0047",
@@ -16715,7 +16715,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CREATE USER 建用户，GRANT 授权，可改密码、删用户。</p>\n<h2>参考回答</h2>\n<p>用 CREATE USER 创建用户并设密码，GRANT 给用户或角色授权，REVOKE 回收权限。改密码用 SET PASSWORD 或 ALTER USER，删用户 DROP USER。一般配合角色做权限管理。</p>\n<h2>追问</h2>\n<ul>\n<li>GRANT 和 REVOKE 的用法？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0048",
@@ -16728,7 +16728,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>角色是权限的集合，把角色授予用户统一管理。</p>\n<h2>参考回答</h2>\n<p>Role 就是把一组权限打包，比如给分析师建一个只读角色，授予若干库的 select，再把角色授予用户。这样人多了也好管，改权限只改角色就行，不用逐个用户改。</p>\n<h2>追问</h2>\n<ul>\n<li>角色之间能继承吗？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0049",
@@ -16741,7 +16741,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>行级权限靠过滤条件或视图实现，原生支持有限。</p>\n<h2>参考回答</h2>\n<p>StarRocks 原生主要到库表列粒度，行级权限一般通过建视图加过滤条件，或应用层控制。比如只让某用户看某地区的数据，就给他一个带 where 的视图，而不是给整张表权限。</p>\n<h2>追问</h2>\n<ul>\n<li>列级权限和行级权限怎么配合？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0050",
@@ -16754,7 +16754,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配置证书开启加密连接，保证传输安全。</p>\n<h2>参考回答</h2>\n<p>StarRocks 支持配置 SSL/TLS 来加密客户端和 FE、BE 之间的连接，需要生成证书并在配置里开启。主要用于跨网络访问时防止数据被窃听。企业内部一般内网加白名单，外部访问才开 SSL。</p>\n<h2>追问</h2>\n<ul>\n<li>SSL 会带来多大性能开销？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0051",
@@ -16767,7 +16767,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>传输层用 SSL 加密，存储层可配落盘加密。</p>\n<h2>参考回答</h2>\n<p>StarRocks 的加密分传输和存储两块：传输层用 SSL/TLS 加密网络数据，存储层可以配合底层文件系统或磁盘加密，对落盘数据做保护。敏感场景一般两层都加，再配合权限和脱敏。</p>\n<h2>追问</h2>\n<ul>\n<li>落盘加密会影响查询性能吗？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0052",
@@ -16780,7 +16780,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>审计日志记录谁在什么时间执行了什么 SQL，用于合规和追溯。</p>\n<h2>参考回答</h2>\n<p>配置审计日志后，StarRocks 会记录登录、查询、DDL 这些操作，包含用户、时间、SQL、结果状态。用于安全审计和问题排查。一般按合规要求开启，注意日志量大会占存储。</p>\n<h2>追问</h2>\n<ul>\n<li>审计日志存哪里、保留多久？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0053",
@@ -16793,7 +16793,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>网络隔离、权限最小化、SSL、审计、密码策略多管齐下。</p>\n<h2>参考回答</h2>\n<p>保护集群主要几层：网络层用防火墙和白名单限制访问，账号层用最小权限和强密码策略，传输层开 SSL，再加审计日志和定期巡检。核心是默认拒绝、按需放行。</p>\n<h2>追问</h2>\n<ul>\n<li>生产环境的端口怎么管控？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0054",
@@ -16806,7 +16806,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>可配置密码复杂度、有效期和失败锁定策略。</p>\n<h2>参考回答</h2>\n<p>StarRocks 支持配置密码复杂度要求、有效期、连续失败锁定这些策略，防止弱密码和暴力破解。生产环境一般强制复杂密码加定期更换。</p>\n<h2>追问</h2>\n<ul>\n<li>密码锁定后怎么解锁？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0055",
@@ -16819,7 +16819,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>白名单限制哪些来源 IP 能访问集群。</p>\n<h2>参考回答</h2>\n<p>白名单就是配置允许访问的 IP 或网段，不在名单里的连接直接拒绝。一般配合内网隔离，只放业务网段或跳板机。这样能挡住来自公网的非法访问。</p>\n<h2>追问</h2>\n<ul>\n<li>白名单和防火墙的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0056",
@@ -16832,7 +16832,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>2.0 在查询性能、主键模型、导入稳定性上有明显提升。</p>\n<h2>参考回答</h2>\n<p>2.0 相比 1.0 主要是性能更稳、主键模型更强、导入并发更好，还有 CBO 优化器更成熟、稳定性提升。这种版本题不用背太细，说方向就行：更快、更稳、实时更新能力更强。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么版本题不要背细节？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0057",
@@ -16845,7 +16845,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>3.0 主打存算分离、湖仓一体、更好的实时更新。</p>\n<h2>参考回答</h2>\n<p>3.0 核心是存算分离架构，计算和存储可以独立扩缩容，成本更省；再就是湖仓一体，能直接查外部数据湖；还有主键模型实时更新能力进一步增强。方向就是更弹性、更开放。</p>\n<h2>追问</h2>\n<ul>\n<li>存算分离和存算一体有什么区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0058",
@@ -16858,7 +16858,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>开源版核心功能可用，企业版多了商业支持和企业级管理功能。</p>\n<h2>参考回答</h2>\n<p>开源版的核心查询、存储能力都能用，适合自己搭；企业版主要多了商业技术支持、更完善的运维管理、安全合规、监控告警这些企业级能力。功能差异看具体版本，核心引擎基本一致。</p>\n<h2>追问</h2>\n<ul>\n<li>选开源还是企业版怎么看？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0059",
@@ -16871,7 +16871,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>StarRocks 社区活跃、版本迭代快，在国内 OLAP 里很主流。</p>\n<h2>参考回答</h2>\n<p>StarRocks 社区挺活跃，迭代快，国内外都有不少公司在用，尤其国内互联网和金融行业是主力。这种题聊个方向就行，表现出你关注过社区动态。</p>\n<h2>追问</h2>\n<ul>\n<li>你怎么保持对社区的关注？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0060",
@@ -16884,7 +16884,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>提 issue、改文档、修 bug、提 PR 都能贡献。</p>\n<h2>参考回答</h2>\n<p>参与方式从轻到重：提交 issue 反馈 bug 或需求、改进文档、认领 good first issue、提交 PR 修 bug 加功能。一般先看贡献指南，跟着社区规范来。</p>\n<h2>追问</h2>\n<ul>\n<li>good first issue 是什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0061",
@@ -16897,7 +16897,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>商业支持主要是企业订阅、技术支持、培训和咨询服务。</p>\n<h2>参考回答</h2>\n<p>商业支持一般包括企业版订阅、原厂技术支持、故障响应、培训和架构咨询这些。企业用生产环境很多会买支持，买个响应时效和兜底。</p>\n<h2>追问</h2>\n<ul>\n<li>商业支持的价值在哪？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0062",
@@ -16910,7 +16910,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>主要来自鼎石科技创始团队，以及国内多家互联网公司。</p>\n<h2>参考回答</h2>\n<p>StarRocks 是鼎石科技主导的开源项目，社区里也有很多国内互联网和金融公司的贡献。这种题不用精确到具体名单，知道是原厂主导加社区共建就行。</p>\n<h2>追问</h2>\n<ul>\n<li>主导方对开源项目的影响？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0063",
@@ -16923,7 +16923,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>社区走论坛、GitHub issue，企业用户走官方支持渠道。</p>\n<h2>参考回答</h2>\n<p>开源用户一般查官方文档、GitHub issue、社区论坛和 Slack 群；企业版用户有官方技术支持通道，可以提工单。日常小问题先查文档，再搜社区。</p>\n<h2>追问</h2>\n<ul>\n<li>提 issue 要注意什么？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0064",
@@ -16936,7 +16936,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>主要是官方文档、线上课程和企业培训。</p>\n<h2>参考回答</h2>\n<p>官方有文档教程、线上公开课，企业用户可以买定制培训。认证这块看官方是否推出，以官网为准。个人学的话看文档加动手搭一套最实在。</p>\n<h2>追问</h2>\n<ul>\n<li>自己怎么上手学 StarRocks？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0065",
@@ -16949,7 +16949,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>GitHub、Slack、微信群、线下 meetup 等。</p>\n<h2>参考回答</h2>\n<p>常见就是 GitHub issue、Slack 群、微信交流群、技术博客和线下 meetup。有问题先搜再问，带上版本、报错、复现步骤，社区响应会快很多。</p>\n<h2>追问</h2>\n<ul>\n<li>提问时怎么描述问题最高效？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0066",
@@ -16962,7 +16962,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CBO 根据统计信息估算成本，选最省的执行计划。</p>\n<h2>参考回答</h2>\n<p>CBO 就是基于成本的优化器，它靠表的统计信息估算不同 join 顺序、join 方式的代价，选成本最低的执行计划。所以统计信息准不准，直接决定 CBO 优化得好不好，慢查询经常要查统计信息是否过期。</p>\n<h2>追问</h2>\n<ul>\n<li>统计信息过期会有什么影响？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0067",
@@ -16975,7 +16975,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>向量化执行按批处理数据，利用 CPU SIMD 加速，比逐行快。</p>\n<h2>参考回答</h2>\n<p>向量化执行就是一次处理一批数据，而不是一行一行处理，能利用 CPU 的 SIMD 指令并行算，还减少函数调用开销。所以聚合、过滤这些操作特别快。这是 StarRocks 快的核心原因之一。</p>\n<h2>追问</h2>\n<ul>\n<li>向量化和逐行处理的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0068",
@@ -16988,7 +16988,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按表大小和分桶选 Broadcast、Shuffle、Bucket Shuffle 或 Colocate Join。</p>\n<h2>参考回答</h2>\n<p>小表用 Broadcast 广播到各节点，大表用 Shuffle 按 key 重分布，分桶一致的表用 Bucket Shuffle 或 Colocate Join 减少数据传输。CBO 会自动选，也可以看执行计划确认用的是哪种。</p>\n<h2>追问</h2>\n<ul>\n<li>Colocate Join 为什么快？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0069",
@@ -17001,7 +17001,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>谓词下推是把过滤条件提前到扫描阶段，减少读取数据量。</p>\n<h2>参考回答</h2>\n<p>谓词下推就是把 where 条件尽量往下推到存储层，在扫描时就把不满足的数据过滤掉，而不是扫出来再过滤。StarRocks 在 Tablet 扫描和索引阶段就能用过滤条件，配合分区裁剪，能少读很多数据。</p>\n<h2>追问</h2>\n<ul>\n<li>谓词下推和分区裁剪的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0070",
@@ -17014,7 +17014,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "starrocks",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>先解析 SQL 成语法树，再逻辑优化、物理优化，最终生成可执行计划。</p>\n<h2>参考回答</h2>\n<p>查询计划生成分几步：SQL 解析成抽象语法树，做逻辑优化比如谓词下推、子查询改写，再基于成本选物理执行方式，比如 join 策略、聚合方式，最后生成分布到各 BE 的执行计划。</p>\n<h2>追问</h2>\n<ul>\n<li>逻辑优化和物理优化的区别？</li>\n</ul>"
     },
     {
       "id": "STARROCKS-0071",

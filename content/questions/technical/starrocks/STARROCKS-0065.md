@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+GitHub、Slack、微信群、线下 meetup 等。
+
+# 参考回答
+
+常见就是 GitHub issue、Slack 群、微信交流群、技术博客和线下 meetup。有问题先搜再问，带上版本、报错、复现步骤，社区响应会快很多。
+
+# 追问
+
+- 提问时怎么描述问题最高效？
