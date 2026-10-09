@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+常见 TextFile、ORC、Parquet。
+
+# 参考回答
+
+TextFile 是纯文本，ORC 和 Parquet 是列式格式。分析场景用 ORC 或 Parquet，列式压缩好、查询只读需要的列。ORC 在 Hive 生态更原生，Parquet 跨引擎更通用。
+
+# 追问
+
+- ORC 和 Parquet 怎么选？

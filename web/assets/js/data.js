@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:13:03+08:00",
+  "generatedAt": "2026-10-09T17:15:12+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -5895,7 +5895,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Hive 是构建在 Hadoop 上的数仓工具，用 SQL 处理海量数据。</p>\n<h2>参考回答</h2>\n<p>Hive 把 SQL 翻译成 MapReduce 或 Spark 任务，让不懂大数据的人也能用 SQL 处理海量数据。和传统数据库区别是：Hive 面向批量分析、延迟高、数据量大，数据库面向事务、低延迟。Hive 适合离线数仓。</p>\n<h2>追问</h2>\n<ul>\n<li>Hive 为什么不做事务点查？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0027",
@@ -5908,7 +5908,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>客户端、Driver、Metastore、执行引擎组成。</p>\n<h2>参考回答</h2>\n<p>Hive 架构分客户端提交 SQL、Driver 编译优化、Metastore 存元数据、执行引擎跑 MapReduce 或 Spark。SQL 经过解析、优化、生成执行计划，再提交到集群执行。</p>\n<h2>追问</h2>\n<ul>\n<li>Metastore 的作用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0028",
@@ -5921,7 +5921,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Hive 提供数仓的存储、元数据和 SQL 查询能力。</p>\n<h2>参考回答</h2>\n<p>Hive 建在 HDFS 上，把文件映射成表，提供元数据管理和 SQL 查询，天然就是数仓的存储和计算层。特点是能用 SQL、能管海量数据、和 Hadoop 生态集成好。</p>\n<h2>追问</h2>\n<ul>\n<li>Hive 数仓的定位？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0029",
@@ -5934,7 +5934,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>元数据存在 Metastore，通常是关系库。</p>\n<h2>参考回答</h2>\n<p>Hive 元数据存在 Metastore，底层常用 MySQL 存表结构、分区、位置。管理上要备份、做权限控制、保持和实际数据一致。生产 Metastore 单独部署。</p>\n<h2>追问</h2>\n<ul>\n<li>元数据存哪些信息？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0030",
@@ -5947,7 +5947,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>本地、单机、远程 Metastore 三种模式。</p>\n<h2>参考回答</h2>\n<p>三种模式：内嵌模式元数据存本地 derby，适合测试；本地模式 Metastore 和 Hive 同机；远程模式 Metastore 独立服务，生产最常用，多客户端共享。</p>\n<h2>追问</h2>\n<ul>\n<li>生产为什么用远程 Metastore？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0031",
@@ -5960,7 +5960,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>内部表、外部表、分区表、分桶表。</p>\n<h2>参考回答</h2>\n<p>内部表数据由 Hive 管理，删表删数据；外部表数据在外部，删表只删元数据。分区表按字段分区加速查询，分桶表按 hash 分桶优化 join 和采样。</p>\n<h2>追问</h2>\n<ul>\n<li>内部表和外部表怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0032",
@@ -5973,7 +5973,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分区把数据按字段分目录，查询只扫相关分区。</p>\n<h2>参考回答</h2>\n<p>分区把表数据按分区字段分目录存，查询带分区条件就只扫对应目录，大幅减少扫描。设计上分区字段选高频过滤的，一般是日期。分区别太细，否则小文件多。</p>\n<h2>追问</h2>\n<ul>\n<li>分区太细有什么问题？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0033",
@@ -5986,7 +5986,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>分桶按 hash 把数据分到多个文件，分区按目录。</p>\n<h2>参考回答</h2>\n<p>分桶把数据按某字段 hash 分到固定数量的桶文件，分区是分目录。分桶适合 join 和采样，分桶键选高基数均匀的。分区分桶常配合用。</p>\n<h2>追问</h2>\n<ul>\n<li>分桶和分区怎么配合？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0034",
@@ -5999,7 +5999,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>常见 TextFile、ORC、Parquet。</p>\n<h2>参考回答</h2>\n<p>TextFile 是纯文本，ORC 和 Parquet 是列式格式。分析场景用 ORC 或 Parquet，列式压缩好、查询只读需要的列。ORC 在 Hive 生态更原生，Parquet 跨引擎更通用。</p>\n<h2>追问</h2>\n<ul>\n<li>ORC 和 Parquet 怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0035",
@@ -6012,7 +6012,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SerDe 是序列化和反序列化器，负责读写格式。</p>\n<h2>参考回答</h2>\n<p>SerDe 把 Hive 里的行数据序列化成文件格式，读的时候反序列化。建表指定 ROW FORMAT 的 SerDe，自定义格式要实现 SerDe 接口。一般内置的就够用。</p>\n<h2>追问</h2>\n<ul>\n<li>什么时候自定义 SerDe？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0036",
@@ -6025,7 +6025,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>UDF 是自定义函数，扩展 SQL 能力。</p>\n<h2>参考回答</h2>\n<p>Hive UDF 有标量 UDF、聚合 UDAF、表生成 UDTF。开发写类实现接口，打 jar 包，add jar 后 create function 注册。内置函数不够用时扩展。</p>\n<h2>追问</h2>\n<ul>\n<li>UDF 性能怎么样？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0037",
@@ -6038,7 +6038,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>视图是逻辑查询，物化视图预存结果。</p>\n<h2>参考回答</h2>\n<p>普通视图只是保存查询定义，查的时候现算；物化视图把结果预存下来，查询直接复用。物化视图快但占存储、要刷新。常用聚合可以物化加速。</p>\n<h2>追问</h2>\n<ul>\n<li>物化视图什么时候用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0038",
@@ -6051,7 +6051,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>SQL 解析成执行计划，再翻译成计算任务。</p>\n<h2>参考回答</h2>\n<p>Hive 查询过程：SQL 解析成语法树，做语义分析和优化，生成执行计划，再翻译成 MapReduce 或 Spark 任务执行。优化器做谓词下推、列裁剪、join 优化这些。</p>\n<h2>追问</h2>\n<ul>\n<li>Hive 优化器做什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0039",
@@ -6064,7 +6064,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Hive 有 Compact 和 Bitmap 索引，但用得少。</p>\n<h2>参考回答</h2>\n<p>Hive 索引有 Compact 和 Bitmap 两种，但实际用得很少，因为列式存储加分区已经够快，索引维护成本高。新版本基本废弃，靠 ORC 的索引和分区分桶优化。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 Hive 索引用不上？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0040",
@@ -6077,7 +6077,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>动态分区按数据自动创建分区。</p>\n<h2>参考回答</h2>\n<p>动态分区插入时根据数据的分区字段值自动建分区，不用手动指定。配置开启 dynamic partition，注意限制分区数，防止分区爆炸和小文件。</p>\n<h2>追问</h2>\n<ul>\n<li>动态分区有什么坑？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0041",
@@ -6090,7 +6090,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>常见 gzip、snappy、lz4、zstd。</p>\n<h2>参考回答</h2>\n<p>gzip 压缩率高但慢，snappy、lz4 快，zstd 平衡。选压缩看 CPU 和存储权衡。分析场景常配 snappy 或 zstd，兼顾压缩和速度。ORC、Parquet 自带压缩。</p>\n<h2>追问</h2>\n<ul>\n<li>压缩对查询性能影响？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0042",
@@ -6103,7 +6103,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按库表授权，配角色和用户。</p>\n<h2>参考回答</h2>\n<p>Hive 权限按库表粒度授权，支持角色、用户，可细化到 select、insert 等操作。生产配合 Sentry、Ranger 做统一权限。最小权限原则，定期审计。</p>\n<h2>追问</h2>\n<ul>\n<li>权限怎么和业务结合？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0043",
@@ -6116,7 +6116,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>元数据描述表结构、分区、存储位置。</p>\n<h2>参考回答</h2>\n<p>元数据存表名、字段、类型、分区、存储位置、格式这些。存在 Metastore 的关系库里。管理上做备份、权限、一致性校验，血缘和资产管理也靠它。</p>\n<h2>追问</h2>\n<ul>\n<li>元数据不一致怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0044",
@@ -6129,7 +6129,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>基础类型、复杂类型两大类。</p>\n<h2>参考回答</h2>\n<p>基础类型有整型、字符串、小数、时间、布尔；复杂类型有 array、map、struct。注意隐式类型转换，decimal 精度，string 和 varchar 区别。复杂类型少用，解析慢。</p>\n<h2>追问</h2>\n<ul>\n<li>string 和 varchar 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0045",
@@ -6142,7 +6142,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Hive 本身不支持传统存储过程。</p>\n<h2>参考回答</h2>\n<p>Hive 不支持传统数据库的存储过程，因为它是批处理引擎。可以用脚本、UDF 或调度平台编排多步 SQL 实现类似逻辑。新版本 HPLSQL 能做过程式。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么编排多步 SQL？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0046",
@@ -6155,7 +6155,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>新版本支持有限的事务，要求 ORC 和分桶。</p>\n<h2>参考回答</h2>\n<p>Hive 后来支持 ACID 事务，但要求 ORC 格式和分桶表，且性能一般。主要用于流式写入和 upsert。传统离线场景很少用事务，不推荐大量用。</p>\n<h2>追问</h2>\n<ul>\n<li>Hive 事务为什么有限制？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0047",
@@ -6168,7 +6168,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ACID 是事务特性，Hive 有限支持。</p>\n<h2>参考回答</h2>\n<p>Hive ACID 靠 delta 文件和 compactor 实现事务，支持 insert、update、delete。要 ORC 格式和分桶表。性能有开销，适合需要更新的表，不适合纯批量分析。</p>\n<h2>追问</h2>\n<ul>\n<li>ACID 表的代价是什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0048",
@@ -6181,7 +6181,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>优化器做逻辑和物理优化。</p>\n<h2>参考回答</h2>\n<p>Hive 优化器做谓词下推、列裁剪、join 顺序优化、MapJoin 这些，CBO 基于统计信息选最优计划。配置开启 CBO 和向量化，统计信息要收集准。</p>\n<h2>追问</h2>\n<ul>\n<li>CBO 依赖什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0049",
@@ -6194,7 +6194,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>统计信息描述数据分布，供优化器估算成本。</p>\n<h2>参考回答</h2>\n<p>统计信息有行数、列基数、数据分布，用 ANALYZE TABLE 收集。CBO 靠它选 join 顺序和策略。数据变更后要重新收集，否则计划不准。</p>\n<h2>追问</h2>\n<ul>\n<li>统计信息过期怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0050",
@@ -6207,7 +6207,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>向量化按批处理数据，利用 CPU 加速。</p>\n<h2>参考回答</h2>\n<p>向量化执行一次处理一批数据，用 CPU 的 SIMD 指令并行算，比逐行快。配置开启向量化，对扫描、过滤、聚合收益明显。适合 ORC 格式的查询。</p>\n<h2>追问</h2>\n<ul>\n<li>向量化对哪些算子快？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0051",
@@ -6220,7 +6220,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>并行执行把无依赖的 stage 同时跑。</p>\n<h2>参考回答</h2>\n<p>Hive 并行执行把没有依赖关系的多个 stage 同时执行，减少总耗时。配置开启 parallel execution，适合多表 join 或 union 场景。别开太多，会抢资源。</p>\n<h2>追问</h2>\n<ul>\n<li>并行执行的代价？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0052",
@@ -6233,7 +6233,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MapJoin 把小表加载进内存，在 map 端 join。</p>\n<h2>参考回答</h2>\n<p>MapJoin 把小表加载到每个 map 的内存里，join 在 map 端完成，避免 shuffle。适合大表 join 小表。配置开启自动 MapJoin，设置小表阈值。</p>\n<h2>追问</h2>\n<ul>\n<li>MapJoin 小表多大合适？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0053",
@@ -6246,7 +6246,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据倾斜是热点 key 导致个别任务慢。</p>\n<h2>参考回答</h2>\n<p>倾斜是某些 key 数据特别多，导致少数 reduce 任务慢。检测看任务耗时分布。优化用加盐打散、两阶段聚合、MapJoin、调整分区。先定位热点 key 再处理。</p>\n<h2>追问</h2>\n<ul>\n<li>加盐怎么还原？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0054",
@@ -6259,7 +6259,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按过滤条件只扫相关分区。</p>\n<h2>参考回答</h2>\n<p>分区裁剪是根据 where 里的分区字段，只扫描命中的分区目录。配置开启，查询条件里要带分区字段才生效。是 Hive 减少扫描最重要的优化。</p>\n<h2>追问</h2>\n<ul>\n<li>分区裁剪失效的原因？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0055",
@@ -6272,7 +6272,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>过滤条件提前到数据源执行。</p>\n<h2>参考回答</h2>\n<p>谓词下推把 where 过滤条件尽量推到扫描阶段，在读数据时就过滤，减少读的数据量。列式存储和分区裁剪配合，性能提升明显。默认开启。</p>\n<h2>追问</h2>\n<ul>\n<li>谓词下推和分区裁剪关系？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0056",

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+SerDe 是序列化和反序列化器，负责读写格式。
+
+# 参考回答
+
+SerDe 把 Hive 里的行数据序列化成文件格式，读的时候反序列化。建表指定 ROW FORMAT 的 SerDe，自定义格式要实现 SerDe 接口。一般内置的就够用。
+
+# 追问
+
+- 什么时候自定义 SerDe？

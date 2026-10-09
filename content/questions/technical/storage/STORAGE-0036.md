@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+UDF 是自定义函数，扩展 SQL 能力。
+
+# 参考回答
+
+Hive UDF 有标量 UDF、聚合 UDAF、表生成 UDTF。开发写类实现接口，打 jar 包，add jar 后 create function 注册。内置函数不够用时扩展。
+
+# 追问
+
+- UDF 性能怎么样？

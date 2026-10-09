@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+客户端、Driver、Metastore、执行引擎组成。
+
+# 参考回答
+
+Hive 架构分客户端提交 SQL、Driver 编译优化、Metastore 存元数据、执行引擎跑 MapReduce 或 Spark。SQL 经过解析、优化、生成执行计划，再提交到集群执行。
+
+# 追问
+
+- Metastore 的作用？

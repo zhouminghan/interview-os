@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+基础类型、复杂类型两大类。
+
+# 参考回答
+
+基础类型有整型、字符串、小数、时间、布尔；复杂类型有 array、map、struct。注意隐式类型转换，decimal 精度，string 和 varchar 区别。复杂类型少用，解析慢。
+
+# 追问
+
+- string 和 varchar 区别？

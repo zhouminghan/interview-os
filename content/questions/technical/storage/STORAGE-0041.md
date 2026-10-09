@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+常见 gzip、snappy、lz4、zstd。
+
+# 参考回答
+
+gzip 压缩率高但慢，snappy、lz4 快，zstd 平衡。选压缩看 CPU 和存储权衡。分析场景常配 snappy 或 zstd，兼顾压缩和速度。ORC、Parquet 自带压缩。
+
+# 追问
+
+- 压缩对查询性能影响？

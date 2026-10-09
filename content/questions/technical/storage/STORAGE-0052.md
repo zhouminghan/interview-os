@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+MapJoin 把小表加载进内存，在 map 端 join。
+
+# 参考回答
+
+MapJoin 把小表加载到每个 map 的内存里，join 在 map 端完成，避免 shuffle。适合大表 join 小表。配置开启自动 MapJoin，设置小表阈值。
+
+# 追问
+
+- MapJoin 小表多大合适？

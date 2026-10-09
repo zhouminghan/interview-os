@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+元数据存在 Metastore，通常是关系库。
+
+# 参考回答
+
+Hive 元数据存在 Metastore，底层常用 MySQL 存表结构、分区、位置。管理上要备份、做权限控制、保持和实际数据一致。生产 Metastore 单独部署。
+
+# 追问
+
+- 元数据存哪些信息？

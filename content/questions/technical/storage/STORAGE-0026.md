@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Hive 是构建在 Hadoop 上的数仓工具，用 SQL 处理海量数据。
+
+# 参考回答
+
+Hive 把 SQL 翻译成 MapReduce 或 Spark 任务，让不懂大数据的人也能用 SQL 处理海量数据。和传统数据库区别是：Hive 面向批量分析、延迟高、数据量大，数据库面向事务、低延迟。Hive 适合离线数仓。
+
+# 追问
+
+- Hive 为什么不做事务点查？
