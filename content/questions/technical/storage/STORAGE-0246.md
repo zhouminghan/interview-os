@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+increment 做原子计数。
+
+# 参考回答
+
+计数器用 increment 操作，对某个列的值做原子累加，不用读出来再写。适合计数、统计场景，比如 PV、UV 计数。单行原子递增。
+
+# 追问
+
+- increment 为什么原子？

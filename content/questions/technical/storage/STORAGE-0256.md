@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+ZK 管元数据、选主、节点注册。
+
+# 参考回答
+
+ZooKeeper 存 HBase 的元数据位置、做 Master 选主、记录 RegionServer 状态。RegionServer 心跳和注册也走 ZK。是 HBase 协调服务的核心。
+
+# 追问
+
+- ZK 里存什么？

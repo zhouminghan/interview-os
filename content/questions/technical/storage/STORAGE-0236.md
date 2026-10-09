@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+BlockCache 缓存读到的数据块，加速读。
+
+# 参考回答
+
+BlockCache 是读缓存，把从 HFile 读出的数据块缓存到内存，下次读直接命中，不用再读磁盘。分 Lru 和 Bucket 两种策略，是 HBase 读性能的关键。
+
+# 追问
+
+- BlockCache 和 MemStore 区别？

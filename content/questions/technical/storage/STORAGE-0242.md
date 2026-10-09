@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+协处理器在服务端执行自定义逻辑。
+
+# 参考回答
+
+协处理器类似存储过程，在 RegionServer 端跑自定义逻辑。分 Observer 和 Endpoint 两类，Observer 钩子触发，Endpoint 远程调用。用于二级索引、聚合等，但要慎用。
+
+# 追问
+
+- 协处理器有什么风险？

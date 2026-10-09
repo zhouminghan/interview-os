@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+StoreFile 是逻辑层，底层文件是 HFile。
+
+# 参考回答
+
+StoreFile 是 HBase 存储层的逻辑概念，对应一个列族的数据文件，底层格式就是 HFile。MemStore flush 出来的就是 HFile，StoreFile 是对 HFile 的封装。
+
+# 追问
+
+- HFile 是什么格式？

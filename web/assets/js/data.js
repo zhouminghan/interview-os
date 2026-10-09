@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:26:56+08:00",
+  "generatedAt": "2026-10-09T17:29:41+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -8625,7 +8625,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>BlockCache 缓存读到的数据块，加速读。</p>\n<h2>参考回答</h2>\n<p>BlockCache 是读缓存，把从 HFile 读出的数据块缓存到内存，下次读直接命中，不用再读磁盘。分 Lru 和 Bucket 两种策略，是 HBase 读性能的关键。</p>\n<h2>追问</h2>\n<ul>\n<li>BlockCache 和 MemStore 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0237",
@@ -8638,7 +8638,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MemStore 是写缓存，攒够了 flush 落盘。</p>\n<h2>参考回答</h2>\n<p>MemStore 是每个 Region 的内存写缓存，数据先写 WAL 再写 MemStore，攒到阈值 flush 成 HFile。作用是把随机写变成顺序写，提高写入性能。</p>\n<h2>追问</h2>\n<ul>\n<li>MemStore 满了会怎样？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0238",
@@ -8651,7 +8651,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>StoreFile 是逻辑层，底层文件是 HFile。</p>\n<h2>参考回答</h2>\n<p>StoreFile 是 HBase 存储层的逻辑概念，对应一个列族的数据文件，底层格式就是 HFile。MemStore flush 出来的就是 HFile，StoreFile 是对 HFile 的封装。</p>\n<h2>追问</h2>\n<ul>\n<li>HFile 是什么格式？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0239",
@@ -8664,7 +8664,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>列族越少越好，一般一到两个。</p>\n<h2>参考回答</h2>\n<p>列族不建议太多，因为每个列族独立的 MemStore 和 StoreFile，flush 和 compact 都按列族做，列族多了内存和 IO 开销大。一般一到两个列族。</p>\n<h2>追问</h2>\n<ul>\n<li>列族多有什么问题？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0240",
@@ -8677,7 +8677,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>过滤器在 scan 时过滤数据。</p>\n<h2>参考回答</h2>\n<p>过滤器在扫描时按条件过滤，减少返回的数据。常用有行键过滤器、列值过滤器、前缀过滤器、分页过滤器。过滤在服务端做，减少网络传输。</p>\n<h2>追问</h2>\n<ul>\n<li>过滤器能提升性能吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0241",
@@ -8690,7 +8690,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Minor 和 Major 两种 Compaction。</p>\n<h2>参考回答</h2>\n<p>Minor Compaction 合并相邻的小 HFile，快但不去重删除数据；Major Compaction 合并所有 HFile，清理过期和删除数据，开销大。按策略定期触发。</p>\n<h2>追问</h2>\n<ul>\n<li>Major 为什么开销大？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0242",
@@ -8703,7 +8703,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>协处理器在服务端执行自定义逻辑。</p>\n<h2>参考回答</h2>\n<p>协处理器类似存储过程，在 RegionServer 端跑自定义逻辑。分 Observer 和 Endpoint 两类，Observer 钩子触发，Endpoint 远程调用。用于二级索引、聚合等，但要慎用。</p>\n<h2>追问</h2>\n<ul>\n<li>协处理器有什么风险？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0243",
@@ -8716,7 +8716,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>单行操作是原子的，跨行靠外部保证。</p>\n<h2>参考回答</h2>\n<p>HBase 单行内的操作是原子的，checkAndPut 能做条件原子写。跨行没有事务，要应用层或外部系统保证。计数器递增也是原子的。</p>\n<h2>追问</h2>\n<ul>\n<li>跨行怎么保证一致？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0244",
@@ -8729,7 +8729,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>快照快速备份表，不复制数据。</p>\n<h2>参考回答</h2>\n<p>Snapshot 记录表的元数据和文件引用，快速创建一致性备份，不实际复制数据。用于备份、迁移、克隆表。恢复很快。</p>\n<h2>追问</h2>\n<ul>\n<li>快照和复制备份区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0245",
@@ -8742,7 +8742,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>TTL 是数据过期时间，到期自动删。</p>\n<h2>参考回答</h2>\n<p>TTL 给列族设数据存活时间，到期数据自动过期，compact 时清理。适合有时效性的数据，比如临时数据、日志。控制存储增长。</p>\n<h2>追问</h2>\n<ul>\n<li>TTL 数据什么时候真删？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0246",
@@ -8755,7 +8755,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>increment 做原子计数。</p>\n<h2>参考回答</h2>\n<p>计数器用 increment 操作，对某个列的值做原子累加，不用读出来再写。适合计数、统计场景，比如 PV、UV 计数。单行原子递增。</p>\n<h2>追问</h2>\n<ul>\n<li>increment 为什么原子？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0247",
@@ -8768,7 +8768,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MVCC 用版本隔离读写。</p>\n<h2>参考回答</h2>\n<p>HBase 通过时间戳和版本号实现 MVCC，读操作看到一致快照，不被正在写的操作影响。实现读写不阻塞，保证读一致性。</p>\n<h2>追问</h2>\n<ul>\n<li>MVCC 怎么保证一致读？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0248",
@@ -8781,7 +8781,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Master 把 Region 分配到 RegionServer。</p>\n<h2>参考回答</h2>\n<p>Region 由 Master 分配到 RegionServer，分配考虑负载均衡和数据本地性。Region 分裂或 RegionServer 挂了会触发重新分配，元数据在 Meta 表记录。</p>\n<h2>追问</h2>\n<ul>\n<li>Region 重分配会中断吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0249",
@@ -8794,7 +8794,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Bloom Filter 判断某行是否存在，减少无效读。</p>\n<h2>参考回答</h2>\n<p>Bloom Filter 在 HFile 里快速判断某个 RowKey 是否可能存在，不存在的直接跳过，减少磁盘读。适合点查多的场景，按行或行列建。</p>\n<h2>追问</h2>\n<ul>\n<li>Bloom Filter 会误判吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0250",
@@ -8807,7 +8807,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>长度短、均匀分布、按查询设计。</p>\n<h2>参考回答</h2>\n<p>RowKey 设计要短、分布均匀避免热点、贴合查询模式。常用散列加业务 ID，或反转时间戳避免递增热点。RowKey 设计是 HBase 性能的核心。</p>\n<h2>追问</h2>\n<ul>\n<li>时间戳做 RowKey 有什么问题？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0251",
@@ -8820,7 +8820,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>二级索引按非 RowKey 字段查，自己建索引表。</p>\n<h2>参考回答</h2>\n<p>HBase 原生只按 RowKey 查，二级索引要自己建索引表，或用 Phoenix、协处理器实现。写数据时同步维护索引表，查询先查索引再查主表。</p>\n<h2>追问</h2>\n<ul>\n<li>二级索引怎么维护一致？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0252",
@@ -8833,7 +8833,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>删除是打墓碑标记，compact 时才真删。</p>\n<h2>参考回答</h2>\n<p>HBase 删除不是立刻删数据，而是打一个删除标记，读的时候过滤掉，Major Compaction 时才真正清理。所以删了还能在一定时间恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>删除后能恢复吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0253",
@@ -8846,7 +8846,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Put 写新版本，Delete 打删除标记。</p>\n<h2>参考回答</h2>\n<p>Put 写一条带时间戳的新数据，多版本共存；Delete 打删除标记，读时过滤，compact 时清理。两者都先写 WAL 再写 MemStore。</p>\n<h2>追问</h2>\n<ul>\n<li>Put 覆盖还是追加？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0254",
@@ -8859,7 +8859,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>先起 ZK，再起 Master，RegionServer 注册。</p>\n<h2>参考回答</h2>\n<p>启动流程：先起 ZooKeeper，Master 启动后向 ZK 注册，RegionServer 启动后也注册，从 Meta 表加载 Region。Master 负责元数据和 Region 分配。</p>\n<h2>追问</h2>\n<ul>\n<li>ZK 挂了会怎样？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0255",
@@ -8872,7 +8872,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Region 合并把小的 Region 合到一起。</p>\n<h2>参考回答</h2>\n<p>Region 合并把数据量小的相邻 Region 合并，减少 Region 数量，降低元数据和调度开销。删了大量数据后 Region 变小，可以合并。</p>\n<h2>追问</h2>\n<ul>\n<li>什么时候合并 Region？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0256",
@@ -8885,7 +8885,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ZK 管元数据、选主、节点注册。</p>\n<h2>参考回答</h2>\n<p>ZooKeeper 存 HBase 的元数据位置、做 Master 选主、记录 RegionServer 状态。RegionServer 心跳和注册也走 ZK。是 HBase 协调服务的核心。</p>\n<h2>追问</h2>\n<ul>\n<li>ZK 里存什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0257",
@@ -8898,7 +8898,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>表横向切成多个 Region。</p>\n<h2>参考回答</h2>\n<p>一张表按 RowKey 范围切成多个 Region，Region 是表的物理分片，分布在不同 RegionServer。表逻辑上完整，物理上分片存储。</p>\n<h2>追问</h2>\n<ul>\n<li>Region 和表什么关系？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0258",
@@ -8911,7 +8911,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>数据尽量和 RegionServer 在同一节点。</p>\n<h2>参考回答</h2>\n<p>数据本地性是 Region 的数据尽量和 RegionServer 在同节点，读的时候优先本地 HDFS，减少网络。Region 迁移后本地性会降低，需要时间恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>本地性丢了怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0259",
@@ -8924,7 +8924,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Region 在分配、打开、关闭等状态间转换。</p>\n<h2>参考回答</h2>\n<p>Region 有多个状态，比如未分配、正在打开、打开、正在关闭、已关闭。Master 管理状态转换，故障时重新分配。状态转换保证数据一致。</p>\n<h2>追问</h2>\n<ul>\n<li>状态转换谁管理？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0260",
@@ -8937,7 +8937,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>KeyValue 是键加值的结构。</p>\n<h2>参考回答</h2>\n<p>KeyValue 结构包含 RowKey、列族、列、时间戳、类型和值。是 HBase 存储的最小单元，按 key 排序存。理解它有助于理解存储。</p>\n<h2>追问</h2>\n<ul>\n<li>KeyValue 里有哪些字段？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0261",
@@ -8950,7 +8950,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>列族可配压缩，省存储。</p>\n<h2>参考回答</h2>\n<p>列族可以配压缩算法，比如 Snappy、LZ4、GZIP，数据落盘时压缩。省存储和 IO，但增加 CPU 开销。按数据特点选压缩算法。</p>\n<h2>追问</h2>\n<ul>\n<li>压缩怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0262",
@@ -8963,7 +8963,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Java API、Shell、REST、Thrift。</p>\n<h2>参考回答</h2>\n<p>HBase 客户端有 Java API、Shell 命令、REST 接口、Thrift 接口。Java API 最常用，Shell 做运维，REST 和 Thrift 给跨语言用。</p>\n<h2>追问</h2>\n<ul>\n<li>各客户端什么场景？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0263",
@@ -8976,7 +8976,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>批量 Put、Get、Delete 提高效率。</p>\n<h2>参考回答</h2>\n<p>批量操作用 List 的 Put、Get、Delete 一次提交多条，减少网络往返。适合大批量读写，注意批量大小别太大。</p>\n<h2>追问</h2>\n<ul>\n<li>批量大小怎么定？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0264",
@@ -8989,7 +8989,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Master 按负载重新分配 Region。</p>\n<h2>参考回答</h2>\n<p>负载均衡由 Master 的均衡器定期运行，把 Region 从负载高的 RegionServer 迁到低的，保持各节点 Region 数量和负载均衡。</p>\n<h2>追问</h2>\n<ul>\n<li>均衡会中断服务吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0265",
@@ -9002,7 +9002,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>版本数限制和 TTL 控制清理。</p>\n<h2>参考回答</h2>\n<p>数据版本清理靠版本数上限和 TTL。超过版本数的旧版本、超过 TTL 的数据在 compact 时被清理。配置好版本数和 TTL，控制存储增长。</p>\n<h2>追问</h2>\n<ul>\n<li>版本清理什么时候发生？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0266",

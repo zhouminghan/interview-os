@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+MemStore 是写缓存，攒够了 flush 落盘。
+
+# 参考回答
+
+MemStore 是每个 Region 的内存写缓存，数据先写 WAL 再写 MemStore，攒到阈值 flush 成 HFile。作用是把随机写变成顺序写，提高写入性能。
+
+# 追问
+
+- MemStore 满了会怎样？

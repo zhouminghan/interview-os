@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+列族越少越好，一般一到两个。
+
+# 参考回答
+
+列族不建议太多，因为每个列族独立的 MemStore 和 StoreFile，flush 和 compact 都按列族做，列族多了内存和 IO 开销大。一般一到两个列族。
+
+# 追问
+
+- 列族多有什么问题？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Java API、Shell、REST、Thrift。
+
+# 参考回答
+
+HBase 客户端有 Java API、Shell 命令、REST 接口、Thrift 接口。Java API 最常用，Shell 做运维，REST 和 Thrift 给跨语言用。
+
+# 追问
+
+- 各客户端什么场景？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+批量 Put、Get、Delete 提高效率。
+
+# 参考回答
+
+批量操作用 List 的 Put、Get、Delete 一次提交多条，减少网络往返。适合大批量读写，注意批量大小别太大。
+
+# 追问
+
+- 批量大小怎么定？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Minor 和 Major 两种 Compaction。
+
+# 参考回答
+
+Minor Compaction 合并相邻的小 HFile，快但不去重删除数据；Major Compaction 合并所有 HFile，清理过期和删除数据，开销大。按策略定期触发。
+
+# 追问
+
+- Major 为什么开销大？
