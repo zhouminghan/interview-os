@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+WHERE 过滤原始行，HAVING 过滤聚合结果。
+
+# 参考回答
+
+WHERE 在分组前过滤行，HAVING 在分组后过滤聚合结果。对聚合值的条件要用 HAVING，比如 count 大于多少。WHERE 能过滤的先过滤，减少计算。
+
+# 追问
+
+- 聚合条件能放 WHERE 吗？

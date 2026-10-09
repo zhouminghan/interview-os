@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+解析、加减、求差等日期函数。
+
+# 参考回答
+
+常用日期函数：to_date 转日期、date_add 加天数、datediff 求天数差、date_format 格式化、year month day 取年月份。数仓时间处理常用。
+
+# 追问
+
+- 日期格式怎么统一？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+条件判断和空值处理函数。
+
+# 参考回答
+
+常用条件函数：case when 多分支判断、if 二选一、coalesce 取第一个非空值、nvl 空值替换。数据清洗和指标计算里经常用。
+
+# 追问
+
+- coalesce 和 nvl 区别？

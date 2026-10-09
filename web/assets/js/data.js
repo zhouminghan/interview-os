@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:17:23+08:00",
+  "generatedAt": "2026-10-09T17:19:30+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -6675,7 +6675,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>DROP 删表，内部表连数据一起删。</p>\n<h2>参考回答</h2>\n<p>DROP TABLE 删表，内部表会连 HDFS 数据一起删，外部表只删元数据。删前要确认依赖和备份，生产删表要谨慎，最好先改名观察再删。</p>\n<h2>追问</h2>\n<ul>\n<li>删表前要注意什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0087",
@@ -6688,7 +6688,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>RENAME 就是改表名，用 ALTER TABLE RENAME。</p>\n<h2>参考回答</h2>\n<p>改表名用 ALTER TABLE 旧名 RENAME TO 新名。场景是表名要规范调整，或删表前先改名观察下游反应。改名只改元数据，不动数据。</p>\n<h2>追问</h2>\n<ul>\n<li>改名影响数据吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0088",
@@ -6701,7 +6701,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 ALTER TABLE 的 ADD、CHANGE、REPLACE 改列。</p>\n<h2>参考回答</h2>\n<p>加列用 ADD COLUMNS，改列名类型用 CHANGE，整体替换用 REPLACE COLUMNS。改列只改元数据，要保证和已有数据兼容，否则查询出错。</p>\n<h2>追问</h2>\n<ul>\n<li>改列类型有什么风险？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0089",
@@ -6714,7 +6714,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ADD、DROP、RENAME 分区，查询带分区条件。</p>\n<h2>参考回答</h2>\n<p>分区操作有 ADD PARTITION、DROP PARTITION、RENAME 分区。查询带分区字段条件走裁剪。分区管理常用在生命周期，删过期分区。</p>\n<h2>追问</h2>\n<ul>\n<li>删分区影响数据吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0090",
@@ -6727,7 +6727,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>桶表按 hash 分桶，建表时指定。</p>\n<h2>参考回答</h2>\n<p>桶表建表时 CLUSTERED BY 分桶字段 INTO 桶数 BUCKETS。桶表适合 join 和采样，分桶键选高基数均匀的。桶数别太多，和并行度匹配。</p>\n<h2>追问</h2>\n<ul>\n<li>分桶和分区配合用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0091",
@@ -6740,7 +6740,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>内连接取交集，外连接保留某一边全部。</p>\n<h2>参考回答</h2>\n<p>INNER JOIN 只取两边都匹配的；LEFT JOIN 保留左表全部，右表没匹配填 null；RIGHT 反之；FULL JOIN 两边都保留。按业务要保留哪边数据选。</p>\n<h2>追问</h2>\n<ul>\n<li>外连接数据量会变大吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0092",
@@ -6753,7 +6753,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>内、左、右、全外、半、交叉连接。</p>\n<h2>参考回答</h2>\n<p>JOIN 类型有 inner、left、right、full outer、left semi、cross。left semi 相当于 in 子查询，cross 是笛卡尔积要小心。性能上小表 MapJoin 最快，大表 join 要 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>left semi 和 inner 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0093",
@@ -6766,7 +6766,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>小表 MapJoin、分桶、倾斜优化。</p>\n<h2>参考回答</h2>\n<p>JOIN 优化：小表 MapJoin 免 shuffle，分桶表 join 减少数据量，热点 key 加盐，先过滤再 join。统计信息准让优化器选对 join 顺序和策略。</p>\n<h2>追问</h2>\n<ul>\n<li>大表 join 大表怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0094",
@@ -6779,7 +6779,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>GROUP BY 按字段分组聚合。</p>\n<h2>参考回答</h2>\n<p>GROUP BY 按分组字段聚合，底层走 shuffle。优化靠提前过滤、减少分组基数、处理倾斜。配合聚合函数算分组统计，是数仓最常用的操作。</p>\n<h2>追问</h2>\n<ul>\n<li>GROUP BY 会倾斜吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0095",
@@ -6792,7 +6792,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>WHERE 过滤原始行，HAVING 过滤聚合结果。</p>\n<h2>参考回答</h2>\n<p>WHERE 在分组前过滤行，HAVING 在分组后过滤聚合结果。对聚合值的条件要用 HAVING，比如 count 大于多少。WHERE 能过滤的先过滤，减少计算。</p>\n<h2>追问</h2>\n<ul>\n<li>聚合条件能放 WHERE 吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0096",
@@ -6805,7 +6805,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ORDER BY 全局排序，SORT BY 分区内排序。</p>\n<h2>参考回答</h2>\n<p>ORDER BY 全局排序，只用一个 reducer，数据大很慢；SORT BY 每个 reducer 内排序，快但整体无序。只要局部有序用 SORT BY，全局才用 ORDER BY。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 ORDER BY 慢？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0097",
@@ -6818,7 +6818,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>DISTRIBUTE BY 控制数据分到哪个 reducer。</p>\n<h2>参考回答</h2>\n<p>DISTRIBUTE BY 按字段 hash 决定数据去哪个 reducer，不做聚合。GROUP BY 做分组聚合。DISTRIBUTE BY 用来配合 SORT BY 做分区内排序，控制数据分布。</p>\n<h2>追问</h2>\n<ul>\n<li>DISTRIBUTE BY 和 GROUP BY 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0098",
@@ -6831,7 +6831,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CLUSTER BY 是 DISTRIBUTE BY 加 SORT BY 的简写。</p>\n<h2>参考回答</h2>\n<p>CLUSTER BY 字段等价于 DISTRIBUTE BY 字段加 SORT BY 字段，按同一字段分布并排序。注意它只能按升序，不能指定排序方向。</p>\n<h2>追问</h2>\n<ul>\n<li>CLUSTER BY 有限制吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0099",
@@ -6844,7 +6844,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>排名、偏移、聚合三类窗口函数。</p>\n<h2>参考回答</h2>\n<p>窗口函数有排名类 row_number、rank、dense_rank，偏移类 lag、lead，聚合类 sum over。用于分组 TopN、环比、累计值。row_number 不重复，rank 会跳跃，dense_rank 连续。</p>\n<h2>追问</h2>\n<ul>\n<li>rank 和 dense_rank 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0100",
@@ -6857,7 +6857,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>LATERAL VIEW 把一行展开成多行。</p>\n<h2>参考回答</h2>\n<p>LATERAL VIEW 配合 explode 等 UDTF，把数组、map 字段展开成多行。用于行转列，展开复杂字段。多个 LATERAL VIEW 可以连续展开。</p>\n<h2>追问</h2>\n<ul>\n<li>LATERAL VIEW 怎么用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0101",
@@ -6870,7 +6870,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>EXPLODE 把数组或 map 展开成多行。</p>\n<h2>参考回答</h2>\n<p>EXPLODE 是表生成函数，把 array 每个元素展开成一行，map 展开成键值行。配合 LATERAL VIEW 用。数据量会放大，注意性能。</p>\n<h2>追问</h2>\n<ul>\n<li>EXPLODE 后数据量怎么变？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0102",
@@ -6883,7 +6883,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>拼接、截取、去空格、替换等函数。</p>\n<h2>参考回答</h2>\n<p>常用字符串函数：concat 拼接、substr 截取、trim 去空格、split 切分、replace 替换、length 长度。清洗和解析字符串数据常用。</p>\n<h2>追问</h2>\n<ul>\n<li>split 返回什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0103",
@@ -6896,7 +6896,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>解析、加减、求差等日期函数。</p>\n<h2>参考回答</h2>\n<p>常用日期函数：to_date 转日期、date_add 加天数、datediff 求天数差、date_format 格式化、year month day 取年月份。数仓时间处理常用。</p>\n<h2>追问</h2>\n<ul>\n<li>日期格式怎么统一？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0104",
@@ -6909,7 +6909,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>取整、舍入、绝对值等函数。</p>\n<h2>参考回答</h2>\n<p>常用数学函数：round 四舍五入、ceil 向上取整、floor 向下取整、abs 绝对值。处理数值、计算指标时用。</p>\n<h2>追问</h2>\n<ul>\n<li>round 精度怎么控制？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0105",
@@ -6922,7 +6922,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>求和、计数、平均值等聚合函数。</p>\n<h2>参考回答</h2>\n<p>常用聚合函数：sum 求和、count 计数、avg 平均、max min 最值、count distinct 去重计数。大基数去重用 distinct 慢，可考虑近似。配合 group by 用。</p>\n<h2>追问</h2>\n<ul>\n<li>count distinct 为什么慢？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0106",
@@ -6935,7 +6935,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>条件判断和空值处理函数。</p>\n<h2>参考回答</h2>\n<p>常用条件函数：case when 多分支判断、if 二选一、coalesce 取第一个非空值、nvl 空值替换。数据清洗和指标计算里经常用。</p>\n<h2>追问</h2>\n<ul>\n<li>coalesce 和 nvl 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0107",
@@ -6948,7 +6948,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CAST 显式转换类型。</p>\n<h2>参考回答</h2>\n<p>CAST 把一种类型转成另一种，比如字符串转数字、数字转字符串。转换失败会返回 null 或报错，要处理异常。注意精度和格式匹配。</p>\n<h2>追问</h2>\n<ul>\n<li>转换失败会怎样？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0108",
@@ -6961,7 +6961,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>处理 array、map、struct 复杂类型。</p>\n<h2>参考回答</h2>\n<p>集合函数处理复杂类型：size 取长度、array_contains 判断元素、map_keys map_values 取键值。复杂类型配合 explode 展开分析。</p>\n<h2>追问</h2>\n<ul>\n<li>复杂类型什么时候用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0109",
@@ -6974,7 +6974,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>解析 JSON 字段取值。</p>\n<h2>参考回答</h2>\n<p>get_json_object 按路径取 JSON 里的值，json_tuple 一次取多个字段。适合解析 JSON 格式的日志或字段。大量解析会慢，尽量把 JSON 拆成列。</p>\n<h2>追问</h2>\n<ul>\n<li>JSON 解析慢怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0110",
@@ -6987,7 +6987,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用正则匹配和替换字符串。</p>\n<h2>参考回答</h2>\n<p>regexp 判断是否匹配，regexp_extract 提取匹配部分，regexp_replace 替换。用于复杂字符串清洗和提取。正则性能一般，能用简单函数就用简单的。</p>\n<h2>追问</h2>\n<ul>\n<li>正则和 split 怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0111",
@@ -7000,7 +7000,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>UDF 标量、UDAF 聚合、UDTF 表生成三类。</p>\n<h2>参考回答</h2>\n<p>自定义函数分 UDF、UDAF、UDTF，写 Java 类实现接口，打 jar 包后 add jar 加 create function 注册。注意类型和序列化，内置能搞定就别自定义。</p>\n<h2>追问</h2>\n<ul>\n<li>三类函数怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0112",
@@ -7013,7 +7013,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>UDAF 是自定义聚合函数。</p>\n<h2>参考回答</h2>\n<p>UDAF 继承 UDAF 或 GenericUDAF，实现累加、合并、结果返回。用于自定义聚合逻辑，比如特殊去重、统计。比标量 UDF 复杂，要处理分组合并。</p>\n<h2>追问</h2>\n<ul>\n<li>UDAF 要实现哪些方法？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0113",
@@ -7026,7 +7026,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>UDTF 是表生成函数，一行进多行出。</p>\n<h2>参考回答</h2>\n<p>UDTF 继承 GenericUDTF，实现 process 和 forward 输出多行。explode 就是内置 UDTF。配合 LATERAL VIEW 用，做行展开。</p>\n<h2>追问</h2>\n<ul>\n<li>UDTF 怎么输出多行？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0114",
@@ -7039,7 +7039,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>CREATE VIEW 定义逻辑视图。</p>\n<h2>参考回答</h2>\n<p>视图用 CREATE VIEW 定义查询，查视图就是查底层查询。适合封装复杂逻辑、控制暴露的字段。注意视图不存数据，每次现算。</p>\n<h2>追问</h2>\n<ul>\n<li>视图和表怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0115",
@@ -7052,7 +7052,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>物化视图预存结果，查询复用加速。</p>\n<h2>参考回答</h2>\n<p>物化视图把查询结果预先算好存下，查询命中直接复用，省去重复计算。要手动刷新，占存储。适合高频聚合结果。Hive 新版本支持。</p>\n<h2>追问</h2>\n<ul>\n<li>物化视图怎么刷新？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0116",

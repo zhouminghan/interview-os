@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+解析 JSON 字段取值。
+
+# 参考回答
+
+get_json_object 按路径取 JSON 里的值，json_tuple 一次取多个字段。适合解析 JSON 格式的日志或字段。大量解析会慢，尽量把 JSON 拆成列。
+
+# 追问
+
+- JSON 解析慢怎么办？

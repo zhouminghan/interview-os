@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+桶表按 hash 分桶，建表时指定。
+
+# 参考回答
+
+桶表建表时 CLUSTERED BY 分桶字段 INTO 桶数 BUCKETS。桶表适合 join 和采样，分桶键选高基数均匀的。桶数别太多，和并行度匹配。
+
+# 追问
+
+- 分桶和分区配合用？

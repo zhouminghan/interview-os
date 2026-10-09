@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+小表 MapJoin、分桶、倾斜优化。
+
+# 参考回答
+
+JOIN 优化：小表 MapJoin 免 shuffle，分桶表 join 减少数据量，热点 key 加盐，先过滤再 join。统计信息准让优化器选对 join 顺序和策略。
+
+# 追问
+
+- 大表 join 大表怎么办？

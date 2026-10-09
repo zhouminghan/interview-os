@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+DISTRIBUTE BY 控制数据分到哪个 reducer。
+
+# 参考回答
+
+DISTRIBUTE BY 按字段 hash 决定数据去哪个 reducer，不做聚合。GROUP BY 做分组聚合。DISTRIBUTE BY 用来配合 SORT BY 做分区内排序，控制数据分布。
+
+# 追问
+
+- DISTRIBUTE BY 和 GROUP BY 区别？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+内、左、右、全外、半、交叉连接。
+
+# 参考回答
+
+JOIN 类型有 inner、left、right、full outer、left semi、cross。left semi 相当于 in 子查询，cross 是笛卡尔积要小心。性能上小表 MapJoin 最快，大表 join 要 shuffle。
+
+# 追问
+
+- left semi 和 inner 区别？

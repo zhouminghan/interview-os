@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+ADD、DROP、RENAME 分区，查询带分区条件。
+
+# 参考回答
+
+分区操作有 ADD PARTITION、DROP PARTITION、RENAME 分区。查询带分区字段条件走裁剪。分区管理常用在生命周期，删过期分区。
+
+# 追问
+
+- 删分区影响数据吗？

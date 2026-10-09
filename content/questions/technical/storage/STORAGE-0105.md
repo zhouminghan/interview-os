@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+求和、计数、平均值等聚合函数。
+
+# 参考回答
+
+常用聚合函数：sum 求和、count 计数、avg 平均、max min 最值、count distinct 去重计数。大基数去重用 distinct 慢，可考虑近似。配合 group by 用。
+
+# 追问
+
+- count distinct 为什么慢？

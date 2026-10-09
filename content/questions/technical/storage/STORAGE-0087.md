@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+RENAME 就是改表名，用 ALTER TABLE RENAME。
+
+# 参考回答
+
+改表名用 ALTER TABLE 旧名 RENAME TO 新名。场景是表名要规范调整，或删表前先改名观察下游反应。改名只改元数据，不动数据。
+
+# 追问
+
+- 改名影响数据吗？

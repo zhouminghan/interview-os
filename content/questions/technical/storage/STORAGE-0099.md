@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+排名、偏移、聚合三类窗口函数。
+
+# 参考回答
+
+窗口函数有排名类 row_number、rank、dense_rank，偏移类 lag、lead，聚合类 sum over。用于分组 TopN、环比、累计值。row_number 不重复，rank 会跳跃，dense_rank 连续。
+
+# 追问
+
+- rank 和 dense_rank 区别？

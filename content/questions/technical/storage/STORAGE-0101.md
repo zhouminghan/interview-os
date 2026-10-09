@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+EXPLODE 把数组或 map 展开成多行。
+
+# 参考回答
+
+EXPLODE 是表生成函数，把 array 每个元素展开成一行，map 展开成键值行。配合 LATERAL VIEW 用。数据量会放大，注意性能。
+
+# 追问
+
+- EXPLODE 后数据量怎么变？

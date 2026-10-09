@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+ORDER BY 全局排序，SORT BY 分区内排序。
+
+# 参考回答
+
+ORDER BY 全局排序，只用一个 reducer，数据大很慢；SORT BY 每个 reducer 内排序，快但整体无序。只要局部有序用 SORT BY，全局才用 ORDER BY。
+
+# 追问
+
+- 为什么 ORDER BY 慢？

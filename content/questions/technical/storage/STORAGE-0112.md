@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+UDAF 是自定义聚合函数。
+
+# 参考回答
+
+UDAF 继承 UDAF 或 GenericUDAF，实现累加、合并、结果返回。用于自定义聚合逻辑，比如特殊去重、统计。比标量 UDF 复杂，要处理分组合并。
+
+# 追问
+
+- UDAF 要实现哪些方法？

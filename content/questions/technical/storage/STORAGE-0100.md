@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+LATERAL VIEW 把一行展开成多行。
+
+# 参考回答
+
+LATERAL VIEW 配合 explode 等 UDTF，把数组、map 字段展开成多行。用于行转列，展开复杂字段。多个 LATERAL VIEW 可以连续展开。
+
+# 追问
+
+- LATERAL VIEW 怎么用？

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用 ALTER TABLE 的 ADD、CHANGE、REPLACE 改列。
+
+# 参考回答
+
+加列用 ADD COLUMNS，改列名类型用 CHANGE，整体替换用 REPLACE COLUMNS。改列只改元数据，要保证和已有数据兼容，否则查询出错。
+
+# 追问
+
+- 改列类型有什么风险？

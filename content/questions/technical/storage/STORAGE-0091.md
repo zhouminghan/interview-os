@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+内连接取交集，外连接保留某一边全部。
+
+# 参考回答
+
+INNER JOIN 只取两边都匹配的；LEFT JOIN 保留左表全部，右表没匹配填 null；RIGHT 反之；FULL JOIN 两边都保留。按业务要保留哪边数据选。
+
+# 追问
+
+- 外连接数据量会变大吗？
