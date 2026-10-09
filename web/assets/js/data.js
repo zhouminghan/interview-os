@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:10:17+08:00",
+  "generatedAt": "2026-10-09T17:13:03+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -25206,7 +25206,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用 G1、调堆大小、减少对象创建。</p>\n<h2>参考回答</h2>\n<p>Kafka 的 GC 优化用 G1 收集器、合理堆大小、减少对象分配。GC 停顿会拖慢生产和消费，要监控 GC 指标，避免频繁 full GC。</p>\n<h2>追问</h2>\n<ul>\n<li>full GC 频繁怎么办？</li>\n</ul>"
     },
     {
       "id": "FLINK-0475",
@@ -25219,7 +25219,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>顺序写、压缩、合理索引优化存储。</p>\n<h2>参考回答</h2>\n<p>存储优化靠顺序写日志、消息压缩省空间、稀疏索引加速定位。评估看磁盘使用率和读写吞吐。SSD 和多磁盘也有帮助。</p>\n<h2>追问</h2>\n<ul>\n<li>存储性能怎么评估？</li>\n</ul>"
     },
     {
       "id": "FLINK-0476",
@@ -25232,7 +25232,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看吞吐、延迟、落后、错误率定阈值。</p>\n<h2>参考回答</h2>\n<p>监控指标是生产消费吞吐、端到端延迟、消费者落后量、错误率。告警阈值按历史基线定，偏离基线就告警，比如落后突然增大。</p>\n<h2>追问</h2>\n<ul>\n<li>阈值怎么校准？</li>\n</ul>"
     },
     {
       "id": "FLINK-0477",
@@ -25245,7 +25245,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>批量大小和间隔按吞吐延迟权衡。</p>\n<h2>参考回答</h2>\n<p>批量大小越大吞吐越高但延迟越大，间隔同理。按业务延迟要求调，压测找平衡点。评估看吞吐和 P99 延迟。</p>\n<h2>追问</h2>\n<ul>\n<li>吞吐和延迟怎么平衡？</li>\n</ul>"
     },
     {
       "id": "FLINK-0478",
@@ -25258,7 +25258,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>选 lz4/zstd，按 CPU 和带宽权衡。</p>\n<h2>参考回答</h2>\n<p>压缩算法 lz4、zstd 比较常用，压缩率高但费 CPU。带宽瓶颈用高压缩，CPU 紧张用轻压缩。评估看压缩比和吞吐变化。</p>\n<h2>追问</h2>\n<ul>\n<li>压缩率怎么评估？</li>\n</ul>"
     },
     {
       "id": "FLINK-0479",
@@ -25271,7 +25271,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>过滤尽量靠分区和 key 减少扫描。</p>\n<h2>参考回答</h2>\n<p>Kafka 过滤靠分区和 key 粗粒度定位，减少扫的数据。精确过滤在消费端做。评估看消费端处理延迟和扫的数据量。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么 Kafka 不精确过滤？</li>\n</ul>"
     },
     {
       "id": "FLINK-0480",
@@ -25284,7 +25284,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠操作系统页缓存加速读写。</p>\n<h2>参考回答</h2>\n<p>Kafka 主要靠操作系统页缓存加速消息读写，数据先写页缓存再落盘。配置上给足内存给页缓存，别让堆内存占太多。</p>\n<h2>追问</h2>\n<ul>\n<li>页缓存和堆内存怎么分？</li>\n</ul>"
     },
     {
       "id": "FLINK-0481",
@@ -25297,7 +25297,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用高效序列化格式减少开销。</p>\n<h2>参考回答</h2>\n<p>序列化优化用高效格式，比如 Avro、Protobuf 比 JSON 小且快。选序列化库看性能和 schema 演进需求。评估看消息大小和吞吐。</p>\n<h2>追问</h2>\n<ul>\n<li>JSON 和 Avro 怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0482",
@@ -25310,7 +25310,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>合理线程池和分区并发。</p>\n<h2>参考回答</h2>\n<p>并发优化靠合理分区数提供并行度，生产消费端线程池配好。并发跟分区对齐，太多线程切换开销大。评估看吞吐随并发的变化。</p>\n<h2>追问</h2>\n<ul>\n<li>并发多少合适？</li>\n</ul>"
     },
     {
       "id": "FLINK-0483",
@@ -25323,7 +25323,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>顺序写加刷盘策略优化持久化。</p>\n<h2>参考回答</h2>\n<p>持久化靠顺序追加写，刷盘策略按可靠性要求调。性能评估看写入延迟和吞吐。牺牲一点可靠性换性能要谨慎。</p>\n<h2>追问</h2>\n<ul>\n<li>刷盘策略怎么选？</li>\n</ul>"
     },
     {
       "id": "FLINK-0484",
@@ -25336,7 +25336,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>JMX 指标经 Prometheus 到 Grafana。</p>\n<h2>参考回答</h2>\n<p>Kafka 监控用 JMX 暴露指标，Prometheus 采集，Grafana 展示和告警。重点监控吞吐、延迟、落后、磁盘和错误率。</p>\n<h2>追问</h2>\n<ul>\n<li>告警规则怎么设？</li>\n</ul>"
     },
     {
       "id": "FLINK-0485",
@@ -25349,7 +25349,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>指标采集加分级告警，多渠道通知。</p>\n<h2>参考回答</h2>\n<p>监控告警用 Prometheus 采集指标，按阈值分级告警，通知走邮件、电话、企业 IM。监控系统本身也要高可用，避免监控挂了没人知道。</p>\n<h2>追问</h2>\n<ul>\n<li>监控系统可靠性怎么保证？</li>\n</ul>"
     },
     {
       "id": "FLINK-0486",
@@ -25362,7 +25362,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>多副本加跨集群同步，定期演练恢复。</p>\n<h2>参考回答</h2>\n<p>备份靠多副本和 MirrorMaker 跨集群同步，配置也要备份。恢复从副本或灾备集群切。定期演练恢复流程，验证备份有效性。</p>\n<h2>追问</h2>\n<ul>\n<li>备份有效性怎么验证？</li>\n</ul>"
     },
     {
       "id": "FLINK-0487",
@@ -25375,7 +25375,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>加 broker 后重分配分区，缩容迁移数据。</p>\n<h2>参考回答</h2>\n<p>扩容加 broker，做分区重分配均衡负载；缩容先迁移分区再下线 broker。过程要平滑，保证服务不中断。用工具做重分配。</p>\n<h2>追问</h2>\n<ul>\n<li>缩容怎么保证不丢数据？</li>\n</ul>"
     },
     {
       "id": "FLINK-0488",
@@ -25388,7 +25388,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>认证、授权、加密、审计四块。</p>\n<h2>参考回答</h2>\n<p>安全管理分认证、授权、加密、审计四块，SASL 认证、ACL 授权、SSL 加密、审计日志。细粒度到 topic 和 group 的读写权限。</p>\n<h2>追问</h2>\n<ul>\n<li>安全四块怎么配合？</li>\n</ul>"
     },
     {
       "id": "FLINK-0489",
@@ -25401,7 +25401,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>看监控、日志、状态定位，优先恢复服务。</p>\n<h2>参考回答</h2>\n<p>故障排查先看监控和日志定位，结合分区状态和消费组落后分析。定位根因后修复，优先恢复服务再深挖原因。保留现场。</p>\n<h2>追问</h2>\n<ul>\n<li>快速恢复优先还是定位优先？</li>\n</ul>"
     },
     {
       "id": "FLINK-0490",
@@ -25414,7 +25414,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>灰度升级、滚动升级、留回滚。</p>\n<h2>参考回答</h2>\n<p>升级用滚动升级逐个 broker 升，先测试环境验证兼容性，再生产灰度。留回滚方案，升级前备份。别跨大版本直接跳。</p>\n<h2>追问</h2>\n<ul>\n<li>滚动升级怎么做？</li>\n</ul>"
     },
     {
       "id": "FLINK-0491",
@@ -25427,7 +25427,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>配置集中管理，变更走流程验证。</p>\n<h2>参考回答</h2>\n<p>配置管理用配置中心统一管理，变更前验证、走审批，变更后生效并确认一致性。关键配置改动要滚动重启生效。</p>\n<h2>追问</h2>\n<ul>\n<li>配置变更怎么验证？</li>\n</ul>"
     },
     {
       "id": "FLINK-0492",
@@ -25440,7 +25440,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>集中收集日志，分析定位问题。</p>\n<h2>参考回答</h2>\n<p>日志集中到日志系统，按时间和关键词检索分析，定位问题。定期清理旧日志省空间。结合监控快速定位故障。</p>\n<h2>追问</h2>\n<ul>\n<li>日志分析怎么做？</li>\n</ul>"
     },
     {
       "id": "FLINK-0493",
@@ -25453,7 +25453,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>定指标、找瓶颈、优化、评估循环。</p>\n<h2>参考回答</h2>\n<p>性能优化先定吞吐延迟指标，压测找瓶颈，针对优化硬件、参数、分区，再压测评估效果。持续监控，反复迭代改进。</p>\n<h2>追问</h2>\n<ul>\n<li>怎么找性能瓶颈？</li>\n</ul>"
     },
     {
       "id": "FLINK-0494",
@@ -25466,7 +25466,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按吞吐、消息量、保留期估算资源。</p>\n<h2>参考回答</h2>\n<p>容量规划按吞吐、消息大小、保留时间估算存储，按峰值吞吐估带宽，按并发估 CPU。留余量，评估扩展时看能否水平加 broker。</p>\n<h2>追问</h2>\n<ul>\n<li>存储容量怎么算？</li>\n</ul>"
     },
     {
       "id": "FLINK-0495",
@@ -25479,7 +25479,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>跨集群同步，故障时切换。</p>\n<h2>参考回答</h2>\n<p>灾备用 MirrorMaker 跨机房同步到灾备集群，主集群故障时切到灾备。业务连续性靠快速切换和消费端重连。定期演练。</p>\n<h2>追问</h2>\n<ul>\n<li>切换时数据会丢吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0496",
@@ -25492,7 +25492,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>系统、应用、业务三层监控。</p>\n<h2>参考回答</h2>\n<p>全方位监控分三层：系统层 CPU、磁盘、网络，应用层吞吐、延迟、落后，业务层消息量、消费进度。统一到监控平台配告警。</p>\n<h2>追问</h2>\n<ul>\n<li>三层监控分别看什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0497",
@@ -25505,7 +25505,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>用配置管理工具自动化部署运维。</p>\n<h2>参考回答</h2>\n<p>自动化运维用 Ansible、K8s 这类工具做自动化部署、配置、扩缩容和巡检。把重复操作脚本化，提高效率减少人为错误。</p>\n<h2>追问</h2>\n<ul>\n<li>哪些操作适合自动化？</li>\n</ul>"
     },
     {
       "id": "FLINK-0498",
@@ -25518,7 +25518,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>发现、定位、恢复、复盘四步。</p>\n<h2>参考回答</h2>\n<p>故障处理流程：监控发现、日志定位根因、快速恢复服务、事后复盘改进。建立值班和升级机制，减少故障影响和复发。</p>\n<h2>追问</h2>\n<ul>\n<li>复盘要做什么？</li>\n</ul>"
     },
     {
       "id": "FLINK-0500",

@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+用高效序列化格式减少开销。
+
+# 参考回答
+
+序列化优化用高效格式，比如 Avro、Protobuf 比 JSON 小且快。选序列化库看性能和 schema 演进需求。评估看消息大小和吞吐。
+
+# 追问
+
+- JSON 和 Avro 怎么选？
