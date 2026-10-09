@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Meta 表记录 Region 和 RegionServer 的映射。
+
+# 参考回答
+
+Meta 表存每个 Region 的 RowKey 范围、所在 RegionServer、状态。客户端通过它定位数据。Meta 本身也是一张表，位置存在 ZK。
+
+# 追问
+
+- Meta 表在哪？

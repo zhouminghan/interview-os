@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+合并 HFile，清理过期数据。
+
+# 参考回答
+
+Compaction 合并多个 HFile 成更大的，Minor 合并相邻小文件，Major 合并全部并清理删除和过期数据。策略按文件数和大小触发。
+
+# 追问
+
+- Minor 和 Major 区别？

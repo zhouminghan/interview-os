@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+连接是重量级的，要复用。
+
+# 参考回答
+
+HBase 的 Connection 是重量级对象，要复用，不要每次建。连接池配置连接数和超时。客户端用单例 Connection，多个 Table 复用。
+
+# 追问
+
+- Connection 为什么要复用？

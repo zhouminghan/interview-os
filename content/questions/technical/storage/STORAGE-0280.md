@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+RegionServer 管 Region 的读写。
+
+# 参考回答
+
+RegionServer 管理多个 Region，包含 WAL、BlockCache、MemStore、StoreFile。负责数据的读写、flush、compact、split。是数据操作的核心节点。
+
+# 追问
+
+- RegionServer 挂了怎么办？

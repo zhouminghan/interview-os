@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+BulkLoad、ImportTsv、Export、Snapshot。
+
+# 参考回答
+
+导入有 BulkLoad、ImportTsv，导出有 Export、Snapshot。BulkLoad 直接生成 HFile 加载，最快。跨集群用 Snapshot 加 Export。
+
+# 追问
+
+- BulkLoad 为什么快？

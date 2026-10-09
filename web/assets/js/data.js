@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:29:41+08:00",
+  "generatedAt": "2026-10-09T17:31:29+08:00",
   "stats": {
     "questions": 3090,
     "interviews": 102,
@@ -9015,7 +9015,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>同步等副本确认，异步不等。</p>\n<h2>参考回答</h2>\n<p>同步复制写入等副本确认，一致性强但延迟高；异步复制不等副本，延迟低但可能丢数据。灾备多用异步，强一致场景用同步。</p>\n<h2>追问</h2>\n<ul>\n<li>复制怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0267",
@@ -9028,7 +9028,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Observer 协处理器在操作前后触发。</p>\n<h2>参考回答</h2>\n<p>RegionObserver 是协处理器的观察者模式，在 get、put、delete 等操作前后触发钩子。用于二级索引、权限、审计这些横切逻辑。</p>\n<h2>追问</h2>\n<ul>\n<li>Observer 有什么风险？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0268",
@@ -9041,7 +9041,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>BulkLoad、ImportTsv、Export、Snapshot。</p>\n<h2>参考回答</h2>\n<p>导入有 BulkLoad、ImportTsv，导出有 Export、Snapshot。BulkLoad 直接生成 HFile 加载，最快。跨集群用 Snapshot 加 Export。</p>\n<h2>追问</h2>\n<ul>\n<li>BulkLoad 为什么快？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0269",
@@ -9054,7 +9054,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按 CPU 和存储权衡选。</p>\n<h2>参考回答</h2>\n<p>Snappy、LZ4 快但压缩率一般，GZIP 压缩率高但慢，ZSTD 平衡。CPU 紧张用快压缩，存储紧张用高压缩。HBase 常用 Snappy 或 ZSTD。</p>\n<h2>追问</h2>\n<ul>\n<li>压缩对查询影响？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0270",
@@ -9067,7 +9067,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Kerberos 认证加权限授权。</p>\n<h2>参考回答</h2>\n<p>HBase 安全用 Kerberos 做身份认证，加 ACL 做权限授权，还有审计和加密。生产配 Kerberos，配合 Ranger 做细粒度权限。</p>\n<h2>追问</h2>\n<ul>\n<li>安全怎么配？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0271",
@@ -9080,7 +9080,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>写经 WAL 和 MemStore，读经 BlockCache 和 HFile。</p>\n<h2>参考回答</h2>\n<p>写入路径：先写 WAL，再写 MemStore，攒够 flush 成 HFile。读取路径：先查 BlockCache，再查 MemStore，最后查 HFile，合并结果返回。</p>\n<h2>追问</h2>\n<ul>\n<li>读先查哪个？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0272",
@@ -9093,7 +9093,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>按负载、本地性、随机分配。</p>\n<h2>参考回答</h2>\n<p>Region 分配策略有随机、轮询、按负载。默认按负载均衡，考虑数据本地性。分配目标是 Region 均匀分布，避免热点 RegionServer。</p>\n<h2>追问</h2>\n<ul>\n<li>分配策略怎么选？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0273",
@@ -9106,7 +9106,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>快照、复制、导出做备份。</p>\n<h2>参考回答</h2>\n<p>备份靠 Snapshot 快照、Replication 复制、Export 导出。恢复从快照重建表或从副本还原。多副本和 WAL 保证单点故障不丢数据。</p>\n<h2>追问</h2>\n<ul>\n<li>灾备怎么做？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0274",
@@ -9119,7 +9119,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>连接是重量级的，要复用。</p>\n<h2>参考回答</h2>\n<p>HBase 的 Connection 是重量级对象，要复用，不要每次建。连接池配置连接数和超时。客户端用单例 Connection，多个 Table 复用。</p>\n<h2>追问</h2>\n<ul>\n<li>Connection 为什么要复用？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0275",
@@ -9132,7 +9132,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Master 管元数据，RegionServer 管数据，ZK 协调。</p>\n<h2>参考回答</h2>\n<p>HBase 架构有 Master 管表操作和 Region 分配，RegionServer 存数据处理读写，ZooKeeper 做协调和选主，HDFS 做底层存储。客户端通过 ZK 找到 Meta 再定位数据。</p>\n<h2>追问</h2>\n<ul>\n<li>各组件怎么协作？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0276",
@@ -9145,7 +9145,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>写 WAL 再写 MemStore，攒够 flush。</p>\n<h2>参考回答</h2>\n<p>写入流程：客户端定位 Region，数据先写 WAL 保证不丢，再写 MemStore，MemStore 攒到阈值 flush 成 HFile。返回写成功。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么先写 WAL？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0277",
@@ -9158,7 +9158,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>先缓存后磁盘，合并返回。</p>\n<h2>参考回答</h2>\n<p>读取流程：先查 BlockCache，再查 MemStore，最后查 HFile，把多版本合并去重后返回。Bloom Filter 和 BlockCache 减少磁盘读。</p>\n<h2>追问</h2>\n<ul>\n<li>读为什么先查缓存？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0278",
@@ -9171,7 +9171,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ZK 存 Meta 位置和节点状态。</p>\n<h2>参考回答</h2>\n<p>ZooKeeper 存 Meta 表位置、Master 信息、RegionServer 注册状态。客户端先查 ZK 找 Meta 位置，再定位数据。ZK 挂了 HBase 不可用。</p>\n<h2>追问</h2>\n<ul>\n<li>ZK 里存什么关键信息？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0279",
@@ -9184,7 +9184,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Master 管表操作和 Region 分配。</p>\n<h2>参考回答</h2>\n<p>Master 负责表的增删改、Region 分配和负载均衡、RegionServer 管理。不是数据读写路径上的节点，挂了短时间不影响读写，但管理操作不可用。</p>\n<h2>追问</h2>\n<ul>\n<li>Master 挂了影响读写吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0280",
@@ -9197,7 +9197,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>RegionServer 管 Region 的读写。</p>\n<h2>参考回答</h2>\n<p>RegionServer 管理多个 Region，包含 WAL、BlockCache、MemStore、StoreFile。负责数据的读写、flush、compact、split。是数据操作的核心节点。</p>\n<h2>追问</h2>\n<ul>\n<li>RegionServer 挂了怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0281",
@@ -9210,7 +9210,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Region 大了按 RowKey 中点分裂。</p>\n<h2>参考回答</h2>\n<p>Region 数据量到阈值，找到 RowKey 中点，分裂成两个子 Region，父 Region 下线，子 Region 重新分配。分裂过程对读短暂影响，是 HBase 扩容的机制。</p>\n<h2>追问</h2>\n<ul>\n<li>分裂会阻塞吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0282",
@@ -9223,7 +9223,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Meta 表记录 Region 和 RegionServer 的映射。</p>\n<h2>参考回答</h2>\n<p>Meta 表存每个 Region 的 RowKey 范围、所在 RegionServer、状态。客户端通过它定位数据。Meta 本身也是一张表，位置存在 ZK。</p>\n<h2>追问</h2>\n<ul>\n<li>Meta 表在哪？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0283",
@@ -9236,7 +9236,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>先写日志再写内存，故障重放。</p>\n<h2>参考回答</h2>\n<p>HLog 是预写日志，写入前先记录，再写 MemStore。故障恢复时重放 HLog，把没落盘的数据恢复。HLog 是数据不丢的保障。</p>\n<h2>追问</h2>\n<ul>\n<li>HLog 什么时候清理？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0284",
@@ -9249,7 +9249,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>MemStore 满了 flush 成 HFile。</p>\n<h2>参考回答</h2>\n<p>MemStore 达到阈值触发 flush，把内存数据刷成 HFile。触发条件有大小、RegionServer 全局内存、WAL 回滚。flush 是顺序写，减少随机 IO。</p>\n<h2>追问</h2>\n<ul>\n<li>flush 频繁怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0285",
@@ -9262,7 +9262,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>合并 HFile，清理过期数据。</p>\n<h2>参考回答</h2>\n<p>Compaction 合并多个 HFile 成更大的，Minor 合并相邻小文件，Major 合并全部并清理删除和过期数据。策略按文件数和大小触发。</p>\n<h2>追问</h2>\n<ul>\n<li>Minor 和 Major 区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0286",
@@ -9275,7 +9275,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>ZK 找 Meta，Meta 找 Region。</p>\n<h2>参考回答</h2>\n<p>寻址流程：客户端先查 ZK 得到 Meta 表位置，再查 Meta 表找到目标 RowKey 所在的 Region 和 RegionServer，最后连 RegionServer 读写。</p>\n<h2>追问</h2>\n<ul>\n<li>寻址要几次 RPC？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0287",
@@ -9288,7 +9288,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>WAL 重放和 Region 重新分配。</p>\n<h2>参考回答</h2>\n<p>RegionServer 挂了，Master 检测到后把它上面的 Region 重新分配到其他 RegionServer，新节点重放 WAL 恢复未落盘数据。多副本保证数据不丢。</p>\n<h2>追问</h2>\n<ul>\n<li>故障恢复多久？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0288",
@@ -9301,7 +9301,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>定期把 Region 从负载高的迁到低的。</p>\n<h2>参考回答</h2>\n<p>负载均衡器定期运行，计算各 RegionServer 的 Region 数和负载，把 Region 从高负载迁到低负载，保持均衡。有不同策略，按需配置。</p>\n<h2>追问</h2>\n<ul>\n<li>均衡频率怎么定？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0289",
@@ -9314,7 +9314,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>源关闭 Region，目标打开。</p>\n<h2>参考回答</h2>\n<p>Region 迁移先源 RegionServer 关闭 Region，然后目标 RegionServer 打开并加载数据。迁移期间该 Region 短暂不可用，用于负载均衡和故障恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>迁移会丢数据吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0290",
@@ -9327,7 +9327,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>靠 ZooKeeper 临时节点实现分布式锁。</p>\n<h2>参考回答</h2>\n<p>HBase 的分布式锁主要靠 ZooKeeper 的临时顺序节点实现，节点存在就是持有锁，挂了自动释放。用于 Master 选主和 Region 操作协调。</p>\n<h2>追问</h2>\n<ul>\n<li>ZK 锁原理？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0291",
@@ -9340,7 +9340,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Replication 把 WAL 推送到备集群。</p>\n<h2>参考回答</h2>\n<p>HBase Replication 把主集群的 WAL 推送到备集群，备集群重放实现数据同步。用于灾备和跨集群数据复制。异步复制，有一定延迟。</p>\n<h2>追问</h2>\n<ul>\n<li>复制延迟多少？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0292",
@@ -9353,7 +9353,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Master 在 ZK 抢锁选主。</p>\n<h2>参考回答</h2>\n<p>Master 启动后在 ZooKeeper 创建临时节点抢主，谁抢到谁是 active Master，其他是 backup。active 挂了，backup 抢到节点成为新主。</p>\n<h2>追问</h2>\n<ul>\n<li>Master 选举依赖什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0293",
@@ -9366,7 +9366,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>先 ZK，再 Master 和 RegionServer。</p>\n<h2>参考回答</h2>\n<p>启动流程：先起 ZooKeeper，Master 启动并选主，RegionServer 启动后向 ZK 注册，从 Meta 表加载 Region。全部就绪后对外服务。</p>\n<h2>追问</h2>\n<ul>\n<li>启动顺序重要吗？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0294",
@@ -9379,7 +9379,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>Region 在多个状态间转换。</p>\n<h2>参考回答</h2>\n<p>Region 状态机定义 Region 从未分配到打开、关闭、分裂等状态及转换条件。Master 和 RegionServer 协作管理状态，保证数据一致和故障恢复。</p>\n<h2>追问</h2>\n<ul>\n<li>有哪些状态？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0295",
@@ -9392,7 +9392,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>待补充</h2>\n<blockquote>纯题面（八股题库），暂无标准答案。</blockquote>"
+      "body_html": "<h2>一句话</h2>\n<p>缓存 Region 位置，减少寻址。</p>\n<h2>参考回答</h2>\n<p>客户端缓存 Region 位置信息，避免每次都查 Meta。位置失效了再重新查。缓存提高性能，但 Region 迁移后要刷新缓存。</p>\n<h2>追问</h2>\n<ul>\n<li>缓存失效怎么办？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0296",

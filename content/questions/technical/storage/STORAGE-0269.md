@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+按 CPU 和存储权衡选。
+
+# 参考回答
+
+Snappy、LZ4 快但压缩率一般，GZIP 压缩率高但慢，ZSTD 平衡。CPU 紧张用快压缩，存储紧张用高压缩。HBase 常用 Snappy 或 ZSTD。
+
+# 追问
+
+- 压缩对查询影响？

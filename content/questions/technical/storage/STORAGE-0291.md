@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Replication 把 WAL 推送到备集群。
+
+# 参考回答
+
+HBase Replication 把主集群的 WAL 推送到备集群，备集群重放实现数据同步。用于灾备和跨集群数据复制。异步复制，有一定延迟。
+
+# 追问
+
+- 复制延迟多少？

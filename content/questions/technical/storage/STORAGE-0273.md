@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+快照、复制、导出做备份。
+
+# 参考回答
+
+备份靠 Snapshot 快照、Replication 复制、Export 导出。恢复从快照重建表或从副本还原。多副本和 WAL 保证单点故障不丢数据。
+
+# 追问
+
+- 灾备怎么做？

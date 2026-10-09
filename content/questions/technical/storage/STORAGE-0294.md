@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Region 在多个状态间转换。
+
+# 参考回答
+
+Region 状态机定义 Region 从未分配到打开、关闭、分裂等状态及转换条件。Master 和 RegionServer 协作管理状态，保证数据一致和故障恢复。
+
+# 追问
+
+- 有哪些状态？

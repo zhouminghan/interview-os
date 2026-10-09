@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+Master 管元数据，RegionServer 管数据，ZK 协调。
+
+# 参考回答
+
+HBase 架构有 Master 管表操作和 Region 分配，RegionServer 存数据处理读写，ZooKeeper 做协调和选主，HDFS 做底层存储。客户端通过 ZK 找到 Meta 再定位数据。
+
+# 追问
+
+- 各组件怎么协作？

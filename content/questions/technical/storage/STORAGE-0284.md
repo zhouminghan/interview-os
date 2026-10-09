@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+MemStore 满了 flush 成 HFile。
+
+# 参考回答
+
+MemStore 达到阈值触发 flush，把内存数据刷成 HFile。触发条件有大小、RegionServer 全局内存、WAL 回滚。flush 是顺序写，减少随机 IO。
+
+# 追问
+
+- flush 频繁怎么办？

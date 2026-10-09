@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+写 WAL 再写 MemStore，攒够 flush。
+
+# 参考回答
+
+写入流程：客户端定位 Region，数据先写 WAL 保证不丢，再写 MemStore，MemStore 攒到阈值 flush 成 HFile。返回写成功。
+
+# 追问
+
+- 为什么先写 WAL？

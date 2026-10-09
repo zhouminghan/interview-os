@@ -9,6 +9,14 @@ frequency: low
 source_type: knowledge
 ---
 
-# 待补充
+# 一句话
 
-> 纯题面（八股题库），暂无标准答案。
+ZK 存 Meta 位置和节点状态。
+
+# 参考回答
+
+ZooKeeper 存 Meta 表位置、Master 信息、RegionServer 注册状态。客户端先查 ZK 找 Meta 位置，再定位数据。ZK 挂了 HBase 不可用。
+
+# 追问
+
+- ZK 里存什么关键信息？
