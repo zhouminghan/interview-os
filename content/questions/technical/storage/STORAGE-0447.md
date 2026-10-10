@@ -9,6 +9,8 @@ frequency: low
 source_type: knowledge
 ---
 
+> **来源面经**：字节-数据开发三面-20261010
+
 # 一句话
 
 每隔一段数据建一个索引项。

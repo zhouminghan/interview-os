@@ -11,6 +11,10 @@ sources:
     company: 字节跳动
     position: 数据开发（一面）
     date: 2025-03-03
+  - interview_id: INTERVIEW-2026-10-10-bytedance-data-dev-3round
+    company: 字节跳动
+    position: 数据开发（秋招三面）
+    date: 2026-10-10
 ---
 
 # 一句话

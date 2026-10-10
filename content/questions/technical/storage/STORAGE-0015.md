@@ -8,6 +8,8 @@ frequency: medium
 source_type: knowledge
 ---
 
+> **来源面经**：字节-数据开发三面-20261010
+
 # 一句话
 
 Kylin 预计算 Cube 适合固定报表，Doris/ClickHouse 实时/即席查询更灵活，正在替代 Kylin。

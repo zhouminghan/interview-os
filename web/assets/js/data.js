@@ -1,22 +1,22 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-09T17:52:13+08:00",
+  "generatedAt": "2026-10-10T17:27:29+08:00",
   "stats": {
-    "questions": 3090,
-    "interviews": 102,
-    "technical": 2720,
+    "questions": 3093,
+    "interviews": 103,
+    "technical": 2723,
     "project": 370,
     "domains": {
       "spark": 397,
       "hdfs": 4,
-      "storage": 810,
+      "storage": 811,
       "lakehouse": 12,
       "starrocks": 223,
       "flink": 651,
-      "network": 4,
+      "network": 5,
       "algorithm": 9,
       "statistics": 1,
       "ml": 5,
-      "llm": 166,
+      "llm": 167,
       "platform": 2,
       "system": 7,
       "warehouse": 381,
@@ -5741,7 +5741,7 @@ window.OS_DATA = {
       "frequency": "medium",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>一句话</h2>\n<p>Kylin 预计算 Cube 适合固定报表，Doris/ClickHouse 实时/即席查询更灵活，正在替代 Kylin。</p>\n<h2>30 秒回答</h2>\n<p>Kylin 按维度组合预计算 Cube，查询快但维度爆炸成本高；Doris/ClickHouse 列存 + MPP，即席分析灵活；现代场景多用 Doris/StarRocks。</p>\n<h2>追问</h2>\n<ul>\n<li>Kylin 为什么式微？</li>\n<li>固定报表和即席分析分别选什么？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-数据开发三面-20261010</blockquote>\n<h2>一句话</h2>\n<p>Kylin 预计算 Cube 适合固定报表，Doris/ClickHouse 实时/即席查询更灵活，正在替代 Kylin。</p>\n<h2>30 秒回答</h2>\n<p>Kylin 按维度组合预计算 Cube，查询快但维度爆炸成本高；Doris/ClickHouse 列存 + MPP，即席分析灵活；现代场景多用 Doris/StarRocks。</p>\n<h2>追问</h2>\n<ul>\n<li>Kylin 为什么式微？</li>\n<li>固定报表和即席分析分别选什么？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0016",
@@ -5857,6 +5857,12 @@ window.OS_DATA = {
           "company": "字节跳动",
           "position": "数据开发（一面）",
           "date": "2025-03-03"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
         }
       ],
       "domain": "storage",
@@ -11368,7 +11374,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>一句话</h2>\n<p>每隔一段数据建一个索引项。</p>\n<h2>参考回答</h2>\n<p>稀疏索引不是每行一个索引，而是每 N 行记录一个主键值。定位时先找到大概范围再扫描。省索引空间，查询也能加速。</p>\n<h2>追问</h2>\n<ul>\n<li>稀疏索引和稠密索引区别？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-数据开发三面-20261010</blockquote>\n<h2>一句话</h2>\n<p>每隔一段数据建一个索引项。</p>\n<h2>参考回答</h2>\n<p>稀疏索引不是每行一个索引，而是每 N 行记录一个主键值。定位时先找到大概范围再扫描。省索引空间，查询也能加速。</p>\n<h2>追问</h2>\n<ul>\n<li>稀疏索引和稠密索引区别？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0448",
@@ -15774,6 +15780,29 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>OLAP 快在「少读、并行、少算」：列式存储只读需要的列，MPP 分布式并行扫，向量化执行 + 压缩减少 IO，预聚合和排序键 / 前缀索引进一步裁剪扫描范围。</p>\n<h2>30 秒回答</h2>\n<p>核心四点：①列式存储，查询只扫涉及的列，同列数据压缩率高，IO 大幅下降；②MPP 架构，数据分散到多节点并行聚合；③向量化执行，按批处理而不是逐行；④预聚合 + 排序键 + 分区，把大扫描变成小范围定位。所以 OLAP 适合海量数据的聚合分析，不适合高频点查。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>列式存储：同列值类型一致，压缩率高，只读查询涉及的列，跳过多余列</li>\n<li>分布式 MPP：数据分片到多节点，并行扫描 + 并行聚合</li>\n<li>向量化执行：CPU 按批处理（SIMD），减少函数调用开销</li>\n<li>预聚合：物化视图 / 聚合模型提前算好，查询直接取结果</li>\n<li>排序键 + 前缀索引：按排序键快速定位范围，跳过无关数据块</li>\n<li>分区裁剪：按分区键只扫相关分区</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么 OLAP 不适合高并发点查 / 频繁 UPDATE？</li>\n<li>行存和列存各自的适用场景？</li>\n<li>列式存储的缺点是什么？</li>\n</ul>"
     },
     {
+      "id": "STORAGE-0817",
+      "type": "technical",
+      "question": "Doris 的存算架构是什么？存算一体和存算分离有什么区别？",
+      "topic": [
+        "storage",
+        "doris",
+        "architecture"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
+        }
+      ],
+      "domain": "storage",
+      "body_html": "<h2>一句话</h2>\n<p>Doris 有存算一体和存算分离两种，分离把数据放对象存储、计算按需扩缩。</p>\n<h2>参考回答</h2>\n<p>Doris 传统是存算一体，BE 节点既算又存，本地磁盘延迟低；新版本支持存算分离，计算节点无状态、数据放对象存储，计算按需扩缩容，存储成本更省。存算一体查询延迟低，存算分离弹性好、成本低，适合负载波动大的场景。</p>\n<h2>追问</h2>\n<ul>\n<li>存算分离和存算一体怎么选？</li>\n<li>存算分离的查询延迟会变高吗？</li>\n</ul>"
+    },
+    {
       "id": "LAKEHOUSE-0001",
       "type": "technical",
       "question": "Hudi 有实际使用吗，Hudi 是什么",
@@ -19876,7 +19905,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>一句话</h2>\n<p>checkpoint 快照状态，故障从快照恢复。</p>\n<h2>参考回答</h2>\n<p>Flink 容错靠 checkpoint 定期对状态做一致性快照，存到可靠存储。任务挂了按重启策略从最近 checkpoint 恢复状态和 offset，继续处理。配合 source 重放实现 exactly-once。</p>\n<h2>追问</h2>\n<ul>\n<li>恢复会丢数据吗？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-数据开发三面-20261010</blockquote>\n<h2>一句话</h2>\n<p>checkpoint 快照状态，故障从快照恢复。</p>\n<h2>参考回答</h2>\n<p>Flink 容错靠 checkpoint 定期对状态做一致性快照，存到可靠存储。任务挂了按重启策略从最近 checkpoint 恢复状态和 offset，继续处理。配合 source 重放实现 exactly-once。</p>\n<h2>追问</h2>\n<ul>\n<li>恢复会丢数据吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0065",
@@ -20136,7 +20165,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "flink",
-      "body_html": "<h2>一句话</h2>\n<p>下游处理慢时向上游传导压力，降低消费速率。</p>\n<h2>参考回答</h2>\n<p>反压是下游处理不过来时，把压力向上游传导，上游降低发送速率，避免数据积压和 OOM。Flink 用网络缓冲池和 credit 机制实现反压。</p>\n<h2>追问</h2>\n<ul>\n<li>反压会丢数据吗？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-数据开发三面-20261010</blockquote>\n<h2>一句话</h2>\n<p>下游处理慢时向上游传导压力，降低消费速率。</p>\n<h2>参考回答</h2>\n<p>反压是下游处理不过来时，把压力向上游传导，上游降低发送速率，避免数据积压和 OOM。Flink 用网络缓冲池和 credit 机制实现反压。</p>\n<h2>追问</h2>\n<ul>\n<li>反压会丢数据吗？</li>\n</ul>"
     },
     {
       "id": "FLINK-0085",
@@ -27340,6 +27369,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>UDP 属于传输层（OSI 第四层，TCP/IP 模型的传输层）。</p>\n<h2>30 秒回答</h2>\n<p>UDP 和 TCP 一样位于传输层，负责端到端的通信；IP 在网络层，HTTP/DNS 等在应用层。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>OSI 七层：应用、表示、会话、传输、网络、数据链路、物理</li>\n<li>TCP/IP 四层：应用、传输、网络、网络接口</li>\n<li>UDP 位于传输层，提供端口复用的无连接数据报服务</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>TCP/IP 模型各层分别有哪些协议？</li>\n<li>端口号在传输层的作用？</li>\n</ul>"
     },
     {
+      "id": "NETWORK-0005",
+      "type": "technical",
+      "question": "TCP 三次握手和四次挥手流程是怎样的？为什么挥手是四次不是两次？",
+      "topic": [
+        "network",
+        "tcp"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
+        }
+      ],
+      "domain": "network",
+      "body_html": "<h2>一句话</h2>\n<p>三次握手建立连接，四次挥手关闭连接，挥手多一次因为 TCP 是双向的、有半关闭状态。</p>\n<h2>参考回答</h2>\n<p>三次握手：客户端发 SYN，服务端回 SYN+ACK，客户端再回 ACK，确认双方收发都正常后建立连接。四次挥手：一端发 FIN，对端回 ACK，对端再发 FIN，这端回 ACK。挥手比握手多一次，因为 TCP 是双向的，一方关闭后另一方可能还有数据要发，中间有半关闭状态，所以两边要各自 FIN 一次。为什么不是两次：两次握手无法确认双方收发能力都正常。</p>\n<h2>追问</h2>\n<ul>\n<li>为什么握手是三次而不是两次？</li>\n<li>TIME_WAIT 状态有什么作用？</li>\n</ul>"
+    },
+    {
       "id": "ALGORITHM-0001",
       "type": "technical",
       "question": "构建链表并完成链表排序",
@@ -27898,6 +27949,12 @@ window.OS_DATA = {
           "company": "美团",
           "position": "数据开发（一面）",
           "date": "2026-09-24"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
         }
       ],
       "domain": "llm",
@@ -28375,6 +28432,12 @@ window.OS_DATA = {
           "company": "快手",
           "position": "Data Agent 研发 / AI 数据系统研发（社招）",
           "date": "2026-09-25"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
         }
       ],
       "domain": "llm",
@@ -28398,6 +28461,12 @@ window.OS_DATA = {
           "company": "快手",
           "position": "Data Agent 研发 / AI 数据系统研发（社招）",
           "date": "2026-09-25"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
         }
       ],
       "domain": "llm",
@@ -30323,6 +30392,29 @@ window.OS_DATA = {
       ],
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>用「基线 RAG vs GraphRAG」做对照，指标看端到端准确率、召回率、答案忠实度（幻觉率）、延迟和成本，GraphRAG 在多跳/跨文档问题上收益最明显。</p>\n<h2>30 秒回答</h2>\n<p>构建前后对比：先跑一个普通向量 RAG 当基线，再上 GraphRAG（实体/关系抽取 + 图检索），同一批测试集打分。评测分两层：检索层看召回率/命中率，生成层看答案准确率、忠实度（有没有幻觉）、引用是否到位。结果通常是多跳推理类问题提升明显，单跳简单问题提升不大，还要权衡构建成本与查询延迟。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>基线对照：Naive RAG（纯向量）vs GraphRAG（实体图谱 + 社区摘要）</li>\n<li>检索指标：Recall@K、命中率、是否召回关键实体/关系</li>\n<li>生成指标：答案准确率、忠实度/幻觉率、引用覆盖</li>\n<li>成本指标：建图耗时、查询延迟、Token 消耗</li>\n<li>典型结论：跨文档/多跳问题提升 10-20%，简单事实问答持平或略降</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>实体关系抽取本身不准怎么办？</li>\n<li>GraphRAG 的社区摘要是什么？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0176",
+      "type": "technical",
+      "question": "多轮对话如何消除歧义，强意图和弱意图怎么判断？",
+      "topic": [
+        "llm",
+        "agent",
+        "intent"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>多轮消歧靠上下文补全和澄清追问，强弱意图按置信度分级处理。</p>\n<h2>参考回答</h2>\n<p>多轮对话里消歧先把省略的主语、条件从历史上下文补全，补不回来就主动澄清追问。强意图和弱意图按置信度分：明确的指令直接执行，模糊的就降级成澄清或给候选让用户确认。核心是上下文管理和置信度分级，别把弱意图当强意图执行错了。</p>\n<h2>追问</h2>\n<ul>\n<li>什么时候该追问而不是直接执行？</li>\n<li>上下文窗口有限时怎么保留关键信息？</li>\n</ul>"
     },
     {
       "id": "PLATFORM-0001",
@@ -36421,7 +36513,7 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "frequency": "",
       "domain": "sql",
-      "body_html": "<p><strong>考察点</strong>：<code>ROW_NUMBER</code> + <code>DATE_SUB</code> 分组技巧</p>\n<pre><code class=\"language-sql\">-- 参考解法已在 每日一题/SQL01 中整理</code></pre>"
+      "body_html": "<blockquote><strong>来源面经</strong>：字节-数据开发三面-20261010</blockquote>\n<p><strong>考察点</strong>：<code>ROW_NUMBER</code> + <code>DATE_SUB</code> 分组技巧</p>\n<pre><code class=\"language-sql\">-- 参考解法已在 每日一题/SQL01 中整理</code></pre>"
     },
     {
       "id": "SQL-0032",
@@ -42182,6 +42274,15 @@ window.OS_DATA = {
     }
   ],
   "interviews": [
+    {
+      "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+      "company": "字节跳动",
+      "business": "数据开发",
+      "position": "数据开发（秋招三面）",
+      "date": "2026-10-10",
+      "round": "三面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<h3>一面（30min，八股算法）</h3>\n<ol>\n<li>自我介绍</li>\n<li>三道算法题（非 hot100）</li>\n<li>ClickHouse 索引</li>\n<li>ClickHouse 和 Doris 的区别</li>\n<li>Doris 的存算架构（详细讲讲）</li>\n<li>Flink 的 checkpoint 机制</li>\n<li>反压了怎么办？怎么排查和解决</li>\n<li>反问工作内容</li>\n</ol>\n<h3>二面（1h）</h3>\n<ol>\n<li>自我介绍</li>\n<li>为什么从智驾转到数开</li>\n<li>以后的职业规划</li>\n<li>Agent 意图识别用了什么机制</li>\n<li>多轮对话如何消除歧义，强意图和弱意图怎么判断</li>\n<li>状态管理怎么做的</li>\n<li>长期记忆都存了什么，结构化字段有哪些，如何管理和调用</li>\n<li>TCP 三次握手和四次挥手流程，为什么四次不是两次</li>\n<li>MCP 和 Tool use 有什么区别</li>\n<li>MySQL 的索引底层数据结构是什么</li>\n<li>一道 SQL（连续登录）+ 一道算法（非 hot100）</li>\n</ol>\n<h3>三面（80min）</h3>\n<ol>\n<li>围绕项目和数仓建模讨论</li>\n</ol>\n<blockquote>备注：来源小红书，字节跳动数据开发秋招三面，一面 30min + 二面 1h + 三面 80min，候选人有智驾背景。</blockquote>"
+    },
     {
       "interview_id": "INTERVIEW-2026-10-05-tencent-cdg-data-eng",
       "company": "腾讯 CDG",
