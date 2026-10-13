@@ -5,6 +5,11 @@ question: 在数据治理层面，针对用户隐私数据（如PII信息）的�
 difficulty: 0
 topic: []
 source_type: knowledge
+sources:
+  - interview_id: INTERVIEW-2026-09-27-google-ai-de
+    company: Google
+    position: ML Data Engineer（硕 3 年社招，L4）
+    date: 2026-09-27
 ---
 
 > **要点提纲**：数据分级 | 脱敏处理 | 权限管控 | 合规意识

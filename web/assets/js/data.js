@@ -1,9 +1,9 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-13T14:39:10+08:00",
+  "generatedAt": "2026-10-13T15:19:15+08:00",
   "stats": {
-    "questions": 3094,
+    "questions": 3102,
     "interviews": 104,
-    "technical": 2724,
+    "technical": 2732,
     "project": 370,
     "domains": {
       "spark": 398,
@@ -14,9 +14,9 @@ window.OS_DATA = {
       "flink": 651,
       "network": 5,
       "algorithm": 9,
-      "statistics": 1,
-      "ml": 5,
-      "llm": 167,
+      "statistics": 2,
+      "ml": 8,
+      "llm": 171,
       "platform": 2,
       "system": 7,
       "warehouse": 381,
@@ -13697,6 +13697,14 @@ window.OS_DATA = {
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
       "domain": "storage",
       "body_html": "<h2>一句话</h2>\n<p>查询时脱敏函数处理。</p>\n<h2>参考回答</h2>\n<p>数据脱敏在查询时用函数处理敏感字段，或建脱敏视图。权限限制敏感列。配合权限和审计。</p>\n<h2>追问</h2>\n<ul>\n<li>脱敏怎么做？</li>\n</ul>"
     },
@@ -27707,6 +27715,28 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>两者都是假设检验，判断样本差异是否显著；z 检验用于大样本且总体方差已知，t 检验用于小样本或方差未知。</p>\n<h2>30 秒回答</h2>\n<p>z 检验要求总体标准差已知、样本量大，用正态分布；t 检验在样本量小（通常 &lt;30）或总体方差未知时用，用 t 分布。数据开发里常出现在 AB 测试、指标显著性判断场景。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>z 检验：总体方差已知 + 大样本，统计量服从标准正态分布</li>\n<li>t 检验：小样本或方差未知，用样本方差估计，服从 t 分布，自由度越小 t 分布越「胖尾」</li>\n<li>样本量足够大时 t 分布逼近正态，两者结果趋于一致</li>\n<li>应用：AB 实验判断实验组/对照组指标差异是否统计显著，常用 p 值 / 置信区间</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>单尾检验和双尾检验什么时候用？</li>\n<li>p 值小于 0.05 就代表业务上有效吗？</li>\n</ul>"
     },
     {
+      "id": "STATISTICS-0002",
+      "type": "technical",
+      "question": "二项分布、置信区间、样本量估算怎么理解？",
+      "topic": [
+        "statistics",
+        "probability"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "statistics",
+      "body_html": "<h2>一句话</h2>\n<p>二项分布描述 n 次独立实验里成功次数的分布，置信区间给估计值一个波动范围，样本量按期望误差和置信度反推需要多少样本。</p>\n<h2>30 秒回答</h2>\n<p>二项分布：n 次独立伯努利实验，成功概率 p，成功次数服从 B(n,p)，均值 np、方差 np(1-p)。置信区间：估计值 ± 边际误差，比例类用正态近似 p̂ ± z·sqrt(p̂(1-p̂)/n)。样本量：先定置信度和允许误差，再反推 n = z²p(1-p)/E²，精度要求越高、样本越大。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>二项分布：B(n,p)，均值 np、方差 np(1-p)，np 和 n(1-p) 足够大时可正态近似</li>\n<li>置信区间：点估计 ± 边际误差，95% 对应 z≈1.96</li>\n<li>样本量公式：n = z²p(1-p)/E²，p 未知时取 0.5 最保守</li>\n<li>应用：AB 测试最小样本量、指标置信区间、抽样误差估计</li>\n<li>边界：样本小或 p 极端时正态近似失效，要换精确方法</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>为什么 p=0.5 时样本量最大？</li>\n<li>置信度 95% 和 99% 样本量差多少？</li>\n</ul>"
+    },
+    {
       "id": "ML-0001",
       "type": "technical",
       "question": "过拟合是什么，怎么处理",
@@ -27815,6 +27845,72 @@ window.OS_DATA = {
       ],
       "domain": "ml",
       "body_html": "<h2>一句话</h2>\n<p>常见聚类：KMeans（划分）、层次聚类、DBSCAN（密度）、GMM（高斯混合/软聚类）。</p>\n<h2>30 秒回答</h2>\n<p>KMeans 按距离迭代分 K 类；层次聚类自底向上/自顶向下合并；DBSCAN 按密度找任意形状簇、抗噪；GMM 用高斯分布做软聚类，给出样本属于每类的概率。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>KMeans：需预指定 K，对初始值和球形簇敏感，适合大样本</li>\n<li>层次聚类：不用指定 K，可看树状图，但计算量大</li>\n<li>DBSCAN：基于密度，能发现任意形状簇、识别噪声，对参数 eps/minPts 敏感</li>\n<li>GMM：概率软聚类，EM 求解，适合有重叠的簇</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>KMeans 的 K 怎么选？</li>\n<li>DBSCAN 和 KMeans 什么场景选哪个？</li>\n</ul>"
+    },
+    {
+      "id": "ML-0006",
+      "type": "technical",
+      "question": "Data Drift 和 Concept Drift 有什么区别？分别怎么监控？",
+      "topic": [
+        "ml",
+        "drift"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "ml",
+      "body_html": "<h2>一句话</h2>\n<p>Data Drift 是输入特征分布变了，Concept Drift 是「同样的输入，正确答案的含义变了」。</p>\n<h2>30 秒回答</h2>\n<p>Data Drift：模型看到的 X 分布和训练时不一样，比如用户年龄结构变了。Concept Drift：X 到 y 的映射关系变了，比如同样的浏览行为，过去算高意向，用户习惯变了之后不再代表高意向。监控上，Data Drift 用 PSI/KS 对比特征分布，Concept Drift 看模型效果和标签反馈的持续下滑。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>Data Drift：P(X) 变化，用 PSI/KS 逐特征监控</li>\n<li>Concept Drift：P(y|X) 变化，看线上效果、人工标注反馈</li>\n<li>监控：特征分布 PSI 告警 + 模型指标趋势 + 定期重标注</li>\n<li>处理：特征漂移做重采样/特征对齐；概念漂移做重训练/更新标签逻辑</li>\n<li>定位：先分清是 Data Drift 还是 Concept Drift，再决定重训练还是修特征</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>PSI 怎么算，阈值一般设多少？</li>\n<li>漂移了就一定要重训练吗？</li>\n</ul>"
+    },
+    {
+      "id": "ML-0007",
+      "type": "technical",
+      "question": "什么是 selection bias 采样偏差？训练集采样偏差怎么修复？",
+      "topic": [
+        "ml",
+        "bias"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "ml",
+      "body_html": "<h2>一句话</h2>\n<p>采样偏差是训练样本的选取方式和真实总体不一致，导致学到的规律偏向某个子群体。</p>\n<h2>30 秒回答</h2>\n<p>比如只拿活跃用户做训练，模型对沉默用户就没代表性。修复：先明确总体定义，用分层/配额采样保证各群体比例对齐，再给被低估的群体加权补偿，最后持续监控线上线下的分布差。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>定义：样本不是从目标总体随机抽出来的，存在系统性偏斜</li>\n<li>例子：只采样付费用户、只在白天采样、只拿能回填标签的样本</li>\n<li>修复：定义总体 → 分层/配额采样 → 样本加权 → 采样偏差监控</li>\n<li>影响：训练集有偏，线上泛化差，评估指标虚高</li>\n<li>检测：对比训练集和真实总体的关键维度分布</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>采样偏差和过拟合有什么关系？</li>\n<li>样本加权怎么定权重？</li>\n</ul>"
+    },
+    {
+      "id": "ML-0008",
+      "type": "technical",
+      "question": "训练集大量重复样本会带来什么影响，怎么检测？",
+      "topic": [
+        "ml",
+        "data-quality"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "ml",
+      "body_html": "<h2>一句话</h2>\n<p>重复样本让模型把同一个例子记得更重，评估被高估，还会拖慢训练、放大偏差。</p>\n<h2>30 秒回答</h2>\n<p>影响：模型对重复样本过拟合，评估集和训练集泄漏时分数虚高，训练变慢，少数高频样本主导梯度。检测：文本用 MinHash/SimHash 找近重复，再上精确 hash 或语义相似度确认；有唯一 ID 的直接按 ID 去重。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>影响：过拟合高频样本、评估虚高（泄漏）、训练慢、类别失衡</li>\n<li>检测：精确 hash 去重 + MinHash/SimHash 近重复 + 语义去重</li>\n<li>处理：去重、按来源限采样、给重复样本降权</li>\n<li>注意：先查训练/验证/测试有没有跨集泄漏，再决定删哪些</li>\n<li>指标：去重后监控样本量和分布变化，别把稀有类也删掉</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>精确去重和近重复去重区别？</li>\n<li>去重会不会误删有价值的样本？</li>\n</ul>"
     },
     {
       "id": "LLM-0001",
@@ -28751,6 +28847,12 @@ window.OS_DATA = {
           "company": "字节跳动",
           "position": "数据开发（泛抖音，校招一面凉经）",
           "date": "2026-09-28"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
         }
       ],
       "domain": "llm",
@@ -29099,6 +29201,14 @@ window.OS_DATA = {
       "difficulty": 3,
       "frequency": "medium",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>向量数据库存 embedding，用相似度检索（ANN）快速找最近邻。</p>\n<h2>30 秒回答</h2>\n<p>把文本/图片转成向量，用 HNSW/IVF 等索引做近似最近邻检索；用于语义搜索、RAG、推荐、去重。</p>\n<h2>追问</h2>\n<ul>\n<li>ANN 和精确检索区别？</li>\n<li>Milvus/Faiss 是什么？</li>\n</ul>"
     },
@@ -29282,6 +29392,12 @@ window.OS_DATA = {
           "company": "小红书",
           "position": "AI 数据工程师（5 轮）",
           "date": "2026-05-30"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
         }
       ],
       "domain": "llm",
@@ -30124,6 +30240,14 @@ window.OS_DATA = {
       "difficulty": 0,
       "topic": [],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
       "frequency": "",
       "domain": "llm",
       "body_html": "<blockquote><strong>来源面经</strong>：小红书-AI数据工程师5轮-20260530 Q10</blockquote>\n<p>向量是把内容/用户/图片通过模型压缩成的固定维度浮点数组（如 768 维），核心用途是<strong>相似度检索</strong>——召回阶段找最像的 Top K，比传统倒排索引能捕捉语义。</p>\n<p><strong>存储分层选型</strong>：</p>\n<ul>\n<li><strong>专业向量库</strong>（Milvus / Faiss / Vespa / Pinecone）：主存，亿级 + ANN 索引（HNSW / IVF / PQ）</li>\n<li><strong>Redis</strong>：缓存活跃 Top 1% 用户向量，毫秒级返回</li>\n<li><strong>HDFS / 对象存储</strong>：原始向量冷备 + 离线训练</li>\n<li><strong>关系型库 / Hive</strong>：存元信息（向量 ID → 业务 ID 映射、版本、时间），不存向量本身</li>\n</ul>\n<p><strong>性能优化方向</strong>：</p>\n<ul>\n<li><strong>索引选型</strong>：HNSW 召回率高、查询快、内存占用大；IVF + PQ 内存友好但召回率略低，适合超大规模</li>\n<li><strong>分片</strong>：按品类或哈希分片，每片单独建索引并行查询</li>\n<li><strong>批量写入</strong>：避免单条写入，攒批 flush 提升吞吐</li>\n<li><strong>冷热分离</strong>：热数据（近 30 天）放内存索引，冷数据放磁盘 SSD</li>\n<li><strong>索引重建策略</strong>：增量插入会让 ANN 索引退化，定期全量重建保持召回率</li>\n<li><strong>维度压缩</strong>：PCA 降维或量化（PQ/SQ）大幅省内存</li>\n</ul>\n<hr>\n<blockquote>💡 <strong>专家补充</strong><br><br>- <strong>向量库 = \"AI 时代的搜索引擎\"</strong>——传统倒排索引解决\"关键词匹配\"，向量索引解决\"语义相似\"，两者并存而非替代<br>- <strong>HNSW vs IVF 的选型本质是\"内存换召回率\"</strong>——业务允许内存预算大用 HNSW，超大规模成本敏感用 IVF+PQ<br>- <strong>向量库还在快速演进</strong>——2024-2026 年是大爆发期，Milvus / Vespa / Qdrant 都在迭代，选型时要看 1 年内是否有大版本变更</blockquote>\n<hr>"
@@ -30570,6 +30694,97 @@ window.OS_DATA = {
       ],
       "domain": "llm",
       "body_html": "<h2>一句话</h2>\n<p>多轮消歧靠上下文补全和澄清追问，强弱意图按置信度分级处理。</p>\n<h2>参考回答</h2>\n<p>多轮对话里消歧先把省略的主语、条件从历史上下文补全，补不回来就主动澄清追问。强意图和弱意图按置信度分：明确的指令直接执行，模糊的就降级成澄清或给候选让用户确认。核心是上下文管理和置信度分级，别把弱意图当强意图执行错了。</p>\n<h2>追问</h2>\n<ul>\n<li>什么时候该追问而不是直接执行？</li>\n<li>上下文窗口有限时怎么保留关键信息？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0177",
+      "type": "technical",
+      "question": "RAG 系统的数据管线怎么设计？从网页文档到向量库和评估集",
+      "topic": [
+        "llm",
+        "rag",
+        "pipeline"
+      ],
+      "difficulty": 3,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>先澄清规模、时效、成本，再按「清洗去重 → 分块 → embedding → 向量库 + 评估集」串起来，每步都想清楚失败怎么兜底。</p>\n<h2>30 秒回答</h2>\n<p>拿到题目别急着堆组件，先问清楚：数据量多大、SLA 要多久刷新、吞吐多少、要不要容错、下游谁消费、成本上限多少。然后管线分四段：网页清洗去重（垃圾页、低质、重复）、分块、embedding 生成（离线批量为主，实时增量走流式）、写入向量库，同时留一份带标注的评估集做质量把关。降本主要砍 embedding 和向量库这两块的开销。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>澄清问题：数据规模、新鲜度 SLA、吞吐、容错、消费方、成本约束</li>\n<li>清洗去重：HTML 解析抽正文、低质页过滤、MinHash/SimHash 近重复去重</li>\n<li>分块：按语义单元切，别硬按固定 token 切</li>\n<li>embedding：离线批量是主链路，实时增量走流式，扩容按吞吐加 worker</li>\n<li>向量库：选型看规模/召回/成本，单独维护评估集验证检索效果</li>\n<li>降本：批处理合并 embedding 调用、缓存热门文档、向量库冷热分层</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>评估集怎么保证和线上分布一致？</li>\n<li>文档更新了向量库怎么增量同步？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0178",
+      "type": "technical",
+      "question": "文档分块策略有哪些？不同分块方式怎么影响 RAG 召回？",
+      "topic": [
+        "llm",
+        "rag",
+        "chunking"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>分块本质是把完整语义单元切出来：切得碎召得准但缺上下文，切得大上下文全但容易冲淡关键信息。</p>\n<h2>30 秒回答</h2>\n<p>常见有固定长度、按句子/段落、按语义单元、带重叠的滑动窗口。固定长度最简单，但容易把一个知识点切成两半；语义切分最稳，每个 chunk 自包含；加 overlap 能保住边界上下文。召回上，块越小越精准但可能漏上下文，块越大上下文全但噪声多、还费 token。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>固定长度：实现简单，但会切断语义</li>\n<li>按段落/标题：贴近文档结构，适合结构化文档</li>\n<li>语义切分：按完整信息单元切，检索最干净</li>\n<li>重叠窗口：防边界丢失，代价是重复和存储变大</li>\n<li>影响：粒度直接决定召回精准度和上下文完整性，要按文档类型选策略</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>表格类文档怎么切？</li>\n<li>chunk 重叠设多大合适？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0179",
+      "type": "technical",
+      "question": "数据管线失败怎么处理？重试、幂等、断点续跑怎么设计？",
+      "topic": [
+        "llm",
+        "pipeline",
+        "reliability"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>重试解决偶发失败，幂等保证重跑不出重复，断点续跑让失败后只补没跑完的那段。</p>\n<h2>30 秒回答</h2>\n<p>重试要限次数 + 指数退避，避免把下游打挂；幂等靠确定性 ID（比如文档 URL 的 hash）做 upsert，重复执行结果不变；断点续跑按分区/批次记录处理状态，失败后从 checkpoint 继续，不从头再来。对外部写操作，至少保证 at-least-once 加下游去重，条件允许就做到 exactly-once。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>重试：有限次数、指数退避，区分可重试和不可重试错误</li>\n<li>幂等：唯一 key + upsert，相同输入重跑结果一致</li>\n<li>断点续跑：批次级 checkpoint 记进度，失败只补增量</li>\n<li>兜底：死信队列收失败记录，告警 + 人工介入</li>\n<li>边界：下游不可重试时，用两阶段提交或下游去重兜底</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>幂等和 exactly-once 是一回事吗？</li>\n<li>checkpoint 怎么落才不丢进度？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0180",
+      "type": "technical",
+      "question": "向量库怎么选型？读写权衡和向量数据更新怎么做？",
+      "topic": [
+        "llm",
+        "vector-db"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>选型看规模、召回精度、写入吞吐和成本，更新一般做「增量 upsert + 定期重建索引」。</p>\n<h2>30 秒回答</h2>\n<p>小规模用 Faiss 这类库内存跑就行；亿级要上 Milvus/Vespa 这类分布式向量库，ANN 索引里 HNSW 召回高但吃内存，IVF+PQ 省内存但召回略低。更新上：新文档增量写，删除/修改用按 ID 删除再插入，索引膨胀了就定期重建，保证召回和查询性能不掉。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>选型：规模、QPS、召回率、写入延迟、内存成本</li>\n<li>索引：HNSW 快但内存大；IVF+PQ 内存友好但召回略低</li>\n<li>更新：新增 upsert，删除先删后插，批量变更走离线重建</li>\n<li>一致性：向量库侧重可用性和速度，强一致代价高，按业务接受延迟</li>\n<li>降本：冷热分层，活跃向量放内存，冷数据落对象存储</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>HNSW 和 IVF 什么时候选哪个？</li>\n<li>向量删除后索引会立刻变小吗？</li>\n</ul>"
     },
     {
       "id": "PLATFORM-0001",
@@ -33866,6 +34081,14 @@ window.OS_DATA = {
       "difficulty": 0,
       "topic": [],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
       "frequency": "",
       "domain": "warehouse",
       "body_html": "<blockquote><strong>要点提纲</strong>：数据分级 | 脱敏处理 | 权限管控 | 合规意识</blockquote>\n<p>在腾讯做数据对隐私合规要求很高。我们的做法是几个层面。</p>\n<p><strong>数据分级</strong>：我做过数据资产分级——机密、秘密、普通三级。涉及用户身份信息（手机号、身份证等）的字段标记为机密，使用需要额外审批。</p>\n<p><strong>脱敏处理</strong>：ODS 层落数据的时候，部分敏感字段在接入时就做了脱敏（比如手机号只保留后四位）。DWD 往上的分析场景一般用 hash 后的 ID 做关联，不暴露原始用户标识。</p>\n<p><strong>权限管控</strong>：表权限按需申请，不是谁都能查所有表。核心用户表的访问权限控制在少数人手里。</p>\n<p><strong>思考方面</strong>，我觉得隐私保护不只是技术问题，更多是意识问题。最容易出事的是开发过程中为了调试方便直接查原始数据，这个习惯必须纠正。另外数据生命周期管理也很重要，过期数据要及时清理，不能无限期保留。</p>\n<hr>"
@@ -34270,6 +34493,14 @@ window.OS_DATA = {
       "difficulty": 0,
       "topic": [],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
       "frequency": "",
       "domain": "warehouse",
       "body_html": "<blockquote><strong>要点提纲</strong>：安全分级 | 权限控制 | 字段脱敏 | 审计日志 | 最小必要原则<br><strong>来源</strong>：字节-AI Agent数据开发-20260420 Q30</blockquote>\n<p>数据安全做了几层保障。第一是安全分级，所有表按内容敏感度分为机密、秘密、普通三级。机密级表（含用户身份信息等）访问需要额外审批。第二是权限控制，通过平台配置表级和字段级权限，不同角色看到的数据范围不同——DE 有全量权限，DS 只有需要的表权限，产品同学通过 BI 报表看聚合数据，不直接接触明细。第三是脱敏处理，涉及 PII 的字段在 DWD 层就做了脱敏——用户 ID 做 hash 处理，手机号/身份证号不进数仓。</p>\n<p>合规层面，数据采集遵循最小必要原则，不采集业务不需要的用户数据。数据保留有生命周期策略，过期自动清理。数据使用有审计日志，谁在什么时间查了什么数据可追溯。</p>\n<hr>"

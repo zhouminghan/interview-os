@@ -7,6 +7,11 @@ topic:
 difficulty: 1
 frequency: low
 source_type: knowledge
+sources:
+  - interview_id: INTERVIEW-2026-09-27-google-ai-de
+    company: Google
+    position: ML Data Engineer（硕 3 年社招，L4）
+    date: 2026-09-27
 ---
 
 # 一句话

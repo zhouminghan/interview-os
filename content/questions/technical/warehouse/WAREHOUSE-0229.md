@@ -5,6 +5,11 @@ question: 数据安全、权限、脱敏、合规处理？
 difficulty: 0
 topic: []
 source_type: knowledge
+sources:
+  - interview_id: INTERVIEW-2026-09-27-google-ai-de
+    company: Google
+    position: ML Data Engineer（硕 3 年社招，L4）
+    date: 2026-09-27
 ---
 
 > **要点提纲**：安全分级 | 权限控制 | 字段脱敏 | 审计日志 | 最小必要原则
