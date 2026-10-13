@@ -198,7 +198,9 @@ blockquote { margin: 0 0 1em; padding: 8px 14px; border-left: 3px solid var(--ac
 .iv-answer-title { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; font-size: .95rem; font-weight: 600; color: var(--accent); }
 .iv-answer-title:hover { text-decoration: underline; }
 .iv-answer-id { flex: none; color: var(--muted); font-size: .76rem; font-weight: 400; }
+.iv-answer-tags { margin-top: 6px; }
 .iv-answer-body { margin-top: 10px; }
+.iv-original { padding-bottom: 8px; margin-bottom: 14px; border-bottom: 1px solid var(--border); }
 
 .field { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
 .field > span { color: var(--muted); font-size: .9rem; min-width: 72px; }

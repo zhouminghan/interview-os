@@ -226,7 +226,7 @@
 
   function renderInterviews() {
     const params = new URLSearchParams(location.search);
-    const state = { query: "", expanded: new Set() };
+    const state = { query: "", selected: null };
     const list = D.interviews;
     const byInterview = {};
     D.questions.forEach((q) => {
@@ -246,93 +246,64 @@
             '<span>' + esc(q.question) + '</span>' +
             '<span class="iv-answer-id">' + esc(q.id) + ' · ' + esc(domainLabel(q.domain)) + '</span>' +
           '</a>' +
+          '<div class="iv-answer-tags">' +
+            '<span class="tag ' + (q.type === "technical" ? "tech" : "proj") + '">' + typeLabel(q.type) + '</span>' +
+            (q.source_type === "knowledge" ? '<span class="tag kw">八股</span>' : '') +
+          '</div>' +
           '<div class="q-body iv-answer-body">' + (q.body_html || "") + '</div>' +
         '</article>').join("");
       return '<div class="iv-answers"><h3>相关回答（' + qs.length + '）</h3>' + items + '</div>';
     }
 
+    function renderDetail(iv) {
+      const el = $("#iv-detail");
+      if (!iv) { el.innerHTML = '<p class="muted">左侧选择一篇面经查看。</p>'; return; }
+      el.innerHTML =
+        '<h2>' + esc(iv.company || "") + (iv.business ? ' · ' + esc(iv.business) : '') + '</h2>' +
+        '<div class="tags">' +
+          (iv.position ? '<span class="tag">' + esc(iv.position) + '</span>' : '') +
+          (iv.round ? '<span class="tag">' + esc(iv.round) + '</span>' : '') +
+          (iv.date ? '<span class="tag">' + esc(iv.date) + '</span>' : '') +
+        '</div>' +
+        '<div class="q-body iv-original">' + (iv.body_html || "") + '</div>' +
+        answersHTML(iv.interview_id);
+    }
+
     $("#page").innerHTML =
       "<h1>面经</h1>" +
       '<div class="toolbar">' +
-        '<input class="search" id="iv-search" type="search" placeholder="搜索公司 / 业务 / 岗位 / 日期，或 分类 / 八股" aria-label="搜索面经、分类、八股" autocomplete="off">' +
-        '<div class="toolbar-actions">' +
-          '<button class="btn btn-secondary btn-sm" id="iv-expand">展开全部</button>' +
-          '<button class="btn btn-secondary btn-sm" id="iv-collapse">折叠全部</button>' +
-          '<span class="muted" id="iv-count"></span>' +
-        "</div>" +
+        '<input class="search" id="iv-search" type="search" placeholder="搜索公司 / 业务 / 岗位 / 日期" aria-label="搜索面经" autocomplete="off">' +
+        '<span class="muted" id="iv-count"></span>' +
       "</div>" +
-      '<div id="iv-extra"></div>' +
-      '<div class="interview-list" id="iv-list"></div>';
-
-    function q() { return state.query.trim().toLowerCase(); }
-    function matchingInterviews() {
-      if (!q()) return list;
-      return list.filter((iv) => ((iv.company || "") + " " + (iv.business || "") + " " + (iv.position || "") + " " + (iv.date || "") + " " + (iv.round || "")).toLowerCase().includes(q()));
-    }
-    function matchingDomains() {
-      if (!q()) return [];
-      return Object.keys(D.stats.domains || {}).filter((k) => (domainLabel(k) + " " + k).toLowerCase().includes(q())).slice(0, 8);
-    }
-    function matchingKnowledge() {
-      if (!q()) return [];
-      return D.questions.filter((x) => x.source_type === "knowledge" && (x.question + " " + x.id + " " + (x.topic || []).join(" ")).toLowerCase().includes(q())).slice(0, 8);
-    }
-
-    function renderExtra() {
-      const el = $("#iv-extra");
-      const doms = matchingDomains();
-      const kws = matchingKnowledge();
-      if (!q() || (!doms.length && !kws.length)) { el.innerHTML = ""; return; }
-      let html = "";
-      if (doms.length) {
-        html += '<div class="panel" style="margin-bottom:12px"><h3>分类</h3><div class="chips">' +
-          doms.map((k) => '<a class="chip" href="questions.html?domain=' + encodeURIComponent(k) + '">' + esc(domainLabel(k)) + " · " + (D.stats.domains[k] || 0) + "</a>").join("") +
-          "</div></div>";
-      }
-      if (kws.length) {
-        html += '<div class="panel" style="margin-bottom:12px"><h3>八股</h3><div class="q-list">' +
-          kws.map((x) => '<a class="q-row" style="grid-template-columns:1fr" href="questions.html#' + encodeURIComponent(x.id) + '"><span class="q-title">' + esc(x.question) + '</span><span class="q-meta">' + esc(domainLabel(x.domain)) + '</span></a>').join("") +
-          "</div></div>";
-      }
-      el.innerHTML = html;
-    }
+      '<div class="split"><div class="q-list" id="iv-list"></div><aside class="q-detail" id="iv-detail" aria-live="polite"></aside></div>';
 
     function renderList() {
-      const items = matchingInterviews();
+      const kw = state.query.trim().toLowerCase();
+      const items = kw ? list.filter((iv) => ((iv.company || "") + " " + (iv.business || "") + " " + (iv.position || "") + " " + (iv.date || "") + " " + (iv.round || "")).toLowerCase().includes(kw)) : list;
       $("#iv-count").textContent = items.length + " 份面经";
       const el = $("#iv-list");
-      if (!items.length) { el.innerHTML = '<p class="muted">没有匹配的面经。</p>'; return; }
-      el.innerHTML = items.map((iv, i) => {
-        const open = state.expanded.has(iv.interview_id);
-        return '<div class="interview-card' + (open ? " open" : "") + '" data-id="' + esc(iv.interview_id) + '">' +
-          '<button class="interview-toggle" type="button" aria-expanded="' + open + '" aria-label="展开或折叠 ' + esc(iv.company || "") + '">' +
-            '<span class="rank' + (i < 3 ? " top" : "") + '">' + (i + 1) + "</span>" +
-            '<span class="interview-main">' +
-              '<span class="interview-head"><b>' + esc(iv.company || "") + " · " + esc(iv.business || "") + '</b><span class="muted">' + esc(iv.date || "") + '</span></span>' +
-              '<span class="interview-sub">' + esc(iv.position || "") + (iv.round ? " · " + esc(iv.round) : "") + '</span>' +
-            '</span>' +
-            '<span class="interview-caret" aria-hidden="true"></span>' +
-          "</button>" +
-          (open ? '<div class="interview-body q-body">' + (iv.body_html || "") + '</div>' + answersHTML(iv.interview_id) : "") +
-        "</div>";
-      }).join("");
+      if (!items.length) { el.innerHTML = '<p class="muted">没有匹配的面经。</p>'; $("#iv-detail").innerHTML = ""; return; }
+      el.innerHTML = items.map((iv, i) =>
+        '<button class="q-row' + (iv.interview_id === state.selected ? " active" : "") + '" type="button" data-id="' + esc(iv.interview_id) + '">' +
+          '<span class="rank' + (i < 3 ? " top" : "") + '">' + (i + 1) + '</span>' +
+          '<span class="q-title">' + esc(iv.company || "") + (iv.business ? ' · ' + esc(iv.business) : '') + '</span>' +
+          '<span class="q-meta">' + esc(iv.date || "") + '</span>' +
+        '</button>').join("");
+      if (!items.some((iv) => iv.interview_id === state.selected)) state.selected = items[0].interview_id;
+      renderDetail(items.find((iv) => iv.interview_id === state.selected));
     }
 
-    function toggle(id) { state.expanded.has(id) ? state.expanded.delete(id) : state.expanded.add(id); renderList(); }
-
-    $("#iv-search").addEventListener("input", (e) => { state.query = e.target.value; renderExtra(); renderList(); });
-    $("#iv-expand").addEventListener("click", () => { matchingInterviews().forEach((iv) => state.expanded.add(iv.interview_id)); renderList(); });
-    $("#iv-collapse").addEventListener("click", () => { state.expanded.clear(); renderList(); });
+    $("#iv-search").addEventListener("input", (e) => { state.query = e.target.value; renderList(); });
     $("#iv-list").addEventListener("click", (e) => {
-      const b = e.target.closest(".interview-toggle");
+      const b = e.target.closest(".q-row");
       if (!b) return;
-      toggle(b.closest(".interview-card").dataset.id);
+      state.selected = b.dataset.id;
+      renderList();
     });
 
     const initial = params.get("iv");
-    if (initial && list.some((x) => x.interview_id === initial)) state.expanded.add(initial);
-    else if (list.length) state.expanded.add(list[0].interview_id);
-    renderExtra();
+    if (initial && list.some((x) => x.interview_id === initial)) state.selected = initial;
+    else if (list.length) state.selected = list[0].interview_id;
     renderList();
   }
 
