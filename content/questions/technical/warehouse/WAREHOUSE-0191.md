@@ -5,6 +5,11 @@ question: 你如何理解数据开发中的"维度建模"，在实际项目中�
 difficulty: 0
 topic: []
 source_type: knowledge
+sources:
+  - interview_id: INTERVIEW-2026-10-13-yangteng-data-dev
+    company: 扬腾创新
+    position: 数据开发（秋招一面）
+    date: 2026-10-13
 ---
 
 > **来源面经**：扬腾创新-数据开发一面-20261013

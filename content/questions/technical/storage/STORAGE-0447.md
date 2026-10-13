@@ -7,6 +7,11 @@ topic:
 difficulty: 1
 frequency: low
 source_type: knowledge
+sources:
+  - interview_id: INTERVIEW-2026-10-10-bytedance-data-dev-3round
+    company: 字节跳动
+    position: 数据开发（秋招三面）
+    date: 2026-10-10
 ---
 
 > **来源面经**：字节-数据开发三面-20261010

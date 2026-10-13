@@ -5,6 +5,11 @@ question: 指标覆盖率如何衡量？指标管理怎么做？
 difficulty: 0
 topic: []
 source_type: knowledge
+sources:
+  - interview_id: INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing
+    company: 字节跳动
+    position: 数据开发（泛抖音，校招一面凉经）
+    date: 2026-09-28
 ---
 
 > **来源面经**：字节-泛抖音数开一面-20260928 Q12

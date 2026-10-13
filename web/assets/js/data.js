@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-13T14:29:26+08:00",
+  "generatedAt": "2026-10-13T14:39:10+08:00",
   "stats": {
     "questions": 3094,
     "interviews": 104,
@@ -1189,6 +1189,14 @@ window.OS_DATA = {
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-13-yangteng-data-dev",
+          "company": "扬腾创新",
+          "position": "数据开发（秋招一面）",
+          "date": "2026-10-13"
+        }
+      ],
       "domain": "spark",
       "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>内存分执行和存储两块，统一管理加动态调整。</p>\n<h2>参考回答</h2>\n<p>Spark 内存主要分执行内存和存储内存，执行内存用于 shuffle 和聚合，存储内存用于缓存 RDD。采用统一内存管理，两者可以动态借用，提高利用率。</p>\n<h2>追问</h2>\n<ul>\n<li>执行内存和存储内存怎么分配？</li>\n</ul>"
     },
@@ -1280,6 +1288,14 @@ window.OS_DATA = {
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-13-yangteng-data-dev",
+          "company": "扬腾创新",
+          "position": "数据开发（秋招一面）",
+          "date": "2026-10-13"
+        }
+      ],
       "domain": "spark",
       "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>小数据广播到各 Executor，避免重复传输。</p>\n<h2>参考回答</h2>\n<p>广播变量把只读的小数据集发到每个 Executor 缓存一份，join 或计算时直接本地用，避免每个 task 都传一遍。大表 join 小表时用 broadcast 能省大量 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>广播变量适合多大数据？</li>\n</ul>"
     },
@@ -1319,6 +1335,14 @@ window.OS_DATA = {
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-13-yangteng-data-dev",
+          "company": "扬腾创新",
+          "position": "数据开发（秋招一面）",
+          "date": "2026-10-13"
+        }
+      ],
       "domain": "spark",
       "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>减少 shuffle、合理并行度、用 DataFrame、调内存。</p>\n<h2>参考回答</h2>\n<p>性能优化围绕少 shuffle、少数据量、少序列化：小表 broadcast、减少 groupBy、合理并行度、用 DataFrame 代替 RDD、内存够用。先看 UI 定位慢的 stage。</p>\n<h2>追问</h2>\n<ul>\n<li>优化第一步做什么？</li>\n</ul>"
     },
@@ -1865,6 +1889,14 @@ window.OS_DATA = {
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
+        }
+      ],
       "domain": "spark",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q15</blockquote>\n<h2>一句话</h2>\n<p>内连接、外连接、半连接、交叉连接等。</p>\n<h2>参考回答</h2>\n<p>join 类型有 inner、left、right、full outer、left_semi、left_anti、cross。cross 是笛卡尔积要小心。跟 SQL 的 join 类型对应。</p>\n<h2>追问</h2>\n<ul>\n<li>left_semi 和 inner 的区别？</li>\n</ul>"
     },
@@ -2164,6 +2196,14 @@ window.OS_DATA = {
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-13-yangteng-data-dev",
+          "company": "扬腾创新",
+          "position": "数据开发（秋招一面）",
+          "date": "2026-10-13"
+        }
+      ],
       "domain": "spark",
       "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>broadcast、sort merge、shuffle hash join 等。</p>\n<h2>参考回答</h2>\n<p>Spark 的 join 策略有 broadcast hash join 广播小表、sort merge join 大表排序归并、shuffle hash join。CBO 和 AQE 会按表大小自动选。小表 broadcast 最省 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>broadcast join 对表大小有什么限制？</li>\n</ul>"
     },
@@ -3269,6 +3309,14 @@ window.OS_DATA = {
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-13-yangteng-data-dev",
+          "company": "扬腾创新",
+          "position": "数据开发（秋招一面）",
+          "date": "2026-10-13"
+        }
+      ],
       "domain": "spark",
       "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>减少单 task 数据、调内存、避免 collect 大结果。</p>\n<h2>参考回答</h2>\n<p>OOM 优化减少单 task 处理的数据量，调高 executor 内存，避免 collect 大结果到 driver，用序列化省内存。看是 driver 还是 executor OOM。</p>\n<h2>追问</h2>\n<ul>\n<li>driver OOM 和 executor OOM 怎么区分？</li>\n</ul>"
     },
@@ -5769,6 +5817,14 @@ window.OS_DATA = {
       "difficulty": 3,
       "frequency": "medium",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
+        }
+      ],
       "domain": "storage",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-数据开发三面-20261010</blockquote>\n<h2>一句话</h2>\n<p>Kylin 预计算 Cube 适合固定报表，Doris/ClickHouse 实时/即席查询更灵活，正在替代 Kylin。</p>\n<h2>30 秒回答</h2>\n<p>Kylin 按维度组合预计算 Cube，查询快但维度爆炸成本高；Doris/ClickHouse 列存 + MPP，即席分析灵活；现代场景多用 Doris/StarRocks。</p>\n<h2>追问</h2>\n<ul>\n<li>Kylin 为什么式微？</li>\n<li>固定报表和即席分析分别选什么？</li>\n</ul>"
     },
@@ -6384,6 +6440,14 @@ window.OS_DATA = {
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-13-yangteng-data-dev",
+          "company": "扬腾创新",
+          "position": "数据开发（秋招一面）",
+          "date": "2026-10-13"
+        }
+      ],
       "domain": "storage",
       "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>存储位置在 HDFS，按库表分区组织目录。</p>\n<h2>参考回答</h2>\n<p>Hive 数据存 HDFS，默认按库、表、分区组织目录。管理上统一目录规范、控制权限、做生命周期。生产一般指定 warehouse 目录，按业务规划路径。</p>\n<h2>追问</h2>\n<ul>\n<li>存储位置怎么规划？</li>\n</ul>"
     },
@@ -11402,6 +11466,14 @@ window.OS_DATA = {
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
+        }
+      ],
       "domain": "storage",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-数据开发三面-20261010</blockquote>\n<h2>一句话</h2>\n<p>每隔一段数据建一个索引项。</p>\n<h2>参考回答</h2>\n<p>稀疏索引不是每行一个索引，而是每 N 行记录一个主键值。定位时先找到大概范围再扫描。省索引空间，查询也能加速。</p>\n<h2>追问</h2>\n<ul>\n<li>稀疏索引和稠密索引区别？</li>\n</ul>"
     },
@@ -19933,6 +20005,14 @@ window.OS_DATA = {
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
+        }
+      ],
       "domain": "flink",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-数据开发三面-20261010</blockquote>\n<h2>一句话</h2>\n<p>checkpoint 快照状态，故障从快照恢复。</p>\n<h2>参考回答</h2>\n<p>Flink 容错靠 checkpoint 定期对状态做一致性快照，存到可靠存储。任务挂了按重启策略从最近 checkpoint 恢复状态和 offset，继续处理。配合 source 重放实现 exactly-once。</p>\n<h2>追问</h2>\n<ul>\n<li>恢复会丢数据吗？</li>\n</ul>"
     },
@@ -20193,6 +20273,14 @@ window.OS_DATA = {
       "difficulty": 1,
       "frequency": "low",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
+        }
+      ],
       "domain": "flink",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-数据开发三面-20261010</blockquote>\n<h2>一句话</h2>\n<p>下游处理慢时向上游传导压力，降低消费速率。</p>\n<h2>参考回答</h2>\n<p>反压是下游处理不过来时，把压力向上游传导，上游降低发送速率，避免数据积压和 OOM。Flink 用网络缓冲池和 credit 机制实现反压。</p>\n<h2>追问</h2>\n<ul>\n<li>反压会丢数据吗？</li>\n</ul>"
     },
@@ -28657,6 +28745,14 @@ window.OS_DATA = {
       "difficulty": 3,
       "frequency": "high",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
+        }
+      ],
       "domain": "llm",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q4</blockquote>\n<h2>一句话</h2>\n<p>文本用 MinHash/SimHash 近重复 + 语义去重，行为序列用特征指纹 + 序列相似度去重。</p>\n<h2>30 秒回答</h2>\n<p>文本：精确哈希去重 + SimHash 近重复 + embedding 语义去重。行为序列：按用户+会话+特征做指纹去重，考虑时序和序列相似度，避免简单哈希误杀。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>文本：MinHash/SimHash、embedding 语义、编辑距离</li>\n<li>行为序列：会话切分、特征指纹、序列相似度</li>\n<li>差异：文本重语义，序列重时序和模式</li>\n<li>目标：去重不伤分布，保留多样性</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>语义去重怎么做？</li>\n<li>序列去重为什么不能只哈希？</li>\n</ul>"
     },
@@ -28671,6 +28767,14 @@ window.OS_DATA = {
       "difficulty": 3,
       "frequency": "high",
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
+        }
+      ],
       "domain": "llm",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q5</blockquote>\n<h2>一句话</h2>\n<p>训练数据质量靠质检规则 + 标注一致性 + 模型评估 + 人工抽检，指标看覆盖、准确、一致、及时、去重和坏样率。</p>\n<h2>30 秒回答</h2>\n<p>核心指标：覆盖率、准确率、一致性、及时性、去重率、标注一致率、坏样本率。手段：规则质检、自动评估、人工抽检、badcase 回流。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>指标：覆盖、准确、一致、及时、去重、坏样率</li>\n<li>规则：格式、范围、分布校验</li>\n<li>评估：模型评测 + 标注一致性（如 Kappa）</li>\n<li>回流：badcase 分类、迭代</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>标注一致性怎么衡量？</li>\n<li>坏样本怎么回流？</li>\n</ul>"
     },
@@ -29652,6 +29756,14 @@ window.OS_DATA = {
       "difficulty": 0,
       "topic": [],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-05-tencent-cdg-data-eng",
+          "company": "腾讯 CDG",
+          "position": "数据工程（秋招一面）",
+          "date": "2026-10-05"
+        }
+      ],
       "frequency": "",
       "domain": "llm",
       "body_html": "<blockquote><strong>来源面经</strong>：腾讯-数据工程-20260415 Q20<br><strong>来源面经</strong>：腾讯 CDG-数据工程秋招一面-20261005 Agent Q1</blockquote>\n<p>知识库是一组<strong>结构化 Markdown 文件</strong>，每个文件对应一张表或一个业务域。</p>\n<p><strong>知识文件结构</strong>：表用途 → 核心字段含义 → 上下游依赖 → 常见使用场景 → 数据量级</p>\n<p><strong>AI 怎么用</strong>：</p>\n<ol>\n<li>Skill 执行时按需加载相关表知识</li>\n<li>回答业务问题时查找口径定义</li>\n<li>表知识文件可从元数据平台自动生成</li>\n</ol>\n<p><strong>设计关键点</strong>：不是越多越好，而是<strong>精简、结构化、可机器解析</strong>。一开始尝试塞整个 DDL，AI 反而被冗余信息干扰。精简到只保留 AI 真正需要的信息后效果好了很多。</p>\n<hr>"
@@ -29773,6 +29885,14 @@ window.OS_DATA = {
       "difficulty": 0,
       "topic": [],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-05-tencent-cdg-data-eng",
+          "company": "腾讯 CDG",
+          "position": "数据工程（秋招一面）",
+          "date": "2026-10-05"
+        }
+      ],
       "frequency": "",
       "domain": "llm",
       "body_html": "<blockquote><strong>要点提纲</strong>：业务知识库覆盖度 | Skill 颗粒度 | MCP 工具链完整度 | 评测体系 | 上下文窗口<br><strong>来源面经</strong>：字节-AI Agent数据开发一面-20260412 Q1<br><strong>来源面经</strong>：腾讯 CDG-数据工程秋招一面-20261005 Agent Q3</blockquote>\n<p>AI + 数据工程体系目前还在半自动化阶段，效果差有几个原因。</p>\n<p><strong>第一是业务知识库覆盖度不够</strong>。频道有几百张表、几十个业务域，目前只沉淀了核心域的表知识文件，AI 在涉及非核心域时容易\"幻觉\"——字段命名不规范、分区字段写错。</p>\n<p><strong>第二是 Skill 颗粒度太粗</strong>。比如建模 Skill 一上来就让 AI 生成完整 SQL，但实际业务规则太复杂，应该拆成\"识别建模模式 → 选择模板 → 填充参数\"几步，让人在中间能干预。</p>\n<p><strong>第三是 MCP 工具链不完整</strong>。平台侧目前提供的 MCP 工具集中在元数据查询和任务创建，像血缘解析、分区状态批量查这些核心能力还在补齐，导致回溯类 Skill 体验有断点。</p>\n<p><strong>第四是缺评测体系</strong>。Skill 改了之后效果是好是坏只能靠用户反馈，没有量化指标，迭代效率低。</p>\n<p><strong>优化方向</strong>：</p>\n<ol>\n<li><strong>业务知识库结构化做深</strong>：每张核心表都自动生成知识文件并定期回写</li>\n<li><strong>Skill 拆细 + 加评测</strong>：引入小规模 case 集回归，每次 Skill 改动跑一遍看准确率</li>\n<li><strong>推动平台侧补齐 MCP 工具</strong>：把血缘、分区状态、跨平台调度这些高频动作都覆盖</li>\n<li><strong>上下文窗口管理</strong>：超长上下文场景做摘要 + 增量加载，避免噪声</li>\n</ol>\n<blockquote>💡 <strong>专家补充</strong>：<br>- <strong>AI Agent 落地的瓶颈往往不在模型而在\"周边\"</strong>：知识库、工具链、评测体系——模型能力大家差不多，差距在于这些工程化基础是否扎实<br>- <strong>\"评测体系缺失\"是 AI 项目通病</strong>：90% 的团队改 Prompt / Skill 都靠拍脑袋，没有量化指标。建立 case 集 → 回归测试 → 指标可视化，是从 demo 到生产的必经之路<br>- <strong>Skill 颗粒度的设计原则是\"原子化 + 可组合\"</strong>：每个 Skill 只做一件事，复杂任务由多个 Skill 编排完成。这和软件工程的单一职责原则是一脉相承的</blockquote>\n<hr>"
@@ -33554,6 +33674,14 @@ window.OS_DATA = {
       "difficulty": 0,
       "topic": [],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
+        }
+      ],
       "frequency": "",
       "domain": "warehouse",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q7</blockquote>\n<blockquote><strong>要点提纲</strong>：ODS→DWD→DWS→ADS 四层 | 按业务域划分 | DWS维度建模做宽表 | 减少下游JOIN</blockquote>\n<p>数仓用标准四层。ODS 是原始数据层，数据来源两个方向——客户端埋点上报和后台流水接出，都是直接落表不做加工。DWD 层做清洗和规范化，比如字段标准化、异常过滤、去重这些。DWS 是花精力最多的，主要做维度建模，把维度信息比如品类、类型，还有内容信息等都关联到宽表里，下游做分析可以直接用，不需要额外 JOIN 维度表。ADS 就是面向具体业务报表的聚合层，接出 BI 看板。</p>\n<p>业务域上分了内容主题、流量主题、用户主题、资料主题、指标主题等主题域，主要为了减少跨域依赖，每个域相对独立。</p>\n<blockquote>💡 <strong>专家补充</strong>（大数据架构师视角，面试中视情况展开）<br><br>- <strong>分层的本质是关注点分离</strong>：每一层只解决一个问题——ODS 解决\"数据进来\"，DWD 解决\"数据干净\"，DWS 解决\"数据好用\"，ADS 解决\"业务能看\"。层数不是越多越好，也有团队只用三层（去掉 DIM 独立层），关键看团队规模和复杂度是否需要那么细的分工<br>- <strong>业界演进趋势</strong>：传统分层是\"批处理思维\"，湖仓一体（Lakehouse）时代在模糊 DWD/DWS 的边界——通过物化视图（Materialized View）按需生成聚合层，不再显式维护 DWS 表。但目前大多数团队还是经典分层更成熟<br>- <strong>主题域划分的黄金原则</strong>：一个好的主题域划分应该满足\"高内聚低耦合\"——域内的表 90% 的 JOIN 在域内完成，跨域 JOIN 不超过 10%</blockquote>\n<hr>"
@@ -33708,6 +33836,14 @@ window.OS_DATA = {
       "difficulty": 0,
       "topic": [],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-13-yangteng-data-dev",
+          "company": "扬腾创新",
+          "position": "数据开发（秋招一面）",
+          "date": "2026-10-13"
+        }
+      ],
       "frequency": "",
       "domain": "warehouse",
       "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<blockquote><strong>要点提纲</strong>：事实表+维度表 | 星型模型 | DWS宽表冗余维度 | 方便下游分析</blockquote>\n<p>维度建模的核心就是围绕业务过程，把数据分成\"事实\"和\"维度\"。事实是度量值（比如点击次数、UV），维度是分析的角度（比如时间、内容类型、用户）。</p>\n<p>在实际应用中，DWS 层就是按维度建模的思路来做的。以内容互动宽表为例，事实是互动行为（点赞、评论、转发的次数和 UV），维度包括内容维度（内容ID、内容类型）、用户维度（用户ID、属性）、时间维度（日期）。把这些维度信息都冗余到宽表里，下游拿到一张表就能直接按各个维度下钻分析，不需要额外 JOIN 维度表。</p>\n<p>这种做法偏星型模型，存储上有冗余，但在我们场景下收益很大——下游每天几十个分析查询都省掉了 JOIN，查询效率提升明显，使用门槛也低了很多。</p>\n<hr>"
@@ -33840,6 +33976,14 @@ window.OS_DATA = {
       "difficulty": 0,
       "topic": [],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
+        }
+      ],
       "frequency": "",
       "domain": "warehouse",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q12</blockquote>\n<blockquote><strong>要点提纲</strong>：OLA平台指标注册 | 覆盖率=已注册/业务需求 | 聚合后的标准化指标 | 口径统一 | 避免重复建设<br><strong>来源</strong>：京东JDY-数据开发一面-20260415、京东JDY-数据开发二面-20260415</blockquote>\n<p>指标覆盖率是已在 OLA 平台注册的标准化指标数 / 业务方实际需要的指标总数。我们注册的是聚合后的标准化指标，不是原始明细。比如\"频道 DAU\"\"帖子互动率\"这些经过定义口径、确认分子分母后才注册。</p>\n<p>指标开发过程按\"原子指标+修饰词+时间周期=派生指标\"管理。开发流程：先跟产品/DS 对齐需求确认口径和统计维度，看现有模型能不能支撑，不行就在 DWD 或 DWS 层新增加工逻辑，产出 ADS 指标表接入 DataTalk 做可视化。</p>\n<p>核心是看业务方的分析需求能不能被现有指标体系覆盖。新需求来了先查平台有没有已注册指标可复用，没有再新建，避免重复建设。</p>\n<hr>"
@@ -34379,6 +34523,14 @@ window.OS_DATA = {
       "difficulty": 0,
       "topic": [],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
+        }
+      ],
       "frequency": "",
       "domain": "warehouse",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q9</blockquote>\n<p><strong>掌握程度</strong>：⬜</p>\n<p><strong>答案要点</strong>：</p>\n<ul>\n<li>ODS 原始数据接入，DWD 清洗规范化，DWS 维度建模宽表聚合，ADS 面向业务报表</li>\n<li>分层核心价值：解耦、复用、质量可控、职责清晰</li>\n</ul>\n<blockquote>📖 来源：字节国际化数开一面</blockquote>\n<hr>"
@@ -35047,6 +35199,14 @@ window.OS_DATA = {
       "difficulty": 0,
       "topic": [],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
+        }
+      ],
       "frequency": "",
       "domain": "warehouse",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q8</blockquote>\n<p>回答：</p>\n<blockquote>ODS 接入主要依赖离线调度和实时链路。<br><br>对于日志数据，一般通过 Kafka 实时采集，分钟级入仓。<br><br>对于业务库数据，会根据业务特点选择全量或者增量同步。<br><br>一般初始化阶段采用全量同步，后续数据量越来越大之后，会切换成增量同步，通过更新时间字段或者 Binlog CDC 方式同步。<br><br>这样能够减少同步压力，提高时效性。</blockquote>\n<ul>\n<li>* *</li>\n</ul>\n<h2>二、数据治理</h2>"
@@ -35058,6 +35218,14 @@ window.OS_DATA = {
       "difficulty": 0,
       "topic": [],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing",
+          "company": "字节跳动",
+          "position": "数据开发（泛抖音，校招一面凉经）",
+          "date": "2026-09-28"
+        }
+      ],
       "frequency": "",
       "domain": "warehouse",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-泛抖音数开一面-20260928 Q11</blockquote>\n<p>不要只说数据质量。</p>\n<p>可以这样回答：</p>\n<blockquote>我理解的数据治理主要包括四部分。<br><br>第一部分是元数据管理，包括表、字段、负责人、血缘关系维护。<br><br>第二部分是规范治理，比如命名规范、分层规范、开发规范。<br><br>第三部分是数据质量治理，包括空值、波动、延迟、唯一性等监控。<br><br>第四部分是资产治理，比如低频表识别、重复指标收敛、下线无效任务，提高资源利用率。<br><br>在日常工作中，我参与比较多的是规范治理和数据质量建设。</blockquote>\n<p>这样显得视野比较完整。</p>\n<ul>\n<li>* *</li>\n</ul>"
@@ -36546,6 +36714,14 @@ window.OS_DATA = {
         "SHEIN"
       ],
       "source_type": "knowledge",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
+          "company": "字节跳动",
+          "position": "数据开发（秋招三面）",
+          "date": "2026-10-10"
+        }
+      ],
       "frequency": "",
       "domain": "sql",
       "body_html": "<blockquote><strong>来源面经</strong>：字节-数据开发三面-20261010</blockquote>\n<p><strong>考察点</strong>：<code>ROW_NUMBER</code> + <code>DATE_SUB</code> 分组技巧</p>\n<pre><code class=\"language-sql\">-- 参考解法已在 每日一题/SQL01 中整理</code></pre>"

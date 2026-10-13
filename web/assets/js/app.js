@@ -228,6 +228,28 @@
     const params = new URLSearchParams(location.search);
     const state = { query: "", expanded: new Set() };
     const list = D.interviews;
+    const byInterview = {};
+    D.questions.forEach((q) => {
+      (q.sources || []).forEach((s) => {
+        if (s && s.interview_id) {
+          (byInterview[s.interview_id] = byInterview[s.interview_id] || []).push(q);
+        }
+      });
+    });
+
+    function answersHTML(ivId) {
+      const qs = byInterview[ivId] || [];
+      if (!qs.length) return "";
+      const items = qs.map((q) =>
+        '<article class="iv-answer">' +
+          '<a class="iv-answer-title" href="questions.html#' + encodeURIComponent(q.id) + '">' +
+            '<span>' + esc(q.question) + '</span>' +
+            '<span class="iv-answer-id">' + esc(q.id) + ' · ' + esc(domainLabel(q.domain)) + '</span>' +
+          '</a>' +
+          '<div class="q-body iv-answer-body">' + (q.body_html || "") + '</div>' +
+        '</article>').join("");
+      return '<div class="iv-answers"><h3>相关回答（' + qs.length + '）</h3>' + items + '</div>';
+    }
 
     $("#page").innerHTML =
       "<h1>面经</h1>" +
@@ -291,7 +313,7 @@
             '</span>' +
             '<span class="interview-caret" aria-hidden="true"></span>' +
           "</button>" +
-          (open ? '<div class="interview-body q-body">' + (iv.body_html || "") + "</div>" : "") +
+          (open ? '<div class="interview-body q-body">' + (iv.body_html || "") + '</div>' + answersHTML(iv.interview_id) : "") +
         "</div>";
       }).join("");
     }

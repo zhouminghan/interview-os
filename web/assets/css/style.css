@@ -191,6 +191,14 @@ blockquote { margin: 0 0 1em; padding: 8px 14px; border-left: 3px solid var(--ac
 .interview-caret { width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform var(--dur); flex: none; }
 .interview-card.open .interview-caret { transform: rotate(-135deg); }
 .interview-body { padding: 4px 16px 16px; border-top: 1px solid var(--border); margin-top: 8px; }
+.iv-answers { padding: 4px 16px 16px; }
+.iv-answers h3 { font-size: .88rem; font-weight: 600; color: var(--muted); margin: 8px 0 10px; }
+.iv-answer { border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); padding: 12px 14px; margin-bottom: 10px; }
+.iv-answer:last-child { margin-bottom: 0; }
+.iv-answer-title { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; font-size: .95rem; font-weight: 600; color: var(--accent); }
+.iv-answer-title:hover { text-decoration: underline; }
+.iv-answer-id { flex: none; color: var(--muted); font-size: .76rem; font-weight: 400; }
+.iv-answer-body { margin-top: 10px; }
 
 .field { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
 .field > span { color: var(--muted); font-size: .9rem; min-width: 72px; }

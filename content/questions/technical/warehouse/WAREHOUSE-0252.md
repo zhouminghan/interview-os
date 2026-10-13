@@ -5,6 +5,11 @@ question: 数仓分层怎么设计的？ODS/DWD/DWS/ADS 各层职责？
 difficulty: 0
 topic: []
 source_type: knowledge
+sources:
+  - interview_id: INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing
+    company: 字节跳动
+    position: 数据开发（泛抖音，校招一面凉经）
+    date: 2026-09-28
 ---
 
 > **来源面经**：字节-泛抖音数开一面-20260928 Q9

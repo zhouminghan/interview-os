@@ -7,6 +7,11 @@ topic:
 difficulty: 1
 frequency: low
 source_type: knowledge
+sources:
+  - interview_id: INTERVIEW-2026-10-13-yangteng-data-dev
+    company: 扬腾创新
+    position: 数据开发（秋招一面）
+    date: 2026-10-13
 ---
 
 > **来源面经**：扬腾创新-数据开发一面-20261013
