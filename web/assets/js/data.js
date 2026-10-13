@@ -1,10 +1,10 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-13T15:19:15+08:00",
+  "generatedAt": "2026-10-13T15:23:26+08:00",
   "stats": {
-    "questions": 3102,
+    "questions": 3113,
     "interviews": 104,
-    "technical": 2732,
-    "project": 370,
+    "technical": 2737,
+    "project": 376,
     "domains": {
       "spark": 398,
       "hdfs": 4,
@@ -16,12 +16,12 @@ window.OS_DATA = {
       "algorithm": 9,
       "statistics": 2,
       "ml": 8,
-      "llm": 171,
+      "llm": 175,
       "platform": 2,
-      "system": 7,
+      "system": 8,
       "warehouse": 381,
       "sql": 48,
-      "project": 370
+      "project": 376
     }
   },
   "domains": {
@@ -30787,6 +30787,98 @@ window.OS_DATA = {
       "body_html": "<h2>一句话</h2>\n<p>选型看规模、召回精度、写入吞吐和成本，更新一般做「增量 upsert + 定期重建索引」。</p>\n<h2>30 秒回答</h2>\n<p>小规模用 Faiss 这类库内存跑就行；亿级要上 Milvus/Vespa 这类分布式向量库，ANN 索引里 HNSW 召回高但吃内存，IVF+PQ 省内存但召回略低。更新上：新文档增量写，删除/修改用按 ID 删除再插入，索引膨胀了就定期重建，保证召回和查询性能不掉。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>选型：规模、QPS、召回率、写入延迟、内存成本</li>\n<li>索引：HNSW 快但内存大；IVF+PQ 内存友好但召回略低</li>\n<li>更新：新增 upsert，删除先删后插，批量变更走离线重建</li>\n<li>一致性：向量库侧重可用性和速度，强一致代价高，按业务接受延迟</li>\n<li>降本：冷热分层，活跃向量放内存，冷数据落对象存储</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>HNSW 和 IVF 什么时候选哪个？</li>\n<li>向量删除后索引会立刻变小吗？</li>\n</ul>"
     },
     {
+      "id": "LLM-0181",
+      "type": "technical",
+      "question": "原始网页脏数据、重复、低质量垃圾页怎么清洗去重",
+      "topic": [
+        "llm",
+        "rag",
+        "data-cleaning"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>清洗分三步：抽正文、过滤低质页、去重，目标是让进 embedding 的都是高质量、不重复的正文。</p>\n<h2>30 秒回答</h2>\n<p>先解析 HTML 抽正文，去掉导航/广告/脚本；再按规则或分类器过滤垃圾页（空页、爬虫页、营销页、过短页）；最后用 MinHash/SimHash 做近重复去重，配合 URL 和正文精确 hash 兜底。低质过滤和去重要放在 embedding 之前，否则垃圾会污染向量库还浪费算力。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>抽正文：HTML 解析，去导航/广告/脚本/弹窗</li>\n<li>低质过滤：空页、超短页、营销页、机器生成页，规则 + 分类器</li>\n<li>精确去重：URL/正文 hash 去完全重复</li>\n<li>近重复：MinHash/SimHash，网页转载、小改动也能识别</li>\n<li>语义去重：相似内容不同措辞，可选，成本高</li>\n<li>顺序：清洗去重前置，先保证进 embedding 的数据干净</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>低质页过滤怎么定义「低质」？</li>\n<li>SimHash 和 MinHash 选哪个？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0182",
+      "type": "technical",
+      "question": "Embedding 生成用离线批量还是实时？怎么扩容",
+      "topic": [
+        "llm",
+        "embedding",
+        "scaling"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>历史全量走离线批量，增量走实时流式，扩容按吞吐水平加 worker，瓶颈在模型推理就加 GPU 或限流排队。</p>\n<h2>30 秒回答</h2>\n<p>存量文档用离线批处理一次性算完；新文档/更新走实时流式，进了就生成 embedding。扩容看瓶颈：CPU 密集型加 worker 数，GPU 推理慢就加 GPU 或做批处理合并请求、限流排队削峰，热门文档缓存复用别重复算。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>离线批量：历史全量、定期重建，吞吐优先</li>\n<li>实时流式：增量文档即时生成，延迟优先</li>\n<li>扩容：无状态 worker 水平扩，按吞吐配副本</li>\n<li>削峰：批量合并请求、限流、队列缓冲</li>\n<li>缓存：热门/不变文档复用结果，降本又提速</li>\n<li>监控：生成延迟、队列积压、失败率</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>批量合并请求为什么能提吞吐？</li>\n<li>实时和离线结果不一致怎么办？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0183",
+      "type": "technical",
+      "question": "文档/embedding 分布漂移怎么监控",
+      "topic": [
+        "llm",
+        "drift",
+        "monitoring"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>监控输入文档分布和 embedding 空间分布两处变化：文档层看主题/长度/来源，embedding 层看聚类中心和相似度分布。</p>\n<h2>30 秒回答</h2>\n<p>文档层监控主题分布、长度、来源、语言等统计量，变了说明入库内容漂了；embedding 层把新向量和基线对比，看聚类中心偏移、分布散度，或抽一批算和最近邻的平均相似度。发现漂移就回溯是哪批数据、哪个来源引起的，再决定重分块还是重建索引。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>文档层：主题/长度/来源/语言分布，PSI 或直方图对比</li>\n<li>embedding 层：聚类中心偏移、向量分布散度、平均近邻相似度</li>\n<li>触发：分布指标超阈值告警</li>\n<li>定位：按批次/来源下钻，找漂移来源</li>\n<li>处理：重分块、重 embedding、重建索引</li>\n<li>频率：按数据更新节奏定期跑，重要来源实时监控</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>文档漂移和 embedding 漂移是什么关系？</li>\n<li>阈值怎么定？</li>\n</ul>"
+    },
+    {
+      "id": "LLM-0184",
+      "type": "technical",
+      "question": "RAG 数据管线哪些环节开销最大，怎么降本",
+      "topic": [
+        "llm",
+        "cost",
+        "optimization"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "llm",
+      "body_html": "<h2>一句话</h2>\n<p>大头在 embedding 调用和向量库存储/查询，降本思路是批处理合并、缓存复用、冷热分层。</p>\n<h2>30 秒回答</h2>\n<p>embedding 最贵：批量合并请求、对没变化的文档缓存结果、用更小更省的模型。向量库其次：冷热分层，活跃向量放内存，冷数据落对象存储，按需降索引精度。清洗和分块 CPU 成本相对低，但也别重复跑，幂等 + 增量只处理变化的文档。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>embedding：批处理合并、缓存复用、小模型/量化</li>\n<li>向量库：冷热分层、压缩索引（PQ）、控制副本数</li>\n<li>存储：对象存储归档冷数据，生命周期清理</li>\n<li>计算：增量处理 + 幂等，别全量重跑</li>\n<li>监控：按环节拆成本，找占比最大的砍</li>\n<li>原则：先砍用量，再降单价，再优化架构</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>缓存 embedding 要注意什么？</li>\n<li>什么时候值得上更便宜的模型？</li>\n</ul>"
+    },
+    {
       "id": "PLATFORM-0001",
       "type": "technical",
       "question": "低代码平台是什么，你了不了解",
@@ -30954,6 +31046,29 @@ window.OS_DATA = {
       ],
       "domain": "system",
       "body_html": "<h2>一句话</h2>\n<p>分层缓存 + 本地内存 + 异步旁路 + 削峰限流，把核心竞价路径压到纯内存毫秒级，重逻辑异步化。</p>\n<h2>30 秒回答</h2>\n<p>核心路径：请求 → 网关 → 本地缓存/内存特征 → 规则/模型打分 → 返回，全程内存不落库；特征走特征平台预加载，重逻辑异步旁路；靠分层缓存（本地/Redis/远程）、限流降级、多级缓冲削峰扛住百万 QPS。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>核心链路纯内存：特征本地化 + 模型轻量，毫秒级返回</li>\n<li>分层缓存：本地缓存 → Redis → 远程服务，热点数据前置</li>\n<li>异步旁路：竞价决策同步，日志/归因异步落</li>\n<li>削峰限流：网关限流、降级兜底、缓冲吸收突发</li>\n<li>一致性：特征用快照，定期同步，牺牲一点实时性换性能</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>特征本地化和一致性怎么权衡？</li>\n<li>百万 QPS 的限流怎么做？</li>\n</ul>"
+    },
+    {
+      "id": "SYSTEM-0009",
+      "type": "technical",
+      "question": "系统设计题先问哪些澄清问题？为什么不能直接开做",
+      "topic": [
+        "system",
+        "design",
+        "clarification"
+      ],
+      "difficulty": 2,
+      "frequency": "high",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "system",
+      "body_html": "<h2>一句话</h2>\n<p>先问清规模、时效、吞吐、容错、消费方、成本六件事，否则方案一开口就可能是错的。</p>\n<h2>30 秒回答</h2>\n<p>数据量多大、SLA 要多久更新、吞吐多少、要不要容错、下游谁消费、成本上限多少。这六点直接决定架构选型和每一层的设计，跳过澄清直接堆组件是这类题最常见的翻车点。</p>\n<h2>1 分钟回答</h2>\n<ul>\n<li>规模：数据量、增长曲线</li>\n<li>时效：新鲜度 SLA，离线还是实时</li>\n<li>吞吐：QPS、写入速率</li>\n<li>容错：失败重试、幂等、断点续跑要求</li>\n<li>消费方：下游谁用、怎么用、要不要可解释</li>\n<li>成本：预算上限，决定用不用更贵的组件</li>\n<li>结论：澄清完再画架构，把约束对应到每一层</li>\n</ul>\n<h2>追问</h2>\n<ul>\n<li>面试官不主动给约束，你怎么办？</li>\n<li>哪些约束对最终架构影响最大？</li>\n</ul>"
     },
     {
       "id": "WAREHOUSE-0001",
@@ -42713,6 +42828,150 @@ window.OS_DATA = {
       "frequency": "",
       "domain": "project",
       "body_html": "<h4>面试官真正想考什么？</h4>\n<p>不是单纯问「为什么走」，而是判断：</p>\n<ol>\n<li>你是不是因为发展受限才出来？</li>\n<li>你能不能适应新业务？</li>\n<li>你是不是只是想涨薪？</li>\n<li>你的稳定性如何？</li>\n</ol>\n<h4>正确回答结构</h4>\n<p><strong>过去积累 → 当前瓶颈 → 寻求成长 → 新岗位匹配</strong></p>\n<p>❌ 不要说「腾讯没发展了」（否定原公司）、「因为工资低」（风险高）、「想换个环境」（太空泛）</p>\n<h4>离职原因推荐回答</h4>\n<blockquote>我过去几年主要在 QQ 频道业务中负责数仓建设，从离线数仓、实时链路到数据治理都有比较完整的实践，也参与了 AI 提效相关的探索。<br><br>但目前业务阶段相对稳定，我希望下一阶段能够承担更多业务负责人的角色，不只是完成需求开发，而是参与数据架构设计、数据治理以及业务价值建设。<br><br>同时 AI 和数据结合发展比较快，我也希望寻找业务变化更快、技术挑战更多的环境。</blockquote>\n<h4>为什么选择我们公司？（结合企知道专利数据业务）</h4>\n<blockquote>了解到贵司专利数据业务处于快速发展阶段，这和我过去经历有一定匹配——QQ 频道也经历过业务快速扩张，包括多数据源接入、数仓建模、数据治理以及指标体系建设。<br><br>我比较感兴趣的是贵司不仅做数据接入，还涉及海外数据、标准化处理以及后续治理优化，这里面会有比较多的数据工程和架构设计空间。</blockquote>\n<h4>职业规划回答</h4>\n<p>❌ 「三年成为架构师」太虚。✅ 短中长分层：</p>\n<blockquote>短期：快速熟悉公司业务和数据体系，成为能独立负责业务模块的数据开发。<br><br>中期：不只关注单个需求，而是参与数据模型设计、资产治理、架构优化等系统性工作。<br><br>长期：成为偏数据架构方向的人才，能结合业务和技术解决复杂数据问题。</blockquote>\n<h4>如果被追问：为什么不继续做 AI 方向？</h4>\n<blockquote>我认为 AI 和数据开发并不是两个割裂方向。AI 应用落地本质上依赖高质量数据资产。后续我希望保持数据工程能力，同时关注 AI 和数据结合的方向。</blockquote>\n<h4>如果被追问：AI 对数据开发岗位的影响？</h4>\n<blockquote>AI 会改变工作方式但不会简单替代。过去开发人员花很多时间写 SQL、查表、排查问题，现在 AI 可以辅助完成模板化工作。但数据模型设计、指标口径确认、业务理解、数据治理仍然需要工程师参与。后续数据开发人员的价值更多体现在业务理解、架构设计以及如何利用 AI 提升效率。</blockquote>\n<h4>最终面试版完整回答</h4>\n<blockquote>过去几年主要负责 QQ 频道业务的数据仓库建设，经历了从业务发展、数仓建设到数据治理优化的完整过程，积累了包括离线数仓、实时链路、数据质量以及 AI 辅助开发的实践。<br><br>目前业务相对稳定，希望下一阶段承担更多业务负责人角色，参与更复杂的数据架构和治理问题。<br><br>了解到贵司专利数据业务处于快速发展阶段，需要处理多源数据接入、标准化治理以及架构优化，这和我过去的数据资产建设经历有一定匹配。希望能结合经验快速融入，同时进一步提升数据架构和业务建设能力。</blockquote>\n<hr>\n<h3>整场面试整体评价（企知道）</h3>\n<h4>优点</h4>\n<ol>\n<li><strong>项目真实性强</strong>：QQ 频道业务背景、小世界迁移、主题域划分、MCP 调用、Skill 沉淀——不像背答案</li>\n<li><strong>技术和业务结合</strong>：不只讲怎么调 Spark/Hive，还解释为什么这么设计</li>\n<li><strong>AI 项目表达有亮点</strong>：知识库/Skill/MCP/Agent/工作流——接近真实企业落地</li>\n</ol>\n<h4>提升点</h4>\n<ol>\n<li><strong>技术深度再加强</strong>：Flink（checkpoint/exactly-once/状态后端/watermark）、Spark（AQE/Shuffle 机制/Catalyst 优化）</li>\n<li><strong>减少口语化</strong>：少说「然后呢」「就是」「我觉得」，改用「背景→问题→方案→结果」结构</li>\n<li><strong>少用「我觉得」</strong>：改为「数据治理通常可以分为四个方面」——更专业</li>\n</ol>\n<h4>评分</h4>\n<p>| 维度 | 评分 | |---|---| | 技术能力 | 7.5~8/10 | | 项目真实性 | 9/10 | | 业务理解 | 8/10 | | 表达能力 | 6.5~7/10 |</p>\n<h4>后续准备重点</h4>\n<p><strong>不是刷 Spark/Hive 参数，而是强化：数仓架构设计 + 数据治理体系 + AI Agent 工程化落地。</strong></p>\n<p>以 4 年以上经验定位，把已有经历从「我做过什么」升级到「为什么这样设计，以及它解决了什么业务问题」。</p>"
+    },
+    {
+      "id": "PROJECT-0372",
+      "type": "project",
+      "question": "和算法/研究团队发生重大分歧的项目，怎么处理，最终结果",
+      "topic": [
+        "project",
+        "conflict",
+        "collaboration"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>先说分歧点是什么：技术方案、指标口径还是资源</li>\n<li>讲你的处理：先对齐目标，摆数据/实验说话，不情绪化</li>\n<li>结果：达成什么一致，或谁妥协，最终落地效果</li>\n<li>复盘：分歧让方案变好了吗</li>\n</ul>\n<h2>待补充（真实经历）</h2>\n<blockquote>结合真实项目写一个具体分歧案例，突出你的数据和沟通。</blockquote>"
+    },
+    {
+      "id": "PROJECT-0373",
+      "type": "project",
+      "question": "线上管线故障完整经过、你的操作、复盘",
+      "topic": [
+        "project",
+        "incident",
+        "postmortem"
+      ],
+      "difficulty": 3,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>故障现象：什么时间、什么影响、怎么发现</li>\n<li>定位：你做了什么排查，先止血还是先找根因</li>\n<li>解决：临时措施 + 长期修复</li>\n<li>复盘：为什么发生、怎么防再犯、沉淀了什么机制</li>\n</ul>\n<h2>待补充（真实经历）</h2>\n<blockquote>写一次真实故障，按时间线讲清你的每一步操作。</blockquote>"
+    },
+    {
+      "id": "PROJECT-0374",
+      "type": "project",
+      "question": "有没有坚持的技术方案事后证明错了，如何调整",
+      "topic": [
+        "project",
+        "decision",
+        "learning"
+      ],
+      "difficulty": 3,
+      "frequency": "low",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>什么方案、当时为什么坚持</li>\n<li>怎么发现错了（数据、线上表现、他人反馈）</li>\n<li>如何调整：回滚还是改造，代价多大</li>\n<li>收获：决策依据怎么改进</li>\n</ul>\n<h2>待补充（真实经历）</h2>\n<blockquote>挑一个真实案例，重点是发现错误后怎么止损和调整。</blockquote>"
+    },
+    {
+      "id": "PROJECT-0375",
+      "type": "project",
+      "question": "需求模糊、文档缺失，怎么拆解推进",
+      "topic": [
+        "project",
+        "ambiguity",
+        "delivery"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>先找谁澄清、问哪些关键问题</li>\n<li>怎么把模糊需求拆成可执行的小步</li>\n<li>缺文档时靠什么补（代码、数据、口述）</li>\n<li>怎么同步进度、对齐预期</li>\n</ul>\n<h2>待补充（真实经历）</h2>\n<blockquote>写一个真实场景，说明你怎么在信息不全时推进落地。</blockquote>"
+    },
+    {
+      "id": "PROJECT-0376",
+      "type": "project",
+      "question": "怎么帮助团队其他同事成长",
+      "topic": [
+        "project",
+        "mentorship",
+        "teamwork"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>你的方式：分享、code review、结对、文档沉淀</li>\n<li>具体帮过谁、帮了什么、结果</li>\n<li>你怎么平衡自己产出和带人</li>\n</ul>\n<h2>待补充（真实经历）</h2>\n<blockquote>挑一个具体的人或团队，讲清你带人和出结果怎么兼得。</blockquote>"
+    },
+    {
+      "id": "PROJECT-0377",
+      "type": "project",
+      "question": "为什么选谷歌、为什么 AI 数据方向、长期规划",
+      "topic": [
+        "project",
+        "motivation",
+        "career"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "needs_personal_input": true,
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-09-27-google-ai-de",
+          "company": "Google",
+          "position": "ML Data Engineer（硕 3 年社招，L4）",
+          "date": "2026-09-27"
+        }
+      ],
+      "domain": "project",
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>为什么谷歌：技术深度、平台、文化，落到具体</li>\n<li>为什么 AI 数据：结合兴趣和积累</li>\n<li>长期规划：3-5 年想做什么方向，怎么成长</li>\n<li>别背稿，要真诚、具体</li>\n</ul>\n<h2>待补充（真实经历）</h2>\n<blockquote>把动机落到自己的真实经历和目标上，别用空泛理由。</blockquote>"
     }
   ],
   "interviews": [
