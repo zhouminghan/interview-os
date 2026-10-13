@@ -116,7 +116,7 @@ p { margin: 0 0 1em; }
 .domain-card span { color: var(--muted); font-size: .84rem; }
 
 .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
-.q-detail { position: sticky; top: 72px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.q-detail { position: sticky; top: 72px; max-height: calc(100vh - 92px); overflow-y: auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
 
 .toolbar { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
 .toolbar-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
@@ -128,7 +128,10 @@ p { margin: 0 0 1em; }
 .chip.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 
 .split { display: grid; grid-template-columns: 360px 1fr; gap: 16px; align-items: start; }
-.q-list { display: flex; flex-direction: column; gap: 8px; }
+.q-list { display: flex; flex-direction: column; gap: 8px; position: sticky; top: 72px; max-height: calc(100vh - 92px); overflow-y: auto; }
+.q-list, .q-detail { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+.q-list::-webkit-scrollbar, .q-detail::-webkit-scrollbar { width: 8px; }
+.q-list::-webkit-scrollbar-thumb, .q-detail::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 .q-row { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; text-align: left; width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); cursor: pointer; font-family: inherit; font-size: .95rem; }
 .q-row:hover { border-color: var(--accent); text-decoration: none; }
 .q-row.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
@@ -227,7 +230,7 @@ select { padding: 8px 12px; border-radius: var(--radius); border: 1px solid var(
 
 @media (max-width: 760px) {
   .split { grid-template-columns: 1fr; }
-  .q-detail { position: static; }
+  .q-detail, .q-list { position: static; max-height: none; overflow: visible; }
   .stats, .domain-grid { grid-template-columns: 1fr 1fr; }
   .topbar-inner { padding: 0 10px; }
   .global-search { max-width: none; }
