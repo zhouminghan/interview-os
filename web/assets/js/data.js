@@ -1,12 +1,12 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-10T17:27:29+08:00",
+  "generatedAt": "2026-10-13T14:29:26+08:00",
   "stats": {
-    "questions": 3093,
-    "interviews": 103,
-    "technical": 2723,
+    "questions": 3094,
+    "interviews": 104,
+    "technical": 2724,
     "project": 370,
     "domains": {
-      "spark": 397,
+      "spark": 398,
       "hdfs": 4,
       "storage": 811,
       "lakehouse": 12,
@@ -750,6 +750,12 @@ window.OS_DATA = {
           "company": "字节跳动",
           "position": "数据开发（泛抖音，校招一面凉经）",
           "date": "2026-09-28"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-10-13-yangteng-data-dev",
+          "company": "扬腾创新",
+          "position": "数据开发（秋招一面）",
+          "date": "2026-10-13"
         }
       ],
       "domain": "spark",
@@ -1184,7 +1190,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>一句话</h2>\n<p>内存分执行和存储两块，统一管理加动态调整。</p>\n<h2>参考回答</h2>\n<p>Spark 内存主要分执行内存和存储内存，执行内存用于 shuffle 和聚合，存储内存用于缓存 RDD。采用统一内存管理，两者可以动态借用，提高利用率。</p>\n<h2>追问</h2>\n<ul>\n<li>执行内存和存储内存怎么分配？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>内存分执行和存储两块，统一管理加动态调整。</p>\n<h2>参考回答</h2>\n<p>Spark 内存主要分执行内存和存储内存，执行内存用于 shuffle 和聚合，存储内存用于缓存 RDD。采用统一内存管理，两者可以动态借用，提高利用率。</p>\n<h2>追问</h2>\n<ul>\n<li>执行内存和存储内存怎么分配？</li>\n</ul>"
     },
     {
       "id": "SPARK-0055",
@@ -1275,7 +1281,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>一句话</h2>\n<p>小数据广播到各 Executor，避免重复传输。</p>\n<h2>参考回答</h2>\n<p>广播变量把只读的小数据集发到每个 Executor 缓存一份，join 或计算时直接本地用，避免每个 task 都传一遍。大表 join 小表时用 broadcast 能省大量 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>广播变量适合多大数据？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>小数据广播到各 Executor，避免重复传输。</p>\n<h2>参考回答</h2>\n<p>广播变量把只读的小数据集发到每个 Executor 缓存一份，join 或计算时直接本地用，避免每个 task 都传一遍。大表 join 小表时用 broadcast 能省大量 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>广播变量适合多大数据？</li>\n</ul>"
     },
     {
       "id": "SPARK-0062",
@@ -1314,7 +1320,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>一句话</h2>\n<p>减少 shuffle、合理并行度、用 DataFrame、调内存。</p>\n<h2>参考回答</h2>\n<p>性能优化围绕少 shuffle、少数据量、少序列化：小表 broadcast、减少 groupBy、合理并行度、用 DataFrame 代替 RDD、内存够用。先看 UI 定位慢的 stage。</p>\n<h2>追问</h2>\n<ul>\n<li>优化第一步做什么？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>减少 shuffle、合理并行度、用 DataFrame、调内存。</p>\n<h2>参考回答</h2>\n<p>性能优化围绕少 shuffle、少数据量、少序列化：小表 broadcast、减少 groupBy、合理并行度、用 DataFrame 代替 RDD、内存够用。先看 UI 定位慢的 stage。</p>\n<h2>追问</h2>\n<ul>\n<li>优化第一步做什么？</li>\n</ul>"
     },
     {
       "id": "SPARK-0065",
@@ -2159,7 +2165,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>一句话</h2>\n<p>broadcast、sort merge、shuffle hash join 等。</p>\n<h2>参考回答</h2>\n<p>Spark 的 join 策略有 broadcast hash join 广播小表、sort merge join 大表排序归并、shuffle hash join。CBO 和 AQE 会按表大小自动选。小表 broadcast 最省 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>broadcast join 对表大小有什么限制？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>broadcast、sort merge、shuffle hash join 等。</p>\n<h2>参考回答</h2>\n<p>Spark 的 join 策略有 broadcast hash join 广播小表、sort merge join 大表排序归并、shuffle hash join。CBO 和 AQE 会按表大小自动选。小表 broadcast 最省 shuffle。</p>\n<h2>追问</h2>\n<ul>\n<li>broadcast join 对表大小有什么限制？</li>\n</ul>"
     },
     {
       "id": "SPARK-0130",
@@ -3264,7 +3270,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "spark",
-      "body_html": "<h2>一句话</h2>\n<p>减少单 task 数据、调内存、避免 collect 大结果。</p>\n<h2>参考回答</h2>\n<p>OOM 优化减少单 task 处理的数据量，调高 executor 内存，避免 collect 大结果到 driver，用序列化省内存。看是 driver 还是 executor OOM。</p>\n<h2>追问</h2>\n<ul>\n<li>driver OOM 和 executor OOM 怎么区分？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>减少单 task 数据、调内存、避免 collect 大结果。</p>\n<h2>参考回答</h2>\n<p>OOM 优化减少单 task 处理的数据量，调高 executor 内存，避免 collect 大结果到 driver，用序列化省内存。看是 driver 还是 executor OOM。</p>\n<h2>追问</h2>\n<ul>\n<li>driver OOM 和 executor OOM 怎么区分？</li>\n</ul>"
     },
     {
       "id": "SPARK-0215",
@@ -5353,6 +5359,29 @@ window.OS_DATA = {
       "body_html": "<p>| 模式 | 客户端模式 | 集群模式 | |------|-----------|---------| | Driver 位置 | 提交机器上 | 集群内某节点 | | 适用场景 | 交互式/调试 | 生产作业 |</p>\n<hr>\n<blockquote>*原文共 30+ 道 Spark 面试题，涵盖核心概念、架构原理、调优实战及 SHEIN 实考真题。按五个阶段渐进式组织，每个阶段内部由易到难。*</blockquote>"
     },
     {
+      "id": "SPARK-0400",
+      "type": "technical",
+      "question": "Spark 和 MapReduce 的 Shuffle 有哪些主要区别？",
+      "topic": [
+        "spark",
+        "shuffle",
+        "mapreduce"
+      ],
+      "difficulty": 2,
+      "frequency": "medium",
+      "source_type": "ai_generated",
+      "sources": [
+        {
+          "interview_id": "INTERVIEW-2026-10-13-yangteng-data-dev",
+          "company": "扬腾创新",
+          "position": "数据开发（秋招一面）",
+          "date": "2026-10-13"
+        }
+      ],
+      "domain": "spark",
+      "body_html": "<h2>一句话</h2>\n<p>MR 的 Shuffle 是固定三阶段且反复落盘，Spark 的 Shuffle 按宽依赖触发、更可控可优化。</p>\n<h2>参考回答</h2>\n<p>MapReduce 的 Shuffle 是固定的 map 端写盘、reduce 端拉取，中间结果反复落盘，IO 开销大；Spark 的 Shuffle 只在宽依赖（join、groupBy）时触发，可以 map 端预聚合、小表广播避免 shuffle、排序更灵活，中间还能放内存。所以 Spark 的 shuffle 更可控、优化空间更大。</p>\n<h2>追问</h2>\n<ul>\n<li>Spark 的 shuffle 为什么比 MapReduce 快？</li>\n<li>Spark 有哪些优化 shuffle 的手段？</li>\n</ul>"
+    },
+    {
       "id": "HDFS-0001",
       "type": "technical",
       "question": "HDFS 客户端读写数据的执行流程",
@@ -6356,7 +6385,7 @@ window.OS_DATA = {
       "frequency": "low",
       "source_type": "knowledge",
       "domain": "storage",
-      "body_html": "<h2>一句话</h2>\n<p>存储位置在 HDFS，按库表分区组织目录。</p>\n<h2>参考回答</h2>\n<p>Hive 数据存 HDFS，默认按库、表、分区组织目录。管理上统一目录规范、控制权限、做生命周期。生产一般指定 warehouse 目录，按业务规划路径。</p>\n<h2>追问</h2>\n<ul>\n<li>存储位置怎么规划？</li>\n</ul>"
+      "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<h2>一句话</h2>\n<p>存储位置在 HDFS，按库表分区组织目录。</p>\n<h2>参考回答</h2>\n<p>Hive 数据存 HDFS，默认按库、表、分区组织目录。管理上统一目录规范、控制权限、做生命周期。生产一般指定 warehouse 目录，按业务规划路径。</p>\n<h2>追问</h2>\n<ul>\n<li>存储位置怎么规划？</li>\n</ul>"
     },
     {
       "id": "STORAGE-0062",
@@ -28559,6 +28588,12 @@ window.OS_DATA = {
           "company": "欣旺达",
           "position": "数据开发（秋招）",
           "date": "2026-09-26"
+        },
+        {
+          "interview_id": "INTERVIEW-2026-10-13-yangteng-data-dev",
+          "company": "扬腾创新",
+          "position": "数据开发（秋招一面）",
+          "date": "2026-10-13"
         }
       ],
       "domain": "llm",
@@ -33675,7 +33710,7 @@ window.OS_DATA = {
       "source_type": "knowledge",
       "frequency": "",
       "domain": "warehouse",
-      "body_html": "<blockquote><strong>要点提纲</strong>：事实表+维度表 | 星型模型 | DWS宽表冗余维度 | 方便下游分析</blockquote>\n<p>维度建模的核心就是围绕业务过程，把数据分成\"事实\"和\"维度\"。事实是度量值（比如点击次数、UV），维度是分析的角度（比如时间、内容类型、用户）。</p>\n<p>在实际应用中，DWS 层就是按维度建模的思路来做的。以内容互动宽表为例，事实是互动行为（点赞、评论、转发的次数和 UV），维度包括内容维度（内容ID、内容类型）、用户维度（用户ID、属性）、时间维度（日期）。把这些维度信息都冗余到宽表里，下游拿到一张表就能直接按各个维度下钻分析，不需要额外 JOIN 维度表。</p>\n<p>这种做法偏星型模型，存储上有冗余，但在我们场景下收益很大——下游每天几十个分析查询都省掉了 JOIN，查询效率提升明显，使用门槛也低了很多。</p>\n<hr>"
+      "body_html": "<blockquote><strong>来源面经</strong>：扬腾创新-数据开发一面-20261013</blockquote>\n<blockquote><strong>要点提纲</strong>：事实表+维度表 | 星型模型 | DWS宽表冗余维度 | 方便下游分析</blockquote>\n<p>维度建模的核心就是围绕业务过程，把数据分成\"事实\"和\"维度\"。事实是度量值（比如点击次数、UV），维度是分析的角度（比如时间、内容类型、用户）。</p>\n<p>在实际应用中，DWS 层就是按维度建模的思路来做的。以内容互动宽表为例，事实是互动行为（点赞、评论、转发的次数和 UV），维度包括内容维度（内容ID、内容类型）、用户维度（用户ID、属性）、时间维度（日期）。把这些维度信息都冗余到宽表里，下游拿到一张表就能直接按各个维度下钻分析，不需要额外 JOIN 维度表。</p>\n<p>这种做法偏星型模型，存储上有冗余，但在我们场景下收益很大——下游每天几十个分析查询都省掉了 JOIN，查询效率提升明显，使用门槛也低了很多。</p>\n<hr>"
     },
     {
       "id": "WAREHOUSE-0192",
@@ -42274,6 +42309,15 @@ window.OS_DATA = {
     }
   ],
   "interviews": [
+    {
+      "interview_id": "INTERVIEW-2026-10-13-yangteng-data-dev",
+      "company": "扬腾创新",
+      "business": "数据开发",
+      "position": "数据开发（秋招一面）",
+      "date": "2026-10-13",
+      "round": "一面",
+      "body_html": "<h2>面经记录（原始）</h2>\n<ol>\n<li>自我介绍</li>\n<li>你的整个数仓项目是如何做的？</li>\n<li>Hive 和 Spark 有什么区别？</li>\n<li>Hive 的数据主要存储在哪里？</li>\n<li>Spark 和 MR 的 Shuffle 有哪些主要区别？</li>\n<li>Spark 的 Join 策略有哪些？</li>\n<li>Spark 有哪些优化方法？你做过哪些？</li>\n<li>项目是基于什么模型做的？维度建模是如何做的？</li>\n<li>OpenSpec 框架有哪些功能？</li>\n<li>你主要做什么业务？负责哪部分工作？是全链路开发吗？是独立完成的吗？</li>\n<li>你做的宽表具体指什么？是所有指标都在一张表里吗？</li>\n<li>你们的技术栈是开源的，还是自己搭建的？</li>\n<li>广播 Join 中，所有小表都可以广播吗？什么情况下不可以？</li>\n<li>Spark 的内存模型是怎样的？主要分为哪两部分？</li>\n<li>Spark 优化中，你是如何发现并解决 OOM 的？</li>\n<li>你的职业规划是什么？</li>\n<li>你了解 AI 吗？有哪些经验？</li>\n</ol>\n<h3>反问面试官</h3>\n<ol>\n<li>技术栈</li>\n<li>AI 的使用情况</li>\n<li>主要业务方向</li>\n</ol>\n<blockquote>备注：来源小红书，扬腾创新数据开发秋招一面（已挂），17 个面试问题 + 3 个反问方向。</blockquote>"
+    },
     {
       "interview_id": "INTERVIEW-2026-10-10-bytedance-data-dev-3round",
       "company": "字节跳动",

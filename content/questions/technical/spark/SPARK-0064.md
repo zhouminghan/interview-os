@@ -9,6 +9,8 @@ frequency: low
 source_type: knowledge
 ---
 
+> **来源面经**：扬腾创新-数据开发一面-20261013
+
 # 一句话
 
 减少 shuffle、合理并行度、用 DataFrame、调内存。

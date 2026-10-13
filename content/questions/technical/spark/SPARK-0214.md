@@ -9,6 +9,8 @@ frequency: low
 source_type: knowledge
 ---
 
+> **来源面经**：扬腾创新-数据开发一面-20261013
+
 # 一句话
 
 减少单 task 数据、调内存、避免 collect 大结果。

@@ -15,6 +15,10 @@ sources:
     company: 字节跳动
     position: 数据开发（泛抖音，校招一面凉经）
     date: 2026-09-28
+  - interview_id: INTERVIEW-2026-10-13-yangteng-data-dev
+    company: 扬腾创新
+    position: 数据开发（秋招一面）
+    date: 2026-10-13
 ---
 
 # 一句话
