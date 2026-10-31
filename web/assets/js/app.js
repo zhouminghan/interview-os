@@ -244,36 +244,32 @@
       });
     });
 
-    function answersHTML(ivId) {
+    function tocHTML(ivId) {
       const qs = byInterview[ivId] || [];
-      if (!qs.length) return "";
+      if (!qs.length) return '<p class="muted">暂无标准化题目，原始记录见下方。</p>';
       const items = qs.map((q) =>
-        '<article class="iv-answer">' +
-          '<a class="iv-answer-title" href="questions.html#' + encodeURIComponent(q.id) + '">' +
-            '<span>' + esc(q.question) + '</span>' +
-            '<span class="iv-answer-id">' + esc(q.id) + ' · ' + esc(domainLabel(q.domain)) + '</span>' +
-          '</a>' +
-          '<div class="iv-answer-tags">' +
-            '<span class="tag ' + (q.type === "technical" ? "tech" : "proj") + '">' + typeLabel(q.type) + '</span>' +
-            (q.source_type === "knowledge" ? '<span class="tag kw">八股</span>' : '') +
-          '</div>' +
-          '<div class="q-body iv-answer-body">' + (q.body_html || "") + '</div>' +
-        '</article>').join("");
-      return '<div class="iv-answers"><h3>相关回答（' + qs.length + '）</h3>' + items + '</div>';
+        '<li><a href="questions.html#' + encodeURIComponent(q.id) + '">' + esc(q.question) + '</a>' +
+        '<span class="wiki-toc-meta">' + esc(q.id) + ' · ' + esc(domainLabel(q.domain)) + '</span></li>').join("");
+      return '<ol class="wiki-toc-list">' + items + '</ol>';
     }
 
     function renderDetail(iv) {
-      const el = $("#iv-detail");
+      const el = $("#iv-main");
       if (!iv) { el.innerHTML = '<p class="muted">左侧选择一篇面经查看。</p>'; return; }
+      const linked = byInterview[iv.interview_id] || [];
       el.innerHTML =
-        '<h2>' + esc(iv.company || "") + (iv.business ? ' · ' + esc(iv.business) : '') + '</h2>' +
-        '<div class="tags">' +
-          (iv.position ? '<span class="tag">' + esc(iv.position) + '</span>' : '') +
-          (iv.round ? '<span class="tag">' + esc(iv.round) + '</span>' : '') +
-          (iv.date ? '<span class="tag">' + esc(iv.date) + '</span>' : '') +
-        '</div>' +
-        '<div class="q-body iv-original">' + (iv.body_html || "") + '</div>' +
-        answersHTML(iv.interview_id);
+        '<article class="wiki-doc">' +
+          '<header class="wiki-doc-head">' +
+            '<h2>' + esc(iv.company || "") + (iv.business ? ' · ' + esc(iv.business) : '') + '</h2>' +
+            '<div class="tags">' +
+              (iv.position ? '<span class="tag">' + esc(iv.position) + '</span>' : '') +
+              (iv.round ? '<span class="tag">' + esc(iv.round) + '</span>' : '') +
+              (iv.date ? '<span class="tag">' + esc(iv.date) + '</span>' : '') +
+            '</div>' +
+          '</header>' +
+          '<section class="wiki-toc"><h3>题目（' + linked.length + '）</h3>' + tocHTML(iv.interview_id) + '</section>' +
+          '<section class="wiki-section"><h3>原始记录</h3><div class="q-body">' + (iv.body_html || "") + '</div></section>' +
+        '</article>';
     }
 
     $("#page").innerHTML =
@@ -282,27 +278,32 @@
         '<input class="search" id="iv-search" type="search" placeholder="搜索公司 / 业务 / 岗位 / 日期" aria-label="搜索面经" autocomplete="off">' +
         '<span class="muted" id="iv-count"></span>' +
       "</div>" +
-      '<div class="split"><div class="q-list" id="iv-list"></div><aside class="q-detail" id="iv-detail" aria-live="polite"></aside></div>';
+      '<div class="wiki-layout">' +
+        '<nav class="wiki-sidebar" id="iv-sidebar" aria-label="面经列表"></nav>' +
+        '<section class="wiki-main" id="iv-main" aria-live="polite"></section>' +
+      "</div>";
 
     function renderList() {
       const kw = state.query.trim().toLowerCase();
       const items = kw ? list.filter((iv) => ((iv.company || "") + " " + (iv.business || "") + " " + (iv.position || "") + " " + (iv.date || "") + " " + (iv.round || "")).toLowerCase().includes(kw)) : list;
       $("#iv-count").textContent = items.length + " 份面经";
-      const el = $("#iv-list");
-      if (!items.length) { el.innerHTML = '<p class="muted">没有匹配的面经。</p>'; $("#iv-detail").innerHTML = ""; return; }
-      el.innerHTML = items.map((iv, i) =>
-        '<button class="q-row' + (iv.interview_id === state.selected ? " active" : "") + '" type="button" data-id="' + esc(iv.interview_id) + '">' +
-          '<span class="rank' + (i < 3 ? " top" : "") + '">' + (i + 1) + '</span>' +
-          '<span class="q-title">' + esc(iv.company || "") + (iv.business ? ' · ' + esc(iv.business) : '') + '</span>' +
-          '<span class="q-meta">' + esc(iv.date || "") + '</span>' +
-        '</button>').join("");
+      const el = $("#iv-sidebar");
+      if (!items.length) { el.innerHTML = '<p class="muted">没有匹配的面经。</p>'; $("#iv-main").innerHTML = ""; return; }
+      el.innerHTML = items.map((iv) => {
+        const n = (byInterview[iv.interview_id] || []).length;
+        return '<button class="wiki-item' + (iv.interview_id === state.selected ? " active" : "") + '" type="button" data-id="' + esc(iv.interview_id) + '">' +
+          '<span class="wiki-item-title">' + esc(iv.company || "") + (iv.business ? ' · ' + esc(iv.business) : '') + '</span>' +
+          '<span class="wiki-item-meta">' + esc(iv.date || "") + (iv.position ? ' · ' + esc(iv.position) : '') + '</span>' +
+          '<span class="wiki-item-count">' + n + '</span>' +
+        '</button>';
+      }).join("");
       if (!items.some((iv) => iv.interview_id === state.selected)) state.selected = items[0].interview_id;
       renderDetail(items.find((iv) => iv.interview_id === state.selected));
     }
 
     $("#iv-search").addEventListener("input", debounce((e) => { state.query = e.target.value; renderList(); }, 120));
-    $("#iv-list").addEventListener("click", (e) => {
-      const b = e.target.closest(".q-row");
+    $("#iv-sidebar").addEventListener("click", (e) => {
+      const b = e.target.closest(".wiki-item");
       if (!b) return;
       state.selected = b.dataset.id;
       renderList();
