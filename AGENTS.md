@@ -27,7 +27,7 @@ content/
   interviews/              原始面经（历史事实，只读）
     2026/company-*/interview-*.md
   questions/               标准化问题（二次加工）
-    technical/             16 个技术域：spark | flink | warehouse | storage | starrocks | llm | sql | lakehouse | hdfs | platform | system | network | algorithm | statistics | ml
+    technical/             15 个技术域：spark | flink | warehouse | storage | starrocks | llm | sql | lakehouse | hdfs | platform | system | network | algorithm | statistics | ml
     behavioral/            project（项目深挖 / HR 软素质 / 面试宝典）
   knowledge/               系统知识（二次加工）
 

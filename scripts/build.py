@@ -110,6 +110,32 @@ def md_to_html(md: str) -> str:
             out.append("<hr>")
             i += 1
             continue
+        if s.startswith("|"):
+            close_lists()
+            flush_para()
+            rows = []
+            while i < n and lines[i].strip().startswith("|"):
+                cell_line = lines[i].strip()
+                if cell_line.startswith("|"):
+                    cell_line = cell_line[1:]
+                if cell_line.endswith("|"):
+                    cell_line = cell_line[:-1]
+                rows.append([c.strip() for c in cell_line.split("|")])
+                i += 1
+            if len(rows) >= 2 and all(
+                re.fullmatch(r":?-{1,}:?", c) for c in rows[1]
+            ):
+                cells = ["<th>" + inline(c) + "</th>" for c in rows[0]]
+                html_rows = ["<table><thead><tr>" + "".join(cells) + "</tr></thead><tbody>"]
+                for row in rows[2:]:
+                    cells = ["<td>" + inline(c) + "</td>" for c in row]
+                    html_rows.append("<tr>" + "".join(cells) + "</tr>")
+                html_rows.append("</tbody></table>")
+                out.append("".join(html_rows))
+            else:
+                for row in rows:
+                    out.append("<p>" + " | ".join(inline(c) for c in row) + "</p>")
+            continue
         m = re.match(r"^[-*]\s+(.*)$", s)
         if m:
             flush_para()

@@ -32,7 +32,6 @@ Interview Agent（parse / classify / extract / match / generate / validate）
 /            首页
 /interviews  面经
 /questions   问题库
-/knowledge   知识库
 /practice    随机训练
 /profile     个人能力画像
 ```
