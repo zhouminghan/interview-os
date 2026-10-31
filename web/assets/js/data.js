@@ -1,5 +1,5 @@
 window.OS_DATA = {
-  "generatedAt": "2026-10-31T20:03:08+08:00",
+  "generatedAt": "2026-10-31T22:29:08+08:00",
   "stats": {
     "questions": 3113,
     "interviews": 104,
@@ -40103,56 +40103,77 @@ window.OS_DATA = {
       "id": "PROJECT-0158",
       "type": "project",
       "question": "为什么离职 / 为什么想换工作？",
-      "difficulty": 0,
-      "topic": [],
+      "difficulty": 2,
+      "frequency": "high",
+      "topic": [
+        "career",
+        "motivation"
+      ],
       "source_type": "knowledge",
-      "frequency": "",
+      "needs_personal_input": true,
       "domain": "project",
-      "body_html": "<p><strong>掌握程度</strong>：⬜</p>\n<p><strong>我的回答</strong>：</p>\n<hr>"
+      "body_html": "<h2>回答框架</h2>\n<p>一句话原则：把「离开」讲成「奔向更好」，而不是「逃离现状」。</p>\n<ul>\n<li>客观且体面：业务调整 / 团队变动 / 成长空间有限，选一个最真实的原因，不抱怨前司</li>\n<li>正面动机：想接触更有挑战的项目、更匹配的技术方向</li>\n<li>收尾落到目标岗位：这家公司的方向正好对得上，所以想加入</li>\n</ul>\n<h2>待补充（个人事实）</h2>\n<p>替换成自己真实的离职原因与诉求。</p>"
     },
     {
       "id": "PROJECT-0159",
       "type": "project",
       "question": "你的职业规划是什么？",
-      "difficulty": 0,
-      "topic": [],
+      "difficulty": 2,
+      "frequency": "high",
+      "topic": [
+        "career",
+        "planning"
+      ],
       "source_type": "knowledge",
-      "frequency": "",
+      "needs_personal_input": true,
       "domain": "project",
-      "body_html": "<p><strong>掌握程度</strong>：⬜</p>\n<p><strong>我的回答</strong>：</p>\n<hr>"
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>短期（1-2 年）：把当前岗位做深，补齐技术短板，独立负责模块</li>\n<li>中期（3-5 年）：成为领域专家，能带项目、带人</li>\n<li>长期：结合公司业务方向持续成长，做有复利的技术沉淀</li>\n</ul>\n<h2>待补充（个人事实）</h2>\n<p>按自己真实方向替换时间线。</p>"
     },
     {
       "id": "PROJECT-0160",
       "type": "project",
       "question": "你的优点和缺点？",
-      "difficulty": 0,
-      "topic": [],
+      "difficulty": 2,
+      "frequency": "high",
+      "topic": [
+        "hr",
+        "strengths",
+        "weaknesses"
+      ],
       "source_type": "knowledge",
-      "frequency": "",
+      "needs_personal_input": true,
       "domain": "project",
-      "body_html": "<p><strong>掌握程度</strong>：⬜</p>\n<p><strong>我的回答</strong>：</p>\n<hr>"
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>优点：挑 1-2 个和岗位最匹配的（如自驱、工程严谨），每个配一个具体例子</li>\n<li>缺点：说真实但不致命的，并给改进动作（如表达太直接 → 正在刻意练习先听后说）</li>\n</ul>\n<h2>待补充（个人事实）</h2>\n<p>替换成自己真实的优缺点和事例。</p>"
     },
     {
       "id": "PROJECT-0161",
       "type": "project",
       "question": "你对加班怎么看？",
-      "difficulty": 0,
-      "topic": [],
+      "difficulty": 1,
+      "frequency": "high",
+      "topic": [
+        "hr",
+        "attitude"
+      ],
       "source_type": "knowledge",
-      "frequency": "",
+      "needs_personal_input": true,
       "domain": "project",
-      "body_html": "<p><strong>掌握程度</strong>：⬜</p>\n<p><strong>我的回答</strong>：</p>\n<hr>"
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>先表明以结果和效率优先：不排斥必要的加班（上线、故障、赶交付）</li>\n<li>同时强调不认同低效内耗：会把时间花在提升效率、避免重复加班上</li>\n<li>语气中性，不拒绝也不讨好</li>\n</ul>\n<h2>待补充（个人态度）</h2>\n<p>按自己的真实边界润色。</p>"
     },
     {
       "id": "PROJECT-0162",
       "type": "project",
       "question": "为什么选择我们公司？",
-      "difficulty": 0,
-      "topic": [],
+      "difficulty": 2,
+      "frequency": "high",
+      "topic": [
+        "hr",
+        "company"
+      ],
       "source_type": "knowledge",
-      "frequency": "",
+      "needs_personal_input": true,
       "domain": "project",
-      "body_html": "<p><strong>掌握程度</strong>：⬜</p>\n<p><strong>我的回答</strong>：</p>\n<hr>"
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>业务方向：说明你对公司业务的理解和认可</li>\n<li>岗位匹配：你的经验 / 技术栈正好匹配 JD</li>\n<li>成长与文化：团队氛围、成长空间吸引你</li>\n</ul>\n<h2>待补充（个人事实）</h2>\n<p>面试前做好公司功课，替换成真实理由。</p>"
     },
     {
       "id": "PROJECT-0163",
@@ -40169,45 +40190,61 @@ window.OS_DATA = {
       "id": "PROJECT-0164",
       "type": "project",
       "question": "你的期望薪资是多少？",
-      "difficulty": 0,
-      "topic": [],
+      "difficulty": 2,
+      "frequency": "high",
+      "topic": [
+        "negotiation",
+        "salary"
+      ],
       "source_type": "knowledge",
-      "frequency": "",
+      "needs_personal_input": true,
       "domain": "project",
-      "body_html": "<p><strong>我的策略</strong>：</p>\n<hr>"
+      "body_html": "<h2>谈判策略</h2>\n<ul>\n<li>先反抛：了解岗位预算范围再给数，避免先亮底价</li>\n<li>给区间而不是底价：报一个略高于心理价位的区间</li>\n<li>锚定依据：市场水平 + 自身涨幅 + 已有 offer（如有）</li>\n</ul>\n<h2>待补充（个人事实）</h2>\n<p>填入自己的期望区间与依据。</p>"
     },
     {
       "id": "PROJECT-0165",
       "type": "project",
       "question": "你目前薪资多少？",
-      "difficulty": 0,
-      "topic": [],
+      "difficulty": 2,
+      "frequency": "high",
+      "topic": [
+        "negotiation",
+        "salary"
+      ],
       "source_type": "knowledge",
-      "frequency": "",
+      "needs_personal_input": true,
       "domain": "project",
-      "body_html": "<p><strong>我的策略</strong>：</p>\n<hr>\n<h3>其他软性问题</h3>"
+      "body_html": "<h2>谈判策略</h2>\n<ul>\n<li>不谎报：如实拆解 base + 奖金 + 其他补贴</li>\n<li>可说明涨幅预期：跳槽通常参考 15%-30%，按行情和自身情况定</li>\n<li>保护隐私：模糊化非必要细节，但关键数字要给到可决策的精度</li>\n</ul>\n<h2>待补充（个人事实）</h2>\n<p>填入自己的薪资结构与依据。</p>"
     },
     {
       "id": "PROJECT-0166",
       "type": "project",
       "question": "你在团队中通常扮演什么角色？",
-      "difficulty": 0,
-      "topic": [],
+      "difficulty": 2,
+      "frequency": "medium",
+      "topic": [
+        "hr",
+        "teamwork"
+      ],
       "source_type": "knowledge",
-      "frequency": "",
+      "needs_personal_input": true,
       "domain": "project",
-      "body_html": "<p><strong>掌握程度</strong>：⬜</p>\n<p><strong>我的回答</strong>：</p>\n<hr>"
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>定位自己：执行者 / 协调者 / 技术攻坚，选最贴合的一个</li>\n<li>给证据：用一个项目说明你在团队里做了什么贡献</li>\n<li>强调补位：能根据团队需要切换角色</li>\n</ul>\n<h2>待补充（个人事实）</h2>\n<p>替换成自己真实的角色与事例。</p>"
     },
     {
       "id": "PROJECT-0167",
       "type": "project",
       "question": "遇到意见分歧你怎么处理？",
-      "difficulty": 0,
-      "topic": [],
+      "difficulty": 2,
+      "frequency": "medium",
+      "topic": [
+        "hr",
+        "conflict"
+      ],
       "source_type": "knowledge",
-      "frequency": "",
+      "needs_personal_input": true,
       "domain": "project",
-      "body_html": "<p><strong>掌握程度</strong>：⬜</p>\n<p><strong>我的回答</strong>：</p>\n<hr>\n<blockquote>💡 面经中遇到的 HR / 软性问题持续归入这里。</blockquote>"
+      "body_html": "<h2>回答框架</h2>\n<ul>\n<li>先倾听：完整理解对方立场和依据，不急于反驳</li>\n<li>摆事实：用数据、指标、案例说话，而不是比嗓门</li>\n<li>找共同目标：回到「怎么对项目最好」</li>\n<li>无法达成时：小范围实验验证，或请负责人裁决</li>\n</ul>\n<h2>待补充（个人事实）</h2>\n<p>替换成自己真实的一次分歧处理经历。</p>"
     },
     {
       "id": "PROJECT-0168",

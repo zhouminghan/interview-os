@@ -14,7 +14,9 @@
 
   const ICONS = {
     sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
-    moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>'
+    moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
+    chevronL: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>',
+    chevronR: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>'
   };
 
   function initTheme() {
@@ -235,28 +237,36 @@
     const params = new URLSearchParams(location.search);
     const state = { query: "", selected: null };
     const list = D.interviews;
-    const byInterview = {};
-    D.questions.forEach((q) => {
-      (q.sources || []).forEach((s) => {
-        if (s && s.interview_id) {
-          (byInterview[s.interview_id] = byInterview[s.interview_id] || []).push(q);
-        }
-      });
-    });
+    let panes = { left: false, right: false };
+    try { panes = Object.assign(panes, JSON.parse(localStorage.getItem("os.iv.panes") || "{}")); } catch (e) {}
 
-    function tocHTML(ivId) {
-      const qs = byInterview[ivId] || [];
-      if (!qs.length) return '<p class="muted">暂无标准化题目，原始记录见下方。</p>';
-      const items = qs.map((q) =>
-        '<li><a href="questions.html#' + encodeURIComponent(q.id) + '">' + esc(q.question) + '</a>' +
-        '<span class="wiki-toc-meta">' + esc(q.id) + ' · ' + esc(domainLabel(q.domain)) + '</span></li>').join("");
-      return '<ol class="wiki-toc-list">' + items + '</ol>';
+    function syncPanes() {
+      const shell = $("#iv-shell");
+      if (!shell) return;
+      shell.classList.toggle("left-collapsed", panes.left);
+      shell.classList.toggle("right-collapsed", panes.right);
+      const lb = $("#collapse-left");
+      const rb = $("#collapse-right");
+      if (lb) lb.innerHTML = panes.left ? ICONS.chevronR : ICONS.chevronL;
+      if (rb) rb.innerHTML = panes.right ? ICONS.chevronL : ICONS.chevronR;
+      localStorage.setItem("os.iv.panes", JSON.stringify(panes));
+    }
+
+    function renderToc() {
+      const lis = $$("#iv-body ol > li", $("#iv-main"));
+      const toc = $("#iv-toc");
+      if (!toc) return;
+      if (!lis.length) { toc.innerHTML = '<p class="muted">该面经没有题目列表。</p>'; return; }
+      toc.innerHTML = lis.map((li, i) =>
+        '<button class="wiki-toc-item" type="button" data-idx="' + i + '">' +
+          '<span class="wiki-toc-num">' + (i + 1) + '</span>' +
+          '<span class="wiki-toc-text">' + esc(li.textContent.trim()) + '</span>' +
+        '</button>').join("");
     }
 
     function renderDetail(iv) {
       const el = $("#iv-main");
-      if (!iv) { el.innerHTML = '<p class="muted">左侧选择一篇面经查看。</p>'; return; }
-      const linked = byInterview[iv.interview_id] || [];
+      if (!iv) { el.innerHTML = '<p class="muted">左侧选择一篇面经查看。</p>'; $("#iv-toc").innerHTML = ""; return; }
       el.innerHTML =
         '<article class="wiki-doc">' +
           '<header class="wiki-doc-head">' +
@@ -267,9 +277,9 @@
               (iv.date ? '<span class="tag">' + esc(iv.date) + '</span>' : '') +
             '</div>' +
           '</header>' +
-          '<section class="wiki-toc"><h3>题目（' + linked.length + '）</h3>' + tocHTML(iv.interview_id) + '</section>' +
-          '<section class="wiki-section"><h3>原始记录</h3><div class="q-body">' + (iv.body_html || "") + '</div></section>' +
+          '<div class="q-body" id="iv-body">' + (iv.body_html || "") + '</div>' +
         '</article>';
+      renderToc();
     }
 
     $("#page").innerHTML =
@@ -278,9 +288,18 @@
         '<input class="search" id="iv-search" type="search" placeholder="搜索公司 / 业务 / 岗位 / 日期" aria-label="搜索面经" autocomplete="off">' +
         '<span class="muted" id="iv-count"></span>' +
       "</div>" +
-      '<div class="wiki-layout">' +
-        '<nav class="wiki-sidebar" id="iv-sidebar" aria-label="面经列表"></nav>' +
-        '<section class="wiki-main" id="iv-main" aria-live="polite"></section>' +
+      '<div class="wiki-shell" id="iv-shell">' +
+        '<aside class="wiki-pane wiki-left">' +
+          '<div class="wiki-pane-head"><span class="wiki-pane-title">目录</span>' +
+            '<button class="icon-btn" id="collapse-left" data-pane="left" aria-label="折叠或展开目录"></button></div>' +
+          '<div class="wiki-pane-body" id="iv-sidebar"></div>' +
+        '</aside>' +
+        '<section class="wiki-pane wiki-main" id="iv-main" aria-live="polite"></section>' +
+        '<aside class="wiki-pane wiki-right">' +
+          '<div class="wiki-pane-head"><span class="wiki-pane-title">题目</span>' +
+            '<button class="icon-btn" id="collapse-right" data-pane="right" aria-label="折叠或展开题目"></button></div>' +
+          '<div class="wiki-pane-body" id="iv-toc"></div>' +
+        '</aside>' +
       "</div>";
 
     function renderList() {
@@ -288,13 +307,11 @@
       const items = kw ? list.filter((iv) => ((iv.company || "") + " " + (iv.business || "") + " " + (iv.position || "") + " " + (iv.date || "") + " " + (iv.round || "")).toLowerCase().includes(kw)) : list;
       $("#iv-count").textContent = items.length + " 份面经";
       const el = $("#iv-sidebar");
-      if (!items.length) { el.innerHTML = '<p class="muted">没有匹配的面经。</p>'; $("#iv-main").innerHTML = ""; return; }
+      if (!items.length) { el.innerHTML = '<p class="muted">没有匹配的面经。</p>'; $("#iv-main").innerHTML = ""; $("#iv-toc").innerHTML = ""; return; }
       el.innerHTML = items.map((iv) => {
-        const n = (byInterview[iv.interview_id] || []).length;
         return '<button class="wiki-item' + (iv.interview_id === state.selected ? " active" : "") + '" type="button" data-id="' + esc(iv.interview_id) + '">' +
           '<span class="wiki-item-title">' + esc(iv.company || "") + (iv.business ? ' · ' + esc(iv.business) : '') + '</span>' +
           '<span class="wiki-item-meta">' + esc(iv.date || "") + (iv.position ? ' · ' + esc(iv.position) : '') + '</span>' +
-          '<span class="wiki-item-count">' + n + '</span>' +
         '</button>';
       }).join("");
       if (!items.some((iv) => iv.interview_id === state.selected)) state.selected = items[0].interview_id;
@@ -308,7 +325,22 @@
       state.selected = b.dataset.id;
       renderList();
     });
+    $("#iv-toc").addEventListener("click", (e) => {
+      const b = e.target.closest(".wiki-toc-item");
+      if (!b) return;
+      const lis = $$("#iv-body ol > li", $("#iv-main"));
+      const li = lis[Number(b.dataset.idx)];
+      if (li) li.scrollIntoView({ block: "center", behavior: "smooth" });
+    });
+    $("#iv-shell").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-pane]");
+      if (!b) return;
+      if (b.dataset.pane === "left") panes.left = !panes.left;
+      if (b.dataset.pane === "right") panes.right = !panes.right;
+      syncPanes();
+    });
 
+    syncPanes();
     const initial = params.get("iv");
     if (initial && list.some((x) => x.interview_id === initial)) state.selected = initial;
     else if (list.length) state.selected = list[0].interview_id;
