@@ -30,6 +30,46 @@ ODS 原样落地，DWD 清洗成明细，DWS 按主题汇总公共指标，ADS �
 - DIM：维表
 - 原则：职责清晰、逐层收敛、公共层复用
 
+```diagram
+type: flow
+title: 数仓分层与数据流向
+direction: LR
+nodes:
+  - id: ods
+    label: ODS 贴源
+    note: 原样落地
+    color: blue
+  - id: dwd
+    label: DWD 明细
+    note: 清洗 / 规范化
+  - id: dws
+    label: DWS 汇总
+    note: 公共指标
+  - id: ads
+    label: ADS 应用
+    note: 宽表 / 报表
+    color: green
+  - id: dim
+    label: DIM 维表
+    shape: note
+    color: orange
+edges:
+  - from: ods
+    to: dwd
+  - from: dwd
+    to: dws
+  - from: dws
+    to: ads
+  - from: dim
+    to: dwd
+    label: 关联维度
+    dashed: true
+  - from: dim
+    to: dws
+    label: 关联维度
+    dashed: true
+```
+
 # 追问
 
 - 每层做什么、不做什么？

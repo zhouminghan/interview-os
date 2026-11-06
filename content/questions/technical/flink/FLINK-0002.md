@@ -27,6 +27,35 @@ sources:
 - 解决：加并行度、优化算子、异步 IO、批量写、控制 source 速率、处理倾斜
 - barrier 阻塞：checkpoint barrier 要所有并行 subtask 对齐，反压导致积压，barrier 流不过去，checkpoint 超时/失败
 
+```diagram
+type: flow
+title: 反压与 Checkpoint Barrier
+direction: LR
+nodes:
+  - id: slow
+    label: 下游 subtask 慢
+    note: CPU / GC / IO / 倾斜
+    color: red
+  - id: buffer
+    label: 缓冲池积压
+  - id: upstream
+    label: 上游停发 / 限速
+  - id: barrier
+    label: Barrier 无法对齐
+    note: checkpoint 超时
+    color: orange
+edges:
+  - from: slow
+    to: buffer
+    label: 处理不过来
+  - from: buffer
+    to: upstream
+    label: 反压传导
+  - from: upstream
+    to: barrier
+    label: 阻塞
+```
+
 # 追问
 
 - 反压和背压是一个意思吗？

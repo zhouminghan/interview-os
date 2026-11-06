@@ -39,6 +39,37 @@ GROUP BY city_id;
 - count(distinct) 的去重可能分两阶段：map 端部分去重，reduce 端最终去重
 - 输出是 key-value：map 输出 (city_id, user_id)，shuffle 后 reduce 输出 (city_id, count)
 
+```diagram
+type: flow
+title: Spark map / shuffle / reduce
+direction: TB
+nodes:
+  - id: read
+    label: 读表解析
+    note: (city_id, user_id)
+  - id: map
+    label: Map 局部计算
+    note: 预聚合去重
+  - id: shuffle
+    label: Shuffle 按 key 分区
+    note: city_id
+  - id: reduce
+    label: Reduce 聚合
+    note: count(distinct user_id)
+  - id: out
+    label: 输出 (city_id, count)
+    color: green
+edges:
+  - from: read
+    to: map
+  - from: map
+    to: shuffle
+  - from: shuffle
+    to: reduce
+  - from: reduce
+    to: out
+```
+
 # 追问
 
 - count(distinct) 为什么慢，怎么优化？

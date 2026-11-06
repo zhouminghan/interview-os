@@ -15,6 +15,9 @@ ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 OUT = ROOT / "web" / "assets" / "js" / "data.js"
 
+DIAGRAM_RE = re.compile(r"^```diagram\s*\n(.*?)^```[ \t]*$", re.M | re.S)
+SOCRATIC_RE = re.compile(r"^```socratic\s*\n(.*?)^```[ \t]*$", re.M | re.S)
+
 DOMAIN_META = {
     "spark": {"label": "Spark", "type": "technical"},
     "warehouse": {"label": "数仓", "type": "technical"},
@@ -184,6 +187,178 @@ def read_md(path: Path):
     return meta, body
 
 
+def parse_sections(body: str):
+    """按一级标题把正文切成章节，供交互式逐阶段展示。"""
+    sections = []
+    cur_title = None
+    cur_lines = []
+
+    def flush():
+        nonlocal cur_title, cur_lines
+        content = "\n".join(cur_lines).strip()
+        if cur_title is None:
+            if content:
+                sections.append({"title": "", "content": content})
+        else:
+            sections.append({"title": cur_title, "content": content})
+        cur_title = None
+        cur_lines = []
+
+    for line in body.split("\n"):
+        m = re.match(r"^#\s+(.*)$", line)
+        if m:
+            flush()
+            cur_title = m.group(1).strip()
+        else:
+            cur_lines.append(line)
+    flush()
+    return sections
+
+
+def parse_interview_sections(body: str):
+    """按一级 / 二级标题把面经正文切成章节。"""
+    sections = []
+    cur_title = None
+    cur_lines = []
+
+    def flush():
+        nonlocal cur_title, cur_lines
+        content = "\n".join(cur_lines).strip()
+        if cur_title is None:
+            if content:
+                sections.append({"title": "", "content": content})
+        else:
+            sections.append({"title": cur_title, "content": content})
+        cur_title = None
+        cur_lines = []
+
+    for line in body.split("\n"):
+        m = re.match(r"^(#{1,2})\s+(.*)$", line)
+        if m:
+            flush()
+            cur_title = m.group(2).strip()
+        else:
+            cur_lines.append(line)
+    flush()
+    return sections
+
+
+def parse_system_stages(body: str):
+    """按二级标题把系统图解切成阶段。"""
+    stages = []
+    cur_title = None
+    cur_lines = []
+
+    def flush():
+        nonlocal cur_title, cur_lines
+        content = "\n".join(cur_lines).strip()
+        if cur_title is not None:
+            stages.append({"title": cur_title, "content": content})
+        cur_title = None
+        cur_lines = []
+
+    for line in body.split("\n"):
+        m = re.match(r"^##\s+(.*)$", line)
+        if m:
+            flush()
+            cur_title = m.group(1).strip()
+        else:
+            cur_lines.append(line)
+    flush()
+    return stages
+
+
+def extract_items(content: str):
+    """把面经里的编号题拆成条目，兼容一行多条和标准列表两种写法。"""
+    lines = content.split("\n")
+    normalized = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if re.search(r"\d+[.、．]\s*$", line.strip()) and i + 1 < len(lines):
+            nxt = lines[i + 1].strip()
+            if nxt and not re.match(r"^\d+[.、．]\s", nxt) and not nxt.startswith((">", "#", "```")):
+                normalized.append(line.rstrip() + " " + nxt)
+                i += 2
+                continue
+        normalized.append(line)
+        i += 1
+
+    items = []
+    for line in normalized:
+        s = line.strip()
+        if not s or s.startswith(">") or s.startswith("```"):
+            continue
+        parts = re.split(r"(?<=\S)\s+(?=\d+[.、．]\s)", s)
+        if len(parts) > 1:
+            for p in parts:
+                m = re.match(r"^(\d+)[.、．]\s*(.*)$", p.strip())
+                if m:
+                    items.append({"n": int(m.group(1)), "text": m.group(2).strip()})
+            continue
+        m = re.match(r"^(\d+)[.、．]\s*(.*)$", s)
+        if m:
+            items.append({"n": int(m.group(1)), "text": m.group(2).strip()})
+    return items
+
+
+def extract_diagrams(content: str):
+    """抽出 ```diagram 代码块并解析为结构化图，返回 (干净正文, 图列表)。"""
+    diagrams = []
+
+    def repl(m):
+        try:
+            d = yaml.safe_load(m.group(1))
+            if isinstance(d, dict):
+                diagrams.append(d)
+        except Exception:
+            pass
+        return ""
+
+    clean = DIAGRAM_RE.sub(repl, content)
+    return clean.strip(), diagrams
+
+
+def normalize_diagram(d):
+    if not isinstance(d, dict):
+        return None
+    if d.get("type", "flow") not in ("flow", "seq"):
+        return None
+    return d
+
+
+def extract_socratic(content: str):
+    """抽出 ```socratic 引导块，返回 (干净正文, 引导列表)。"""
+    guides = []
+
+    def repl(m):
+        try:
+            d = yaml.safe_load(m.group(1))
+            if isinstance(d, dict) and d.get("type") == "socratic" and isinstance(d.get("steps"), list):
+                guides.append(d)
+        except Exception:
+            pass
+        return ""
+
+    clean = SOCRATIC_RE.sub(repl, content)
+    return clean.strip(), guides
+
+
+def normalize_socratic(d):
+    if not isinstance(d, dict) or d.get("type") != "socratic":
+        return None
+    steps = []
+    for s in d.get("steps") or []:
+        if not isinstance(s, dict):
+            continue
+        steps.append({
+            "q": str(s.get("q") or ""),
+            "hint": str(s.get("hint") or ""),
+            "point": str(s.get("point") or ""),
+        })
+    return {"type": "socratic", "steps": steps} if steps else None
+
+
 def load_questions():
     qdir = CONTENT / "questions"
     items = []
@@ -200,13 +375,24 @@ def load_questions():
         meta.setdefault("frequency", "")
         meta.setdefault("source_type", "unknown")
         meta["domain"] = domain
-        meta["body_html"] = md_to_html(body.strip())
+        sections = []
+        diagrams = []
+        for sec in parse_sections(body.strip()):
+            content, sec_diagrams = extract_diagrams(sec["content"])
+            sections.append({
+                "title": sec["title"],
+                "html": md_to_html(content),
+                "diagram": normalize_diagram(sec_diagrams[0]) if sec_diagrams else None,
+            })
+            diagrams.extend(sec_diagrams)
+        meta["sections"] = sections
+        meta["diagrams"] = [normalize_diagram(d) for d in diagrams if normalize_diagram(d)]
         items.append(meta)
     items.sort(key=lambda q: (DOMAIN_ORDER.index(q["domain"]) if q["domain"] in DOMAIN_ORDER else 99, q["id"]))
     return items
 
 
-def load_interviews():
+def load_interviews(questions):
     idir = CONTENT / "interviews"
     items = []
     for md in sorted(idir.rglob("*.md")):
@@ -214,14 +400,74 @@ def load_interviews():
         meta = dict(meta)
         meta.setdefault("interview_id", md.stem)
         meta["body_html"] = md_to_html(body.strip())
+        sections = []
+        flat_items = []
+        note_lines = []
+        for sec in parse_interview_sections(body.strip()):
+            sec_items = extract_items(sec["content"])
+            for it in sec_items:
+                it["section"] = sec["title"] or ""
+            note_lines.extend(line for line in sec["content"].split("\n") if line.strip().startswith(">"))
+            sections.append({
+                "title": sec["title"],
+                "html": md_to_html(sec["content"]),
+                "items": sec_items,
+            })
+            flat_items.extend(sec_items)
+        meta["sections"] = sections
+        meta["items"] = flat_items
+        meta["notes_html"] = md_to_html("\n".join(note_lines))
+        linked = []
+        seen = set()
+        for q in questions:
+            for s in (q.get("sources") or []):
+                if s.get("interview_id") == meta["interview_id"] and q["id"] not in seen:
+                    seen.add(q["id"])
+                    linked.append({
+                        "id": q["id"],
+                        "question": q["question"],
+                        "domain": q["domain"],
+                        "type": q["type"],
+                        "diagrams": len(q.get("diagrams") or []),
+                    })
+        meta["linked"] = linked
         items.append(meta)
     items.sort(key=lambda x: x.get("date", ""), reverse=True)
     return items
 
 
+def load_systems():
+    sdir = CONTENT / "systems"
+    items = []
+    for md in sorted(sdir.rglob("*.md")):
+        meta, body = read_md(md)
+        meta = dict(meta)
+        meta.setdefault("id", md.stem)
+        meta.setdefault("title", md.stem)
+        meta.setdefault("domain", "system")
+        meta.setdefault("topic", [])
+        meta.setdefault("difficulty", 0)
+        stages = []
+        for sec in parse_system_stages(body.strip()):
+            content, diagrams = extract_diagrams(sec["content"])
+            content, socratics = extract_socratic(content)
+            stages.append({
+                "title": sec["title"],
+                "html": md_to_html(content),
+                "diagram": normalize_diagram(diagrams[0]) if diagrams else None,
+                "socratic": normalize_socratic(socratics[0]) if socratics else None,
+            })
+        meta["stages"] = stages
+        meta["diagram_count"] = sum(1 for s in stages if s["diagram"])
+        items.append(meta)
+    items.sort(key=lambda x: (DOMAIN_ORDER.index(x["domain"]) if x["domain"] in DOMAIN_ORDER else 99, x["id"]))
+    return items
+
+
 def main():
     questions = load_questions()
-    interviews = load_interviews()
+    interviews = load_interviews(questions)
+    systems = load_systems()
     domains = {}
     for q in questions:
         d = q["domain"]
@@ -229,6 +475,7 @@ def main():
     stats = {
         "questions": len(questions),
         "interviews": len(interviews),
+        "systems": len(systems),
         "technical": sum(1 for q in questions if q.get("type") == "technical"),
         "project": sum(1 for q in questions if q.get("type") != "technical"),
         "domains": domains,
@@ -239,6 +486,7 @@ def main():
         "domains": {d: DOMAIN_META.get(d, {"label": d, "type": "technical"}) for d in domains},
         "questions": questions,
         "interviews": interviews,
+        "systems": systems,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     js = "window.OS_DATA = " + json.dumps(payload, ensure_ascii=False, indent=2, default=str) + ";\n"

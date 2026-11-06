@@ -32,6 +32,8 @@ Interview Agent（parse / classify / extract / match / generate / validate）
 /            首页
 /interviews  面经
 /questions   问题库
+/systems     系统图解（分阶段架构 / 数据流 / SOP）
+/explore     逐题阶段演示（问题卡）
 /practice    随机训练
 /profile     个人能力画像
 ```

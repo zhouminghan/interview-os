@@ -39,6 +39,85 @@ sources:             # 可选，绑定来源面经
 
 正文可以自由使用表格、代码块、列表；`build.py` 会把正文渲染成 `body_html`。
 
+### 图示（流程图 / 数据流 / 时序图）
+
+在正文任意章节里放一个 ` ```diagram ` 代码块，`build.py` 会把它解析成结构化数据，前端用原生 HTML + SVG 渲染，零外部依赖。
+
+流程图（`type: flow`），`direction` 取 `LR`（从左到右，默认）或 `TB`（从上到下）：
+
+````markdown
+# 1 分钟回答
+
+```diagram
+type: flow
+title: SQL 执行顺序
+direction: LR
+nodes:
+  - id: from          # 唯一 id
+    label: FROM / JOIN
+    color: blue       # accent | blue | green | orange | red | muted（可选）
+    shape: box        # box | start | end | decision | note（可选）
+    note: 小字说明     # 可选
+edges:
+  - from: from
+    to: where
+    label: 过滤        # 可选
+    dashed: true       # 可选
+    color: green       # 可选
+```
+````
+
+时序图（`type: seq`）：
+
+````markdown
+```diagram
+type: seq
+title: Function Calling 循环
+actors:
+  - id: user
+    label: 用户
+messages:
+  - from: user
+    to: app
+    label: 提问
+    arrow: "->"        # "->" | "-->"（虚线）
+    note: 可选注释
+```
+````
+
+一个章节最多取第一个 `diagram` 块作为该章节的图示；同一题目可以有多个章节各自配图。
+
+## 系统图解
+
+目录：`content/systems/<ID>.md`，用于「系统图解」页的分阶段学习：每个 `## 二级标题` 是一个阶段，阶段内放正文和一张 `diagram`。
+
+````markdown
+---
+id: SYS-FLINK-CHECKPOINT
+title: Flink Checkpoint 与状态后端
+domain: flink
+topic: [checkpoint, state]
+difficulty: 3
+---
+
+## 一句话
+正文
+
+```diagram
+type: flow
+...
+```
+
+## 架构与数据流
+正文 + diagram
+
+## 回答要点与追问
+- 要点...
+- 追问...
+````
+
+阶段顺序即播放顺序；`build.py` 会把 `diagram` 解析成结构化图，前端渲染成流程图 / 架构容器图 / 时序图。
+
 ## Project / 行为题
 
 目录：`content/questions/behavioral/project/<ID>.md`

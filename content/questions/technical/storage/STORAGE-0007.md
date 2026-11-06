@@ -30,6 +30,47 @@ LSM-Tree 把写先落内存和 WAL，再批量刷成有序 SSTable，后台 comp
 - 特点：写放大、读放大，适合写多读少
 - 代表：RocksDB、HBase、LevelDB
 
+```diagram
+type: flow
+title: LSM-Tree 写路径与读取
+direction: TB
+nodes:
+  - id: write
+    label: 写入
+    color: blue
+  - id: wal
+    label: WAL 顺序写
+  - id: mem
+    label: MemTable 内存
+  - id: sst
+    label: SSTable 刷盘
+  - id: comp
+    label: Compaction 合并
+    color: orange
+  - id: read
+    label: 读取
+    note: MemTable + SSTable + Bloom
+    color: green
+edges:
+  - from: write
+    to: wal
+  - from: write
+    to: mem
+  - from: mem
+    to: sst
+    label: flush
+  - from: sst
+    to: comp
+    label: 后台合并
+    dashed: true
+  - from: mem
+    to: read
+    dashed: true
+  - from: sst
+    to: read
+    dashed: true
+```
+
 # 追问
 
 - LSM-Tree 和 B+ 树区别？
