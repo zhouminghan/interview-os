@@ -11,6 +11,36 @@
       t = setTimeout(() => fn.apply(this, args), ms);
     };
   };
+  const safeDecode = (s) => { try { return decodeURIComponent(String(s || "")); } catch (e) { return String(s || ""); } };
+
+  function readText(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+  function writeText(key, value) { try { localStorage.setItem(key, value); } catch (e) {} }
+  function removeText(key) { try { localStorage.removeItem(key); } catch (e) {} }
+  function readJSON(key, fallback) {
+    const raw = readText(key);
+    if (raw == null) return fallback;
+    try { const parsed = JSON.parse(raw); return parsed == null ? fallback : parsed; } catch (e) { return fallback; }
+  }
+  function writeJSON(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
+
+  function controlAttrs(label, pressed, extra) {
+    return (extra || "") + ' aria-label="' + esc(label) + '" title="' + esc(label) + '"' +
+      (pressed == null ? "" : ' aria-pressed="' + (pressed ? "true" : "false") + '"');
+  }
+  function iconButton(id, label, icon, pressed) {
+    return '<button class="icon-btn" id="' + esc(id) + '" type="button"' + controlAttrs(label, pressed) + ">" + icon + "</button>";
+  }
+  function chipButton(label, active, extra) {
+    return '<button class="chip' + (active ? " active" : "") + '" type="button"' + controlAttrs(label, active, extra) + ">" + esc(label) + "</button>";
+  }
+  function linkAttrs(label, current) {
+    return ' aria-label="' + esc(label) + '" title="' + esc(label) + '"' + (current ? ' aria-current="page"' : "");
+  }
+  function replaceLocation(url, hash) {
+    try { history.replaceState(null, "", url.pathname + url.search + url.hash); return; } catch (e) {}
+    try { history.replaceState(null, "", url.href); return; } catch (e) {}
+    if (hash) { try { location.hash = hash; } catch (e) {} }
+  }
 
   const ICONS = {
     sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
@@ -23,7 +53,7 @@
   };
 
   function initTheme() {
-    const saved = localStorage.getItem("os-theme");
+    const saved = readText("os-theme");
     const theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     document.documentElement.dataset.theme = theme;
   }
@@ -34,31 +64,37 @@
       ["index", "总览", "index.html"],
       ["questions", "问题库", "questions.html"],
       ["systems", "系统图解", "systems.html"],
+      ["explore", "交互学习", "explore.html"],
       ["interviews", "面经", "interviews.html"],
       ["practice", "训练", "practice.html"],
       ["profile", "画像", "profile.html"]
     ];
     $("#topbar").innerHTML =
       '<div class="topbar-inner">' +
-        '<a class="brand" href="index.html"><span class="brand-dot"></span>Interview OS</a>' +
+        '<a class="brand" href="index.html"' + linkAttrs("Interview OS") + '><span class="brand-dot"></span>Interview OS</a>' +
         '<div class="global-search" id="gs">' +
           '<input class="search gs-input" id="gs-input" type="search" placeholder="搜索分类 / 面经 / 八股 / 问题" aria-label="全局搜索" autocomplete="off">' +
           '<div class="gs-dropdown" id="gs-dropdown" hidden></div>' +
         '</div>' +
         '<nav class="nav-links" aria-label="主导航">' +
           links.map(([key, label, href]) =>
-            '<a class="nav-link' + (key === page ? " active" : "") + '" href="' + href + '" data-nav="' + key + '">' + label + "</a>"
+            '<a class="nav-link' + (key === page ? " active" : "") + '" href="' + href + '" data-nav="' + key + '"' +
+              linkAttrs(label, key === page) + ">" + esc(label) + "</a>"
           ).join("") +
         "</nav>" +
-        '<button class="icon-btn" id="theme-toggle" aria-label="切换主题"></button>' +
+        iconButton("theme-toggle", "切换主题", "", document.documentElement.dataset.theme === "dark") +
       "</div>";
     const toggle = $("#theme-toggle");
-    const syncIcon = () => { toggle.innerHTML = document.documentElement.dataset.theme === "dark" ? ICONS.sun : ICONS.moon; };
+    const syncIcon = () => {
+      const dark = document.documentElement.dataset.theme === "dark";
+      toggle.innerHTML = dark ? ICONS.sun : ICONS.moon;
+      toggle.setAttribute("aria-pressed", dark ? "true" : "false");
+    };
     syncIcon();
     toggle.addEventListener("click", () => {
       const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
       document.documentElement.dataset.theme = next;
-      localStorage.setItem("os-theme", next);
+      writeText("os-theme", next);
       syncIcon();
     });
     initGlobalSearch();
@@ -91,15 +127,15 @@
       let html = "";
       if (g.domains.length) {
         html += '<div class="gs-group">分类</div>' + g.domains.map((k) =>
-          '<a class="gs-item" href="questions.html?domain=' + encodeURIComponent(k) + '"><span class="gs-title">' + esc(domainLabel(k)) + '</span><span class="gs-meta">' + (D.stats.domains[k] || 0) + " 题</span></a>").join("");
+          '<a class="gs-item" href="questions.html?domain=' + encodeURIComponent(k) + '"' + linkAttrs(domainLabel(k) + " 领域") + '><span class="gs-title">' + esc(domainLabel(k)) + '</span><span class="gs-meta">' + (D.stats.domains[k] || 0) + " 题</span></a>").join("");
       }
       if (g.interviews.length) {
         html += '<div class="gs-group">面经</div>' + g.interviews.map((iv) =>
-          '<a class="gs-item" href="interviews.html?iv=' + encodeURIComponent(iv.interview_id) + '"><span class="gs-title">' + esc(iv.company || "") + " · " + esc(iv.business || "") + '</span><span class="gs-meta">' + esc(iv.date || "") + "</span></a>").join("");
+          '<a class="gs-item" href="interviews.html?iv=' + encodeURIComponent(iv.interview_id) + '"' + linkAttrs((iv.company || "") + " · " + (iv.business || "") + " · " + (iv.date || "")) + '><span class="gs-title">' + esc(iv.company || "") + " · " + esc(iv.business || "") + '</span><span class="gs-meta">' + esc(iv.date || "") + "</span></a>").join("");
       }
       if (g.questions.length) {
         html += '<div class="gs-group">问题 / 八股</div>' + g.questions.map((x) =>
-          '<a class="gs-item" href="questions.html#' + encodeURIComponent(x.id) + '"><span class="gs-title">' + esc(x.question) + '</span><span class="gs-meta">' + (x.source_type === "knowledge" ? "八股 · " : "") + esc(domainLabel(x.domain)) + "</span></a>").join("");
+          '<a class="gs-item" href="questions.html#' + encodeURIComponent(x.id) + '"' + linkAttrs(x.question + " · " + x.id) + '><span class="gs-title">' + esc(x.question) + '</span><span class="gs-meta">' + (x.source_type === "knowledge" ? "八股 · " : "") + esc(domainLabel(x.domain)) + "</span></a>").join("");
       }
       dd.innerHTML = html;
       dd.hidden = false;
@@ -116,6 +152,16 @@
   const domainLabel = (d) => (D.domains[d] && D.domains[d].label) || d;
   const questionMap = () => { const m = {}; D.questions.forEach((q) => { m[q.id] = q; }); return m; };
 
+  function topicOverlap(a, b) {
+    const norm = (s) => String(s == null ? "" : s).toLowerCase().replace(/[\s_\-]+/g, "");
+    const A = new Set((Array.isArray(a) ? a : []).map(norm).filter(Boolean));
+    const B = new Set((Array.isArray(b) ? b : []).map(norm).filter(Boolean));
+    if (!A.size || !B.size) return 0;
+    let hits = 0;
+    A.forEach((t) => { if (B.has(t)) hits++; });
+    return hits / Math.min(A.size, B.size);
+  }
+
   function tagsHTML(q) {
     return '<span class="tag ' + (q.type === "technical" ? "tech" : "proj") + '">' + esc(typeLabel(q.type)) + "</span>" +
       '<span class="tag">' + esc(domainLabel(q.domain)) + "</span>" +
@@ -126,7 +172,8 @@
   }
 
   function interviewCard(iv) {
-    return '<a class="interview-card interview-link" href="interviews.html?iv=' + encodeURIComponent(iv.interview_id) + '">' +
+    const label = (iv.company || "") + " · " + (iv.business || "") + " · " + (iv.date || "");
+    return '<a class="interview-card interview-link" href="interviews.html?iv=' + encodeURIComponent(iv.interview_id) + '"' + linkAttrs(label) + '>' +
       '<span class="interview-main">' +
         '<span class="interview-head"><b>' + esc(iv.company || "") + " · " + esc(iv.business || "") + '</b><span class="muted">' + esc(iv.date || "") + '</span></span>' +
         '<span class="interview-sub">' + esc(iv.position || "") + '</span>' +
@@ -143,7 +190,24 @@
     return e;
   }
 
-  function diagramStageMeta(title) {
+  function diagramStageMeta(title, stageKey) {
+    const byKey = {
+      thinking: { kind: "framework", short: "思路" },
+      pitch: { kind: "pitch", short: "一句话" },
+      short: { kind: "short", short: "30 秒" },
+      long: { kind: "medium", short: "1 分钟" },
+      medium: { kind: "medium", short: "1 分钟" },
+      deep: { kind: "deep", short: "参考" },
+      followup: { kind: "followup", short: "追问" },
+      project: { kind: "project", short: "项目" },
+      risk: { kind: "risk", short: "风险" },
+      framework: { kind: "framework", short: "框架" },
+      coach: { kind: "coach", short: "教练" },
+      notes: { kind: "notes", short: "补充" },
+      points: { kind: "points", short: "要点" },
+      origin: { kind: "origin", short: "原题" }
+    };
+    if (stageKey && byKey[stageKey]) return byKey[stageKey];
     const known = {
       "一句话": { kind: "pitch", short: "一句话" },
       "30 秒回答": { kind: "short", short: "30 秒" },
@@ -157,13 +221,48 @@
     return known[title] || { kind: "generic", short: title || "概述" };
   }
 
+  function answerOutlineStage(q) {
+    const secs = q && Array.isArray(q.sections) ? q.sections : [];
+    if (secs.some((s) => s && s.stage_key === "thinking")) return null;
+    const raw = (q && Array.isArray(q.answer_outline) ? q.answer_outline :
+      (q && typeof q.answer_outline === "string" ? [q.answer_outline] : [])) || [];
+    const items = raw.map((x) => typeof x === "string" ? x.trim() : "").filter(Boolean);
+    if (!items.length) return null;
+    return {
+      title: "回答思路",
+      stage_label: "回答思路",
+      stage_key: "thinking",
+      html: "<ol>" + items.map((x) => "<li>" + esc(x) + "</li>").join("") + "</ol>",
+      diagram: null
+    };
+  }
+
+  function displayQuestionStages(q) {
+    const secs = q && Array.isArray(q.sections) ? q.sections.filter(Boolean) : [];
+    let stages = secs.map((s) => ({
+      title: s.stage_label || s.title || "概述",
+      stage_label: s.stage_label,
+      stage_key: s.stage_key || "",
+      html: s.html || "",
+      diagram: s.diagram || null
+    }));
+    if (!stages.length) {
+      stages = [{
+        title: "回答",
+        html: (q && q.body_html) || "",
+        diagram: q && Array.isArray(q.diagrams) && q.diagrams.length ? q.diagrams[0] : null
+      }];
+    }
+    const outline = answerOutlineStage(q);
+    return outline ? [outline].concat(stages) : stages;
+  }
+
   function sectionCardsHTML(q) {
-    const secs = q.sections && q.sections.length ? q.sections : null;
-    if (!secs) return q.body_html || "";
-    return secs.map((s, i) => {
+    return displayQuestionStages(q).map((s, i) => {
       const hasDiag = !!s.diagram;
+      const title = s.stage_label || s.title || "概述";
       return '<section class="qa-section">' +
-        '<h3 class="qa-section-title"><span class="qa-num">' + String(i + 1).padStart(2, "0") + "</span>" + esc(s.title || "概述") +
+        '<h3 class="qa-section-title"><span class="qa-num">' + String(i + 1).padStart(2, "0") + "</span>" + esc(title) +
         (hasDiag ? '<span class="qa-badge">图</span>' : "") + "</h3>" +
         '<div class="qa-section-body">' + (s.html || "") + "</div>" +
         (hasDiag ? '<div class="qa-diagram dg-scroll"><div class="dg" data-diagram="' + i + '"></div></div>' : "") +
@@ -172,10 +271,10 @@
   }
 
   function mountSectionDiagrams(root, q) {
-    const secs = q.sections || [];
+    const stages = displayQuestionStages(q);
     $$(".dg", root).forEach((el) => {
       const idx = Number(el.dataset.diagram);
-      const d = secs[idx] && secs[idx].diagram;
+      const d = stages[idx] && stages[idx].diagram;
       if (d) mountDiagram(el, d);
     });
   }
@@ -437,20 +536,21 @@
   /* ---------- Explorer (interactive learning) ---------- */
 
   function exploreStore() {
-    try { return JSON.parse(localStorage.getItem("os.explore") || "{}"); } catch (e) { return {}; }
+    const s = readJSON("os.explore", {});
+    return s && typeof s === "object" && !Array.isArray(s) ? s : {};
   }
-  function saveExploreStore(s) { localStorage.setItem("os.explore", JSON.stringify(s)); }
+  function saveExploreStore(s) { writeText("os.explore", JSON.stringify(s)); }
 
   function stagesFor(q) {
-    const secs = q.sections && q.sections.length ? q.sections : [];
-    if (!secs.length) return [{ title: "回答", html: q.body_html || "", diagram: (q.diagrams && q.diagrams[0]) || null, kind: "generic" }];
-    return secs.map((s) => {
-      const meta = diagramStageMeta(s.title);
-      return { title: s.title || "概述", short: meta.short, kind: meta.kind, html: s.html || "", diagram: s.diagram || null };
+    return displayQuestionStages(q).map((s) => {
+      const title = s.stage_label || s.title || "概述";
+      const meta = diagramStageMeta(title, s.stage_key);
+      return { title: title, short: meta.short, kind: meta.kind, html: s.html || "", diagram: s.diagram || null };
     });
   }
 
   function renderIndex() {
+    const page = document.body.dataset.page;
     const s = D.stats || {};
     const domainKeys = Object.keys(s.domains || {});
     const domains = domainKeys.map((k) => ({ k: k, n: s.domains[k] || 0 })).sort((a, b) => b.n - a.n);
@@ -459,7 +559,7 @@
     $("#page").innerHTML =
       "<h1>Interview OS</h1>" +
       '<p class="lead">个人面试知识库 · 训练 · 表达 · 谈判</p>' +
-      '<div class="hero-actions"><a class="btn btn-primary" href="systems.html">系统图解</a><a class="btn btn-secondary" href="questions.html">浏览问题库</a><a class="btn btn-secondary" href="practice.html">随机训练</a></div>' +
+      '<div class="hero-actions"><a class="btn btn-primary" href="systems.html"' + linkAttrs("系统图解", page === "systems") + '>系统图解</a><a class="btn btn-secondary" href="questions.html"' + linkAttrs("浏览问题库", page === "questions") + '>浏览问题库</a><a class="btn btn-secondary" href="practice.html"' + linkAttrs("随机训练", page === "practice") + '>随机训练</a></div>' +
       '<div class="stats">' +
         '<div class="stat"><b>' + (s.questions || 0) + "</b><span>标准化问题</span></div>" +
         '<div class="stat"><b>' + (s.interviews || 0) + "</b><span>原始面经</span></div>" +
@@ -468,7 +568,7 @@
       "<h2>领域榜单</h2>" +
       '<div class="rank-list">' +
         domains.map((d, i) =>
-          '<a class="rank-row' + (i < 3 ? " top" : "") + '" href="questions.html?domain=' + encodeURIComponent(d.k) + '">' +
+          '<a class="rank-row' + (i < 3 ? " top" : "") + '" href="questions.html?domain=' + encodeURIComponent(d.k) + '"' + linkAttrs(domainLabel(d.k) + " 领域") + '>' +
             '<span class="rank' + (i < 3 ? " top" : "") + '">' + (i + 1) + "</span>" +
             '<span class="rank-label">' + esc(domainLabel(d.k)) + "</span>" +
             '<span class="rank-count">' + d.n + ' 题<span class="rank-share">' + Math.round(d.n / Math.max(1, s.questions || 0) * 100) + "%</span></span>" +
@@ -481,11 +581,31 @@
 
   function renderQuestions() {
     const params = new URLSearchParams(location.search);
-    const state = { query: "", type: "all", domain: params.get("domain") || "all", selected: null };
+    const PAGE_SIZE = 80;
+    const domainKeys = Object.keys(D.stats.domains || {});
+    const validTypes = ["all", "technical", "project"];
+    const byId = questionMap();
+    const requestedType = params.get("type");
+    const requestedDomain = params.get("domain");
+    const state = {
+      query: "",
+      type: validTypes.includes(requestedType) ? requestedType : "all",
+      domain: domainKeys.includes(requestedDomain) ? requestedDomain : "all",
+      selected: null,
+      limit: PAGE_SIZE
+    };
+    const deepQ = byId[safeDecode(location.hash.slice(1))];
+    let expandForDeepLink = !!deepQ;
+    if (deepQ) {
+      state.selected = deepQ.id;
+      if (state.domain !== "all" && state.domain !== deepQ.domain) state.domain = domainKeys.includes(deepQ.domain) ? deepQ.domain : "all";
+      if (state.type !== "all" && state.type !== deepQ.type) state.type = validTypes.includes(deepQ.type) ? deepQ.type : "all";
+    }
     $("#page").innerHTML =
       "<h1>问题库</h1>" +
       '<div class="toolbar">' +
         '<input class="search" id="q-search" type="search" placeholder="搜索问题、主题或 ID" aria-label="搜索问题">' +
+        '<span class="muted" id="q-count" aria-live="polite"></span>' +
         '<div class="chips" id="q-type"></div>' +
         '<div class="chips" id="q-domain"></div>' +
       "</div>" +
@@ -493,10 +613,9 @@
 
     function renderChips() {
       $("#q-type").innerHTML = [["all", "全部"], ["technical", "技术"], ["project", "项目"]].map(([v, l]) =>
-        '<button class="chip' + (state.type === v ? " active" : "") + '" data-type="' + v + '">' + l + "</button>").join("");
-      const keys = Object.keys(D.stats.domains || {});
-      $("#q-domain").innerHTML = [["all", "全部领域"]].concat(keys.map((k) => [k, domainLabel(k)])).map(([v, l]) =>
-        '<button class="chip' + (state.domain === v ? " active" : "") + '" data-domain="' + v + '">' + esc(l) + "</button>").join("");
+        chipButton(l, state.type === v, ' data-type="' + v + '"')).join("");
+      $("#q-domain").innerHTML = [["all", "全部领域"]].concat(domainKeys.map((k) => [k, domainLabel(k)])).map(([v, l]) =>
+        chipButton(l, state.domain === v, ' data-domain="' + esc(v) + '"')).join("");
     }
 
     function filtered() {
@@ -504,24 +623,39 @@
         if (state.type !== "all" && q.type !== state.type) return false;
         if (state.domain !== "all" && q.domain !== state.domain) return false;
         if (state.query) {
-          const hay = (q.question + " " + q.id + " " + (q.topic || []).join(" ")).toLowerCase();
+          const hay = [q.question, q.id, (q.topic || []).join(" ")].join(" ").toLowerCase();
           if (!hay.includes(state.query.toLowerCase())) return false;
         }
         return true;
       });
     }
 
-    function highlight() { $$("#q-list .q-row").forEach((b) => b.classList.toggle("active", b.dataset.id === state.selected)); }
+    function syncURL() {
+      const url = new URL(location.href);
+      if (state.domain === "all") url.searchParams.delete("domain"); else url.searchParams.set("domain", state.domain);
+      if (state.type === "all") url.searchParams.delete("type"); else url.searchParams.set("type", state.type);
+      const hash = state.selected ? "#" + encodeURIComponent(state.selected) : "";
+      url.hash = hash;
+      replaceLocation(url, hash);
+    }
+
+    function highlight() {
+      $$("#q-list .q-row").forEach((b) => {
+        const active = b.dataset.id === state.selected;
+        b.classList.toggle("active", active);
+        b.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+    }
 
     function renderDetail(id) {
-      const q = questionMap()[id];
-      if (!q) { $("#q-detail").innerHTML = ""; return; }
+      const q = byId[id];
+      if (!q) { $("#q-detail").innerHTML = '<p class="muted">没有匹配的问题。</p>'; return; }
       const srcs = (q.sources || []).map((s) => esc(s.company || "") + " · " + esc(s.position || "") + " · " + esc(s.date || "")).join(" / ");
       $("#q-detail").innerHTML =
         "<h2>" + esc(q.question) + "</h2>" +
         '<div class="tags">' + tagsHTML(q) + "</div>" +
         '<div class="q-body">' + sectionCardsHTML(q) + "</div>" +
-        (q.diagrams && q.diagrams.length ? '<a class="btn btn-secondary btn-sm" href="explore.html?q=' + encodeURIComponent(q.id) + '">交互式学习</a>' : "") +
+        '<a class="btn btn-secondary btn-sm" href="explore.html?q=' + encodeURIComponent(q.id) + '"' + linkAttrs("交互式学习") + '>交互式学习</a>' +
         (srcs ? '<div class="q-sources">来源：' + srcs + "</div>" : "");
       mountSectionDiagrams($("#q-detail"), q);
     }
@@ -529,41 +663,75 @@
     function renderList() {
       const list = filtered();
       const el = $("#q-list");
-      if (!list.length) { el.innerHTML = '<p class="muted">没有匹配的问题。</p>'; return; }
-      el.innerHTML = list.map((q, i) =>
-        '<button class="q-row" data-id="' + esc(q.id) + '">' +
-          '<span class="rank' + (i < 3 ? " top" : "") + '">' + (i + 1) + "</span>" +
+      const count = $("#q-count");
+      if (!list.length) {
+        count.textContent = "共 0 题，已显示 0 题";
+        el.innerHTML = '<p class="muted">没有匹配的问题。</p>';
+        state.selected = null;
+        $("#q-detail").innerHTML = '<p class="muted">调整搜索或筛选条件。</p>';
+        syncURL();
+        return;
+      }
+      if (!state.selected || !list.some((q) => q.id === state.selected)) state.selected = list[0].id;
+      const selectedIndex = list.findIndex((q) => q.id === state.selected);
+      if (expandForDeepLink && selectedIndex >= state.limit) state.limit = Math.ceil((selectedIndex + 1) / PAGE_SIZE) * PAGE_SIZE;
+      const visible = list.slice(0, state.limit);
+      count.textContent = "共 " + list.length + " 题，已显示 " + visible.length + " 题";
+      el.innerHTML = visible.map((q, i) =>
+        '<button class="q-row" type="button" data-id="' + esc(q.id) + '"' + controlAttrs(q.question + " · " + q.id, q.id === state.selected) + ">" +
+          '<span class="rank" aria-hidden="true">' + (i + 1) + "</span>" +
           '<span class="q-title">' + esc(q.question) + "</span>" +
           '<span class="q-meta"><span class="q-id">' + esc(q.id) + "</span> · " + esc(domainLabel(q.domain)) + " · " + diffStars(q.difficulty) + "</span>" +
-        "</button>").join("");
-      if (!state.selected || !list.some((q) => q.id === state.selected)) state.selected = list[0].id;
+        "</button>").join("") +
+        (visible.length < list.length ? '<button class="btn btn-secondary" id="q-more" type="button"' + controlAttrs("显示更多") + ">显示更多</button>" : "");
       highlight();
       renderDetail(state.selected);
+      syncURL();
+      expandForDeepLink = false;
     }
 
     renderChips();
     renderList();
-    if (location.hash && questionMap()[decodeURIComponent(location.hash.slice(1))]) {
-      state.selected = decodeURIComponent(location.hash.slice(1));
+
+    $("#q-search").addEventListener("input", debounce((e) => { state.query = e.target.value; state.limit = PAGE_SIZE; renderList(); }, 120));
+    $("#q-type").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-type]");
+      if (!b) return;
+      state.type = b.dataset.type;
+      state.limit = PAGE_SIZE;
+      renderChips();
+      renderList();
+    });
+    $("#q-domain").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-domain]");
+      if (!b) return;
+      state.domain = b.dataset.domain;
+      state.limit = PAGE_SIZE;
+      renderChips();
+      renderList();
+    });
+    $("#q-list").addEventListener("click", (e) => {
+      if (e.target.closest("#q-more")) { state.limit += PAGE_SIZE; renderList(); return; }
+      const b = e.target.closest(".q-row");
+      if (!b) return;
+      state.selected = b.dataset.id;
       highlight();
       renderDetail(state.selected);
-    }
-
-    $("#q-search").addEventListener("input", debounce((e) => { state.query = e.target.value; renderList(); }, 120));
-    $("#q-type").addEventListener("click", (e) => { const b = e.target.closest("[data-type]"); if (!b) return; state.type = b.dataset.type; renderChips(); renderList(); });
-    $("#q-domain").addEventListener("click", (e) => { const b = e.target.closest("[data-domain]"); if (!b) return; state.domain = b.dataset.domain; renderChips(); renderList(); });
-    $("#q-list").addEventListener("click", (e) => { const b = e.target.closest(".q-row"); if (!b) return; state.selected = b.dataset.id; highlight(); renderDetail(state.selected); });
+      syncURL();
+    });
   }
 
   function renderExplore() {
     const params = new URLSearchParams(location.search);
+    const domainKeys = Object.keys(D.stats.domains || {});
+    const requestedDomain = params.get("domain");
     const store = exploreStore();
     store.done = store.done || {};
     store.mastery = store.mastery || {};
     store.last = store.last || {};
     const state = {
       query: "",
-      domain: params.get("domain") || "all",
+      domain: domainKeys.includes(requestedDomain) ? requestedDomain : "all",
       qid: null,
       stage: 0,
       stages: [],
@@ -585,12 +753,14 @@
         '<aside class="ex-pane ex-right" id="ex-right"></aside>' +
       "</div>";
 
-    const domainKeys = Object.keys(D.stats.domains || {});
-    const kindLabel = { pitch: "一句话", short: "30 秒", medium: "1 分钟", deep: "参考", followup: "追问", framework: "框架", points: "要点", origin: "原题", generic: "内容" };
+    const kindLabel = { pitch: "一句话", short: "30 秒", medium: "1 分钟", deep: "参考", followup: "追问", project: "项目", risk: "风险", framework: "框架", coach: "教练", notes: "补充", points: "要点", origin: "原题", generic: "内容" };
+    const byId = questionMap();
+    const questionsByDomain = {};
+    D.questions.forEach((q) => { (questionsByDomain[q.domain] = questionsByDomain[q.domain] || []).push(q); });
 
     function renderDomainChips() {
       $("#ex-domain").innerHTML = [["all", "全部领域"]].concat(domainKeys.map((k) => [k, domainLabel(k)])).map(([v, l]) =>
-        '<button class="chip' + (state.domain === v ? " active" : "") + '" data-domain="' + esc(v) + '">' + esc(l) + "</button>").join("");
+        chipButton(l, state.domain === v, ' data-domain="' + esc(v) + '"')).join("");
     }
 
     function filtered() {
@@ -606,14 +776,48 @@
 
     function domainQuestionList() {
       if (state.domain === "all") return [];
-      return D.questions.filter((q) => q.domain === state.domain);
+      return questionsByDomain[state.domain] || [];
     }
 
-    function currentQuestion() { return questionMap()[state.qid]; }
+    function currentQuestion() { return byId[state.qid]; }
+
+    function defaultSelection() {
+      if (state.domain !== "all") {
+        return { domain: state.domain, question: domainQuestionList()[0] || null };
+      }
+      const domain = domainKeys.find((k) => (questionsByDomain[k] || []).length);
+      if (!domain) return { domain: "all", question: null };
+      return { domain: domain, question: (questionsByDomain[domain] || [])[0] || null };
+    }
+
+    function sidebarEmptyHTML() {
+      return '<div class="empty"><p class="muted">暂无场景。</p><p class="muted">切换领域或清空搜索条件。</p></div>';
+    }
+
+    function emptyMainHTML() {
+      return '<div class="empty">' +
+        '<h2>暂无可加载的场景</h2>' +
+        '<p class="muted">当前领域或搜索条件下没有题卡。</p>' +
+        '<div class="hero-actions"><a class="btn btn-secondary" href="questions.html"' + linkAttrs("打开问题库") + '>打开问题库</a></div>' +
+      "</div>";
+    }
+
+    function emptyRightHTML() {
+      return '<div class="ex-pane-head"><span>状态</span></div>' +
+        '<div class="ex-pane-body"><div class="ex-block"><span class="ex-block-label">暂无场景</span>' +
+        '<p class="muted">切换领域或清空搜索条件。</p></div></div>';
+    }
+
+    function renderEmptyState() {
+      $("#ex-main").innerHTML = emptyMainHTML();
+      $("#ex-right").innerHTML = emptyRightHTML();
+    }
 
     function questionItemHTML(q) {
       const m = store.mastery[q.id];
-      return '<button class="ex-item' + (store.done[q.id] ? " done" : "") + '" data-id="' + esc(q.id) + '">' +
+      const label = q.question + " · " + q.id;
+      return '<button class="ex-item' + (store.done[q.id] ? " done" : "") + '" type="button" data-id="' + esc(q.id) + '"' +
+        controlAttrs(label, q.id === state.qid) + ">" +
         '<span class="ex-item-dot"></span>' +
         '<span class="ex-item-main"><span class="ex-item-title">' + esc(q.question) + "</span>" +
         '<span class="ex-item-meta">' + esc(q.id) + " · " + esc(domainLabel(q.domain)) + (m != null ? " · 掌握 " + m + "/5" : "") + "</span></span>" +
@@ -622,20 +826,29 @@
 
     function renderSidebar() {
       const el = $("#ex-sidebar");
+      if (!D.questions.length) {
+        $("#ex-count").textContent = "0 个场景";
+        el.innerHTML = sidebarEmptyHTML();
+        return;
+      }
       if (state.query) {
         const list = filtered().slice(0, 400);
         $("#ex-count").textContent = list.length + " 个匹配";
-        if (!list.length) { el.innerHTML = '<p class="muted">没有匹配的场景。</p>'; return; }
+        if (!list.length) {
+          el.innerHTML = sidebarEmptyHTML();
+          return;
+        }
         el.innerHTML = list.map(questionItemHTML).join("");
-        if (!list.some((q) => q.id === state.qid)) state.qid = list[0].id;
         highlightSidebar();
         return;
       }
       if (state.domain === "all") {
         $("#ex-count").textContent = domainKeys.length + " 个领域";
+        if (!domainKeys.length) { el.innerHTML = sidebarEmptyHTML(); return; }
         el.innerHTML = domainKeys.map((k) => {
           const n = D.stats.domains[k] || 0;
-          return '<button class="ex-item ex-domain-item" data-domain="' + esc(k) + '">' +
+          const label = domainLabel(k) + " · " + n + " 题";
+          return '<button class="ex-item ex-domain-item" type="button" data-domain="' + esc(k) + '"' + controlAttrs(label, false) + ">" +
           '<span class="ex-item-dot"></span>' +
           '<span class="ex-item-main"><span class="ex-item-title">' + esc(domainLabel(k)) + "</span>" +
           '<span class="ex-item-meta">' + n + " 题</span></span></button>";
@@ -644,27 +857,34 @@
       }
       const list = domainQuestionList();
       $("#ex-count").textContent = list.length + " 个场景";
-      if (!list.length) { el.innerHTML = '<p class="muted">该领域暂无场景。</p>'; return; }
+      if (!list.length) {
+        el.innerHTML = sidebarEmptyHTML();
+        return;
+      }
       el.innerHTML = list.map(questionItemHTML).join("");
-      if (!list.some((q) => q.id === state.qid)) state.qid = list[0].id;
       highlightSidebar();
     }
 
     function highlightSidebar() {
-      $$("#ex-sidebar .ex-item").forEach((b) => b.classList.toggle("active", b.dataset.id === state.qid));
+      $$("#ex-sidebar .ex-item").forEach((b) => {
+        const active = !!b.dataset.id && b.dataset.id === state.qid;
+        b.classList.toggle("active", active);
+        b.setAttribute("aria-pressed", active ? "true" : "false");
+      });
     }
 
     function renderRight() {
       const q = currentQuestion();
       const el = $("#ex-right");
-      if (!q) { el.innerHTML = ""; return; }
+      if (!q) { el.innerHTML = emptyRightHTML(); return; }
       const m = store.mastery[q.id];
       const srcs = (q.sources || []).map((s) => esc(s.company || "") + " · " + esc(s.position || "") + " · " + esc(s.date || "")).join("<br>");
       el.innerHTML =
         '<div class="ex-pane-head"><span>状态</span></div>' +
         '<div class="ex-pane-body">' +
           '<div class="ex-block"><span class="ex-block-label">掌握度</span><div class="ex-mastery">' +
-            [0, 1, 2, 3, 4, 5].map((v) => '<button class="ex-m-btn' + (m === v ? " active" : "") + '" data-m="' + v + '">' + v + "</button>").join("") +
+            [0, 1, 2, 3, 4, 5].map((v) => '<button class="ex-m-btn' + (m === v ? " active" : "") + '" type="button" data-m="' + v + '"' +
+              controlAttrs("掌握度 " + v + " / 5", m === v) + ">" + v + "</button>").join("") +
           "</div></div>" +
           '<div class="ex-block"><span class="ex-block-label">标签</span><div class="tags">' + tagsHTML(q) + "</div></div>" +
           '<div class="ex-block"><span class="ex-block-label">主题</span><div class="ex-topics">' + (q.topic || []).map((t) => '<span class="tag">' + esc(t) + "</span>").join("") + "</div></div>" +
@@ -674,12 +894,20 @@
 
     function syncControls() {
       const playBtn = $("#ex-play");
-      if (playBtn) playBtn.innerHTML = state.playing ? ICONS.pause : ICONS.play;
+      if (playBtn) {
+        playBtn.innerHTML = state.playing ? ICONS.pause : ICONS.play;
+        playBtn.setAttribute("aria-label", "播放或暂停");
+        playBtn.setAttribute("title", "播放或暂停");
+      }
       const db = $("#ex-done");
       const q = currentQuestion();
       if (db && q) {
         const done = !!store.done[q.id];
-        db.textContent = done ? "已掌握" : "标记掌握";
+        const label = done ? "已掌握" : "标记掌握";
+        db.textContent = label;
+        db.setAttribute("aria-pressed", done ? "true" : "false");
+        db.setAttribute("aria-label", label);
+        db.setAttribute("title", label);
         db.classList.toggle("btn-primary", done);
         db.classList.toggle("btn-secondary", !done);
       }
@@ -688,11 +916,11 @@
     function renderMain() {
       const q = currentQuestion();
       const el = $("#ex-main");
-      if (!q) { el.innerHTML = '<p class="muted">左侧选择一个场景开始。</p>'; return; }
-      state.stage = Math.min(Math.max(state.stage, 0), state.stages.length - 1);
-      const si = state.stage;
-      const sec = state.stages[si] || state.stages[0];
+      if (!q) { el.innerHTML = emptyMainHTML(); return; }
       const total = state.stages.length;
+      state.stage = Math.min(Math.max(state.stage, 0), Math.max(0, total - 1));
+      const si = state.stage;
+      const sec = state.stages[si] || { title: "内容", short: "内容", kind: "generic", html: "", diagram: null };
       const klabel = kindLabel[sec.kind] || sec.short || "内容";
       const done = !!store.done[q.id];
       el.innerHTML =
@@ -707,15 +935,16 @@
           (sec.diagram ? '<div class="ex-diagram dg-scroll"><div class="dg" id="ex-diagram"></div></div>' : "") +
         "</div>" +
         '<div class="ex-controls">' +
-          '<button class="icon-btn" id="ex-prev" aria-label="上一阶段">' + ICONS.chevronL + "</button>" +
-          '<button class="icon-btn" id="ex-play" aria-label="播放或暂停">' + (state.playing ? ICONS.pause : ICONS.play) + "</button>" +
-          '<button class="icon-btn" id="ex-next" aria-label="下一阶段">' + ICONS.chevronR + "</button>" +
-          '<button class="icon-btn" id="ex-reset" aria-label="回到第一阶段">' + ICONS.reset + "</button>" +
-          '<button class="chip" id="ex-speed" data-speed="' + state.speed + '">' + state.speed + "×</button>" +
+          iconButton("ex-prev", "上一阶段", ICONS.chevronL) +
+          iconButton("ex-play", "播放或暂停", state.playing ? ICONS.pause : ICONS.play) +
+          iconButton("ex-next", "下一阶段", ICONS.chevronR) +
+          iconButton("ex-reset", "回到第一阶段", ICONS.reset) +
+          '<button class="chip" id="ex-speed" type="button" data-speed="' + state.speed + '"' + controlAttrs("播放速度 " + state.speed + "×") + ">" + state.speed + "×</button>" +
           '<span class="ex-progress"><b>' + String(si + 1) + "</b> / " + total + " · " + esc(sec.short || sec.title) + "</span>" +
-          '<button class="btn btn-sm ' + (done ? "btn-primary" : "btn-secondary") + '" id="ex-done">' + (done ? "已掌握" : "标记掌握") + "</button>" +
+          '<button class="btn btn-sm ' + (done ? "btn-primary" : "btn-secondary") + '" id="ex-done" type="button"' + controlAttrs(done ? "已掌握" : "标记掌握", done) + ">" + (done ? "已掌握" : "标记掌握") + "</button>" +
         "</div>" +
-        '<div class="ex-dots">' + state.stages.map((x, i) => '<button class="ex-dot' + (i === si ? " active" : "") + (i < si ? " seen" : "") + '" data-i="' + i + '" aria-label="第 ' + (i + 1) + ' 阶段"></button>').join("") + "</div>";
+        '<div class="ex-dots">' + state.stages.map((x, i) => '<button class="ex-dot' + (i === si ? " active" : "") + (i < si ? " seen" : "") + '" type="button" data-i="' + i + '"' +
+          controlAttrs("第 " + (i + 1) + " 阶段：" + (x.title || "内容"), i === si) + "></button>").join("") + "</div>";
       if (sec.diagram) mountDiagram($("#ex-diagram"), sec.diagram);
     }
 
@@ -757,7 +986,13 @@
     function cycleSpeed() {
       state.speed = state.speed === 1 ? 2 : state.speed === 2 ? 0.5 : 1;
       const b = $("#ex-speed");
-      if (b) { b.dataset.speed = state.speed; b.textContent = state.speed + "×"; }
+      if (b) {
+        const label = "播放速度 " + state.speed + "×";
+        b.dataset.speed = state.speed;
+        b.textContent = state.speed + "×";
+        b.setAttribute("aria-label", label);
+        b.setAttribute("title", label);
+      }
     }
 
     function toggleDone() {
@@ -774,8 +1009,12 @@
       state.qid = id;
       const q = currentQuestion();
       if (!q) {
-        $("#ex-main").innerHTML = '<div class="ex-empty"><p class="muted">左侧选择一个场景开始。</p></div>';
-        $("#ex-right").innerHTML = "";
+        state.qid = null;
+        state.stages = [];
+        state.stage = 0;
+        stopPlay();
+        highlightSidebar();
+        renderEmptyState();
         return;
       }
       state.stages = stagesFor(q);
@@ -786,48 +1025,59 @@
       renderRight();
     }
 
-    renderDomainChips();
-    renderSidebar();
-    const initialQ = params.get("q");
-    if (initialQ && questionMap()[initialQ]) {
-      state.qid = initialQ;
-      state.domain = questionMap()[initialQ].domain;
-      renderDomainChips();
-      renderSidebar();
-    }
-    else if (state.domain !== "all") {
-      const list = domainQuestionList();
-      if (list.length) state.qid = list[0].id;
-    }
-    selectQuestion(state.qid);
-    const stageParam = Number(params.get("stage"));
-    if (!Number.isNaN(stageParam)) goStage(stageParam);
-
-    $("#ex-search").addEventListener("input", debounce((e) => { state.query = e.target.value; renderSidebar(); }, 120));
-    $("#ex-domain").addEventListener("click", (e) => {
-      const b = e.target.closest("[data-domain]");
-      if (!b) return;
-      state.domain = b.dataset.domain;
+    function showDomain(domain) {
+      state.domain = domain;
       state.query = "";
       const si = $("#ex-search");
       if (si) si.value = "";
+      const list = state.domain === "all" ? [] : domainQuestionList();
+      state.qid = list.length ? list[0].id : null;
       renderDomainChips();
       renderSidebar();
-      const list = domainQuestionList();
-      if (list.length) selectQuestion(list[0].id);
+      selectQuestion(state.qid);
+    }
+
+    function showSearch(value) {
+      state.query = value;
+      let list = [];
+      if (state.query) list = filtered().slice(0, 400);
+      else if (state.domain !== "all") list = domainQuestionList();
+      const nextQid = list.some((q) => q.id === state.qid) ? state.qid : (list.length ? list[0].id : null);
+      const changed = nextQid !== state.qid;
+      state.qid = nextQid;
+      renderSidebar();
+      if (changed) selectQuestion(state.qid);
+    }
+
+    const initialQ = params.get("q");
+    if (initialQ && byId[initialQ]) {
+      state.qid = initialQ;
+      state.domain = domainKeys.includes(byId[initialQ].domain) ? byId[initialQ].domain : "all";
+    }
+    else {
+      const initialSelection = defaultSelection();
+      state.domain = initialSelection.domain;
+      state.qid = initialSelection.question ? initialSelection.question.id : null;
+    }
+    renderDomainChips();
+    renderSidebar();
+    selectQuestion(state.qid);
+    if (params.has("stage")) {
+      const stageParam = Number(params.get("stage"));
+      if (!Number.isNaN(stageParam)) goStage(stageParam);
+    }
+
+    $("#ex-search").addEventListener("input", debounce((e) => showSearch(e.target.value), 120));
+    $("#ex-domain").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-domain]");
+      if (!b) return;
+      showDomain(b.dataset.domain);
     });
     $("#ex-sidebar").addEventListener("click", (e) => {
       const b = e.target.closest(".ex-item");
       if (!b) return;
       if (b.dataset.domain) {
-        state.domain = b.dataset.domain;
-        state.query = "";
-        const si = $("#ex-search");
-        if (si) si.value = "";
-        renderDomainChips();
-        renderSidebar();
-        const list = domainQuestionList();
-        if (list.length) selectQuestion(list[0].id);
+        showDomain(b.dataset.domain);
         return;
       }
       if (b.dataset.id) selectQuestion(b.dataset.id);
@@ -868,8 +1118,8 @@
     const params = new URLSearchParams(location.search);
     const list = D.systems || [];
     const state = { selected: null, stage: 0, playing: false, speed: 1, timer: null, soc: { step: 0, hint: false, point: false } };
-    let stageStore = {};
-    try { stageStore = JSON.parse(localStorage.getItem("os.sys.stage") || "{}"); } catch (e) {}
+    const storedStages = readJSON("os.sys.stage", {});
+    let stageStore = storedStages && typeof storedStages === "object" && !Array.isArray(storedStages) ? storedStages : {};
 
     $("#page").innerHTML =
       "<h1>系统图解</h1>" +
@@ -886,21 +1136,32 @@
       const el = $("#sys-sidebar");
       if (!list.length) { el.innerHTML = '<p class="muted">还没有系统图解。</p>'; return; }
       el.innerHTML = list.map((s) => {
-        return '<button class="ex-item' + (s.id === state.selected ? " active" : "") + '" data-id="' + esc(s.id) + '">' +
+        const label = s.title + " · " + domainLabel(s.domain);
+        const stages = (s.stages || []).length;
+        return '<button class="ex-item' + (s.id === state.selected ? " active" : "") + '" type="button" data-id="' + esc(s.id) + '"' +
+          controlAttrs(label, s.id === state.selected) + ">" +
           '<span class="ex-item-dot"></span>' +
           '<span class="ex-item-main"><span class="ex-item-title">' + esc(s.title) + "</span>" +
-          '<span class="ex-item-meta">' + esc(domainLabel(s.domain)) + " · " + s.stages.length + " 阶段 · " + s.diagram_count + " 图</span></span>" +
+          '<span class="ex-item-meta">' + esc(domainLabel(s.domain)) + " · " + stages + " 阶段 · " + s.diagram_count + " 图</span></span>" +
         "</button>";
       }).join("");
     }
 
     function highlightSidebar() {
-      $$("#sys-sidebar .ex-item").forEach((b) => b.classList.toggle("active", b.dataset.id === state.selected));
+      $$("#sys-sidebar .ex-item").forEach((b) => {
+        const active = b.dataset.id === state.selected;
+        b.classList.toggle("active", active);
+        b.setAttribute("aria-pressed", active ? "true" : "false");
+      });
     }
 
     function syncControls() {
       const playBtn = $("#sys-play");
-      if (playBtn) playBtn.innerHTML = state.playing ? ICONS.pause : ICONS.play;
+      if (playBtn) {
+        playBtn.innerHTML = state.playing ? ICONS.pause : ICONS.play;
+        playBtn.setAttribute("aria-label", "播放或暂停");
+        playBtn.setAttribute("title", "播放或暂停");
+      }
     }
 
     function socraticHTML(soc) {
@@ -914,9 +1175,9 @@
         '<div class="soc-head"><span class="soc-label">苏格拉底引导</span><span class="soc-count">' + String(i + 1).padStart(2, "0") + " / " + steps.length + "</span></div>" +
         '<div class="soc-q">' + esc(st.q) + "</div>" +
         '<div class="soc-actions">' +
-          (hintShown ? "" : '<button class="btn btn-secondary btn-sm soc-btn" data-soc="hint">显示提示</button>') +
-          (hintShown && !pointShown ? '<button class="btn btn-primary btn-sm soc-btn" data-soc="point">显示要点</button>' : "") +
-          (pointShown && i < steps.length - 1 ? '<button class="btn btn-secondary btn-sm soc-btn" data-soc="next">下一问</button>' : "") +
+          (hintShown ? "" : '<button class="btn btn-secondary btn-sm soc-btn" type="button" data-soc="hint"' + controlAttrs("显示提示") + ">显示提示</button>") +
+          (hintShown && !pointShown ? '<button class="btn btn-primary btn-sm soc-btn" type="button" data-soc="point"' + controlAttrs("显示要点") + ">显示要点</button>" : "") +
+          (pointShown && i < steps.length - 1 ? '<button class="btn btn-secondary btn-sm soc-btn" type="button" data-soc="next"' + controlAttrs("下一问") + ">下一问</button>" : "") +
           (pointShown && i === steps.length - 1 ? '<span class="soc-done">已推导完成</span>' : "") +
         "</div>" +
         (hintShown ? '<div class="soc-hint"><b>提示</b> ' + esc(st.hint || "") + "</div>" : "") +
@@ -934,6 +1195,7 @@
       state.stage = Math.min(Math.max(state.stage, 0), stages.length - 1);
       const si = state.stage;
       const st = stages[si];
+      const stageTitle = st.stage_label || st.title || "阶段";
       el.innerHTML =
         '<div class="sys-head">' +
           '<span class="ex-stage-kind">' + esc(domainLabel(sys.domain)) + " · 系统图解</span>" +
@@ -944,32 +1206,42 @@
           "</div>" +
         "</div>" +
         '<div class="sys-stage">' +
-          '<div class="ex-stage-title"><span class="ex-stage-idx">' + String(si + 1).padStart(2, "0") + "</span> " + esc(st.title) + "</div>" +
-          (st.socratic ? socraticHTML(st.socratic) : (st.diagram ? '<div class="sys-diagram dg-scroll"><div class="dg" id="sys-diagram"></div></div>' : "") + '<div class="ex-stage-body q-body sys-stage-body">' + (st.html || "") + "</div>") +
+          '<div class="ex-stage-title"><span class="ex-stage-idx">' + String(si + 1).padStart(2, "0") + "</span> " + esc(stageTitle) + "</div>" +
+          (st.socratic ? socraticHTML(st.socratic) : "") +
+          (st.diagram ? '<div class="sys-diagram dg-scroll"><div class="dg" id="sys-diagram"></div></div>' : "") +
+          '<div class="ex-stage-body q-body sys-stage-body">' + (st.html || "") + "</div>" +
         "</div>" +
         '<div class="ex-controls">' +
-          '<button class="icon-btn" id="sys-prev" aria-label="上一阶段">' + ICONS.chevronL + "</button>" +
-          '<button class="icon-btn" id="sys-play" aria-label="播放或暂停">' + (state.playing ? ICONS.pause : ICONS.play) + "</button>" +
-          '<button class="icon-btn" id="sys-next" aria-label="下一阶段">' + ICONS.chevronR + "</button>" +
-          '<button class="icon-btn" id="sys-reset" aria-label="回到第一阶段">' + ICONS.reset + "</button>" +
-          '<button class="chip" id="sys-speed" data-speed="' + state.speed + '">' + state.speed + "×</button>" +
-          '<span class="ex-progress"><b>' + String(si + 1) + "</b> / " + stages.length + " · " + esc(st.title) + "</span>" +
+          iconButton("sys-prev", "上一阶段", ICONS.chevronL) +
+          iconButton("sys-play", "播放或暂停", state.playing ? ICONS.pause : ICONS.play) +
+          iconButton("sys-next", "下一阶段", ICONS.chevronR) +
+          iconButton("sys-reset", "回到第一阶段", ICONS.reset) +
+          '<button class="chip" id="sys-speed" type="button" data-speed="' + state.speed + '"' + controlAttrs("播放速度 " + state.speed + "×") + ">" + state.speed + "×</button>" +
+          '<span class="ex-progress"><b>' + String(si + 1) + "</b> / " + stages.length + " · " + esc(stageTitle) + "</span>" +
         "</div>" +
-        '<div class="ex-dots">' + stages.map((x, i) => '<button class="ex-dot' + (i === si ? " active" : "") + (i < si ? " seen" : "") + '" data-i="' + i + '" aria-label="阶段 ' + (i + 1) + '"></button>').join("") + "</div>";
-      if (st.diagram && !st.socratic) mountDiagram($("#sys-diagram"), st.diagram);
+        '<div class="ex-dots">' + stages.map((x, i) => '<button class="ex-dot' + (i === si ? " active" : "") + (i < si ? " seen" : "") + '" type="button" data-i="' + i + '"' +
+          controlAttrs("阶段 " + (i + 1) + "：" + (x.stage_label || x.title || ""), i === si) + "></button>").join("") + "</div>";
+      if (st.diagram) mountDiagram($("#sys-diagram"), st.diagram);
     }
 
     function renderRight() {
       const sys = current();
       const el = $("#sys-right");
       if (!sys) { el.innerHTML = ""; return; }
-      const related = D.questions.filter((q) => q.domain === sys.domain).slice(0, 10);
+      const related = D.questions.map((q, i) => ({ q: q, i: i, score: topicOverlap(sys.topic, q.topic) }))
+        .sort((a, b) =>
+          (b.score - a.score) ||
+          (Number(b.q.domain === sys.domain) - Number(a.q.domain === sys.domain)) ||
+          (Number(b.q.frequency === "high") - Number(a.q.frequency === "high")) ||
+          (a.i - b.i))
+        .slice(0, 10)
+        .map((x) => x.q);
       let html = '<div class="ex-pane-head"><span>关联题卡</span></div><div class="ex-pane-body">';
       if (!related.length) {
         html += '<p class="muted" style="padding:12px 14px">暂无关联题卡。</p>';
       } else {
         html += related.map((q) =>
-          '<button class="ex-item" data-qid="' + esc(q.id) + '">' +
+          '<button class="ex-item" type="button" data-qid="' + esc(q.id) + '"' + controlAttrs(q.question + " · " + q.id, false) + ">" +
             '<span class="ex-item-dot"></span>' +
             '<span class="ex-item-main"><span class="ex-item-title">' + esc(q.question) + "</span>" +
             '<span class="ex-item-meta">' + esc(q.id) + (q.diagrams && q.diagrams.length ? " · 含图" : "") + "</span></span>" +
@@ -992,7 +1264,7 @@
       state.stage = Math.min(Math.max(i, 0), sys.stages.length - 1);
       state.soc = { step: 0, hint: false, point: false };
       stageStore[sys.id] = state.stage;
-      localStorage.setItem("os.sys.stage", JSON.stringify(stageStore));
+      writeJSON("os.sys.stage", stageStore);
       renderMain();
     }
 
@@ -1015,7 +1287,13 @@
     function cycleSpeed() {
       state.speed = state.speed === 1 ? 2 : state.speed === 2 ? 0.5 : 1;
       const b = $("#sys-speed");
-      if (b) { b.dataset.speed = state.speed; b.textContent = state.speed + "×"; }
+      if (b) {
+        const label = "播放速度 " + state.speed + "×";
+        b.dataset.speed = state.speed;
+        b.textContent = state.speed + "×";
+        b.setAttribute("aria-label", label);
+        b.setAttribute("title", label);
+      }
     }
 
     function advanceSocratic() {
@@ -1050,8 +1328,10 @@
     if (initial && list.some((s) => s.id === initial)) state.selected = initial;
     else if (list.length) state.selected = list[0].id;
     selectSystem(state.selected);
-    const stageParam = Number(params.get("stage"));
-    if (!Number.isNaN(stageParam)) goStage(stageParam);
+    if (params.has("stage")) {
+      const stageParam = Number(params.get("stage"));
+      if (!Number.isNaN(stageParam)) goStage(stageParam);
+    }
 
     $("#sys-sidebar").addEventListener("click", (e) => {
       const b = e.target.closest(".ex-item");
@@ -1094,8 +1374,8 @@
   function renderInterviews() {
     const params = new URLSearchParams(location.search);
     const list = D.interviews;
-    let stageStore = {};
-    try { stageStore = JSON.parse(localStorage.getItem("os.iv.stage") || "{}"); } catch (e) {}
+    const storedStages = readJSON("os.iv.stage", {});
+    let stageStore = storedStages && typeof storedStages === "object" && !Array.isArray(storedStages) ? storedStages : {};
     const state = { query: "", selected: null, stage: 0, stages: [], playing: false, speed: 1, timer: null };
 
     $("#page").innerHTML =
@@ -1133,10 +1413,13 @@
       const el = $("#iv-sidebar");
       if (!items.length) { el.innerHTML = '<p class="muted">没有匹配的面经。</p>'; return; }
       el.innerHTML = items.map((iv) => {
-        return '<button class="ex-item' + (iv.interview_id === state.selected ? " active" : "") + '" data-id="' + esc(iv.interview_id) + '">' +
+        const count = (iv.items || []).length;
+        const label = (iv.company || "") + (iv.business ? " · " + iv.business : "") + " · " + (iv.date || "");
+        return '<button class="ex-item' + (iv.interview_id === state.selected ? " active" : "") + '" type="button" data-id="' + esc(iv.interview_id) + '"' +
+          controlAttrs(label, iv.interview_id === state.selected) + ">" +
           '<span class="ex-item-dot"></span>' +
           '<span class="ex-item-main"><span class="ex-item-title">' + esc(iv.company || "") + (iv.business ? ' · ' + esc(iv.business) : '') + '</span>' +
-          '<span class="ex-item-meta">' + esc(iv.date || "") + (iv.position ? ' · ' + esc(iv.position) : '') + " · " + (iv.items || []).length + " 题</span></span>" +
+          '<span class="ex-item-meta">' + esc(iv.date || "") + (iv.position ? ' · ' + esc(iv.position) : '') + " · " + (count ? count + " 题" : "原文记录") + "</span></span>" +
         '</button>';
       }).join("");
       if (!items.some((iv) => iv.interview_id === state.selected)) state.selected = items[0].interview_id;
@@ -1144,7 +1427,11 @@
     }
 
     function highlightSidebar() {
-      $$("#iv-sidebar .ex-item").forEach((b) => b.classList.toggle("active", b.dataset.id === state.selected));
+      $$("#iv-sidebar .ex-item").forEach((b) => {
+        const active = b.dataset.id === state.selected;
+        b.classList.toggle("active", active);
+        b.setAttribute("aria-pressed", active ? "true" : "false");
+      });
     }
 
     function selectInterview(id) {
@@ -1152,7 +1439,10 @@
       const iv = current();
       if (!iv) return;
       state.stages = (iv.items && iv.items.length ? iv.items : []).map((it) => ({ n: it.n, text: it.text, section: it.section || "", title: "第 " + it.n + " 题" }));
-      if (!state.stages.length && iv.body_html) state.stages = [{ n: 0, text: iv.body_html, section: "", title: "原文" }];
+      if (!state.stages.length) {
+        const rawHTML = iv.body_html || (iv.sections || []).map((s) => s.html || "").join("");
+        if (rawHTML) state.stages = [{ n: 0, text: rawHTML, section: "", title: "原文记录" }];
+      }
       state.stage = stageStore[id] != null && stageStore[id] < state.stages.length ? stageStore[id] : 0;
       state.playing = false;
       if (state.timer) clearTimeout(state.timer);
@@ -1164,7 +1454,11 @@
 
     function syncControls() {
       const playBtn = $("#iv-play");
-      if (playBtn) playBtn.innerHTML = state.playing ? ICONS.pause : ICONS.play;
+      if (playBtn) {
+        playBtn.innerHTML = state.playing ? ICONS.pause : ICONS.play;
+        playBtn.setAttribute("aria-label", "播放或暂停");
+        playBtn.setAttribute("title", "播放或暂停");
+      }
     }
 
     function renderMain() {
@@ -1173,14 +1467,17 @@
       if (!iv) { el.innerHTML = '<p class="muted">左侧选择一篇面经。</p>'; return; }
       const total = state.stages.length;
       if (!total) {
-        el.innerHTML = '<div class="ex-stage-head"><h2>' + esc(iv.company || "") + '</h2></div>' +
-          '<div class="ex-stage"><div class="ex-stage-body q-body">' + (iv.body_html || "") + "</div></div>";
+        el.innerHTML = '<div class="ex-stage-head"><h2>' + esc(iv.company || "") + (iv.business ? " · " + esc(iv.business) : "") + '</h2></div>' +
+          '<div class="ex-stage"><div class="ex-stage-title"><span class="ex-stage-idx">01</span> 原文记录</div>' +
+          '<div class="ex-stage-body q-body">' + (iv.body_html || (iv.sections || []).map((s) => s.html || "").join("")) + "</div></div>" +
+          (iv.notes_html ? '<div class="iv-notes q-body">' + iv.notes_html + "</div>" : "");
         return;
       }
       state.stage = Math.min(Math.max(state.stage, 0), total - 1);
       const si = state.stage;
       const st = state.stages[si];
-      const isHTML = st.n === 0 && st.text.indexOf("<") !== -1;
+      const isHTML = st.n === 0 && String(st.text || "").indexOf("<") !== -1;
+      const isRawRecord = total === 1 && st.n === 0;
       el.innerHTML =
         '<div class="ex-stage-head">' +
           '<span class="ex-stage-kind">' + esc(iv.round || "面经") + "</span>" +
@@ -1195,15 +1492,17 @@
           '<div class="ex-stage-body q-body iv-question">' + (isHTML ? st.text : esc(st.text)) + "</div>" +
         "</div>" +
         (iv.notes_html ? '<div class="iv-notes q-body">' + iv.notes_html + "</div>" : "") +
-        '<div class="ex-controls">' +
-          '<button class="icon-btn" id="iv-prev" aria-label="上一题">' + ICONS.chevronL + "</button>" +
-          '<button class="icon-btn" id="iv-play" aria-label="播放或暂停">' + (state.playing ? ICONS.pause : ICONS.play) + "</button>" +
-          '<button class="icon-btn" id="iv-next" aria-label="下一题">' + ICONS.chevronR + "</button>" +
-          '<button class="icon-btn" id="iv-reset" aria-label="回到第一题">' + ICONS.reset + "</button>" +
-          '<button class="chip" id="iv-speed" data-speed="' + state.speed + '">' + state.speed + "×</button>" +
-          '<span class="ex-progress"><b>' + String(si + 1) + "</b> / " + total + "</span>" +
-        "</div>" +
-        '<div class="ex-dots">' + state.stages.map((x, i) => '<button class="ex-dot' + (i === si ? " active" : "") + (i < si ? " seen" : "") + '" data-i="' + i + '" aria-label="第 ' + (i + 1) + ' 题"></button>').join("") + "</div>";
+        (isRawRecord ? "" :
+          '<div class="ex-controls">' +
+            iconButton("iv-prev", "上一题", ICONS.chevronL) +
+            iconButton("iv-play", "播放或暂停", state.playing ? ICONS.pause : ICONS.play) +
+            iconButton("iv-next", "下一题", ICONS.chevronR) +
+            iconButton("iv-reset", "回到第一题", ICONS.reset) +
+            '<button class="chip" id="iv-speed" type="button" data-speed="' + state.speed + '"' + controlAttrs("播放速度 " + state.speed + "×") + ">" + state.speed + "×</button>" +
+            '<span class="ex-progress"><b>' + String(si + 1) + "</b> / " + total + "</span>" +
+          "</div>" +
+          '<div class="ex-dots">' + state.stages.map((x, i) => '<button class="ex-dot' + (i === si ? " active" : "") + (i < si ? " seen" : "") + '" type="button" data-i="' + i + '"' +
+            controlAttrs("第 " + (i + 1) + " 题", i === si) + "></button>").join("") + "</div>");
     }
 
     function renderRight() {
@@ -1219,11 +1518,12 @@
       });
       let html = '<div class="ex-pane-head"><span>关联题卡</span></div><div class="ex-pane-body">';
       if (!linked.length) {
-        html += '<p class="muted" style="padding:12px 14px">这篇面经还没有沉淀题卡。</p>';
+        html += '<div class="ex-block"><p class="muted">先按原文逐题自测，再沉淀题卡。</p>' +
+          '<div class="hero-actions"><a class="btn btn-secondary btn-sm" href="questions.html"' + linkAttrs("打开问题库") + '>打开问题库</a></div></div>';
       } else {
         html += '<div class="iv-links">' + linked.map((l) => {
           const isBest = best && l.id === best.id && bestScore >= 0.28;
-          return '<button class="ex-item' + (isBest ? " active" : "") + '" data-qid="' + esc(l.id) + '">' +
+          return '<button class="ex-item' + (isBest ? " active" : "") + '" type="button" data-qid="' + esc(l.id) + '"' + controlAttrs(l.question + " · " + l.id, !!isBest) + ">" +
             '<span class="ex-item-dot"></span>' +
             '<span class="ex-item-main"><span class="ex-item-title">' + esc(l.question) + "</span>" +
             '<span class="ex-item-meta">' + esc(l.id) + " · " + esc(domainLabel(l.domain)) + (l.diagrams ? " · 含图" : "") + "</span></span>" +
@@ -1232,7 +1532,7 @@
         if (best && bestScore >= 0.28) {
           const q = questionMap()[best.id];
           if (q) {
-            html += '<div class="iv-linked-body"><a class="iv-linked-title" href="explore.html?q=' + encodeURIComponent(q.id) + '">' + esc(q.question) + " · 打开探索</a>" +
+            html += '<div class="iv-linked-body"><a class="iv-linked-title" href="explore.html?q=' + encodeURIComponent(q.id) + '"' + linkAttrs(q.question + " · 打开探索") + ">" + esc(q.question) + " · 打开探索</a>" +
               '<div class="q-body">' + sectionCardsHTML(q) + "</div></div>";
           }
         }
@@ -1257,7 +1557,7 @@
       if (!iv || !state.stages.length) return;
       state.stage = Math.min(Math.max(i, 0), state.stages.length - 1);
       stageStore[iv.interview_id] = state.stage;
-      localStorage.setItem("os.iv.stage", JSON.stringify(stageStore));
+      writeJSON("os.iv.stage", stageStore);
       renderMain();
       renderRight();
     }
@@ -1280,7 +1580,13 @@
     function cycleSpeed() {
       state.speed = state.speed === 1 ? 2 : state.speed === 2 ? 0.5 : 1;
       const b = $("#iv-speed");
-      if (b) { b.dataset.speed = state.speed; b.textContent = state.speed + "×"; }
+      if (b) {
+        const label = "播放速度 " + state.speed + "×";
+        b.dataset.speed = state.speed;
+        b.textContent = state.speed + "×";
+        b.setAttribute("aria-label", label);
+        b.setAttribute("title", label);
+      }
     }
 
     $("#iv-search").addEventListener("input", debounce((e) => { state.query = e.target.value; renderSidebar(); }, 120));
@@ -1317,38 +1623,94 @@
     else if (list.length) state.selected = list[0].interview_id;
     renderSidebar();
     selectInterview(state.selected);
-    const stageParam = Number(params.get("stage"));
-    if (!Number.isNaN(stageParam)) goStage(stageParam);
+    if (params.has("stage")) {
+      const stageParam = Number(params.get("stage"));
+      if (!Number.isNaN(stageParam)) goStage(stageParam);
+    }
   }
 
   function shuffle(a) { const arr = a.slice(); for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
 
   function renderPractice() {
+    const CONFIG_KEY = "os.practice.config";
+    const LOG_KEY = "os.practice.log";
+    const MAX_SELF_ANSWER = 1200;
+    const keys = Object.keys(D.stats.domains || {});
+    const storedConfig = readJSON(CONFIG_KEY, {});
+    const config = storedConfig && typeof storedConfig === "object" && !Array.isArray(storedConfig) ? storedConfig : {};
+    const validCounts = [10, 20, 0];
+    const count = validCounts.includes(Number(config.count)) ? Number(config.count) : 20;
+    const restoredDomains = Array.isArray(config.domains) ? config.domains.filter((k) => keys.includes(k)) : keys;
+    const sel = new Set(restoredDomains);
+    const weakOnly = !!config.weakOnly;
+    const countOptions = [[10, "10 题"], [20, "20 题"], [0, "全部"]].map(([v, l]) =>
+      '<option value="' + v + '"' + (v === count ? " selected" : "") + ">" + l + "</option>").join("");
     $("#page").innerHTML =
       "<h1>随机训练</h1>" +
       '<div id="p-config" class="panel">' +
         "<h2>训练设置</h2>" +
-        '<label class="field"><span>题目数量</span><select id="p-count"><option value="10">10 题</option><option value="20" selected>20 题</option><option value="0">全部</option></select></label>' +
-        '<div class="field"><span>范围</span><div class="chips" id="p-domains"></div></div>' +
-        '<button class="btn btn-primary" id="p-start">开始训练</button>' +
+        '<label class="field"><span>题目数量</span><select id="p-count" aria-label="题目数量" title="题目数量">' + countOptions + "</select></label>" +
+        '<div class="field"><span>范围</span><div class="chips" id="p-domains"></div>' +
+          '<button class="btn btn-secondary btn-sm" id="p-all" type="button"' + controlAttrs("全选领域") + ">全选</button>" +
+          '<button class="btn btn-secondary btn-sm" id="p-clear" type="button"' + controlAttrs("清空领域") + ">清空</button>" +
+        "</div>" +
+        '<label class="field"><span>只练薄弱题</span><input id="p-weak" type="checkbox"' + (weakOnly ? " checked" : "") + ' aria-label="只练薄弱题" title="只练薄弱题"><span class="muted" id="p-weak-count"></span></label>' +
+        '<p class="muted" id="p-message" role="status" aria-live="polite"></p>' +
+        '<button class="btn btn-primary" id="p-start" type="button"' + controlAttrs("开始训练") + ">开始训练</button>" +
       "</div>" +
       '<div id="p-session" class="panel" hidden></div>';
 
-    const keys = Object.keys(D.stats.domains || {});
-    const sel = new Set(keys);
-    function renderDomains() { $("#p-domains").innerHTML = keys.map((k) => '<button class="chip active" data-d="' + esc(k) + '">' + esc(domainLabel(k)) + "</button>").join(""); }
+    function practiceLog() {
+      const value = readJSON(LOG_KEY, []);
+      return Array.isArray(value) ? value : [];
+    }
+    function weakQuestionIds() {
+      const latest = {};
+      practiceLog().forEach((r) => { if (r && r.id) latest[r.id] = Number(r.grade); });
+      return new Set(Object.keys(latest).filter((id) => Number.isFinite(latest[id]) && latest[id] < 2));
+    }
+    function updateWeakCount() {
+      const n = weakQuestionIds().size;
+      $("#p-weak-count").textContent = n ? n + " 道待复习" : "暂无薄弱题";
+    }
+    function saveConfig() {
+      writeJSON(CONFIG_KEY, {
+        count: Number($("#p-count").value),
+        domains: Array.from(sel),
+        weakOnly: $("#p-weak").checked
+      });
+    }
+    function renderDomains() {
+      $("#p-domains").innerHTML = keys.map((k) => chipButton(domainLabel(k), sel.has(k), ' data-d="' + esc(k) + '"')).join("");
+    }
     renderDomains();
+    updateWeakCount();
     $("#p-domains").addEventListener("click", (e) => {
       const b = e.target.closest("[data-d]"); if (!b) return;
       const k = b.dataset.d;
-      if (sel.has(k)) { sel.delete(k); b.classList.remove("active"); } else { sel.add(k); b.classList.add("active"); }
+      if (sel.has(k)) sel.delete(k); else sel.add(k);
+      renderDomains();
+      saveConfig();
     });
+    $("#p-all").addEventListener("click", () => { keys.forEach((k) => sel.add(k)); renderDomains(); saveConfig(); });
+    $("#p-clear").addEventListener("click", () => { sel.clear(); renderDomains(); saveConfig(); });
+    $("#p-count").addEventListener("change", saveConfig);
+    $("#p-weak").addEventListener("change", saveConfig);
     $("#p-start").addEventListener("click", () => {
+      saveConfig();
       const count = Number($("#p-count").value);
       let pool = D.questions.filter((q) => sel.has(q.domain));
+      if ($("#p-weak").checked) {
+        const weak = weakQuestionIds();
+        pool = pool.filter((q) => weak.has(q.id));
+      }
       pool = shuffle(pool);
       if (count > 0) pool = pool.slice(0, count);
-      if (!pool.length) { alert("当前范围没有题目"); return; }
+      if (!pool.length) {
+        $("#p-message").textContent = "当前范围没有题目，调整领域或关闭只练薄弱题。";
+        return;
+      }
+      $("#p-message").textContent = "";
       start(pool);
     });
 
@@ -1358,25 +1720,95 @@
       session.hidden = false;
       let idx = 0;
       const results = [];
+      let revealed = false;
+      let selfAnswer = "";
+      let graded = false;
+      const gradeLabel = { 2: "会", 1: "模糊", 0: "不会" };
+
+      function captureSelfAnswer() {
+        const el = $("#p-self");
+        return String((el && el.value) || "").trim().slice(0, MAX_SELF_ANSWER);
+      }
       function record(q, g) {
-        results.push({ q: q, g: g });
-        const log = JSON.parse(localStorage.getItem("os.practice.log") || "[]");
-        log.push({ id: q.id, domain: q.domain, type: q.type, grade: g, ts: Date.now() });
-        localStorage.setItem("os.practice.log", JSON.stringify(log));
-        idx++;
-        idx < pool.length ? render() : summary();
+        if (graded) return;
+        graded = true;
+        const answer = revealed ? selfAnswer : captureSelfAnswer();
+        results.push({ q: q, g: g, revealed: revealed, selfAnswer: answer });
+        const log = practiceLog();
+        log.push({ id: q.id, domain: q.domain, type: q.type, grade: g, ts: Date.now(), revealed: !!revealed, selfAnswer: answer });
+        writeJSON(LOG_KEY, log);
+        const label = gradeLabel[g] || "已评分";
+        const feedback = $("#p-feedback");
+        if (feedback) {
+          feedback.textContent = g < 2 ? "已记录：" + label + "，已加入复习" : "已记录：" + label;
+          feedback.hidden = false;
+        }
+        $$(".grade-btn", session).forEach((b) => { b.disabled = true; });
+        const showBtn = $("#p-show");
+        const readyBtn = $("#p-ready");
+        const selfEl = $("#p-self");
+        if (showBtn) showBtn.disabled = true;
+        if (readyBtn) readyBtn.disabled = true;
+        if (selfEl) selfEl.readOnly = true;
+        window.setTimeout(() => {
+          idx++;
+          idx < pool.length ? render() : summary();
+        }, 700);
       }
       function render() {
         const q = pool[idx];
+        revealed = false;
+        selfAnswer = "";
+        graded = false;
         session.innerHTML =
           '<div class="practice-head"><span class="muted">第 ' + (idx + 1) + " / " + pool.length + ' 题</span><div class="progress-bar"><div class="progress-fill" style="width:' + (idx / pool.length * 100) + '%"></div></div></div>' +
           "<h2>" + esc(q.question) + "</h2>" +
           '<div class="tags">' + tagsHTML(q) + "</div>" +
-          '<div class="practice-actions"><button class="btn btn-secondary" id="p-show">显示答案</button></div>' +
+          '<label class="field" style="display:block"><span>自答</span>' +
+            '<textarea id="p-self" rows="4" maxlength="' + MAX_SELF_ANSWER + '" placeholder="先写出回答要点" aria-label="自答要点" title="自答要点" style="width:100%;min-height:96px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);font-family:inherit;font-size:.95rem;resize:vertical"></textarea>' +
+          "</label>" +
+          '<div class="practice-actions">' +
+            '<button class="btn btn-secondary" id="p-ready" type="button"' + controlAttrs("我已想好", false) + ">我已想好</button>" +
+            '<button class="btn btn-secondary" id="p-show" type="button"' + controlAttrs("显示答案") + " disabled>显示答案</button>" +
+          "</div>" +
           '<div id="p-answer" class="q-body" hidden>' + sectionCardsHTML(q) + "</div>" +
-          '<div class="grade-row" style="margin-top:14px"><button class="grade-btn ok" data-g="2">会</button><button class="grade-btn fuzzy" data-g="1">模糊</button><button class="grade-btn bad" data-g="0">不会</button></div>';
-        $("#p-show").addEventListener("click", () => { $("#p-answer").hidden = false; });
-        mountSectionDiagrams($("#p-answer"), q);
+          '<p class="muted" id="p-feedback" role="status" aria-live="polite" hidden></p>' +
+          '<div class="grade-row" style="margin-top:14px">' +
+            '<button class="grade-btn ok" type="button" data-g="2"' + controlAttrs("会") + ">会</button>" +
+            '<button class="grade-btn fuzzy" type="button" data-g="1"' + controlAttrs("模糊") + ">模糊</button>" +
+            '<button class="grade-btn bad" type="button" data-g="0"' + controlAttrs("不会") + ">不会</button>" +
+          "</div>";
+        const selfEl = $("#p-self");
+        const readyBtn = $("#p-ready");
+        const showBtn = $("#p-show");
+        let ready = false;
+        let diagramsMounted = false;
+        function syncReveal() {
+          showBtn.disabled = !(ready || String(selfEl.value || "").trim().length > 0);
+        }
+        selfEl.addEventListener("input", syncReveal);
+        readyBtn.addEventListener("click", () => {
+          ready = !ready;
+          const label = ready ? "已想好" : "我已想好";
+          readyBtn.textContent = label;
+          readyBtn.setAttribute("aria-pressed", ready ? "true" : "false");
+          readyBtn.setAttribute("aria-label", label);
+          readyBtn.setAttribute("title", label);
+          syncReveal();
+        });
+        showBtn.addEventListener("click", () => {
+          if (showBtn.disabled) return;
+          revealed = true;
+          selfAnswer = captureSelfAnswer();
+          selfEl.readOnly = true;
+          readyBtn.disabled = true;
+          showBtn.disabled = true;
+          showBtn.textContent = "答案已揭晓";
+          showBtn.setAttribute("aria-label", "答案已揭晓");
+          showBtn.setAttribute("title", "答案已揭晓");
+          $("#p-answer").hidden = false;
+          if (!diagramsMounted) { mountSectionDiagrams($("#p-answer"), q); diagramsMounted = true; }
+        });
         $(".grade-row", session).addEventListener("click", (e) => { const b = e.target.closest("[data-g]"); if (!b) return; record(q, Number(b.dataset.g)); });
       }
       function summary() {
@@ -1388,8 +1820,8 @@
         session.innerHTML =
           "<h2>本轮完成</h2>" +
           '<div class="stats"><div class="stat"><b>' + ok + "</b><span>会</span></div><div class=\"stat\"><b>" + fuzzy + "</b><span>模糊</span></div><div class=\"stat\"><b>" + bad + "</b><span>不会</span></div></div>" +
-          (weak.length ? "<h3>建议复习</h3><div class=\"q-list\">" + weak.map((id) => { const q = questionMap()[id]; return q ? '<a class="q-row" style="grid-template-columns:1fr" href="questions.html#' + encodeURIComponent(q.id) + '">' + esc(q.question) + "</a>" : ""; }).join("") + "</div>" : "") +
-          '<div class="hero-actions" style="margin-top:16px"><button class="btn btn-primary" id="p-again">再来一组</button><a class="btn btn-secondary" href="profile.html">查看画像</a></div>';
+          (weak.length ? "<h3>建议复习</h3><div class=\"q-list\">" + weak.map((id) => { const q = questionMap()[id]; return q ? '<a class="q-row" style="grid-template-columns:1fr" href="questions.html#' + encodeURIComponent(q.id) + '"' + linkAttrs(q.question + " · " + q.id) + '>' + esc(q.question) + "</a>" : ""; }).join("") + "</div>" : "") +
+          '<div class="hero-actions" style="margin-top:16px"><button class="btn btn-primary" id="p-again" type="button"' + controlAttrs("再来一组") + '>再来一组</button><a class="btn btn-secondary" href="profile.html"' + linkAttrs("查看画像") + '>查看画像</a></div>';
         $("#p-again").addEventListener("click", () => location.reload());
       }
       render();
@@ -1399,7 +1831,8 @@
   function renderProfile() {
     $("#page").innerHTML = "<h1>能力画像</h1><div id=\"p-profile\"></div>";
     const el = $("#p-profile");
-    const log = JSON.parse(localStorage.getItem("os.practice.log") || "[]");
+    const storedLog = readJSON("os.practice.log", []);
+    const log = (Array.isArray(storedLog) ? storedLog : []).filter((r) => r && typeof r === "object");
     if (!log.length) { el.innerHTML = '<div class="panel"><p class="muted">还没有训练记录，先去<a href="practice.html">随机训练</a>几次。</p></div>'; return; }
     const byDomain = {};
     log.forEach((r) => {
@@ -1413,14 +1846,14 @@
       const pct = Math.round(v.ok / v.total * 100);
       return '<div class="bar"><span class="bar-label">' + esc(domainLabel(k)) + '</span><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><span class="muted">' + pct + "%</span></div>";
     }).join("");
-    const weak = log.filter((r) => r.grade < 2).slice(-10).map((r) => { const q = questionMap()[r.id]; return q ? '<a class="q-row" style="grid-template-columns:1fr" href="questions.html#' + encodeURIComponent(q.id) + '">' + esc(q.question) + "</a>" : ""; }).join("");
+    const weak = log.filter((r) => r.grade < 2).slice(-10).map((r) => { const q = questionMap()[r.id]; return q ? '<a class="q-row" style="grid-template-columns:1fr" href="questions.html#' + encodeURIComponent(q.id) + '"' + linkAttrs(q.question + " · " + q.id) + '>' + esc(q.question) + "</a>" : ""; }).join("");
     const recent = log.slice(-10).reverse().map((r) => { const q = questionMap()[r.id]; return '<div class="rec-row"><span>' + (q ? esc(q.question) : esc(r.id)) + '</span><span class="muted">' + (r.grade === 2 ? "会" : r.grade === 1 ? "模糊" : "不会") + "</span></div>"; }).join("");
     el.innerHTML =
       '<div class="panel"><h2>领域掌握度</h2>' + rows + '<p class="muted" style="margin-top:12px">基于 ' + log.length + ' 次作答估算</p></div>' +
       (weak ? '<div class="panel" style="margin-top:16px"><h2>最近薄弱</h2><div class="q-list">' + weak + "</div></div>" : "") +
       '<div class="panel" style="margin-top:16px"><h2>最近记录</h2>' + recent + "</div>" +
-      '<div style="margin-top:16px"><button class="btn btn-secondary" id="p-reset">清空训练记录</button></div>';
-    $("#p-reset").addEventListener("click", () => { if (confirm("确定清空本地训练记录？")) { localStorage.removeItem("os.practice.log"); location.reload(); } });
+      '<div style="margin-top:16px"><button class="btn btn-secondary" id="p-reset" type="button"' + controlAttrs("清空训练记录") + ">清空训练记录</button></div>";
+    $("#p-reset").addEventListener("click", () => { if (confirm("确定清空本地训练记录？")) { removeText("os.practice.log"); location.reload(); } });
   }
 
   function boot() {
