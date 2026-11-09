@@ -24,6 +24,9 @@
 # 生成前端数据
 python3 scripts/build.py
 
+# 校验内容、数据一致性与 390px 布局
+python3 scripts/validate.py --strict
+
 # 本地预览（任选其一）
 python3 -m http.server 8000
 # 或直接用浏览器打开 web/index.html

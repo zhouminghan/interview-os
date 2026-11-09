@@ -51,6 +51,7 @@ profile.html     个人能力画像
 - Phase 2 训练系统：已落地，0-5 掌握度、维度评分、错题与复习队列、定向训练、LocalStorage 统一为 `os.mastery.v2`。
 - Phase 3 AI 面试官：动态追问与评分仍预留，不上 MVP；当前以苏格拉底引导和人工复核代替。
 - P1/P2/P3 开发计划与验收记录见 `docs/ux-audit-2026-11-09.md`、`docs/content-review-2026-11-09.md`。
+- 持续校验：GitHub Pages 工作流在上传前运行 `scripts/validate.py --strict`，硬错误阻断发布，内容债务只警告。
 
 ## 决策记录
 
