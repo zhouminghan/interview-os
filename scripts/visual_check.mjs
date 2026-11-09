@@ -1,6 +1,5 @@
 import { spawn } from 'node:child_process';
-import { WebSocket } from 'node:http';
-import { mkdtempSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -23,18 +22,31 @@ function chromeArgs(userDir) {
 
 async function main() {
   const userDir = mkdtempSync(join(tmpdir(), 'interview-os-cdp-'));
-  const chrome = spawn(CHROME, chromeArgs(userDir), { stdio: ['ignore', 'ignore', 'pipe'] });
-  let stderr = '';
-  chrome.stderr.on('data', (d) => { stderr += d.toString(); });
+  if (typeof globalThis.WebSocket !== 'function') {
+    throw new Error('Node.js 22+ with global WebSocket is required');
+  }
+  const chrome = spawn(CHROME, chromeArgs(userDir), { stdio: ['ignore', 'pipe', 'pipe'] });
+  let output = '';
+  let spawnError = null;
+  chrome.stdout.on('data', (d) => { output += d.toString(); });
+  chrome.stderr.on('data', (d) => { output += d.toString(); });
+  chrome.on('error', (e) => { spawnError = e; });
   let port = null;
   for (let i = 0; i < 100 && !port; i++) {
-    const m = stderr.match(/DevTools listening on ws:\/\/127\.0\.0\.1:(\d+)\//);
-    if (m) port = Number(m[1]);
-    else await sleep(100);
+    if (spawnError) break;
+    try {
+      const active = readFileSync(join(userDir, 'DevToolsActivePort'), 'utf8').trim().split(/\r?\n/)[0];
+      if (active && /^\d+$/.test(active)) port = Number(active);
+    } catch (e) {}
+    if (!port) {
+      const m = output.match(/DevTools listening on ws:\/\/(?:127\.0\.0\.1|localhost|\[::1\]|0\.0\.0\.0):(\d+)\//);
+      if (m) port = Number(m[1]);
+    }
+    if (!port) await sleep(100);
   }
   if (!port) {
     chrome.kill('SIGTERM');
-    throw new Error('Chrome DevTools port not detected: ' + stderr.slice(-400));
+    throw new Error('Chrome DevTools port not detected: ' + (spawnError ? String(spawnError) : output.slice(-400)));
   }
 
   let target = null;
@@ -51,7 +63,7 @@ async function main() {
     throw new Error('No Chrome page target available');
   }
 
-  const ws = new WebSocket(target.webSocketDebuggerUrl);
+  const ws = new globalThis.WebSocket(target.webSocketDebuggerUrl);
   await new Promise((res, rej) => {
     ws.addEventListener('open', res, { once: true });
     ws.addEventListener('error', rej, { once: true });
@@ -102,8 +114,9 @@ async function main() {
       if (pageErrors.length) result.hardErrors.push(`${page}: ${pageErrors.length} console errors`);
     }
   } finally {
-    ws.close();
+    try { ws.close(); } catch (e) {}
     chrome.kill('SIGTERM');
+    try { rmSync(userDir, { recursive: true, force: true }); } catch (e) {}
   }
   console.log(JSON.stringify(result));
   if (result.hardErrors.length) process.exit(1);

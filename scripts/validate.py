@@ -38,6 +38,28 @@ def answer_text(q):
     return re.sub(r"\s+", "", html.unescape(re.sub(r"<[^>]+>", " ", markup)))
 
 
+def last_line(text):
+    lines = (text or "").strip().splitlines()
+    return lines[-1] if lines else "no output"
+
+
+def resolve_chrome():
+    raw = (
+        os.environ.get("CHROME_BIN")
+        or shutil.which("google-chrome")
+        or shutil.which("chromium")
+        or shutil.which("chromium-browser")
+        or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    )
+    if not raw:
+        return None
+    raw_str = str(raw)
+    if raw_str.startswith(("~", "./", "../")) or os.path.isabs(raw_str) or "/" in raw_str or "\\" in raw_str:
+        candidate = Path(os.path.abspath(os.path.expanduser(raw_str)))
+        return str(candidate) if candidate.is_file() and os.access(candidate, os.X_OK) else None
+    return shutil.which(raw_str)
+
+
 def check_data_consistency():
     hard, warn = [], []
     try:
@@ -128,15 +150,13 @@ def check_content(data):
 
 
 def check_visual():
-    chrome = (
-        os.environ.get("CHROME_BIN")
-        or shutil.which("google-chrome")
-        or shutil.which("chromium")
-        or shutil.which("chromium-browser")
-        or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-    )
-    if not chrome or not Path(chrome).exists():
-        return ["未找到 Chrome，无法执行 390px CDP 校验"], []
+    chrome = resolve_chrome()
+    if not chrome:
+        return [
+            "未找到 Chrome 可执行文件（CHROME_BIN="
+            + (os.environ.get("CHROME_BIN") or "auto")
+            + "），无法执行 390px CDP 校验"
+        ], []
     env = os.environ.copy()
     env["CHROME_BIN"] = chrome
     proc = subprocess.run(
@@ -148,10 +168,10 @@ def check_visual():
         hard = list(payload.get("hardErrors") or [])
         warn = list(payload.get("warnings") or [])
         if proc.returncode != 0 and not hard:
-            hard.append("CDP 视觉检查失败：" + proc.stderr.strip().splitlines()[-1])
+            hard.append("CDP 视觉检查失败：" + last_line(proc.stderr or proc.stdout))
         return hard, warn
     except Exception:
-        return ["CDP 视觉检查输出无法解析：" + (proc.stderr.strip().splitlines()[-1] if proc.stderr else "no output")], []
+        return ["CDP 视觉检查输出无法解析：" + last_line(proc.stderr or proc.stdout)], []
 
 
 def main():
