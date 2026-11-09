@@ -38,6 +38,101 @@ DOMAIN_META = {
 }
 DOMAIN_ORDER = ["spark", "hdfs", "storage", "lakehouse", "starrocks", "flink", "network", "algorithm", "statistics", "ml", "llm", "platform", "system", "warehouse", "sql", "project"]
 
+QUESTION_ID_RE = re.compile(
+    r"^(?:ALGORITHM|FLINK|HDFS|LAKEHOUSE|LLM|ML|NETWORK|PLATFORM|PROJECT|SPARK|SQL|STARROCKS|STATISTICS|STORAGE|SYSTEM|WAREHOUSE)-\d{4}$"
+)
+VALID_SOURCE_TYPES = {"knowledge", "ai_generated"}
+REQUIRED_TECHNICAL_STAGES = {"pitch", "short", "long", "followup"}
+
+STAGE_LABELS = {
+    "thinking": "回答思路",
+    "pitch": "一句话",
+    "short": "30 秒回答",
+    "long": "1 分钟回答",
+    "followup": "追问",
+    "project": "项目结合",
+    "risk": "风险点",
+    "framework": "表达框架",
+    "coach": "教练备注",
+    "notes": "补充说明",
+}
+
+
+def _normalize_stage_title(value) -> str:
+    text = str(value or "").strip().lower()
+    text = re.sub(r"\s+", "", text)
+    return text.replace("（", "(").replace("）", ")").replace("，", ",").replace("：", ":")
+
+
+STAGE_RULES = (
+    ("thinking", (
+        "回答思路", "思路", "正确回答思路", "整体回答框架", "核心回答框架",
+        "回答核心框架", "标准回答框架", "题目理解", "优化思路", "整体架构介绍",
+    )),
+    ("pitch", ("一句话", "一句话总结", "核心结论")),
+    ("short", ("30 秒", "30秒", "记忆版本", "最终面试版", "最终记忆版", "面试记忆版")),
+    ("long", (
+        "1 分钟", "1分钟", "一分钟", "参考回答", "标准回答", "面试标准回答",
+        "如果我是求职者", "求职者视角",
+    )),
+    ("followup", ("追问", "面试官继续问", "面试官追问", "可能追问", "如果继续追问")),
+    ("project", ("项目结合", "业务结合", "结合你的项目", "结合QQ频道", "结合项目")),
+    ("risk", ("风险", "踩坑", "踩的坑", "容易扣分", "常见错误", "扣分点")),
+    ("framework", ("回答框架", "待补充", "要点提纲")),
+    ("coach", (
+        "评分", "你的原回答评价", "你的面试表现", "技术自检", "表达训练",
+        "表达提升", "表达能力", "表达技巧", "表达节奏", "回答里遗漏",
+    )),
+)
+STAGE_RULES = tuple(
+    (key, tuple(_normalize_stage_title(token) for token in tokens))
+    for key, tokens in STAGE_RULES
+)
+
+TECHNICAL_ANSWER_OUTLINE = [
+    "先给结论：用一句话讲清 mechanism / 结论",
+    "展开机制：用 30 秒讲 2-3 个关键点，不堆名词",
+    "补边界与落地：参数、取舍、异常、项目场景",
+    "准备追问：回到原理、失败场景与优化空间",
+]
+PERSONAL_ANSWER_OUTLINE = [
+    "先交代背景：说明场景与约束，只填真实信息",
+    "再讲目标：说清任务、责任边界和判断标准",
+    "展开动作：按关键决策顺序讲做了什么、为什么这样做",
+    "给出结果：说明结果、反馈与可核实的变化",
+    "最后复盘：讲取舍、风险和后续改进",
+]
+
+CIRCLED_NUMBERS = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
+CIRCLED_INDEX = {char: i + 1 for i, char in enumerate(CIRCLED_NUMBERS)}
+MAX_OCR_ITEM_NUMBER = 50
+
+START_ARABIC_MARK_RE = re.compile(r"^\s*(?P<num>\d{1,2})\s*[.、．)）](?!\d)\s*")
+START_CIRCLED_MARK_RE = re.compile(r"^\s*(?P<mark>[" + re.escape(CIRCLED_NUMBERS) + r"])\s*")
+START_BARE_MARK_RE = re.compile(r"^\s*(?P<num>0?\d{1,2})(?:\s+|(?=[一-龥A-Za-z]))")
+STANDALONE_NUMBER_RE = re.compile(r"^\s*(?P<num>0?\d{1,2})\s*[/、.．]?\s*$")
+STANDALONE_CIRCLED_RE = re.compile(r"^\s*(?P<mark>[" + re.escape(CIRCLED_NUMBERS) + r"])\s*$")
+
+ITEM_PREFIX = r"[\s，。；;：:、！？!?）)]"
+INLINE_ARABIC_MARK_RE = re.compile(
+    r"(?P<prefix>" + ITEM_PREFIX + r")(?P<num>\d{1,2})\s*[.、．)）](?!\d)\s*"
+)
+INLINE_CIRCLED_MARK_RE = re.compile(
+    r"(?P<prefix>" + ITEM_PREFIX + r")(?P<mark>[" + re.escape(CIRCLED_NUMBERS) + r"])\s*"
+)
+INLINE_BARE_MARK_RE = re.compile(
+    r"(?P<prefix>" + ITEM_PREFIX + r")(?P<num>0?\d{1,2})\s+(?=[一-龥A-Za-z?？])"
+)
+SOURCE_LINE_RE = re.compile(
+    r"(?:^|[>\s*•-])(?:备注|来源|原帖|发布日期|发布时间|图片|OCR|题源|来源说明|具体面经见|题目全部来自|纯图片笔记)",
+    re.I,
+)
+DATE_LINE_RE = re.compile(r"^(?:\d{4}[-/.年]\d{1,2}|\d{1,2}[.．]\d{1,2}[-—~至])")
+NON_QUESTION_PREFIX_RE = re.compile(
+    r"^(?:个|年|月|日|分钟|小时|秒|mins?|min|h|届|轮|面|题|道|位|人|次|%)",
+    re.I,
+)
+
 
 def split_frontmatter(text: str):
     if not text.startswith("---"):
@@ -187,6 +282,209 @@ def read_md(path: Path):
     return meta, body
 
 
+def _truthy(value) -> bool:
+    if isinstance(value, str):
+        return value.strip().lower() in ("true", "yes", "1", "y", "是")
+    return bool(value)
+
+
+def canonical_stage(title, q_type, needs_personal_input):
+    """把历史章节标题归一到稳定的展示 / 筛选阶段，不改动原始标题。"""
+    normalized = _normalize_stage_title(title)
+    normalized_type = str(q_type or "").strip().lower()
+    personal = _truthy(needs_personal_input)
+    for key, tokens in STAGE_RULES:
+        if key == "framework" and normalized_type == "technical" and not personal:
+            continue
+        if any(token in normalized for token in tokens):
+            return {"stage_key": key, "stage_label": STAGE_LABELS[key]}
+    return {"stage_key": "notes", "stage_label": STAGE_LABELS["notes"]}
+
+
+def _answer_outline(q_type, needs_personal_input, sections):
+    if any(sec.get("stage_key") == "thinking" for sec in sections):
+        return []
+    if str(q_type or "").strip().lower() != "technical" or _truthy(needs_personal_input):
+        return list(PERSONAL_ANSWER_OUTLINE)
+    return list(TECHNICAL_ANSWER_OUTLINE)
+
+
+def _is_source_line(line: str) -> bool:
+    s = str(line or "").strip()
+    if not s or s.startswith((">", "```", "#")) or s in ("---", "***", "___"):
+        return True
+    if DATE_LINE_RE.match(s) or SOURCE_LINE_RE.search(s):
+        return True
+    return bool(re.fullmatch(r"[#＃]\S+(?:\s+[#＃]\S+)*", s))
+
+
+def _looks_like_item_body(text: str) -> bool:
+    s = re.sub(r"^[\s>\-•*]+", "", str(text or ""))
+    if len(s) < 2 or _is_source_line(s) or NON_QUESTION_PREFIX_RE.match(s):
+        return False
+    return True
+
+
+def _clean_interview_text(content: str) -> str:
+    cleaned = []
+    in_code = False
+    for line in str(content or "").split("\n"):
+        s = line.strip()
+        if s.startswith("```"):
+            in_code = not in_code
+            cleaned.append("")
+            continue
+        if in_code or _is_source_line(s):
+            cleaned.append("")
+        else:
+            cleaned.append(line)
+    return "\n".join(cleaned)
+
+
+def _plausible_number_sequence(numbers) -> bool:
+    if len(numbers) < 2 or any(n < 1 or n > MAX_OCR_ITEM_NUMBER for n in numbers):
+        return False
+    positive_steps = 0
+    for current, following in zip(numbers, numbers[1:]):
+        step = following - current
+        if 1 <= step <= 2:
+            positive_steps += 1
+        elif following != 1:
+            return False
+    return positive_steps >= 1
+
+
+def _extract_legacy_items(content: str, strict: bool = False):
+    """保留原有列表解析行为，用于逐篇维持既有面经的 items 数量。"""
+    list_start = r"^(\d+)[.、．](?!\d)\s*(.*)$" if strict else r"^(\d+)[.、．]\s*(.*)$"
+    split_at = r"(?<=\S)\s+(?=\d+[.、．](?!\d))" if strict else r"(?<=\S)\s+(?=\d+[.、．]\s)"
+    lines = content.split("\n")
+    normalized = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if re.search(r"\d+[.、．]\s*$", line.strip()) and i + 1 < len(lines):
+            nxt = lines[i + 1].strip()
+            if nxt and not re.match(r"^\d+[.、．]\s", nxt) and not nxt.startswith((">", "#", "```")):
+                normalized.append(line.rstrip() + " " + nxt)
+                i += 2
+                continue
+        normalized.append(line)
+        i += 1
+
+    items = []
+    for line in normalized:
+        s = line.strip()
+        if not s or s.startswith(">") or s.startswith("```"):
+            continue
+        parts = re.split(split_at, s)
+        if len(parts) > 1:
+            for p in parts:
+                m = re.match(list_start, p.strip())
+                if m:
+                    items.append({"n": int(m.group(1)), "text": m.group(2).strip()})
+            continue
+        m = re.match(list_start, s)
+        if m:
+            items.append({"n": int(m.group(1)), "text": m.group(2).strip()})
+    return items
+
+
+def _extract_marker_items(content: str):
+    """从行内编号、圈号和 OCR 裸序号里提取题面，沿用原文片段。"""
+    candidates = []
+    offset = 0
+    for line in content.split("\n"):
+        line_start = offset
+        offset += len(line) + 1
+        if not line.strip():
+            continue
+
+        m = STANDALONE_NUMBER_RE.match(line)
+        if m:
+            n = int(m.group("num"))
+            if 1 <= n <= MAX_OCR_ITEM_NUMBER:
+                candidates.append({
+                    "n": n, "start": line_start, "end": line_start + len(line),
+                    "confidence": "standalone",
+                })
+            continue
+        m = STANDALONE_CIRCLED_RE.match(line)
+        if m:
+            candidates.append({
+                "n": CIRCLED_INDEX[m.group("mark")], "start": line_start,
+                "end": line_start + len(line), "confidence": "standalone",
+            })
+            continue
+
+        m = START_ARABIC_MARK_RE.match(line)
+        if m:
+            n = int(m.group("num"))
+            if 1 <= n <= MAX_OCR_ITEM_NUMBER:
+                candidates.append({
+                    "n": n, "start": line_start + m.start("num"),
+                    "end": line_start + m.end(), "confidence": "strong",
+                })
+        else:
+            m = START_CIRCLED_MARK_RE.match(line)
+            if m:
+                candidates.append({
+                    "n": CIRCLED_INDEX[m.group("mark")],
+                    "start": line_start + m.start("mark"),
+                    "end": line_start + m.end(), "confidence": "strong",
+                })
+            else:
+                m = START_BARE_MARK_RE.match(line)
+                if m:
+                    n = int(m.group("num"))
+                    if 1 <= n <= MAX_OCR_ITEM_NUMBER and _looks_like_item_body(line[m.end():]):
+                        candidates.append({
+                            "n": n, "start": line_start + m.start("num"),
+                            "end": line_start + m.end(), "confidence": "weak",
+                        })
+
+        for regex, group, confidence in (
+            (INLINE_ARABIC_MARK_RE, "num", "strong"),
+            (INLINE_CIRCLED_MARK_RE, "mark", "strong"),
+            (INLINE_BARE_MARK_RE, "num", "weak"),
+        ):
+            for m in regex.finditer(line):
+                raw = m.group(group)
+                n = int(raw) if group == "num" else CIRCLED_INDEX[raw]
+                if not 1 <= n <= MAX_OCR_ITEM_NUMBER:
+                    continue
+                if confidence == "weak" and not _looks_like_item_body(line[m.end():]):
+                    continue
+                candidates.append({
+                    "n": n, "start": line_start + m.start(group),
+                    "end": line_start + m.end(), "confidence": confidence,
+                })
+
+    priority = {"strong": 0, "standalone": 1, "weak": 2}
+    candidates.sort(key=lambda c: (c["start"], priority[c["confidence"]], c["end"]))
+    deduped = []
+    for candidate in candidates:
+        if deduped and candidate["start"] < deduped[-1]["end"]:
+            continue
+        deduped.append(candidate)
+
+    sequence = _plausible_number_sequence([c["n"] for c in deduped])
+    if sequence:
+        kept = deduped
+    elif any(c["confidence"] == "strong" for c in deduped):
+        kept = [c for c in deduped if c["confidence"] == "strong"]
+    else:
+        kept = []
+
+    items = []
+    for i, candidate in enumerate(kept):
+        end = kept[i + 1]["start"] if i + 1 < len(kept) else len(content)
+        text = content[candidate["end"]:end].strip()
+        if text and len(re.sub(r"\s+", "", text)) >= 2:
+            items.append({"n": candidate["n"], "text": text})
+    return items
+
+
 def parse_sections(body: str):
     """按一级标题把正文切成章节，供交互式逐阶段展示。"""
     sections = []
@@ -268,38 +566,33 @@ def parse_system_stages(body: str):
     return stages
 
 
-def extract_items(content: str):
-    """把面经里的编号题拆成条目，兼容一行多条和标准列表两种写法。"""
-    lines = content.split("\n")
-    normalized = []
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-        if re.search(r"\d+[.、．]\s*$", line.strip()) and i + 1 < len(lines):
-            nxt = lines[i + 1].strip()
-            if nxt and not re.match(r"^\d+[.、．]\s", nxt) and not nxt.startswith((">", "#", "```")):
-                normalized.append(line.rstrip() + " " + nxt)
-                i += 2
-                continue
-        normalized.append(line)
-        i += 1
+def extract_items(content: str, legacy_only: bool = False):
+    """兼容标准列表、行内编号、圈号与图片 OCR 的裸序号。"""
+    if legacy_only:
+        return _extract_legacy_items(content)
+    cleaned = _clean_interview_text(content)
+    legacy_items = _extract_legacy_items(cleaned, strict=True)
+    marker_items = _extract_marker_items(cleaned)
+    if marker_items and len(marker_items) >= len(legacy_items):
+        return marker_items
+    return legacy_items
 
-    items = []
-    for line in normalized:
+
+def _strip_interview_notes(content: str) -> str:
+    """兜底原文只排除备注与代码块；原始 body_html / sections 仍完整保留。"""
+    cleaned = []
+    in_code = False
+    for line in str(content or "").split("\n"):
         s = line.strip()
-        if not s or s.startswith(">") or s.startswith("```"):
+        if s.startswith("```"):
+            in_code = not in_code
+            cleaned.append("")
             continue
-        parts = re.split(r"(?<=\S)\s+(?=\d+[.、．]\s)", s)
-        if len(parts) > 1:
-            for p in parts:
-                m = re.match(r"^(\d+)[.、．]\s*(.*)$", p.strip())
-                if m:
-                    items.append({"n": int(m.group(1)), "text": m.group(2).strip()})
-            continue
-        m = re.match(r"^(\d+)[.、．]\s*(.*)$", s)
-        if m:
-            items.append({"n": int(m.group(1)), "text": m.group(2).strip()})
-    return items
+        if in_code or s.startswith(">"):
+            cleaned.append("")
+        else:
+            cleaned.append(line)
+    return "\n".join(cleaned).strip()
 
 
 def extract_diagrams(content: str):
@@ -375,17 +668,22 @@ def load_questions():
         meta.setdefault("frequency", "")
         meta.setdefault("source_type", "unknown")
         meta["domain"] = domain
+        q_type = meta["type"]
+        personal = _truthy(meta.get("needs_personal_input"))
         sections = []
         diagrams = []
         for sec in parse_sections(body.strip()):
             content, sec_diagrams = extract_diagrams(sec["content"])
+            stage = canonical_stage(sec["title"], q_type, personal)
             sections.append({
                 "title": sec["title"],
                 "html": md_to_html(content),
                 "diagram": normalize_diagram(sec_diagrams[0]) if sec_diagrams else None,
+                **stage,
             })
             diagrams.extend(sec_diagrams)
         meta["sections"] = sections
+        meta["answer_outline"] = _answer_outline(q_type, personal, sections)
         meta["diagrams"] = [normalize_diagram(d) for d in diagrams if normalize_diagram(d)]
         items.append(meta)
     items.sort(key=lambda q: (DOMAIN_ORDER.index(q["domain"]) if q["domain"] in DOMAIN_ORDER else 99, q["id"]))
@@ -403,8 +701,9 @@ def load_interviews(questions):
         sections = []
         flat_items = []
         note_lines = []
-        for sec in parse_interview_sections(body.strip()):
-            sec_items = extract_items(sec["content"])
+        parsed_sections = parse_interview_sections(body.strip())
+        for sec in parsed_sections:
+            sec_items = extract_items(sec["content"], legacy_only=True)
             for it in sec_items:
                 it["section"] = sec["title"] or ""
             note_lines.extend(line for line in sec["content"].split("\n") if line.strip().startswith(">"))
@@ -414,6 +713,32 @@ def load_interviews(questions):
                 "items": sec_items,
             })
             flat_items.extend(sec_items)
+
+        # 只有整份面经用旧解析器得不到题目时，才启用 OCR / 散文补解析。
+        if not flat_items:
+            flat_items = []
+            for parsed_sec, rendered in zip(parsed_sections, sections):
+                sec_items = extract_items(parsed_sec["content"])
+                for it in sec_items:
+                    it["section"] = rendered["title"] or ""
+                rendered["items"] = sec_items
+                flat_items.extend(sec_items)
+
+        if not flat_items:
+            for parsed_sec, rendered in zip(parsed_sections, sections):
+                if not parsed_sec["content"].strip():
+                    continue
+                prose_html = md_to_html(_strip_interview_notes(parsed_sec["content"]))
+                prose_item = {
+                    "n": 0,
+                    "kind": "prose",
+                    "title": "原文记录",
+                    "text": prose_html,
+                    "section": rendered["title"] or "",
+                }
+                rendered["items"].append(prose_item)
+                flat_items.append(prose_item)
+
         meta["sections"] = sections
         meta["items"] = flat_items
         meta["notes_html"] = md_to_html("\n".join(note_lines))
@@ -464,10 +789,81 @@ def load_systems():
     return items
 
 
+def _answer_text_length(q) -> int:
+    sections = q.get("sections") or []
+    markup = "".join(str(sec.get("html") or "") for sec in sections if isinstance(sec, dict))
+    if not markup:
+        markup = str(q.get("body_html") or "")
+    text = html.unescape(re.sub(r"<[^>]+>", " ", markup))
+    return len(re.sub(r"\s+", "", text))
+
+
+def validate_payload(questions, interviews):
+    """输出内容结构诊断，构建过程不因内容问题中断。"""
+    seen_ids = set()
+    duplicate_ids = 0
+    invalid_ids = 0
+    unknown_source_types = 0
+    knowledge_with_sources = 0
+    short_technical_answers = 0
+    missing_canonical_stages = 0
+
+    for q in questions:
+        qid = str(q.get("id") or "")
+        if qid in seen_ids:
+            duplicate_ids += 1
+        else:
+            seen_ids.add(qid)
+        if not QUESTION_ID_RE.fullmatch(qid):
+            invalid_ids += 1
+        source_type = str(q.get("source_type") or "")
+        if source_type not in VALID_SOURCE_TYPES:
+            unknown_source_types += 1
+        if source_type == "knowledge" and q.get("sources"):
+            knowledge_with_sources += 1
+        if str(q.get("type") or "").strip().lower() == "technical":
+            if _answer_text_length(q) < 120:
+                short_technical_answers += 1
+            stage_keys = {
+                str(sec.get("stage_key") or "")
+                for sec in (q.get("sections") or [])
+                if isinstance(sec, dict)
+            }
+            if not REQUIRED_TECHNICAL_STAGES.issubset(stage_keys):
+                missing_canonical_stages += 1
+
+    empty_interviews = sum(1 for iv in interviews if not (iv.get("items") or []))
+    summary = {
+        "duplicate_ids": duplicate_ids,
+        "invalid_ids": invalid_ids,
+        "unknown_source_types": unknown_source_types,
+        "knowledge_with_sources": knowledge_with_sources,
+        "short_technical_answers": short_technical_answers,
+        "missing_canonical_stages": missing_canonical_stages,
+        "empty_interviews": empty_interviews,
+    }
+    print(
+        "校验：重复 ID %d / 非法 ID %d / 未知 source_type %d / "
+        "knowledge 带 sources %d / technical 答案正文<120字 %d / "
+        "缺 canonical stage %d / 0 items 面经 %d"
+        % (
+            duplicate_ids,
+            invalid_ids,
+            unknown_source_types,
+            knowledge_with_sources,
+            short_technical_answers,
+            missing_canonical_stages,
+            empty_interviews,
+        )
+    )
+    return summary
+
+
 def main():
     questions = load_questions()
     interviews = load_interviews(questions)
     systems = load_systems()
+    validate_payload(questions, interviews)
     domains = {}
     for q in questions:
         d = q["domain"]
