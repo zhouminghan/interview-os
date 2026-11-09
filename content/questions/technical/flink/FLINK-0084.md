@@ -6,7 +6,7 @@ topic:
 - flink
 difficulty: 1
 frequency: low
-source_type: knowledge
+source_type: ai_generated
 sources:
   - interview_id: INTERVIEW-2026-10-10-bytedance-data-dev-3round
     company: 字节跳动

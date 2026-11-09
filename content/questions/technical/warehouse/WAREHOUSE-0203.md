@@ -4,7 +4,7 @@ type: technical
 question: 指标覆盖率如何衡量？指标管理怎么做？
 difficulty: 0
 topic: []
-source_type: knowledge
+source_type: ai_generated
 sources:
   - interview_id: INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing
     company: 字节跳动

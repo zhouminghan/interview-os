@@ -4,7 +4,7 @@ type: technical
 question: 如何设计用户画像/交易/日志数仓分层模型？（ODS→DWD→DWS→ADS画图讲解）
 difficulty: 0
 topic: []
-source_type: knowledge
+source_type: ai_generated
 sources:
   - interview_id: INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing
     company: 字节跳动

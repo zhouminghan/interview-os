@@ -4,7 +4,7 @@ type: technical
 question: 在数据治理层面，针对用户隐私数据（如PII信息）的处理，你有哪些实践经验或思考？
 difficulty: 0
 topic: []
-source_type: knowledge
+source_type: ai_generated
 sources:
   - interview_id: INTERVIEW-2026-09-27-google-ai-de
     company: Google

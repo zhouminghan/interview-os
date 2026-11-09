@@ -4,7 +4,7 @@ type: technical
 question: 数据安全、权限、脱敏、合规处理？
 difficulty: 0
 topic: []
-source_type: knowledge
+source_type: ai_generated
 sources:
   - interview_id: INTERVIEW-2026-09-27-google-ai-de
     company: Google

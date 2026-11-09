@@ -6,7 +6,7 @@ topic:
 - spark
 difficulty: 1
 frequency: low
-source_type: knowledge
+source_type: ai_generated
 sources:
   - interview_id: INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing
     company: 字节跳动

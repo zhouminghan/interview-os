@@ -4,7 +4,7 @@ type: technical
 question: 数据治理具体包含哪些内容？
 difficulty: 0
 topic: []
-source_type: knowledge
+source_type: ai_generated
 sources:
   - interview_id: INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing
     company: 字节跳动

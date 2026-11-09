@@ -4,7 +4,7 @@ type: technical
 question: 你如何理解数据开发中的"维度建模"，在实际项目中如何应用？
 difficulty: 0
 topic: []
-source_type: knowledge
+source_type: ai_generated
 sources:
   - interview_id: INTERVIEW-2026-10-13-yangteng-data-dev
     company: 扬腾创新

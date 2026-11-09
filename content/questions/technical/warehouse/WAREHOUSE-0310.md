@@ -4,7 +4,7 @@ type: technical
 question: ODS层如何保证时效性？什么时候全量转增量？
 difficulty: 0
 topic: []
-source_type: knowledge
+source_type: ai_generated
 sources:
   - interview_id: INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing
     company: 字节跳动

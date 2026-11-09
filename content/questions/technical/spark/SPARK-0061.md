@@ -6,7 +6,7 @@ topic:
 - spark
 difficulty: 1
 frequency: low
-source_type: knowledge
+source_type: ai_generated
 sources:
   - interview_id: INTERVIEW-2026-10-13-yangteng-data-dev
     company: 扬腾创新
