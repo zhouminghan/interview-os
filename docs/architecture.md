@@ -26,16 +26,16 @@ Interview Agent（parse / classify / extract / match / generate / validate）
 
 核心：面经负责提供真实问题，知识库负责沉淀，训练系统负责把知识变成能力。
 
-## 页面（第一版）
+## 页面
 
 ```
-/            首页
-/interviews  面经
-/questions   问题库
-/systems     系统图解（分阶段架构 / 数据流 / SOP）
-/explore     逐题阶段演示（问题卡）
-/practice    随机训练
-/profile     个人能力画像
+index.html       总览
+questions.html   问题库
+systems.html     系统图解（分阶段架构 / 数据流 / SOP）
+explore.html     交互式学习（逐题阶段演示，历史别名：探索）
+interviews.html  面经
+practice.html    随机训练
+profile.html     个人能力画像
 ```
 
 ## 技术栈（MVP）
@@ -45,11 +45,12 @@ Interview Agent（parse / classify / extract / match / generate / validate）
 - 训练状态：LocalStorage
 - 部署：GitHub Pages
 
-## 分阶段
+## 分阶段状态（2026-11-09）
 
-- Phase 1 知识库：面经 -> 高质量 QA -> 可检索
-- Phase 2 训练系统：随机抽题、错题、掌握度、复习
-- Phase 3 AI 面试官：动态追问 + 评分（预留，不上 MVP）
+- Phase 1 知识库：已落地，3169 题 / 170 面经 / 12 系统图解，支持搜索、排序、阶段目录与来源关联。
+- Phase 2 训练系统：已落地，0-5 掌握度、维度评分、错题与复习队列、定向训练、LocalStorage 统一为 `os.mastery.v2`。
+- Phase 3 AI 面试官：动态追问与评分仍预留，不上 MVP；当前以苏格拉底引导和人工复核代替。
+- P1/P2/P3 开发计划与验收记录见 `docs/ux-audit-2026-11-09.md`、`docs/content-review-2026-11-09.md`。
 
 ## 决策记录
 

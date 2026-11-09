@@ -27,6 +27,7 @@
   const MASTERY_BACKUP_KEY = "os.mastery.v1.backup";
   const PRACTICE_LOG_KEY = "os.practice.log";
   const PRACTICE_QUEUE_KEY = "os.practice.queue";
+  const RECENT_QUESTIONS_KEY = "os.recentQuestions";
   const DIMENSION_SETS = {
     technical: ["knowledge", "expression", "project", "follow_up"],
     project: ["content", "expression", "structure", "risk"],
@@ -143,6 +144,42 @@
     }
     showFeedback.timer = setTimeout(() => { el.hidden = true; }, 4000);
   }
+  function recentQuestions() {
+    const list = readJSON(RECENT_QUESTIONS_KEY, []);
+    return Array.isArray(list) ? list.filter((id) => typeof id === "string") : [];
+  }
+  function pushRecentQuestion(id) {
+    const list = recentQuestions().filter((x) => x !== id);
+    list.unshift(id);
+    writeJSON(RECENT_QUESTIONS_KEY, list.slice(0, 20));
+  }
+  function sortQuestions(list, mode) {
+    const arr = list.slice();
+    const mastery = masteryStore().questions || {};
+    const recent = recentQuestions();
+    const freqRank = { high: 0, medium: 1, low: 2, "": 3 };
+    const score = (q) => {
+      const m = mastery[q.id];
+      return m && Number.isFinite(Number(m.total)) ? Number(m.total) : 0;
+    };
+    if (mode === "frequency") arr.sort((a, b) => (freqRank[a.frequency] ?? 3) - (freqRank[b.frequency] ?? 3) || String(a.id).localeCompare(String(b.id)));
+    else if (mode === "difficulty") arr.sort((a, b) => (Number(b.difficulty) || 0) - (Number(a.difficulty) || 0) || String(a.id).localeCompare(String(b.id)));
+    else if (mode === "recent") {
+      const rank = {}; recent.forEach((id, i) => { rank[id] = i; });
+      arr.sort((a, b) => (rank[a.id] ?? 9999) - (rank[b.id] ?? 9999) || String(a.id).localeCompare(String(b.id)));
+    } else if (mode === "mastery") arr.sort((a, b) => score(a) - score(b) || String(a.id).localeCompare(String(b.id)));
+    return arr;
+  }
+  function speedButton(id, speed) {
+    return '<button class="speed-btn" id="' + esc(id) + '" type="button" data-speed="' + speed + '"' +
+      controlAttrs("播放速度 " + speed + "×") + '>' + speed + '×</button>';
+  }
+  function stageTOC(stages, prefix) {
+    if (!stages.length) return "";
+    return '<nav class="stage-toc" aria-label="阶段目录">' + stages.map((s, i) =>
+      '<a href="#' + esc(prefix) + '-' + i + '"' + linkAttrs((s.stage_label || s.title || "阶段") + " " + (i + 1)) + '>' +
+      esc(s.stage_label || s.title || "阶段") + '</a>').join("") + '</nav>';
+  }
 
   function controlAttrs(label, pressed, extra) {
     return (extra || "") + ' aria-label="' + esc(label) + '" title="' + esc(label) + '"' +
@@ -185,7 +222,7 @@
       ["index", "总览", "index.html"],
       ["questions", "问题库", "questions.html"],
       ["systems", "系统图解", "systems.html"],
-      ["explore", "交互学习", "explore.html"],
+      ["explore", "交互式学习", "explore.html"],
       ["interviews", "面经", "interviews.html"],
       ["practice", "训练", "practice.html"],
       ["profile", "画像", "profile.html"]
@@ -407,11 +444,11 @@
     return outline ? [outline].concat(stages) : stages;
   }
 
-  function sectionCardsHTML(q, includeCoach) {
+  function sectionCardsHTML(q, includeCoach, prefix) {
     return displayQuestionStages(q, includeCoach).map((s, i) => {
       const hasDiag = !!s.diagram;
       const title = s.stage_label || s.title || "概述";
-      return '<section class="qa-section">' +
+      return '<section class="qa-section" id="' + esc(prefix || "qa") + '-' + i + '">' +
         '<h3 class="qa-section-title"><span class="qa-num">' + String(i + 1).padStart(2, "0") + "</span>" + esc(title) +
         (hasDiag ? '<span class="qa-badge">图</span>' : "") + "</h3>" +
         '<div class="qa-section-body">' + (s.html || "") + "</div>" +
@@ -431,6 +468,8 @@
 
   function mountDiagram(el, d) {
     el.classList.add("dg-mounted");
+    el.setAttribute("role", "img");
+    el.setAttribute("aria-label", "示意图：" + String(d.title || d.type || "流程"));
     if (d.type === "seq") renderSeqDiagram(el, d);
     else renderFlowDiagram(el, d);
   }
@@ -728,6 +767,8 @@
     const domains = domainKeys.map((k) => ({ k: k, n: s.domains[k] || 0 })).sort((a, b) => b.n - a.n);
     const maxN = domains.length ? domains[0].n : 1;
     const recent = D.interviews.slice(0, 3);
+    const byId = questionMap();
+    const recentQ = recentQuestions().slice(0, 5).map((id) => byId[id]).filter(Boolean);
     $("#page").innerHTML =
       "<h1>Interview OS</h1>" +
       '<p class="lead">个人面试知识库 · 训练 · 表达 · 谈判</p>' +
@@ -748,7 +789,10 @@
           "</a>").join("") +
       "</div>" +
       "<h2>最近面经</h2>" +
-      (recent.length ? '<div class="interview-list">' + recent.map(interviewCard).join("") + "</div>" : '<p class="muted">还没有面经。</p>');
+      (recent.length ? '<div class="interview-list">' + recent.map(interviewCard).join("") + "</div>" : '<p class="muted">还没有面经。</p>') +
+      "<h2>最近访问题卡</h2>" +
+      (recentQ.length ? '<div class="recent-questions">' + recentQ.map((q) =>
+        '<a class="q-row" style="grid-template-columns:1fr" href="questions.html#' + encodeURIComponent(q.id) + '"' + linkAttrs(q.question + " · " + q.id) + '>' + esc(q.question) + "</a>").join("") + "</div>" : '<p class="muted">还没有访问记录。</p>');
   }
 
   function renderQuestions() {
@@ -759,13 +803,16 @@
     const byId = questionMap();
     const requestedType = params.get("type");
     const requestedDomain = params.get("domain");
+    const requestedSort = params.get("sort");
     const state = {
       query: "",
       type: validTypes.includes(requestedType) ? requestedType : "all",
       domain: domainKeys.includes(requestedDomain) ? requestedDomain : "all",
+      sort: ["default", "frequency", "difficulty", "recent", "mastery"].includes(requestedSort) ? requestedSort : "default",
       selected: null,
       limit: PAGE_SIZE,
-      review: false
+      review: false,
+      checked: new Set()
     };
     const deepQ = byId[safeDecode(location.hash.slice(1))];
     let expandForDeepLink = !!deepQ;
@@ -774,14 +821,18 @@
       if (state.domain !== "all" && state.domain !== deepQ.domain) state.domain = domainKeys.includes(deepQ.domain) ? deepQ.domain : "all";
       if (state.type !== "all" && state.type !== deepQ.type) state.type = validTypes.includes(deepQ.type) ? deepQ.type : "all";
     }
+    const sortOptions = [["default", "默认顺序"], ["frequency", "频率"], ["difficulty", "难度"], ["recent", "最近访问"], ["mastery", "掌握度"]]
+      .map(([v, l]) => '<option value="' + v + '"' + (v === state.sort ? " selected" : "") + '>' + l + '</option>').join("");
     $("#page").innerHTML =
       "<h1>问题库</h1>" +
       '<div class="toolbar">' +
         '<input class="search" id="q-search" type="search" placeholder="搜索问题、主题或 ID" aria-label="搜索问题">' +
         '<span class="muted" id="q-count" aria-live="polite"></span>' +
+        '<label class="field q-sort-field"><span>排序</span><select id="q-sort" aria-label="排序方式" title="排序方式">' + sortOptions + '</select></label>' +
         '<div class="chips" id="q-type"></div>' +
         '<div class="chips" id="q-domain"></div>' +
         '<button class="chip" id="q-review" type="button"' + controlAttrs("复盘模式", false) + '>复盘模式</button>' +
+        '<div class="q-batch" id="q-batch"><span class="muted" id="q-batch-count">已选 0 题</span><button class="btn btn-secondary btn-sm" id="q-batch-add" type="button"' + controlAttrs("加入训练") + '>加入训练</button></div>' +
       "</div>" +
       '<div class="split"><div class="q-list" id="q-list"></div><aside class="q-detail" id="q-detail" aria-live="polite"></aside></div>';
 
@@ -791,9 +842,8 @@
       $("#q-domain").innerHTML = [["all", "全部领域"]].concat(domainKeys.map((k) => [k, domainLabel(k)])).map(([v, l]) =>
         chipButton(l, state.domain === v, ' data-domain="' + esc(v) + '"')).join("");
     }
-
     function filtered() {
-      return D.questions.filter((q) => {
+      const list = D.questions.filter((q) => {
         if (state.type !== "all" && q.type !== state.type) return false;
         if (state.domain !== "all" && q.domain !== state.domain) return false;
         if (state.query) {
@@ -802,17 +852,17 @@
         }
         return true;
       });
+      return sortQuestions(list, state.sort);
     }
-
     function syncURL() {
       const url = new URL(location.href);
       if (state.domain === "all") url.searchParams.delete("domain"); else url.searchParams.set("domain", state.domain);
       if (state.type === "all") url.searchParams.delete("type"); else url.searchParams.set("type", state.type);
+      if (state.sort === "default") url.searchParams.delete("sort"); else url.searchParams.set("sort", state.sort);
       const hash = state.selected ? "#" + encodeURIComponent(state.selected) : "";
       url.hash = hash;
       replaceLocation(url, hash);
     }
-
     function highlight() {
       $$("#q-list .q-row").forEach((b) => {
         const active = b.dataset.id === state.selected;
@@ -820,20 +870,26 @@
         b.setAttribute("aria-pressed", active ? "true" : "false");
       });
     }
-
+    function updateBatch() {
+      $("#q-batch-count").textContent = "已选 " + state.checked.size + " 题";
+    }
     function renderDetail(id) {
       const q = byId[id];
       if (!q) { $("#q-detail").innerHTML = '<p class="muted">没有匹配的问题。</p>'; return; }
       const srcs = (q.sources || []).map((s) => esc(s.company || "") + " · " + esc(s.position || "") + " · " + esc(s.date || "")).join(" / ");
+      const stages = displayQuestionStages(q, state.review);
       $("#q-detail").innerHTML =
         "<h2>" + esc(q.question) + "</h2>" +
         '<div class="tags">' + tagsHTML(q) + "</div>" +
-        '<div class="q-body">' + sectionCardsHTML(q, state.review) + "</div>" +
+        stageTOC(stages, "qd") +
+        '<div class="q-body">' + sectionCardsHTML(q, state.review, "qd") + "</div>" +
         '<a class="btn btn-secondary btn-sm" href="explore.html?q=' + encodeURIComponent(q.id) + '"' + linkAttrs("交互式学习") + '>交互式学习</a>' +
+        '<button class="btn btn-secondary btn-sm back-to-top" id="q-backtop" type="button"' + controlAttrs("回到顶部") + '>回到顶部</button>' +
         (srcs ? '<div class="q-sources">来源：' + srcs + "</div>" : "");
       mountSectionDiagrams($("#q-detail"), q, state.review);
+      pushRecentQuestion(id);
+      $("#q-backtop").addEventListener("click", () => { $("#q-detail").scrollTop = 0; });
     }
-
     function renderList() {
       const list = filtered();
       const el = $("#q-list");
@@ -852,13 +908,15 @@
       const visible = list.slice(0, state.limit);
       count.textContent = "共 " + list.length + " 题，已显示 " + visible.length + " 题";
       el.innerHTML = visible.map((q, i) =>
-        '<button class="q-row" type="button" data-id="' + esc(q.id) + '"' + controlAttrs(q.question + " · " + q.id, q.id === state.selected) + ">" +
-          '<span class="rank" aria-hidden="true">' + (i + 1) + "</span>" +
+        '<div class="q-row" role="button" tabindex="0" data-id="' + esc(q.id) + '"' + controlAttrs(q.question + " · " + q.id, q.id === state.selected) + '>' +
+          '<input class="q-check" type="checkbox" data-check="' + esc(q.id) + '"' + (state.checked.has(q.id) ? " checked" : "") + ' aria-label="选择 ' + esc(q.id) + '" title="加入训练队列">' +
+          '<span class="q-ord" aria-hidden="true">' + (i + 1) + "</span>" +
           '<span class="q-title">' + esc(q.question) + "</span>" +
           '<span class="q-meta"><span class="q-id">' + esc(q.id) + "</span> · " + esc(domainLabel(q.domain)) + " · " + diffStars(q.difficulty) + "</span>" +
-        "</button>").join("") +
+        "</div>").join("") +
         (visible.length < list.length ? '<button class="btn btn-secondary" id="q-more" type="button"' + controlAttrs("显示更多") + ">显示更多</button>" : "");
       highlight();
+      updateBatch();
       renderDetail(state.selected);
       syncURL();
       expandForDeepLink = false;
@@ -868,6 +926,12 @@
     renderList();
 
     $("#q-search").addEventListener("input", debounce((e) => { state.query = e.target.value; state.limit = PAGE_SIZE; renderList(); }, 120));
+    $("#q-sort").addEventListener("change", (e) => {
+      state.sort = e.target.value;
+      state.limit = PAGE_SIZE;
+      renderList();
+      showFeedback("排序已更新");
+    });
     $("#q-type").addEventListener("click", (e) => {
       const b = e.target.closest("[data-type]");
       if (!b) return;
@@ -885,6 +949,13 @@
       renderList();
     });
     $("#q-list").addEventListener("click", (e) => {
+      const check = e.target.closest(".q-check");
+      if (check) {
+        const id = check.dataset.check;
+        if (check.checked) state.checked.add(id); else state.checked.delete(id);
+        updateBatch();
+        return;
+      }
       if (e.target.closest("#q-more")) {
         state.limit += PAGE_SIZE;
         renderList();
@@ -898,12 +969,27 @@
       renderDetail(state.selected);
       syncURL();
     });
+    $("#q-list").addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const b = e.target.closest(".q-row");
+      if (!b || e.target.closest(".q-check")) return;
+      e.preventDefault();
+      state.selected = b.dataset.id;
+      highlight();
+      renderDetail(state.selected);
+      syncURL();
+    });
     $("#q-review").addEventListener("click", (e) => {
       state.review = !state.review;
       e.currentTarget.classList.toggle("active", state.review);
       e.currentTarget.setAttribute("aria-pressed", state.review ? "true" : "false");
       showFeedback(state.review ? "复盘模式已开启，显示教练备注" : "复盘模式已关闭");
       renderDetail(state.selected);
+    });
+    $("#q-batch-add").addEventListener("click", () => {
+      if (!state.checked.size) { showFeedback("请先勾选要加入训练的题卡"); return; }
+      writeJSON(PRACTICE_QUEUE_KEY, Array.from(state.checked));
+      showFeedback("已把 " + state.checked.size + " 道题加入训练队列");
     });
   }
 
@@ -1125,7 +1211,7 @@
           iconButton("ex-play", "播放或暂停", state.playing ? ICONS.pause : ICONS.play) +
           iconButton("ex-next", "下一阶段", ICONS.chevronR) +
           iconButton("ex-reset", "回到第一阶段", ICONS.reset) +
-          '<button class="chip" id="ex-speed" type="button" data-speed="' + state.speed + '"' + controlAttrs("播放速度 " + state.speed + "×") + ">" + state.speed + "×</button>" +
+          speedButton("ex-speed", state.speed) +
           '<span class="ex-progress"><b>' + String(si + 1) + "</b> / " + total + " · " + esc(sec.short || sec.title) + "</span>" +
           '<button class="btn btn-sm ' + (done ? "btn-primary" : "btn-secondary") + '" id="ex-done" type="button"' + controlAttrs(done ? "已掌握" : "标记掌握", done) + ">" + (done ? "已掌握" : "标记掌握") + "</button>" +
         "</div>" +
@@ -1306,7 +1392,7 @@
   function renderSystems() {
     const params = new URLSearchParams(location.search);
     const list = D.systems || [];
-    const state = { selected: null, stage: 0, playing: false, speed: 1, timer: null, soc: { step: 0, hint: false, point: false } };
+    const state = { selected: null, stage: 0, playing: false, speed: 1, timer: null, query: "", soc: { step: 0, hint: false, point: false } };
     const storedStages = readJSON("os.sys.stage", {});
     let stageStore = storedStages && typeof storedStages === "object" && !Array.isArray(storedStages) ? storedStages : {};
 
@@ -1314,17 +1400,35 @@
       "<h1>系统图解</h1>" +
       '<p class="lead">按阶段看架构、数据流与运行 SOP，而不是背题目。</p>' +
       '<div class="ex-shell">' +
-        '<aside class="ex-pane ex-left"><div class="ex-pane-head"><span>系统</span></div><div class="ex-pane-body" id="sys-sidebar"></div></aside>' +
+        '<aside class="ex-pane ex-left"><div class="ex-pane-head"><span>系统</span><input class="sys-search" id="sys-search" type="search" placeholder="搜索系统 / 主题" aria-label="搜索系统"><span class="sys-progress" id="sys-progress"></span></div><div class="ex-pane-body" id="sys-sidebar"></div></aside>' +
         '<main class="ex-pane ex-main" id="sys-main" aria-live="polite"></main>' +
         '<aside class="ex-pane ex-right" id="sys-right"></aside>' +
       "</div>";
 
     function current() { return list.find((s) => s.id === state.selected); }
 
+    function filteredSystems() {
+      const q = state.query.trim().toLowerCase();
+      if (!q) return list;
+      return list.filter((s) => [s.title, s.domain, (s.topic || []).join(" ")].join(" ").toLowerCase().includes(q));
+    }
+    function completedCount() {
+      return list.filter((s) => {
+        const last = (s.stages || []).length - 1;
+        return last >= 0 && Number(stageStore[s.id]) >= last;
+      }).length;
+    }
+    function updateProgress() {
+      const el = $("#sys-progress");
+      if (el) el.textContent = "已完成 " + completedCount() + " / " + list.length;
+    }
+
     function renderSidebar() {
       const el = $("#sys-sidebar");
-      if (!list.length) { el.innerHTML = '<p class="muted">还没有系统图解。</p>'; return; }
-      el.innerHTML = list.map((s) => {
+      const shown = filteredSystems();
+      updateProgress();
+      if (!shown.length) { el.innerHTML = '<p class="muted">没有匹配的系统图解。</p>'; return; }
+      el.innerHTML = shown.map((s) => {
         const label = s.title + " · " + domainLabel(s.domain);
         const stages = (s.stages || []).length;
         return '<button class="ex-item' + (s.id === state.selected ? " active" : "") + '" type="button" data-id="' + esc(s.id) + '"' +
@@ -1405,7 +1509,7 @@
           iconButton("sys-play", "播放或暂停", state.playing ? ICONS.pause : ICONS.play) +
           iconButton("sys-next", "下一阶段", ICONS.chevronR) +
           iconButton("sys-reset", "回到第一阶段", ICONS.reset) +
-          '<button class="chip" id="sys-speed" type="button" data-speed="' + state.speed + '"' + controlAttrs("播放速度 " + state.speed + "×") + ">" + state.speed + "×</button>" +
+          speedButton("sys-speed", state.speed) +
           '<span class="ex-progress"><b>' + String(si + 1) + "</b> / " + stages.length + " · " + esc(stageTitle) + "</span>" +
         "</div>" +
         '<div class="ex-dots">' + stages.map((x, i) => '<button class="ex-dot' + (i === si ? " active" : "") + (i < si ? " seen" : "") + '" type="button" data-i="' + i + '"' +
@@ -1454,6 +1558,7 @@
       state.soc = { step: 0, hint: false, point: false };
       stageStore[sys.id] = state.stage;
       writeJSON("os.sys.stage", stageStore);
+      updateProgress();
       renderMain();
     }
 
@@ -1527,6 +1632,7 @@
       if (!b || !b.dataset.id) return;
       selectSystem(b.dataset.id);
     });
+    $("#sys-search").addEventListener("input", debounce((e) => { state.query = e.target.value; renderSidebar(); }, 120));
     $("#sys-right").addEventListener("click", (e) => {
       const b = e.target.closest("[data-qid]");
       if (!b) return;
@@ -1565,13 +1671,14 @@
     const list = D.interviews;
     const storedStages = readJSON("os.iv.stage", {});
     let stageStore = storedStages && typeof storedStages === "object" && !Array.isArray(storedStages) ? storedStages : {};
-    const state = { query: "", selected: null, stage: 0, stages: [], playing: false, speed: 1, timer: null };
+    const state = { query: "", group: "none", selected: null, stage: 0, stages: [], playing: false, speed: 1, timer: null };
 
     $("#page").innerHTML =
       "<h1>面经</h1>" +
       '<div class="toolbar">' +
         '<input class="search" id="iv-search" type="search" placeholder="搜索公司 / 业务 / 岗位 / 日期" aria-label="搜索面经" autocomplete="off">' +
         '<span class="muted" id="iv-count"></span>' +
+        '<label class="field iv-group-field"><span>分组</span><select id="iv-group" aria-label="面经分组" title="面经分组"><option value="none">不分组</option><option value="company">按公司</option><option value="month">按月份</option></select></label>' +
       "</div>" +
       '<div class="ex-shell">' +
         '<aside class="ex-pane ex-left">' +
@@ -1601,7 +1708,7 @@
       $("#iv-count").textContent = items.length + " 份面经";
       const el = $("#iv-sidebar");
       if (!items.length) { el.innerHTML = '<p class="muted">没有匹配的面经。</p>'; return; }
-      el.innerHTML = items.map((iv) => {
+      const row = (iv) => {
         const count = (iv.items || []).length;
         const label = (iv.company || "") + (iv.business ? " · " + iv.business : "") + " · " + (iv.date || "");
         return '<button class="ex-item' + (iv.interview_id === state.selected ? " active" : "") + '" type="button" data-id="' + esc(iv.interview_id) + '"' +
@@ -1610,7 +1717,17 @@
           '<span class="ex-item-main"><span class="ex-item-title">' + esc(iv.company || "") + (iv.business ? ' · ' + esc(iv.business) : '') + '</span>' +
           '<span class="ex-item-meta">' + esc(iv.date || "") + (iv.position ? ' · ' + esc(iv.position) : '') + " · " + (count ? count + " 题" : "原文记录") + "</span></span>" +
         '</button>';
-      }).join("");
+      };
+      if (state.group === "none") {
+        el.innerHTML = items.map(row).join("");
+      } else {
+        const keyOf = (iv) => state.group === "company" ? (iv.company || "其他") : String(iv.date || "").slice(0, 7) || "未知月份";
+        const groups = {};
+        items.forEach((iv) => { (groups[keyOf(iv)] = groups[keyOf(iv)] || []).push(iv); });
+        el.innerHTML = Object.keys(groups).sort().map((k) =>
+          '<div class="iv-group">' + esc(k) + " · " + groups[k].length + " 篇</div>" + groups[k].map(row).join("")
+        ).join("");
+      }
       if (!items.some((iv) => iv.interview_id === state.selected)) state.selected = items[0].interview_id;
       highlightSidebar();
     }
@@ -1687,7 +1804,7 @@
             iconButton("iv-play", "播放或暂停", state.playing ? ICONS.pause : ICONS.play) +
             iconButton("iv-next", "下一题", ICONS.chevronR) +
             iconButton("iv-reset", "回到第一题", ICONS.reset) +
-            '<button class="chip" id="iv-speed" type="button" data-speed="' + state.speed + '"' + controlAttrs("播放速度 " + state.speed + "×") + ">" + state.speed + "×</button>" +
+            speedButton("iv-speed", state.speed) +
             '<span class="ex-progress"><b>' + String(si + 1) + "</b> / " + total + "</span>" +
           "</div>" +
           '<div class="ex-dots">' + state.stages.map((x, i) => '<button class="ex-dot' + (i === si ? " active" : "") + (i < si ? " seen" : "") + '" type="button" data-i="' + i + '"' +
@@ -1724,7 +1841,7 @@
         const q = questionMap()[best.id];
         if (q) {
           html += '<div class="iv-linked-body"><a class="iv-linked-title" href="explore.html?q=' + encodeURIComponent(q.id) + '"' + linkAttrs(q.question + " · 打开交互学习") + ">" + esc(q.question) + " · 打开交互学习</a>" +
-            '<div class="q-body">' + sectionCardsHTML(q, false) + "</div></div>";
+            '<div class="q-body">' + sectionCardsHTML(q, false, "iv") + "</div></div>";
         }
       }
       html += "</div>";
@@ -1780,6 +1897,7 @@
     }
 
     $("#iv-search").addEventListener("input", debounce((e) => { state.query = e.target.value; renderSidebar(); }, 120));
+    $("#iv-group").addEventListener("change", (e) => { state.group = e.target.value; renderSidebar(); showFeedback("面经分组已更新"); });
     $("#iv-sidebar").addEventListener("click", (e) => {
       const b = e.target.closest(".ex-item");
       if (!b || !b.dataset.id) return;
@@ -2002,7 +2120,7 @@
             '<button class="btn btn-secondary" id="p-ready" type="button"' + controlAttrs("我已想好", false) + ">我已想好</button>" +
             '<button class="btn btn-secondary" id="p-show" type="button"' + controlAttrs("显示答案") + " disabled>显示答案</button>" +
           "</div>" +
-          '<div id="p-answer" class="q-body" hidden>' + sectionCardsHTML(q, false) + "</div>" +
+          '<div id="p-answer" class="q-body" hidden>' + sectionCardsHTML(q, false, "pa") + "</div>" +
           scorePanelHTML(q);
         const selfEl = $("#p-self");
         const readyBtn = $("#p-ready");

@@ -197,3 +197,20 @@ STARROCKS-0001  WAREHOUSE-0001  LLM-0001  LAKEHOUSE-0001
 ALGORITHM-0001  ML-0001  NETWORK-0001  PLATFORM-0001
 SYSTEM-0001  HDFS-0001  STATISTICS-0001  PROJECT-0001
 ```
+
+## 生成字段（build.py 输出）
+
+`scripts/build.py` 会在 `web/assets/js/data.js` 中补充以下字段，内容文件不直接写：
+
+- `questions[].sections[]`：`stage_key` / `stage_label`，把历史标题归一为 `thinking`「回答思路」、`pitch`「一句话」、`short`「30 秒回答」、`long`「1 分钟回答」、`followup`「追问」、`project`、`risk`、`framework`、`coach`、`notes`。
+- `questions[].answer_outline`：技术题的表达提纲，数组；已有 `thinking` 章节时为空数组。行为题与 `needs_personal_input: true` 只给中性步骤，不填个人经历。
+- `questions[].content_status`：`reviewed` / `needs_review` / `needs_answer`；`questions[].training_eligible`：是否进入训练池；`questions[].has_coach`：是否含教练备注章节。
+- `interviews[].items[]`：`kind`、`title`，用于识别 OCR / 散文兜底的「原文记录」。
+- `interviews[].linked[]`：`score`、`match_source`（`sources` 或 `mapping`）、`alternatives`；`linked` 只合并 `content/interview-links.yml` 中 `confirmed: true` 的候选，不写回题卡 `sources`。
+
+## 复核与映射文件
+
+- `content/review-manifest.yml`：`generated_ids` / `reviewed_ids` / `sample_ids` / `pending_review_ids`，由 `scripts/generate_answers.py` 维护；高频题卡全部进入 `reviewed`，低频 10% 确定性抽检，其余 `needs_review`。
+- `content/interview-links.yml`：`interview_id` + `candidates[{question_id, score, reason, confirmed}]`，由 `scripts/suggest_links.py` 增量维护。
+- `content/source-links-archive.yml`：从 P0 基线归档的 `sources` 关系，用于题卡重写移除 `sources` 后仍保留面经关联。
+- `scripts/validate.py --strict`：硬错误阻断发布，内容债务只警告；接入 GitHub Pages 工作流。
