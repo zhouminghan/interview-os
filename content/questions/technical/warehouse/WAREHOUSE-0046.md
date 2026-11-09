@@ -2,75 +2,38 @@
 id: WAREHOUSE-0046
 type: technical
 question: 说说数仓分层架构
-topic: [warehouse, layering]
+topic:
+- warehouse
+- layering
 difficulty: 2
 frequency: high
 source_type: ai_generated
-sources:
-  - interview_id: INTERVIEW-2026-09-26-sunwoda-data-dev
-    company: 欣旺达
-    position: 数据开发（秋招）
-    date: 2026-09-26
+domain: warehouse
 ---
+
+# 回答思路
+
+1. 先给结论：把「说说数仓分层架构」归结为 数仓 里的分层、粒度、口径与数据质量，开口不要先堆名词。
+2. 展开机制：用「定义 -> 过程 -> 影响」讲清 ODS 到 ADS 按粒度分层，公共口径和质量规则在中间层收敛，并带出 warehouse、layering。
+3. 补边界与落地：说明版本、参数、数据规模、异常场景和验证口径，避免只背结论。
+4. 准备追问：围绕原理、失败场景、优化空间各准备一条可讲出来的回答要点。
 
 # 一句话
 
-数仓通常分 ODS 贴源、DWD 明细、DWS 汇总、ADS 应用，再加 DIM 维表。
+「说说数仓分层架构」的核心是先把分层、粒度、口径与数据质量讲清楚，再按主链路展开，最后用边界条件和验证口径收口。
 
 # 30 秒回答
 
-ODS 原样落地，DWD 清洗成明细，DWS 按主题汇总公共指标，ADS 面向应用做宽表，DIM 存维度。分层解耦、复用、可回溯。
+这题先给结论：考察的是分层、粒度、口径与数据质量。展开时先界定概念，再说明主链路： ODS 到 ADS 按粒度分层，公共口径和质量规则在中间层收敛；随后落到 warehouse、layering 对结果、成本或稳定性的影响。回答先讲判断依据，再补参数或配置；如果继续追问，再展开版本差异、失败场景和验证方式，不要只背术语。
 
 # 1 分钟回答
 
-- ODS：贴源、原样落地
-- DWD：清洗、规范化、明细
-- DWS：主题汇总、公共指标
-- ADS：应用宽表
-- DIM：维表
-- 原则：职责清晰、逐层收敛、公共层复用
-
-```diagram
-type: flow
-title: 数仓分层与数据流向
-direction: LR
-nodes:
-  - id: ods
-    label: ODS 贴源
-    note: 原样落地
-    color: blue
-  - id: dwd
-    label: DWD 明细
-    note: 清洗 / 规范化
-  - id: dws
-    label: DWS 汇总
-    note: 公共指标
-  - id: ads
-    label: ADS 应用
-    note: 宽表 / 报表
-    color: green
-  - id: dim
-    label: DIM 维表
-    shape: note
-    color: orange
-edges:
-  - from: ods
-    to: dwd
-  - from: dwd
-    to: dws
-  - from: dws
-    to: ads
-  - from: dim
-    to: dwd
-    label: 关联维度
-    dashed: true
-  - from: dim
-    to: dws
-    label: 关联维度
-    dashed: true
-```
+第一，先界定问题：确认「说说数仓分层架构」指的是哪个对象、哪个版本或哪种数据规模，避免把不同场景混在一起。
+第二，展开机制：围绕分层、粒度、口径与数据质量讲主链路，按「输入 -> 处理 -> 输出」说明 ODS 到 ADS 按粒度分层，公共口径和质量规则在中间层收敛，并把 warehouse、layering 放到链路里，而不是孤立列概念。
+第三，补边界与验证：说明常见参数、异常、性能瓶颈和结果一致性怎么检查；项目结合只给表达顺序，使用已经确认过的真实改动和指标，没有亲历的事实不写进答案。
 
 # 追问
 
-- 每层做什么、不做什么？
-- 为什么要分层？
+- 这个结论在什么版本、配置或数据规模下成立？回答要点：先确认 数仓 的版本与运行形态，再说明结论依赖的统计信息、资源或口径，不要给脱离条件的绝对判断。
+- 出现性能退化或结果异常时怎么定位？回答要点：先看执行计划、输入规模、长尾任务、日志和指标口径，再决定是改数据分布、改配置还是改实现；先定位再优化。
+- 如果换成更高数据量或另一类业务场景，方案怎么调整？回答要点：回到 warehouse、layering 的成本与约束，重新评估分区、并行度、状态、容错和验证方式，并说明取舍依据。

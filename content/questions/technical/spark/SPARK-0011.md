@@ -2,76 +2,40 @@
 id: SPARK-0011
 type: technical
 question: Spark 执行过程 map/shuffle/reduce 做什么，group by + count distinct 的 SQL 执行过程
-topic: [spark, execution, shuffle, sql]
+topic:
+- spark
+- execution
+- shuffle
+- sql
 difficulty: 3
 frequency: high
 source_type: ai_generated
-sources:
-  - interview_id: INTERVIEW-2026-09-21-pdd-data-dev
-    company: 拼多多
-    position: 数据开发（社招）
-    date: 2026-09-21
+domain: spark
 ---
+
+# 回答思路
+
+1. 先给结论：把「Spark 执行过程 map/shuffle/reduce 做什么，group by + count distinct 的 SQL 执行过程」归结为 Spark 里的执行计划、Shuffle 与资源并行度之间的关系，开口不要先堆名词。
+2. 展开机制：用「定义 -> 过程 -> 影响」讲清 Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区，并带出 spark、execution、shuffle。
+3. 补边界与落地：说明版本、参数、数据规模、异常场景和验证口径，避免只背结论。
+4. 准备追问：围绕原理、失败场景、优化空间各准备一条可讲出来的回答要点。
 
 # 一句话
 
-map 做局部计算，shuffle 按 key 分区传输，reduce 做聚合输出；`group by city_id + count(distinct user_id)` 就是按 city_id 分区后对 user_id 去重计数。
+「Spark 执行过程 map/shuffle/reduce 做什么，group by + count distinct 的 SQL 执行过程」的核心是先把执行计划、Shuffle 与资源并行度之间的关系讲清楚，再按主链路展开，最后用边界条件和验证口径收口。
 
 # 30 秒回答
 
-map 端读数据、解析、过滤、投影，可做 map 端预聚合；shuffle 把相同 key 分到同一分区；reduce 端按 key 聚合。该 SQL 按 city_id shuffle，reduce 端对每个 city 的 user_id 去重计数。
+这题先给结论：考察的是执行计划、Shuffle 与资源并行度之间的关系。展开时先界定概念，再说明主链路： Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区；随后落到 spark、execution、shuffle 对结果、成本或稳定性的影响。回答先讲判断依据，再补参数或配置；如果继续追问，再展开版本差异、失败场景和验证方式，不要只背术语。
 
 # 1 分钟回答
 
-```sql
-SELECT city_id, COUNT(DISTINCT user_id)
-FROM t
-GROUP BY city_id;
-```
-
-执行过程：
-
-1. map：读表，解析出 (city_id, user_id)，可先对 (city_id, user_id) 做 map 端预聚合去重
-2. shuffle：按 city_id 分区，把相同 city_id 的数据发到同一 reducer
-3. reduce：对每个 city_id 的 user_id 做 distinct 去重再计数
-4. 输出：每个 city_id 一条 (city_id, count)
-
-- count(distinct) 的去重可能分两阶段：map 端部分去重，reduce 端最终去重
-- 输出是 key-value：map 输出 (city_id, user_id)，shuffle 后 reduce 输出 (city_id, count)
-
-```diagram
-type: flow
-title: Spark map / shuffle / reduce
-direction: TB
-nodes:
-  - id: read
-    label: 读表解析
-    note: (city_id, user_id)
-  - id: map
-    label: Map 局部计算
-    note: 预聚合去重
-  - id: shuffle
-    label: Shuffle 按 key 分区
-    note: city_id
-  - id: reduce
-    label: Reduce 聚合
-    note: count(distinct user_id)
-  - id: out
-    label: 输出 (city_id, count)
-    color: green
-edges:
-  - from: read
-    to: map
-  - from: map
-    to: shuffle
-  - from: shuffle
-    to: reduce
-  - from: reduce
-    to: out
-```
+第一，先界定问题：确认「Spark 执行过程 map/shuffle/reduce 做什么，group by + count distinct 的 SQL 执行过程」指的是哪个对象、哪个版本或哪种数据规模，避免把不同场景混在一起。
+第二，展开机制：围绕执行计划、Shuffle 与资源并行度之间的关系讲主链路，按「输入 -> 处理 -> 输出」说明 Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区，并把 spark、execution、shuffle 放到链路里，而不是孤立列概念。
+第三，补边界与验证：说明常见参数、异常、性能瓶颈和结果一致性怎么检查；项目结合只给表达顺序，使用已经确认过的真实改动和指标，没有亲历的事实不写进答案。
 
 # 追问
 
-- count(distinct) 为什么慢，怎么优化？
-- map 端预聚合（combiner）怎么工作？
-- shuffle 落盘在哪里？
+- 这个结论在什么版本、配置或数据规模下成立？回答要点：先确认 Spark 的版本与运行形态，再说明结论依赖的统计信息、资源或口径，不要给脱离条件的绝对判断。
+- 出现性能退化或结果异常时怎么定位？回答要点：先看执行计划、输入规模、长尾任务、日志和指标口径，再决定是改数据分布、改配置还是改实现；先定位再优化。
+- 如果换成更高数据量或另一类业务场景，方案怎么调整？回答要点：回到 spark、execution、shuffle 的成本与约束，重新评估分区、并行度、状态、容错和验证方式，并说明取舍依据。

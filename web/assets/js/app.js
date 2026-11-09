@@ -23,6 +23,127 @@
   }
   function writeJSON(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
 
+  const MASTERY_KEY = "os.mastery.v2";
+  const MASTERY_BACKUP_KEY = "os.mastery.v1.backup";
+  const PRACTICE_LOG_KEY = "os.practice.log";
+  const PRACTICE_QUEUE_KEY = "os.practice.queue";
+  const DIMENSION_SETS = {
+    technical: ["knowledge", "expression", "project", "follow_up"],
+    project: ["content", "expression", "structure", "risk"],
+    negotiation: ["information", "expression", "leverage", "negotiation"],
+  };
+  const DIMENSION_LABELS = {
+    knowledge: "知识", expression: "表达", project: "项目结合", follow_up: "追问",
+    content: "内容", structure: "结构", risk: "风险", information: "信息",
+    leverage: "筹码", negotiation: "谈判",
+  };
+
+  function emptyMasteryStore() {
+    return { schemaVersion: 2, questions: {}, history: [], weakQueue: [], reviewQueue: [] };
+  }
+  function masteryStore() {
+    const s = readJSON(MASTERY_KEY, null);
+    return s && typeof s === "object" && !Array.isArray(s) && s.schemaVersion === 2 ? s : emptyMasteryStore();
+  }
+  function saveMasteryStore(s) { writeJSON(MASTERY_KEY, s); }
+  function dimensionsFor(q, total) {
+    const key = q && q.type === "technical" ? "technical" : (q && q.type === "negotiation" ? "negotiation" : "project");
+    const dims = {};
+    (DIMENSION_SETS[key] || []).forEach((d) => { dims[d] = total; });
+    return dims;
+  }
+  function migrateMastery() {
+    const existing = readJSON(MASTERY_KEY, null);
+    if (existing && existing.schemaVersion === 2) return existing;
+    const oldLog = readJSON(PRACTICE_LOG_KEY, []);
+    const oldExplore = readJSON("os.explore", {});
+    writeJSON(MASTERY_BACKUP_KEY, { os_practice_log: oldLog, os_explore: oldExplore });
+    const store = emptyMasteryStore();
+    const byId = questionMap();
+    if (Array.isArray(oldLog)) {
+      oldLog.forEach((r) => {
+        if (!r || !r.id) return;
+        const q = byId[r.id] || { id: r.id, type: r.type || "technical" };
+        const total = Number(r.grade) === 2 ? 3 : Number(r.grade) === 1 ? 2 : 0;
+        const entry = {
+          id: r.id, domain: r.domain || q.domain || "", type: q.type || r.type || "technical",
+          grade: total, ts: Number(r.ts) || Date.now(), revealed: !!r.revealed,
+          selfAnswer: String(r.selfAnswer || ""), dimensions: dimensionsFor(q, total),
+        };
+        store.history.push(entry);
+        store.questions[r.id] = {
+          total, dimensions: entry.dimensions, lastGrade: total,
+          lastReviewedAt: entry.ts, revealed: entry.revealed, selfAnswer: entry.selfAnswer,
+        };
+      });
+    }
+    if (oldExplore && typeof oldExplore === "object") {
+      Object.keys(oldExplore.mastery || {}).forEach((id) => {
+        const q = byId[id] || { id, type: "technical" };
+        const total = Math.min(5, Math.max(0, Number(oldExplore.mastery[id]) || 0));
+        store.questions[id] = Object.assign({}, store.questions[id], {
+          total, dimensions: dimensionsFor(q, total), lastGrade: total,
+          lastReviewedAt: Date.now(), revealed: false, selfAnswer: "",
+        });
+      });
+      Object.keys(oldExplore.done || {}).forEach((id) => {
+        if (!oldExplore.done[id] || store.questions[id]) return;
+        const q = byId[id] || { id, type: "technical" };
+        store.questions[id] = {
+          total: 3, dimensions: dimensionsFor(q, 3), lastGrade: 3,
+          lastReviewedAt: Date.now(), revealed: false, selfAnswer: "",
+        };
+      });
+    }
+    const latest = {};
+    store.history.forEach((r) => { latest[r.id] = r; });
+    store.weakQueue = Object.keys(latest).filter((id) => Number(latest[id].grade) < 3);
+    store.reviewQueue = store.weakQueue.map((id) => ({
+      id, dueAt: (latest[id].ts || Date.now()) + 86400000, reason: "grade<3",
+    })).sort((a, b) => a.dueAt - b.dueAt);
+    saveMasteryStore(store);
+    return store;
+  }
+  function recordMastery(q, total, dims, revealed, selfAnswer) {
+    const store = masteryStore();
+    const dimensions = Object.assign(dimensionsFor(q, total), dims || {});
+    const ts = Date.now();
+    store.questions[q.id] = {
+      total, dimensions, lastGrade: total, lastReviewedAt: ts,
+      revealed: !!revealed, selfAnswer: String(selfAnswer || ""),
+    };
+    store.history.push({
+      id: q.id, domain: q.domain, type: q.type, grade: total, ts,
+      revealed: !!revealed, selfAnswer: String(selfAnswer || ""), dimensions,
+    });
+    store.weakQueue = store.weakQueue.filter((id) => id !== q.id);
+    if (total < 3) store.weakQueue.push(q.id);
+    store.reviewQueue = store.reviewQueue.filter((x) => x.id !== q.id);
+    store.reviewQueue.push({
+      id: q.id, dueAt: ts + (total < 3 ? 86400000 : 3 * 86400000),
+      reason: total < 3 ? "grade<3" : (revealed ? "revealed" : "scheduled"),
+    });
+    store.reviewQueue.sort((a, b) => a.dueAt - b.dueAt);
+    saveMasteryStore(store);
+    return store;
+  }
+  function showFeedback(message, undoFn) {
+    const el = $("#os-feedback");
+    if (!el) return;
+    clearTimeout(showFeedback.timer);
+    el.innerHTML = '<span>' + esc(message) + '</span>' +
+      (undoFn ? '<button class="btn btn-sm btn-secondary" id="os-feedback-undo" type="button">撤销</button>' : "");
+    el.hidden = false;
+    if (undoFn) {
+      $("#os-feedback-undo").addEventListener("click", () => {
+        undoFn();
+        el.hidden = true;
+        showFeedback("已撤销");
+      });
+    }
+    showFeedback.timer = setTimeout(() => { el.hidden = true; }, 4000);
+  }
+
   function controlAttrs(label, pressed, extra) {
     return (extra || "") + ' aria-label="' + esc(label) + '" title="' + esc(label) + '"' +
       (pressed == null ? "" : ' aria-pressed="' + (pressed ? "true" : "false") + '"');
@@ -83,6 +204,7 @@
           ).join("") +
         "</nav>" +
         iconButton("theme-toggle", "切换主题", "", document.documentElement.dataset.theme === "dark") +
+        '<div id="os-feedback" class="os-feedback" role="status" aria-live="polite" hidden></div>' +
       "</div>";
     const toggle = $("#theme-toggle");
     const syncIcon = () => {
@@ -96,6 +218,7 @@
       document.documentElement.dataset.theme = next;
       writeText("os-theme", next);
       syncIcon();
+      showFeedback(next === "dark" ? "已切换到深色主题" : "已切换到浅色主题");
     });
     initGlobalSearch();
   }
@@ -105,6 +228,7 @@
     const dd = $("#gs-dropdown");
     if (!input || !dd) return;
     const domainKeys = Object.keys(D.stats.domains || {});
+    let activeIndex = -1;
 
     function results(query) {
       const q = query.trim().toLowerCase();
@@ -123,7 +247,12 @@
 
     function render() {
       const g = results(input.value);
-      if (!g || !g.total) { dd.hidden = true; dd.innerHTML = ""; return; }
+      if (!g || !g.total) {
+        dd.innerHTML = '<div class="gs-empty">没有匹配结果，试试领域名、公司名或题卡 ID。</div>';
+        dd.hidden = false;
+        activeIndex = -1;
+        return;
+      }
       let html = "";
       if (g.domains.length) {
         html += '<div class="gs-group">分类</div>' + g.domains.map((k) =>
@@ -139,11 +268,28 @@
       }
       dd.innerHTML = html;
       dd.hidden = false;
+      activeIndex = -1;
+      setActive(-1);
+    }
+
+    function items() { return $$(".gs-item", dd); }
+    function setActive(i) {
+      const list = items();
+      activeIndex = Math.max(-1, Math.min(i, list.length - 1));
+      list.forEach((a, idx) => a.classList.toggle("gs-active", idx === activeIndex));
     }
 
     input.addEventListener("input", debounce(render, 120));
     input.addEventListener("focus", render);
-    input.addEventListener("keydown", (e) => { if (e.key === "Escape") { dd.hidden = true; input.blur(); } });
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { dd.hidden = true; input.blur(); return; }
+      if (e.key === "ArrowDown") { e.preventDefault(); if (!dd.hidden) setActive(activeIndex + 1); return; }
+      if (e.key === "ArrowUp") { e.preventDefault(); if (!dd.hidden) setActive(activeIndex - 1); return; }
+      if (e.key === "Enter") {
+        const a = items()[activeIndex];
+        if (a) { e.preventDefault(); location.href = a.getAttribute("href"); }
+      }
+    });
     document.addEventListener("click", (e) => { if (!e.target.closest("#gs")) dd.hidden = true; });
   }
 
@@ -168,7 +314,10 @@
       (q.difficulty ? '<span class="tag">难度 ' + diffStars(q.difficulty) + "</span>" : "") +
       (q.frequency ? '<span class="tag ' + (q.frequency === "high" ? "high" : "mid") + '">' + (q.frequency === "high" ? "高频" : "中频") + "</span>" : "") +
       (q.source_type === "knowledge" ? '<span class="tag kw">八股</span>' : "") +
-      (q.needs_personal_input ? '<span class="tag warn">待补个人</span>' : "");
+      (q.needs_personal_input ? '<span class="tag warn">待补个人</span>' : "") +
+      (q.content_status === "needs_review" ? '<span class="tag warn">待复核</span>' : "") +
+      (q.content_status === "needs_answer" ? '<span class="tag warn">待补答案</span>' : "") +
+      (q.training_eligible === false ? '<span class="tag">不进训练</span>' : "");
   }
 
   function interviewCard(iv) {
@@ -237,7 +386,7 @@
     };
   }
 
-  function displayQuestionStages(q) {
+  function displayQuestionStages(q, includeCoach) {
     const secs = q && Array.isArray(q.sections) ? q.sections.filter(Boolean) : [];
     let stages = secs.map((s) => ({
       title: s.stage_label || s.title || "概述",
@@ -246,6 +395,7 @@
       html: s.html || "",
       diagram: s.diagram || null
     }));
+    if (!includeCoach) stages = stages.filter((s) => s.stage_key !== "coach");
     if (!stages.length) {
       stages = [{
         title: "回答",
@@ -257,8 +407,8 @@
     return outline ? [outline].concat(stages) : stages;
   }
 
-  function sectionCardsHTML(q) {
-    return displayQuestionStages(q).map((s, i) => {
+  function sectionCardsHTML(q, includeCoach) {
+    return displayQuestionStages(q, includeCoach).map((s, i) => {
       const hasDiag = !!s.diagram;
       const title = s.stage_label || s.title || "概述";
       return '<section class="qa-section">' +
@@ -270,8 +420,8 @@
     }).join("");
   }
 
-  function mountSectionDiagrams(root, q) {
-    const stages = displayQuestionStages(q);
+  function mountSectionDiagrams(root, q, includeCoach) {
+    const stages = displayQuestionStages(q, includeCoach);
     $$(".dg", root).forEach((el) => {
       const idx = Number(el.dataset.diagram);
       const d = stages[idx] && stages[idx].diagram;
@@ -536,13 +686,35 @@
   /* ---------- Explorer (interactive learning) ---------- */
 
   function exploreStore() {
-    const s = readJSON("os.explore", {});
-    return s && typeof s === "object" && !Array.isArray(s) ? s : {};
+    const m = masteryStore();
+    const done = {}, mastery = {};
+    Object.keys(m.questions || {}).forEach((id) => {
+      const q = m.questions[id];
+      mastery[id] = Number(q.total) || 0;
+      if (mastery[id] >= 3) done[id] = true;
+    });
+    return { done, mastery, last: readJSON("os.explore.last", {}) };
   }
-  function saveExploreStore(s) { writeText("os.explore", JSON.stringify(s)); }
+  function saveExploreStore(s) {
+    const m = masteryStore();
+    const byId = questionMap();
+    const ids = new Set(Object.keys(s.mastery || {}).concat(Object.keys(s.done || {})));
+    ids.forEach((id) => {
+      const q = byId[id] || { id, type: "technical" };
+      let total = Number(s.mastery[id]);
+      if (!Number.isFinite(total)) total = s.done[id] ? 3 : 2;
+      total = Math.min(5, Math.max(0, total));
+      m.questions[id] = Object.assign({}, m.questions[id], {
+        total, dimensions: dimensionsFor(q, total), lastGrade: total,
+        lastReviewedAt: Date.now(), revealed: false, selfAnswer: "",
+      });
+    });
+    writeJSON("os.explore.last", s.last || {});
+    saveMasteryStore(m);
+  }
 
-  function stagesFor(q) {
-    return displayQuestionStages(q).map((s) => {
+  function stagesFor(q, includeCoach) {
+    return displayQuestionStages(q, includeCoach).map((s) => {
       const title = s.stage_label || s.title || "概述";
       const meta = diagramStageMeta(title, s.stage_key);
       return { title: title, short: meta.short, kind: meta.kind, html: s.html || "", diagram: s.diagram || null };
@@ -592,7 +764,8 @@
       type: validTypes.includes(requestedType) ? requestedType : "all",
       domain: domainKeys.includes(requestedDomain) ? requestedDomain : "all",
       selected: null,
-      limit: PAGE_SIZE
+      limit: PAGE_SIZE,
+      review: false
     };
     const deepQ = byId[safeDecode(location.hash.slice(1))];
     let expandForDeepLink = !!deepQ;
@@ -608,6 +781,7 @@
         '<span class="muted" id="q-count" aria-live="polite"></span>' +
         '<div class="chips" id="q-type"></div>' +
         '<div class="chips" id="q-domain"></div>' +
+        '<button class="chip" id="q-review" type="button"' + controlAttrs("复盘模式", false) + '>复盘模式</button>' +
       "</div>" +
       '<div class="split"><div class="q-list" id="q-list"></div><aside class="q-detail" id="q-detail" aria-live="polite"></aside></div>';
 
@@ -654,10 +828,10 @@
       $("#q-detail").innerHTML =
         "<h2>" + esc(q.question) + "</h2>" +
         '<div class="tags">' + tagsHTML(q) + "</div>" +
-        '<div class="q-body">' + sectionCardsHTML(q) + "</div>" +
+        '<div class="q-body">' + sectionCardsHTML(q, state.review) + "</div>" +
         '<a class="btn btn-secondary btn-sm" href="explore.html?q=' + encodeURIComponent(q.id) + '"' + linkAttrs("交互式学习") + '>交互式学习</a>' +
         (srcs ? '<div class="q-sources">来源：' + srcs + "</div>" : "");
-      mountSectionDiagrams($("#q-detail"), q);
+      mountSectionDiagrams($("#q-detail"), q, state.review);
     }
 
     function renderList() {
@@ -711,13 +885,25 @@
       renderList();
     });
     $("#q-list").addEventListener("click", (e) => {
-      if (e.target.closest("#q-more")) { state.limit += PAGE_SIZE; renderList(); return; }
+      if (e.target.closest("#q-more")) {
+        state.limit += PAGE_SIZE;
+        renderList();
+        showFeedback("已加载更多题卡");
+        return;
+      }
       const b = e.target.closest(".q-row");
       if (!b) return;
       state.selected = b.dataset.id;
       highlight();
       renderDetail(state.selected);
       syncURL();
+    });
+    $("#q-review").addEventListener("click", (e) => {
+      state.review = !state.review;
+      e.currentTarget.classList.toggle("active", state.review);
+      e.currentTarget.setAttribute("aria-pressed", state.review ? "true" : "false");
+      showFeedback(state.review ? "复盘模式已开启，显示教练备注" : "复盘模式已关闭");
+      renderDetail(state.selected);
     });
   }
 
@@ -998,9 +1184,11 @@
     function toggleDone() {
       const q = currentQuestion();
       if (!q) return;
-      if (store.done[q.id]) delete store.done[q.id];
+      const wasDone = !!store.done[q.id];
+      if (wasDone) delete store.done[q.id];
       else store.done[q.id] = true;
       saveExploreStore(store);
+      showFeedback(wasDone ? "已取消掌握标记" : "已标记掌握");
       renderMain();
       renderSidebar();
     }
@@ -1017,7 +1205,7 @@
         renderEmptyState();
         return;
       }
-      state.stages = stagesFor(q);
+      state.stages = stagesFor(q, false);
       state.stage = store.last[id] != null && store.last[id] < state.stages.length ? store.last[id] : 0;
       stopPlay();
       highlightSidebar();
@@ -1091,6 +1279,7 @@
       if (store.mastery[q.id] === v) delete store.mastery[q.id];
       else store.mastery[q.id] = v;
       saveExploreStore(store);
+      showFeedback("掌握度已更新为 " + v + " / 5");
       renderRight();
       renderSidebar();
     });
@@ -1510,38 +1699,39 @@
       const el = $("#iv-right");
       if (!iv) { el.innerHTML = ""; return; }
       const linked = iv.linked || [];
-      const cur = state.stages[state.stage];
-      let best = null, bestScore = 0;
-      linked.forEach((l) => {
-        const sc = matchScore(cur ? cur.text : "", l.question);
-        if (sc > bestScore) { bestScore = sc; best = l; }
-      });
+      const best = linked[0] || null;
       let html = '<div class="ex-pane-head"><span>关联题卡</span></div><div class="ex-pane-body">';
       if (!linked.length) {
         html += '<div class="ex-block"><p class="muted">先按原文逐题自测，再沉淀题卡。</p>' +
           '<div class="hero-actions"><a class="btn btn-secondary btn-sm" href="questions.html"' + linkAttrs("打开问题库") + '>打开问题库</a></div></div>';
       } else {
-        html += '<div class="iv-links">' + linked.map((l) => {
-          const isBest = best && l.id === best.id && bestScore >= 0.28;
-          return '<button class="ex-item' + (isBest ? " active" : "") + '" type="button" data-qid="' + esc(l.id) + '"' + controlAttrs(l.question + " · " + l.id, !!isBest) + ">" +
+        html += '<div class="iv-links"><div class="iv-links-label">最佳匹配</div>' +
+          '<button class="ex-item active" type="button" data-qid="' + esc(best.id) + '"' + controlAttrs(best.question + " · " + best.id, true) + '>' +
             '<span class="ex-item-dot"></span>' +
-            '<span class="ex-item-main"><span class="ex-item-title">' + esc(l.question) + "</span>" +
-            '<span class="ex-item-meta">' + esc(l.id) + " · " + esc(domainLabel(l.domain)) + (l.diagrams ? " · 含图" : "") + "</span></span>" +
+            '<span class="ex-item-main"><span class="ex-item-title">' + esc(best.question) + "</span>" +
+            '<span class="ex-item-meta">' + esc(best.id) + " · " + esc(domainLabel(best.domain)) + " · 匹配 " + Number(best.score || 0).toFixed(2) + (best.diagrams ? " · 含图" : "") + "</span></span>" +
           "</button>";
-        }).join("") + "</div>";
-        if (best && bestScore >= 0.28) {
-          const q = questionMap()[best.id];
-          if (q) {
-            html += '<div class="iv-linked-body"><a class="iv-linked-title" href="explore.html?q=' + encodeURIComponent(q.id) + '"' + linkAttrs(q.question + " · 打开探索") + ">" + esc(q.question) + " · 打开探索</a>" +
-              '<div class="q-body">' + sectionCardsHTML(q) + "</div></div>";
-          }
+        const alternatives = (best.alternatives || []).slice(0, 2);
+        if (alternatives.length) {
+          html += '<div class="iv-links-label">次优候选</div>' + alternatives.map((a) =>
+            '<button class="ex-item" type="button" data-qid="' + esc(a.id) + '"' + controlAttrs(a.question + " · " + a.id, false) + '>' +
+              '<span class="ex-item-dot"></span>' +
+              '<span class="ex-item-main"><span class="ex-item-title">' + esc(a.question) + "</span>" +
+              '<span class="ex-item-meta">' + esc(a.id) + " · 匹配 " + Number(a.score || 0).toFixed(2) + "</span></span>" +
+            "</button>").join("");
+        }
+        html += "</div>";
+        const q = questionMap()[best.id];
+        if (q) {
+          html += '<div class="iv-linked-body"><a class="iv-linked-title" href="explore.html?q=' + encodeURIComponent(q.id) + '"' + linkAttrs(q.question + " · 打开交互学习") + ">" + esc(q.question) + " · 打开交互学习</a>" +
+            '<div class="q-body">' + sectionCardsHTML(q, false) + "</div></div>";
         }
       }
       html += "</div>";
       el.innerHTML = html;
-      if (best && bestScore >= 0.28) {
+      if (best) {
         const q = questionMap()[best.id];
-        if (q) mountSectionDiagrams(el, q);
+        if (q) mountSectionDiagrams(el, q, false);
       }
     }
 
@@ -1633,8 +1823,8 @@
 
   function renderPractice() {
     const CONFIG_KEY = "os.practice.config";
-    const LOG_KEY = "os.practice.log";
     const MAX_SELF_ANSWER = 1200;
+    const params = new URLSearchParams(location.search);
     const keys = Object.keys(D.stats.domains || {});
     const storedConfig = readJSON(CONFIG_KEY, {});
     const config = storedConfig && typeof storedConfig === "object" && !Array.isArray(storedConfig) ? storedConfig : {};
@@ -1643,6 +1833,7 @@
     const restoredDomains = Array.isArray(config.domains) ? config.domains.filter((k) => keys.includes(k)) : keys;
     const sel = new Set(restoredDomains);
     const weakOnly = !!config.weakOnly;
+    const byId = questionMap();
     const countOptions = [[10, "10 题"], [20, "20 题"], [0, "全部"]].map(([v, l]) =>
       '<option value="' + v + '"' + (v === count ? " selected" : "") + ">" + l + "</option>").join("");
     $("#page").innerHTML =
@@ -1660,14 +1851,21 @@
       "</div>" +
       '<div id="p-session" class="panel" hidden></div>';
 
-    function practiceLog() {
-      const value = readJSON(LOG_KEY, []);
-      return Array.isArray(value) ? value : [];
+    function practiceHistory() {
+      const store = masteryStore();
+      return Array.isArray(store.history) ? store.history : [];
+    }
+    function latestGrades() {
+      const latest = {};
+      practiceHistory().forEach((r) => { if (r && r.id) latest[r.id] = Number(r.grade); });
+      return latest;
     }
     function weakQuestionIds() {
-      const latest = {};
-      practiceLog().forEach((r) => { if (r && r.id) latest[r.id] = Number(r.grade); });
-      return new Set(Object.keys(latest).filter((id) => Number.isFinite(latest[id]) && latest[id] < 2));
+      const latest = latestGrades();
+      return new Set(Object.keys(latest).filter((id) => Number.isFinite(latest[id]) && latest[id] < 3));
+    }
+    function eligiblePool() {
+      return D.questions.filter((q) => q.training_eligible !== false);
     }
     function updateWeakCount() {
       const n = weakQuestionIds().size;
@@ -1689,8 +1887,7 @@
       const b = e.target.closest("[data-d]"); if (!b) return;
       const k = b.dataset.d;
       if (sel.has(k)) sel.delete(k); else sel.add(k);
-      renderDomains();
-      saveConfig();
+      renderDomains(); saveConfig();
     });
     $("#p-all").addEventListener("click", () => { keys.forEach((k) => sel.add(k)); renderDomains(); saveConfig(); });
     $("#p-clear").addEventListener("click", () => { sel.clear(); renderDomains(); saveConfig(); });
@@ -1699,20 +1896,36 @@
     $("#p-start").addEventListener("click", () => {
       saveConfig();
       const count = Number($("#p-count").value);
-      let pool = D.questions.filter((q) => sel.has(q.domain));
-      if ($("#p-weak").checked) {
-        const weak = weakQuestionIds();
-        pool = pool.filter((q) => weak.has(q.id));
-      }
+      let pool = eligiblePool().filter((q) => sel.has(q.domain));
+      if ($("#p-weak").checked) pool = pool.filter((q) => weakQuestionIds().has(q.id));
       pool = shuffle(pool);
       if (count > 0) pool = pool.slice(0, count);
       if (!pool.length) {
-        $("#p-message").textContent = "当前范围没有题目，调整领域或关闭只练薄弱题。";
+        $("#p-message").textContent = "当前范围没有可训练题卡，调整领域或关闭只练薄弱题。";
         return;
       }
       $("#p-message").textContent = "";
       start(pool);
     });
+
+    function dimensionSet(q) {
+      const key = q.type === "technical" ? "technical" : (q.type === "negotiation" ? "negotiation" : "project");
+      return DIMENSION_SETS[key] || [];
+    }
+    function scorePanelHTML(q) {
+      const totals = [0, 1, 2, 3, 4, 5].map((v) =>
+        '<button class="score-btn" type="button" data-total="' + v + '"' + controlAttrs("总分 " + v + " / 5", false) + ' disabled>' + v + '</button>').join("");
+      const dims = dimensionSet(q).map((d) =>
+        '<div class="score-dim" data-dim="' + esc(d) + '"><span class="score-dim-label">' + esc(DIMENSION_LABELS[d] || d) + '</span>' +
+        [0, 1, 2, 3, 4, 5].map((v) =>
+          '<button class="score-btn small" type="button" data-v="' + v + '"' + controlAttrs((DIMENSION_LABELS[d] || d) + " " + v + " / 5", false) + ' disabled>' + v + '</button>').join("") +
+        '</div>').join("");
+      return '<div id="p-score" class="score-panel" hidden>' +
+        '<div class="score-total"><span class="score-dim-label">总分</span>' + totals + '</div>' +
+        '<div class="score-dims">' + dims + '</div>' +
+        '<button class="btn btn-primary" id="p-submit" type="button"' + controlAttrs("提交评分") + ' disabled>提交评分</button>' +
+      '</div>';
+    }
 
     function start(pool) {
       $("#p-config").hidden = true;
@@ -1723,33 +1936,49 @@
       let revealed = false;
       let selfAnswer = "";
       let graded = false;
-      const gradeLabel = { 2: "会", 1: "模糊", 0: "不会" };
+      let selectedTotal = null;
+      let selectedDims = {};
 
       function captureSelfAnswer() {
         const el = $("#p-self");
         return String((el && el.value) || "").trim().slice(0, MAX_SELF_ANSWER);
       }
-      function record(q, g) {
-        if (graded) return;
+      function enableScoring() {
+        $$("#p-score .score-btn", session).forEach((b) => { b.disabled = false; });
+      }
+      function updateSubmit() {
+        const btn = $("#p-submit");
+        if (btn) btn.disabled = selectedTotal == null;
+      }
+      function syncTotalButtons() {
+        $$("#p-score [data-total]", session).forEach((b) => {
+          const active = Number(b.dataset.total) === selectedTotal;
+          b.classList.toggle("active", active);
+          b.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+      }
+      function syncDimButtons() {
+        $$("#p-score .score-dim", session).forEach((row) => {
+          const dim = row.dataset.dim;
+          $$('[data-v]', row).forEach((b) => {
+            const active = selectedDims[dim] === Number(b.dataset.v);
+            b.classList.toggle("active", active);
+            b.setAttribute("aria-pressed", active ? "true" : "false");
+          });
+        });
+      }
+      function record(q) {
+        if (graded || selectedTotal == null) return;
         graded = true;
+        const dims = Object.assign(dimensionsFor(q, selectedTotal), selectedDims);
         const answer = revealed ? selfAnswer : captureSelfAnswer();
-        results.push({ q: q, g: g, revealed: revealed, selfAnswer: answer });
-        const log = practiceLog();
-        log.push({ id: q.id, domain: q.domain, type: q.type, grade: g, ts: Date.now(), revealed: !!revealed, selfAnswer: answer });
-        writeJSON(LOG_KEY, log);
-        const label = gradeLabel[g] || "已评分";
-        const feedback = $("#p-feedback");
-        if (feedback) {
-          feedback.textContent = g < 2 ? "已记录：" + label + "，已加入复习" : "已记录：" + label;
-          feedback.hidden = false;
-        }
-        $$(".grade-btn", session).forEach((b) => { b.disabled = true; });
-        const showBtn = $("#p-show");
-        const readyBtn = $("#p-ready");
-        const selfEl = $("#p-self");
-        if (showBtn) showBtn.disabled = true;
-        if (readyBtn) readyBtn.disabled = true;
-        if (selfEl) selfEl.readOnly = true;
+        recordMastery(q, selectedTotal, dims, revealed, answer);
+        results.push({ q, total: selectedTotal, dims, revealed, selfAnswer: answer });
+        showFeedback(selectedTotal < 3 ? "已记录 " + selectedTotal + " / 5，已加入复习" : "已记录 " + selectedTotal + " / 5");
+        $$("#p-score button", session).forEach((b) => { b.disabled = true; });
+        $("#p-show").disabled = true;
+        $("#p-ready").disabled = true;
+        $("#p-self").readOnly = true;
         window.setTimeout(() => {
           idx++;
           idx < pool.length ? render() : summary();
@@ -1760,24 +1989,21 @@
         revealed = false;
         selfAnswer = "";
         graded = false;
+        selectedTotal = null;
+        selectedDims = {};
         session.innerHTML =
           '<div class="practice-head"><span class="muted">第 ' + (idx + 1) + " / " + pool.length + ' 题</span><div class="progress-bar"><div class="progress-fill" style="width:' + (idx / pool.length * 100) + '%"></div></div></div>' +
           "<h2>" + esc(q.question) + "</h2>" +
           '<div class="tags">' + tagsHTML(q) + "</div>" +
           '<label class="field" style="display:block"><span>自答</span>' +
-            '<textarea id="p-self" rows="4" maxlength="' + MAX_SELF_ANSWER + '" placeholder="先写出回答要点" aria-label="自答要点" title="自答要点" style="width:100%;min-height:96px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);font-family:inherit;font-size:.95rem;resize:vertical"></textarea>' +
+            '<textarea id="p-self" rows="4" maxlength="' + MAX_SELF_ANSWER + '" placeholder="先写出回答要点" aria-label="自答要点" title="自答要点"></textarea>' +
           "</label>" +
           '<div class="practice-actions">' +
             '<button class="btn btn-secondary" id="p-ready" type="button"' + controlAttrs("我已想好", false) + ">我已想好</button>" +
             '<button class="btn btn-secondary" id="p-show" type="button"' + controlAttrs("显示答案") + " disabled>显示答案</button>" +
           "</div>" +
-          '<div id="p-answer" class="q-body" hidden>' + sectionCardsHTML(q) + "</div>" +
-          '<p class="muted" id="p-feedback" role="status" aria-live="polite" hidden></p>' +
-          '<div class="grade-row" style="margin-top:14px">' +
-            '<button class="grade-btn ok" type="button" data-g="2"' + controlAttrs("会") + ">会</button>" +
-            '<button class="grade-btn fuzzy" type="button" data-g="1"' + controlAttrs("模糊") + ">模糊</button>" +
-            '<button class="grade-btn bad" type="button" data-g="0"' + controlAttrs("不会") + ">不会</button>" +
-          "</div>";
+          '<div id="p-answer" class="q-body" hidden>' + sectionCardsHTML(q, false) + "</div>" +
+          scorePanelHTML(q);
         const selfEl = $("#p-self");
         const readyBtn = $("#p-ready");
         const showBtn = $("#p-show");
@@ -1804,60 +2030,144 @@
           readyBtn.disabled = true;
           showBtn.disabled = true;
           showBtn.textContent = "答案已揭晓";
-          showBtn.setAttribute("aria-label", "答案已揭晓");
-          showBtn.setAttribute("title", "答案已揭晓");
           $("#p-answer").hidden = false;
-          if (!diagramsMounted) { mountSectionDiagrams($("#p-answer"), q); diagramsMounted = true; }
+          $("#p-score").hidden = false;
+          if (!diagramsMounted) { mountSectionDiagrams($("#p-answer"), q, false); diagramsMounted = true; }
+          enableScoring();
+          showFeedback("答案已揭晓，请评分");
         });
-        $(".grade-row", session).addEventListener("click", (e) => { const b = e.target.closest("[data-g]"); if (!b) return; record(q, Number(b.dataset.g)); });
+        session.addEventListener("click", (e) => {
+          const totalBtn = e.target.closest("[data-total]");
+          if (totalBtn) {
+            selectedTotal = Number(totalBtn.dataset.total);
+            syncTotalButtons();
+            updateSubmit();
+            return;
+          }
+          const dimBtn = e.target.closest(".score-dim [data-v]");
+          if (dimBtn) {
+            const dim = dimBtn.closest(".score-dim").dataset.dim;
+            selectedDims[dim] = Number(dimBtn.dataset.v);
+            syncDimButtons();
+            return;
+          }
+          if (e.target.closest("#p-submit")) record(q);
+        });
       }
       function summary() {
         const total = results.length;
-        const ok = results.filter((r) => r.g === 2).length;
-        const fuzzy = results.filter((r) => r.g === 1).length;
-        const bad = results.filter((r) => r.g === 0).length;
-        const weak = results.filter((r) => r.g < 2).map((r) => r.q.id);
+        const ok = results.filter((r) => r.total >= 4).length;
+        const fuzzy = results.filter((r) => r.total >= 2 && r.total < 4).length;
+        const bad = results.filter((r) => r.total < 2).length;
+        const weak = results.filter((r) => r.total < 3).map((r) => r.q.id);
         session.innerHTML =
           "<h2>本轮完成</h2>" +
-          '<div class="stats"><div class="stat"><b>' + ok + "</b><span>会</span></div><div class=\"stat\"><b>" + fuzzy + "</b><span>模糊</span></div><div class=\"stat\"><b>" + bad + "</b><span>不会</span></div></div>" +
-          (weak.length ? "<h3>建议复习</h3><div class=\"q-list\">" + weak.map((id) => { const q = questionMap()[id]; return q ? '<a class="q-row" style="grid-template-columns:1fr" href="questions.html#' + encodeURIComponent(q.id) + '"' + linkAttrs(q.question + " · " + q.id) + '>' + esc(q.question) + "</a>" : ""; }).join("") + "</div>" : "") +
+          '<div class="stats"><div class="stat"><b>' + ok + "</b><span>掌握</span></div><div class=\"stat\"><b>" + fuzzy + "</b><span>待巩固</span></div><div class=\"stat\"><b>" + bad + "</b><span>不会</span></div></div>" +
+          (weak.length ? "<h3>建议复习</h3><div class=\"q-list\">" + weak.map((id) => { const q = byId[id]; return q ? '<a class="q-row" style="grid-template-columns:1fr" href="questions.html#' + encodeURIComponent(q.id) + '"' + linkAttrs(q.question + " · " + q.id) + '>' + esc(q.question) + "</a>" : ""; }).join("") + "</div>" : "") +
           '<div class="hero-actions" style="margin-top:16px"><button class="btn btn-primary" id="p-again" type="button"' + controlAttrs("再来一组") + '>再来一组</button><a class="btn btn-secondary" href="profile.html"' + linkAttrs("查看画像") + '>查看画像</a></div>';
         $("#p-again").addEventListener("click", () => location.reload());
       }
       render();
+    }
+
+    if (params.get("queue") === "1") {
+      const queued = readJSON(PRACTICE_QUEUE_KEY, []);
+      const pool = (Array.isArray(queued) ? queued : []).map((id) => byId[id]).filter((q) => q && q.training_eligible !== false);
+      if (pool.length) {
+        removeText(PRACTICE_QUEUE_KEY);
+        start(pool);
+      }
     }
   }
 
   function renderProfile() {
     $("#page").innerHTML = "<h1>能力画像</h1><div id=\"p-profile\"></div>";
     const el = $("#p-profile");
-    const storedLog = readJSON("os.practice.log", []);
-    const log = (Array.isArray(storedLog) ? storedLog : []).filter((r) => r && typeof r === "object");
-    if (!log.length) { el.innerHTML = '<div class="panel"><p class="muted">还没有训练记录，先去<a href="practice.html">随机训练</a>几次。</p></div>'; return; }
+    const store = masteryStore();
+    const history = Array.isArray(store.history) ? store.history : [];
+    const questions = store.questions || {};
+    const byId = questionMap();
+    if (!history.length && !Object.keys(questions).length) {
+      el.innerHTML = '<div class="panel"><p class="muted">还没有训练记录，先去<a href="practice.html">随机训练</a>几次。</p></div>';
+      return;
+    }
     const byDomain = {};
-    log.forEach((r) => {
+    history.forEach((r) => {
       const k = r.domain || "other";
       byDomain[k] = byDomain[k] || { total: 0, ok: 0 };
       byDomain[k].total++;
-      if (r.grade === 2) byDomain[k].ok++;
+      if (Number(r.grade) >= 4) byDomain[k].ok++;
     });
-    const rows = Object.keys(byDomain).map((k) => {
+    const domainRows = Object.keys(byDomain).map((k) => {
       const v = byDomain[k];
       const pct = Math.round(v.ok / v.total * 100);
       return '<div class="bar"><span class="bar-label">' + esc(domainLabel(k)) + '</span><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><span class="muted">' + pct + "%</span></div>";
     }).join("");
-    const weak = log.filter((r) => r.grade < 2).slice(-10).map((r) => { const q = questionMap()[r.id]; return q ? '<a class="q-row" style="grid-template-columns:1fr" href="questions.html#' + encodeURIComponent(q.id) + '"' + linkAttrs(q.question + " · " + q.id) + '>' + esc(q.question) + "</a>" : ""; }).join("");
-    const recent = log.slice(-10).reverse().map((r) => { const q = questionMap()[r.id]; return '<div class="rec-row"><span>' + (q ? esc(q.question) : esc(r.id)) + '</span><span class="muted">' + (r.grade === 2 ? "会" : r.grade === 1 ? "模糊" : "不会") + "</span></div>"; }).join("");
+
+    function dimensionRows(type, title) {
+      const dims = DIMENSION_SETS[type] || [];
+      const sums = {}, counts = {};
+      Object.keys(questions).forEach((id) => {
+        const q = byId[id];
+        if (!q || (type === "technical" && q.type !== "technical") ||
+            (type === "project" && q.type === "technical") ||
+            (type === "negotiation" && q.type !== "negotiation")) return;
+        const dim = questions[id].dimensions || {};
+        dims.forEach((d) => {
+          if (!Number.isFinite(Number(dim[d]))) return;
+          sums[d] = (sums[d] || 0) + Number(dim[d]);
+          counts[d] = (counts[d] || 0) + 1;
+        });
+      });
+      const rows = dims.filter((d) => counts[d]).map((d) => {
+        const avg = sums[d] / counts[d];
+        const pct = Math.round(avg / 5 * 100);
+        return '<div class="bar"><span class="bar-label">' + esc(DIMENSION_LABELS[d] || d) + '</span><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><span class="muted">' + avg.toFixed(1) + "/5</span></div>";
+      }).join("");
+      return rows ? '<div class="panel"><h2>' + esc(title) + '</h2>' + rows + '</div>' : "";
+    }
+
+    const weakIds = (store.weakQueue || []).slice(-10).reverse();
+    const weak = weakIds.map((id) => {
+      const q = byId[id];
+      return q ? '<a class="q-row" style="grid-template-columns:1fr" href="questions.html#' + encodeURIComponent(q.id) + '"' + linkAttrs(q.question + " · " + q.id) + '>' + esc(q.question) + "</a>" : "";
+    }).join("");
+    const recent = history.slice(-10).reverse().map((r) => {
+      const q = byId[r.id];
+      return '<div class="rec-row"><span>' + (q ? esc(q.question) : esc(r.id)) + '</span><span class="muted">' + Number(r.grade) + ' / 5</span></div>';
+    }).join("");
+    const reviewRows = (store.reviewQueue || []).slice(0, 8).map((x) => {
+      const q = byId[x.id];
+      return '<div class="rec-row"><span>' + (q ? esc(q.question) : esc(x.id)) + '</span><span class="muted">' + esc(x.reason) + '</span></div>';
+    }).join("");
     el.innerHTML =
-      '<div class="panel"><h2>领域掌握度</h2>' + rows + '<p class="muted" style="margin-top:12px">基于 ' + log.length + ' 次作答估算</p></div>' +
-      (weak ? '<div class="panel" style="margin-top:16px"><h2>最近薄弱</h2><div class="q-list">' + weak + "</div></div>" : "") +
-      '<div class="panel" style="margin-top:16px"><h2>最近记录</h2>' + recent + "</div>" +
+      '<div class="panel"><h2>领域掌握度</h2>' + (domainRows || '<p class="muted">暂无练习记录。</p>') + '<p class="muted" style="margin-top:12px">基于 ' + history.length + ' 次作答估算</p></div>' +
+      dimensionRows("technical", "技术题维度") +
+      dimensionRows("project", "行为题维度") +
+      dimensionRows("negotiation", "谈判题维度") +
+      (weak ? '<div class="panel" style="margin-top:16px"><h2>最近薄弱</h2><div class="q-list">' + weak + '</div><div class="hero-actions" style="margin-top:12px"><button class="btn btn-primary" id="p-target" type="button"' + controlAttrs("一键定向训练") + '>一键定向训练</button></div></div>' : "") +
+      (reviewRows ? '<div class="panel" style="margin-top:16px"><h2>复习队列</h2>' + reviewRows + '</div>' : "") +
+      '<div class="panel" style="margin-top:16px"><h2>最近记录</h2>' + (recent || '<p class="muted">暂无记录。</p>') + '</div>' +
       '<div style="margin-top:16px"><button class="btn btn-secondary" id="p-reset" type="button"' + controlAttrs("清空训练记录") + ">清空训练记录</button></div>";
-    $("#p-reset").addEventListener("click", () => { if (confirm("确定清空本地训练记录？")) { removeText("os.practice.log"); location.reload(); } });
+    const target = $("#p-target");
+    if (target) {
+      target.addEventListener("click", () => {
+        writeJSON(PRACTICE_QUEUE_KEY, weakIds.slice());
+        location.href = "practice.html?queue=1";
+      });
+    }
+    $("#p-reset").addEventListener("click", () => {
+      const backup = masteryStore();
+      writeJSON("os.mastery.v2.backup", backup);
+      saveMasteryStore(emptyMasteryStore());
+      showFeedback("已清空训练记录", () => { saveMasteryStore(backup); });
+      setTimeout(() => location.reload(), 500);
+    });
   }
 
   function boot() {
     initTheme();
+    migrateMastery();
     renderNav();
     const page = document.body.dataset.page;
     const map = { index: renderIndex, questions: renderQuestions, systems: renderSystems, explore: renderExplore, interviews: renderInterviews, practice: renderPractice, profile: renderProfile };

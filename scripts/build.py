@@ -14,6 +14,8 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 OUT = ROOT / "web" / "assets" / "js" / "data.js"
+REVIEW_MANIFEST = CONTENT / "review-manifest.yml"
+LINK_MANIFEST = CONTENT / "interview-links.yml"
 
 DIAGRAM_RE = re.compile(r"^```diagram\s*\n(.*?)^```[ \t]*$", re.M | re.S)
 SOCRATIC_RE = re.compile(r"^```socratic\s*\n(.*?)^```[ \t]*$", re.M | re.S)
@@ -43,6 +45,15 @@ QUESTION_ID_RE = re.compile(
 )
 VALID_SOURCE_TYPES = {"knowledge", "ai_generated"}
 REQUIRED_TECHNICAL_STAGES = {"pitch", "short", "long", "followup"}
+
+
+def load_manifest(path):
+    if not path.exists():
+        return {}
+    try:
+        return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    except Exception:
+        return {}
 
 STAGE_LABELS = {
     "thinking": "回答思路",
@@ -652,7 +663,7 @@ def normalize_socratic(d):
     return {"type": "socratic", "steps": steps} if steps else None
 
 
-def load_questions():
+def load_questions(reviewed_ids, pending_review_ids):
     qdir = CONTENT / "questions"
     items = []
     for md in sorted(qdir.rglob("*.md")):
@@ -685,13 +696,43 @@ def load_questions():
         meta["sections"] = sections
         meta["answer_outline"] = _answer_outline(q_type, personal, sections)
         meta["diagrams"] = [normalize_diagram(d) for d in diagrams if normalize_diagram(d)]
+        stage_keys = {str(sec.get("stage_key") or "") for sec in sections}
+        has_coach = "coach" in stage_keys
+        answer_len = _answer_text_length(meta)
+        has_stages = REQUIRED_TECHNICAL_STAGES.issubset(stage_keys)
+        if answer_len < 120 or (q_type == "technical" and not has_stages):
+            content_status = "needs_answer"
+        elif meta["id"] in reviewed_ids:
+            content_status = "reviewed"
+        elif meta["id"] in pending_review_ids or has_coach:
+            content_status = "needs_review"
+        else:
+            content_status = "reviewed"
+        meta["content_status"] = content_status
+        meta["training_eligible"] = bool(
+            content_status == "reviewed"
+            and answer_len >= 120
+            and (q_type != "technical" or has_stages)
+            and not personal
+        )
+        meta["has_coach"] = has_coach
         items.append(meta)
     items.sort(key=lambda q: (DOMAIN_ORDER.index(q["domain"]) if q["domain"] in DOMAIN_ORDER else 99, q["id"]))
     return items
 
 
-def load_interviews(questions):
+def load_interviews(questions, link_entries):
     idir = CONTENT / "interviews"
+    questions_by_id = {str(q["id"]): q for q in questions}
+    confirmed_by_interview = {}
+    for entry in link_entries or []:
+        iid = str((entry or {}).get("interview_id") or "")
+        if not iid:
+            continue
+        confirmed_by_interview[iid] = [
+            c for c in ((entry or {}).get("candidates") or [])
+            if c.get("confirmed") and str(c.get("question_id")) in questions_by_id
+        ]
     items = []
     for md in sorted(idir.rglob("*.md")):
         meta, body = read_md(md)
@@ -754,7 +795,30 @@ def load_interviews(questions):
                         "domain": q["domain"],
                         "type": q["type"],
                         "diagrams": len(q.get("diagrams") or []),
+                        "score": 1.0,
+                        "match_source": "sources",
                     })
+        for candidate in confirmed_by_interview.get(meta["interview_id"], []):
+            qid = str(candidate.get("question_id"))
+            if qid in seen:
+                continue
+            q = questions_by_id[qid]
+            seen.add(qid)
+            linked.append({
+                "id": qid,
+                "question": q["question"],
+                "domain": q["domain"],
+                "type": q["type"],
+                "diagrams": len(q.get("diagrams") or []),
+                "score": float(candidate.get("score") or 0.0),
+                "match_source": "mapping",
+            })
+        linked.sort(key=lambda x: (-float(x.get("score") or 0.0), str(x.get("id"))))
+        for idx, item in enumerate(linked):
+            item["alternatives"] = [
+                {"id": x["id"], "question": x["question"], "score": x["score"]}
+                for x in linked[idx + 1:idx + 3]
+            ]
         meta["linked"] = linked
         items.append(meta)
     items.sort(key=lambda x: x.get("date", ""), reverse=True)
@@ -807,6 +871,9 @@ def validate_payload(questions, interviews):
     knowledge_with_sources = 0
     short_technical_answers = 0
     missing_canonical_stages = 0
+    coach_questions = 0
+    needs_review = 0
+    needs_answer = 0
 
     for q in questions:
         qid = str(q.get("id") or "")
@@ -831,8 +898,16 @@ def validate_payload(questions, interviews):
             }
             if not REQUIRED_TECHNICAL_STAGES.issubset(stage_keys):
                 missing_canonical_stages += 1
+        if q.get("has_coach"):
+            coach_questions += 1
+        status = str(q.get("content_status") or "")
+        if status == "needs_review":
+            needs_review += 1
+        elif status == "needs_answer":
+            needs_answer += 1
 
     empty_interviews = sum(1 for iv in interviews if not (iv.get("items") or []))
+    unlinked_interviews = sum(1 for iv in interviews if not (iv.get("linked") or []))
     summary = {
         "duplicate_ids": duplicate_ids,
         "invalid_ids": invalid_ids,
@@ -841,11 +916,16 @@ def validate_payload(questions, interviews):
         "short_technical_answers": short_technical_answers,
         "missing_canonical_stages": missing_canonical_stages,
         "empty_interviews": empty_interviews,
+        "coach_questions": coach_questions,
+        "needs_review": needs_review,
+        "needs_answer": needs_answer,
+        "unlinked_interviews": unlinked_interviews,
     }
     print(
         "校验：重复 ID %d / 非法 ID %d / 未知 source_type %d / "
         "knowledge 带 sources %d / technical 答案正文<120字 %d / "
-        "缺 canonical stage %d / 0 items 面经 %d"
+        "缺 canonical stage %d / 0 items 面经 %d / coach 题卡 %d / "
+        "待复核 %d / 待补答案 %d / 无关联面经 %d"
         % (
             duplicate_ids,
             invalid_ids,
@@ -854,14 +934,22 @@ def validate_payload(questions, interviews):
             short_technical_answers,
             missing_canonical_stages,
             empty_interviews,
+            coach_questions,
+            needs_review,
+            needs_answer,
+            unlinked_interviews,
         )
     )
     return summary
 
 
 def main():
-    questions = load_questions()
-    interviews = load_interviews(questions)
+    review = load_manifest(REVIEW_MANIFEST)
+    links = load_manifest(LINK_MANIFEST)
+    reviewed_ids = set(str(x) for x in (review.get("reviewed_ids") or []))
+    pending_ids = set(str(x) for x in (review.get("pending_review_ids") or []))
+    questions = load_questions(reviewed_ids, pending_ids)
+    interviews = load_interviews(questions, links.get("links") or [])
     systems = load_systems()
     validate_payload(questions, interviews)
     domains = {}

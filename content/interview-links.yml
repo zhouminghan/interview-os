@@ -1,0 +1,3515 @@
+generated_at: '2026-11-09T20:28:00+08:00'
+policy: confirmed=true 的候选由 build.py 合并进 linked；confirmed=false 仅作为复核候选
+links:
+- interview_id: INTERVIEW-2026-11-08-beike-data-platform-1108
+  candidates:
+  - question_id: HDFS-0003
+    score: 0.4175
+    reason: bigram=0.104; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STORAGE-0014
+    score: 0.2987
+    reason: bigram=0.113; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0015
+    score: 0.2736
+    reason: bigram=0.075; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-11-05-tplink-llm-1105
+  candidates:
+  - question_id: LLM-0150
+    score: 0.1289
+    reason: bigram=0.044; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: LLM-0080
+    score: 0.1285
+    reason: bigram=0.044; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: LLM-0009
+    score: 0.1269
+    reason: bigram=0.041; topic=0.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-11-04-bytedance-bigdata-1104
+  candidates:
+  - question_id: SPARK-0047
+    score: 0.4117
+    reason: bigram=0.095; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0392
+    score: 0.4034
+    reason: bigram=0.082; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0216
+    score: 0.403
+    reason: bigram=0.081; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-11-04-bytedance-data-dev-intern-1104
+  candidates:
+  - question_id: SPARK-0123
+    score: 0.3802
+    reason: bigram=0.047; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0129
+    score: 0.3801
+    reason: bigram=0.046; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0213
+    score: 0.3775
+    reason: bigram=0.042; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-11-04-pdd-agent-backend-1104
+  candidates:
+  - question_id: LLM-0220
+    score: 0.2878
+    reason: bigram=0.097; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0088
+    score: 0.2866
+    reason: bigram=0.031; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0084
+    score: 0.2501
+    reason: bigram=0.039; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-11-04-pdd-llm-algo-1104
+  candidates:
+  - question_id: LLM-0055
+    score: 0.2952
+    reason: bigram=0.044; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0212
+    score: 0.2154
+    reason: bigram=0.081; topic=0.250; domain=1.0
+    confirmed: true
+  - question_id: LLM-0211
+    score: 0.2122
+    reason: bigram=0.076; topic=0.250; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-11-02-kundian-data-dev-1102
+  candidates:
+  - question_id: SPARK-0060
+    score: 0.3799
+    reason: bigram=0.046; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0089
+    score: 0.3796
+    reason: bigram=0.046; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0114
+    score: 0.379
+    reason: bigram=0.045; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-11-02-qianwen-agent-dev-1102
+  candidates:
+  - question_id: LLM-0203
+    score: 0.3388
+    reason: bigram=0.137; topic=0.600; domain=1.0
+    confirmed: true
+  - question_id: LLM-0003
+    score: 0.3125
+    reason: bigram=0.071; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0001
+    score: 0.3099
+    reason: bigram=0.066; topic=0.667; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-11-02-sensetime-ai-dev-1102
+  candidates:
+  - question_id: FLINK-0403
+    score: 0.384
+    reason: bigram=0.052; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0423
+    score: 0.3799
+    reason: bigram=0.046; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0213
+    score: 0.378
+    reason: bigram=0.043; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-31-anker-ai-data-engineer
+  candidates:
+  - question_id: SQL-0005
+    score: 0.0876
+    reason: bigram=0.006; topic=0.333; domain=0.0
+    confirmed: true
+  - question_id: SPARK-0401
+    score: 0.0693
+    reason: bigram=0.010; topic=0.250; domain=0.0
+    confirmed: true
+  - question_id: WAREHOUSE-0392
+    score: 0.0666
+    reason: bigram=0.006; topic=0.250; domain=0.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-31-midea-bigdata-dev
+  candidates:
+  - question_id: FLINK-0410
+    score: 0.4583
+    reason: bigram=0.167; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0409
+    score: 0.4409
+    reason: bigram=0.140; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0279
+    score: 0.4322
+    reason: bigram=0.126; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-30-kuaishou-llm-data-dev
+  candidates:
+  - question_id: SQL-0027
+    score: 0.371
+    reason: bigram=0.032; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: LAKEHOUSE-0004
+    score: 0.3
+    reason: bigram=0.051; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LAKEHOUSE-0002
+    score: 0.2526
+    reason: bigram=0.042; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-30-meituan-data-dev
+  candidates:
+  - question_id: LLM-0193
+    score: 0.3654
+    reason: bigram=0.024; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: LLM-0075
+    score: 0.3652
+    reason: bigram=0.023; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: LLM-0034
+    score: 0.3629
+    reason: bigram=0.020; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-29-asiainfo-data-dev-intern
+  candidates:
+  - question_id: FLINK-0448
+    score: 0.3755
+    reason: bigram=0.039; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0422
+    score: 0.3742
+    reason: bigram=0.037; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0427
+    score: 0.3726
+    reason: bigram=0.035; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-29-kuaishou-ai-data-dev
+  candidates:
+  - question_id: LLM-0187
+    score: 0.1352
+    reason: bigram=0.112; topic=0.250; domain=0.0
+    confirmed: true
+  - question_id: LLM-0188
+    score: 0.1261
+    reason: bigram=0.098; topic=0.250; domain=0.0
+    confirmed: true
+  - question_id: PLATFORM-0001
+    score: 0.1148
+    reason: bigram=0.023; topic=0.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-28-tencent-wxg-data-eng-1028
+  candidates:
+  - question_id: SQL-0004
+    score: 0.2703
+    reason: bigram=0.070; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0023
+    score: 0.2556
+    reason: bigram=0.047; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0010
+    score: 0.2521
+    reason: bigram=0.042; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-27-bytedance-ai-data-ops-1027
+  candidates:
+  - question_id: ML-0006
+    score: 0.114
+    reason: bigram=0.022; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: ML-0001
+    score: 0.111
+    reason: bigram=0.017; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: ML-0007
+    score: 0.1105
+    reason: bigram=0.016; topic=0.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-27-jiufang-zhitou-warehouse
+  candidates:
+  - question_id: FLINK-0204
+    score: 0.4313
+    reason: bigram=0.125; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0213
+    score: 0.41
+    reason: bigram=0.092; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0196
+    score: 0.4091
+    reason: bigram=0.091; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-27-unnamed-data-dev-intern
+  candidates:
+  - question_id: SPARK-0060
+    score: 0.4033
+    reason: bigram=0.082; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0199
+    score: 0.4028
+    reason: bigram=0.081; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0089
+    score: 0.4024
+    reason: bigram=0.081; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-26-bytedance-data-analysis-1026
+  candidates:
+  - question_id: PLATFORM-0001
+    score: 0.1063
+    reason: bigram=0.010; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: PLATFORM-0002
+    score: 0.1061
+    reason: bigram=0.009; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0388
+    score: 0.0681
+    reason: bigram=0.009; topic=0.250; domain=0.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-26-jiufang-zhitou-warehouse
+  candidates:
+  - question_id: SPARK-0060
+    score: 0.4337
+    reason: bigram=0.129; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0089
+    score: 0.432
+    reason: bigram=0.126; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0035
+    score: 0.4313
+    reason: bigram=0.125; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-25-meituan-data-dev
+  candidates:
+  - question_id: SQL-0004
+    score: 0.2488
+    reason: bigram=0.037; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0027
+    score: 0.2425
+    reason: bigram=0.027; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0017
+    score: 0.2396
+    reason: bigram=0.022; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-24-bytedance-warehouse
+  candidates:
+  - question_id: WAREHOUSE-0103
+    score: 0.1999
+    reason: bigram=0.025; topic=0.333; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0007
+    score: 0.1987
+    reason: bigram=0.024; topic=0.333; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0009
+    score: 0.1766
+    reason: bigram=0.022; topic=0.250; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-24-kuaishou-fde-1024
+  candidates:
+  - question_id: LLM-0030
+    score: 0.2661
+    reason: bigram=0.063; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0069
+    score: 0.2619
+    reason: bigram=0.057; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0083
+    score: 0.2588
+    reason: bigram=0.052; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-23-kuaishou-fde-1023
+  candidates:
+  - question_id: LLM-0006
+    score: 0.3403
+    reason: bigram=0.113; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0016
+    score: 0.3246
+    reason: bigram=0.089; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0034
+    score: 0.324
+    reason: bigram=0.088; topic=0.667; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-21-kuaishou-fde-1st-1021
+  candidates:
+  - question_id: SPARK-0035
+    score: 0.27
+    reason: bigram=0.069; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0040
+    score: 0.264
+    reason: bigram=0.060; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0029
+    score: 0.2385
+    reason: bigram=0.085; topic=0.333; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-21-lexing-yuanyou-data-dev
+  candidates:
+  - question_id: FLINK-0371
+    score: 0.3653
+    reason: bigram=0.024; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0364
+    score: 0.3644
+    reason: bigram=0.022; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0384
+    score: 0.3637
+    reason: bigram=0.021; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-20-bilibili-ai-data-rd
+  candidates:
+  - question_id: WAREHOUSE-0392
+    score: 0.1731
+    reason: bigram=0.016; topic=0.250; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0121
+    score: 0.1319
+    reason: bigram=0.049; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0217
+    score: 0.128
+    reason: bigram=0.043; topic=0.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-20-bytedance-data-dev-intern-1020
+  candidates:
+  - question_id: SPARK-0047
+    score: 0.3697
+    reason: bigram=0.030; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0190
+    score: 0.3695
+    reason: bigram=0.030; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0149
+    score: 0.3681
+    reason: bigram=0.028; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-20-jingwei-hengrun-data-platform
+  candidates:
+  - question_id: LLM-0069
+    score: 0.2523
+    reason: bigram=0.042; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0030
+    score: 0.2491
+    reason: bigram=0.037; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0004
+    score: 0.2484
+    reason: bigram=0.036; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-20-jingwei-hengrun-data-platform-1020
+  candidates:
+  - question_id: SPARK-0068
+    score: 0.3853
+    reason: bigram=0.054; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0107
+    score: 0.3847
+    reason: bigram=0.053; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0084
+    score: 0.3847
+    reason: bigram=0.053; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-19-bytedance-bigdata-1019
+  candidates:
+  - question_id: SQL-0027
+    score: 0.3955
+    reason: bigram=0.070; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0011
+    score: 0.3021
+    reason: bigram=0.119; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0035
+    score: 0.2893
+    reason: bigram=0.099; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-19-qunar-data-analysis-intern
+  candidates:
+  - question_id: LLM-0144
+    score: 0.0331
+    reason: bigram=0.051; topic=0.000; domain=0.0
+    confirmed: true
+  - question_id: WAREHOUSE-0271
+    score: 0.0301
+    reason: bigram=0.046; topic=0.000; domain=0.0
+    confirmed: false
+  - question_id: WAREHOUSE-0162
+    score: 0.0301
+    reason: bigram=0.046; topic=0.000; domain=0.0
+    confirmed: false
+- interview_id: INTERVIEW-2026-10-16-bytedance-bigdata-1016
+  candidates:
+  - question_id: LLM-0034
+    score: 0.3252
+    reason: bigram=0.090; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0193
+    score: 0.2841
+    reason: bigram=0.091; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0075
+    score: 0.2815
+    reason: bigram=0.087; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-16-kuaishou-kling
+  candidates:
+  - question_id: ML-0002
+    score: 0.1067
+    reason: bigram=0.010; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: STATISTICS-0002
+    score: 0.1043
+    reason: bigram=0.007; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: ML-0007
+    score: 0.1043
+    reason: bigram=0.007; topic=0.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-16-netease-data-dev
+  candidates:
+  - question_id: WAREHOUSE-0392
+    score: 0.0683
+    reason: bigram=0.009; topic=0.250; domain=0.0
+    confirmed: true
+  - question_id: SPARK-0401
+    score: 0.068
+    reason: bigram=0.008; topic=0.250; domain=0.0
+    confirmed: true
+  - question_id: LLM-0023
+    score: 0.0378
+    reason: bigram=0.058; topic=0.000; domain=0.0
+    confirmed: false
+- interview_id: INTERVIEW-2026-10-15-hande-data-dev
+  candidates:
+  - question_id: HDFS-0003
+    score: 0.4436
+    reason: bigram=0.144; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0047
+    score: 0.4198
+    reason: bigram=0.107; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0238
+    score: 0.4046
+    reason: bigram=0.084; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-14-llm-firm-data-infra
+  candidates:
+  - question_id: SPARK-0109
+    score: 0.406
+    reason: bigram=0.086; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0106
+    score: 0.4056
+    reason: bigram=0.085; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0099
+    score: 0.4032
+    reason: bigram=0.082; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-13-bytedance-bigdata-1013
+  candidates:
+  - question_id: STARROCKS-0169
+    score: 0.421
+    reason: bigram=0.109; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0167
+    score: 0.4193
+    reason: bigram=0.107; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0140
+    score: 0.4171
+    reason: bigram=0.103; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-13-yangteng-data-dev
+  candidates:
+  - question_id: SPARK-0028
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0054
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0061
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0064
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0129
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0214
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0400
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0061
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0037
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0191
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-12-agent-dev-intern-1012
+  candidates:
+  - question_id: LLM-0196
+    score: 0.313
+    reason: bigram=0.039; topic=0.750; domain=1.0
+    confirmed: true
+  - question_id: LLM-0193
+    score: 0.3054
+    reason: bigram=0.027; topic=0.750; domain=1.0
+    confirmed: true
+  - question_id: LLM-0075
+    score: 0.3038
+    reason: bigram=0.025; topic=0.750; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-12-bytedance-bigdata-1012
+  candidates:
+  - question_id: SQL-0004
+    score: 0.2588
+    reason: bigram=0.052; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0010
+    score: 0.2556
+    reason: bigram=0.047; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0071
+    score: 0.2521
+    reason: bigram=0.042; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-12-bytedance-search-infra
+  candidates:
+  - question_id: LLM-0093
+    score: 0.145
+    reason: bigram=0.031; topic=0.500; domain=0.0
+    confirmed: true
+  - question_id: PLATFORM-0001
+    score: 0.1131
+    reason: bigram=0.020; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: ALGORITHM-0009
+    score: 0.1128
+    reason: bigram=0.020; topic=0.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-12-ctrip-data-analyst
+  candidates:
+  - question_id: LLM-0069
+    score: 0.2411
+    reason: bigram=0.025; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0083
+    score: 0.2375
+    reason: bigram=0.019; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0030
+    score: 0.2374
+    reason: bigram=0.019; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-11-chery-battery-data-dev
+  candidates:
+  - question_id: SPARK-0028
+    score: 0.3849
+    reason: bigram=0.054; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0244
+    score: 0.3847
+    reason: bigram=0.053; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0234
+    score: 0.3834
+    reason: bigram=0.051; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-11-youjia-data-loop-1011
+  candidates:
+  - question_id: FLINK-0410
+    score: 0.4228
+    reason: bigram=0.112; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0138
+    score: 0.4052
+    reason: bigram=0.085; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0374
+    score: 0.4032
+    reason: bigram=0.082; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-10-bytedance-data-dev-3round
+  candidates:
+  - question_id: STORAGE-0015
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0021
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0447
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0817
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: FLINK-0064
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: FLINK-0084
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: NETWORK-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0011
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0032
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0033
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0176
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0031
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-09-ctrip-warehouse
+  candidates:
+  - question_id: SQL-0005
+    score: 0.2933
+    reason: bigram=0.041; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: SQL-0007
+    score: 0.2656
+    reason: bigram=0.062; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0018
+    score: 0.2523
+    reason: bigram=0.042; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-08-banmu-huadao
+  candidates:
+  - question_id: SPARK-0033
+    score: 0.4191
+    reason: bigram=0.106; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0025
+    score: 0.4113
+    reason: bigram=0.094; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0216
+    score: 0.4047
+    reason: bigram=0.084; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-05-tencent-cdg-data-eng
+  candidates:
+  - question_id: SPARK-0044
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0816
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0107
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0118
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-04-tencent-data-eng-1004
+  candidates:
+  - question_id: LLM-0069
+    score: 0.2429
+    reason: bigram=0.027; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0083
+    score: 0.2402
+    reason: bigram=0.023; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0030
+    score: 0.2399
+    reason: bigram=0.023; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-02-mutong-game-warehouse
+  candidates:
+  - question_id: FLINK-0337
+    score: 0.3978
+    reason: bigram=0.074; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0044
+    score: 0.3978
+    reason: bigram=0.074; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0466
+    score: 0.3976
+    reason: bigram=0.073; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-02-xiaomi-data-infra-1002
+  candidates:
+  - question_id: FLINK-0410
+    score: 0.4282
+    reason: bigram=0.120; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0084
+    score: 0.401
+    reason: bigram=0.078; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0211
+    score: 0.4
+    reason: bigram=0.077; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-10-02-yingshi-warehouse
+  candidates:
+  - question_id: LLM-0034
+    score: 0.3175
+    reason: bigram=0.078; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0075
+    score: 0.2801
+    reason: bigram=0.085; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0211
+    score: 0.2772
+    reason: bigram=0.080; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-29-shengqu-game-ai
+  candidates:
+  - question_id: FLINK-0422
+    score: 0.3637
+    reason: bigram=0.021; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0446
+    score: 0.3632
+    reason: bigram=0.020; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0275
+    score: 0.3629
+    reason: bigram=0.020; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-29-timi-ai-data-engineer
+  candidates:
+  - question_id: SQL-0012
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0073
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0074
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0075
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0076
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0077
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0078
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0079
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0080
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0081
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0082
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0083
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0084
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0085
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing
+  candidates:
+  - question_id: SPARK-0019
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0023
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0028
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0106
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0040
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0041
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0174
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0175
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0088
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0177
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0203
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0252
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0310
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0311
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0022
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-28-google-ml-de-rag
+  candidates:
+  - question_id: LLM-0217
+    score: 0.254
+    reason: bigram=0.045; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0073
+    score: 0.2428
+    reason: bigram=0.027; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: ML-0001
+    score: 0.2409
+    reason: bigram=0.024; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-28-guazi-ai-data-dev
+  candidates:
+  - question_id: SPARK-0040
+    score: 0.3603
+    reason: bigram=0.016; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0035
+    score: 0.3603
+    reason: bigram=0.016; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0199
+    score: 0.3596
+    reason: bigram=0.015; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-28-persol-data-engineer
+  candidates:
+  - question_id: SYSTEM-0009
+    score: 0.1144
+    reason: bigram=0.022; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: SYSTEM-0001
+    score: 0.1122
+    reason: bigram=0.019; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: SYSTEM-0002
+    score: 0.1089
+    reason: bigram=0.014; topic=0.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-27-atour-bigdata-dev
+  candidates:
+  - question_id: FLINK-0275
+    score: 0.3699
+    reason: bigram=0.031; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0328
+    score: 0.3683
+    reason: bigram=0.028; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0484
+    score: 0.3678
+    reason: bigram=0.027; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-27-google-ai-de
+  candidates:
+  - question_id: STORAGE-0618
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STATISTICS-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ML-0006
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ML-0007
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ML-0008
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0040
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0072
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0081
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0139
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0177
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0178
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0179
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0180
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0181
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0182
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0183
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0184
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SYSTEM-0009
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0193
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0229
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0372
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0373
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0374
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0375
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0376
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0377
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-27-taobao-shangou-ai-data
+  candidates:
+  - question_id: FLINK-0275
+    score: 0.3653
+    reason: bigram=0.024; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0329
+    score: 0.3638
+    reason: bigram=0.021; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0088
+    score: 0.3633
+    reason: bigram=0.020; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-26-sunwoda-data-dev
+  candidates:
+  - question_id: SPARK-0030
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: FLINK-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: FLINK-0006
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0037
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0038
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0046
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0047
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0048
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0049
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0050
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0062
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0063
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0064
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0065
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0066
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0067
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0068
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0069
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-26-xpeng-data-dev
+  candidates:
+  - question_id: SPARK-0023
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0024
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0025
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0026
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0027
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0009
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0010
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0022
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0023
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0024
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0042
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0043
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0044
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0045
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0044
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0045
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0046
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0047
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0048
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0049
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0050
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-25-banmu-huadao
+  candidates:
+  - question_id: LAKEHOUSE-0006
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LAKEHOUSE-0007
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0021
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0038
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0039
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0040
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0041
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0007
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0029
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0030
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0031
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0032
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0033
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0034
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0035
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0036
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0037
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0038
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0039
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0040
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0041
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0042
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0043
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-25-kuaishou-ai-data
+  candidates:
+  - question_id: SPARK-0029
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ALGORITHM-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0028
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0029
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0030
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0031
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0032
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0033
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0034
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0035
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0036
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0009
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0057
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0058
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0059
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0060
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0061
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-25-xunlei-data-dev
+  candidates:
+  - question_id: SPARK-0031
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0032
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0010
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0011
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0039
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PLATFORM-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PLATFORM-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SYSTEM-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0051
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0052
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0010
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0011
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0070
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0071
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0072
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-24-banmu-huadao
+  candidates:
+  - question_id: SQL-0007
+    score: 0.2424
+    reason: bigram=0.027; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0018
+    score: 0.235
+    reason: bigram=0.015; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0010
+    score: 0.235
+    reason: bigram=0.015; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-24-meituan-data-dev
+  candidates:
+  - question_id: SPARK-0019
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0020
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0021
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0022
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0007
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0008
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LAKEHOUSE-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LAKEHOUSE-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LAKEHOUSE-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LAKEHOUSE-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LAKEHOUSE-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0009
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0010
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0011
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0012
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0013
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0014
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0015
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0016
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0024
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0025
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0026
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0027
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0028
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0029
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0030
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0015
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0016
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0017
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0018
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0019
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0020
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-24-shopee-data-dev
+  candidates:
+  - question_id: LLM-0017
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0018
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0019
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0020
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0031
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0032
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0033
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0034
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0035
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0036
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0037
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0021
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0022
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0023
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0024
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0025
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0026
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0027
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0028
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-24-sohu-changyou
+  candidates:
+  - question_id: SQL-0007
+    score: 0.2455
+    reason: bigram=0.032; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0010
+    score: 0.2423
+    reason: bigram=0.027; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0017
+    score: 0.2401
+    reason: bigram=0.023; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-23-anker-data
+  candidates:
+  - question_id: STARROCKS-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0006
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0007
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0008
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0009
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0006
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0007
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0008
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0013
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0014
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-23-pdd-server-dev-0923
+  candidates:
+  - question_id: SPARK-0088
+    score: 0.3953
+    reason: bigram=0.070; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0084
+    score: 0.3939
+    reason: bigram=0.068; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SQL-0027
+    score: 0.3936
+    reason: bigram=0.067; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-23-shopee-data-dev
+  candidates:
+  - question_id: LLM-0069
+    score: 0.2368
+    reason: bigram=0.018; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0030
+    score: 0.2315
+    reason: bigram=0.010; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0083
+    score: 0.2304
+    reason: bigram=0.008; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-22-kuaishou-data-dev-0922
+  candidates:
+  - question_id: FLINK-0427
+    score: 0.3741
+    reason: bigram=0.037; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0158
+    score: 0.3693
+    reason: bigram=0.030; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0484
+    score: 0.3685
+    reason: bigram=0.028; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-21-bilibili-data-dev-0921
+  candidates:
+  - question_id: LLM-0069
+    score: 0.254
+    reason: bigram=0.045; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0030
+    score: 0.2449
+    reason: bigram=0.031; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0083
+    score: 0.2418
+    reason: bigram=0.026; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-21-jiukun-data-dev
+  candidates:
+  - question_id: SPARK-0012
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0013
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0014
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0015
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0016
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0017
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0006
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: FLINK-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: FLINK-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: FLINK-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0015
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0016
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0017
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-21-pdd-data-dev
+  candidates:
+  - question_id: SPARK-0010
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0011
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0009
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0010
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0011
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0012
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0013
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0014
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0006
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-20-taotian-ai-agent
+  candidates:
+  - question_id: LLM-0003
+    score: 0.2892
+    reason: bigram=0.035; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0001
+    score: 0.2886
+    reason: bigram=0.034; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0196
+    score: 0.2446
+    reason: bigram=0.030; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-19-jingwei-hengrun-autumn-0919
+  candidates:
+  - question_id: SPARK-0068
+    score: 0.3799
+    reason: bigram=0.046; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0084
+    score: 0.3795
+    reason: bigram=0.045; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0109
+    score: 0.3788
+    reason: bigram=0.044; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-19-yi-dian-data-platform
+  candidates:
+  - question_id: STARROCKS-0213
+    score: 0.4094
+    reason: bigram=0.091; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0177
+    score: 0.4045
+    reason: bigram=0.084; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0025
+    score: 0.3981
+    reason: bigram=0.074; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-18-bytedance-douyin
+  candidates:
+  - question_id: WAREHOUSE-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0006
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0007
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-18-tuozhu-data-dev-0918
+  candidates:
+  - question_id: SPARK-0041
+    score: 0.4269
+    reason: bigram=0.118; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0129
+    score: 0.4245
+    reason: bigram=0.115; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0125
+    score: 0.4201
+    reason: bigram=0.108; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-15-bigo-java-0915
+  candidates:
+  - question_id: SPARK-0035
+    score: 0.3828
+    reason: bigram=0.051; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0199
+    score: 0.3747
+    reason: bigram=0.038; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0040
+    score: 0.3739
+    reason: bigram=0.037; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-15-bytedance-bigdata-0915
+  candidates:
+  - question_id: SQL-0027
+    score: 0.3746
+    reason: bigram=0.038; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SQL-0010
+    score: 0.2421
+    reason: bigram=0.026; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0025
+    score: 0.2403
+    reason: bigram=0.024; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-14-bytedance-cn-transaction-ads
+  candidates:
+  - question_id: SPARK-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0008
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0006
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-14-ctrip-warehouse
+  candidates:
+  - question_id: LLM-0034
+    score: 0.2836
+    reason: bigram=0.026; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0017
+    score: 0.2802
+    reason: bigram=0.021; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0068
+    score: 0.2767
+    reason: bigram=0.016; topic=0.667; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-10-hsdz-ai-data
+  candidates:
+  - question_id: FLINK-0371
+    score: 0.3705
+    reason: bigram=0.031; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0329
+    score: 0.3704
+    reason: bigram=0.031; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0302
+    score: 0.3693
+    reason: bigram=0.030; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-09-anker-ai-data-engineer
+  candidates:
+  - question_id: SQL-0007
+    score: 0.2457
+    reason: bigram=0.032; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0010
+    score: 0.2429
+    reason: bigram=0.028; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0018
+    score: 0.2427
+    reason: bigram=0.027; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-09-bytedance-data-dev
+  candidates:
+  - question_id: SPARK-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0006
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0007
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0008
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SPARK-0009
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: HDFS-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: NETWORK-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: NETWORK-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: NETWORK-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: NETWORK-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ALGORITHM-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0007
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0008
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0009
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-09-zuoyebang-data-dev
+  candidates:
+  - question_id: FLINK-0276
+    score: 0.3729
+    reason: bigram=0.035; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0360
+    score: 0.3707
+    reason: bigram=0.032; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0390
+    score: 0.3698
+    reason: bigram=0.030; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-08-netease-youdao-ai-data
+  candidates:
+  - question_id: SPARK-0035
+    score: 0.3603
+    reason: bigram=0.016; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0190
+    score: 0.3597
+    reason: bigram=0.015; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0177
+    score: 0.3597
+    reason: bigram=0.015; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-08-pingan-ai-data-0908
+  candidates:
+  - question_id: LLM-0214
+    score: 0.2801
+    reason: bigram=0.085; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0196
+    score: 0.2481
+    reason: bigram=0.036; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0205
+    score: 0.2454
+    reason: bigram=0.031; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-07-haizhi-ai-data
+  candidates:
+  - question_id: SPARK-0035
+    score: 0.3628
+    reason: bigram=0.020; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0114
+    score: 0.362
+    reason: bigram=0.019; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0089
+    score: 0.3613
+    reason: bigram=0.017; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-06-taotian-ai-data
+  candidates:
+  - question_id: STARROCKS-0140
+    score: 0.3676
+    reason: bigram=0.027; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0360
+    score: 0.3648
+    reason: bigram=0.023; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0422
+    score: 0.3641
+    reason: bigram=0.022; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-03-dewu-data-dev
+  candidates:
+  - question_id: FLINK-0275
+    score: 0.368
+    reason: bigram=0.028; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0276
+    score: 0.3667
+    reason: bigram=0.026; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0422
+    score: 0.3659
+    reason: bigram=0.024; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-02-doudizhu-warehouse
+  candidates:
+  - question_id: WAREHOUSE-0392
+    score: 0.1751
+    reason: bigram=0.019; topic=0.250; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0147
+    score: 0.1382
+    reason: bigram=0.059; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0062
+    score: 0.1369
+    reason: bigram=0.057; topic=0.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-02-jiamian-ai-data
+  candidates:
+  - question_id: SPARK-0192
+    score: 0.3728
+    reason: bigram=0.035; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0167
+    score: 0.3719
+    reason: bigram=0.034; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0035
+    score: 0.3708
+    reason: bigram=0.032; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-09-02-tencent-fintech-mlops
+  candidates:
+  - question_id: SPARK-0088
+    score: 0.3695
+    reason: bigram=0.030; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0276
+    score: 0.3676
+    reason: bigram=0.027; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0390
+    score: 0.3667
+    reason: bigram=0.026; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-08-31-bytedance-bigdata
+  candidates:
+  - question_id: SPARK-0028
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0025
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0026
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0027
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0008
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0051
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0052
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0053
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0054
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0055
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0056
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-08-28-zhiyuan-data-dev
+  candidates:
+  - question_id: STORAGE-0014
+    score: 0.2544
+    reason: bigram=0.045; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0027
+    score: 0.2483
+    reason: bigram=0.036; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: STORAGE-0018
+    score: 0.2465
+    reason: bigram=0.033; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-08-27-alibaba-data-dev
+  candidates:
+  - question_id: SPARK-0018
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: FLINK-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ALGORITHM-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0018
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0019
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0020
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0021
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0022
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0023
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0010
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0011
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: PROJECT-0012
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-08-19-bytedance-bigdata-1
+  candidates:
+  - question_id: LLM-0071
+    score: 0.3736
+    reason: bigram=0.036; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: LLM-0004
+    score: 0.2982
+    reason: bigram=0.048; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0178
+    score: 0.292
+    reason: bigram=0.039; topic=0.667; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-08-19-bytedance-bigdata-2
+  candidates:
+  - question_id: SQL-0010
+    score: 0.2428
+    reason: bigram=0.027; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0011
+    score: 0.2406
+    reason: bigram=0.024; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0025
+    score: 0.24
+    reason: bigram=0.023; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-08-19-bytedance-bigdata-3
+  candidates:
+  - question_id: SQL-0010
+    score: 0.2496
+    reason: bigram=0.038; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0007
+    score: 0.2403
+    reason: bigram=0.024; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0013
+    score: 0.24
+    reason: bigram=0.023; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-08-19-bytedance-bigdata-4
+  candidates:
+  - question_id: WAREHOUSE-0091
+    score: 0.1447
+    reason: bigram=0.030; topic=0.500; domain=0.0
+    confirmed: true
+  - question_id: ALGORITHM-0009
+    score: 0.0962
+    reason: bigram=0.020; topic=0.333; domain=0.0
+    confirmed: true
+  - question_id: FLINK-0009
+    score: 0.0867
+    reason: bigram=0.005; topic=0.333; domain=0.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-08-13-bytedance-autumn-1
+  candidates:
+  - question_id: SPARK-0033
+    score: 0.386
+    reason: bigram=0.055; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0371
+    score: 0.3785
+    reason: bigram=0.044; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0156
+    score: 0.3775
+    reason: bigram=0.042; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-28-xiaohongshu-bigdata-dev
+  candidates:
+  - question_id: FLINK-0448
+    score: 0.3821
+    reason: bigram=0.049; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0487
+    score: 0.3795
+    reason: bigram=0.045; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0427
+    score: 0.3783
+    reason: bigram=0.043; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-25-bytedance-douyin-ml
+  candidates:
+  - question_id: ML-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ML-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-25-ctrip-bigdata-intern
+  candidates:
+  - question_id: WAREHOUSE-0096
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-25-kuaishou-commercial-warehouse
+  candidates:
+  - question_id: WAREHOUSE-0097
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-24-xunlei-bigdata-intern
+  candidates:
+  - question_id: STARROCKS-0177
+    score: 0.4012
+    reason: bigram=0.079; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0213
+    score: 0.3993
+    reason: bigram=0.076; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0174
+    score: 0.391
+    reason: bigram=0.063; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-23-01wanwu-mlops
+  candidates:
+  - question_id: LLM-0055
+    score: 0.3794
+    reason: bigram=0.045; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: LLM-0177
+    score: 0.373
+    reason: bigram=0.035; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: LLM-0080
+    score: 0.3722
+    reason: bigram=0.034; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-22-kuaishou-kling
+  candidates:
+  - question_id: SPARK-0114
+    score: 0.379
+    reason: bigram=0.045; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0035
+    score: 0.3747
+    reason: bigram=0.038; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0199
+    score: 0.3735
+    reason: bigram=0.036; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-20-shein-warehouse
+  candidates:
+  - question_id: LLM-0064
+    score: 0.4548
+    reason: bigram=0.161; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: LLM-0193
+    score: 0.4319
+    reason: bigram=0.126; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: LLM-0075
+    score: 0.4233
+    reason: bigram=0.113; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-18-shein-2026-fupan
+  candidates:
+  - question_id: WAREHOUSE-0303
+    score: 0.4397
+    reason: bigram=0.138; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0304
+    score: 0.4339
+    reason: bigram=0.129; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0302
+    score: 0.4339
+    reason: bigram=0.129; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-17-kuaishou-60q
+  candidates:
+  - question_id: SQL-0015
+    score: 0.4108
+    reason: bigram=0.094; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0433
+    score: 0.4051
+    reason: bigram=0.085; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0275
+    score: 0.4042
+    reason: bigram=0.083; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-17-shein-2026-mianjing
+  candidates:
+  - question_id: STARROCKS-0129
+    score: 0.4065
+    reason: bigram=0.087; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0213
+    score: 0.4058
+    reason: bigram=0.086; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0169
+    score: 0.4045
+    reason: bigram=0.084; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-15-qizhidao-data-dev
+  candidates:
+  - question_id: LLM-0096
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0104
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0105
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-14-huolala-senior-bigdata
+  candidates:
+  - question_id: WAREHOUSE-0103
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-11-xiaohongshu-ai-data-dev
+  candidates:
+  - question_id: ALGORITHM-0009
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-07-03-bytedance-data-dev-liangjing
+  candidates:
+  - question_id: LLM-0083
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0094
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0095
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0023
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-30-fliggy-data-dev
+  candidates:
+  - question_id: STARROCKS-0012
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STARROCKS-0013
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0093
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SYSTEM-0008
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0100
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-28-guazi-usedcar
+  candidates:
+  - question_id: FLINK-0449
+    score: 0.4125
+    reason: bigram=0.096; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0495
+    score: 0.4038
+    reason: bigram=0.083; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0491
+    score: 0.4
+    reason: bigram=0.077; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-26-bytedance-ai-data
+  candidates:
+  - question_id: LLM-0055
+    score: 0.3327
+    reason: bigram=0.102; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: ALGORITHM-0007
+    score: 0.2574
+    reason: bigram=0.050; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0071
+    score: 0.2399
+    reason: bigram=0.023; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-23-tencent-kuaishou-zhenti
+  candidates:
+  - question_id: SPARK-0044
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: FLINK-0018
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0028
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-21-fliggy-bigdata
+  candidates:
+  - question_id: SPARK-0035
+    score: 0.3832
+    reason: bigram=0.051; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0400
+    score: 0.3785
+    reason: bigram=0.044; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SQL-0015
+    score: 0.3753
+    reason: bigram=0.039; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-17-alibaba-ai-semantic
+  candidates:
+  - question_id: SQL-0010
+    score: 0.2674
+    reason: bigram=0.065; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0011
+    score: 0.2646
+    reason: bigram=0.061; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0067
+    score: 0.2604
+    reason: bigram=0.247; topic=0.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-12-feishu-ai-data
+  candidates:
+  - question_id: FLINK-0275
+    score: 0.3809
+    reason: bigram=0.047; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0358
+    score: 0.3794
+    reason: bigram=0.045; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0220
+    score: 0.3789
+    reason: bigram=0.044; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-12-netease-bigdata
+  candidates:
+  - question_id: STORAGE-0011
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: FLINK-0007
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ALGORITHM-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ALGORITHM-0005
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SYSTEM-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-12-qianyang-summary
+  candidates:
+  - question_id: SPARK-0047
+    score: 0.4042
+    reason: bigram=0.083; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0127
+    score: 0.3969
+    reason: bigram=0.072; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0119
+    score: 0.3969
+    reason: bigram=0.072; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-09-meituan-jijing
+  candidates:
+  - question_id: SPARK-0039
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STATISTICS-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0019
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-08-alibaba-cloud-6y
+  candidates:
+  - question_id: SPARK-0401
+    score: 0.3911
+    reason: bigram=0.159; topic=0.750; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0119
+    score: 0.3823
+    reason: bigram=0.050; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0213
+    score: 0.3821
+    reason: bigram=0.049; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-08-aliyunzhi-data-dev-6y-0608
+  candidates:
+  - question_id: SPARK-0125
+    score: 0.3802
+    reason: bigram=0.046; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0119
+    score: 0.3783
+    reason: bigram=0.043; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0213
+    score: 0.3781
+    reason: bigram=0.043; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-08-jd-pay-data-dev
+  candidates:
+  - question_id: LLM-0034
+    score: 0.2948
+    reason: bigram=0.043; topic=0.667; domain=1.0
+    confirmed: true
+  - question_id: LLM-0193
+    score: 0.2622
+    reason: bigram=0.057; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0218
+    score: 0.2562
+    reason: bigram=0.048; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-01-bytedance-douyin-6y
+  candidates:
+  - question_id: SPARK-0035
+    score: 0.3867
+    reason: bigram=0.056; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0041
+    score: 0.3855
+    reason: bigram=0.055; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0212
+    score: 0.3851
+    reason: bigram=0.054; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-06-01-ctrip-warehouse
+  candidates:
+  - question_id: WAREHOUSE-0077
+    score: 0.1223
+    reason: bigram=0.034; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0014
+    score: 0.1199
+    reason: bigram=0.031; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0015
+    score: 0.1175
+    reason: bigram=0.027; topic=0.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-31-jianying-agent
+  candidates:
+  - question_id: LLM-0084
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0085
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0086
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0087
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0088
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0089
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0090
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0091
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0092
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-30-bytedance-base-data-3round
+  candidates:
+  - question_id: FLINK-0067
+    score: 0.3792
+    reason: bigram=0.045; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0433
+    score: 0.3779
+    reason: bigram=0.043; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0004
+    score: 0.3775
+    reason: bigram=0.042; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-30-xiaohongshu-ai-data
+  candidates:
+  - question_id: STORAGE-0018
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0077
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0078
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0079
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0080
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0081
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0082
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0091
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0092
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0093
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0022
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-27-bytedance-bigdata-6y-ai-0527
+  candidates:
+  - question_id: SPARK-0035
+    score: 0.3933
+    reason: bigram=0.067; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0140
+    score: 0.3837
+    reason: bigram=0.052; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: STARROCKS-0041
+    score: 0.3802
+    reason: bigram=0.046; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-21-alibaba-ai-data
+  candidates:
+  - question_id: LLM-0193
+    score: 0.349
+    reason: bigram=0.095; topic=0.750; domain=1.0
+    confirmed: true
+  - question_id: LLM-0069
+    score: 0.3386
+    reason: bigram=0.175; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: LLM-0075
+    score: 0.3378
+    reason: bigram=0.077; topic=0.750; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-20-meituan-data-dev1
+  candidates:
+  - question_id: STORAGE-0019
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0098
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0099
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-14-bytedance-bigdata-intern
+  candidates:
+  - question_id: SQL-0027
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-14-iflytek-bigdata-intern
+  candidates:
+  - question_id: SQL-0004
+    score: 0.2485
+    reason: bigram=0.036; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0007
+    score: 0.2469
+    reason: bigram=0.034; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0010
+    score: 0.2464
+    reason: bigram=0.033; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-14-kuaishou-liuyong-er-mian
+  candidates:
+  - question_id: SPARK-0041
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: HDFS-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: HDFS-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ML-0001
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ML-0002
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: ML-0003
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-13-tencent-wxg
+  candidates:
+  - question_id: FLINK-0014
+    score: 0.4352
+    reason: bigram=0.131; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0030
+    score: 0.4296
+    reason: bigram=0.122; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0276
+    score: 0.4198
+    reason: bigram=0.107; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-12-kuaishou-bigdata-intern
+  candidates:
+  - question_id: SPARK-0040
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0087
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0088
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0019
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0020
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-11-bytedance-douyin-ecommerce
+  candidates:
+  - question_id: FLINK-0017
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0075
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0076
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0089
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0090
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0021
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-08-alibaba-data-dev-hr
+  candidates:
+  - question_id: FLINK-0204
+    score: 0.3798
+    reason: bigram=0.046; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0392
+    score: 0.3794
+    reason: bigram=0.045; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0178
+    score: 0.3775
+    reason: bigram=0.042; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-06-xiaohongshu-warehouse
+  candidates:
+  - question_id: WAREHOUSE-0083
+    score: 0.2642
+    reason: bigram=0.060; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0015
+    score: 0.2468
+    reason: bigram=0.033; topic=0.500; domain=1.0
+    confirmed: true
+  - question_id: SQL-0004
+    score: 0.2443
+    reason: bigram=0.030; topic=0.500; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-05-02-xhs-ai-data-1
+  candidates:
+  - question_id: LLM-0094
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-04-30-meituan-data-intern
+  candidates:
+  - question_id: FLINK-0276
+    score: 0.4509
+    reason: bigram=0.155; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0167
+    score: 0.4453
+    reason: bigram=0.147; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0014
+    score: 0.4453
+    reason: bigram=0.147; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-04-22-bytedance-data-dev-0422
+  candidates:
+  - question_id: SPARK-0043
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-04-22-bytedance-data-dev-1-0422
+  candidates:
+  - question_id: SPARK-0214
+    score: 0.3811
+    reason: bigram=0.048; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0093
+    score: 0.381
+    reason: bigram=0.048; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0055
+    score: 0.3777
+    reason: bigram=0.043; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-04-22-bytedance-warehouse-she-zhao
+  candidates:
+  - question_id: WAREHOUSE-0101
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0102
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-04-22-didi-finance
+  candidates:
+  - question_id: SPARK-0047
+    score: 0.3887
+    reason: bigram=0.060; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0213
+    score: 0.3873
+    reason: bigram=0.057; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0226
+    score: 0.3788
+    reason: bigram=0.044; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-04-22-disheng-7-blocks
+  candidates:
+  - question_id: FLINK-0275
+    score: 0.3929
+    reason: bigram=0.066; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0220
+    score: 0.3925
+    reason: bigram=0.065; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0283
+    score: 0.3907
+    reason: bigram=0.063; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-04-22-qunar-warehouse
+  candidates:
+  - question_id: SYSTEM-0001
+    score: 0.1935
+    reason: bigram=0.016; topic=0.333; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0215
+    score: 0.1753
+    reason: bigram=0.116; topic=0.000; domain=1.0
+    confirmed: true
+  - question_id: WAREHOUSE-0214
+    score: 0.1696
+    reason: bigram=0.107; topic=0.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-04-20-bytedance-agent-data-3round
+  candidates:
+  - question_id: LLM-0095
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-04-15-meituan-bigdata
+  candidates:
+  - question_id: FLINK-0276
+    score: 0.4146
+    reason: bigram=0.099; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0018
+    score: 0.4119
+    reason: bigram=0.095; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0088
+    score: 0.4101
+    reason: bigram=0.092; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-04-14-bytedance-bigdata-39q
+  candidates:
+  - question_id: FLINK-0422
+    score: 0.3666
+    reason: bigram=0.026; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0385
+    score: 0.3659
+    reason: bigram=0.024; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0475
+    score: 0.3655
+    reason: bigram=0.024; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-04-12-bytedance-agent-data-1
+  candidates:
+  - question_id: STARROCKS-0014
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2026-03-30-tencent-data-eng
+  candidates:
+  - question_id: FLINK-0459
+    score: 0.4019
+    reason: bigram=0.080; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0457
+    score: 0.4016
+    reason: bigram=0.079; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: FLINK-0487
+    score: 0.4015
+    reason: bigram=0.079; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2026-03-10-bytedance-data-intern-1
+  candidates:
+  - question_id: SPARK-0042
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: HDFS-0004
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0024
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0025
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0026
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2025-03-27-bytedance-transaction-ads
+  candidates:
+  - question_id: SPARK-0109
+    score: 0.3809
+    reason: bigram=0.047; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0047
+    score: 0.3805
+    reason: bigram=0.047; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0167
+    score: 0.3804
+    reason: bigram=0.047; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2025-03-24-jd-data-dev
+  candidates:
+  - question_id: STORAGE-0012
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: LLM-0047
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0065
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0066
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: WAREHOUSE-0067
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0013
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: SQL-0014
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+- interview_id: INTERVIEW-2025-03-24-jd-data-dev2
+  candidates:
+  - question_id: SPARK-0035
+    score: 0.4715
+    reason: bigram=0.187; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0400
+    score: 0.4696
+    reason: bigram=0.184; topic=1.000; domain=1.0
+    confirmed: true
+  - question_id: SPARK-0199
+    score: 0.4436
+    reason: bigram=0.144; topic=1.000; domain=1.0
+    confirmed: true
+- interview_id: INTERVIEW-2025-03-03-bytedance-global-data
+  candidates:
+  - question_id: STORAGE-0020
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0021
+    score: 1.0
+    reason: archive:sources
+    confirmed: true
+  - question_id: STORAGE-0022
+    score: 1.0
+    reason: archive:sources
+    confirmed: true

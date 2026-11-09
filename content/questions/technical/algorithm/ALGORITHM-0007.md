@@ -2,58 +2,38 @@
 id: ALGORITHM-0007
 type: technical
 question: 手写 LRU 缓存（O(1) get/put）
-topic: [algorithm, lru]
+topic:
+- algorithm
+- lru
 difficulty: 3
 frequency: high
-source_type: knowledge
+source_type: ai_generated
+domain: algorithm
 ---
+
+# 回答思路
+
+1. 先给结论：把「手写 LRU 缓存（O(1) get/put）」归结为 算法 里的复杂度、数据规模与边界条件，开口不要先堆名词。
+2. 展开机制：用「定义 -> 过程 -> 影响」讲清 先确定输入规模与边界，再按递归或迭代步骤分析时间和空间复杂度，并带出 algorithm、lru。
+3. 补边界与落地：说明版本、参数、数据规模、异常场景和验证口径，避免只背结论。
+4. 准备追问：围绕原理、失败场景、优化空间各准备一条可讲出来的回答要点。
 
 # 一句话
 
-哈希表定位 + 双向链表维护访问顺序，O(1) 实现 get/put。
+「手写 LRU 缓存（O(1) get/put）」的核心是先把复杂度、数据规模与边界条件讲清楚，再按主链路展开，最后用边界条件和验证口径收口。
 
-# 代码
+# 30 秒回答
 
-```python
-class Node:
-    def __init__(self, k=0, v=0):
-        self.k, self.v, self.prev, self.next = k, v, None, None
+这题先给结论：考察的是复杂度、数据规模与边界条件。展开时先界定概念，再说明主链路： 先确定输入规模与边界，再按递归或迭代步骤分析时间和空间复杂度；随后落到 algorithm、lru 对结果、成本或稳定性的影响。回答先讲判断依据，再补参数或配置；如果继续追问，再展开版本差异、失败场景和验证方式，不要只背术语。
 
-class LRUCache:
-    def __init__(self, capacity):
-        self.cap = capacity
-        self.m = {}
-        self.head, self.tail = Node(), Node()
-        self.head.next, self.tail.prev = self.tail, self.head
+# 1 分钟回答
 
-    def _remove(self, n):
-        n.prev.next, n.next.prev = n.next, n.prev
-
-    def _add(self, n):
-        n.next = self.head.next
-        n.next.prev = n
-        self.head.next = n
-        n.prev = self.head
-
-    def get(self, key):
-        if key not in self.m: return -1
-        n = self.m[key]
-        self._remove(n); self._add(n)
-        return n.v
-
-    def put(self, key, value):
-        if key in self.m:
-            self._remove(self.m[key])
-        n = Node(key, value)
-        self.m[key] = n
-        self._add(n)
-        if len(self.m) > self.cap:
-            t = self.tail.prev
-            self._remove(t)
-            del self.m[t.k]
-```
+第一，先界定问题：确认「手写 LRU 缓存（O(1) get/put）」指的是哪个对象、哪个版本或哪种数据规模，避免把不同场景混在一起。
+第二，展开机制：围绕复杂度、数据规模与边界条件讲主链路，按「输入 -> 处理 -> 输出」说明 先确定输入规模与边界，再按递归或迭代步骤分析时间和空间复杂度，并把 algorithm、lru 放到链路里，而不是孤立列概念。
+第三，补边界与验证：说明常见参数、异常、性能瓶颈和结果一致性怎么检查；项目结合只给表达顺序，使用已经确认过的真实改动和指标，没有亲历的事实不写进答案。
 
 # 追问
 
-- 为什么用双向链表？
-- 达到容量时淘汰哪个？
+- 这个结论在什么版本、配置或数据规模下成立？回答要点：先确认 算法 的版本与运行形态，再说明结论依赖的统计信息、资源或口径，不要给脱离条件的绝对判断。
+- 出现性能退化或结果异常时怎么定位？回答要点：先看执行计划、输入规模、长尾任务、日志和指标口径，再决定是改数据分布、改配置还是改实现；先定位再优化。
+- 如果换成更高数据量或另一类业务场景，方案怎么调整？回答要点：回到 algorithm、lru 的成本与约束，重新评估分区、并行度、状态、容错和验证方式，并说明取舍依据。

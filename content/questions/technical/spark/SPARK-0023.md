@@ -2,37 +2,39 @@
 id: SPARK-0023
 type: technical
 question: Spark OOM/慢任务怎么排查，热点 key 数据倾斜怎么解决
-topic: [spark, oom, skew]
+topic:
+- spark
+- oom
+- skew
 difficulty: 3
 frequency: high
 source_type: ai_generated
-sources:
-  - interview_id: INTERVIEW-2026-09-26-xpeng-data-dev
-    company: 小鹏
-    position: 数据开发（27 届秋招一面）
-    date: 2026-09-26
-  - interview_id: INTERVIEW-2026-09-28-bytedance-fandouyin-liangjing
-    company: 字节跳动
-    position: 数据开发（泛抖音，校招一面凉经）
-    date: 2026-09-28
+domain: spark
 ---
+
+# 回答思路
+
+1. 先给结论：把「Spark OOM/慢任务怎么排查，热点 key 数据倾斜怎么解决」归结为 Spark 里的执行计划、Shuffle 与资源并行度之间的关系，开口不要先堆名词。
+2. 展开机制：用「定义 -> 过程 -> 影响」讲清 Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区，并带出 spark、oom、skew。
+3. 补边界与落地：说明版本、参数、数据规模、异常场景和验证口径，避免只背结论。
+4. 准备追问：围绕原理、失败场景、优化空间各准备一条可讲出来的回答要点。
 
 # 一句话
 
-OOM/慢任务先看日志和 UI 定位 driver/executor、倾斜、shuffle、缓存，倾斜用加盐/热点拆分/AQE 解决。
+「Spark OOM/慢任务怎么排查，热点 key 数据倾斜怎么解决」的核心是先把执行计划、Shuffle 与资源并行度之间的关系讲清楚，再按主链路展开，最后用边界条件和验证口径收口。
 
 # 30 秒回答
 
-排查：看日志区分 driver/executor OOM，看 UI 定位慢 task 和 shuffle 数据量、缓存和广播过大。倾斜：热点 key 加盐两阶段聚合、热点拆分、AQE skew join。
+这题先给结论：考察的是执行计划、Shuffle 与资源并行度之间的关系。展开时先界定概念，再说明主链路： Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区；随后落到 spark、oom、skew 对结果、成本或稳定性的影响。回答先讲判断依据，再补参数或配置；如果继续追问，再展开版本差异、失败场景和验证方式，不要只背术语。
 
 # 1 分钟回答
 
-- OOM：driver（collect/广播过大）、executor（倾斜/缓存/内存不足）
-- 慢任务：UI 定位慢 stage/task、shuffle 数据量、GC、spill
-- 倾斜：加盐、热点拆分、增加并行度、AQE skew join
-- 定位：抽样统计热点 key 分布
+第一，先界定问题：确认「Spark OOM/慢任务怎么排查，热点 key 数据倾斜怎么解决」指的是哪个对象、哪个版本或哪种数据规模，避免把不同场景混在一起。
+第二，展开机制：围绕执行计划、Shuffle 与资源并行度之间的关系讲主链路，按「输入 -> 处理 -> 输出」说明 Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区，并把 spark、oom、skew 放到链路里，而不是孤立列概念。
+第三，补边界与验证：说明常见参数、异常、性能瓶颈和结果一致性怎么检查；项目结合只给表达顺序，使用已经确认过的真实改动和指标，没有亲历的事实不写进答案。
 
 # 追问
 
-- driver OOM 常见原因？
-- AQE skew join 原理？
+- 这个结论在什么版本、配置或数据规模下成立？回答要点：先确认 Spark 的版本与运行形态，再说明结论依赖的统计信息、资源或口径，不要给脱离条件的绝对判断。
+- 出现性能退化或结果异常时怎么定位？回答要点：先看执行计划、输入规模、长尾任务、日志和指标口径，再决定是改数据分布、改配置还是改实现；先定位再优化。
+- 如果换成更高数据量或另一类业务场景，方案怎么调整？回答要点：回到 spark、oom、skew 的成本与约束，重新评估分区、并行度、状态、容错和验证方式，并说明取舍依据。

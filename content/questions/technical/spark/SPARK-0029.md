@@ -2,33 +2,39 @@
 id: SPARK-0029
 type: technical
 question: 数仓的宽窄依赖怎么划，哪些算子产生宽依赖
-topic: [spark, dependency, shuffle]
+topic:
+- spark
+- dependency
+- shuffle
 difficulty: 2
 frequency: high
 source_type: ai_generated
-sources:
-  - interview_id: INTERVIEW-2026-09-25-kuaishou-ai-data
-    company: 快手
-    position: Data Agent 研发 / AI 数据系统研发（社招）
-    date: 2026-09-25
+domain: spark
 ---
+
+# 回答思路
+
+1. 先给结论：把「数仓的宽窄依赖怎么划，哪些算子产生宽依赖」归结为 Spark 里的执行计划、Shuffle 与资源并行度之间的关系，开口不要先堆名词。
+2. 展开机制：用「定义 -> 过程 -> 影响」讲清 Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区，并带出 spark、dependency、shuffle。
+3. 补边界与落地：说明版本、参数、数据规模、异常场景和验证口径，避免只背结论。
+4. 准备追问：围绕原理、失败场景、优化空间各准备一条可讲出来的回答要点。
 
 # 一句话
 
-窄依赖一个父分区只被一个子分区依赖，宽依赖一个父分区被多个子分区依赖、需要 shuffle。
+「数仓的宽窄依赖怎么划，哪些算子产生宽依赖」的核心是先把执行计划、Shuffle 与资源并行度之间的关系讲清楚，再按主链路展开，最后用边界条件和验证口径收口。
 
 # 30 秒回答
 
-窄依赖：map、filter、union、coalesce，可流水线执行。宽依赖（shuffle）：groupByKey、reduceByKey、join、distinct、sortByKey、repartition，触发 shuffle、切分 stage。
+这题先给结论：考察的是执行计划、Shuffle 与资源并行度之间的关系。展开时先界定概念，再说明主链路： Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区；随后落到 spark、dependency、shuffle 对结果、成本或稳定性的影响。回答先讲判断依据，再补参数或配置；如果继续追问，再展开版本差异、失败场景和验证方式，不要只背术语。
 
 # 1 分钟回答
 
-- 窄依赖：一对一/多对一，无 shuffle，同 stage 内 pipeline
-- 宽依赖：一对多，需 shuffle，划分 stage
-- 宽依赖算子：groupByKey、reduceByKey、join、distinct、sortByKey、repartition
-- 意义：决定 stage 边界和容错粒度
+第一，先界定问题：确认「数仓的宽窄依赖怎么划，哪些算子产生宽依赖」指的是哪个对象、哪个版本或哪种数据规模，避免把不同场景混在一起。
+第二，展开机制：围绕执行计划、Shuffle 与资源并行度之间的关系讲主链路，按「输入 -> 处理 -> 输出」说明 Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区，并把 spark、dependency、shuffle 放到链路里，而不是孤立列概念。
+第三，补边界与验证：说明常见参数、异常、性能瓶颈和结果一致性怎么检查；项目结合只给表达顺序，使用已经确认过的真实改动和指标，没有亲历的事实不写进答案。
 
 # 追问
 
-- 宽依赖为什么要切 stage？
-- groupByKey 和 reduceByKey 都宽依赖，谁更优？
+- 这个结论在什么版本、配置或数据规模下成立？回答要点：先确认 Spark 的版本与运行形态，再说明结论依赖的统计信息、资源或口径，不要给脱离条件的绝对判断。
+- 出现性能退化或结果异常时怎么定位？回答要点：先看执行计划、输入规模、长尾任务、日志和指标口径，再决定是改数据分布、改配置还是改实现；先定位再优化。
+- 如果换成更高数据量或另一类业务场景，方案怎么调整？回答要点：回到 spark、dependency、shuffle 的成本与约束，重新评估分区、并行度、状态、容错和验证方式，并说明取舍依据。

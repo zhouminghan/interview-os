@@ -2,34 +2,38 @@
 id: FLINK-0005
 type: technical
 question: 要搭建一套实时数仓，怎么设计架构
-topic: [flink, realtime-warehouse]
+topic:
+- flink
+- realtime-warehouse
 difficulty: 3
 frequency: high
 source_type: ai_generated
-sources:
-  - interview_id: INTERVIEW-2026-09-26-sunwoda-data-dev
-    company: 欣旺达
-    position: 数据开发（秋招）
-    date: 2026-09-26
+domain: flink
 ---
+
+# 回答思路
+
+1. 先给结论：把「要搭建一套实时数仓，怎么设计架构」归结为 Flink 里的事件时间、状态、Checkpoint 与一致性语义，开口不要先堆名词。
+2. 展开机制：用「定义 -> 过程 -> 影响」讲清 Source 读取事件，有状态算子按 key 维护状态，Checkpoint 持久化状态与消费位点，并带出 flink、realtime-warehouse。
+3. 补边界与落地：说明版本、参数、数据规模、异常场景和验证口径，避免只背结论。
+4. 准备追问：围绕原理、失败场景、优化空间各准备一条可讲出来的回答要点。
 
 # 一句话
 
-实时数仓用「数据源 -> Kafka -> Flink 计算 -> 实时存储 -> 应用」链路，分 ODS/DWD/DWS/ADS 层。
+「要搭建一套实时数仓，怎么设计架构」的核心是先把事件时间、状态、Checkpoint 与一致性语义讲清楚，再按主链路展开，最后用边界条件和验证口径收口。
 
 # 30 秒回答
 
-数据源经 Kafka 接入，Flink 实时计算，落 Doris/ClickHouse/HBase/Kafka；分层 ODS（消息）-> DWD（明细）-> DWS（汇总）-> ADS；离线层兜底融合。
+这题先给结论：考察的是事件时间、状态、Checkpoint 与一致性语义。展开时先界定概念，再说明主链路： Source 读取事件，有状态算子按 key 维护状态，Checkpoint 持久化状态与消费位点；随后落到 flink、realtime-warehouse 对结果、成本或稳定性的影响。回答先讲判断依据，再补参数或配置；如果继续追问，再展开版本差异、失败场景和验证方式，不要只背术语。
 
 # 1 分钟回答
 
-- 采集：Canal/Kafka 实时接入
-- 计算：Flink 实时处理、状态、迟到处理
-- 存储：Doris/ClickHouse/Kafka
-- 分层：ODS/DWD/DWS/ADS
-- 架构：Lambda 或 Kappa，实时 + 离线兜底
+第一，先界定问题：确认「要搭建一套实时数仓，怎么设计架构」指的是哪个对象、哪个版本或哪种数据规模，避免把不同场景混在一起。
+第二，展开机制：围绕事件时间、状态、Checkpoint 与一致性语义讲主链路，按「输入 -> 处理 -> 输出」说明 Source 读取事件，有状态算子按 key 维护状态，Checkpoint 持久化状态与消费位点，并把 flink、realtime-warehouse 放到链路里，而不是孤立列概念。
+第三，补边界与验证：说明常见参数、异常、性能瓶颈和结果一致性怎么检查；项目结合只给表达顺序，使用已经确认过的真实改动和指标，没有亲历的事实不写进答案。
 
 # 追问
 
-- Lambda 和 Kappa 怎么选？
-- 实时数仓的状态怎么管？
+- 这个结论在什么版本、配置或数据规模下成立？回答要点：先确认 Flink 的版本与运行形态，再说明结论依赖的统计信息、资源或口径，不要给脱离条件的绝对判断。
+- 出现性能退化或结果异常时怎么定位？回答要点：先看执行计划、输入规模、长尾任务、日志和指标口径，再决定是改数据分布、改配置还是改实现；先定位再优化。
+- 如果换成更高数据量或另一类业务场景，方案怎么调整？回答要点：回到 flink、realtime-warehouse 的成本与约束，重新评估分区、并行度、状态、容错和验证方式，并说明取舍依据。

@@ -410,6 +410,24 @@ select { padding: 8px 12px; border-radius: var(--radius); border: 1px solid var(
 .soc-dot.active { width: 22px; background: var(--accent); border-color: var(--accent); }
 .soc-dot.seen { background: var(--muted); border-color: var(--muted); }
 
+/* P1: feedback, mastery scoring, coach/review and link candidates */
+[hidden] { display: none !important; }
+.os-feedback { position: fixed; right: 16px; bottom: 16px; z-index: 80; max-width: min(420px, calc(100vw - 32px)); display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); color: var(--text); font-size: .88rem; }
+.os-feedback .btn { flex: none; }
+.gs-active { background: var(--surface-2); }
+.gs-empty { padding: 12px 14px; color: var(--muted); font-size: .86rem; }
+.score-panel { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+.score-total, .score-dim { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.score-dim-label { min-width: 72px; color: var(--muted); font-size: .84rem; }
+.score-btn { min-width: 34px; height: 32px; padding: 0 8px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); cursor: pointer; font-family: inherit; font-size: .86rem; font-variant-numeric: tabular-nums; }
+.score-btn.small { min-width: 28px; height: 28px; padding: 0 5px; font-size: .78rem; }
+.score-btn:hover:not(:disabled) { border-color: var(--accent); }
+.score-btn.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.score-btn:disabled, .btn:disabled { opacity: .5; cursor: not-allowed; }
+#p-self { width: 100%; min-height: 96px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); font-family: inherit; font-size: .95rem; resize: vertical; }
+.iv-links-label { padding: 8px 12px 4px; color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .04em; }
+.tag.warn { color: var(--warn); background: transparent; }
+
 /* Layout guards: flex/grid children may shrink, and long text stays inside its box. */
 .topbar-inner > *, .container, .toolbar, .toolbar-actions, .hero-actions, .field, .field > *, .grade-row, .grade-row > *, .practice-head, .practice-head > *, .bar, .bar > *, .rec-row, .rec-row > *, .tags, .tags > *, .chips, .chips > *, .split, .split > *, .q-list, .q-detail, .stats, .domain-grid, .rank-list, .rank-row, .rank-row > *, .rank-bar, .q-row, .q-row > *, .stat, .domain-card, .panel, .progress-bar, .ex-shell, .ex-pane, .ex-pane-head, .ex-pane-head > *, .ex-pane-body, .ex-main, .ex-controls, .ex-controls > *, .ex-mastery, .ex-mastery > *, .ex-topics, .ex-topics > *, .wiki-shell, .wiki-pane, .wiki-pane-head, .wiki-pane-head > *, .wiki-pane-body, .wiki-main, .wiki-doc, .gs-dropdown, .gs-item, .gs-item > *, .interview-card, .interview-main, .interview-head, .interview-head > *, .interview-body, .iv-answer, .iv-answer-title, .iv-answer-title > *, .iv-answer-body, .dg-scroll, .qa-diagram, .ex-diagram, .sys-diagram, .soc, .soc-head, .soc-actions, .soc-actions > *, .qa-section-title, .qa-section-title > * { min-width: 0; }
 .topbar-inner > .global-search { min-width: 110px; }

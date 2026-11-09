@@ -2,39 +2,39 @@
 id: SPARK-0010
 type: technical
 question: 数据倾斜如何定位，两张大表 join 倾斜怎么处理
-topic: [spark, skew, join]
+topic:
+- spark
+- skew
+- join
 difficulty: 3
 frequency: high
 source_type: ai_generated
-sources:
-  - interview_id: INTERVIEW-2026-09-21-pdd-data-dev
-    company: 拼多多
-    position: 数据开发（社招）
-    date: 2026-09-21
+domain: spark
 ---
+
+# 回答思路
+
+1. 先给结论：把「数据倾斜如何定位，两张大表 join 倾斜怎么处理」归结为 Spark 里的执行计划、Shuffle 与资源并行度之间的关系，开口不要先堆名词。
+2. 展开机制：用「定义 -> 过程 -> 影响」讲清 Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区，并带出 spark、skew、join。
+3. 补边界与落地：说明版本、参数、数据规模、异常场景和验证口径，避免只背结论。
+4. 准备追问：围绕原理、失败场景、优化空间各准备一条可讲出来的回答要点。
 
 # 一句话
 
-倾斜定位看「单个 task 处理的数据量和耗时是否远大于其他 task」；两张大表 join 的核心是拆热点 key 单独处理或加盐打散。
+「数据倾斜如何定位，两张大表 join 倾斜怎么处理」的核心是先把执行计划、Shuffle 与资源并行度之间的关系讲清楚，再按主链路展开，最后用边界条件和验证口径收口。
 
 # 30 秒回答
 
-通过 Spark UI / 日志看 stage 长尾、task 数据量和耗时分布、OOM 定位热点 key。常见场景：group by 热点 key、两张大表 join 热点 key、distinct。处理：热点 key 拆开单独 join 再 union、加随机前缀打散、开启 AQE skew join、增加并行度。
+这题先给结论：考察的是执行计划、Shuffle 与资源并行度之间的关系。展开时先界定概念，再说明主链路： Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区；随后落到 spark、skew、join 对结果、成本或稳定性的影响。回答先讲判断依据，再补参数或配置；如果继续追问，再展开版本差异、失败场景和验证方式，不要只背术语。
 
 # 1 分钟回答
 
-- 定位：Spark UI task metrics、shuffle 数据量、日志、抽样统计 key 分布
-- 常见场景：null/默认值热点、大商户/大 V、两张大表 join、group by、distinct
-- 两张大表 join 倾斜：
-  1. 识别热点 key
-  2. 热点 key 单独 join + 非热点正常 join，再 union
-  3. 热点 key 加随机前缀打散 join，再二次 join 还原
-  4. 先过滤/压缩降低数据量
-  5. 开启 AQE skew join
-  6. 增加并行度、两阶段聚合
+第一，先界定问题：确认「数据倾斜如何定位，两张大表 join 倾斜怎么处理」指的是哪个对象、哪个版本或哪种数据规模，避免把不同场景混在一起。
+第二，展开机制：围绕执行计划、Shuffle 与资源并行度之间的关系讲主链路，按「输入 -> 处理 -> 输出」说明 Driver 把逻辑计划转成物理计划，Shuffle 决定 Stage 边界，Executor 并行处理分区，并把 spark、skew、join 放到链路里，而不是孤立列概念。
+第三，补边界与验证：说明常见参数、异常、性能瓶颈和结果一致性怎么检查；项目结合只给表达顺序，使用已经确认过的真实改动和指标，没有亲历的事实不写进答案。
 
 # 追问
 
-- 怎么快速找到热点 key？
-- 加盐后怎么还原？
-- AQE skew join 的原理？
+- 这个结论在什么版本、配置或数据规模下成立？回答要点：先确认 Spark 的版本与运行形态，再说明结论依赖的统计信息、资源或口径，不要给脱离条件的绝对判断。
+- 出现性能退化或结果异常时怎么定位？回答要点：先看执行计划、输入规模、长尾任务、日志和指标口径，再决定是改数据分布、改配置还是改实现；先定位再优化。
+- 如果换成更高数据量或另一类业务场景，方案怎么调整？回答要点：回到 spark、skew、join 的成本与约束，重新评估分区、并行度、状态、容错和验证方式，并说明取舍依据。
